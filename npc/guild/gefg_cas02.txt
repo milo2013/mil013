@@ -1,11 +1,19 @@
 //===== rAthena Script =======================================
+<<<<<<< HEAD
 //= War of Emperium (Geffen)
+=======
+//= War of Emperium (Geffen) - Eeyorbriggar
+>>>>>>> 03a54402bc14c620d4f478c5c8b887728213aad4
 //===== By: ==================================================
 //= L0ne_W0lf
 //===== Current Version: =====================================
 //= 1.2
 //===== Compatible With: =====================================
+<<<<<<< HEAD
 //= rAthena SVN
+=======
+//= rAthena Project
+>>>>>>> 03a54402bc14c620d4f478c5c8b887728213aad4
 //===== Description: =========================================
 //= NPCs that relate to Geffen Guild Castle 2
 //===== Additional Comments: =================================
@@ -92,7 +100,10 @@ gefg_cas02,68,36,2	duplicate(InsideFlagsG2)	Eeyorbriggar#11	722
 // Guild Flag (Town)
 //============================================================
 geffen,112,129,1	duplicate(InsideFlagsG2)	Eeyorbriggar#12	722
+<<<<<<< HEAD
 milenia,85,142,5	duplicate(InsideFlagsG2)	Eeyorbriggar#13	722
+=======
+>>>>>>> 03a54402bc14c620d4f478c5c8b887728213aad4
 
 // Kafra Employee
 //============================================================
@@ -105,7 +116,10 @@ gefg_cas02,12,66,5	duplicate(cm)	Esmarehk#gefg_cas02	55
 // Treasure Room Exit
 //============================================================
 gefg_cas02,145,114,0	script	#lever_G02	111,{
+<<<<<<< HEAD
 
+=======
+>>>>>>> 03a54402bc14c620d4f478c5c8b887728213aad4
 	mes " ";
 	mes "There's a small lever. Will you pull it?";
 	next;

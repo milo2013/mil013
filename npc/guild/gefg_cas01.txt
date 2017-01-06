@@ -1,11 +1,19 @@
 //===== rAthena Script =======================================
+<<<<<<< HEAD
 //= War of Emperium (Geffen)
+=======
+//= War of Emperium (Geffen) - Repherion
+>>>>>>> 03a54402bc14c620d4f478c5c8b887728213aad4
 //===== By: ==================================================
 //= L0ne_W0lf
 //===== Current Version: =====================================
 //= 1.2
 //===== Compatible With: =====================================
+<<<<<<< HEAD
 //= rAthena SVN
+=======
+//= rAthena Project
+>>>>>>> 03a54402bc14c620d4f478c5c8b887728213aad4
 //===== Description: =========================================
 //= NPCs that relate to Geffen Guild Castle 1
 //===== Additional Comments: =================================
@@ -91,7 +99,11 @@ gefg_cas01,64,16,4	duplicate(InsideFlagsG1)	Repherion#10	722
 // Guild Flag (Town)
 //============================================================
 geffen,109,123,2	duplicate(InsideFlagsG1)	Repherion#11	722
+<<<<<<< HEAD
 milenia,88,142,5	duplicate(InsideFlagsG1)	Repherion#12	722
+=======
+
+>>>>>>> 03a54402bc14c620d4f478c5c8b887728213aad4
 // Kafra Employee
 //============================================================
 gefg_cas01,83,47,3	duplicate(guildkafra)	Kafra Staff#gefg_cas01	117
@@ -103,7 +115,10 @@ gefg_cas01,40,48,5	duplicate(cm)	Gnahcher#gefg_cas01	55
 // Treasure Room Exit
 //============================================================
 gefg_cas01,152,117,0	script	#lever_G01	111,{
+<<<<<<< HEAD
 
+=======
+>>>>>>> 03a54402bc14c620d4f478c5c8b887728213aad4
 	mes " ";
 	mes "There's a small lever. Will you pull it?";
 	next;

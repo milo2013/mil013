@@ -5,7 +5,11 @@
 //===== Current Version: =====================================
 //= 1.0
 //===== Compatible With: =====================================
+<<<<<<< HEAD
 //= rAthena SVN
+=======
+//= rAthena Project
+>>>>>>> 03a54402bc14c620d4f478c5c8b887728213aad4
 //===== Additional Comments: =================================
 //= 1.0 Merged to template file.
 //============================================================
@@ -64,4 +68,7 @@ OnRecvCastlesc02:
 	end;
 }
 sch_gld,280,247,4	duplicate(Sc02_Flag)	Andlangr#flag_sc02_2	722
+<<<<<<< HEAD
 milenia,91,127,5	duplicate(Sc02_Flag)	Andlangr#flag_sc02_211	722
+=======
+>>>>>>> 03a54402bc14c620d4f478c5c8b887728213aad4

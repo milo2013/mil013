@@ -52,17 +52,17 @@ glast_01,204,273,6	script	Hugin#ghinstance	755,{
 			close;
 		case 2:
 			switch(instance_enter(.@md_name$)) {
-			case 3:
+			case IE_OTHER:
 				mes "An unknown error has occurred.";
 				close;
-			case 2:
+			case IE_NOINSTANCE:
 				mes "The memorial dungeon "+.@md_name$+" does not exist.";
 				mes "The party leader did not generate the dungeon yet.";
 				close;
-			case 1:
+			case IE_NOMEMBER:
 				mes "Only the registered members can enter the instance "+.@md_name$+".";
 				close;
-			case 0:
+			case IE_OK:
 				mapannounce "glast_01",strcharinfo(0)+", member of the party "+.@p_name$+" entered the instance "+.@md_name$+".",bc_map,"0x00ff99";
 				setquest 12317;
 				setquest 12318;
@@ -664,7 +664,6 @@ OnTouch_:
 		case 10: warp .@map2$,174,101; break;
 		case 11: warp .@map2$,150,110; break;
 		case 12: warp .@map2$,150,179; break;
-		case 13: warp .@map2$,150,154; break;
 	}
 	end;
 }
@@ -679,8 +678,6 @@ OnTouch_:
 2@gl_k,154,101,0	duplicate(#ghinstancewarp1)	#ghinstancewarp10	45,1,2
 2@gl_k,165,101,0	duplicate(#ghinstancewarp1)	#ghinstancewarp11	45,1,2
 2@gl_k,150,163,0	duplicate(#ghinstancewarp1)	#ghinstancewarp12	45,1,2
-2@gl_k,150,166,0	duplicate(#ghinstancewarp1)	#ghinstancewarp13	45,1,2
-
 
 
 // Sector 1 Mobs
@@ -1361,7 +1358,6 @@ OnMyMobDead:
 		mapannounce .@map$, "3 o'clock positioned warp leading to the 2nd zone has been opened. Use the central hallway to get there.",bc_map,"0xFFFF00";
 		donpcevent instance_npcname("#ghinstancewarp10")+"::OnEnable";
 		donpcevent instance_npcname("#ghinstancewarp11")+"::OnEnable";
-		donpcevent instance_npcname("#ghinstancewarp13")+"::OnEnable";
 		donpcevent instance_npcname("#ghmemorialmob08")+"::OnEnable";
 		donpcevent instance_npcname("#ghmemorialmob07")+"::OnDisable";
 	}

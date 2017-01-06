@@ -70,7 +70,7 @@
 /// (disable by commenting the line)
 ///
 /// Leave this line to enable renewal calculation for increasing status/parameter points
-///#define RENEWAL_STAT
+#define RENEWAL_STAT
 
 #endif
 

@@ -368,7 +368,7 @@ IG_CP_Shield_Scroll_Box,7139,0,1,0,0,0,1	// 1x Coating_Bottle
 IG_CP_Armor_Scroll_Box,14519,0,1,0,0,0,1	// 1x CP_Armor_Scroll
 IG_CP_Armor_Scroll_Box,7139,0,1,0,0,0,1	// 1x Coating_Bottle
 
-IG_CP_Weapon_Scroll_Box,14520,0,1,0,0,0,10	// 1x CP_Weapon_Scroll
+IG_CP_Weapon_Scroll_Box,14520,0,1,0,0,0,1	// 1x CP_Weapon_Scroll
 IG_CP_Weapon_Scroll_Box,7139,0,1,0,0,0,1	// 1x Coating_Bottle
 
 IG_Repair_Scroll_Box,14521,0,1,0,0,0,1	// 1x Repair_Scroll

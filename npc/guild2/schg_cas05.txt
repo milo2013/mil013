@@ -5,7 +5,11 @@
 //===== Current Version: =====================================
 //= 1.0
 //===== Compatible With: =====================================
+<<<<<<< HEAD
 //= rAthena SVN
+=======
+//= rAthena Project
+>>>>>>> 03a54402bc14c620d4f478c5c8b887728213aad4
 //===== Additional Comments: =================================
 //= 1.0 Merged to template file.
 //============================================================
@@ -74,4 +78,7 @@ OnRecvCastlesc05:
 sch_gld,91,284,4	duplicate(sc05_Flag)	Skidbladnir#flag_sc05_2	722
 sch_gld,66,320,6	duplicate(sc05_Flag)	Skidbladnir#flag_sc05_3	722
 sch_gld,66,310,6	duplicate(sc05_Flag)	Skidbladnir#flag_sc05_4	722
+<<<<<<< HEAD
 milenia,91,104,5	duplicate(LF_sc05_2)	Skidbladnir#LF_sc05_800	722
+=======
+>>>>>>> 03a54402bc14c620d4f478c5c8b887728213aad4

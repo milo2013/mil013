@@ -4182,6 +4182,8 @@ ACMD_FUNC(mapinfo) {
 		strcat(atcmd_output, " AllowKS |");
 	if (map[m_id].flag.reset)
 		strcat(atcmd_output, " Reset |");
+	if (map[m_id].flag.hidemobhpbar)
+		strcat(atcmd_output, " HideMobHPBar |");
 	clif_displaymessage(fd, atcmd_output);
 
 	strcpy(atcmd_output,msg_txt(sd,1051)); // Other Flags2:
@@ -5813,7 +5815,7 @@ ACMD_FUNC(marry)
 
 	nullpo_retr(-1, sd);
 
-	if (!message || !*message || sscanf(message, "%23s", player_name) != 1) {
+	if (!message || !*message || sscanf(message, "%23[^\n]", player_name) != 1) {
 		clif_displaymessage(fd, msg_txt(sd,1172)); // Usage: @marry <char name>
 		return -1;
 	}
@@ -5826,6 +5828,8 @@ ACMD_FUNC(marry)
 	if (pc_marriage(sd, pl_sd)) {
 		clif_displaymessage(fd, msg_txt(sd,1173)); // They are married... wish them well.
 		clif_wedding_effect(&pl_sd->bl); //wedding effect and music [Lupus]
+		if( pl_sd->bl.m != sd->bl.m )
+			clif_wedding_effect(&sd->bl);
 		getring(sd); // Auto-give named rings (Aru)
 		getring(pl_sd);
 		return 0;
@@ -8094,7 +8098,7 @@ ACMD_FUNC(mapflag) {
 		checkflag(partylock);			checkflag(guildlock);			checkflag(reset);				checkflag(chmautojoin);
 		checkflag(nousecart);			checkflag(noitemconsumption);	checkflag(nosumstarmiracle);	checkflag(nomineeffect);
 		checkflag(nolockon);			checkflag(notomb);				checkflag(nocostume);			checkflag(gvg_te);
-		checkflag(gvg_te_castle);
+		checkflag(gvg_te_castle);		checkflag(hidemobhpbar);
 #ifdef ADJUST_SKILL_DAMAGE
 		checkflag(skill_damage);
 #endif
@@ -8119,7 +8123,7 @@ ACMD_FUNC(mapflag) {
 	setflag(partylock);			setflag(guildlock);			setflag(reset);					setflag(chmautojoin);
 	setflag(nousecart);			setflag(noitemconsumption);	setflag(nosumstarmiracle);		setflag(nomineeffect);
 	setflag(nolockon);			setflag(notomb);			setflag(nocostume);				setflag(gvg_te);
-	setflag(gvg_te_castle);
+	setflag(gvg_te_castle);		setflag(hidemobhpbar);
 #ifdef ADJUST_SKILL_DAMAGE
 	setflag(skill_damage);
 #endif
@@ -8135,7 +8139,7 @@ ACMD_FUNC(mapflag) {
 	clif_displaymessage(sd->fd,"fog, fireworks, sakura, leaves, nogo, nobaseexp, nojobexp, nomobloot, nomvploot,");
 	clif_displaymessage(sd->fd,"nightenabled, restricted, nodrop, novending, loadevent, nochat, partylock, guildlock,");
 	clif_displaymessage(sd->fd,"reset, chmautojoin, nousecart, noitemconsumption, nosumstarmiracle, nolockon, notomb,");
-	clif_displaymessage(sd->fd,"nocostume, gvg_te, gvg_te_castle");
+	clif_displaymessage(sd->fd,"nocostume, gvg_te, gvg_te_castle, hidemobhpbar");
 #ifdef ADJUST_SKILL_DAMAGE
 	clif_displaymessage(sd->fd,"skill_damage");
 #endif
@@ -9891,355 +9895,6 @@ ACMD_FUNC(adopt)
 }
 
 #include "../custom/atcommand.inc"
-static int buildin_autoattack_sub(struct block_list *bl,va_list ap)
-{
-	int *target_id=va_arg(ap,int *);
-	*target_id = bl->id;
-	return 1;
-}
-void autoattack_motion(struct map_session_data* sd)
-{
-	int i, target_id;
-	for(i=0;i<=9;i++)
-	{
-		target_id=0;
-		map_foreachinarea(buildin_autoattack_sub, sd->bl.m, sd->bl.x-i, sd->bl.y-i, sd->bl.x+i, sd->bl.y+i, BL_MOB, &target_id);
-		if(target_id)
-		{
-			unit_attack(&sd->bl,target_id,1);
-			break;			
-		}
-		target_id=0;
-	}
-	if(!target_id)
-	{
-		unit_walktoxy(&sd->bl,sd->bl.x+(rand()%2==0?-1:1)*(rand()%10),sd->bl.y+(rand()%2==0?-1:1)*(rand()%10),0);
-	}
-	return;
-}
-int autoattack_timer(int tid, unsigned int tick, int id, intptr_t data)
-{
-	struct map_session_data *sd=NULL;
- 
-	sd=map_id2sd(id);
-	if(sd==NULL)
-		return 0;
-	if(sd->sc.option & OPTION_AUTOATTACK)
-	{
-		autoattack_motion(sd);
-		add_timer(gettick()+2000,autoattack_timer,sd->bl.id,0);
-	}
-	return 0;
-}
-ACMD_FUNC(autoattack)
-{
-	nullpo_retr(-1, sd);
-	if (sd->sc.option & OPTION_AUTOATTACK)
-	{
-		sd->sc.option &= ~OPTION_AUTOATTACK;
-		unit_stop_attack(&sd->bl);
-		clif_displaymessage(fd, "You deactivated Autoattack.");
-	}else
-	{
-		sd->sc.option |= OPTION_AUTOATTACK;
-		add_timer(gettick()+200,autoattack_timer,sd->bl.id,0);
-		clif_displaymessage(fd, "You activated Autoattack.");
-	}
-	clif_changeoption(&sd->bl);
-	return 0;
-}
-
-ACMD_FUNC(gepard_block_nick)
-{
-	struct map_session_data* violator_sd;
-	time_t time_server;
-	unsigned int duration;
-	unsigned int violator_account_id = 0;
-	unsigned int violator_unique_id = 0;
-	char reason_str[GEPARD_REASON_LENGTH];
-	char unban_time_str[GEPARD_TIME_STR_LENGTH];
-	char violator_name[NAME_LENGTH];
-	char duration_type, *command_info = "Wrong input (usage: @gepard_block_nick <duration> <duration_type m/h/d> \"<char name>\" <reason>)";
-
-	nullpo_retr(-1, sd);
-
-	memset(atcmd_player_name, '\0', sizeof(atcmd_player_name));
-
-	if (!message || !*message || sscanf(message, "%u %c \"%23[^\"]\" %99[^\n]", &duration, &duration_type, violator_name, reason_str) < 4)
-	{
-		clif_displaymessage(fd, command_info);
-		return -1;
-	}
-
-	time(&time_server);
-
-	switch (duration_type)
-	{
-		case 'm':
-			time_server += (duration * 60);
-		break;
-
-		case 'h':
-			time_server += (duration * 3600);
-		break;
-
-		case 'd':
-			time_server += (duration * 86400);
-		break;
-
-		default:
-			duration = 0;
-		break;
-	}
-
-	if (duration == 0)
-	{
-		clif_displaymessage(fd, command_info);
-		return -1;
-	}
-
-	strftime(unban_time_str, sizeof(unban_time_str), "%Y-%m-%d %H:%M:%S", localtime(&time_server)); 
-
-	sprintf(atcmd_output, "Request: block by name - %s", violator_name);
-	clif_displaymessage(fd, atcmd_output);
-
-	violator_sd = map_nick2sd(violator_name);
-
-	if (violator_sd != NULL)
-	{
-		violator_account_id = violator_sd->status.account_id;
-		violator_unique_id = session[violator_sd->fd]->gepard_info.unique_id;
-	}
-
-	chrif_gepard_req_block(violator_unique_id, violator_name, violator_account_id, sd->status.name, sd->status.account_id, unban_time_str, reason_str);
-
-	return 0;
-}
-
-ACMD_FUNC(gepard_block_account_id)
-{
-	struct map_session_data* violator_sd;
-	time_t time_server;
-	unsigned int duration;
-	unsigned int violator_account_id = 0;
-	unsigned int violator_unique_id = 0;
-	char reason_str[GEPARD_REASON_LENGTH];
-	char unban_time_str[GEPARD_TIME_STR_LENGTH];
-	char duration_type, *command_info = "Wrong input (usage: @gepard_block_account_id <duration> <duration_type m/h/d> <account ID> <reason>)";
-
-	nullpo_retr(-1, sd);
-
-	memset(atcmd_player_name, '\0', sizeof(atcmd_player_name));
-
-	if (!message || !*message || sscanf(message, "%u %c %u %99[^\n]", &duration, &duration_type, &violator_account_id, reason_str) < 4)
-	{
-		clif_displaymessage(fd, command_info);
-		return -1;
-	}
-
-	time(&time_server);
-
-	switch (duration_type)
-	{
-		case 'm':
-			time_server += (duration * 60);
-		break;
-
-		case 'h':
-			time_server += (duration * 3600);
-		break;
-
-		case 'd':
-			time_server += (duration * 86400);
-		break;
-
-		default:
-			duration = 0;
-		break;
-	}
-
-	if (duration == 0)
-	{
-		clif_displaymessage(fd, command_info);
-		return -1;
-	}
-
-	strftime(unban_time_str, sizeof(unban_time_str), "%Y-%m-%d %H:%M:%S", localtime(&time_server)); 
-
-	sprintf(atcmd_output, "Request: block by account ID: %u", violator_account_id);
-	clif_displaymessage(fd, atcmd_output);
-
-	violator_sd = map_id2sd(violator_account_id);
-
-	if (violator_sd != NULL)
-	{
-		violator_account_id = violator_sd->status.account_id;
-		violator_unique_id = session[violator_sd->fd]->gepard_info.unique_id;
-	}
-
-	chrif_gepard_req_block(violator_unique_id, atcmd_player_name, violator_account_id, sd->status.name, sd->status.account_id, unban_time_str, reason_str);
-
-	return 0;
-}
-
-ACMD_FUNC(gepard_block_unique_id)
-{
-	time_t time_server;
-	unsigned int duration;
-	unsigned int violator_unique_id = 0;
-	char reason_str[GEPARD_REASON_LENGTH];
-	char unban_time_str[GEPARD_TIME_STR_LENGTH];
-	char duration_type, *command_info = "Wrong input (usage: @gepard_block_unique_id <duration> <duration_type m/h/d> <unique ID> <reason>)";
-
-	nullpo_retr(-1, sd);
-
-	memset(atcmd_player_name, '\0', sizeof(atcmd_player_name));
-
-	if (!message || !*message || sscanf(message, "%u %c %u %99[^\n]", &duration, &duration_type, &violator_unique_id, reason_str) < 4)
-	{
-		clif_displaymessage(fd, command_info);
-		return -1;
-	}
-
-	time(&time_server);
-
-	switch (duration_type)
-	{
-		case 'm':
-			time_server += (duration * 60);
-		break;
-
-		case 'h':
-			time_server += (duration * 3600);
-		break;
-
-		case 'd':
-			time_server += (duration * 86400);
-		break;
-
-		default:
-			duration = 0;
-		break;
-	}
-
-	if (duration == 0)
-	{
-		clif_displaymessage(fd, command_info);
-		return -1;
-	}
-
-	strftime(unban_time_str, sizeof(unban_time_str), "%Y-%m-%d %H:%M:%S", localtime(&time_server)); 
-
-	sprintf(atcmd_output, "Request: block by unqiue ID: %u", violator_unique_id);
-	clif_displaymessage(fd, atcmd_output);
-
-	chrif_gepard_req_block(violator_unique_id, NULL, 0, sd->status.name, sd->status.account_id, unban_time_str, reason_str);
-
-	return 0;
-}
-
-ACMD_FUNC(gepard_unblock_nick)
-{
-	char violator_name[NAME_LENGTH];
-	char* command_info = "Wrong input (usage: @gepard_unblock_nick <char name>)";
-
-	nullpo_retr(-1, sd);
-
-	if (!message || !*message || sscanf(message, "\"%23[^\"]\"[^\n]", violator_name) < 1)
-	{
-		clif_displaymessage(fd, command_info);
-		return -1;
-	}
-
-	sprintf(atcmd_output, "Request: unblock by name - %s", violator_name);
-
-	clif_displaymessage(fd, atcmd_output);
-
-	chrif_gepard_req_unblock(0, violator_name, 0, sd->status.account_id);
-
-	return 0;
-}
-
-ACMD_FUNC(gepard_unblock_account_id)
-{
-	int violator_aid;
-	char* command_info = "Wrong input (usage: @gepard_unblock_account_id <account ID>)";
-
-	nullpo_retr(-1, sd);
-
-	memset(atcmd_player_name, '\0', sizeof(atcmd_player_name));
-
-	if (!message || !*message || sscanf(message, "%d", &violator_aid) < 1)
-	{
-		clif_displaymessage(fd, command_info);
-		return -1;
-	}
-
-	sprintf(atcmd_output, "Request: unblock by account id - %d", violator_aid);
-
-	clif_displaymessage(fd, atcmd_output);
-
-	chrif_gepard_req_unblock(0, NULL, violator_aid, sd->status.account_id);
-
-	return 0;
-}
-
-ACMD_FUNC(gepard_unblock_unique_id)
-{
-	unsigned int violator_unique_id;
-	char* command_info = "Wrong input (usage: @gepard_unblock_unique_id <unique ID>)";
-
-	nullpo_retr(-1, sd);
-
-	if (!message || !*message || sscanf(message, "%u", &violator_unique_id) < 1)
-	{
-		clif_displaymessage(fd, command_info);
-		return -1;
-	}
-
-	sprintf(atcmd_output, "Request: unblock by unique id - %u", violator_unique_id);
-
-	clif_displaymessage(fd, atcmd_output);
-
-	chrif_gepard_req_unblock(violator_unique_id, NULL, 0, sd->status.account_id);
-
-	return 0;
-}
-
-ACMD_FUNC(set_allowed_gepard_version)
-{
-	FILE* fp;
-	unsigned int gepard_version;
-
-	nullpo_retr(-1, sd);
-
-	gepard_version = strtoul(message, NULL, 10);
-
-	if ((fp = fopen("conf/gepard_version.txt", "w+")) == NULL)
-	{
-		clif_displaymessage(fd, "Can not open conf/gepard_version.txt !");
-		return -1;
-	}
-
-	fprintf (fp, "%u", gepard_version);
-
-	fclose(fp);
-
-	min_allowed_gepard_version = gepard_version;
-
-	sprintf(atcmd_output, "Min allowed Gepard version was set to %u !", min_allowed_gepard_version);
-	clif_displaymessage(fd, atcmd_output);
-
-	return 0;
-}
-
-ACMD_FUNC(get_allowed_gepard_version)
-{
-	sprintf(atcmd_output, "Min allowed version of Gepard Shield is %u", min_allowed_gepard_version);
-	clif_displaymessage(fd, atcmd_output);
-
-	return 0;
-}
 
 /**
  * Fills the reference of available commands in atcommand DBMap
@@ -10255,17 +9910,7 @@ void atcommand_basecommands(void) {
 	 * TODO: List all commands that causing crash
 	 **/
 	AtCommandInfo atcommand_base[] = {
-
-		ACMD_DEF(gepard_block_nick),
-		ACMD_DEF(gepard_block_account_id),
-		ACMD_DEF(gepard_block_unique_id),
-		ACMD_DEF(gepard_unblock_nick),
-		ACMD_DEF(gepard_unblock_account_id),
-		ACMD_DEF(gepard_unblock_unique_id),
-		ACMD_DEF(set_allowed_gepard_version),
-		ACMD_DEF(get_allowed_gepard_version),
 #include "../custom/atcommand_def.inc"
-		ACMD_DEF(autoattack),
 		ACMD_DEF2R("warp", mapmove, ATCMD_NOCONSOLE),
 		ACMD_DEF(where),
 		ACMD_DEF(jumpto),
@@ -10980,5 +10625,3 @@ void do_init_atcommand(void) {
 void do_final_atcommand(void) {
 	atcommand_db_clear();
 }
-
-
