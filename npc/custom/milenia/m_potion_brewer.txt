@@ -1,0 +1,236 @@
+//======Name========================================
+// Potion Brewer NPC
+//======Version=====================================
+// 1.0
+//======Author(s)===================================
+// Sandbox
+//======Comments====================================
+// In loving memory of AstralRO
+//==================================================
+milenia,34,147,11	script	Potion Expert	46,{
+
+if (tutorial == 1){
+Lbrewing:
+mes "[^0000FF Potion Expert ^000000]";
+mes "To check your exp just use ^FF0000@brewing^000000. So, Do you want to brew ^000088Yggdrasil Berry Potions^000000 ?";
+next;
+switch(select("Yup!!:Nah~ Just looking")) {
+
+case 1:
+if(countitem(1092) < 1 || countitem(970) < 1 || countitem(607) < 1 || Zeny < 1000) goto Lnenough; 
+mes "[^0000FF Potion Expert ^000000]";
+mes "Let's see the results!";
+//Uncomment to enable casting effect
+progressbar "ffff00",1;
+delitem 1092,1;
+delitem 970,1;
+delitem 607,1;
+set Zeny,Zeny-1000;
+if(BrewLvl == 0)  { set @brewchance,rand(1,5); //10% chance to brew on Lvl 0
+	if(@brewchance == 3) {
+	misceffect 305;
+	set BrewExp,BrewExp+1;
+	getnameditem 31120,strcharinfo(0); //Change Item ID, Must match the potion to be made!
+	goto Lsuccess01;
+	}
+	else {
+	misceffect 306;
+	goto Lfail01;
+	}
+}
+else if(BrewLvl == 1)  { set @brewchance,rand(1,4); //25% chance to brew on Lvl 1
+	if(@brewchance == 3) {
+	misceffect 305;
+	set BrewExp,BrewExp+1;
+	getnameditem 31120,strcharinfo(0); //Change Item ID, Must match the potion to be made!
+	goto Lsuccess01;
+	}
+	else {
+	misceffect 306;
+	goto Lfail01;
+	}
+}
+else if(BrewLvl == 2)  { set @brewchance,rand(1,3); //33.33% chance to brew on Lvl 2
+	if(@brewchance == 3) {
+	misceffect 305;
+	set BrewExp,BrewExp+1;
+	getnameditem 31120,strcharinfo(0); //Change Item ID, Must match the potion to be made!
+	goto Lsuccess01;
+	}
+	else {
+	misceffect 306;
+	goto Lfail01;
+	}
+}
+else if(BrewLvl == 3)  { set @brewchance,rand(1,2); //50% chance to brew on Lvl 3
+	if(@brewchance == 2) {
+	misceffect 305;
+	//if(BrewExp < 10000)
+	set BrewExp,BrewExp+1;
+	getnameditem 31120,strcharinfo(0); //Change Item ID, Must match the potion to be made!
+	goto Lsuccess01;
+	}
+	else {
+	misceffect 306;
+	goto Lfail01;
+	}
+}
+
+Lsuccess01:
+next;
+mes "[^0000FF Potion Expert ^000000]";
+mes "Congratulations! You've succeeded!";
+if(BrewExp < 10000) dispbottom "You've gained 1 Brewing Exp.";
+if(BrewExp == 1000) { set BrewLvl,1;
+dispbottom "Congratulations! Your Brewing Mastery is now Level 1!";
+announce strcharinfo(0)+"'s Brewing Mastery reached Level 1!",bc_all,0x00FFFF;
+}
+else if(BrewExp == 5000) { set BrewLvl,2;
+dispbottom "Congratulations! Your Brewing Mastery is now Level 2!";
+announce strcharinfo(0)+"'s Brewing Mastery reached Level 2!",bc_all,0x00FFFF;
+}
+else if(BrewExp == 10000) { set BrewLvl,3;
+dispbottom "Congratulations! Your Brewing Mastery is now Level 3!";
+announce strcharinfo(0)+"'s Brewing Mastery reached Max Level!",bc_all,0x00FFFF;
+}
+next;
+goto Lbrewing;
+
+Lfail01:
+next;
+mes "[^0000FF Potion Expert ^000000]";
+mes "Oh.. You've failed.. Brew with me again next time!";
+next;
+goto Lbrewing;
+
+
+
+Lnenough01:
+mes "[^0000FF Potion Expert ^000000]";
+mes "Are you trying to brew me out!?";
+close;
+
+case 2:
+close2;
+		}
+	}
+else {
+mes "[^0000FF Potion Expert ^000000]";
+mes "Hello, I can teach you how to brew! Teach you, teach you how to brew ^000088Yggdrasil Berry Potions^000000"; //Change to what kind of potion do you want to brew
+menu "Teach me please!",-;
+next;
+mes "[^0000FF Potion Expert ^000000]";
+mes "Okay, you'll be needing these..";
+mes "^000088";
+mes "Empty Test Tube"; //Change to what requirements you want to use
+mes "Alcohol";
+mes "Yggdrasil Berry^000000";
+mes "Also, a talent fee of 1,000z!";
+menu "I've got them master brewer!",-;
+next;
+set tutorial,1;
+if(countitem(1092) < 1 || countitem(970) < 1 || countitem(607) < 1 || Zeny < 1000) goto Lnenough; //Must match the requirements above.
+mes "[^0000FF Potion Expert ^000000]";
+mes "Let's see the results!";
+//Uncomment to enable casting effect
+progressbar "ffff00",1;
+delitem 1092,1;
+delitem 970,1;
+delitem 607,1;
+set Zeny,Zeny-1000;
+if(BrewLvl == 0)  { set @brewchance,rand(1,5); //10% chance to brew on Lvl 0
+	if(@brewchance == 3) {
+	misceffect 305;
+	set BrewExp,BrewExp+1;
+	getnameditem 31120,strcharinfo(0); //Change Item ID, Must match the potion to be made!
+	goto Lsuccess;
+	}
+	else {
+	misceffect 306;
+	goto Lfail;
+	}
+}
+else if(BrewLvl == 1)  { set @brewchance,rand(1,4); //25% chance to brew on Lvl 1
+	if(@brewchance == 3) {
+	misceffect 305;
+	set BrewExp,BrewExp+1;
+	getnameditem 31120,strcharinfo(0); //Change Item ID, Must match the potion to be made!
+	goto Lsuccess;
+	}
+	else {
+	misceffect 306;
+	goto Lfail;
+	}
+}
+else if(BrewLvl == 2)  { set @brewchance,rand(1,3); //33.33% chance to brew on Lvl 2
+	if(@brewchance == 3) {
+	misceffect 305;
+	set BrewExp,BrewExp+1;
+	getnameditem 31120,strcharinfo(0); //Change Item ID, Must match the potion to be made!
+	goto Lsuccess;
+	}
+	else {
+	misceffect 306;
+	goto Lfail;
+	}
+}
+else if(BrewLvl == 3)  { set @brewchance,rand(1,2); //50% chance to brew on Lvl 3
+	if(@brewchance == 2) {
+	misceffect 305;
+	//if(BrewExp < 10000)
+	set BrewExp,BrewExp+1;
+	getnameditem 31120,strcharinfo(0); //Change Item ID, Must match the potion to be made!
+	goto Lsuccess;
+	}
+	else {
+	misceffect 306;
+	goto Lfail;
+	}
+}
+
+Lsuccess:
+next;
+mes "[^0000FF Potion Expert ^000000]";
+mes "Congratulations! You've succeeded!";
+if(BrewExp < 10000) dispbottom "You've gained 1 Brewing Exp.";
+if(BrewExp == 1000) { set BrewLvl,1;
+dispbottom "Congratulations! Your Brewing Mastery is now Level 1!";
+announce strcharinfo(0)+"'s Brewing Mastery reached Level 1!",bc_all,0x00FFFF;
+}
+else if(BrewExp == 5000) { set BrewLvl,2;
+dispbottom "Congratulations! Your Brewing Mastery is now Level 2!";
+announce strcharinfo(0)+"'s Brewing Mastery reached Level 2!",bc_all,0x00FFFF;
+}
+else if(BrewExp == 10000) { set BrewLvl,3;
+dispbottom "Congratulations! Your Brewing Mastery is now Level 3!";
+announce strcharinfo(0)+"'s Brewing Mastery reached Max Level!",bc_all,0x00FFFF;
+}
+close;
+
+Lfail:
+next;
+mes "[^0000FF Potion Expert ^000000]";
+mes "Oh.. You've failed.. Brew with me again next time!";
+close;
+
+
+
+Lnenough:
+mes "[^0000FF Potion Expert ^000000]";
+mes "Are you trying to brew me out!?";
+close;
+}		
+	}
+	
+	
+	-	script	cmdBrewing	-1,{
+OnCmdBrewing:
+	dispbottom "Your brewing EXP is "+(BrewExp)+".";
+	dispbottom "Your brewing Level is "+(@BrewLvl)+".";
+	end;
+	
+OnInit:
+bindatcmd "brewing","cmdBrewing::OnCmdBrewing";
+end;
+}
+

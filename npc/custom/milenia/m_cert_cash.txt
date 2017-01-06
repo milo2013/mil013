@@ -1,0 +1,5 @@
+milenia,162,93,11	cashshop	Weapon Certificate	939,6230:2
+milenia,169,93,4	cashshop	Armor Certificate	946,6457:2,6235:2,6234:2
+
+// old data weapon.. removed ,6870:5,6871:5,6872:5,6873:5,6874:5,6875:5,6864:5
+// old data armor ,6876:5,6877:5,6878:5,6879:5,6880:5,6881:5,6865:5

@@ -1,0 +1,115 @@
+// News Script Original Modified by Isaiah
+// Re-modified by rakuzas (Milenia RO)
+
+-	script	MaintenanceMon01	-1,{
+
+OnMon0600: 
+set .News$[0],"Server will be close for maintenance in 30 minutes.";
+announce .News$,0;
+end;
+
+}
+
+-	script	MaintenanceMon02	-1,{
+
+OnMon0615: 
+set .News$[0],"Server will be close for maintenance in 15 minutes.";
+announce .News$,0;
+end;
+
+}
+
+-	script	MaintenanceMon03	-1,{
+
+OnMon0625: 
+set .News$[0],"Server will be close for maintenance in 5 minutes.";
+announce .News$,0;
+end;
+
+}
+
+-	script	MaintenanceMon04	-1,{
+
+OnMon0628: 
+set .News$[0],"Server will be close for maintenance in 2 minutes. Please logout to avoid data loss. Thank you.";
+announce .News$,0;
+end;
+
+}
+
+-	script	MaintenanceMon05	-1,{
+
+OnMon0629: 
+set .News$[0],"Server will be close for maintenance in less 60 seconds. Please logout now to avoid losing data. Thank you.";
+announce .News$,0;
+end;
+
+}
+
+-	script	MaintenanceMon06	-1,{
+
+OnMon0630: 
+set .News$[0],"Server will be close for maintenance. Please relogin after 5 to 10 minutes. Thank you.";
+announce .News$,0;
+end;
+
+}
+
+// Friday //
+
+// News Script Original Modified by Isaiah
+// Re-modified by rakuzas (Milenia RO)
+
+-	script	MaintenanceFri01	-1,{
+
+OnFri0600: 
+set .News$[0],"Server will be close for maintenance in 30 minutes.";
+announce .News$,0;
+end;
+
+}
+
+-	script	MaintenanceFri02	-1,{
+
+OnFri0615: 
+set .News$[0],"Server will be close for maintenance in 15 minutes.";
+announce .News$,0;
+end;
+
+}
+
+-	script	MaintenanceFri03	-1,{
+
+OnFri0625: 
+set .News$[0],"Server will be close for maintenance in 5 minutes.";
+announce .News$,0;
+end;
+
+}
+
+-	script	MaintenanceFri04	-1,{
+
+OnFri0628: 
+set .News$[0],"Server will be close for maintenance in 2 minutes. Please logout to avoid data loss. Thank you.";
+announce .News$,0;
+end;
+
+}
+
+-	script	MaintenanceFri05	-1,{
+
+OnFri0629: 
+set .News$[0],"Server will be close for maintenance in less 60 seconds. Please logout now to avoid losing data. Thank you.";
+announce .News$,0;
+end;
+
+}
+
+-	script	MaintenanceFri06	-1,{
+
+OnFri0630: 
+set .News$[0],"Server will be close for maintenance. Please relogin after 5 to 10 minutes. Thank you.";
+announce .News$,0;
+end;
+
+}

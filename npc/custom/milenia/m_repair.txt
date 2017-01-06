@@ -1,0 +1,21 @@
+milenia,134,185,11	script	Blacksmith Jack	869,{
+
+	set .@Price,10000;
+	
+	if (.@Price) {
+		message strcharinfo(0),"Repair and Identify costs "+.@Price+" Zeny.";
+		if (Zeny < .@Price) end;
+		if(select("^0055FFRepair and Identify^000000:^777777Cancel^000000") == 2) end;
+		set Zeny, Zeny-.@Price;
+	}
+if( getbrokenid(1) ) repairall;
+getinventorylist;
+while( .@i < @inventorylist_count ){
+	if ( !@inventorylist_identify[.@i] ){
+		delitem2 @inventorylist_id[.@i],1,0,0,0,0,0,0,0;
+		getitem @inventorylist_id[.@i],1;
+	}
+	.@i++;
+}
+end;
+}

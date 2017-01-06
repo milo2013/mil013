@@ -1,0 +1,44 @@
+milenia,110,159,5	script	GM Online Lists	856,{
+cutin "3rd_wl_queen06",2;
+mes "Staffs Online Lists : ^FF0000"+getarraysize( .GM_Name$ )+"^000000 Staffs";
+mes "^0000FF_____________________________^000000";
+for( set .@i,0; .@i < getarraysize( .GM_Name$ ) ; set .@i,.@i + 1 ){
+	getmapxy( .Map$,.x,.y,0,.GM_Name$[.@i] );
+	mes "[ ^63D1F4"+.GM_Level$[.@i]+"^000000 ] ^FF0000@ ^0000FF"+.GM_Name$[.@i]+"^000000";
+	mes "^0000FF_____________________________^000000";
+	}
+close2;
+cutin "", 255;
+end;
+
+OnInit:
+set .MinGMLevel,1;              // Min. GM Level to Show in Online Lists
+end;
+
+OnPCLoginEvent:
+set .@gmlevel,getgmlevel();
+if( .@gmlevel < .MinGMLevel ) end;
+set .@size,getarraysize( .GM_Name$ );
+set .GM_Name$[ .@size ],strcharinfo(0);
+if( .@gmlevel < 1 ) set .GM_Level$[ .@size ],"Event GM";
+else if( .@gmlevel < 2 ) set .GM_Level$[ .@size ],"Police GM";
+//else if( .@gmlevel < 3 ) set .GM_Level$[ .@size ],"Event GM Lv 2";
+//else if( .@gmlevel < 4 ) set .GM_Level$[ .@size ],"Event GM Lv 3";
+//else if( .@gmlevel < 5 ) set .GM_Level$[ .@size ],"Law Enforcement";
+else set .GM_Level$[ .@size ],"ADMIN";
+end;
+
+OnPCLogoutEvent:
+if( getgmlevel() < .MinGMLevel ) end;
+for( set .@i,0; .@i < getarraysize( .GM_Name$ ) ; set .@i,.@i + 1 )
+	if( strcharinfo(0) == .GM_Name$[.@i] ){
+	deletearray .GM_Name$[.@i],1;
+	deletearray .GM_Level$[.@i],1;
+	end;
+	}
+cutin "",255;
+end;
+}
+
+// Special Thanks to Emistry for nice script and guide to make it works!
+// Edit some script to make it works on Milenia Ragnarok Online by Rakuzas.

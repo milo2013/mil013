@@ -1,0 +1,143 @@
+
+milenia,118,179,5	script	West Market Officer	533,{
+for( set .@i_west,1; .@i <= .count; set .@i_west,.@i_west + 1 ){
+	getmapxy( .@map$_west,.@x_west,.@y_west,1,"#vend_slot"+.@i_west );
+	if( !getareausers( .map$,.@x_west,.@y_west,.@x_west,.@y_west ) && .@x_west > 1 && .@y_west > 1 ){
+		set .@available_west,.@available_west + 1;
+		set .@menu$_west,.@menu$_west + "Slot - "+.@i_west+":";
+	}else{
+		set .@menu$_west,.@menu$_west + ":";
+	}
+}
+
+if( !.@available_west ){
+	mes "Dont have any available slot.";
+}else if( !getskilllv("MC_VENDING") ){
+	mes "You dont have ^0055FFVending Skill^000000.";
+}else{
+	mes "Available Slot : "+.@available_west;
+	mes "Please select a slot to vending.";
+	set .@i_west,select( .@menu$_west );
+	getmapxy( .@map$_west,.@x_west_west,.@y_west_west,1,"#vend_slot"+.@i_west );
+	if( .@x_west == 1 || .@y_west == 1 ){
+		mes "This NPC at invalid location...";
+	}else{
+		warp .@map$_west,.@x_west,.@y_west;
+		hideonnpc "#vend_slot"+.@i_west;
+	}
+}
+close;
+
+OnInit:
+sleep 1000;
+// Map for vending
+set .map$_west,"milenia";
+setcell .map$_west,0,0,284,365,cell_novending,1;
+
+// x and y horizone ..
+setarray .x_line_west,95,91,87,83,79,75,71,67,63,59,55,51,47;
+setarray .y_line_west,174,178,182,186;
+
+set .x_line_west_size,getarraysize( .x_line_west );
+set .y_line_west_size,getarraysize( .y_line_west );
+set .count,1;
+for( set .@x_west,0; .@x_west < .x_line_west_size; set .@x_west,.@x_west + 1 )
+	for( set .@y_west,0; .@y_west < .y_line_west_size; set .@y_west,.@y_west + 1 )
+		if( checkcell( .map$_west,.x_line_west[.@x_west],.y_line_west[.@y_west],cell_chkpass ) ){
+			movenpc "#vend_slot"+.count,.x_line_west[.@x_west],.y_line_west[.@y_west];
+			setcell .map$,.x_line_west[.@x_west],.y_line_west[.@y_west],.x_line_west[.@x_west],.y_line_west[.@y_west],cell_novending,0;
+			set .count,.count + 1;
+		}
+npctalk "Vending Spot : "+.count;
+donpcevent "::OnSetup";
+end;
+}
+
+-	script	vend_slot	-1,{
+getmapxy( .@map$_west,.@x_west,.@y_west,1 );
+if( !getskilllv("MC_VENDING") ){
+	mes "You dont have ^0055FFVending Skill^000000.";
+}else if( getareausers( .@map$_west,.@x_west,.@y_west,.@x_west,.@y_west ) ){
+	mes "Someone already selected this spot.";
+}else{
+	mes "Spot : ^777777Available^000000";
+	mes "^0055FF[ Vending Area Rules ]^000000";
+	mes "^FF0000 ~ Use proper Shop Name.^000000";
+	mes "^FF0000 ~ Never sell Junk/Gifts.^000000";
+	mes " ";
+	mes "^777777Player will failed to follow these will be punished.^000000";
+	if( select( "Select this Spot","Cancel" ) == 1 ){
+		warp .@map$_west,.@x_west,.@y_west;
+		hideonnpc strnpcinfo(0);
+	}
+}
+close;
+
+OnSetup:
+getmapxy( .@map$_west,.@x_west,.@y_west,1 );
+set .@npcname$,strnpcinfo(0);
+while( .@map$_west != "" ){
+	if( getareausers( .@map$_west,.@x_west,.@y_west,.@x_west,.@y_west ) ){
+		hideonnpc .@npcname$;
+	}else{
+		hideoffnpc .@npcname$;
+		// specialeffect 313;
+	}
+	sleep 5000;
+}
+end;
+}
+
+// Add more if needed.
+milenia,1,1,4	duplicate(vend_slot)	#vend_slot1	858
+milenia,1,1,4	duplicate(vend_slot)	#vend_slot2	858
+milenia,1,1,4	duplicate(vend_slot)	#vend_slot3	858
+milenia,1,1,4	duplicate(vend_slot)	#vend_slot4	858
+milenia,1,1,4	duplicate(vend_slot)	#vend_slot5	858
+milenia,1,1,4	duplicate(vend_slot)	#vend_slot6	858
+milenia,1,1,4	duplicate(vend_slot)	#vend_slot7	858
+milenia,1,1,4	duplicate(vend_slot)	#vend_slot8	858
+milenia,1,1,4	duplicate(vend_slot)	#vend_slot9	858
+milenia,1,1,4	duplicate(vend_slot)	#vend_slot10	858
+milenia,1,1,4	duplicate(vend_slot)	#vend_slot11	858
+milenia,1,1,4	duplicate(vend_slot)	#vend_slot12	858
+milenia,1,1,4	duplicate(vend_slot)	#vend_slot13	858
+milenia,1,1,4	duplicate(vend_slot)	#vend_slot14	858
+milenia,1,1,4	duplicate(vend_slot)	#vend_slot15	858
+milenia,1,1,4	duplicate(vend_slot)	#vend_slot16	858
+milenia,1,1,4	duplicate(vend_slot)	#vend_slot17	858
+milenia,1,1,4	duplicate(vend_slot)	#vend_slot18	858
+milenia,1,1,4	duplicate(vend_slot)	#vend_slot19	858
+milenia,1,1,4	duplicate(vend_slot)	#vend_slot20	858
+milenia,1,1,4	duplicate(vend_slot)	#vend_slot21	858
+milenia,1,1,4	duplicate(vend_slot)	#vend_slot22	858
+milenia,1,1,4	duplicate(vend_slot)	#vend_slot23	858
+milenia,1,1,4	duplicate(vend_slot)	#vend_slot24	858
+milenia,1,1,4	duplicate(vend_slot)	#vend_slot25	858
+milenia,1,1,4	duplicate(vend_slot)	#vend_slot26	858
+milenia,1,1,4	duplicate(vend_slot)	#vend_slot27	858
+milenia,1,1,4	duplicate(vend_slot)	#vend_slot28	858
+milenia,1,1,4	duplicate(vend_slot)	#vend_slot29	858
+milenia,1,1,4	duplicate(vend_slot)	#vend_slot30	858
+milenia,1,1,4	duplicate(vend_slot)	#vend_slot31	858
+milenia,1,1,4	duplicate(vend_slot)	#vend_slot32	858
+milenia,1,1,4	duplicate(vend_slot)	#vend_slot33	858
+milenia,1,1,4	duplicate(vend_slot)	#vend_slot34	858
+milenia,1,1,4	duplicate(vend_slot)	#vend_slot35	858
+milenia,1,1,4	duplicate(vend_slot)	#vend_slot36	858
+milenia,1,1,4	duplicate(vend_slot)	#vend_slot37	858
+milenia,1,1,4	duplicate(vend_slot)	#vend_slot38	858
+milenia,1,1,4	duplicate(vend_slot)	#vend_slot39	858
+milenia,1,1,4	duplicate(vend_slot)	#vend_slot40	858
+milenia,1,1,4	duplicate(vend_slot)	#vend_slot41	858
+milenia,1,1,4	duplicate(vend_slot)	#vend_slot42	858
+milenia,1,1,4	duplicate(vend_slot)	#vend_slot43	858
+milenia,1,1,4	duplicate(vend_slot)	#vend_slot44	858
+milenia,1,1,4	duplicate(vend_slot)	#vend_slot45	858
+milenia,1,1,4	duplicate(vend_slot)	#vend_slot46	858
+milenia,1,1,4	duplicate(vend_slot)	#vend_slot47	858
+milenia,1,1,4	duplicate(vend_slot)	#vend_slot48	858
+milenia,1,1,4	duplicate(vend_slot)	#vend_slot49	858
+milenia,1,1,4	duplicate(vend_slot)	#vend_slot50	858
+milenia,1,1,4	duplicate(vend_slot)	#vend_slot51	858
+milenia,1,1,4	duplicate(vend_slot)	#vend_slot52	858

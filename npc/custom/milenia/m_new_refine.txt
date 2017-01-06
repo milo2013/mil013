@@ -1,0 +1,18 @@
+milenia,157,107,5	script	VIP Refiner	533,{
+	callfunc( "RefineFunc",8191,0,15,1,0,60,-1,50,30,31123);
+}
+
+milenia,155,106,5	script	VIP Refiner 2.0	10184,{
+	callfunc( "RefineFunc",8191,15,20,1,0,1,-1,50,49,31123);
+}
+
+//			-	arg1	=	bitmask ( refer table above )
+//			-	arg2	=	Minimum refine rate
+//			-	arg3	=	Maximum refine rate
+//			-	arg4	=	Refine Count ( negative = derefine / positive = refine )
+//			-	arg5	=	Check if Item can be refine ( 1 = true , 0 = false )
+//			-	arg6	=	Refine Success Rate ( 0 = default / 1~100% = succes rate )
+//			-	arg7	=	Amount of refine count dropped when failure ( must be negative )
+//			-	arg8	=	Drop refine count success rate ( 0 ~ 100% )
+//			-	arg9	=	Gained Bonus Refine Rate ( 0 ~ 100% )
+//			-	arg10	=	Required Item for Bonus Rate if Any ( leave 0 if dont need item )

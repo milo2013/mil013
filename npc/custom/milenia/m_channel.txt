@@ -1,0 +1,317 @@
+milenia,126,156,11	script	Login Settings	10187,{
+
+
+set .@n$,"[Login Settings]";
+mes .@n$;
+mes "Hello, "+strcharinfo(0);
+mes "What setting do you want to change?";
+menu "Autoloot ["+( (login_loot)? "^00BB22On^000000" : "^FF2200Off^000000")+"]",auto_loot,
+"Main Channel ["+( (login_main)? "^00BB22On^000000" : "^FF2200Off^000000")+"]",main_chat,
+"Chat Channel ["+( (login_chat)? "^00BB22On^000000" : "^FF2200Off^000000")+"]",chat_chat,
+"Support Channel ["+( (login_support)? "^00BB22On^000000" : "^FF2200Off^000000")+"]",support_chat,
+"Trade Channel ["+( (login_trade)? "^00BB22On^000000" : "^FF2200Off^000000")+"]",trade_chat,
+"Malaysia Channel ["+( (login_my)? "^00BB22On^000000" : "^FF2200Off^000000")+"]",my_chat,
+"Indonesia Channel ["+( (login_id)? "^00BB22On^000000" : "^FF2200Off^000000")+"]",id_chat,
+"Philippine  Channel ["+( (login_ph)? "^00BB22On^000000" : "^FF2200Off^000000")+"]",ph_chat,
+"@NoAsk ["+( (login_noask)? "^00BB22On^000000" : "^FF2200Off^000000")+"]",no_ask;
+
+auto_loot:
+next;
+mes .@n$;
+mes "Status: "+( (login_loot) ? "^00BB22On^000000" : "^FF2200Off^000000");
+menu "I want to "+((!login_loot) ? "^00BB22enable^000000" : "^FF2200disable^000000")+" it.",-,"Nothing",L_quit;
+next;
+
+mes .@n$;
+if(login_loot == 0) {
+mes "Autoloot is now ^00BB22On^000000.";
+set login_loot,1;
+//atcommand strcharinfo(0) + "@autoloot";
+atcommand "@autoloot";
+} else if(login_loot == 1) {
+
+mes "Autoloot is now ^FF2200Off^000000.";
+set login_loot,0;
+atcommand "@autoloot off";
+}
+close;
+
+main_chat:
+next;
+mes .@n$;
+mes "Status: "+( (login_main) ? "^00BB22On^000000" : "^FF2200Off^000000");
+menu "I want to "+((!login_main) ? "^00BB22enable^000000" : "^FF2200disable^000000")+" it.",-,"Nothing",L_quit;
+next;
+
+mes .@n$;
+if(login_main == 0) {
+mes "Main Channel is now ^00BB22On^000000.";
+set login_main,1;
+atcommand "@join #main";
+} else if(login_main == 1) {
+mes "Main Channel is now ^FF2200Off^000000.";
+set login_main,0;
+atcommand "@channel leave #main";
+dispbottom "You leave #main channel.";
+set autojoinMAIN,1;
+}
+close;
+
+chat_chat:
+next;
+mes .@n$;
+mes "Status: "+( (login_chat) ? "^00BB22On^000000" : "^FF2200Off^000000");
+menu "I want to "+((!login_chat) ? "^00BB22enable^000000" : "^FF2200disable^000000")+" it.",-,"Nothing",L_quit;
+next;
+
+mes .@n$;
+if(login_chat == 0) {
+mes "Chat Channel is now ^00BB22On^000000.";
+set login_chat,1;
+atcommand "@join #chat";
+} else if(login_chat == 1) {
+mes "Chat Channel is now ^FF2200Off^000000.";
+set login_chat,0;
+atcommand "@channel leave #chat";
+dispbottom "You leave #chat channel.";
+set autojoinCHAT,1;
+}
+close;
+
+support_chat:
+next;
+mes .@n$;
+mes "Status: "+( (login_support) ? "^00BB22On^000000" : "^FF2200Off^000000");
+menu "I want to "+((!login_support) ? "^00BB22enable^000000" : "^FF2200disable^000000")+" it.",-,"Nothing",L_quit;
+next;
+
+mes .@n$;
+if(login_support == 0) {
+mes "Support Channel is now ^00BB22On^000000.";
+set login_support,1;
+atcommand "@join #support";
+} else if(login_support == 1) {
+mes "Support Channel is now ^FF2200Off^000000.";
+set login_support,0;
+atcommand "@channel leave #support";
+dispbottom "You leave #support channel.";
+set autojoinSUPPORT,1;
+}
+close;
+
+trade_chat:
+next;
+mes .@n$;
+mes "Status: "+( (login_trade) ? "^00BB22On^000000" : "^FF2200Off^000000");
+menu "I want to "+((!login_trade) ? "^00BB22enable^000000" : "^FF2200disable^000000")+" it.",-,"Nothing",L_quit;
+next;
+
+mes .@n$;
+if(login_trade == 0) {
+mes "Trade Channel is now ^00BB22On^000000.";
+set login_trade,1;
+atcommand "@join #trade";
+} else if(login_trade == 1) {
+mes "Trade Channel is now ^FF2200Off^000000.";
+set login_trade,0;
+atcommand "@channel leave #trade";
+dispbottom "You leave #trade channel.";
+set autojoinTRADE,1;
+}
+close;
+
+my_chat:
+next;
+mes .@n$;
+mes "Status: "+( (login_my) ? "^00BB22On^000000" : "^FF2200Off^000000");
+menu "I want to "+((!login_my) ? "^00BB22enable^000000" : "^FF2200disable^000000")+" it.",-,"Nothing",L_quit;
+next;
+
+mes .@n$;
+if(login_my == 0) {
+mes "Malaysia Channel is now ^00BB22On^000000.";
+set login_my,1;
+atcommand "@join #my";
+} else if(login_my == 1) {
+mes "Malaysia Channel is now ^FF2200Off^000000.";
+set login_my,0;
+atcommand "@channel leave #my";
+dispbottom "You leave #my channel.";
+set autojoinMY,1;
+}
+close;
+
+id_chat:
+next;
+mes .@n$;
+mes "Status: "+( (login_id) ? "^00BB22On^000000" : "^FF2200Off^000000");
+menu "I want to "+((!login_id) ? "^00BB22enable^000000" : "^FF2200disable^000000")+" it.",-,"Nothing",L_quit;
+next;
+
+mes .@n$;
+if(login_id == 0) {
+mes "Indonesia Channel is now ^00BB22On^000000.";
+set login_id,1;
+atcommand "@join #id";
+} else if(login_id == 1) {
+mes "Indonesia Channel is now ^FF2200Off^000000.";
+set login_id,0;
+atcommand "@channel leave #id";
+dispbottom "You leave #id channel.";
+set autojoinID,1;
+}
+close;
+
+ph_chat:
+next;
+mes .@n$;
+mes "Status: "+( (login_ph) ? "^00BB22On^000000" : "^FF2200Off^000000");
+menu "I want to "+((!llogin_ph) ? "^00BB22enable^000000" : "^FF2200disable^000000")+" it.",-,"Nothing",L_quit;
+next;
+
+mes .@n$;
+if(login_ph == 0) {
+mes "Philippine  Channel is now ^00BB22On^000000.";
+set login_ph,1;
+atcommand "@join #ph";
+} else if(login_ph == 1) {
+mes "Philippine  Channel is now ^FF2200Off^000000.";
+set login_ph,0;
+atcommand "@channel leave #ph";
+dispbottom "You leave #ph channel.";
+set autojoinPH,1;
+}
+close;
+
+
+no_ask:
+next;
+mes .@n$;
+mes "Status: "+( (login_noask) ? "^00BB22On^000000" : "^FF2200Off^000000");
+menu "I want to "+((!login_noask) ? "^00BB22enable^000000" : "^FF2200disable^000000")+" it.",-,"Nothing",L_quit;
+next;
+
+mes .@n$;
+if(login_noask == 0) {
+mes "@noask is now ^00BB22On^000000.";
+set login_noask,1;
+atcommand "@noask";
+} else if(login_noask == 1) {
+mes "@noask is now ^FF2200Off^000000.";
+set login_noask,0;
+atcommand "@noask off";
+}
+close;
+
+L_quit:
+next;
+mes .@n$;
+mes "See ya.";
+close;
+
+OnPCLoginEvent:
+
+dispbottom "Channel : Please using proper channel for chat and #main channel for ENGLISH ONLY~";
+dispbottom " You may ON/OFF your #my #id #ph channel in our Login Settings NPC.";
+
+// MAIN CHANNEL
+if(login_main == 1) {
+atcommand "@join #main";
+dispbottom "Main channel is now On.";
+}
+	
+if (autojoinMAIN == 0){
+
+	if(login_main == 1) {
+	}
+	else {
+	atcommand "@join #main";
+	set login_main,1;
+		}
+	}
+
+// CHAT CHANNEL
+if(login_chat== 1) {
+atcommand "@join #chat";
+dispbottom "Chat channel is now On.";
+}
+	
+if (autojoinCHAT == 0){
+
+	if(login_chat == 1) {
+	}
+	else {
+	atcommand "@join #chat";
+	set login_chat,1;
+		}
+	}
+	
+	
+// SUPPORT CHANNEL
+if(login_support == 1) {
+atcommand "@join #support";
+dispbottom "Support channel is now On.";
+}
+	
+if (autojoinSUPPORT == 0){
+
+	if(login_support == 1) {
+	}
+	else {
+	atcommand "@join #support";
+	set login_support,1;
+	}
+		}
+		
+		
+// TRADE CHANNEL		
+if(login_trade== 1) {
+atcommand "@join #trade";
+dispbottom "Trade Channel is now On.";
+}
+
+if (autojoinTRADE == 0){
+
+	if(login_trade == 1) {
+	}
+	else {
+	atcommand "@join #trade";
+	set login_trade,1;
+	}
+		}
+
+		
+// MALAYSIA CHANNEL		
+if(login_my== 1) {
+atcommand "@join #my";
+dispbottom "Malaysia Channel is now On.";
+}
+	
+// INDONESIA CHANNEL		
+if(login_id== 1) {
+atcommand "@join #id";
+dispbottom "Indonesia Channel is now On.";
+}
+
+// PHILIPPINE  CHANNEL		
+if(login_ph == 1) {
+atcommand "@join #ph";
+dispbottom "Philippine  Channel is now On.";
+}
+
+		
+// AUTOLOOT	
+if(login_loot == 1) {
+atcommand "@autoloot";
+dispbottom "Autoloot is now On.";
+}
+
+// NO ASK
+if(login_noask == 1) {
+atcommand "@noask";
+dispbottom "@noask is now On.";
+}
+
+end;
+
+}

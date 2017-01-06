@@ -1,0 +1,130 @@
+milenia,89,153,5	script	Milenia Cashpoints	861,{
+
+
+    mes .NPC$;
+    mes "Do you want to exchange your Coins into Cashpoints?";
+	mes "The current conversion rate is :";
+	mes "^ff0000" + getitemname(.IDG) + "^000000 = ^ff0000" + .CPG + "^000000 Cashpoints";
+	mes "^ff0000" + getitemname(.IDP) + "^000000 = ^ff0000" + .CPP + "^000000 Cashpoints";
+	mes "^ff0000" + getitemname(.IDM) + "^000000 = ^ff0000" + .CPM + "^000000 Cashpoints";
+    next;
+    if (select("Yes:No") - 1) close;
+	
+	.@menu = select( "Gold Coins","Platinum Coins","Mithril Coins","Close" );
+	switch( .@menu ){
+	
+	Case 1:
+	mes .NPC$;
+    mes "How many " + getitemname(.IDG) + " do you want to exchange?";
+    next;
+    input .@amountG;
+    if (.@amountG == 0) {
+        mes .NPC$;
+        mes "Umm, please enter your amount!";
+        close;
+    }
+	.@amountGTotal = (.@amountG * .CPG);
+	.@totalG = (countitem (.IDG));
+	if (.@amountG > .@totalG){
+		mes .NPC$;
+		mes "You don't have enough coins!!!";
+		next;
+		mes .NPC$;
+		mes "Please exchange coins from Coins Manager!!";
+		close;
+	}
+	if (.@totalG == 0){
+	
+		mes .NPC$;
+		mes "You don't have "+.IDG+"!!";
+		close;
+	}
+	mes .NPC$;
+    mes "Thank you for your business!";
+    set #CASHPOINTS,#CASHPOINTS += .@amountGTotal;
+    delitem .IDG,.@amountG;
+	dispbottom "You got "+.@amountGTotal+" Cashpoints!" ;
+   break;
+   
+   Case 2:
+	mes .NPC$;
+    mes "How many " + getitemname(.IDP) + " do you want to exchange?";
+    next;
+    input .@amountP;
+    if (.@amountP == 0) {
+        mes .NPC$;
+        mes "Umm, please enter your amount!";
+        close;
+    }
+	.@amountPTotal = (.@amountP * .CPP);
+	.@totalP = (countitem (.IDP));
+	if (.@amountP > .@totalP){
+		mes .NPC$;
+		mes "You don't have enough coins!!!";
+		next;
+		mes .NPC$;
+		mes "Please exchange coins from Coins Manager!!";
+		close;
+	}
+	if (.@totalP == 0){
+	
+		mes .NPC$;
+		mes "You don't have "+.IDP+"!!";
+		close;
+	}
+	mes .NPC$;
+    mes "Thank you for your business!";
+    set #CASHPOINTS,#CASHPOINTS += .@amountPTotal;
+    delitem .IDP,.@amountP;
+	dispbottom "You got "+.@amountPTotal+" Cashpoints!" ;
+   break;
+   
+   Case 3:
+	mes .NPC$;
+    mes "How many " + getitemname(.IDM) + " do you want to exchange?";
+    next;
+    input .@amountM;
+    if (.@amountM == 0) {
+        mes .NPC$;
+        mes "Umm, please enter your amount!";
+        close;
+    }
+	.@amountMTotal = (.@amountM * .CPM);
+	.@totalM = (countitem (.IDM));
+	if (.@amountM > .@totalM){
+		mes .NPC$;
+		mes "You don't have enough coins!!!";
+		next;
+		mes .NPC$;
+		mes "Please exchange coins from Coins Manager!!";
+		close;
+	}
+	if (.@totalM == 0){
+	
+		mes .NPC$;
+		mes "You don't have "+.IDM+"!!";
+		close;
+	}
+	mes .NPC$;
+    mes "Thank you for your business!";
+    set #CASHPOINTS,#CASHPOINTS += .@amountMTotal;
+    delitem .IDM,.@amountM;
+	dispbottom "You got "+.@amountMTotal+" Cashpoints!" ;
+	break;
+	
+	Case 4:
+	close;
+	
+	}
+	end;
+	
+    OnInit:
+        set .NPC$,"[ " +strnpcinfo(1)+ " ]"; // NPC Name
+        set .IDG,671; // Gold
+		set .IDP,677; // Platinum
+		set .IDM,674; // Mithril
+		set .CPG,1; // Gold Cashpoint
+		set .CPP,10; // Platinum Cashpoint
+		set .CPM,100; //Mithril Cashpoint
+        end;
+}

@@ -1,0 +1,45 @@
+milenia,150,153,11	script	Milenia Item Stacker	985,{
+
+	mes "[Milenia Item Stacker]";
+	mes "You have..";
+    mes "^ff0000" + getitemname(.IDRJ) + "^000000 : ^ff0000 "+countitem(.IDRJ) +" ^000000";
+    mes "^ff0000" + getitemname(.IDYB) + "^000000 : ^ff0000 "+countitem(.IDYB) +" ^000000";
+    next;
+	
+    mes "[Milenia Item Stacker]";
+    mes "Do you me to stack those box?";
+    next;
+    if (select("Yes:No") - 1) close;
+	
+	.@amountRJTotal = (.@totalRJ * .RJ);
+	.@amountYBTotal = (.@totalYB * .YB);
+	
+	.@totalRJ = (countitem (.IDRJ));
+	.@totalYB = (countitem (.IDYB));
+		
+    delitem .IDRJ,.@totalRJ;
+	delitem .IDYB,.@totalYB;
+	
+	getitem .IDRJ,.@totalRJ;
+	getitem .IDYB,.@totalYB;
+	
+	mes	"[Milenia Item Stacker]";
+    mes "Thank you for for using our service!";
+	dispbottom "You stacked "+.@totalRJ+" of "+getitemname(.IDRJ)+" ";
+	dispbottom "You stacked "+.@totalYB+" of "+getitemname(.IDYB)+" ";
+	
+    OnInit:
+        set .NPC$,"[ " +strnpcinfo(1)+ " ]"; // NPC Name
+        set .IDRJ,13516; //Royal Jelly
+	set .IDYB,13517; // Yggdrasilberry
+	set .RJ,1; // Royal Jelly
+	set .YB,1; // Yggdrasilberry
+        end;
+}
+
+farm,126,37,11	duplicate(Milenia Item Stacker)	Checkpoint#01	721
+farm,56,78,11	duplicate(Milenia Item Stacker)	Checkpoint#02	721
+farm,139,65,11	duplicate(Milenia Item Stacker)	Checkpoint#03	721
+farm,96,176,11	duplicate(Milenia Item Stacker)	Checkpoint#04	721
+farm,131,134,11	duplicate(Milenia Item Stacker)	Checkpoint#05	721
+farm,53,153,11	duplicate(Milenia Item Stacker)	Checkpoint#06	721

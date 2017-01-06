@@ -1,0 +1,167 @@
+milenia,162,61,11	script	Doram Token Trader	496,{
+
+		// TOTAL EQ FOR TRADE
+		set .totalEQ1, ((countitem (.EQA1)) + (countitem (.EQA2)) + (countitem (.EQA3)) + (countitem (.EQA4)) + (countitem (.EQA5)) + (countitem (.EQA6)) + (countitem (.EQA7)) + (countitem (.EQA8)));
+		set .totalEQ2, ((countitem (.EQB1)) + (countitem (.EQB2)) + (countitem (.EQB3)) + (countitem (.EQB4)) + (countitem (.EQB5)));
+		set .totalEQ3, ((countitem (.EQC1)) + (countitem (.EQC2)) + (countitem (.EQC3)) + (countitem (.EQC4)) + (countitem (.EQC5)));
+		set .TOTALitems, ((.totalEQ1) + (.totalEQ2) + (.totalEQ3));
+		
+		//TOTAL TOKEN TO GIVE
+		// LEVEL 100
+	.@totalTokenA1= (countitem (.EQA1) * (.tEQA));
+	.@totalTokenA2= (countitem (.EQA2) * (.tEQA));
+	.@totalTokenA3= (countitem (.EQA3) * (.tEQA));
+	.@totalTokenA4= (countitem (.EQA4) * (.tEQA));
+	.@totalTokenA5= (countitem (.EQA5) * (.tEQA));
+	.@totalTokenA6= (countitem (.EQA6) * (.tEQA));
+	.@totalTokenA7= (countitem (.EQA7) * (.tEQA));
+	.@totalTokenA8= (countitem (.EQA8) * (.tEQA));
+	
+	.@totalTokenA = ((.@totalTokenA1) + (.@totalTokenA2) + (.@totalTokenA3) + (.@totalTokenA4) + (.@totalTokenA5) + (.@totalTokenA6) + (.@totalTokenA7) + (.@totalTokenA8));
+
+	// LEVEL 140 
+	.@totalTokenB1= (countitem (.EQB1) * (.tEQB));
+	.@totalTokenB2= (countitem (.EQB2) * (.tEQB));
+	.@totalTokenB3= (countitem (.EQB3) * (.tEQB));
+	.@totalTokenB4= (countitem (.EQB4) * (.tEQB));
+	.@totalTokenB5= (countitem (.EQB5) * (.tEQB));
+	
+	.@totalTokenB = ((.@totalTokenB1) + (.@totalTokenB2) + (.@totalTokenB3) + (.@totalTokenB4) + (.@totalTokenB5));
+	
+	// LEVEL 175
+	.@totalTokenC1= (countitem (.EQC1) * (.tEQC));
+	.@totalTokenC2= (countitem (.EQC2) * (.tEQC));
+	.@totalTokenC3= (countitem (.EQC3) * (.tEQC));
+	.@totalTokenC4= (countitem (.EQC4) * (.tEQC));
+	.@totalTokenC5= (countitem (.EQC5) * (.tEQC));
+	
+	.@totalTokenC = ((.@totalTokenC1) + (.@totalTokenC2) + (.@totalTokenC3) + (.@totalTokenC4) + (.@totalTokenC5));
+	
+	// TOTAL TOKEN
+	.@overallToken = ((.@totalTokenA) + (.@totalTokenB) + (.@totalTokenC));
+		
+	// CHECK EQUIP
+	setarray .@indices[1], EQI_HEAD_TOP, EQI_ARMOR, EQI_HAND_L, EQI_HAND_R, EQI_GARMENT, EQI_SHOES, EQI_ACC_L, EQI_ACC_R, EQI_HEAD_MID, EQI_HEAD_LOW;
+	for(set .@i,1; .@i<getarraysize(.@indices); set .@i,.@i+1) {
+		if(getequipisequiped(.@indices[.@i])) {
+			set .@menu$, .@menu$ + F_getpositionname(.@indices[.@i]) + "-[" + getequipname(.@indices[.@i]) + "]";
+			set .@equipped,1;
+		}
+	}	
+	
+    mes "[Doram Token Trader]";
+    mes "I can trade your Doram equipments for Doram Token.";
+	next;
+	mes "[Doram Token Trader]";
+	mes "Our current trading rates are : ";
+	mes "Level 100 EQ = ^FF00001 Doram Token^000000.";
+	mes "Level 140 EQ = ^FF00003 Doram Token^000000.";
+	mes "Level 175 EQ = ^FF00004 Doram Token^000000.";
+    next;
+	if (.TOTALitems) < 1 {
+	mes "[Doram Token Trader]";
+	mes "You don't have any EQ to trade!!";
+	mes "Go away!!";
+	close;
+	}
+	else {
+	
+	mes "[Doram Token Trader]";
+	mes "You have ^FF0000"+.TOTALitems+"^000000 items that can trade.";
+	mes "I can give you ^FF0000"+.@overallToken+"^000000 ^0000CCDoram Tokens^000000 .";
+	next;
+	mes "[Doram Token Trader]";
+	mes "Do you want to trade your equipments?";
+	next;
+  	.@menu = select( "Sure!!","Not interested~");
+	switch( .@menu ){
+    
+	Case 1:
+	if (.@equipped == 1) {
+	mes "[Doram Token Trader]";
+	mes "Please ^FF0000unequip^000000 first and ^FF0000store^000000 your equipments.";
+	next;
+	callfunc "F_KafStor",2,0,0;
+	close;
+	break;
+	}
+	else {
+	next;
+	// LEVEL 100
+	delitem .EQA1,(countitem (.EQA1));
+	delitem .EQA2,(countitem (.EQA2));
+	delitem .EQA3,(countitem (.EQA3));
+	delitem .EQA4,(countitem (.EQA4));
+	delitem .EQA5,(countitem (.EQA5));
+	delitem .EQA6,(countitem (.EQA6));
+	delitem .EQA7,(countitem (.EQA7));
+	delitem .EQA8,(countitem (.EQA8));
+	
+	// LEVEL 140
+	delitem .EQB1,(countitem (.EQB1));
+	delitem .EQB2,(countitem (.EQB2));
+	delitem .EQB3,(countitem (.EQB3));
+	delitem .EQB4,(countitem (.EQB4));
+	delitem .EQB5,(countitem (.EQB5));
+   
+    // LEVEL 175
+	delitem .EQC1,(countitem (.EQC1));
+	delitem .EQC2,(countitem (.EQC2));
+	delitem .EQC3,(countitem (.EQC3));
+	delitem .EQC4,(countitem (.EQC4));
+	delitem .EQC5,(countitem (.EQC5));
+
+	getitem 25142, (.@overallToken) ;
+	dispbottom "You successfully traded "+.@overallToken+" Doram Tokens with "+.TOTALitems+" equipments.";
+	
+	mes "[Doram Token Trader]";
+    mes "Thank you for your business!";
+	next;
+	mes "[Doram Token Trader]";
+	mes "Do you want me to open your storage?";
+	.@menu = select( "Not interested~","Sure!!");
+	switch( .@menu ){
+	
+	Case 1:
+	close;
+	break;
+	
+	Case 2:
+	callfunc "F_KafStor",2,0,0;
+	close;
+	break;
+	}
+		}
+	Case 2:
+	close;	
+		}
+	}
+		
+    OnInit:
+ 
+		set .EQA1,28380; // FRESH GRASS NECKLACE
+		set .EQA2,28381; // CUTE GRASS NECKLACE
+		set .EQA3,28382; // CHARM GRASS NECKLACE	
+		set .EQA4,15126; // PRIVATE DORAM SUITS	
+		set .EQA5,20788; // PRIVATE DORAM MANTEAU	
+		set .EQA6,22083; // PRIVATE DORAM SHOES
+		set .EQA7,1691; // SINMYO FOXTAIL STAFF		
+		set .EQA8,1695; // FINE FOXTAIL MODEL	
+		set .tEQA, 2; // TOKEN TO GIVE
+		
+		set .EQB1,15129; // LUXURY DORAM SUIT
+		set .EQB2,20789; // LUXURY DORAM MANTEAU
+		set .EQB3,22084; // LUXURY DORAM SHOES
+		set .EQB4,1696; // ELABORATED FOXTAIL MODEL
+		set .EQB5,1692; // MAGICAL FOXTAIL STAFF
+		set .tEQB, 3; // TOKEN TO GIVE
+		
+		set .EQC1,15156; // ELEGANT DORAM SUIT
+		set .EQC2,20790; // ELEGANT DORAM MANTEAU
+		set .EQC3,22085; // ELEGANT DORAM SHOE
+		set .EQC4,1693; // MAGICAL YELLOW FOXTAIL STAFF
+		set .EQC5,1697; // ELABORATED YELLOW FOXTAIL MODEL
+		set .tEQC, 4; // TOKEN TO GIVE
+		
+        end;
+}

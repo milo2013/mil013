@@ -1,0 +1,35 @@
+milenia,152,153,11	script	Welcome Back Rewards	465,{
+
+if (WBP == 1) {
+	mes "[Sarah]";
+	mes "You already claimed!!";
+	close;
+	}
+		
+//if ( getcharid(3) > 2000187 ) {
+if ( getcharid(3) > 2000003 ) {
+	mes "[Sarah]";
+    mes "You're too new to get the rewards.";
+    next;
+	mes "[Sarah]";
+    mes "I only give to player who register during ^ff0000Milenia 2.x^000000 until ^ff0000Milenia 5.x^000000 only!!";
+	close;
+}
+
+	mes "[Sarah]";
+	mes "Hello ^ff0000" + strcharinfo(0) + "^000000~";
+	mes "It seems you played this server before~";
+	next;
+	mes "[Sarah]";
+	mes " I can give you ^ff0000Welcome Back Package^000000.";
+	next;
+	mes "[Sarah]";
+	mes "Do you want it now?";
+	if (select("Yes:No") - 1) close;
+	next;
+	mes "[Sarah]";
+	mes "Have a nice day~";
+	getitem 31129,1;
+	close;
+	
+}

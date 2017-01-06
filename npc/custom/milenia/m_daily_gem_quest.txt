@@ -1,0 +1,84 @@
+//======Name========================================
+// Daily Gem Collection Quest
+//======Version=====================================
+// 1.0
+//======Author(s)===================================
+// Sandbox
+//======Comments====================================
+// In loving memory of AstralRO
+//==================================================
+
+milenia,37,147,11	script	Gem Collector	754,{
+
+if(#TaskDelay+86400 > gettimetick(2)) goto Ltdelay;
+mes "[ ^000088Gem Collector^000000 ]";
+mes "Greetings, ^008800"+strcharinfo(0)+"^000000. I am the renowned gem collector, ^880000Gem Collector^000000! I have gathered all of the birthstones available in Rune Midgard!";
+next;
+mes "[ ^000088Gem Collector^000000 ]";
+mes "I need to collect more of them, If you help me, I will give you something to compensate your endeavor.";
+next;
+
+mes "[ ^000088Gem Collector^000000 ]";
+mes "You are in part (^FF0000"+(#dtq+1)+"^000000/10) of this daily task, this is the gem that you'll need to acquire: ^880000";
+	if(#dtq == 0) mes "3-Carat Diamond (50)";
+	else if(#dtq == 1) mes "Amethyst (50)";
+	else if(#dtq == 2) mes "Aquamarine (50)";
+	else if(#dtq == 3) mes "Sardonyx (50)";
+	else if(#dtq == 4) mes "Pearl (50)";
+	else if(#dtq == 5) mes "Zircon (50)";
+	else if(#dtq == 6) mes "Ruby (50)";
+	else if(#dtq == 7) mes "Sapphire (50)";
+	else if(#dtq == 8) mes "Garnet (50)";
+	else if(#dtq == 9) mes "Topaz (50)";
+mes "^000000";
+next;
+mes "[ ^000088Gem Collector^000000 ]";
+mes "For every task you finish, I will reward you with up to 100 ^0000FFMithril Ores^000000 depending on my mood!"; //Edit to the reward that you would be giving
+menu "Gem on!",-,"I have the gems already!",Lgotit;
+close;
+
+Lgotit:
+	next;
+	if(#dtq == 0 && countitem(732) < 50) goto Lnenough;
+	else if(#dtq == 1 && countitem(719) < 50) goto Lnenough;
+	else if(#dtq == 2 && countitem(720) < 50) goto Lnenough;
+	else if(#dtq == 3 && countitem(725) < 50) goto Lnenough;
+	else if(#dtq == 4 && countitem(722) < 50) goto Lnenough;
+	else if(#dtq == 5 && countitem(729) < 50) goto Lnenough;
+	else if(#dtq == 6 && countitem(723) < 50) goto Lnenough;
+	else if(#dtq == 7 && countitem(726) < 50) goto Lnenough;
+	else if(#dtq == 8 && countitem(718) < 50) goto Lnenough;
+	else if(#dtq == 9 && countitem(728) < 50) goto Lnenough;
+	mes "[ ^000088Gem Collector^000000 ]";
+	mes "Thank you, this will be kept in my trunk full of gemstones! Bahahahaha.";
+	if(#dtq == 0) delitem 732,50;
+	else if(#dtq == 1) delitem 719,50;
+	else if(#dtq == 2) delitem 720,50;
+	else if(#dtq == 3) delitem 725,50;
+	else if(#dtq == 4) delitem 722,50;
+	else if(#dtq == 5) delitem 729,50;
+	else if(#dtq == 6) delitem 723,50;
+	else if(#dtq == 7) delitem 726,50;
+	else if(#dtq == 8) delitem 718,50;
+	else if(#dtq == 9) delitem 728,50;
+	getitem 7233,rand(1,100); //Edit to the reward that you would be giving
+	set #dtq,#dtq+1;
+	if(#dtq == 10)  
+	{ set #dtq,0;
+	set #TaskDelay,gettimetick(2);
+	}
+	close;
+	
+
+Lnenough:
+	mes "[ ^000088Gem Collector^000000 ]";	
+	mes "This monocle never fails to tell me if someone's deceiving me.";
+	close;
+
+Ltdelay:
+	mes "[ ^000088Gem Collector^000000 ]";
+	mes "I don't need any gems for now, come back again tomorrow.";
+	close;
+
+
+}

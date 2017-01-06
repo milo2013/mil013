@@ -1,0 +1,97 @@
+﻿Build started 30/11/2016 7:47:39:AM.
+     1>Project "C:\Milenia 6\vcproj-13\char-server.vcxproj" on node 2 (Build target(s)).
+     1>ClCompile:
+         F:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /I..\3rdparty\libconfig /I..\3rdparty\mysql\include /I..\3rdparty\msinttypes\include /I..\3rdparty\mt19937ar /ZI /nologo /W3 /WX- /MP /Od /Oy- /D WIN32 /D _WIN32 /D __WIN32 /D _DEBUG /D _CRT_SECURE_NO_DEPRECATE /D _CRT_NONSTDC_NO_DEPRECATE /D FD_SETSIZE=4096 /D LIBCONFIG_STATIC /D YY_USE_CONST /D _WINSOCK_DEPRECATED_NO_WARNINGS /D _VC80_UPGRADE=0x0710 /D _MBCS /Gm- /RTC1 /MTd /GS /Gy /fp:precise /Zc:wchar_t /Zc:forScope /Fo"char-server\Debug\\" /Fd"char-server\Debug\vc120.pdb" /Gd /TC /wd4800 /analyze- /errorReport:prompt ..\3rdparty\libconfig\grammar.c ..\3rdparty\libconfig\libconfig.c ..\3rdparty\libconfig\scanctx.c ..\3rdparty\libconfig\scanner.c ..\3rdparty\libconfig\strbuf.c ..\3rdparty\mt19937ar\mt19937ar.c ..\src\common\core.c ..\src\common\conf.c ..\src\common\db.c ..\src\common\ers.c ..\src\common\malloc.c ..\src\common\mapindex.c ..\src\common\mempool.c ..\src\common\mutex.c ..\src\common\nullpo.c ..\src\common\raconf.c ..\src\common\random.c ..\src\common\showmsg.c ..\src\common\socket.c ..\src\common\sql.c ..\src\common\strlib.c ..\src\common\thread.c ..\src\common\timer.c ..\src\common\utils.c ..\src\common\cli.c ..\src\common\msg_conf.c ..\src\char\char.c ..\src\char\char_clif.c ..\src\char\char_cnslif.c ..\src\char\char_logif.c ..\src\char\char_mapif.c ..\src\char\int_auction.c ..\src\char\int_clan.c ..\src\char\int_elemental.c ..\src\char\int_guild.c ..\src\char\int_homun.c ..\src\char\int_mail.c ..\src\char\int_mercenary.c ..\src\char\int_party.c ..\src\char\int_pet.c ..\src\char\int_quest.c ..\src\char\int_storage.c ..\src\char\inter.c
+         grammar.c
+         libconfig.c
+         scanctx.c
+         scanner.c
+         strbuf.c
+         mt19937ar.c
+         core.c
+         conf.c
+         db.c
+         ers.c
+         malloc.c
+         mapindex.c
+         mempool.c
+         mutex.c
+         nullpo.c
+         raconf.c
+         random.c
+         showmsg.c
+         socket.c
+         sql.c
+         strlib.c
+         thread.c
+         timer.c
+         utils.c
+         cli.c
+         msg_conf.c
+         char.c
+         char_clif.c
+         char_cnslif.c
+         char_logif.c
+         char_mapif.c
+         int_auction.c
+         int_clan.c
+         int_elemental.c
+         int_guild.c
+         int_homun.c
+         int_mail.c
+         int_mercenary.c
+         int_party.c
+         int_pet.c
+         int_quest.c
+         int_storage.c
+         inter.c
+       Link:
+         F:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"..\char-server.exe" /INCREMENTAL /NOLOGO /LIBPATH:..\3rdparty\mysql\lib libcmtd.lib oldnames.lib ws2_32.lib libmysql.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /NODEFAULTLIB /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"..\char-server.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE:NO /IMPLIB:"..\char-server.lib" /MACHINE:X86 /SAFESEH:NO "char-server\Debug\grammar.obj"
+         "char-server\Debug\libconfig.obj"
+         "char-server\Debug\scanctx.obj"
+         "char-server\Debug\scanner.obj"
+         "char-server\Debug\strbuf.obj"
+         "char-server\Debug\mt19937ar.obj"
+         "char-server\Debug\core.obj"
+         "char-server\Debug\conf.obj"
+         "char-server\Debug\db.obj"
+         "char-server\Debug\ers.obj"
+         "char-server\Debug\malloc.obj"
+         "char-server\Debug\mapindex.obj"
+         "char-server\Debug\mempool.obj"
+         "char-server\Debug\mutex.obj"
+         "char-server\Debug\nullpo.obj"
+         "char-server\Debug\raconf.obj"
+         "char-server\Debug\random.obj"
+         "char-server\Debug\showmsg.obj"
+         "char-server\Debug\socket.obj"
+         "char-server\Debug\sql.obj"
+         "char-server\Debug\strlib.obj"
+         "char-server\Debug\thread.obj"
+         "char-server\Debug\timer.obj"
+         "char-server\Debug\utils.obj"
+         "char-server\Debug\cli.obj"
+         "char-server\Debug\msg_conf.obj"
+         "char-server\Debug\char.obj"
+         "char-server\Debug\char_clif.obj"
+         "char-server\Debug\char_cnslif.obj"
+         "char-server\Debug\char_logif.obj"
+         "char-server\Debug\char_mapif.obj"
+         "char-server\Debug\int_auction.obj"
+         "char-server\Debug\int_clan.obj"
+         "char-server\Debug\int_elemental.obj"
+         "char-server\Debug\int_guild.obj"
+         "char-server\Debug\int_homun.obj"
+         "char-server\Debug\int_mail.obj"
+         "char-server\Debug\int_mercenary.obj"
+         "char-server\Debug\int_party.obj"
+         "char-server\Debug\int_pet.obj"
+         "char-server\Debug\int_quest.obj"
+         "char-server\Debug\int_storage.obj"
+         "char-server\Debug\inter.obj"
+         char-server.vcxproj -> C:\Milenia 6\vcproj-13\..\char-server.exe
+     1>Done Building Project "C:\Milenia 6\vcproj-13\char-server.vcxproj" (Build target(s)).
+
+Build succeeded.
+
+Time Elapsed 00:00:30.73

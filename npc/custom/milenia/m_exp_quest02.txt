@@ -1,0 +1,344 @@
+//===== rAthena Script =======================================
+//= iRO Repeatable EXP Quests.
+//===== By: ==================================================
+//= L0ne_W0lf
+//===== Current Version: =====================================
+//= 1.0
+//===== Compatible With: =====================================
+//= rAthena SVN
+//===== Description: =========================================
+//= [Aegis Conversion]
+//= Added Monster Killing quests.
+//= Repeatable EXP Quest (Burning Heart)
+//===== Additional Comments: =================================
+//= 1.0 First version.
+//============================================================
+
+milenia,213,85,3	script	EXP Quest II	733,{
+if (checkquest(65004) != -1) {
+if (checkquest(65004,HUNTING) != 2 ) {
+mes "[Erdy]";
+mes "Have you finished hunting the 50 Magmarings?";
+next;
+switch(select("Yes:No:I want to quit")) {
+case 1:
+mes "[Erdy]";
+mes "Hmm, I don't think you've hunted 50 yet...";
+close;
+case 2:
+mes "[Erdy]";
+mes "Remember, I need help hunting Magmarings so go and hunt 50 of them.";
+close;
+case 3:
+mes "[Erdy]";
+mes "Are you sure that you want to stop hunting?";
+mes "Any progress that you've made will be erased";
+next;
+switch(select("Yes:No")) {
+case 1:
+mes "[Erdy]";
+mes "Ok then, well come back here if you change your mind.";
+erasequest 65004;
+close;
+case 2:
+mes "[Erdy]";
+mes "Please kill 50 Magmarings.";
+close;
+}
+}
+}
+else {
+mes "[Erdy]";
+mes "Amazing, you did that with speed.";
+getexp 137900,86600;
+erasequest 65004;
+close;
+}
+}
+if (checkquest(65005) != -1) {
+if (checkquest(65005,HUNTING) != 2 ) {
+mes "[Erdy]";
+mes "Have you finished hunting the 100 Magmarings?";
+next;
+switch(select("Yes:No:I want to quit")) {
+case 1:
+mes "[Erdy]";
+mes "Hmm, I don't think you've hunted 100 yet...";
+close;
+case 2:
+mes "[Erdy]";
+mes "Remember, I need help hunting Magmarings so go and hunt 100 of them.";
+close;
+case 3:
+mes "[Erdy]";
+mes "Are you sure that you want to stop hunting?";
+mes "Any progress that you've made will be erased";
+next;
+switch(select("Yes:No")) {
+case 1:
+mes "[Erdy]";
+mes "Ok then, well come back here if you change your mind.";
+erasequest 65005;
+close;
+case 2:
+mes "[Erdy]";
+mes "Please kill 100 Magmarings.";
+close;
+}
+}
+}
+else {
+mes "[Erdy]";
+mes "Amazing, you did that with speed.";
+getexp 137900,86600;
+getexp 137900,86600;
+erasequest 65005;
+close;
+}
+}
+
+if (checkquest(65006) != -1) {
+if (checkquest(65006,HUNTING) != 2 ) {
+mes "[Erdy]";
+mes "Have you finished hunting the 150 Magmarings?";
+next;
+switch(select("Yes:No:I want to quit")) {
+case 1:
+mes "[Erdy]";
+mes "Hmm, I don't think you've hunted 150 yet...";
+close;
+case 2:
+mes "[Erdy]";
+mes "Remember, I need help hunting Magmarings so go and hunt 150 of them.";
+close;
+case 3:
+mes "[Erdy]";
+mes "Are you sure that you want to stop hunting?";
+mes "Any progress that you've made will be erased";
+next;
+switch(select("Yes:No")) {
+case 1:
+mes "[Erdy]";
+mes "Ok then, well come back here if you change your mind.";
+erasequest 65006;
+close;
+case 2:
+mes "[Erdy]";
+mes "Please kill 150 Magmarings.";
+close;
+}
+}
+}
+else {
+mes "[Erdy]";
+mes "Amazing, you did that with speed.";
+getexp 137900,86600;
+getexp 137900,86600;
+getexp 137900,86600;
+erasequest 65006;
+close;
+}
+}
+
+if (checkquest(65007) != -1) {
+if (checkquest(65007,HUNTING) != 2 ) {
+mes "[Erdy]";
+mes "Have you finished hunting the 200 Magmarings?";
+next;
+switch(select("Yes:No:I want to quit")) {
+case 1:
+mes "[Erdy]";
+mes "Hmm, I don't think you've hunted 200 yet...";
+close;
+case 2:
+mes "[Erdy]";
+mes "Remember, I need help hunting Magmarings so go and hunt 200 of them.";
+close;
+case 3:
+mes "[Erdy]";
+mes "Are you sure that you want to stop hunting?";
+mes "Any progress that you've made will be erased";
+next;
+switch(select("Yes:No")) {
+case 1:
+mes "[Erdy]";
+mes "Ok then, well come back here if you change your mind.";
+erasequest 65007;
+close;
+case 2:
+mes "[Erdy]";
+mes "Please kill 200 Magmarings.";
+close;
+}
+}
+}
+else {
+mes "[Erdy]";
+mes "Amazing, you did that with speed.";
+getexp 137900,86600;
+getexp 137900,86600;
+getexp 137900,86600;
+getexp 137900,86600;
+erasequest 65007;
+close;
+}
+}
+
+if (checkquest(65008) != -1) {
+if (checkquest(65008,HUNTING) != 2 ) {
+mes "[Erdy]";
+mes "Have you finished hunting the 250 Magmarings?";
+next;
+switch(select("Yes:No:I want to quit")) {
+case 1:
+mes "[Erdy]";
+mes "Hmm, I don't think you've hunted 250 yet...";
+close;
+case 2:
+mes "[Erdy]";
+mes "Remember, I need help hunting Magmarings so go and hunt 250 of them.";
+close;
+case 3:
+mes "[Erdy]";
+mes "Are you sure that you want to stop hunting?";
+mes "Any progress that you've made will be erased";
+next;
+switch(select("Yes:No")) {
+case 1:
+mes "[Erdy]";
+mes "Ok then, well come back here if you change your mind.";
+erasequest 65008;
+close;
+case 2:
+mes "[Erdy]";
+mes "Please kill 250 Magmarings.";
+close;
+}
+}
+}
+else {
+mes "[Erdy]";
+mes "Amazing, you did that with speed.";
+getexp 137900,86600;
+getexp 137900,86600;
+getexp 137900,86600;
+getexp 137900,86600;
+getexp 137900,86600;
+erasequest 65008;
+close;
+}
+}
+
+
+//for minimum level
+if (BaseLevel > 99) {
+//for maximum level
+if (BaseLevel < 176) {
+mes "[Erdy]";
+mes "You look like a sturdy adventurer!";
+next;
+mes "[Erdy]";
+mes "I was sent here to minimize the Magmaring population but the task is proving to be quite difficult for just me to complete.";
+mes "How'd you like to help me out?";
+next;
+switch(select("Sure:No")) {
+case 1:
+mes "[Erdy]";
+mes "You can help me out by either hunting Magmarings or by gathering items for me.";
+mes "Which would you like to do?";
+next;
+switch(select("Gather Items:Hunt Magmarings:Cancel")) {
+case 1:
+// Item turn in
+mes "[Erdy]";
+mes "If you can bring me ^00CC0020 Burning Heart^000000. I'll help you get stronger.";
+next;
+switch(select("I have the Burning Heart:Gators bite!")) {
+case 1:
+/*
+if (checkweight(503,10) == 0) {
+mes "[Erdy]";
+mes "Hey, it looks like that the weight on";
+mes "your back will crush you. Come back";
+mes "after you have lost some weight.";
+close;
+}
+*/
+if (countitem(7097) > 19) {
+mes "[Erdy]";
+mes "Thank you for the ^00CE0020 Burning Heart^000000!";
+mes "I hope you can continue to help me collect these skins.";
+mes "The armor creators around the world are clamoring for them.";
+delitem 7097,20; //Burning Heart
+getexp 137900,86600;
+//getitem 503,10; //Yellow_Potion
+close;
+}
+else {
+mes "[Erdy]";
+mes "I know a Burning Heart when I see it and I don't see ^00CE0020 Burning Heart^000000.";
+close;
+}
+case 2:
+mes "[Erdy]";
+mes "I need ^00CE0020 Burning Heart^000000.";
+close;
+}
+case 2:
+// Kill Count Quest
+mes "[Erdy]";
+mes "Ah, ok I think you can help me out by hunting some Magmarings.";
+mes "How many would you like to hunt?";
+next;
+switch(select("50 Magmarings:100 Magmarings:150 Magmarings:200 Magmarings:250 Magmarings")) {
+case 1:
+mes "[Erdy]";
+mes "Come back when you've finished your task and I will give you a small reward.";
+setquest 65004;
+close;
+case 2:
+mes "[Erdy]";
+mes "Come back when you've finished your task and I will give you a small reward.";
+setquest 65005;
+close;
+case 3:
+mes "[Erdy]";
+mes "Come back when you've finished your task and I will give you a small reward.";
+setquest 65006;
+close;
+case 4:
+mes "[Erdy]";
+mes "Come back when you've finished your task and I will give you a small reward.";
+setquest 65007;
+close;
+case 5:
+mes "[Erdy]";
+mes "Come back when you've finished your task and I will give you a small reward.";
+setquest 65008;
+close;
+}
+case 3:
+mes "[Erdy]";
+mes "If you change your mind, please come back.";
+close;
+}
+case 2:
+mes "[Erdy]";
+mes "If you change your mind, please come back.";
+close;
+}
+}
+else {
+mes "[Erdy]";
+mes "You are too powerful for this task, I need the skins in fair condition, not exploded!";
+next;
+close;
+}
+}
+else {
+mes "[Erdy]";
+mes "You certainly are brave, but bravery turns to foolishness if you continue going East.";
+mes "Perhaps when you are stronger you and I can do business.";
+close;
+}
+}

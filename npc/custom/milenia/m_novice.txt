@@ -1,0 +1,94 @@
+milenia,106,159,5	script	Novice Support	864,{
+
+cutin "malaya_nursea04",2;
+if (Class > 0)	goto Lhaveitem3;
+else if(novice == 12) goto Lhaveitem1;
+else if(Class < 1)	goto Lhaveitem2;
+
+
+// Name of the NPC
+		set .name$, "[GM Lisa]";
+
+Lhaveitem1:
+	cutin "malaya_nursea03",2;
+	emotion	e_swt2;
+	mes "[GM Lisa]";
+    mes "I already give the item for you.";
+    close2;
+cutin "", 255;
+end;
+Lhaveitem2:
+		cutin "malaya_nursea02",2;
+		emotion	e_ho;
+		mes "[GM Lisa]";
+		mes "Hello young adventurer.";
+		mes "I can give you free novice items.";
+		mes "Do you want it?";
+		next;
+		switch(select(	"You're so kind. Thank you!:Nah~ Im too pro for this!"	)){
+		Case 1:
+		emotion	e_kis;
+		mes "[GM Lisa]";
+		mes "Please take this item and have a nice day~";
+		next;
+		getitem 14208,1;	//Battle Manual 5 Box
+		getitem	13415,1;	//novice falcion5055 
+		getitem	5055,1;		//novice egg shell
+		getitem	2765,1;		//novice figure
+		getitem	2112,1;		//novice sheild
+		getitem	2510,1;		//novice hood
+		getitem	2414,1;		//novice slipper
+		getitem	2393,1;		//novice adventurer suit
+		getitem	2628,1;		//novice armlet
+		getitem	12325,100;	//novice magnifier
+		getitem	12324,100;	//novice butterfly wing
+		getitem	12323,300;	//Novice fly wing
+		getitem	569,500;	//Novice potion
+		getitem 12211,100; 	//Kafra Card
+		getitem 13643,1;   //2 Hour Package
+		set novice, 12;
+		emotion	e_kis;
+		mes "See you soon~";
+		dispbottom "You got 1 " +getitemname(14208);
+		dispbottom "You got 1 " +getitemname(13415);
+		dispbottom "You got 1 " +getitemname(5055);
+		dispbottom "You got 1 " +getitemname(2765);
+		dispbottom "You got 1 " +getitemname(2112);
+		dispbottom "You got 1 " +getitemname(2510);
+		dispbottom "You got 1 " +getitemname(2414);
+		dispbottom "You got 1 " +getitemname(2393);
+		dispbottom "You got 1 " +getitemname(2628);
+		dispbottom "You got 100 " +getitemname(12325);
+		dispbottom "You got 100 " +getitemname(12324);
+		dispbottom "You got 300 " +getitemname(12323);
+		dispbottom "You got 500 " +getitemname(569);
+		dispbottom "You got 100" +getitemname (12211);
+		dispbottom "You got 1"	+getitemname (13643);
+    close2;
+cutin "", 255;
+end;
+		Case 2:
+		cutin "malaya_nursea04",2;
+		emotion	e_ag;
+		mes "[GM Lisa]";
+		mes "Such a arrogant person.";
+		mes "^ff0000@kill "+ strcharinfo(0) +"^000000";
+		next;
+		mes "[GM Lisa]";
+		emotion	e_omg;
+		mes "Why my command not work?!";
+		mes "Maybe you're lucky!";
+	close2;
+cutin "", 255;
+end;
+Lhaveitem3:
+		emotion e_dum;
+		mes "[GM Lisa]";
+		mes "Sorry~";
+		mes "We only give free item for ^ff0000novice^000000 only!";
+		close2;
+cutin "", 255;
+end;
+		}
+end;
+}

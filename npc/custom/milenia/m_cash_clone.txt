@@ -1,0 +1,67 @@
+milenia,87,153,5	script	Cashpoints Forgery	494,{
+
+
+	if (countitem (31130)) < 1{
+	mes "[Uncle Jack]";
+	mes "......";
+	close;
+	}
+	
+    mes "[Uncle Jack]";
+	mes "Psttttt..";
+	next;
+	mes "[Uncle Jack]";
+    mes "Do you want to clone your Cashpoints Voucher?";
+	next;
+    mes "[Uncle Jack]";
+	mes "Let's see.. Hmmm.. You have..";
+    mes "^ff0000" + getitemname(.IDCP10) + "^000000 : ^ff0000 "+countitem(.IDCP10) +" ^000000";
+    mes "^ff0000" + getitemname(.IDCP50) + "^000000 : ^ff0000 "+countitem(.IDCP50) +" ^000000";
+	mes "^ff0000" + getitemname(.IDCP99) + "^000000 : ^ff0000 "+countitem(.IDCP99) +" ^000000";
+    next;
+    mes "[Uncle Jack]";
+	mes "Do you confirm want to clone?";
+	mes "^ff0000GM may caught you and put you in jail!^000000";
+	mes " If they found out about this!! ";
+	next;
+    if (select("Yes:No") - 1) close;
+	
+	.@total10 = (countitem (.IDCP10));
+	.@amount10Total = (.@total10 * .CV10);
+	
+	.@total50 = (countitem (.IDCP50));
+	.@amount50Total = (.@total50 * .CV50);
+	
+	.@total99 = (countitem (.IDCP99));
+	.@amount99Total = (.@total99 * .CV99);
+	
+	
+    mes "[Uncle Jack]";
+    mes "Have a nice day~";
+	mes "I take 1 of ^ff0000Cloning Token^000000 as payment~";
+	delitem .IDCP10, .@total10;
+	delitem .IDCP50, .@total50;
+	delitem .IDCP99, .@total99;
+    getitem .IDCP10, .@amount10Total;
+	getitem .IDCP50, .@amount50Total;
+	getitem .IDCP99, .@amount99Total;
+    delitem 31130,1;
+	dispbottom "You cloned "+.@total10+" of "+getitemname (.IDCP10)+"!!" ;
+	dispbottom "You cloned "+.@total50+" of "+getitemname (.IDCP50)+"!!" ;
+	dispbottom "You cloned "+.@total99+" of "+getitemname (.IDCP99)+"!!" ;
+	close;
+	
+	
+	
+	OnInit:
+	
+	set .IDCP10,31126; //	Cashpoints Voucher 10
+	set .IDCP50,31127; // Cashpoints Voucher 50
+	set .IDCP99,31128; // Cashpoints Voucher 99
+	
+	set .CV10,2; // Cashpoints Voucher 10
+	set .CV50,2; // Cashpoints Voucher 50
+	set .CV99,2; // Cashpoints Voucher 99
+	
+	end;
+	}

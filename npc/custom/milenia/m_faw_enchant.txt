@@ -1,0 +1,129 @@
+moc_para01,180,23,3	script	Valkyrie#faw	403,{
+
+mes "[Valkyrie]";
+mes "I can enchant "+getitemname( .faw_itemid );
+mes " ";
+if( getequipid( EQI_GARMENT ) == .faw_itemid ){
+
+	.@refine = getequiprefinerycnt( EQI_GARMENT );
+	for( .@i = 0; .@i < 4; .@i++ )
+		.@card[.@i] = getequipcardid( EQI_GARMENT,.@i );
+		
+	switch( select( "Enchant Item","Reset Enchant" ) ){
+		case 1:
+			mes "Pick a slot to enchant.";
+			mes "You may enchant more slot when you have higher refine.";
+			mes "^777777( min. refine = 6 )^000000";
+			.@slot = select(
+				( .@card[1] || .@refine < 6 )?"":"Enchant Slot 1",
+				( .@card[2] || .@refine < 7 )?"":"Enchant Slot 2",
+				( .@card[3] || .@refine < 9 )?"":"Enchant Slot 3",
+				"Cancel"
+			);
+			if( .@slot < 4 ){
+				mes "Pick Enchant Type";
+				.@type = select( .enchant_type_menu$ ) - 1;
+				.@size = .enchant_list_size[.@type];
+				if( .@size ){
+					copyarray .@enchant_list[0],getd( ".enchant_list_"+( .@type+1 )+"[0]" ),.@size;
+					if( .@refine >= 9 && .@slot == 3 ){
+						.@enchant_list[.@size] = .special_enchant[.@type];
+						.@size++;
+					}
+					delequip EQI_GARMENT;
+					if( rand( 100 ) < .success_rate ){
+						setd( ".@card["+.@slot+"]" ),.@enchant_list[ rand( .@size ) ];
+						mes "Done, success to enchant the item.";
+						getitem2 .faw_itemid,1,1,.@refine,0,.@card[0],.@card[1],.@card[2],.@card[3];
+						equip .faw_itemid;
+					}else{
+						mes "Too bad, failed to enchant the item.";
+					}
+				}
+			}
+			break;
+		case 2:
+			mes "You need "+.enchant_reset_Zeny+" Zeny.";
+			if( Zeny >= .enchant_reset_Zeny ){
+				if( select( "Confirm to reset all enchant ??","Cancel" ) == 1 ){
+					if( !.@card[1] && !.@card[2] && !.@card[3] ){
+						mes "Your item didnt have any enchanted item.";
+					}else{
+						Zeny -= .enchant_reset_Zeny;
+						delequip EQI_GARMENT;
+						getitem2 .faw_itemid,1,1,.@refine,0,.@card[0],0,0,0;
+						equip .faw_itemid;
+						mes "Done removed all enchanted item.";
+					}
+				}
+			}
+		default: break;
+	}
+	
+}else{
+	mes "[Valkyrie]";
+	mes "Make sure you equiped with "+getitemname( .faw_itemid );
+}
+close;
+
+
+OnInit:
+// FAW item id
+.faw_itemid = 2589;
+
+// enchant success rate
+.success_rate = 100;
+
+// enchant reset cost
+.enchant_reset_Zeny = 1000000;
+
+// enchant type category
+setarray .enchant_type$,"Fighting","Magic","Archer","Critical","MaxHP","MaxSP","ASPD","STR","AGI","DEX","VIT","INT","LUK";
+
+// enchant list ( Fighting Spirit )
+setarray .enchant_list_1,4809,4808,4820;
+// enchant list ( Magic )
+setarray .enchant_list_2,4812,4827,4826;
+// enchant list ( Archer )
+setarray .enchant_list_3,4832,4833,4834;
+// enchant list ( Critical )
+setarray .enchant_list_4,4764,4765;
+// enchant list ( Max HP )
+setarray .enchant_list_5,4861,4862;
+// enchant list ( Max SP )
+setarray .enchant_list_6,4870,4871;
+// enchant list ( ASPD )
+setarray .enchant_list_7,4807,4842;
+// enchant list ( STR )
+setarray .enchant_list_8,4702,4703,4705;
+// enchant list ( AGI )
+setarray .enchant_list_9,4732,4733,4735;
+// enchant list ( DEX )
+setarray .enchant_list_10,4722,4723,4725;
+// enchant list ( VIT )
+setarray .enchant_list_11,4742,4743,4745;
+// enchant list ( INT )
+setarray .enchant_list_12,4712,4713,4715;
+// enchant list ( LUK )
+setarray .enchant_list_13,4752,4753,4755;
+
+// extra 1 special enchant for 3rd slot if refine above 9 ( follow by category sequences )
+setarray .special_enchant,4821,4828,4835,4765,4868,4801,4807,4853,4854,4857,4855,4856,4858;
+
+
+.enchant_type_size = getarraysize( .enchant_type$ );
+for( .@i = 0; .@i < .enchant_type_size; .@i++ ){
+	.enchant_list_size[.@i] = getarraysize( getd( ".enchant_list_"+( .@i+1 ) ) );
+	if( !.enchant_list_size[.@i] ){
+		.enchant_type$[.@i] = "";
+	}
+	else{
+		.enchant_type_menu$ = .enchant_type_menu$ + .enchant_type$[.@i];
+	}
+	.enchant_type_menu$ = .enchant_type_menu$ + ":";
+}
+end;
+}
+
+
+

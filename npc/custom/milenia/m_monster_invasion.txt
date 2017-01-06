@@ -1,0 +1,137 @@
+// Copyrights Notice
+// ========================================================
+// This work is licensed under the Creative Commons Attribution-NonCommercial 4.0 International License.
+// To view a copy of this license, visit http://creativecommons.org/licenses/by-nc/4.0/.
+// ========================================================
+// Introduction
+// ========================================================
+// Copyrights 2015-2020 Jordan Lacandula All rights reserved
+// ========================================================
+// Script: Mob Kill Ranking
+// ========================================================
+// Programmer: Jordan Lacandula
+// Website: For more info, visit http://jordanlacandula.tk/
+// ========================================================
+// Bug Report/Job Request
+// ========================================================
+// Email: jordanlacandula@hotmail.com
+// Skype: jordan.lacandula
+// ========================================================
+// NPC Information
+// ========================================================
+// This NPC will summon a given amount monster in a given map
+// Every time the player kill a monster, he will be given a point
+// The player that have the 3 highest points will be rewarded
+// Ranking will reset, when the Event is started
+// ========================================================
+// Thanks to Aureon, for the idea of this NPC
+// ========================================================
+
+milenia,131,163,11	script	Invasion Ranking	953,{
+	
+	if(getgmlevel() < 99){
+		mes "Rank 1 receive "+ .r1p[1] +" piece(s) of "+ getitemname(.r1p[0]) +".";
+		next;
+		mes "Rank 2 receive "+ .r2p[1] +" piece(s) of "+ getitemname(.r2p[0]) +".";
+		next;
+		mes "Rank 3 receive "+ .r3p[1] +" piece(s) of "+ getitemname(.r3p[0]) +".";
+		close;
+	}
+	
+	switch(select("Nothing:Start:End")){
+		case 1:
+			close;
+			break;
+		case 2:
+			callsub OnStart;
+			close;
+			break;
+		case 3:
+			callsub OnEventEnd;
+			break;
+	}
+	OnTimer6000:
+		set .@minute,.@minute+1;
+		if(.@minute >= .event_duration){
+			callsub OnEventEnd;
+		}else{
+			announce "Monster Left: " +.@mc,0;
+		}
+	end;
+	
+	OnClock0600:
+	OnClock1200:
+	OnClock1800:
+	OnClock0000:
+		callsub OnStart;
+	end;
+	
+	OnStart:
+		set ep,0;
+		killmonster	.event_location$,.mob_name$;
+		set .@mc,0;
+		set .rank1_id,0;
+		set .rank2_id,0;
+		set .rank3_id,0;
+		
+		set .r1po,0;
+		set .r2po,0;
+		set .r3po,0;
+		monster .event_location$,0,0,.mob_name$,.event_mobid,.mob_count,strnpcinfo(0)+"::OnEventMobKill";
+		announce "Monster Invasion has been started",0;
+	end;
+
+	OnEventMobKill:
+		
+		set ep,ep+1;
+		dispbottom "Event Points: "+ep;
+		set .@mc,.@mc+1;
+		set @mob_ep,@mob_ep+1;
+		
+		if(ep > .r1po){
+			set .rank1_id,getcharid(0);
+		}else if(ep > .r2po){
+			set .rank2_id,getcharid(0);
+		}else if(ep > .r3po){
+			set .rank3_id,getcharid(0);
+		}
+		
+		if(.@mc >= .mob_count){
+			callsub OnEventEnd;
+		}
+	end;
+	
+	OnEventEnd:
+		announce "Monster Invasion has ended",0;
+		getitem .r1p[0],.r1p[1],.rank1_id;
+		getitem .r2p[0],.r2p[1],.rank2_id;
+		getitem .r3p[0],.r3p[1],.rank3_id;
+		killmonster .event_location$,"All";
+		set .@minute,0;
+	end;
+	
+	OnInit:
+		set .event_location$,"milenia";	// where's the rumor?
+		set .event_duration,5;			// in minutes
+		set .mob_name$,"Milenia";		// who's event monster?
+		set .event_mobid,3997;			// what monster?
+		set .mob_count,100;			// how many monster?
+		
+		//setarray .r#p[0],item_id,amount;
+		setarray .r1p[0],607,5;				// rank 1 reward
+		setarray .r2p[0],608,5;				// rank 2 reward
+		setarray .r3p[0],609,5;				// rank 2 reward
+		
+		
+		// can't touch this! ( te-nenene te-ne)
+		set .rank1_id,0;
+		set .rank2_id,0;
+		set .rank3_id,0;
+		
+		set .r1po,0;
+		set .r2po,0;
+		set .r3po,0;
+		
+		set .@minute,0;
+	end;
+}

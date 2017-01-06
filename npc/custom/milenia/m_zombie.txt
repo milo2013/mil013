@@ -1,0 +1,1153 @@
+//===== eAthena Script =======================================
+//= Zombie Mode
+//===== By: ==================================================
+//= Snow
+//===== Current Version: =====================================
+//= 1.2 
+//===== Compatible With: =====================================
+//= Any Athena Version
+//===== Credits: =============================================
+//= The whole eAthena and rAthena Board, Souyji my Mentor
+//===== Notes: ===============================================
+//= Note 1:
+//= No need to add the .mp3 to you mp3nametable, 
+//= it plays automatically when the events starts
+//= If you want to change it, search for the bgmall command
+//= Note 2: 
+//= You may need to adjust the zones of item_noequip and skill_nocast!
+//= See the readme for it
+//============================================================
+
+pvp_n_1-4	mapflag	nocommand	30
+pvp_n_1-4	mapflag	pvp
+pvp_n_1-4	mapflag	nowarpto
+pvp_n_1-4	mapflag	nomemo
+pvp_n_1-4	mapflag	noteleport
+pvp_n_1-4	mapflag	nopenalty
+pvp_n_1-4	mapflag	restricted	8
+pvp_n_1-4	mapflag	pvp_noguild
+pvp_n_1-4	mapflag	pvp_noparty 
+
+milenia,50,99,5	script	Zombies::Zombies	796,{
+
+//GM's disabler --------------------------------------------------------------
+// GM level 60 menu.
+if(getgmlevel() >= 60) {
+  mes "[Zombies GM Setup]";
+  mes "You can choose to enable/disable and/or warp out players. Status:";
+  if (.offline) {
+    mes "^E00000OFFLINE^000000";
+  } else {
+    mes "^00A000ONLINE^000000";
+  }
+  menu "Continue",-,"Enable/Disable",-,"Warp Out",-,"Both",-;
+  set @sel, @menu-1;
+  if(@sel&1) set .offline, .offline^1;
+  if(@sel&2) {
+    getmapxy(@mapname$, @mapx, @mapy, 0, strcharinfo(0));
+    mapwarp "pvp_n_1-4", @mapname$, @mapx, @mapy;
+  }
+}
+
+// If the NPC is offline, close.
+if (.offline) {
+  mes "[Master Zombie]";
+  mes "Sorry, but I'm disabled at the moment.";
+  close;
+}
+//-------------------------------------------------------------------------- End
+
+set @zombieuser, getmapusers ("pvp_n_1-4");
+
+if (@zombieuser == 0)
+	{
+	set $@nolatejoiners, 0;
+	stopnpctimer;
+	setnpctimer 0;
+	set $@humans, 0;
+	set $@zombietimer, 0;
+	}
+
+getmapxy(#originmap$,#originx,#originy,0,strcharinfo(0));
+
+if ($@nolatejoiners == 1)
+	{
+	mes "[Master Zombie]";
+	mes "Welcome to the Zombies.";
+	mes "A game has already started, sorry no late joiners.";
+	close;
+	end;
+	}
+
+mes "[Master Zombie]";
+mes "Welcome to the Zombies.";
+mes "There are "+@zombieuser+" players currently in the game.";
+mes "Also I recommend you to activate your BGM's and Sounds";
+mes "The game will begin when there are 5 or more players.";
+mes "Would you like to join?";
+menu "Yes",yes,"No",-;
+
+mes "Come back when you don't fear death.";
+close;
+
+yes:
+	if((checkriding() == 1) || (checkfalcon() == 1) ||(checkcart() == 1)){
+	mes "[Master Zombie]";
+	mes "Remove your peco, cart or bird to enter this event!";
+	close;
+	}
+set @newsave, rand(1,4);
+
+	if (@newsave == 1)
+		{
+		set @savex, rand(95,103);
+		set @savey, rand(19,94);
+		}
+
+	if (@newsave == 2)
+		{
+		set @savex, rand(37,95);
+		set @savey, rand(117,126);
+		}
+
+	if (@newsave == 3)
+		{
+		set @savex, rand(98,102);
+		set @savey, rand(123,176);
+		}
+
+	if (@newsave == 4)
+		{
+		set @savex, rand(103,162);
+		set @savey, rand(117,125);
+		}
+
+save "pvp_n_1-4", (@savex), (@savey);
+
+percentheal 100,100;
+
+warp "pvp_n_1-4", (@savex), (@savey);
+
+set @izombie, getarraysize($@zombie);
+setarray $@zombie[@izombie], getcharid(3);
+
+set @zombiechk, getmapusers ("pvp_n_1-4") + 1;
+
+if ((@zombiechk >= 5) && ($@zombietimer == 0))
+	{
+	detachrid;
+	set $@zombietimer, 1;
+	mapannounce "pvp_n_1-4", "Minimum players required reached, please wait 30 seconds for additional players.",0;
+	set $@zombieuser, getmapusers ("pvp_n_1-4");
+	
+	addplayer:
+	set $@playercheck, getmapusers ("pvp_n_1-4");
+	set $@zcounter, $@zcounter + 1;
+
+	if ($@playercheck > $@zombieuser)
+		{
+		mapannounce "pvp_n_1-4", "Another player has joined, please wait 30 seconds for additional players.",0;
+		set $@zombieuser, $@playercheck;
+		set $@zcounter, 0;
+		}
+
+	if ($@zcounter == 30)
+		{
+		set .@izombie, getarraysize($@zombie);
+		set .@zombie, rand(0,(.@izombie));
+
+		zretry:
+		set $@firstzombie, $@zombie[.@zombie];
+
+		if ($@firstzombie == 0)
+			{
+			set .@zombie, rand(0,(.@izombie));
+			set .@zretryy, .@zretryy + 1;
+
+			if (.@zretryy == (.@zombie + 10))
+				{
+				set $@nolatejoiners, 0;
+				stopnpctimer;
+				setnpctimer 0;
+				set $@humans, 0;
+				set $@zombietimer, 0;
+				mapwarp "pvp_n_1-4", "prontera", 160, 184;
+				end;
+				}
+
+			goto zretry;
+			}
+
+		set $@nolatejoiners, 1;
+		set $@humans, getmapusers ("pvp_n_1-4") - 1;
+		set $@zombies, 1;
+		startnpctimer;
+		attachrid $@zombie[.@zombie];
+
+		getmapxy(@checkmap$,@checkx,@checky,0);
+		if (@checkmap$ != "pvp_n_1-4")
+			{
+			for (set .@zomb, 0; .@zomb < getarraysize($@zombie); set .@zomb, .@zomb+1) {
+				if ($@zombie[.@zomb] == getcharid(3))
+					{
+					setarray $@zombie[.@zomb],0;
+					break;
+					}
+				}
+				for (; .@zomb < getarraysize($@zombie); set .@zomb, .@zomb+1) {
+				setarray $@zombie[.@zomb], $@zombie[.@zomb+1];
+			}
+			goto zretry;
+			}
+
+		set @firstblood, 1;
+		atcommand "@die";
+		playBGMall "haunted","pvp_n_1-4";
+		pvpon "pvp_n_1-4";
+		end;
+
+		}
+
+	sleep2 1000;
+	goto addplayer;
+	}
+
+end;
+
+OnTimer60000:
+mapannounce "pvp_n_1-4", "Four minutes left, "+$@humans+" humans remaining.",0;
+end;
+
+OnTimer120000:
+mapannounce "pvp_n_1-4", "Three minutes left, "+$@humans+" humans remaining.",0;
+end;
+
+OnTimer180000:
+mapannounce "pvp_n_1-4", "Two minutes left, "+$@humans+" humans remaining.",0;
+end;
+
+OnTimer240000:
+mapannounce "pvp_n_1-4", "One minute left, "+$@humans+" humans remaining..",0;
+end;
+
+OnTimer300000:
+announce "[Zombies]: The Undead will go hungry tonight.",0;
+pvpoff "pvp_n_1-4";
+
+goto OnEventGameOver;
+end;
+
+OnEventGameOver:
+
+stopnpctimer;
+setnpctimer 0;
+
+set .@izombie, getarraysize($@zombie);
+set .@zombie, 0;
+set .@human, 0;
+
+survivors:
+if (.@zombie < .@izombie)
+	{
+	attachrid $@zombie[.@zombie];
+
+	if (@zombie$ != strcharinfo(0))
+		{
+		copyarray $@human[.@human],$@zombie[.@zombie],1;	
+		set .@human, .@human + 1;
+		}
+
+	getmapxy(@checkmap$,@checkx,@checky,0);
+	if (@checkmap$ == "pvp_n_1-4")
+		{
+		save #originmap$, (#originx), (#originy);
+		warp #originmap$, (#originx), (#originy);
+		}
+
+	if (@checkmap$ != "pvp_n_1-4")
+		{
+		set @leftearly, 1;
+		}
+
+	set @zombie$, "-";
+	undisguise;
+	detachrid;
+	set .@zombie, .@zombie + 1;
+	goto survivors;
+	}
+
+for (set .@zomb, 0; .@zomb < getarraysize($@zombie); set .@zomb, .@zomb+1) {
+	setarray $@zombie[.@zomb], 0;
+}
+
+set .@ihuman, getarraysize($@human);
+set .@human, 0;
+
+human:
+if (.@human < .@ihuman)
+	{
+	attachrid $@human[.@human];
+
+	if (@leftearly != 1)
+		{
+		announce "[Zombies]: "+strcharinfo(0)+" Survived Zombies!!",0;
+		pvpoff "pvp_n_1-4";
+		}
+
+	set @leftearly, 0;
+	detachrid;
+	set .@human, .@human + 1;
+	goto human;
+	}
+
+for (set .@hum, 0; .@hum < getarraysize($@human); set .@hum, .@hum+1) {
+	setarray $@human[.@hum], 0;
+}
+
+set $@nolatejoiners, 0;
+set $@zombietimer, 0;
+set $@humans, 0;
+set $@totalzombies, 0;
+end;
+
+OnEventZombieGrowth:
+atcommand "@disguise 1036";
+//disguise 1036;
+set @zombiebuff, 0;
+set @zombielink, 0;
+set @zombie$, strcharinfo(0);
+announce ""+@zombie$+" is a Zombie!!!",bc_map;
+set @ztarget, getCharID(3);
+
+	if(Class == Job_Alchem || Class == Job_Creator) {
+	set @job, 1;
+	unitskilluseid @ztarget,445,5;
+	}
+
+	if(Class == Job_Monk || Class == Job_Champion) {
+	set @job, 2;
+	unitskilluseid @ztarget,447,5;
+	}
+
+	if(Class == Job_Sage || Class == Job_Professor) {
+	set @job, 3;
+	unitskilluseid @ztarget,449,5;
+	}
+
+	if(Class == Job_Crusader || Class == Job_Paladin) {
+	set @job, 4;
+	unitskilluseid @ztarget,450,5;
+	}
+
+	if(Class == Job_SuperNovice) {
+	set @job, 5;
+	unitskilluseid @ztarget,451,5;
+	}
+
+	if(Class == Job_Knight || Class == Job_Lord_Knight) {
+	set @job, 6;
+	unitskilluseid @ztarget,452,5;
+	}
+
+	if(Class == Job_Wizard || Class == Job_High_Wizard) {
+	set @job, 7;
+	unitskilluseid getcharid(3),453,5;
+	}
+
+	if(Class == Job_Priest || Class == Job_High_Priest) {
+	set @job, 8;
+	unitskilluseid @ztarget,454,5;
+	}
+
+	if(Class == Job_Bard || Class == Job_Clown || Class == Job_Dancer || Class == Job_Gypsy) {
+	set @job, 9;
+	unitskilluseid @ztarget,455,5;
+	}
+
+	if(Class == Job_Rogue || Class == Job_Stalker) {
+	set @job, 10;
+	unitskilluseid @ztarget,456,5;
+	}
+
+	if(Class == Job_Assassin || Class == Job_Assassin_Cross) {
+	set @job, 11;
+	unitskilluseid @ztarget,457,5;
+	}
+
+	if(Class == Job_Blacksmith || Class == Job_Whitesmith) {
+	set @job, 12;
+	unitskilluseid @ztarget,458,5;
+	}
+
+	if(Class == Job_Hunter || Class == Job_Sniper) {
+	set @job, 13;
+	unitskilluseid @ztarget,460,5;
+	}
+
+	if(Class == Job_Soul_Linker) {
+	set @job, 14;
+	unitskilluseid @ztarget,461,5;
+	}
+
+	if(Class == Job_Taekwon || Class == Job_Star_Gladiator || Class == Job_Star_Gladiator2) {
+	set @job, 15;
+	unitskilluseid @ztarget,448,5;
+	}
+goto zombiebuffer;
+
+if (@novalue == 503)
+{
+zombiebuffer:
+if (strcharinfo(0) == @zombie$)
+{
+//if (@zombiebuff > 1) {
+//set @zombiebuff, 0;
+//}
+
+//if (@zombielink > 2) {
+//set @zombielink, 0;
+//}
+
+percentheal 0,75;
+
+set @zombiebuff, @zombiebuff + 1;
+set @zombielink, @zombielink + 1;
+
+	if (@zombiebuff == 1)
+	{
+		if (@job == 1)
+		{
+		sc_start SC_BLESSING,11000,30;
+		skilleffect 34,0;
+
+		sc_start SC_INCREASEAGI,11000,10;
+		skilleffect 29,0;
+		}
+
+		if (@job == 2)
+		{
+		sc_start SC_BLESSING,11000,40;
+		skilleffect 34,0;
+
+		sc_start SC_INCREASEAGI,11000,10;
+		skilleffect 29,0;
+		}
+
+		if (@job == 3)
+		{
+		sc_start SC_BLESSING,11000,50;
+		skilleffect 34,0;
+
+		sc_start SC_INCREASEAGI,11000,20;
+		skilleffect 29,0;
+		}
+
+		if (@job == 4)
+		{
+		sc_start SC_BLESSING,11000,50;
+		skilleffect 34,0;
+
+		sc_start SC_INCREASEAGI,11000,10;
+		skilleffect 29,0;
+		}
+
+		if (@job == 5)
+		{
+		sc_start SC_BLESSING,11000,50;
+		skilleffect 34,0;
+
+		sc_start SC_INCREASEAGI,11000,30;
+		skilleffect 29,0;
+		}
+
+		if (@job == 6)
+		{
+		sc_start SC_BLESSING,11000,40;
+		skilleffect 34,0;
+
+		sc_start SC_INCREASEAGI,11000,40;
+		skilleffect 29,0;
+		}
+
+		if (@job == 7)
+		{
+		sc_start SC_BLESSING,11000,50;
+		skilleffect 34,0;
+
+		sc_start SC_INCREASEAGI,11000,10;
+		skilleffect 29,0;
+		}
+
+		if (@job == 8)
+		{
+		sc_start SC_BLESSING,11000,50;
+		skilleffect 34,0;
+
+		sc_start SC_INCREASEAGI,11000,10;
+		skilleffect 29,0;
+		}
+
+		if (@job == 9)
+		{
+		sc_start SC_BLESSING,11000,40;
+		skilleffect 34,0;
+
+		sc_start SC_INCREASEAGI,11000,20;
+		skilleffect 29,0;
+		}
+
+		if (@job == 10)
+		{
+		sc_start SC_BLESSING,11000,44;
+		skilleffect 34,0;
+
+		sc_start SC_INCREASEAGI,11000,20;
+		skilleffect 29,0;
+		}
+
+		if (@job == 11)
+		{
+		sc_start SC_BLESSING,11000,40;
+		skilleffect 34,0;
+
+		sc_start SC_INCREASEAGI,11000,10;
+		skilleffect 29,0;
+		}
+
+		if (@job == 12)
+		{
+		sc_start SC_BLESSING,11000,40;
+		skilleffect 34,0;
+
+		sc_start SC_INCREASEAGI,11000,40;
+		skilleffect 29,0;
+		}
+
+		if (@job == 13)
+		{
+		sc_start SC_BLESSING,11000,40;
+		skilleffect 34,0;
+
+		sc_start SC_INCREASEAGI,11000,40;
+		skilleffect 29,0;
+		}
+
+		if (@job == 14)
+		{
+		sc_start SC_BLESSING,11000,100;
+		skilleffect 34,0;
+
+		sc_start SC_INCREASEAGI,11000,10;
+		skilleffect 29,0;
+		}
+
+		if (@job == 15)
+		{
+		sc_start SC_BLESSING,11000,40;
+		skilleffect 34,0;
+
+		sc_start SC_INCREASEAGI,11000,20;
+		skilleffect 29,0;
+		}
+
+	sc_start SC_IMPOSITIO,11000,10;
+	skilleffect 66,0;
+
+	sc_start SC_SUFFRAGIUM,11000,10;
+	skilleffect 67,0;
+
+	sc_start SC_ADRENALINE2,11000,5;
+
+	sc_start SC_WEAPONPERFECTION,11000,5;
+
+	//sc_start SC_OVERTHRUST,11000,5;
+
+	//sc_start SC_MAXIMIZEPOWER,11000,5;
+
+	sc_start SC_ASSUMPTIO,11000,5;
+	skilleffect 361,0;
+
+	unitskilluseid @ztarget,10,1;
+
+//Undead Attribute Change
+//unitskilluseid @ztarget,348,1;	
+
+//Change Undead skill
+//unitskilluseid @ztarget,696,1;	
+
+	set @zombiebuff, 0;
+	}
+
+	if (@zombielink == 2)
+	{
+
+		if(Class == Job_Alchem || Class == Job_Creator) {
+		unitskilluseid @ztarget,445,5;
+		}
+
+		if(Class == Job_Monk || Class == Job_Champion) {
+		unitskilluseid @ztarget,447,5;
+		}
+
+		if(Class == Job_Sage || Class == Job_Professor) {
+		unitskilluseid @ztarget,449,5;
+		}
+
+		if(Class == Job_Crusader || Class == Job_Paladin) {
+		unitskilluseid @ztarget,450,5;
+		}
+
+		if(Class == Job_SuperNovice) {
+		unitskilluseid @ztarget,451,5;
+		}
+
+		if(Class == Job_Knight || Class == Job_Lord_Knight) {
+		unitskilluseid @ztarget,452,5;
+		}
+	
+		if(Class == Job_Wizard || Class == Job_High_Wizard) {
+		unitskilluseid getcharid(3),453,5;
+		}
+
+		if(Class == Job_Priest || Class == Job_High_Priest) {
+		unitskilluseid @ztarget,454,5;
+		}
+
+		if(Class == Job_Bard || Class == Job_Clown || Class == Job_Dancer || Class == Job_Gypsy) {
+		unitskilluseid @ztarget,455,5;
+		}
+
+		if(Class == Job_Rogue || Class == Job_Stalker) {
+		unitskilluseid @ztarget,456,5;
+		}
+
+		if(Class == Job_Assassin || Class == Job_Assassin_Cross) {
+		unitskilluseid @ztarget,457,5;
+		}
+
+		if(Class == Job_Blacksmith || Class == Job_Whitesmith) {
+		unitskilluseid @ztarget,458,5;
+		}
+
+		if(Class == Job_Hunter || Class == Job_Sniper) {
+		unitskilluseid @ztarget,460,5;
+		}
+
+		if(Class == Job_Soul_Linker) {
+		unitskilluseid @ztarget,461,5;
+		}
+
+		if(Class == Job_Taekwon || Class == Job_Star_Gladiator || Class == Job_Star_Gladiator2) {
+		unitskilluseid @ztarget,448,5;
+		}
+	set @zombielink, 0;
+	}
+}
+
+if (strcharinfo(0) != @zombie$)
+	{
+	end;
+	}
+
+sleep2 10000;
+goto zombiebuffer;
+}
+end;
+
+OnPCKillEvent:
+
+getmapxy(@checkmap$,@checkx,@checky,0);
+if (@checkmap$ == "pvp_n_1-4")
+{
+set $@zpk, playerattached();
+
+	if (@zombie$ == strcharinfo(0))
+	{
+	set $@newzombie, $@zpd;
+	}
+}
+end;
+
+OnPCDieEvent:
+
+getmapxy(@checkmap$,@checkx,@checky,0);
+if (@checkmap$ == "pvp_n_1-4")
+{
+set $@zpd, playerattached();
+
+if (@zombie$ == strcharinfo(0))
+	{
+	undisguise;
+	}
+
+sleep2 500;
+set @newsave, rand(1,4);
+
+	if (@newsave == 1)
+		{
+		set @savex, rand(95,103);
+		set @savey, rand(19,94);
+		}
+
+	if (@newsave == 2)
+		{
+		set @savex, rand(37,95);
+		set @savey, rand(117,126);
+		}
+
+	if (@newsave == 3)
+		{
+		set @savex, rand(98,102);
+		set @savey, rand(123,176);
+		}
+
+	if (@newsave == 4)
+		{
+		set @savex, rand(103,162);
+		set @savey, rand(117,125);
+		}
+
+if ($@newzombie == getcharid(3))
+	{
+	set $@totalzombies, $@totalzombies + 1;
+	sleep2 1000;
+	warp "pvp_n_1-4", (@savex), (@savey);
+	atcommand "@alive";
+	sleep2 500;
+	percentheal 0,100;
+	set Hp, MaxHp / $@totalzombies;
+
+	if (@zombie$ != strcharinfo(0))
+		{
+		set $@humans, $@humans - 1;
+		
+		if (($@humans <= 0) && ($@nolatejoiners == 1))
+			{
+			goto OnEventGameOver;
+			}
+
+		goto OnEventZombieGrowth;
+		}
+
+	sleep2 500;
+
+	if (@zombie$ == strcharinfo(0))
+		{
+		atcommand "@disguise 1036";
+		}
+	
+	end;
+	}
+
+sleep2 1000;
+
+if (@zombie$ == strcharinfo(0))
+	{
+	atcommand "@disguise 1036";
+	}
+
+if (@firstblood == 1)
+	{
+	warp "pvp_n_1-4", (@savex), (@savey);
+	atcommand "@alive";
+	sleep2 500;
+	percentheal 100,100;
+	set @firstblood, 0;
+	set $@totalzombies, $@totalzombies + 1;
+	goto OnEventZombieGrowth;
+	}
+
+warp "pvp_n_1-4", (@savex), (@savey);
+atcommand "@alive";
+sleep2 500;
+percentheal 100,100;
+
+if (@zombie$ == strcharinfo(0))
+	{
+	percentheal 0,100;
+	set Hp, MaxHp / $@totalzombies;
+	}
+
+}
+end;
+
+OnPCLoginEvent:
+getmapxy(@checkmap$,@checkx,@checky,0);
+if (@checkmap$ == "pvp_n_1-4")
+{
+save #originmap$, (#originx), (#originy);
+
+for (set .@zomb, 0; .@zomb < getarraysize($@zombie); set .@zomb, .@zomb+1) {
+	if ($@zombie[.@zomb] == getcharid(3))
+		{
+		setarray $@zombie[.@zomb],0;
+		break;
+		}
+}
+for (; .@zomb < getarraysize($@zombie); set .@zomb, .@zomb+1) {
+	setarray $@zombie[.@zomb], $@zombie[.@zomb+1];
+}
+
+warp #originmap$, (#originx), (#originy);
+
+}
+end;
+
+OnPCLogoutEvent:
+getmapxy(@checkmap$,@checkx,@checky,0);
+if (@checkmap$ == "pvp_n_1-4")
+{
+save #originmap$, (#originx), (#originy);
+set leftearly, 1;
+
+for (set .@zomb, 0; .@zomb < getarraysize($@zombie); set .@zomb, .@zomb+1) {
+	if ($@zombie[.@zomb] == getcharid(3))
+		{
+		setarray $@zombie[.@zomb],0;
+		break;
+		}
+}
+for (; .@zomb < getarraysize($@zombie); set .@zomb, .@zomb+1) {
+	setarray $@zombie[.@zomb], $@zombie[.@zomb+1];
+}
+
+if (@zombie$ != strcharinfo(0))
+{
+set $@humans, $@humans - 1;
+
+if (($@humans <= 0) && ($@nolatejoiners == 1))
+	{
+	goto OnEventGameOver;
+	}
+}
+
+if (@zombie$ == strcharinfo(0))
+{
+undisguise;
+set @zombie$, "-";
+set $@zombies, $@zombies - 1;
+
+if (@zombie$ == strcharinfo(0))
+{
+undisguise;
+set @zombie$, "-";
+set $@zombies, $@zombies - 1;
+
+if ($@zombies == 0)
+	{
+	warp #originmap$, (#originx), (#originy);
+
+	set .@izombie, getarraysize($@zombie);
+	set .@zombie, rand(0,(.@izombie));
+
+	zretryleave:
+	set $@firstzombie, $@zombie[.@zombie];
+
+	if ($@firstzombie == 0)
+		{
+		set .@zombie, rand(0,(.@izombie));
+		goto zretryleave;
+		}
+
+	set $@humans, $@humans - 1;
+
+	if (($@humans <= 0) && ($@nolatejoiners == 1))
+		{
+		goto OnEventGameOver;
+		}
+
+	set $@zombies, 1;
+	detachrid;
+	attachrid $@zombie[.@zombie];
+	set @firstblood, 1;
+	atcommand "@die";
+	}
+
+}
+
+set @zmapuser, getmapusers ("pvp_n_1-4");
+if (@zmapuser == 1)
+	{
+	set $@nolatejoiners, 0;
+	set @zombie$, "-";
+	}
+
+warp #originmap$, (#originx), (#originy);
+end;
+}
+
+}
+}
+
+-	script	leave_zombies::escape_zombies	780,{
+
+mes "Would you like to leave Zombies?";
+
+menu "No",no,"Yes",yes,"Cancel",-;
+close;
+
+yes:
+save #originmap$, (#originx), (#originy);
+
+if (@zombie$ != strcharinfo(0))
+{
+set $@humans, $@humans - 1;
+
+if (($@humans <= 0) && ($@nolatejoiners == 1))
+	{
+	donpcevent "Zombies::OnEventGameOver";
+	}
+}
+
+for (set @zomb, 0; @zomb < getarraysize($@zombie); set @zomb, @zomb+1) {
+	if ($@zombie[@zomb] == getcharid(3))
+		{
+		setarray $@zombie[@zomb],0;
+		break;
+		}
+}
+for (; @zomb < getarraysize($@zombie); set @zomb, @zomb+1) {
+	setarray $@zombie[@zomb], $@zombie[@zomb+1];
+}
+
+if (@zombie$ == strcharinfo(0))
+{
+undisguise;
+set @zombie$, "-";
+set $@zombies, $@zombies - 1;
+
+if ($@zombies == 0)
+	{
+	warp #originmap$, (#originx), (#originy);
+
+	set .@izombie, getarraysize($@zombie);
+	set .@zombie, rand(0,(.@izombie));
+
+	zretryleave:
+	set $@firstzombie, $@zombie[.@zombie];
+
+	if ($@firstzombie == 0)
+		{
+		set .@zombie, rand(0,(.@izombie));
+		goto zretryleave;
+		}
+
+	set $@humans, $@humans - 1;
+
+	if (($@humans <= 0) && ($@nolatejoiners == 1))
+		{
+		donpcevent "Zombies::OnEventGameOver";
+		}
+
+	set $@zombies, 1;
+	detachrid;
+	attachrid $@zombie[.@zombie];
+	set @firstblood, 1;
+	atcommand "@die";
+	}
+
+}
+
+set @zmapuser, getmapusers ("pvp_n_1-4");
+if (@zmapuser == 1)
+	{
+	set $@nolatejoiners, 0;
+	set @zombie$, "-";
+	}
+
+warp #originmap$, (#originx), (#originy);
+end;
+
+no:
+mes "Ok, carry on.";
+close;
+}
+
+-	script	Zombies::Zombies_client	796,{
+
+//GM's disabler --------------------------------------------------------------
+// GM level 60 menu.
+if(getgmlevel() >= 60) {
+  mes "Zombies GM Setup]";
+  mes "You can choose to enable/disable and/or warp out players. Status:";
+  if (.offline) {
+    mes "^E00000OFFLINE^000000";
+  } else {
+    mes "^00A000ONLINE^000000";
+  }
+  menu "Continue",-,"Enable/Disable",-,"Warp Out",-,"Both",-;
+  set @sel, @menu-1;
+  if(@sel&1) set .offline, .offline^1;
+  if(@sel&2) {
+    getmapxy(@mapname$, @mapx, @mapy, 0, strcharinfo(0));
+    mapwarp "pvp_n_1-4", @mapname$, @mapx, @mapy;
+  }
+}
+
+// If the NPC is offline, close.
+if (.offline) {
+  mes "[Master Zombie]";
+  mes "Sorry, but I'm disabled at the moment.";
+  close;
+}
+//-------------------------------------------------------------------------- End
+
+set @zombieuser, getmapusers ("pvp_n_1-4");
+
+if (@zombieuser == 0)
+	{
+	set $@nolatejoiners, 0;
+	stopnpctimer "Zombies";
+	setnpctimer 0, "Zombies";
+	set $@humans, 0;
+	set $@zombietimer, 0;
+	}
+
+getmapxy(#originmap$,#originx,#originy,0,strcharinfo(0));
+
+if ($@nolatejoiners == 1)
+	{
+	mes "[Master Zombie]";
+	mes "Welcome to the Zombies.";
+	mes "";
+	mes "A game has already started, sorry no late joiners.";
+	close;
+	end;
+	}
+
+mes "[Master Zombie]";
+mes "Welcome to the Zombies.";
+mes "";
+mes "There are "+@zombieuser+" players currently in the game.";
+mes "The game will begin when there are 5 or more players.";
+mes "";
+mes "Would you like to join?";
+menu "Yes",yes,"No",-;
+
+mes " ";
+mes "Come back when you don't fear death.";
+close;
+
+yes:
+	if((checkriding() == 1) || (checkfalcon() == 1) ||(checkcart() == 1)){
+	mes "[Master Zombie]";
+	mes "Remove your peco, cart or bird to enter this event!";
+	close;
+	}
+set @newsave, rand(1,4);
+
+	if (@newsave == 1)
+		{
+		set @savex, rand(95,103);
+		set @savey, rand(19,94);
+		}
+
+	if (@newsave == 2)
+		{
+		set @savex, rand(37,95);
+		set @savey, rand(117,126);
+		}
+
+	if (@newsave == 3)
+		{
+		set @savex, rand(98,102);
+		set @savey, rand(123,176);
+		}
+
+	if (@newsave == 4)
+		{
+		set @savex, rand(103,162);
+		set @savey, rand(117,125);
+		}
+
+save "pvp_n_1-4", (@savex), (@savey);
+
+percentheal 100,100;
+
+warp "pvp_n_1-4", (@savex), (@savey);
+
+set @izombie, getarraysize($@zombie);
+setarray $@zombie[@izombie], getcharid(3);
+
+set @zombiechk, getmapusers ("pvp_n_1-4") + 1;
+
+if ((@zombiechk >= 2) && ($@zombietimer == 0))
+	{
+	detachrid;
+	set $@zombietimer, 1;
+	mapannounce "pvp_n_1-4", "Minimum players required reached, please wait 30 seconds for additional players.",0;
+	set $@zombieuser, getmapusers ("pvp_n_1-4");
+	
+	addplayer:
+	set $@playercheck, getmapusers ("pvp_n_1-4");
+	set $@zcounter, $@zcounter + 1;
+
+	if ($@playercheck > $@zombieuser)
+		{
+		mapannounce "pvp_n_1-4", "Another player has joined, please wait 30 seconds for additional players.",0;
+		set $@zombieuser, $@playercheck;
+		set $@zcounter, 0;
+		}
+
+	if ($@zcounter == 30)
+		{
+		set .@izombie, getarraysize($@zombie);
+		set .@zombie, rand(0,(.@izombie));
+
+		zretry:
+		set $@firstzombie, $@zombie[.@zombie];
+
+		if ($@firstzombie == 0)
+			{
+			set .@zombie, rand(0,(.@izombie));
+			set .@zretryy, .@zretryy + 1;
+
+			if (.@zretryy == (.@zombie + 10))
+				{
+				set $@nolatejoiners, 0;
+				stopnpctimer "Zombies";
+				setnpctimer 0, "Zombies";
+				set $@humans, 0;
+				set $@zombietimer, 0;
+				mapwarp "pvp_n_1-4", "milenia", 52, 99;
+				end;
+				}
+
+			goto zretry;
+			}
+
+		set $@nolatejoiners, 1;
+		set $@humans, getmapusers ("pvp_n_1-4") - 1;
+		set $@zombies, 1;
+		startnpctimer "Zombies";
+		attachrid $@zombie[.@zombie];
+
+		getmapxy(@checkmap$,@checkx,@checky,0);
+		if (@checkmap$ != "pvp_n_1-4")
+			{
+			for (set .@zomb, 0; .@zomb < getarraysize($@zombie); set .@zomb, .@zomb+1) {
+				if ($@zombie[.@zomb] == getcharid(3))
+					{
+					setarray $@zombie[.@zomb],0;
+					break;
+					}
+				}
+				for (; .@zomb < getarraysize($@zombie); set .@zomb, .@zomb+1) {
+				setarray $@zombie[.@zomb], $@zombie[.@zomb+1];
+			}
+			goto zretry;
+			}
+
+		set @firstblood, 1;
+		atcommand "@die";
+		end;
+		}
+
+	sleep2 1000;
+	goto addplayer;
+	}
+
+end;
+}
+
+pvp_n_1-4,94,115,5	duplicate(escape_zombies)	Leave Game	780

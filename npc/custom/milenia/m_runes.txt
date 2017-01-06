@@ -1,0 +1,67 @@
+//http://rathena.org/board/topic/57784-request-dota-runes/page__fromsearch__1
+
+milenia,94,150,5	script	Runes	757,2,2,{
+dispbottom "Walkthrough to get Runes.";
+end;
+
+OnTouch:
+	switch( .Runes ){
+		Case 1:
+			sc_start SC_INCATKRATE,( .Duration * 1000 ),100;
+			sc_start SC_INCMATKRATE,( .Duration * 1000 ),100;
+			soundeffect "Killing_Spree.wav", 0;
+			break;
+		Case 2:
+			skill "AS_CLOAKING",10,1;
+			sc_start SC_CLOAKING,( .Duration * 1000 ),10;
+			soundeffect "Dominating.wav", 0;
+			break;
+		Case 3:
+			sc_start4 SC_REGENERATION,( .Duration * 1000 ),-10,1,0,0;
+			soundeffect "HolyShit.wav", 0;
+			break;
+		Case 4:
+			getmapxy( .@Map$,.@X,.@Y,0,strcharinfo(0) );
+			clone .@Map$,.@X,.@Y,"",getcharid(0),getcharid(0),"",1,.Duration;
+			clone .@Map$,.@X,.@Y,"",getcharid(0),getcharid(0),"",1,.Duration;
+			soundeffect "Unstoppable.wav", 0;
+			break;
+		Case 5:
+			sc_start SC_SpeedUp1,( .Duration * 1000 ),0;
+			soundeffect "GodLike.wav", 0;
+			break;
+		default: end;
+	}
+	announce "[ "+strcharinfo(0)+" ] has gained "+.Names$[.Runes]+".",bc_self,0x00FF00;
+	hideonnpc strnpcinfo(0);
+	delwaitingroom;
+	set .Runes,0;
+	set .RuneDelay,gettimetick(2) + .Duration;
+	while( .RuneDelay > gettimetick(2) ) sleep2 1000;
+	
+OnInit:
+// Runes Duration in Seconds
+set .Duration,300;
+
+// Name of Each Runes.
+setarray .Names$[1],
+				"Double Damage",	//	2 x ATK Rate
+				"Invisibility",		//	Cloaking
+				"Regeneration",		//	HP / SP Regeneration
+				"    Clone",		//	Create 2 Clones
+				"    Haste";		//	Improve Movement Speed
+			
+// Random Coordinate where NPC will Shown Again
+setarray .CoordinateX[0],149,86,108,133;
+setarray .CoordinateY[0],142,140,167,166;
+
+sc_end SC_CLOAKING;
+sc_end SC_REGENERATION;
+set .Random,rand( getarraysize( .CoordinateX ) );
+movenpc strnpcinfo(0),.CoordinateX[ .Random ],.CoordinateY[ .Random ];
+hideoffnpc strnpcinfo(0);
+if( !.Runes ) set .Runes,rand( 1,( getarraysize( .Names$ ) - 1 ) );
+if( .Runes ) waitingroom "   "+.Names$[.Runes],0;
+end;
+}
+

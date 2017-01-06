@@ -1,0 +1,211 @@
+milenia,57,115,11	script	Survival Mission	748,{
+	goto Start; OnInit:
+
+	/*		START CONFIG		*/
+	
+	// Name of the NPC
+		set .name$, "[Master Simon]";
+	// Event number to use with the Queue system
+		set .eventnum, 1;
+	// Map for the event
+		set .map$, "kh_kiehl02";
+	// Coordinates to enter at the map for the player
+		set .x, 50;
+		set .y, 7;
+	// Should GMs/donators get priority to the event?
+	// (No) 0/1 (Yes)
+		set .gmprio, 0;
+		
+	//others
+		set .payamount, 1; // Default item amount payment
+		set .payitem, 671; // Default item payment
+		//set .payitem, 7515; // Default item payment
+		
+	/*		 END CONFIG			*/
+	
+	goto Loop; end; Start:
+	mes .name$;
+	mes "Welcome Milenia Hero!";
+	next;
+	select("What? Are you talking to me?");	
+	mes .name$;
+	mes "Yes! You're the chosen one! Our Secret Research Lab has been overtaken by villains.";
+	next;
+	mes .name$;
+	mes "We cannot afford to lose it! Since many secret in there! We must take it back before its too late!";
+	next;
+	switch(select("I am the REAL Milenia Hero!", "Sorry.. Its not my problem..")){
+		case 1:
+			mes .name$;
+			if((countitem(.payitem) < .payamount ))
+		{
+			mes "It seems you don't have ^ff000010 "+getitemname(.payitem)+"^000000.";
+			mes "Get lost you liar!!!";
+			close;
+		}
+		else
+		{
+			mes "Hmmm.. Looks like you have the ^ff0000"+getitemname(.payitem)+"^000000.";
+			mes "So, i will trust you with this Important Mission. We will reward you after you kill their Boss.";
+			if((countitem(.payitem) >= .payamount))
+				delitem .payitem, .payamount;
+			next;
+		
+		}
+			mes "Take this map. It will show you the way to our Secret Research Lab. You have ^FF000010^000000 minutes, please hurry!";
+			close2;
+			set .@result, callfunc("push", 0, .eventnum, 1, .gmprio);
+			if(!.@result){
+				dispbottom "[You have been put in queue for Mission emergency line, please hold while the other heroes are being shipped.]";
+			} else if(.@result == 7){
+				dispbottom "[You are already in the queue for Mission emergency line, please hold while the other heroes are being shipped.]";
+			} else {
+				dispbottom "[^FF0000Mission encountered an error adding you to the queue. Please contact a GM!^000000]";
+			}
+			close;
+		break;
+		case 2:
+			mes .name$;
+			mes "I wish you will be dead soon.";
+		break;
+	}
+	close;
+	
+// EVENT LOOP
+	Loop:
+	while(1){
+		while(getmapusers(.map$)) sleep 1000;
+	// Get hold of a user
+		while(callfunc("pull", 1, .eventnum, 1, 1)) sleep 1000;
+		set .aid, $@queue[0];
+		attachrid(.aid);
+		mes .name$;
+		mes "It's time to go!";
+	// Get smart
+		callsub(AI, 0);
+		sleep2 3000;
+		percentheal 100,100;
+	// Bring the player
+		warp .map$,.x,.y;
+		killmonsterall .map$;
+		while(!getmapusers(.map$)) sleep2 20;
+		
+		for(set .@i, 1; .@i < 4; set .@i, .@i+1){
+			callsub(Spawn, .@i);
+			while(mobcount(.map$,"Banquet Houseman::OnDummy") && isloggedin(.aid) && getmapusers(.map$)){
+				if((gettimetick(2)-.starttime) > 600 || .dead) break;
+				callsub(AI, .@i);
+			}
+			callsub(AI, 4);
+			if((gettimetick(2)-.starttime) > 600 || .dead) break;
+		}
+		
+		if((gettimetick(2)-.starttime) > 600 || .dead){
+			set .@hp, getd("$aihp"+.d100+"["+.diff+"]");
+			set .@diffhp, (.@hp*20)/100;
+			if(!.@diffhp) set .@diffhp, 1;
+			setd("$aihp"+.d100+"["+.diff+"]", .@hp-.@diffhp);
+		} else if(isloggedin(.aid)){
+			if((gettimetick(2)-.starttime) < 300){
+				set .@hp, getd("$aihp"+.d100+"["+.diff+"]");
+				set .@diffhp, (.@hp*20)/100;
+				if(!.@diffhp) set .@diffhp, 1;
+				setd("$aihp"+.d100+"["+.diff+"]", .@hp+.@diffhp);
+			}
+			announce "Thank you for kill the Boss!",bc_map;
+			announce "Have this item as a thanks!",bc_map;
+			set .@r, query_sql("SELECT DISTINCT `nameid`, COUNT(*) AS num FROM `inventory` GROUP BY `nameid` ORDER BY num ASC LIMIT 100", .@id, .@dummy);
+			getitem .@id[rand(.@r-1)], 1;
+			sleep2 2000;
+		}
+		if(isloggedin(.aid)) warp "Save",0,0;
+	}
+	OnPCDieEvent:
+		if(getcharid(3) == .aid) set .dead, 1;
+	end;
+	OnPCLoginEvent:
+		getmapxy(.@map$,.@x,.@y,0);
+		if(.@map$ == .map$) warp "Save", 0, 0;
+	end;
+	
+// SPAWN MONSTERS
+	Spawn:
+		if(!isloggedin(.aid)) return;
+		set .@hp, getd("$aihp"+.d100+"["+.diff+"]");
+		set .@dmg, getd("$aidmg"+.d100+"["+.diff+"]");
+		switch(getarg(0)){
+			case 1:
+				announce "Part 1: Minion",bc_map;
+				set .@hp, (.@hp*1000)/100;
+				set .@dmg, (.@dmg*1000)/100;
+				set .@am, 60;
+				set .@n$, "Minion";
+			break;
+			case 2:
+				announce "Part 2: Soldier",bc_map;
+				announce "Intruders! Send the soldiers...",bc_map;
+				set .@hp, (.@hp*3500)/100;
+				set .@dmg, (.@dmg*4500)/100;
+				set .@am, 30;
+				set .@n$, "Soldier";
+			break;
+			case 3:
+				announce "Part 3: Boss Here?!",bc_map;
+				announce "Boss: Can't you handle a single human? I'll come myself!",bc_map;
+				set .@hp, (.@hp*100000)/100;
+				set .@dmg, (.@dmg*150000)/100;
+				set .@am, 1;
+				set .@n$, "Boss";
+			break;
+		}
+		if(.@dmg < 7) set .@dmg, 7;
+		if(.@hp < 30) set .@hp, 30;
+		set .@r, query_sql("SELECT `ID` FROM `mob_db` WHERE "+.@dmg+" >= `ATK2` && `ATK1` > 1 && "+.@hp+" >= `HP` && `HP` > 1 && `Mode`&129 && `DEF` < "+BaseLevel+" && `MDEF` < "+BaseLevel+" ORDER BY `ATK2` DESC LIMIT 3", .@id);
+		for(set .@j, 0; .@j < .@am; set .@j, .@j+1){
+			monster .map$, 0, 0, .@n$, .@id[rand(.@r)], 1, "Banquet Houseman::OnDummy";
+		}
+		return;
+	OnDummy:
+	end;
+	
+// Artificial Intelligence
+	AI:
+	sleep 1;
+	if(!attachrid(.aid)) return;
+	switch(getarg(0)){
+		case 0: //Start of event
+			set .starttime, gettimetick(2);
+			set .dead, 0;
+			set .hp, MaxHp;
+			set .dhp, 0;
+			set .diff, BaseLevel;
+			set .d100, 0;
+			while(.diff > 100){
+				set .diff, .diff-100;
+				set .d100, .d100+1;
+			}
+			if(!getd("$aihp"+.d100+"["+.diff+"]")) setd("$aihp"+.d100+"["+.diff+"]", BaseLevel*20);
+			if(!getd("$aidmg"+.d100+"["+.diff+"]")) setd("$aidmg"+.d100+"["+.diff+"]", BaseLevel*2);
+		break;
+		case 4: //End of event
+			if(.dhp >= 2*MaxHp || .dead){
+				set .@dmg, getd("$aidmg"+.d100+"["+.diff+"]");
+				set .@diffdmg, (.@dmg*20)/100;
+				if(!.@diffdmg) set .@diffdmg, 1;
+				setd("$aidmg"+.d100+"["+.diff+"]", .@dmg-.@diffdmg);
+			} else if(.dhp < MaxHp && !.dead){
+				set .@dmg, getd("$aidmg"+.d100+"["+.diff+"]");
+				set .@diffdmg, (.@dmg*20)/100;
+				if(!.@diffdmg) set .@diffdmg, 1;
+				setd("$aidmg"+.d100+"["+.diff+"]", .@dmg+.@diffdmg);
+			}
+			set .dhp, 0;
+		break;
+		default: //During the event
+			if(.hp > Hp){
+				set .dhp, .dhp+(.hp-Hp);
+			}
+			set .hp, Hp;
+	}
+	return;
+}

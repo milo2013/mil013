@@ -1,0 +1,36 @@
+milenia,99,152,11	script	Information Staff	640,{
+	
+	cutin "gc_mayssel01",2;
+	mes "[Lady Mia]";
+	mes "Gold Coins, Platinum Coins and Mithril Coins";
+	mes "Cashpoints Voucher";
+	mes "Milenia Refine Certificate - 30 Days";
+	next;
+	mes "[Lady Mia]";
+	mes "Available at our Donation Shop in website.";
+	//mes "Buy ^ff00001^000000 FREE ^ff00001^000000!!";
+	next;
+	mes "[Lady Mia]";
+	mes "Please check out our ^ff0000Donation Shop^000000 at ^ff0000Website^000000. Thank you!";
+	close2;
+	cutin "", 255;
+end;
+	
+OnInit:
+setarray .message$,
+//	"Coins Promotion",
+//	"BUY COINS 1 FREE 1!!",
+//	"Buy Coins at our website";
+//	"Donation Credit PROMOTION",
+//	"Donate RM1.00 FREE RM1.00!!",
+	"Donate RM1.00 Get 1 Donation Credit",
+	"Donate now at our website";
+set .message_size,getarraysize( .message$ );
+while( .message_size ){
+	delwaitingroom; 
+	waitingroom ""+.message$[ rand( .message_size ) ],0;
+	sleep 36000;
+}
+	end;
+	}
+	

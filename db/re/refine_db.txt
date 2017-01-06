@@ -1,0 +1,42 @@
+// Refine Database [Renewal]
+//
+// Structure of Database:
+// Type,Stats per level,Random bonus start level,Random bonus value,Chance+1:Bonus+1,Chance+2:Bonus+2,Chance+3:Bonus+3,...
+//
+// For armors, values of 100 add 1 armor defense.
+// For weapons, values of 100 add 1 ATK&MATK.
+//
+// Type:
+//	0 - Armors
+//	1 - Level 1 weapons
+//	2 - Level 2 weapons
+//	3 - Level 3 weapons
+//	4 - Level 4 weapons
+//
+// Stats per level:
+// This value is applied for every upgrade level.
+//
+// Random bonus start level:
+// This value specifies the start point for those levels that give a random bonus value (usually the first unsafe upgrade).
+//
+// Random bonus value:
+// A random number between 0 and (Random bonus start level - Upgrade level + 1) * this value is applied for all upgrades past
+// Random bonus start level. This is only applied for weapons, and not displayed client-side.
+//
+// Chance:
+// 100 = 100%
+//
+// Notes:
+// Changing the number of upgrade levels requires modifying MAX_REFINE in src/map/status.h.
+// For Renewal Armors, there may or may not be another bonus, according to iRO wiki: Every upgrade gives floor[( 3 + current upgrade ) / 4] equipment DEF)
+
+0,0,0,0,100:100,100:100,100:100,100:100,100:200,60:200,60:200,50:200,50:300,40:300,30:300,20:300,15:400,15:400,15:400,10:400,10:500,5:500,5:500,5:500
+// Level 1 weapons
+1,200,8,300,100:0,100:0,100:0,100:0,100:0,100:0,100:0,100:0,100:0,100:0,50:0,50:0,50:0,45:0,40:0,35:300,30:300,25:300,20:300,15:300
+// Level 2 weapons
+2,300,7,500,100:0,100:0,100:0,100:0,100:0,100:0,100:0,75:0,70:0,65:0,60:0,55:0,50:0,45:0,40:0,35:600,30:600,25:600,20:600,15:600
+// Level 3 weapons
+3,500,6,800,100:0,100:0,100:0,100:0,100:0,85:0,80:0,75:0,70:0,65:0,60:0,55:0,50:0,45:0,40:0,35:900,30:900,25:900,20:900,15:900
+// Level 4 weapons
+4,700,5,1400,100:0,100:0,100:0,100:0,80:0,75:0,70:0,65:0,60:0,55:0,50:0,45:0,40:0,35:0,30:0,25:1200,20:1200,15:1200,10:1200,5:1200
+

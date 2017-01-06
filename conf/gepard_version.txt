@@ -1,0 +1,9 @@
+//Current version of gepard module is 2017010301
+//Players can't connect with lower version. It will be useful for updates.
+//Admins with 99 GM can bypass this restriction.
+//You can view and set it in the game by using user commands without restarting the server.
+//Examples:
+//@get_allowed_gepard_version
+//@set_allowed_gepard_version 2017010301
+
+2017010301

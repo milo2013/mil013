@@ -1,0 +1,227 @@
+milenia,126,159,11	script	Milenia Tour	721,{
+Player_Menu:
+	cutin "kafra_07",2;
+	specialeffect 75;
+	specialeffect 312;
+	specialeffect 42;
+	mes "[Milenia]";
+	mes "Hello ^ff0000" + strcharinfo(0) + "^000000,";
+	mes "I can teleport you to any Milenia NPC.";
+	mes "Where do you want to go?";
+	next;
+	switch(select("Basic:Trading:Market Place:Mini Games:Quest:Special:Refiner:Zeny Farming")) {
+		case 1:
+			mes "[Milenia]";
+			mes "Please select which NPC you would like to be teleported to.";
+			next;
+			switch(select("Warper & Healer:Job Master:Clan:Master Rental:Platinum Skills:Master Arena:Skill & Stat Reset:Potion Expert")) {
+				case 1:
+					warp "milenia",112,156;
+					break;
+				case 2:
+					warp "milenia",119,112;
+					break;	
+				case 3:
+					warp "milenia",73,106;
+					break;
+				case 4:
+					warp "milenia",124,112;
+					break;
+				case 5:
+					warp "milenia",117,112;
+					break;
+				case 6:
+					warp "milenia",118,152;
+					break;
+				case 7:
+					warp "milenia",126,113;
+					break;
+				case 8:
+					warp "milenia",34,145;
+					break;
+			}
+			break;
+		case 2:
+			mes "[Milenia]";
+			mes "Please select which NPC you would like to be teleported to.";
+			next;
+			switch(select("Michimaru's Workshop:Milenia Hyper Dealer:Quest Shop:3rd Job Shop:Ammunition:Ingredients:Pet Food Shop")) {
+				case 1:
+					warp "milenia",135,182;
+					break;	
+				case 2:
+					warp "milenia",131,180;
+					break;
+				case 3:
+					warp "milenia",143,186;
+					break;
+				case 4:
+					warp "milenia",137,183;
+					break;
+				case 5:
+					warp "milenia",139,185;
+					break;
+				case 6:
+					warp "milenia",141,185;
+					break;
+				case 7:
+					warp "milenia",133,181;
+					break;
+			}
+			break;
+		case 3:
+			mes "[Milenia]";
+			mes "Please select which NPC you would like to be teleported to.";
+			next;
+			switch(select("Milenia Item Mall:Milenia Market West :Milenia Market East")) {
+				case 1:
+					warp "milenia",95,185;
+					break;	
+				case 2:
+					warp "milenia",62,183;
+					break;
+				case 3:
+					warp "milenia",162,180;
+					break;
+			}
+			break;
+		case 4:
+			mes "[Milenia]";
+			mes "Please select which NPC you would like to be teleported to.";
+			next;
+			switch(select("Disguise Game:Zombie PVP Game:Black Jack Game:Stock Market:Lottery")) {
+				case 1:
+					warp "milenia",75,109;
+					break;
+				case 2:
+					warp "milenia",52,102;
+					break;
+				case 3:
+					warp "milenia",55,94;
+					break;
+				case 4:
+					warp "milenia",52,89;
+					break;
+				case 5:
+					warp "milenia",55,84;
+					break;
+			}
+			break;
+		case 5:
+			mes "[Milenia]";
+			mes "Please select which NPC you would like to be teleported to.";
+			next;
+			switch(select("Hunting Mission:Quest Shop")) {
+				case 1:
+					warp "milenia",210,83;
+					break;
+				case 2:
+					warp "milenia",143,186;
+					break;
+			}
+			break;
+		case 6:
+			mes "[Milenia]";
+			mes "Please select which NPC you would like to be teleported to.";
+			next;
+			switch(select("New Acccount Freebies:Novice Support:GM Online List:Vote For Points:Coins Exchanger:Build Manager (Premium Resetter):Stylist:Mercenary Manager:Poring Vending Machine:Card Remover")) {
+				case 1:
+					warp "milenia",125,154;
+					break;
+				case 2:
+					warp "milenia",105,157;
+					break;
+				case 3:
+					warp "milenia",111,157;
+					break;
+				case 4:
+					warp "milenia",130,157;
+					break;
+				case 5:
+					warp "milenia",109,156;
+					break;
+				case 6:
+					warp "milenia",122,112;
+					break;
+				case 7:
+					warp "milenia",64,147;
+					break;
+				case 8:
+					warp "milenia",217,143;
+					break;
+				case 9:
+					warp "milenia",176,147;
+				case 10:
+					warp "milenia",191,147;
+					break;
+			}
+			break;
+		case 7:
+			mes "[Milenia]";
+			mes "Please select which NPC you would like to be teleported to.";
+			next;
+			switch(select("Refiner:Enrich Refiner:HD Refiner I:HD Refiner II:Repairman:Armor Enchanting:Socket Enchanting I:Socket Enchanting II:Refine Seller:Purifier:Exchanger")) {
+				case 1:
+					warp "milenia",169,104;
+					break;
+				case 2:
+					warp "milenia",158,106;
+					break;
+				case 3:
+					warp "milenia",169,117;
+					break;
+				case 4:
+					warp "milenia",158,113;
+					break;
+				case 5:
+					warp "milenia",173,106;
+					break;
+				case 6:
+					warp "milenia",163,100;
+					break;
+				case 7:
+					warp "milenia",156,110;
+					break;
+				case 8:
+					warp "milenia",175,110;
+					break;
+				case 9:
+					warp "milenia",161,115;
+					break;
+				case 10:
+					warp "milenia",173,112;
+					break;
+				case 11:
+					warp "milenia",163,104;
+					break;
+			}
+			break;
+			case 8:
+			mes "[Milenia]";
+			mes "Please select which NPC you would like to be teleported to.";
+			next;
+			switch(select("Dokebi Farm:Ore Mining:Gem Collector")) {
+				case 1:
+					warp "milenia",52,126;
+					break;
+				case 2:
+					warp "milenia",40,145;
+					break;
+				case 3:
+					warp "milenia",37,145;
+					break;
+			}
+			break;
+	}
+	end;
+}
+// ----------------------
+//	Duplicates
+// ----------------------
+milenia,111,114,5	duplicate(Milenia Tour)	Milenia Tour#job	721
+milenia,123,177,11	duplicate(Milenia Tour)	Milenia Tour#trade	721
+milenia,50,115,5	duplicate(Milenia Tour)	Milenia Tour#game	721
+milenia,221,139,11	duplicate(Milenia Tour)	Milenia Tour#mercenary	721
+milenia,202,85,11	duplicate(Milenia Tour)	Milenia Tour#quest	721
+milenia,169,100,11	duplicate(Milenia Tour)	Milenia Tour#refine	721
+milenia,43,147,11	duplicate(Milenia Tour)	Milenia Tour#mine	721

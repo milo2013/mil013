@@ -1,0 +1,33 @@
+12/12/2016 6:30:33 AM: Map Server crashed, restarting...
+12/12/2016 6:30:33 AM: Map Server Started [High Priority]
+12/12/2016 6:30:33 AM: Login Server crashed, restarting...
+12/12/2016 6:30:33 AM: Login Server Started! [Low Priority]
+12/12/2016 6:30:33 AM: Char Server crashed, restarting...
+12/12/2016 6:30:33 AM: Char Server Started [Norm Priority]
+12/12/2016 6:30:36 AM: Listening Login Server
+12/12/2016 6:32:27 AM: PowRo Launcher v.1.7.0
+12/12/2016 6:32:27 AM: Login Server:  103.75.189.137:6900
+12/12/2016 6:32:27 AM: Char Server:  103.75.189.137:6121
+12/12/2016 6:32:27 AM: Map Server:  103.75.189.137:5121
+12/12/2016 6:32:27 AM: Launcher Ready!
+12/12/2016 6:32:27 AM: Login Server Started! [Low Priority]
+12/12/2016 6:32:27 AM: Char Server Started [Norm Priority]
+12/12/2016 6:32:27 AM: Map Server Started [High Priority]
+12/12/2016 6:32:30 AM: Listening Login Server
+12/12/2016 6:32:32 AM: Listening Char Server
+12/12/2016 6:32:37 AM: Listening Map Server
+12/12/2016 2:12:42 PM: Map Server crashed, restarting...
+12/12/2016 2:12:42 PM: Map Server Started [High Priority]
+12/12/2016 2:12:52 PM: Listening Map Server
+12/12/2016 4:35:11 PM: Login Server Stopped!
+12/12/2016 4:35:11 PM: Char Server Stopped!
+12/12/2016 4:35:11 PM: Map Server Stopped!
+12/12/2016 4:35:12 PM: Login Server Started! [Low Priority]
+12/12/2016 4:35:12 PM: Char Server Started [Norm Priority]
+12/12/2016 4:35:12 PM: Map Server Started [High Priority]
+12/12/2016 4:35:15 PM: Listening Login Server
+12/12/2016 4:35:17 PM: Char Server running with High priority
+12/12/2016 4:35:17 PM: Listening Char Server
+12/12/2016 4:35:18 PM: Login Server running with Norm priority.
+12/12/2016 4:35:21 PM: Map Server running with V-High priority
+12/12/2016 4:35:22 PM: Listening Map Server

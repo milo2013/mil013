@@ -1,0 +1,67 @@
+milenia,104,160,5	script	Doram Support	556,{
+
+if (Class != 4218)	goto Lhaveitem3;
+else if(doram == 13) goto Lhaveitem1;
+else if(Class == 4218)	goto Lhaveitem2;
+
+
+// Name of the NPC
+		set .name$, "[Doram Admiral]";
+
+Lhaveitem1:
+	emotion	e_swt2;
+	mes "[Doram Admiral]";
+    mes "I already give the item for you.";
+    close2;
+end;
+Lhaveitem2:
+		emotion	e_ho;
+		mes "[Doram Admiral]";
+		mes "Hello young adventurer.";
+		mes "I can give you free Doram items.";
+		mes "Do you want it?";
+		next;
+		switch(select(	"You're so kind. Thank you!:Nah~ Im too pro for this!"	)){
+		Case 1:
+		emotion	e_kis;
+		mes "[Doram Admiral]";
+		mes "Please take this item and have a nice day~";
+		next;
+		getitem 14208,1;	//Battle Manual 5 Box
+		getitem	12325,100;	//novice magnifier
+		getitem	12324,100;	//novice butterfly wing
+		getitem	12323,300;	//Novice fly wing
+		getitem	569,500;	//Novice potion
+		set doram, 13;
+		emotion	e_kis;
+		mes "[Doram Admiral]";
+		mes "See you soon~";
+		dispbottom "You got 1 " +getitemname(14208);
+		dispbottom "You got 100 " +getitemname(12325);
+		dispbottom "You got 100 " +getitemname(12324);
+		dispbottom "You got 300 " +getitemname(12323);
+		dispbottom "You got 500 " +getitemname(569);
+    close2;
+end;
+		Case 2:
+		emotion	e_ag;
+		mes "[Doram Admiral]";
+		mes "Such a arrogant person.";
+		mes "^ff0000@kill "+ strcharinfo(0) +"^000000";
+		next;
+		mes "[Doram Admiral]";
+		emotion	e_omg;
+		mes "Why my command not work?!";
+		mes "Maybe you're lucky!";
+	close2;
+end;
+Lhaveitem3:
+		emotion e_dum;
+		mes "[Doram Admiral]";
+		mes "Sorry~";
+		mes "We only give free item for ^ff0000Doram^000000 only!";
+		close2;
+end;
+		}
+end;
+}

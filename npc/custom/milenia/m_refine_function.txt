@@ -1,0 +1,247 @@
+//--- Bitmasks ----
+//	1	-	Top Headgear
+//	2	-	Armor
+//	4	-	Left Hand
+//	8	-	Right Hand
+//	16	-	Garment
+//	32	-	Shoes
+//	64	-	Left Accessory
+//	128	-	Right Accessory
+//	256	-	Middle Headgear
+//	512	-	Lower Headgear
+//	1024	-	Costume : Head Low
+//	2048	-	Costume : Head Mid
+//	4096	-	Costume : Head Top
+
+
+// Notes : You can Customize it according to whatever way you want.
+//	Different NPCs / Items with Different Settings.
+//	It will consume the items that you defined to Refine the Equipments according to your Settings.
+
+// ........callfunc( "RefineFunc",<arg1>,<arg2>,<arg3>,<arg4>,<arg5>,<arg6>,<arg7>,<arg8>{,<arg9>,<arg10>} );
+//			-	arg1	=	bitmask ( refer table above )
+//			-	arg2	=	Minimum refine rate
+//			-	arg3	=	Maximum refine rate
+//			-	arg4	=	Refine Count ( negative = derefine / positive = refine )
+//			-	arg5	=	Check if Item can be refine ( 1 = true , 0 = false )
+//			-	arg6	=	Refine Success Rate ( 0 = default / 1~100% = succes rate )
+//			-	arg7	=	Amount of refine count dropped when failure ( must be negative )
+//			-	arg8	=	Drop refine count success rate ( 0 ~ 100% )
+//			-	arg9	=	Gained Bonus Refine Rate ( 0 ~ 100% )
+//			-	arg10	=	Required Item for Bonus Rate if Any ( leave 0 if dont need item )
+//	** Arg9 ~ Arg10 is Optional.
+
+//----------- If used this as Item Script -----------
+
+// Example : Red Potion as Refine Ticket
+//		501,Red_Potion,Red Potion,0,50,,70,,,,,0xFFFFFFFF,7,2,,,,,,{ callfunc( "RefineFunc",63,0,20,2,1,80,-3,50,20,501 ); },{},{}
+// * set Arg.10 to the item id of Red Potion. ( *must* )
+// Item will gone if they cancel the process halfway..
+
+//----------- If used this as NPC Script ------------
+
+// Example : 
+//	80% success refine between 0 ~ 20
+//	50% minus 3 refine when failed
+//	each refine increase refine count by 2
+//	if provide 1 apple...gain 20% success refine rate
+	
+//	prontera,155,181,5	script	Refiner	757,{
+//		callfunc( "RefineFunc",63,0,20,2,1,80,-3,50,20,512 );
+//	}
+
+//prontera,155,181,5	script	Refiner	757,{
+	//callfunc( "RefineFunc",63,0,20,1,1,0,0,0,20,512 );
+//}
+
+
+
+
+function	script	RefineFunc	{
+.@arg_count = getargcount();
+// show information
+.@display_info = 1;
+
+// this this value to your custom max refine if your server have different default max refine
+.@server_max_refine = (( checkre(0) )? 20:10 );
+
+// argument count checking
+if( .@arg_count < 8 ){
+	message strcharinfo(0),"Insufficient Arg. Min. required 8 Args but received only "+.@arg_count;
+	return;
+}
+
+// save arg into a temp array.
+while( .@i < .@arg_count ){
+	.@arg[.@i] = getarg( .@i );
+	.@i++;
+}
+
+// check max refine count ( remove this part if you have custom max refine )
+if( .@arg[2] > .@server_max_refine ){
+	message strcharinfo(0),"[Arg:3] RefineFunc Max Refine must not exceed "+.@server_max_refine +" but received "+.@arg[2]+".";
+	return;
+}
+
+// Refine Count must not 0.
+if( !.@arg[3] ){
+	message strcharinfo(0),"[Arg:4] RefineFunc Count must not 0.";
+	return;
+}
+
+// Refine rate must not negative.
+if( .@arg[5] < 0 ){
+	message strcharinfo(0),"[Arg:6] RefineFunc Refine Rate must not Negative. Received "+.@arg[5];
+	return;
+}
+
+// Refine decrement must not positive. ( so they can differentiate it )
+if( .@arg[6] > 0 ){
+	message strcharinfo(0),"[Arg:7] RefineFunc Failure Decrement must not Positive. Received "+.@arg[6];
+	return;
+}
+
+// Bonus Refine rate must not negative.
+if( .@arg[8] < 0 ){
+	message strcharinfo(0),"[Arg:9] RefineFunc Bonus Rate must not Negative. Received "+.@arg[8];
+	return;
+}
+
+// check for required item for gaining bonus rate if any
+if( .@arg[9] )
+	if( getitemname( .@arg[9] ) == "null" ){
+		message strcharinfo(0),"[Arg:10] RefineFunc Invalid Bonus Rate Item ID "+.@arg[9];
+		return;
+	}
+	
+// generate selection menu
+.@i = 1;
+while( .@i < 14 ){
+	.@equip_id = getequipid( .@i );
+	if( .@equip_id > 0 ){
+		.@equip_enableref = (( .@arg[4] )? getequipisenableref( .@i ):1 );
+		
+		if( .@arg[0] & ( 1 << ( .@i-1 ) ) && .@equip_enableref ){
+			.@equip_refine = getequiprefinerycnt( .@i );
+			.@equip_slot = getitemslots( .@equip_id );
+			if( .@equip_refine >= .@arg[1] && .@equip_refine < .@arg[2] ){
+				set .@menu$,.@menu$ + ( ( .@equip_refine )?"+"+.@equip_refine+" ":"" ) + getitemname( .@equip_id ) + " ["+.@equip_slot+"]";
+				.@equipment_count++;
+			}
+		}
+	}
+	set .@menu$,.@menu$ + ":";
+	.@i++;
+}
+
+// check if any available equip to refine
+if( !.@equipment_count ){
+	message strcharinfo(0),"Sorry, but you didnt have equipment that refined between "+.@arg[1]+" ~ "+.@arg[2]+" for refine.";
+	end;
+}
+else if  (countitem (31121)) < 1 {
+	message strcharinfo(0),"Sorry, but you didnt have Refine Certificate to use our service!";
+	end;
+}else{
+
+	// get equipment data
+	.@equip_part = select( .@menu$ );
+	.@equip_id = getequipid( .@equip_part );
+	.@equip_refine = getequiprefinerycnt( .@equip_part );
+	.@equip_slot = getitemslots( .@equip_id );
+	for( .@i = 0; .@i < 4; .@i++ )
+		.@equip_card[.@i] = getequipcardid( .@equip_part,.@i );
+	.@target_refine = .@equip_refine + .@arg[3];
+	
+	// determine refine count
+	if( .@target_refine > .@arg[2] ) 
+		.@target_refine = .@arg[2];
+	else if( .@target_refine < 0 )
+		.@target_refine = 0;
+	if( .@equip_refine == .@target_refine ){
+		message strcharinfo(0),"That's your current refine rate.";
+		close;
+	}
+	
+	.@success_rate = (( .@arg[5] )? .@arg[5]:getequippercentrefinery( .@equip_part ) );
+	
+	// display information
+	if( .@display_info ){
+		mes "Target Refine : ";
+		mes "^0055FF"+( ( .@target_refine )?"+"+.@target_refine:"" )+" "+getitemname( .@equip_id )+" ["+.@equip_slot+"]^000000";
+		mes "Success Rate : ^777777"+.@success_rate+" %^000000";
+		if( .@success_rate < 100 ){
+			if( .@arg[8] ) mes "Bonus Rate : ^777777"+.@arg[8]+" %^000000";
+			if( .@arg[9] ){
+				mes "Required Item : ^FF0000"+getitemname( .@arg[9] )+"^000000";
+				mes " ";
+				mes "^777777**"+getitemname( .@arg[9] )+" is required for bonus rate^000000";
+			}
+		}
+		next;
+	}
+	
+	if( select( "[^0055FF"+.@success_rate+"%^000000] "+( ( .@arg[3] < 0 )?"De-":"" )+"Refine to ^0055FF"+( ( .@target_refine )?"+"+.@target_refine:"" )+" "+getitemname( .@equip_id )+" ["+.@equip_slot+"]^000000","Cancel" ) == 1 ){
+		if( getequipisequiped( .@equip_part ) ){
+		
+			// if it's not De-refine and below 100% success
+			if( .@arg[3] > 0 && .@success_rate < 100 ){
+				// calculate refine rate + bonus rate
+				if( .@arg[9] ){
+					if( countitem( .@arg[9] ) )
+						if( select( "Use ^0055FF"+getitemname( .@arg[9] )+"^000000 to increase Refine Rate","Continue" ) == 1 ){
+							.@success_rate += .@arg[8];
+							delitem .@arg[9],1;
+						}
+					
+				}else{
+					.@success_rate += .@arg[8];
+				}
+			}
+			
+			delequip .@equip_part;
+			// success and increase refine count
+			if( rand( 100 ) < .@success_rate ){
+				getitem2 .@equip_id,1,1,.@target_refine,0,.@equip_card[0],.@equip_card[1],.@equip_card[2],.@equip_card[3];
+				message strcharinfo(0),"Succesfully refined to +"+.@target_refine+" "+getitemname( .@equip_id );
+				specialeffect2 EF_REFINEOK;
+				close;
+				
+				
+//			-	arg1	=	bitmask ( refer table above )
+//			-	arg2	=	Minimum refine rate
+//			-	arg3	=	Maximum refine rate
+//			-	arg4	=	Refine Count ( negative = derefine / positive = refine )
+//			-	arg5	=	Check if Item can be refine ( 1 = true , 0 = false )
+//			-	arg6	=	Refine Success Rate ( 0 = default / 1~100% = succes rate )
+//			-	arg7	=	Amount of refine count dropped when failure ( must be negative )
+//			-	arg8	=	Drop refine count success rate ( 0 ~ 100% )
+//			-	arg9	=	Gained Bonus Refine Rate ( 0 ~ 100% )
+//			-	arg10	=	Required Item for Bonus Rate if Any ( leave 0 if dont need item )
+				
+				
+			// failed and decrease refine count
+			}else if( .@arg[6] && .@arg[3] && rand( 50 ) < .@arg[7] ){
+				.@target_refine = ( .@equip_refine + .@arg[6] );
+				if( .@target_refine < 0 ) .@target_refine = 0;
+				getitem2 .@equip_id,1,1,.@target_refine,0,.@equip_card[0],.@equip_card[1],.@equip_card[2],.@equip_card[3];
+				message strcharinfo(0),"Failed and refine count dropped to +"+.@target_refine+" "+getitemname( .@equip_id );
+				
+			// failed and destroy equip
+			}else{
+				message strcharinfo(0),"Failed to refine and destroyed "+getitemname( .@equip_id );
+			}
+			specialeffect2 EF_REFINEFAIL;
+		}
+	}
+}
+close;
+}
+
+
+
+
+
+
+
+

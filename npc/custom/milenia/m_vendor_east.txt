@@ -1,0 +1,300 @@
+
+milenia,121,179,11	script	East Market Officer	529,{
+for( set .@i,1; .@i <= .count; set .@i,.@i + 1 ){
+	getmapxy( .@map$,.@x,.@y,1,"#vend_slot"+.@i );
+	if( !getareausers( .map$,.@x,.@y,.@x,.@y ) && .@x > 1 && .@y > 1 ){
+		set .@available,.@available + 1;
+		set .@menu$,.@menu$ + "Slot - "+.@i+":";
+	}else{
+		set .@menu$,.@menu$ + ":";
+	}
+}
+
+if( !.@available ){
+	mes "Dont have any available slot.";
+}else if( !getskilllv("MC_VENDING") ){
+	mes "You dont have ^0055FFVending Skill^000000.";
+}else{
+	mes "Available Slot : "+.@available;
+	mes "Please select a slot to vending.";
+	set .@i,select( .@menu$ );
+	getmapxy( .@map$,.@x,.@y,1,"#vend_slot"+.@i );
+	if( .@x == 1 || .@y == 1 ){
+		mes "This NPC at invalid location...";
+	}else{
+		warp .@map$,.@x,.@y;
+		hideonnpc "#vend_slot"+.@i;
+	}
+}
+close;
+
+OnInit:
+sleep 1000;
+// Map for vending
+set .map$,"milenia";
+setcell .map$,0,0,284,365,cell_novending,1;
+
+// x and y horizone ..
+setarray .x_line,144,148,152,156,160,164,168,172,176,180,184,188,192,95,91,87,83,79,75,71,67,63,59,55,51,47;
+setarray .y_line,174,178,182,186,174,178,182,186;
+
+set .x_line_size,getarraysize( .x_line );
+set .y_line_size,getarraysize( .y_line );
+set .count,1;
+for( set .@x,0; .@x < .x_line_size; set .@x,.@x + 1 )
+	for( set .@y,0; .@y < .y_line_size; set .@y,.@y + 1 )
+		if( checkcell( .map$,.x_line[.@x],.y_line[.@y],cell_chkpass ) ){
+			movenpc "#vend_slot"+.count,.x_line[.@x],.y_line[.@y];
+			setcell .map$,.x_line[.@x],.y_line[.@y],.x_line[.@x],.y_line[.@y],cell_novending,0;
+			set .count,.count + 1;
+		}
+npctalk "Vending Spot : "+.count;
+donpcevent "::OnSetup";
+end;
+}
+
+-	script	vend_slot	-1,{
+getmapxy( .@map$,.@x,.@y,1 );
+if( !getskilllv("MC_VENDING") ){
+	mes "You dont have ^0055FFVending Skill^000000.";
+}else if( getareausers( .@map$,.@x,.@y,.@x,.@y ) ){
+	mes "Someone already selected this spot.";
+}else{
+	mes "Spot : ^777777Available^000000";
+	mes "^0055FF[ Vending Area Rules ]^000000";
+	mes "^FF0000 ~ Use proper Shop Name.^000000";
+	mes "^FF0000 ~ Never sell Junk/Gifts.^000000";
+	mes " ";
+	mes "^777777Player will failed to follow these will be punished.^000000";
+	if( select( "Select this Spot","Cancel" ) == 1 ){
+		warp .@map$,.@x,.@y;
+		hideonnpc strnpcinfo(0);
+	}
+}
+close;
+
+OnSetup:
+getmapxy( .@map$,.@x,.@y,1 );
+set .@npcname$,strnpcinfo(0);
+while( .@map$ != "" ){
+	if( getareausers( .@map$,.@x,.@y,.@x,.@y ) ){
+		hideonnpc .@npcname$;
+	}else{
+		hideoffnpc .@npcname$;
+		// specialeffect 313;
+	}
+	sleep 5000;
+}
+end;
+}
+
+// Add more if needed.
+milenia,118,179,5	duplicate(East Market Officer)	West Market Officer	533
+milenia,1,1,4	duplicate(vend_slot)	#vend_slot1	858
+milenia,1,1,4	duplicate(vend_slot)	#vend_slot2	858
+milenia,1,1,4	duplicate(vend_slot)	#vend_slot3	858
+milenia,1,1,4	duplicate(vend_slot)	#vend_slot4	858
+milenia,1,1,4	duplicate(vend_slot)	#vend_slot5	858
+milenia,1,1,4	duplicate(vend_slot)	#vend_slot6	858
+milenia,1,1,4	duplicate(vend_slot)	#vend_slot7	858
+milenia,1,1,4	duplicate(vend_slot)	#vend_slot8	858
+milenia,1,1,4	duplicate(vend_slot)	#vend_slot9	858
+milenia,1,1,4	duplicate(vend_slot)	#vend_slot10	858
+milenia,1,1,4	duplicate(vend_slot)	#vend_slot11	858
+milenia,1,1,4	duplicate(vend_slot)	#vend_slot12	858
+milenia,1,1,4	duplicate(vend_slot)	#vend_slot13	858
+milenia,1,1,4	duplicate(vend_slot)	#vend_slot14	858
+milenia,1,1,4	duplicate(vend_slot)	#vend_slot15	858
+milenia,1,1,4	duplicate(vend_slot)	#vend_slot16	858
+milenia,1,1,4	duplicate(vend_slot)	#vend_slot17	858
+milenia,1,1,4	duplicate(vend_slot)	#vend_slot18	858
+milenia,1,1,4	duplicate(vend_slot)	#vend_slot19	858
+milenia,1,1,4	duplicate(vend_slot)	#vend_slot20	858
+milenia,1,1,4	duplicate(vend_slot)	#vend_slot21	858
+milenia,1,1,4	duplicate(vend_slot)	#vend_slot22	858
+milenia,1,1,4	duplicate(vend_slot)	#vend_slot23	858
+milenia,1,1,4	duplicate(vend_slot)	#vend_slot24	858
+milenia,1,1,4	duplicate(vend_slot)	#vend_slot25	858
+milenia,1,1,4	duplicate(vend_slot)	#vend_slot26	858
+milenia,1,1,4	duplicate(vend_slot)	#vend_slot27	858
+milenia,1,1,4	duplicate(vend_slot)	#vend_slot28	858
+milenia,1,1,4	duplicate(vend_slot)	#vend_slot29	858
+milenia,1,1,4	duplicate(vend_slot)	#vend_slot30	858
+milenia,1,1,4	duplicate(vend_slot)	#vend_slot31	858
+milenia,1,1,4	duplicate(vend_slot)	#vend_slot32	858
+milenia,1,1,4	duplicate(vend_slot)	#vend_slot33	858
+milenia,1,1,4	duplicate(vend_slot)	#vend_slot34	858
+milenia,1,1,4	duplicate(vend_slot)	#vend_slot35	858
+milenia,1,1,4	duplicate(vend_slot)	#vend_slot36	858
+milenia,1,1,4	duplicate(vend_slot)	#vend_slot37	858
+milenia,1,1,4	duplicate(vend_slot)	#vend_slot38	858
+milenia,1,1,4	duplicate(vend_slot)	#vend_slot39	858
+milenia,1,1,4	duplicate(vend_slot)	#vend_slot40	858
+milenia,1,1,4	duplicate(vend_slot)	#vend_slot41	858
+milenia,1,1,4	duplicate(vend_slot)	#vend_slot42	858
+milenia,1,1,4	duplicate(vend_slot)	#vend_slot43	858
+milenia,1,1,4	duplicate(vend_slot)	#vend_slot44	858
+milenia,1,1,4	duplicate(vend_slot)	#vend_slot45	858
+milenia,1,1,4	duplicate(vend_slot)	#vend_slot46	858
+milenia,1,1,4	duplicate(vend_slot)	#vend_slot47	858
+milenia,1,1,4	duplicate(vend_slot)	#vend_slot48	858
+milenia,1,1,4	duplicate(vend_slot)	#vend_slot49	858
+milenia,1,1,4	duplicate(vend_slot)	#vend_slot50	858
+milenia,1,1,4	duplicate(vend_slot)	#vend_slot51	858
+milenia,1,1,4	duplicate(vend_slot)	#vend_slot52	858
+milenia,1,1,4	duplicate(vend_slot)	#vend_slot53	858
+milenia,1,1,4	duplicate(vend_slot)	#vend_slot54	858
+milenia,1,1,4	duplicate(vend_slot)	#vend_slot55	858
+milenia,1,1,4	duplicate(vend_slot)	#vend_slot56	858
+milenia,1,1,4	duplicate(vend_slot)	#vend_slot57	858
+milenia,1,1,4	duplicate(vend_slot)	#vend_slot58	858
+milenia,1,1,4	duplicate(vend_slot)	#vend_slot59	858
+milenia,1,1,4	duplicate(vend_slot)	#vend_slot60	858
+milenia,1,1,4	duplicate(vend_slot)	#vend_slot61	858
+milenia,1,1,4	duplicate(vend_slot)	#vend_slot62	858
+milenia,1,1,4	duplicate(vend_slot)	#vend_slot63	858
+milenia,1,1,4	duplicate(vend_slot)	#vend_slot64	858
+milenia,1,1,4	duplicate(vend_slot)	#vend_slot65	858
+milenia,1,1,4	duplicate(vend_slot)	#vend_slot66	858
+milenia,1,1,4	duplicate(vend_slot)	#vend_slot67	858
+milenia,1,1,4	duplicate(vend_slot)	#vend_slot68	858
+milenia,1,1,4	duplicate(vend_slot)	#vend_slot69	858
+milenia,1,1,4	duplicate(vend_slot)	#vend_slot70	858
+milenia,1,1,4	duplicate(vend_slot)	#vend_slot71	858
+milenia,1,1,4	duplicate(vend_slot)	#vend_slot72	858
+milenia,1,1,4	duplicate(vend_slot)	#vend_slot73	858
+milenia,1,1,4	duplicate(vend_slot)	#vend_slot74	858
+milenia,1,1,4	duplicate(vend_slot)	#vend_slot75	858
+milenia,1,1,4	duplicate(vend_slot)	#vend_slot76	858
+milenia,1,1,4	duplicate(vend_slot)	#vend_slot77	858
+milenia,1,1,4	duplicate(vend_slot)	#vend_slot78	858
+milenia,1,1,4	duplicate(vend_slot)	#vend_slot79	858
+milenia,1,1,4	duplicate(vend_slot)	#vend_slot80	858
+milenia,1,1,4	duplicate(vend_slot)	#vend_slot81	858
+milenia,1,1,4	duplicate(vend_slot)	#vend_slot82	858
+milenia,1,1,4	duplicate(vend_slot)	#vend_slot83	858
+milenia,1,1,4	duplicate(vend_slot)	#vend_slot84	858
+milenia,1,1,4	duplicate(vend_slot)	#vend_slot85	858
+milenia,1,1,4	duplicate(vend_slot)	#vend_slot86	858
+milenia,1,1,4	duplicate(vend_slot)	#vend_slot87	858
+milenia,1,1,4	duplicate(vend_slot)	#vend_slot88	858
+milenia,1,1,4	duplicate(vend_slot)	#vend_slot89	858
+milenia,1,1,4	duplicate(vend_slot)	#vend_slot90	858
+milenia,1,1,4	duplicate(vend_slot)	#vend_slot91	858
+milenia,1,1,4	duplicate(vend_slot)	#vend_slot92	858
+milenia,1,1,4	duplicate(vend_slot)	#vend_slot93	858
+milenia,1,1,4	duplicate(vend_slot)	#vend_slot94	858
+milenia,1,1,4	duplicate(vend_slot)	#vend_slot95	858
+milenia,1,1,4	duplicate(vend_slot)	#vend_slot96	858
+milenia,1,1,4	duplicate(vend_slot)	#vend_slot97	858
+milenia,1,1,4	duplicate(vend_slot)	#vend_slot98	858
+milenia,1,1,4	duplicate(vend_slot)	#vend_slot99	858
+milenia,1,1,4	duplicate(vend_slot)	#vend_slot100	858
+milenia,1,1,4	duplicate(vend_slot)	#vend_slot101	858
+milenia,1,1,4	duplicate(vend_slot)	#vend_slot102	858
+milenia,1,1,4	duplicate(vend_slot)	#vend_slot103	858
+milenia,1,1,4	duplicate(vend_slot)	#vend_slot104	858
+milenia,1,1,4	duplicate(vend_slot)	#vend_slot105	858
+milenia,1,1,4	duplicate(vend_slot)	#vend_slot106	858
+milenia,1,1,4	duplicate(vend_slot)	#vend_slot107	858
+milenia,1,1,4	duplicate(vend_slot)	#vend_slot108	858
+milenia,1,1,4	duplicate(vend_slot)	#vend_slot109	858
+milenia,1,1,4	duplicate(vend_slot)	#vend_slot110	858
+milenia,1,1,4	duplicate(vend_slot)	#vend_slot111	858
+milenia,1,1,4	duplicate(vend_slot)	#vend_slot112	858
+milenia,1,1,4	duplicate(vend_slot)	#vend_slot113	858
+milenia,1,1,4	duplicate(vend_slot)	#vend_slot114	858
+milenia,1,1,4	duplicate(vend_slot)	#vend_slot115	858
+milenia,1,1,4	duplicate(vend_slot)	#vend_slot116	858
+milenia,1,1,4	duplicate(vend_slot)	#vend_slot117	858
+milenia,1,1,4	duplicate(vend_slot)	#vend_slot118	858
+milenia,1,1,4	duplicate(vend_slot)	#vend_slot119	858
+milenia,1,1,4	duplicate(vend_slot)	#vend_slot120	858
+milenia,1,1,4	duplicate(vend_slot)	#vend_slot121	858
+milenia,1,1,4	duplicate(vend_slot)	#vend_slot122	858
+milenia,1,1,4	duplicate(vend_slot)	#vend_slot123	858
+milenia,1,1,4	duplicate(vend_slot)	#vend_slot124	858
+milenia,1,1,4	duplicate(vend_slot)	#vend_slot125	858
+milenia,1,1,4	duplicate(vend_slot)	#vend_slot126	858
+milenia,1,1,4	duplicate(vend_slot)	#vend_slot127	858
+milenia,1,1,4	duplicate(vend_slot)	#vend_slot128	858
+milenia,1,1,4	duplicate(vend_slot)	#vend_slot129	858
+milenia,1,1,4	duplicate(vend_slot)	#vend_slot130	858
+milenia,1,1,4	duplicate(vend_slot)	#vend_slot131	858
+milenia,1,1,4	duplicate(vend_slot)	#vend_slot132	858
+milenia,1,1,4	duplicate(vend_slot)	#vend_slot133	858
+milenia,1,1,4	duplicate(vend_slot)	#vend_slot134	858
+milenia,1,1,4	duplicate(vend_slot)	#vend_slot135	858
+milenia,1,1,4	duplicate(vend_slot)	#vend_slot136	858
+milenia,1,1,4	duplicate(vend_slot)	#vend_slot137	858
+milenia,1,1,4	duplicate(vend_slot)	#vend_slot138	858
+milenia,1,1,4	duplicate(vend_slot)	#vend_slot139	858
+milenia,1,1,4	duplicate(vend_slot)	#vend_slot140	858
+milenia,1,1,4	duplicate(vend_slot)	#vend_slot141	858
+milenia,1,1,4	duplicate(vend_slot)	#vend_slot142	858
+milenia,1,1,4	duplicate(vend_slot)	#vend_slot143	858
+milenia,1,1,4	duplicate(vend_slot)	#vend_slot144	858
+milenia,1,1,4	duplicate(vend_slot)	#vend_slot145	858
+milenia,1,1,4	duplicate(vend_slot)	#vend_slot146	858
+milenia,1,1,4	duplicate(vend_slot)	#vend_slot147	858
+milenia,1,1,4	duplicate(vend_slot)	#vend_slot148	858
+milenia,1,1,4	duplicate(vend_slot)	#vend_slot149	858
+milenia,1,1,4	duplicate(vend_slot)	#vend_slot150	858
+milenia,1,1,4	duplicate(vend_slot)	#vend_slot151	858
+milenia,1,1,4	duplicate(vend_slot)	#vend_slot152	858
+milenia,1,1,4	duplicate(vend_slot)	#vend_slot153	858
+milenia,1,1,4	duplicate(vend_slot)	#vend_slot154	858
+milenia,1,1,4	duplicate(vend_slot)	#vend_slot155	858
+milenia,1,1,4	duplicate(vend_slot)	#vend_slot156	858
+milenia,1,1,4	duplicate(vend_slot)	#vend_slot157	858
+milenia,1,1,4	duplicate(vend_slot)	#vend_slot158	858
+milenia,1,1,4	duplicate(vend_slot)	#vend_slot159	858
+milenia,1,1,4	duplicate(vend_slot)	#vend_slot160	858
+milenia,1,1,4	duplicate(vend_slot)	#vend_slot161	858
+milenia,1,1,4	duplicate(vend_slot)	#vend_slot162	858
+milenia,1,1,4	duplicate(vend_slot)	#vend_slot163	858
+milenia,1,1,4	duplicate(vend_slot)	#vend_slot164	858
+milenia,1,1,4	duplicate(vend_slot)	#vend_slot165	858
+milenia,1,1,4	duplicate(vend_slot)	#vend_slot166	858
+milenia,1,1,4	duplicate(vend_slot)	#vend_slot167	858
+milenia,1,1,4	duplicate(vend_slot)	#vend_slot168	858
+milenia,1,1,4	duplicate(vend_slot)	#vend_slot169	858
+milenia,1,1,4	duplicate(vend_slot)	#vend_slot170	858
+milenia,1,1,4	duplicate(vend_slot)	#vend_slot171	858
+milenia,1,1,4	duplicate(vend_slot)	#vend_slot172	858
+milenia,1,1,4	duplicate(vend_slot)	#vend_slot173	858
+milenia,1,1,4	duplicate(vend_slot)	#vend_slot174	858
+milenia,1,1,4	duplicate(vend_slot)	#vend_slot175	858
+milenia,1,1,4	duplicate(vend_slot)	#vend_slot176	858
+milenia,1,1,4	duplicate(vend_slot)	#vend_slot177	858
+milenia,1,1,4	duplicate(vend_slot)	#vend_slot178	858
+milenia,1,1,4	duplicate(vend_slot)	#vend_slot179	858
+milenia,1,1,4	duplicate(vend_slot)	#vend_slot180	858
+milenia,1,1,4	duplicate(vend_slot)	#vend_slot181	858
+milenia,1,1,4	duplicate(vend_slot)	#vend_slot182	858
+milenia,1,1,4	duplicate(vend_slot)	#vend_slot183	858
+milenia,1,1,4	duplicate(vend_slot)	#vend_slot184	858
+milenia,1,1,4	duplicate(vend_slot)	#vend_slot185	858
+milenia,1,1,4	duplicate(vend_slot)	#vend_slot186	858
+milenia,1,1,4	duplicate(vend_slot)	#vend_slot187	858
+milenia,1,1,4	duplicate(vend_slot)	#vend_slot188	858
+milenia,1,1,4	duplicate(vend_slot)	#vend_slot189	858
+milenia,1,1,4	duplicate(vend_slot)	#vend_slot190	858
+milenia,1,1,4	duplicate(vend_slot)	#vend_slot191	858
+milenia,1,1,4	duplicate(vend_slot)	#vend_slot192	858
+milenia,1,1,4	duplicate(vend_slot)	#vend_slot193	858
+milenia,1,1,4	duplicate(vend_slot)	#vend_slot194	858
+milenia,1,1,4	duplicate(vend_slot)	#vend_slot195	858
+milenia,1,1,4	duplicate(vend_slot)	#vend_slot196	858
+milenia,1,1,4	duplicate(vend_slot)	#vend_slot197	858
+milenia,1,1,4	duplicate(vend_slot)	#vend_slot198	858
+milenia,1,1,4	duplicate(vend_slot)	#vend_slot199	858
+milenia,1,1,4	duplicate(vend_slot)	#vend_slot200	858
+milenia,1,1,4	duplicate(vend_slot)	#vend_slot201	858
+milenia,1,1,4	duplicate(vend_slot)	#vend_slot202	858
+milenia,1,1,4	duplicate(vend_slot)	#vend_slot203	858
+milenia,1,1,4	duplicate(vend_slot)	#vend_slot204	858
+milenia,1,1,4	duplicate(vend_slot)	#vend_slot205	858
+milenia,1,1,4	duplicate(vend_slot)	#vend_slot206	858
+milenia,1,1,4	duplicate(vend_slot)	#vend_slot207	858
+milenia,1,1,4	duplicate(vend_slot)	#vend_slot208	858

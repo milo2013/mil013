@@ -1,0 +1,50 @@
+milenia,124,156,11	script	Newbie Freebies	899,{
+cutin "gl_barmund3",2;
+    if( #freebies == 2){
+    mes "[^000088Incik Rakuzas^000000]";
+    mes "You already have your freebies!";
+    close2;
+cutin "", 255;
+end;
+    } else {
+cutin "gl_barmund1",2;
+    mes "[^000088Incik Rakuzas^000000]";
+    mes "Hi, welcome to Milenia RO a brand new server!";
+    mes "I can give 1 set of freebies per Account so please think about this WISELY.";
+	next;
+	if (select("Yes i want it now.:Maybe later.") == 2) {
+		 mes "[^000088Incik Rakuzas^000000]";
+         mes "Okay.. Come back when you ready.";
+	     next;
+	     mes "[^000088Incik Rakuzas^000000]";
+         mes "Remember to choose your character WISELY!";
+		close2;
+cutin "", 255;
+end;
+	}
+	}
+cutin "gl_barmund1",2;
+    mes "[^000088Incik Rakuzas^000000]";
+    mes "Here you go~";
+    next;
+    mes "[^000088Incik Rakuzas^000000]";
+    mes "Your freebies has been given.";
+    mes "Check your inventory to see Items";
+    next;
+
+    getitem 14533,1;//Battle Manual
+    getitem 14232,1;//Ygg Berry Box
+    getitem 5797,1;//Cheer Scraf
+    getitem 14154,1;//Fgora Pckage
+    getitem 5584,1;//Majestic devil horns
+    getitem 13901,1;//Alice Summon
+    getitem 13751,1;//Big Def pot
+    getitem 13757,1;//Big mDef Pot
+    getitem 13809,1;//Blue Gemstone Box
+    getitem 12622,1;//Halter Lead
+    set #freebies, 2;
+    mes "Enjoy your freebies!";
+close2;
+cutin "", 255;
+end;
+	}

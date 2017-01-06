@@ -1,0 +1,113 @@
+milenia,131,171,11	script	Milenia Box Trader	952,{
+
+    mes "[Milenia Box Trader]";
+    mes "Do you want to trade your box into zeny?";
+	next;
+	mes "[Milenia Box Trader]";
+	mes "Let's see.. Hmmm.. You have..";
+    mes "^ff0000" + getitemname(.IDR) + "^000000 : ^ff0000 "+countitem(.IDR) +" ^000000";
+    mes "^ff0000" + getitemname(.IDY) + "^000000 : ^ff0000 "+countitem(.IDY) +" ^000000";
+    next;
+    if (select("Yes:No") - 1) close;
+	
+	.@menu = select( "Royal Jelly Box","Yggdrasilberry Box","Close" );
+	switch( .@menu ){
+	
+	Case 1:
+	mes "[Milenia Box Trader]";
+    mes "How many " + getitemname(.IDR) + " do you want to exchange?";
+    next;
+    input .@amountR;
+    if (.@amountR == 0) {
+        mes .NPC$;
+        mes "Umm, please enter your amount!";
+        close;
+    }
+	.@amountRTotal = (.@amountR * .CPR);
+	.@totalR = (countitem (.IDR));
+	if (.@amountR > .@totalR){
+		mes "[Milenia Box Trader]";
+		mes "You don't have enough box!!!";
+		next;
+		mes "[Milenia Box Trader]";
+		mes "Please take this matter seriously!!";
+		next;
+		mes "[Milenia Box Trader]";
+		mes "You #$%$@$!!";
+		close;
+	}
+	if (.@totalR == 0){
+	
+		mes "[Milenia Box Trader]";
+		mes "You don't have "+.IDG+"!!";
+		next;
+		mes "[Milenia Box Trader]";
+		mes "Please go away!!";
+		next;
+		mes "[Milenia Box Trader]";
+		mes "I don't have time for you!!";
+		close;
+	}
+	mes "[Milenia Box Trader]";
+    mes "Thank you for your business!";
+    set zeny,zeny += .@amountRTotal;
+    delitem .IDR,.@amountR;
+	dispbottom "Gained "+.@amountRTotal+"z." ;
+   break;
+   
+   Case 2:
+	mes "[Milenia Box Trader]";
+    mes "How many " + getitemname(.IDY) + " do you want to exchange?";
+    next;
+    input .@amountY;
+    if (.@amountY == 0) {
+        mes "[Milenia Box Trader]";
+        mes "Umm, please enter your amount!";
+        close;
+    }
+	.@amountYTotal = (.@amountY * .CPY);
+	.@totalY = (countitem (.IDY));
+	if (.@amountY > .@totalY){
+		mes "[Milenia Box Trader]";
+		mes "You don't have enough box!!!";
+		next;
+		mes "[Milenia Box Trader]";
+		mes "Please take this matter seriously!!";
+		next;
+		mes "[Milenia Box Trader]";
+		mes "You #$%$@$!!";
+		close;
+	}
+	if (.@totalY == 0){
+	
+		mes "[Milenia Box Trader]";
+		mes "You don't have "+.IDG+"!!";
+		next;
+		mes "[Milenia Box Trader]";
+		mes "Please go away!!";
+		next;
+		mes "[Milenia Box Trader]";
+		mes "I don't have time for you!!";
+		close;
+	}
+	mes "[Milenia Box Trader]";
+    mes "Thank you for your business!";
+    set zeny,zeny += .@amountYTotal;
+    delitem .IDY,.@amountY;
+	dispbottom "Gained "+.@amountYTotal+"z." ;
+   break;
+	
+	Case 3:
+	close;
+	
+	}
+	end;
+	
+    OnInit:
+        set .NPC$,"[ " +strnpcinfo(1)+ " ]"; // NPC Name
+        set .IDR,13516; // Jelly Box
+		set .IDY,13517; // Berry Box
+		set .CPR,17500; // Jelly amount
+		set .CPY,7500; // Berry amount
+        end;
+}

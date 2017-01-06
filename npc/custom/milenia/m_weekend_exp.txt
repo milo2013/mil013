@@ -1,0 +1,71 @@
+//===== rAthena Script =======================================
+//= Floating Rates
+//===== Support ==============================================
+//= Vist: https://rathena.svn.sourceforge.net/svnroot/rathena/trunk/doc/script_commands.txt
+//= to know how to change the time settings
+//===== By: ================================================== 
+//= Mysterious
+//===== Current Version: =====================================
+//= 1.5
+//===== Compatible With: =====================================
+//= rAthena SVN
+//===== Description: =========================================
+//= EXP Doubles on Weekends
+//===== Other Information: ===================================
+// Every weekend, starting on Fridays, players will gain
+// double EXP. The script will announce when Double EXP has
+// begun so that players know.
+//===== TODO: ================================================
+// 1) Optimize script a little more
+// 2) Make script more friendly
+//===== Additional Comments: =================================
+//= v1.0 - Intitial Re-release [Mysterious]
+//= v1.1 - Made it so that it starts on Friday, ends on Sunday [Mysterious]
+//= v1.2 - Optimized entire script [Mysterious]
+//= v1.3 - Made it more friendly [Mysterious]
+//= v1.4 - Optimized [Mysterious]
+//= v1.5 - Adjusted a few things [Mysterious]
+//============================================================
+-	script	FloatingRates	-1,{
+
+OnInit:
+//Note: You can always set a standard exp. rate or set it as a rand
+set $@brate,3000; // Change the value here for your Base Experience
+set $@jrate,3000; // Change the value here for your Job Experience
+
+// =========================
+OnClock1036:
+if(gettime(4)==4  || gettime(4)==5  || gettime(4)==6 ) { // Friday, Saturday, Sunday
+//Base Experience
+setbattleflag("base_exp_rate",$@brate);
+//Job Experience
+setbattleflag("job_exp_rate",$@jrate);
+// Reload the database
+atcommand "@reloadmobdb"; 
+}
+end;
+}
+
+// We will announce about the EXP rates every 01 Minute of every Hour so that player's know what's going on
+-	script	FloatingAnn	-1,{
+
+OnMinute30:
+if(gettime(4)==4 || gettime(4)==5 || gettime(4)==6 ) { // Friday, Saturday, Sunday
+announce "Weekend Double EXP Event is currently running! ",bc_all,0xFF0000;
+}
+
+end;
+}
+
+-	script	FloatingAnn#1	-1,{
+
+OnClock2200:
+if(gettime(4)==4  || gettime(4)==5  || gettime(4)==6 ) { // Friday, Saturday, Sunday
+announce "Weekend Double EXP has ended!",bc_all,0xFF0000;
+setbattleflag("base_exp_rate", 1500); // Set this rates back to your regular server's rates
+setbattleflag("job_exp_rate", 1500); // Set this rates back to your regular server's rates
+atcommand "@reloadmobdb";
+}
+
+end;
+}

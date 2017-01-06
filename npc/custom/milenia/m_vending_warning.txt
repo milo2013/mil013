@@ -1,0 +1,18 @@
+milenia,119,143,12	script	No Vending Here	858,{
+	
+	mes "^ff0000[No Vending Here]^000000";
+	mes "Please vending on the ^ff0000following area^000000.";
+	mes "Thank You..";
+	mes "^ff0000- MILENIA RO ADMIN^000000";
+	next;
+	switch(select("Market Place A:Market Place B:Cancel")) {
+		case 1:
+			warp "milenia",91,180;
+			break;
+		case 2:
+			warp "milenia",147,180;
+			break;	
+		case 3:
+			close;
+			}
+	}

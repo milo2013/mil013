@@ -1,0 +1,143 @@
+// Cash Shop Database
+// Contains the items sold in the ingame cash shop.
+//
+// Structure of Database:
+// Type,ItemID,Price
+//
+// Type:
+//    0: New
+//    1: Headgear
+//    2: Limited
+//    3: Rental
+//    4: Equip
+//    5: Scrolls
+//    6: Useable
+//    7: Other
+//
+// Price:
+//    Item cost, in cash points (#CASHPOINTS).
+//0,26002,200 //
+//0,26003,200 //
+//0,26010,100 //
+//4,26002,200 //
+//4,26003,200 //
+//4,26010,100 //
+//start here
+0,19823,30 //White Cat Hood 
+0,20036,30 //Crown Of Victory
+0,20147,20 //Pigoen On Shoulder
+0,20398,30 //Niflheim Bunny Hat
+0,20266,30 //Secret Zipper
+0,20318,20 //Charleston Antenna
+0,20315,20 //Analyze Eye
+0,20430,30 //Loyal Servant Of Evil Morroc
+0,20314,30 //New Wave Sunglasses
+0,19727,30 //Develing Hat
+0,20034,30 //Jack Battle Bat
+0,15093,120 // Brave Plate
+0,15094,120 // Brave Magic Coat
+0,15096,120 // Heroic Trade-Mail
+0,5208,40//Rideword Hat
+0,19509,20 //Butterfly Wing Ears
+0,2589,200 //Fallen Angel Wing
+0,2576,100 //Heroic Backpack
+0,18541,70 //Little Feather Hat
+0,15097,120 //Brave Hidden Cloth
+1,5518,75 //Large Baphomet Horns
+1,5377,60 //Gentleman's Pipe
+1,5013,80 //Lord Kaho's Horn
+1,18601,90 // Red Bread Hat
+1,18522,90 // Evil Marching
+1,5497,80 // King Tiger Doll
+1,18856,80 // King Tiger Doll
+1,18539,80 //Skull Cap
+1,5374,110 //Giantic Majestic Goat
+1,18503,120 //Small Devil Horns
+1,5312,50 //Ayotha King's Hat
+1,5383,55 //Hunter's Cap
+1,5155,70 //Papa Beard
+1,18518,90 // Angel Ear[1]
+1,2204,80 //Glasses [1]
+2,9901,35 //Moonlight Egg
+2,9902,45 //Ifrit  Egg
+2,9903,50 //Valkyrie  Egg
+2,9904,30 //Drake  Egg
+2,9905,40 //Delate  Egg
+2,9906,30 //TaoGunka  Egg
+2,9907,45 //Ndhoggr Shadow  Egg
+2,9908,40 //Atroce  Egg
+2,9909,35 //Incantation Samurai  Egg
+2,9910,50 //Thanatos  Egg
+2,9911,50 //Thanatos Egg
+3,17229,5 //Infinite Fly Wing Box 7-Days
+4,2776,35 // Adventurer's Trusty Tower
+4,5137,70 //Alice Doll
+4,5291,70 //Kettle Hat
+4,5325,60 //Robo eyes
+4,18600,75 //Cat Ear Beret
+4,18630,75 //Drooping Alicel 
+4,18519,90 //Evil Wing Ears [1]
+4,5374,110 //(L_Magestic_Goat) Gigantic Majestic Goat  
+4,5520,95 //Rabbit Earmuffs
+4,5463,60 //Rainbow Scarf
+4,5767,60 //Samurai Mask
+4,5276,50 //Fantastic Wig
+4,5593,50 //RAbbit Bonnet
+4,5538,50 //Tucan Hat
+4,5421,50 //Ifrit's ears
+4,5596,50 //Four Leaf Clover
+4,5597,50 //Chewing Gum
+4,5529,60 //Satan's Bone Hat
+4,5565,60 //Dragon Arhat Mask
+4,5379,55 //Tam
+4,5564,55 //Crowwn Of Deceit
+4,5516,50 //Hawk Eyes
+5,12916,10 //Assumptio 5
+5,14174,5 //Adrenaline 5
+5,12915,10 //Aspersio 5
+5,13546,10 //Chemical Protection Weapon 5
+5,13545,10 //Chemical Protection Armour
+5,13543,5 //Chemical Protection Helm
+5,13544,5 //Chemical Protection Shield
+5,14315,40 //Ghostring Scroll Box
+5,13622,5 //Greed Scroll 50
+5,13542,3 //Magnificat 
+5,13914,20 //Party Assumptio
+5,14314,30 //Phreeoni Scroll
+5,13863,5 //Repair Weapon Scroll
+5,13539,20 //Storm Gust Scroll Box
+5,12917,5 //Wind Walk Scroll
+5,14314,30 //Phreeoni Scroll
+5,14602,10 //TGK S
+5,14604,2 //Oh s
+5,14605,5 //OL S
+5,12279,5 // Undead E S
+6,12922,10 // Token of Siegfried
+6,13610,15 //Enriched Elunium 5
+6,16393,15 //HE Oridecon 5
+6,13611,15 //Enriched Oridecon 5
+6,16395,15 //HE Elunium 5
+6,12210,3 //Bubble Gum
+6,12214,3 //Convex Mirror
+6,12412,10 //HE Bubble Gum
+6,14545,4 //Battle Manual
+6,16260,40 //HD Bradium 10
+6,16261,40 //HD Carnium 10
+6,14232,3 //yggdrasil Box
+6,13609,20 //Megaphones
+6,12622,10 //Halter Lead
+6,13898,10 //Alice Summon box
+6,13996,25 //Big Bun 100
+6,13997,80 //Big Bun 500
+6,12314,4 //Adventurer Returns Support Box 
+7,31123,10 // Rare Mithril
+7,6380,3 //Mora Coins
+7,31115,20 //Mora Coins Bag
+7,6417,3 //Silvervine Fruit
+7,31116,20 //Silvervine Fruit Bag
+7,13973,1 // Poison Bottle
+7,31117,2 // Acid Demonstration Box 50
+7,31118,3 // Acid Demonstration Box 100
+7,14103,3 //Gympass Box 1
+7,17475,20 //Gympass Box 10
+//end here //

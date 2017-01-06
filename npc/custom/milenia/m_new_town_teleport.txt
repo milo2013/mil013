@@ -1,0 +1,40 @@
+ra_temple,119,152,11	script	Milenia Officer	544,{
+Player_Menu:	
+	
+	mes "[Milenia Officer]";
+	mes "Hello ^ff0000" + strcharinfo(0) + "^000000,";
+	mes "I can teleport you to our new town.";
+	mes "Do you want to go?";
+	next;
+	switch(select("Sure!!:Nope")) {
+				case 1:
+					savepoint "milenia",119,152;
+					warp "milenia",119,152;
+					break;
+				case 2:
+					close;
+					break;	
+	}
+	
+	end;
+	}
+	
+milenia_pvp,78,78,11	script	PVP Staff	544,{
+Player_Menu:	
+	
+	mes "[Milenia Officer]";
+	mes "Hello ^ff0000" + strcharinfo(0) + "^000000,";
+	mes "I can teleport you back to our town.";
+	mes "Do you want to go?";
+	next;
+	switch(select("Sure!!:Nope")) {
+				case 1:
+					warp "milenia",119,152;
+					break;
+				case 2:
+					close;
+					break;	
+	}
+	
+	end;
+	}

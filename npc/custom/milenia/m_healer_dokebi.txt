@@ -1,0 +1,48 @@
+//===== rAthena Script =======================================
+//= Healer
+//===== By: ==================================================
+//= Euphy
+//===== Current Version: =====================================
+//= 1.1
+//===== Compatible With: =====================================
+//= rAthena SVN
+//===== Description: =========================================
+//= Basic healer script.
+//===== Additional Comments: =================================
+//= 1.0 Initial script.
+//= 1.1 Aligned coordinates with @go.
+//============================================================
+
+-	script	Dokebi Farm Nurse	-1,{
+
+	set .@Price,20000;	// Zeny required for heal
+	set .@Buffs,1;	// Also buff players? (1: yes / 0: no)
+	set .@DelayDokebi,240;	// Heal delay, in seconds
+
+	if (@HD > gettimetick(2)) end;
+	if (.@Price) {
+		message strcharinfo(0),"Healing costs with buff "+.@Price+" Zeny and Cooling Down 4 Minutes!";
+		if (Zeny < .@Price) end;
+		if(select("^0055FFHeal & Buff^000000:^777777Cancel^000000") == 2) end;
+		set Zeny, Zeny-.@Price;
+	}
+	specialeffect2 EF_HEAL2; percentheal 100,100;
+	savepoint "milenia",119,152;
+	if (.@Buffs) {
+		specialeffect2 EF_INCAGILITY; sc_start SC_INCREASEAGI,300000,10;
+		specialeffect2 EF_BLESSING; sc_start SC_BLESSING,300000,10;
+		specialeffect2 AL_ANGELUS; sc_start SC_ANGELUS,300000,10;
+		specialeffect2 SN_WINDWALK; sc_start SC_WINDWALK,300000,10;
+		specialeffect2 PR_GLORIA; sc_start SC_GLORIA,300000,10;
+		specialeffect2 PR_MAGNIFICAT; sc_start SC_MAGNIFICAT,300000,10;
+		specialeffect2 PR_IMPOSITIO; sc_start SC_IMPOSITIO,300000,10; 
+		specialeffect2 HP_ASSUMPTIO; sc_start SC_ASSUMPTIO,300000,10;
+//specialeffect2 BS_OVERTHRUST; sc_start SC_OVERTHRUST,300000,5;
+		specialeffect2 MC_LOUD; sc_start SC_LOUD,240000,1;
+	}
+	if (.@DelayDokebi) set @HD, gettimetick(2)+.@Delay;
+	end;
+}
+
+
+farm,100,72,6	duplicate(Dokebi Farm Nurse)	Dokebi Farm Nurse#df	76

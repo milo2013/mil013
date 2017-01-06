@@ -1,0 +1,27 @@
+﻿Build started 30/11/2016 7:47:39:AM.
+     1>Project "C:\Milenia 6\vcproj-13\mapcache.vcxproj" on node 5 (Build target(s)).
+     1>ClCompile:
+         F:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /I..\3rdparty\libconfig /I..\3rdparty\zlib\include /I..\3rdparty\msinttypes\include /ZI /nologo /W3 /WX- /MP /Od /Oy- /D WIN32 /D _WIN32 /D __WIN32 /D _DEBUG /D _CRT_SECURE_NO_DEPRECATE /D _CRT_NONSTDC_NO_DEPRECATE /D MINICORE /D LIBCONFIG_STATIC /D YY_USE_CONST /D _MBCS /Gm- /RTC1 /MTd /GS /Gy /fp:precise /Zc:wchar_t /Zc:forScope /Fo"mapcache\Debug\\" /Fd"mapcache\Debug\vc120.pdb" /Gd /TC /analyze- /errorReport:prompt ..\src\common\core.c ..\src\common\des.c ..\src\common\grfio.c ..\src\common\malloc.c ..\src\common\showmsg.c ..\src\common\strlib.c ..\src\common\utils.c ..\src\tool\mapcache.c
+         core.c
+         des.c
+         grfio.c
+         malloc.c
+         showmsg.c
+         strlib.c
+         utils.c
+         mapcache.c
+       Link:
+         F:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"..\mapcache.exe" /INCREMENTAL /NOLOGO /LIBPATH:..\3rdparty\zlib\lib libcmtd.lib oldnames.lib zdll.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /NODEFAULTLIB /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"..\mapcache.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE:NO /IMPLIB:"..\mapcache.lib" /MACHINE:X86 /SAFESEH:NO /FIXED:NO mapcache\Debug\core.obj
+         mapcache\Debug\des.obj
+         mapcache\Debug\grfio.obj
+         mapcache\Debug\malloc.obj
+         mapcache\Debug\showmsg.obj
+         mapcache\Debug\strlib.obj
+         mapcache\Debug\utils.obj
+         mapcache\Debug\mapcache.obj
+         mapcache.vcxproj -> C:\Milenia 6\vcproj-13\..\mapcache.exe
+     1>Done Building Project "C:\Milenia 6\vcproj-13\mapcache.vcxproj" (Build target(s)).
+
+Build succeeded.
+
+Time Elapsed 00:00:15.33
