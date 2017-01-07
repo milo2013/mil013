@@ -20,12 +20,14 @@ set .@gmlevel,getgmlevel();
 if( .@gmlevel < .MinGMLevel ) end;
 set .@size,getarraysize( .GM_Name$ );
 set .GM_Name$[ .@size ],strcharinfo(0);
-if( .@gmlevel < 1 ) set .GM_Level$[ .@size ],"Event GM";
-else if( .@gmlevel < 2 ) set .GM_Level$[ .@size ],"Police GM";
-//else if( .@gmlevel < 3 ) set .GM_Level$[ .@size ],"Event GM Lv 2";
-//else if( .@gmlevel < 4 ) set .GM_Level$[ .@size ],"Event GM Lv 3";
-//else if( .@gmlevel < 5 ) set .GM_Level$[ .@size ],"Law Enforcement";
-else set .GM_Level$[ .@size ],"ADMIN";
+if( .@gmlevel < 1 ) set .GM_Level$[ .@size ],"Support Team";
+else if( .@gmlevel < 2 ) set .GM_Level$[ .@size ],"Script Manager";
+else if( .@gmlevel < 3 ) set .GM_Level$[ .@size ],"GM Event";
+else if( .@gmlevel < 4 ) set .GM_Level$[ .@size ],"Chief Event GM";
+else if( .@gmlevel < 5 ) set .GM_Level$[ .@size ],"Police GM";
+else if( .@gmlevel < 6 ) set .GM_Level$[ .@size ],"Chief Police GM";
+else if( .@gmlevel < 7 ) set .GM_Level$[ .@size ],"Head GM";
+else set .GM_Level$[ .@size ],"Milenia Admin";
 end;
 
 OnPCLogoutEvent:
