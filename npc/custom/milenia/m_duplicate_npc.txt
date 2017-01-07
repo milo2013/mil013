@@ -6,3 +6,4 @@ milenia,162,116,5	duplicate(Krugg)	Krugg#job	86
 milenia,170,103,11	duplicate(Hollgrehenn)	Hollgrehenn#mro	85
 milenia,162,100,5	duplicate(Apprentice Craftsman)	Apprentice Craftsman#mro	73
 milenia,159,105,5	duplicate(Suhnbi#cash)	Suhnbi#cash2	85
+milenia,174,107,11	duplicate(Refine Master)	Refine Master#mro	851
