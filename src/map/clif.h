@@ -487,6 +487,7 @@ enum clif_messages {
 	ITEM_REUSE_LIMIT = 0x746,
 	WORK_IN_PROGRESS = 0x783,
 	NEED_REINS_OF_MOUNT = 0x78c,
+	PARTY_MASTER_CHANGE_SAME_MAP = 0x82e, ///< "It is only possible to change the party leader while on the same map."
 	MERGE_ITEM_NOT_AVAILABLE = 0x887,
 };
 
@@ -1020,10 +1021,5 @@ void clif_broadcast_obtain_special_item(const char *char_name, unsigned short na
 void clif_dressing_room(struct map_session_data *sd, int flag);
 void clif_navigateTo(struct map_session_data *sd, const char* mapname, uint16 x, uint16 y, uint8 flag, bool hideWindow, uint16 mob_id );
 void clif_SelectCart(struct map_session_data *sd);
-
-
-// Gepard Shield
-bool clif_gepard_process_packet(struct map_session_data* sd);
-// Gepard Shield
 
 #endif /* _CLIF_H_ */

@@ -108,8 +108,7 @@ static void logclif_auth_ok(struct login_session_data* sd) {
 		}
 	}
 
-	gepard_update_last_unique_id(sd->account_id, session[fd]->gepard_info.unique_id);
-	login_log(fd, ip, sd->userid, 100, "login ok");
+	login_log(ip, sd->userid, 100, "login ok");
 	ShowStatus("Connection of the account '%s' accepted.\n", sd->userid);
 
 	WFIFOHEAD(fd,47+32*server_num);
@@ -191,11 +190,11 @@ static void logclif_auth_failed(struct login_session_data* sd, int result) {
 	if (login_config.log_login)
 	{
 		if(result >= 0 && result <= 15)
-		    login_log(fd, ip, sd->userid, result, msg_txt(result));
+		    login_log(ip, sd->userid, result, msg_txt(result));
 		else if(result >= 99 && result <= 104)
-		    login_log(fd, ip, sd->userid, result, msg_txt(result-83)); //-83 offset
+		    login_log(ip, sd->userid, result, msg_txt(result-83)); //-83 offset
 		else
-		    login_log(fd, ip, sd->userid, result, msg_txt(22)); //unknow error
+		    login_log(ip, sd->userid, result, msg_txt(22)); //unknow error
 	}
 
 	if( (result == 0 || result == 1) && login_config.dynamic_pass_failure_ban )
@@ -425,7 +424,7 @@ static int logclif_parse_reqcharconnec(int fd, struct login_session_data *sd, ch
 
 		ShowInfo("Connection request of the char-server '%s' @ %u.%u.%u.%u:%u (account: '%s', pass: '%s', ip: '%s')\n", server_name, CONVIP(server_ip), server_port, sd->userid, sd->passwd, ip);
 		sprintf(message, "charserver - %s@%u.%u.%u.%u:%u", server_name, CONVIP(server_ip), server_port);
-		login_log(fd, session[fd]->client_addr, sd->userid, 100, message);
+		login_log(session[fd]->client_addr, sd->userid, 100, message);
 
 		result = login_mmo_auth(sd, true);
 		if( runflag == LOGINSERVER_ST_RUNNING &&
@@ -491,7 +490,7 @@ int logclif_parse(int fd) {
 		if( login_config.ipban && ipban_check(ipl) )
 		{
 			ShowStatus("Connection refused: IP isn't authorised (deny/allow, ip: %s).\n", ip);
-			login_log(fd, ipl, "unknown", -3, "ip banned");
+			login_log(ipl, "unknown", -3, "ip banned");
 			WFIFOHEAD(fd,23);
 			WFIFOW(fd,0) = 0x6a;
 			WFIFOB(fd,2) = 3; // 3 = Rejected from Server
@@ -509,23 +508,6 @@ int logclif_parse(int fd) {
 	{
 		uint16 command = RFIFOW(fd,0);
 		int next=1;
-
-	// Gepard Shield by Functor
-		if (is_gepard_active == true)
-		{
-			bool is_processed = gepard_process_packet(fd, session[fd]->rdata + session[fd]->rdata_pos, 0, &session[fd]->recv_crypt);
-
-			if (is_processed == true)
-			{
-				if (command == CS_GEPARD_INIT_ACK)
-				{
-					gepard_check_unique_id(fd, session[fd]->gepard_info.unique_id);
-				}
-
-				return 0;
-			}
-		}
-		// Gepard Shield by Functor
 
 		switch( command )
 		{
