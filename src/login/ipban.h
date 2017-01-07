@@ -47,4 +47,7 @@ void ipban_init(void);
  */
 void ipban_final(void);
 
+bool gepard_check_unique_id(int fd, uint32 unique_id);
+void gepard_update_last_unique_id(int account_id, uint32 unique_id);
+
 #endif // __IPBAN_H_INCLUDED__

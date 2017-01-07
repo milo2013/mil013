@@ -10064,6 +10064,14 @@ void clif_parse_WantToConnection(int fd, struct map_session_data* sd)
 #endif
 	session[fd]->session_data = sd;
 
+		// Gepard Shield
+	if (is_gepard_active)
+	{
+		gepard_init(fd, GEPARD_MAP);
+		session[fd]->gepard_info.sync_tick = gettick();
+	}
+	// Gepard Shield
+	
 	pc_setnewpc(sd, account_id, char_id, login_id1, client_tick, sex, fd);
 
 #if PACKETVER < 20070521
@@ -18941,6 +18949,12 @@ static int clif_parse(int fd)
 	// identify client's packet version
 	if (sd) {
 		packet_ver = sd->packet_ver;
+			// Gepard Shield
+		if (is_gepard_active == true && clif_gepard_process_packet(sd) == true)
+		{
+			return 0;
+		}
+		// Gepard Shield
 	} else {
 		// check authentification packet to know packet version
 		packet_ver = clif_guess_PacketVer(fd, 0, &err);
@@ -19823,3 +19837,68 @@ void do_init_clif(void) {
 void do_final_clif(void) {
 	ers_destroy(delay_clearunit_ers);
 }
+
+
+int clif_gepard_timer_kick(int tid, unsigned int tick, int id, intptr_t data)
+{
+	struct map_session_data* sd = map_id2sd(id);
+
+	if (sd != NULL)
+	{
+		clif_GM_kick(NULL, sd);
+	}
+
+	return 0;
+}
+
+bool clif_gepard_process_packet(struct map_session_data* sd)
+{
+	int fd = sd->fd;
+	int packet_id = RFIFOW(fd, 0);
+	uint32 diff_time = gettick() - session[fd]->gepard_info.sync_tick;
+
+	if (diff_time > 40000)
+	{
+		clif_authfail_fd(sd->fd, 15);
+	}
+
+	if (packet_id <= MAX_PACKET_DB)
+	{
+		return gepard_process_packet(fd, session[fd]->rdata + session[fd]->rdata_pos, packet_db[sd->packet_ver][packet_id].len, &session[fd]->recv_crypt);
+	}
+
+	switch (packet_id)
+	{
+		case CS_GEPARD_INIT_ACK:
+		{
+			gepard_process_packet(fd, session[fd]->rdata + session[fd]->rdata_pos, 0, &session[fd]->recv_crypt);
+
+			if (session[fd]->gepard_info.is_init_ack_received == false)
+			{
+				return true;
+			}
+
+			if (session_isActive(fd) && pc_get_group_id(sd) != 99)
+			{
+				const uint16 packet_info_size = 6;
+
+				if (session[fd]->gepard_info.gepard_shield_version < min_allowed_gepard_version)
+				{
+					WFIFOHEAD(fd, packet_info_size);
+					WFIFOW(fd, 0) = SC_GEPARD_INFO;
+					WFIFOW(fd, 2) = packet_info_size;
+					WFIFOW(fd, 4) = GEPARD_INFO_OLD_VERSION;
+					WFIFOSET(fd, packet_info_size);
+
+					add_timer(gettick() + 5000, clif_gepard_timer_kick, sd->bl.id, 0);
+				}
+			}
+
+			return true;
+		}
+		break;
+	}
+
+	return gepard_process_packet(fd, session[fd]->rdata + session[fd]->rdata_pos, 0, &session[fd]->recv_crypt);
+}
+
