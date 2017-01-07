@@ -1,0 +1,8 @@
+milenia,157,112,5	duplicate(SocketEnchant)	Seiyablem#mro	84
+milenia,174,112,11	duplicate(SocketEnchant2)	Leablem#mro	86
+milenia,172,114,11	duplicate(Fruel)	Fruel#job	84
+milenia,172,105,11	duplicate(Repairman#sch_gld)	Repairman#job	86
+milenia,162,116,5	duplicate(Krugg)	Krugg#job	86
+milenia,170,103,11	duplicate(Hollgrehenn)	Hollgrehenn#mro	85
+milenia,162,100,5	duplicate(Apprentice Craftsman)	Apprentice Craftsman#mro	73
+milenia,159,105,5	duplicate(Suhnbi#cash)	Suhnbi#cash2	85
