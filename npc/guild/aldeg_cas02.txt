@@ -97,7 +97,7 @@ aldeg_cas02,121,29,2	duplicate(InsideFlagsA2)	Hohenschwangau#16	722
 // Guild Flag (Town)
 //============================================================
 aldebaran,149,97,4	duplicate(InsideFlagsA2)	Hohenschwangau#17	722
-milenia,154,142,11	duplicate(InsideFlagsA2)	Hohenschwangau#18	722
+
 
 // Kafra Employee
 //============================================================

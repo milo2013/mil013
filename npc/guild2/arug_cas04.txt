@@ -5,11 +5,7 @@
 //===== Current Version: =====================================
 //= 1.0
 //===== Compatible With: =====================================
-<<<<<<< HEAD
 //= rAthena SVN
-=======
-//= rAthena Project
->>>>>>> 03a54402bc14c620d4f478c5c8b887728213aad4
 //===== Additional Comments: =================================
 //= 1.0 Merged to template file.
 //============================================================
@@ -85,7 +81,3 @@ OnRecvCastlear04:
 	end;
 }
 aru_gld,313,318,4	duplicate(ar04_Flag2)	Gefn#flag_ar04_4	722
-<<<<<<< HEAD
-milenia,148,115,11	duplicate(LF_ar04_02)	Gefn#LF_ar04_1300	722
-=======
->>>>>>> 03a54402bc14c620d4f478c5c8b887728213aad4

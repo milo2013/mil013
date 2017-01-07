@@ -475,8 +475,5 @@ function	script	Func_Socket2	{
 			close;
 	}
 }
-<<<<<<< HEAD
 
-milenia,174,112,11	duplicate(SocketEnchant2)	Leablem#mro	86
-=======
->>>>>>> 03a54402bc14c620d4f478c5c8b887728213aad4
+

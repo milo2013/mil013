@@ -589,7 +589,7 @@
 28909:2998,{ bonus bUseSPrate,-10; bonus bMaxSPrate,10; }
 
 //NEW AND CUSTOM ITEM COMBO
-2701:2881,{bonus bMatkRate,20; }
-2701:2123,{ bonus bVariableCastrate,-10; } 
-2881:2365:{ bonus bDelayRate,-15; }
-2881:2123,{ bonus bMatkRate,getequiprefinerycnt(EQI_HAND_L)*2; }
+2701:2881,{	bonus bMatkRate,20;}
+2701:2123,{	bonus bVariableCastrate,-10;} 
+2881:2365,{	bonus bDelayRate,-15;}
+2881:2123,{	bonus bMatkRate,getequiprefinerycnt(EQI_HAND_L)*2;}

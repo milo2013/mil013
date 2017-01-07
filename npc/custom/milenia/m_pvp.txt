@@ -540,3 +540,5 @@ milenia,126,138,11	script	PVP Officer	498,{
 		}
 	}
 }
+
+milenia_pvp	mapflag	nosave	SavePoint

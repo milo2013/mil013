@@ -1287,12 +1287,3 @@ function	script	repairmain	{
 //= 2.8a Small bugfix. (bugreport:2418) [Paradox924X]
 //= 2.9 Moved Morroc repairman to Morroc Ruins. [L0ne_W0lf]
 //============================================================
-<<<<<<< HEAD
-
-
-milenia,172,114,11	duplicate(Fruel)	Fruel#job	84
-milenia,172,105,11	duplicate(Repairman#sch_gld)	Repairman#job	86
-milenia,162,116,5	duplicate(Krugg)	Krugg#job	86
-milenia,170,103,11	duplicate(Hollgrehenn)	Hollgrehenn#mro	85
-=======
->>>>>>> 03a54402bc14c620d4f478c5c8b887728213aad4

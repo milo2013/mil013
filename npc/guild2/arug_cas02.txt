@@ -5,11 +5,7 @@
 //===== Current Version: =====================================
 //= 1.0
 //===== Compatible With: =====================================
-<<<<<<< HEAD
 //= rAthena SVN
-=======
-//= rAthena Project
->>>>>>> 03a54402bc14c620d4f478c5c8b887728213aad4
 //===== Additional Comments: =================================
 //= 1.0 Merged to template file.
 //============================================================
@@ -84,8 +80,4 @@ OnRecvCastleAr02:
 	FlagEmblem GetCastleData("arug_cas02",1);
 	end;
 }
-<<<<<<< HEAD
 
-milenia,148,127,11	duplicate(LF_ar02_2)	Cyr#LF_ar02_1600	722
-=======
->>>>>>> 03a54402bc14c620d4f478c5c8b887728213aad4

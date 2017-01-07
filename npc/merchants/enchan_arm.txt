@@ -149,8 +149,3 @@ S_EnchantArmor:
 		close;
 	}
 }
-<<<<<<< HEAD
-
-milenia,162,100,5	duplicate(Apprentice Craftsman)	Apprentice Craftsman#mro	73
-=======
->>>>>>> 03a54402bc14c620d4f478c5c8b887728213aad4

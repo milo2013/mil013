@@ -5,11 +5,7 @@
 //===== Current Version: =====================================
 //= 1.0
 //===== Compatible With: =====================================
-<<<<<<< HEAD
 //= rAthena SVN
-=======
-//= rAthena Project
->>>>>>> 03a54402bc14c620d4f478c5c8b887728213aad4
 //===== Additional Comments: =================================
 //= 1.0 Merged to template file.
 //============================================================
@@ -76,7 +72,3 @@ OnRecvCastlesc03:
 	end;
 }
 sch_gld,104,191,0	duplicate(Sc03_Flag)	Bidblind#flag_sc03_2	722
-<<<<<<< HEAD
-milenia,91,121,5	duplicate(LF_sc03_2)	Vidblainn#LF_sc03_1400	722
-=======
->>>>>>> 03a54402bc14c620d4f478c5c8b887728213aad4

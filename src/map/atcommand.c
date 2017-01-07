@@ -9101,20 +9101,24 @@ int autoattack_timer(int tid, unsigned int tick, int id, intptr_t data)
 	}
 	return 0;
 }
+
 ACMD_FUNC(autoattack)
 {
-	nullpo_retr(-1, sd);
-	if (sd->sc.option & OPTION_AUTOATTACK)
-	{
-		sd->sc.option &= ~OPTION_AUTOATTACK;
-		unit_stop_attack(&sd->bl);
-	}else
-	{
-		sd->sc.option |= OPTION_AUTOATTACK;
-		add_timer(gettick()+200,autoattack_timer,sd->bl.id,0);
-	}
-	clif_changeoption(&sd->bl);
-	return 0;
+nullpo_retr(-1, sd);
+if (sd->sc.option & OPTION_AUTOATTACK)
+{
+sd->sc.option &= ~OPTION_AUTOATTACK;
+unit_stop_attack(&sd->bl);
+clif_displaymessage(fd, "You deactivated Autoattack.");
+}else
+{
+sd->sc.option |= OPTION_AUTOATTACK;
+add_timer(gettick()+200,autoattack_timer,sd->bl.id,0);
+clif_displaymessage(fd, "You activated Autoattack.");
+
+}
+clif_changeoption(&sd->bl);
+return 0;
 }
 
 ACMD_FUNC(accinfo) {

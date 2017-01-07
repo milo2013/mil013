@@ -5,11 +5,7 @@
 //===== Current Version: =====================================
 //= 1.0
 //===== Compatible With: =====================================
-<<<<<<< HEAD
 //= rAthena SVN
-=======
-//= rAthena Project
->>>>>>> 03a54402bc14c620d4f478c5c8b887728213aad4
 //===== Additional Comments: =================================
 //= 1.0 Merged to template file.
 //============================================================
@@ -76,7 +72,3 @@ OnRecvCastleAr03:
 	end;
 }
 aru_gld,74,174,0	duplicate(Ar03_Flag)	Horn#flag_Ar03_2	722
-<<<<<<< HEAD
-milenia,148,121,11	duplicate(LF_ar03_02)	Horn#LF_ar03_1003	722
-=======
->>>>>>> 03a54402bc14c620d4f478c5c8b887728213aad4

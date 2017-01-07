@@ -1,19 +1,11 @@
 //===== rAthena Script =======================================
-<<<<<<< HEAD
 //= War of Emperium (Payon)
-=======
-//= War of Emperium (Payon) - Bright Arbor
->>>>>>> 03a54402bc14c620d4f478c5c8b887728213aad4
 //===== By: ==================================================
 //= L0ne_W0lf
 //===== Current Version: =====================================
 //= 1.3
 //===== Compatible With: =====================================
-<<<<<<< HEAD
 //= rAthena SVN
-=======
-//= rAthena Project
->>>>>>> 03a54402bc14c620d4f478c5c8b887728213aad4
 //===== Description: =========================================
 //= NPCs that relate to Payon Guild Castle 1
 //===== Additional Comments: =================================
@@ -102,11 +94,8 @@ payg_cas01,212,108,4	duplicate(InsideFlagsPA1)	Bright Arbor#10	722
 //============================================================
 payon,90,322,4	duplicate(InsideFlagsPA1)	Bright Arbor#11	722
 payon,166,177,3	duplicate(InsideFlagsPA1)	Bright Arbor#12	722
-<<<<<<< HEAD
-milenia,108,136,11	duplicate(InsideFlagsPA1)	Bright Arbor#13	722
 
-=======
->>>>>>> 03a54402bc14c620d4f478c5c8b887728213aad4
+
 
 // Kafra Employee
 //============================================================
@@ -119,10 +108,7 @@ payg_cas01,120,58,4	duplicate(cm)	Kurunnadi#payg_cas01	55
 // Treasure Room Exit
 //============================================================
 payg_cas01,295,8,0	script	#lever_PA01	111,{
-<<<<<<< HEAD
 
-=======
->>>>>>> 03a54402bc14c620d4f478c5c8b887728213aad4
 	mes " ";
 	mes "There's a small lever. Will you pull it?";
 	next;

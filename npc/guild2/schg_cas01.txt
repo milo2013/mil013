@@ -5,11 +5,7 @@
 //===== Current Version: =====================================
 //= 1.0
 //===== Compatible With: =====================================
-<<<<<<< HEAD
 //= rAthena SVN
-=======
-//= rAthena Project
->>>>>>> 03a54402bc14c620d4f478c5c8b887728213aad4
 //===== Additional Comments: =================================
 //= 1.0 Merged to template file.
 //============================================================
@@ -76,7 +72,3 @@ OnRecvCastlesc01:
 	end;
 }
 sch_gld,297,90,0	duplicate(Sc01_Flag)	Himinn#flag_sc01_2	722
-<<<<<<< HEAD
-milenia,91,132,5	duplicate(LF_sc01_2)	Himinn#LF_sc01_700	722
-=======
->>>>>>> 03a54402bc14c620d4f478c5c8b887728213aad4
