@@ -106,7 +106,7 @@ static bool script_charid2sd_(struct script_state *st, uint8 loc, struct map_ses
 static bool script_nick2sd_(struct script_state *st, uint8 loc, struct map_session_data **sd, const char *func) {
 	if (script_hasdata(st, loc)) {
 		const char *name_ = script_getstr(st, loc);
-		if (!(*sd = map_nick2sd(name_,false)))
+		if (!(*sd = map_nick2sd(name_)))
 			ShowError("%s: Player with nick '%s' is not found.\n", func, name_);
 	}
 	else
@@ -3981,26 +3981,12 @@ void script_stop_instances(struct script_code *code) {
 int run_script_timer(int tid, unsigned int tick, int id, intptr_t data)
 {
 	struct script_state *st = (struct script_state *)data;
+	TBL_PC *sd = map_id2sd(st->rid);
 
-	// If it was a player before going to sleep and there is still a unit attached to the script
-	if( id != 0 && st->rid ){
-		struct map_session_data *sd = map_id2sd(st->rid);
-
-		// Attached player is offline or another unit type - should not happen
-		if( !sd ){
-			ShowWarning( "Script sleep timer called by an offline character or non player unit.\n" );
-			script_reportsrc(st);
-			st->rid = 0;
-			st->state = END;
-		// Character mismatch. Cancel execution.
-		}else if( sd->status.char_id != id ){
-			ShowWarning( "Script sleep timer detected a character mismatch CID %d != %d\n", sd->status.char_id, id );
-			script_reportsrc(st);
-			st->rid = 0;
-			st->state = END;
-		}
+	if ((sd && sd->status.char_id != id) || (st->rid && !sd)) { // Character mismatch. Cancel execution.
+		st->rid = 0;
+		st->state = END;
 	}
-
 	st->sleep.timer = INVALID_TIMER;
 	if(st->state != RERUNLINE)
 		st->sleep.tick = 0;
@@ -7219,7 +7205,7 @@ BUILDIN_FUNC(getnameditem)
 	data=script_getdata(st,3);
 	get_val(st,data);
 	if( data_isstring(data) )	//Char Name
-		tsd=map_nick2sd(conv_str(st,data),false);
+		tsd=map_nick2sd(conv_str(st,data));
 	else	//Char Id was given
 		tsd=map_charid2sd(conv_num(st,data));
 
@@ -7880,8 +7866,12 @@ BUILDIN_FUNC(getcharid)
 	TBL_PC *sd;
 
 	num = script_getnum(st,2);
+	if( script_hasdata(st,3) )
+		sd=map_nick2sd(script_getstr(st,3));
+	else
+		sd=script_rid2sd(st);
 
-	if( !script_nick2sd(3,sd) ){
+	if(sd==NULL){
 		script_pushint(st,0); //return 0, according docs
 		return SCRIPT_CMD_SUCCESS;
 	}
@@ -9834,7 +9824,7 @@ BUILDIN_FUNC(guildchangegm)
 
 	guild_id = script_getnum(st,2);
 	name = script_getstr(st,3);
-	sd=map_nick2sd(name,false);
+	sd=map_nick2sd(name);
 
 	if (!sd)
 		script_pushint(st,0);
@@ -10480,7 +10470,13 @@ BUILDIN_FUNC(attachnpctimer)
 		return SCRIPT_CMD_FAILURE;
 	}
 
-	if( !script_nick2sd(2,sd) ){
+	if( script_hasdata(st,2) )
+		sd = map_nick2sd(script_getstr(st,2));
+	else
+		sd = script_rid2sd(st);
+
+	if( !sd )
+	{
 		script_pushint(st,1);
 		ShowWarning("attachnpctimer: Invalid player.\n");
 		return SCRIPT_CMD_FAILURE;
@@ -12353,10 +12349,12 @@ BUILDIN_FUNC(emotion)
 
 	if (player) {
 		TBL_PC *sd = NULL;
-
-		if( script_nick2sd(4,sd) ){
-			clif_emotion(&sd->bl, type);
-		}			
+		if( script_hasdata(st,4) )
+			sd = map_nick2sd(script_getstr(st,4));
+		else
+			sd = script_rid2sd(st);
+		if (sd)
+			clif_emotion(&sd->bl,type);
 	} else
 		if( script_hasdata(st,4) )
 		{
@@ -12391,10 +12389,10 @@ static int buildin_maprespawnguildid_sub_mob(struct block_list *bl,va_list ap)
 {
 	struct mob_data *md=(struct mob_data *)bl;
 
-	if(!md->guardian_data && md->mob_id != MOBID_EMPERIUM && ( !mob_is_clone(md->mob_id) || battle_config.guild_maprespawn_clones ))
+	if(!md->guardian_data && md->mob_id != MOBID_EMPERIUM)
 		status_kill(bl);
 
-	return 1;
+	return 0;
 }
 
 /*
@@ -12938,7 +12936,7 @@ BUILDIN_FUNC(marriage)
 {
 	const char *partner=script_getstr(st,2);
 	TBL_PC *sd=script_rid2sd(st);
-	TBL_PC *p_sd=map_nick2sd(partner,false);
+	TBL_PC *p_sd=map_nick2sd(partner);
 
 	if(!sd || !p_sd || !pc_marriage(sd,p_sd)){
 		script_pushint(st,0);
@@ -13999,7 +13997,10 @@ BUILDIN_FUNC(specialeffect2)
 	int type = script_getnum(st,2);
 	enum send_target target = script_hasdata(st,3) ? (send_target)script_getnum(st,3) : AREA;
 
-	if( script_nick2sd(4,sd) )
+	if( script_hasdata(st,4) )
+		sd = map_nick2sd(script_getstr(st,4));
+
+	if (sd)
 		clif_specialeffect(&sd->bl, type, target);
 	return SCRIPT_CMD_SUCCESS;
 }
@@ -14452,7 +14453,7 @@ BUILDIN_FUNC(message)
 	player = script_getstr(st,2);
 	msg = script_getstr(st,3);
 
-	if((pl_sd=map_nick2sd((char *) player,false)) == NULL)
+	if((pl_sd=map_nick2sd((char *) player)) == NULL)
 		return SCRIPT_CMD_SUCCESS;
 	clif_displaymessage(pl_sd->fd, msg);
 
@@ -14654,7 +14655,12 @@ BUILDIN_FUNC(getmapxy)
 
 	switch (type) {
 		case UNITTYPE_PC:	//Get Character Position
-			if( script_nick2sd(6,sd) )
+			if( script_hasdata(st,6) )
+				sd=map_nick2sd(script_getstr(st,6));
+			else
+				sd=script_rid2sd(st);
+
+			if (sd)
 				bl = &sd->bl;
 			break;
 		case UNITTYPE_NPC:	//Get NPC Position
@@ -14668,19 +14674,39 @@ BUILDIN_FUNC(getmapxy)
 				bl=map_id2bl(st->oid);
 			break;
 		case UNITTYPE_PET:	//Get Pet Position
-			if( script_nick2sd(6, sd) && sd->pd )
+			if(script_hasdata(st,6))
+				sd=map_nick2sd(script_getstr(st,6));
+			else
+				sd=script_rid2sd(st);
+
+			if (sd && sd->pd)
 				bl = &sd->pd->bl;
 			break;
 		case UNITTYPE_HOM:	//Get Homun Position
-			if( script_nick2sd(6, sd) && sd->hd )
+			if(script_hasdata(st,6))
+				sd=map_nick2sd(script_getstr(st,6));
+			else
+				sd=script_rid2sd(st);
+
+			if (sd && sd->hd)
 				bl = &sd->hd->bl;
 			break;
 		case UNITTYPE_MER: //Get Mercenary Position
-			if( script_nick2sd(6, sd) && sd->md )
+			if(script_hasdata(st,6))
+				sd=map_nick2sd(script_getstr(st,6));
+			else
+				sd=script_rid2sd(st);
+
+			if (sd && sd->md)
 				bl = &sd->md->bl;
 			break;
 		case UNITTYPE_ELEM: //Get Elemental Position
-			if( script_nick2sd(6, sd) && sd->ed )
+			if(script_hasdata(st,6))
+				sd=map_nick2sd(script_getstr(st,6));
+			else
+				sd=script_rid2sd(st);
+
+			if (sd && sd->ed)
 				bl = &sd->ed->bl;
 			break;
 		default:
@@ -16704,7 +16730,16 @@ BUILDIN_FUNC(getmonsterinfo)
 BUILDIN_FUNC(checkvending) {
 	TBL_PC *sd = NULL;
 
-	if (!script_nick2sd(2,sd) ) {
+	if (script_hasdata(st,2)) {
+		if (!(sd = map_nick2sd(script_getstr(st,2)))) {
+			ShowError("buildin_checkvending: Player '%s' is not online!\n", script_getstr(st,2));
+			return SCRIPT_CMD_FAILURE;
+		}
+	}
+	else
+		sd = script_rid2sd(st);
+
+	if (!sd) {
 		script_pushint(st,0);
 		return SCRIPT_CMD_SUCCESS;
 	}
@@ -16727,7 +16762,12 @@ BUILDIN_FUNC(checkchatting) // check chatting [Marka]
 {
 	TBL_PC *sd = NULL;
 
-	if( script_nick2sd(2,sd) )
+	if(script_hasdata(st,2))
+		sd = map_nick2sd(script_getstr(st,2));
+	else
+		sd = script_rid2sd(st);
+
+	if(sd)
 		script_pushint(st,(sd->chatID != 0));
 	else
 		script_pushint(st,0);
@@ -16738,7 +16778,12 @@ BUILDIN_FUNC(checkidle)
 {
 	TBL_PC *sd = NULL;
 
-	if( script_nick2sd(2,sd) )
+	if (script_hasdata(st, 2))
+		sd = map_nick2sd(script_getstr(st, 2));
+	else
+		sd = script_rid2sd(st);
+
+	if (sd)
 		script_pushint(st, DIFF_TICK(last_tick, sd->idletime));
 	else
 		script_pushint(st, 0);
@@ -17847,7 +17892,7 @@ BUILDIN_FUNC(unitattack)
 	get_val(st, data);
 
 	if (data_isstring(data)) {
-		TBL_PC* sd = map_nick2sd(conv_str(st, data),false);
+		TBL_PC* sd = map_nick2sd(conv_str(st, data));
 		if( sd != NULL )
 			target_bl = &sd->bl;
 	} else
@@ -18047,8 +18092,8 @@ BUILDIN_FUNC(sleep)
 	return SCRIPT_CMD_SUCCESS;
 }
 
-/// Pauses the execution of the script, keeping the unit attached
-/// Returns if the unit is still attached
+/// Pauses the execution of the script, keeping the player attached
+/// Returns if a player is still attached
 ///
 /// sleep2(<mili secconds>) -> <bool>
 BUILDIN_FUNC(sleep2)
@@ -18059,7 +18104,7 @@ BUILDIN_FUNC(sleep2)
 
 	if( ticks <= 0 )
 	{// do nothing
-		script_pushint(st, (map_id2bl(st->rid)!=NULL));
+		script_pushint(st, (map_id2sd(st->rid)!=NULL));
 	}
 	else if( !st->sleep.tick )
 	{// sleep for the target amount of time
@@ -18070,7 +18115,7 @@ BUILDIN_FUNC(sleep2)
 	{// sleep time is over
 		st->state = RUN;
 		st->sleep.tick = 0;
-		script_pushint(st, (map_id2bl(st->rid)!=NULL));
+		script_pushint(st, (map_id2sd(st->rid)!=NULL));
 	}
 	return SCRIPT_CMD_SUCCESS;
 }
@@ -18093,14 +18138,22 @@ BUILDIN_FUNC(awake)
 
 	for (tst = dbi_first(iter); dbi_exists(iter); tst = dbi_next(iter)) {
 		if (tst->oid == nd->bl.id) {
+			TBL_PC* sd = map_id2sd(tst->rid);
+
 			if (tst->sleep.timer == INVALID_TIMER) { // already awake ???
 				continue;
 			}
+			if ((sd && sd->status.char_id != tst->sleep.charid) || (tst->rid && !sd)) {
+				// char not online anymore / another char of the same account is online - Cancel execution
+				tst->state = END;
+				tst->rid = 0;
+			}
 
 			delete_timer(tst->sleep.timer, run_script_timer);
-
-			// Trigger the timer function
-			run_script_timer(INVALID_TIMER, gettick(), tst->sleep.charid, (intptr_t)tst);
+			tst->sleep.timer = INVALID_TIMER;
+			if (tst->state != RERUNLINE)
+				tst->sleep.tick = 0;
+			run_script_main(tst);
 		}
 	}
 	dbi_destroy(iter);
@@ -19467,81 +19520,6 @@ BUILDIN_FUNC(instance_check_guild)
 }
 
 /*==========================================
-* instance_info
-* Values:
-* name : name of the instance you want to look up. [Required Parameter]
-* type : type of information you want to look up for the specified instance. [Required Parameter]
-* index : index of the map in the instance. [Optional Parameter]
-*------------------------------------------*/
-BUILDIN_FUNC(instance_info)
-{
-	const char* name = script_getstr(st, 2);
-	int type = script_getnum(st, 3);
-	int index = 0;
-	struct instance_db *db = instance_searchname_db(name);
-
-	if( !db ){
-		ShowError( "buildin_instance_info: Unknown instance name \"%s\".\n", name );
-		script_pushint(st, -1);
-		return SCRIPT_CMD_FAILURE;
-	}
-
-	switch( type ){
-		case IIT_ID:
-			script_pushint(st, db->id);
-			break;
-		case IIT_TIME_LIMIT:
-			script_pushint(st, db->limit);
-			break;
-		case IIT_IDLE_TIMEOUT:
-			script_pushint(st, db->timeout);
-			break;
-		case IIT_ENTER_MAP:
-			script_pushstrcopy(st, StringBuf_Value(db->enter.mapname));
-			break;
-		case IIT_ENTER_X:
-			script_pushint(st, db->enter.x);
-			break;
-		case IIT_ENTER_Y:
-			script_pushint(st, db->enter.y);
-			break;
-		case IIT_MAPCOUNT:
-			script_pushint(st, db->maplist_count);
-			break;
-		case IIT_MAP:
-			if( !script_hasdata(st, 4) || script_isstring(st, 4) ){
-				ShowError( "buildin_instance_info: Type IIT_MAP requires a numeric index argument.\n" );
-				script_pushstr(st, "");
-				return SCRIPT_CMD_FAILURE;
-			}
-			
-			index = script_getnum(st, 4);
-
-			if( index < 0 ){
-				ShowError( "buildin_instance_info: Type IIT_MAP does not support a negative index argument.\n" );
-				script_pushstr(st, "");
-				return SCRIPT_CMD_FAILURE;
-			}
-
-			if( index > UINT8_MAX ){
-				ShowError( "buildin_instance_info: Type IIT_MAP does only support up to index %hu.\n", UINT8_MAX );
-				script_pushstr(st, "");
-				return SCRIPT_CMD_FAILURE;
-			}
-
-			script_pushstrcopy(st, StringBuf_Value(db->maplist[index]));
-			break;
-
-		default:
-			ShowError("buildin_instance_info: Unknown instance information type \"%d\".\n", type );
-			script_pushint(st, -1);
-			return SCRIPT_CMD_FAILURE;
-	}
-
-	return SCRIPT_CMD_SUCCESS;
-}
-
-/*==========================================
  * Custom Fonts
  *------------------------------------------*/
 BUILDIN_FUNC(setfont)
@@ -19933,7 +19911,7 @@ BUILDIN_FUNC(getcharip)
 		data = script_getdata(st, 2);
 		get_val(st, data); // Convert into value in case of a variable
 		if (data_isstring(data))
-			sd = map_nick2sd(script_getstr(st, 2),false);
+			sd = map_nick2sd(script_getstr(st, 2));
 		else if (data_isint(data) || script_getnum(st, 2))
 		{
 			int id = 0;
@@ -20376,7 +20354,12 @@ BUILDIN_FUNC(sit)
 {
 	TBL_PC *sd;
 
-	if( !script_nick2sd(2,sd) )
+	if( script_hasdata(st, 2) )
+		sd = map_nick2sd(script_getstr(st, 2));
+	else
+		sd = script_rid2sd(st);
+
+	if( sd == NULL)
 		return SCRIPT_CMD_FAILURE;
 
 	if( !pc_issit(sd) ) {
@@ -20394,7 +20377,12 @@ BUILDIN_FUNC(stand)
 {
 	TBL_PC *sd;
 
-	if( !script_nick2sd(2,sd) )
+	if( script_hasdata(st, 2) )
+		sd = map_nick2sd(script_getstr(st, 2));
+	else
+		sd = script_rid2sd(st);
+
+	if( sd == NULL)
 		return SCRIPT_CMD_FAILURE;
 
 	if( pc_issit(sd) && pc_setstand(sd, false)) {
@@ -20698,7 +20686,12 @@ BUILDIN_FUNC(vip_status) {
 	time_t now = time(NULL);
 	int type = script_getnum(st, 2);
 
-	if( !script_nick2sd(3,sd) )
+	if (script_hasdata(st, 3))
+		sd = map_nick2sd(script_getstr(st, 3));
+	else
+		sd = script_rid2sd(st);
+
+	if (sd == NULL)
 		return SCRIPT_CMD_FAILURE;
 
 	switch(type) {
@@ -20742,7 +20735,12 @@ BUILDIN_FUNC(vip_time) {
 	TBL_PC *sd;
 	int viptime = script_getnum(st, 2) * 60; // Convert since it's given in minutes.
 
-	if( !script_nick2sd(3,sd) )
+	if (script_hasdata(st, 3))
+		sd = map_nick2sd(script_getstr(st, 3));
+	else
+		sd = script_rid2sd(st);
+
+	if (sd == NULL)
 		return SCRIPT_CMD_FAILURE;
 
 	chrif_req_login_operation(sd->status.account_id, sd->status.name, CHRIF_OP_LOGIN_VIP, viptime, 7, 0); 
@@ -21036,7 +21034,7 @@ BUILDIN_FUNC(addspiritball) {
 		if (!script_isstring(st,4))
 			sd = map_charid2sd(script_getnum(st,4));
 		else
-			sd = map_nick2sd(script_getstr(st,4),false);
+			sd = map_nick2sd(script_getstr(st,4));
 	}
 	else
 		sd = script_rid2sd(st);
@@ -21065,7 +21063,7 @@ BUILDIN_FUNC(delspiritball) {
 		if (!script_isstring(st,3))
 			sd = map_charid2sd(script_getnum(st,3));
 		else
-			sd = map_nick2sd(script_getstr(st,3),false);
+			sd = map_nick2sd(script_getstr(st,3));
 	}
 	else
 		sd = script_rid2sd(st);
@@ -21088,7 +21086,7 @@ BUILDIN_FUNC(countspiritball) {
 		if (!script_isstring(st,2))
 			sd = map_charid2sd(script_getnum(st,2));
 		else
-			sd = map_nick2sd(script_getstr(st,2),false);
+			sd = map_nick2sd(script_getstr(st,2));
 	}
 	else
 		sd = script_rid2sd(st);
@@ -21379,7 +21377,7 @@ BUILDIN_FUNC(ignoretimeout)
 		if (!script_isstring(st,3))
 			sd = map_charid2sd(script_getnum(st,3));
 		else
-			sd = map_nick2sd(script_getstr(st,3),false);
+			sd = map_nick2sd(script_getstr(st,3));
 	} else
 		sd = script_rid2sd(st);
 
@@ -21588,7 +21586,7 @@ BUILDIN_FUNC(adopt)
 	if (data_isstring(data)) {
 		const char *name = conv_str(st, data);
 
-		sd = map_nick2sd(name,false);
+		sd = map_nick2sd(name);
 		if (sd == NULL) {
 			ShowError("buildin_adopt: Non-existant parent character %s requested.\n", name);
 			return SCRIPT_CMD_FAILURE;
@@ -21612,7 +21610,7 @@ BUILDIN_FUNC(adopt)
 	if (data_isstring(data)) {
 		const char *name = conv_str(st, data);
 
-		b_sd = map_nick2sd(name,false);
+		b_sd = map_nick2sd(name);
 		if (b_sd == NULL) {
 			ShowError("buildin_adopt: Non-existant baby character %s requested.\n", name);
 			return SCRIPT_CMD_FAILURE;
@@ -22625,7 +22623,6 @@ struct script_function buildin_func[] = {
 	BUILDIN_DEF(instance_announce,"isi?????"),
 	BUILDIN_DEF(instance_check_party,"i???"),
 	BUILDIN_DEF(instance_check_guild,"i???"),
-	BUILDIN_DEF(instance_info,"si?"),
 	/**
 	 * 3rd-related
 	 **/

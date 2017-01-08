@@ -813,7 +813,7 @@ int channel_pcunbind(struct map_session_data *sd){
 int channel_pcban(struct map_session_data *sd, char *chname, char *pname, int flag){
 	struct Channel *channel;
 	char output[128];
-	struct map_session_data *tsd = map_nick2sd(pname,false);
+	struct map_session_data *tsd = map_nick2sd(pname);
 
 	if( channel_chk(chname,NULL,1) ) {
 		clif_displaymessage(sd->fd, msg_txt(sd,1405));// Channel name must start with '#'.
