@@ -18,6 +18,11 @@ while ( true ) {
 			next;
 			break;
 		case 2:
+			if (getpetinfo(1)){
+			mes "You cannot enter with your pet.";
+			close;
+			}
+			else{
 //			#HuntRoomDelay = 0;
 			if ( #HuntRoomDelay + .DelayMin * 60 > gettimetick(2) ) {
 				mes "Wait for ^FF0000"+( ( ( #HuntRoomDelay + .DelayMin * 60 ) - gettimetick(2) )/60 )+" Minutes^000000.";
@@ -68,7 +73,7 @@ OnInit:
 	setmapflag .Map$, mf_nowarpto;
 	setmapflag .Map$, mf_nochat;
 	setmapflag .Map$, mf_novending;
-	setmapflag .Map$, mf_nocommand,60;
+	//setmapflag .Map$, mf_nocommand,60;
 	setmapflag .Map$, mf_noskill;
 	//setmapflag .Map$, mf_nopet;
 	setmapflag .Map$, mf_noteleport;
