@@ -11,15 +11,32 @@
 //===== Additional Comments: =================================
 //= 1.0 First version, edited. [Euphy]
 //============================================================
+function	script	timeleft__	{
+	if ( ( .@left = getarg(0) ) <= 0 ) return getarg(0);
+	.@day = .@left / 86400;
+	.@hour = .@left % 86400 / 3600;
+	.@min = .@left % 3600 / 60;
+	.@sec = .@left % 60;
+	if ( .@day )
+		return .@day +" day "+ .@hour +" hour";
+	else if ( .@hour )
+		return .@hour +" hour "+ .@min +" min";
+	else if ( .@min )
+		return .@min +" min "+ .@sec +" sec";
+	else
+		return .@sec +" sec";
+}
 
 milenia,102,161,5	script	MVP Ladder	10192,{
 	mes "[MvP Ladder Warper]";
 	mes "Say... do you want to play the MvP Ladder game?";
 	next;
-	if ( #MVPDelay + .DelayMin * 60 > gettimetick(2) ) {
-				mes "Wait for ^FF0000"+( ( ( #HuntRoomDelay + .DelayMin * 60 ) - gettimetick(2) )/60 )+" Minutes^000000.";
-				close;
-			}
+	if ( #MVP_timer > gettimetick(2) ) {
+		mes "[MvP Ladder Warper]";
+		mes "You must wait ^ff0000"+ callfunc( "timeleft__", #MVP_timer - gettimetick(2) ) +"^000000.";
+		close;
+	}
+	set #MVPDelayRESET,0;
 	switch(select("Yes, let's get it on!:Information.:Show me the best record.:No.")) {
 	case 1:
 		break;
@@ -189,7 +206,11 @@ OnMvpDead:
 				attachrid $@partymemberaid[.@i];
 				if ( strcharinfo(3) == .eventmap$ )
 					getitem .round_item_id, .round_item_amount;
-					set #MVPDelay, gettimetick(2); 
+				if (#MVPDelayRESET == 0){
+					#MVP_timer = gettimetick(2) + 86400;
+					set #MVPDelayRESET,1;
+				}
+
 			}
 		}
 	}
@@ -236,9 +257,6 @@ OnPCDieEvent:
 
 OnInit:
 //	Configurations -----------------------------------------------------
-
-	// Delay to enter
-	set .DelayMin,1440;
 
 	// Time limit (in minutes)
 	// When time runs out, all players inside the room will be kicked out.
