@@ -18,7 +18,7 @@
 
 -	script	bg_emp#control	-1,{
 OnInit:
-	.minplayer2start = 3;      // minimum players to start (ex. if 3vs3, set to 3)
+	.minplayer2start = 2;      // minimum players to start (ex. if 3vs3, set to 3)
 	.eventlasting    = 20*60;  // event duration before auto-reset (20 minutes * seconds)
 	setarray .rewarditem[0],   // rewards for the winning team: <item>,<amount>,...
 		31159, 5;
@@ -97,7 +97,7 @@ OnStart:
 
 // Emperium destroyed
 OnGoldDown:  callsub L_EmpDown, 1, 2;
-OnDiamondDown: callsub L_EmpDown, 2, 1;
+OnDiamondDown: callsub L_EmpDown, 2,1;
 L_EmpDown:
 	mapannounce "bat_a01", strcharinfo(0) +" has destroyed "+ getd( ".team"+ getarg(0) +"name$" ) +" Team's Emperium.", bc_map;
 	.winside = getarg(1);
@@ -285,39 +285,29 @@ prt_cas,82,295,5	duplicate(GuardBG#C)	Royal Knight#4	966
 
 // Minister Guard
 prt_cas,103,294,5	duplicate(GuardBG#M)	Royal Knight#5	966
-prt_cas,103,294,5	duplicate(GuardBG#M)	Royal Knight#6	966
+prt_cas,105,295,5	duplicate(GuardBG#M)	Royal Knight#6	966
 
 //OFF LIMIT GUARD
-prt_cas,105,295,5	duplicate(GuardBG)	Royal Knight#7	966,2,2
-prt_cas,76,310,5	duplicate(GuardBG)	Royal Knight#8	966,2,2
-prt_cas,79,310,5	duplicate(GuardBG)	Royal Knight#9	966,2,2
-prt_cas,108,310,5	duplicate(GuardBG)	Royal Knight#10	966,2,2
-prt_cas,111,310,5	duplicate(GuardBG)	Royal Knight#11	966,2,2
-prt_cas,115,259,11	duplicate(GuardBG)	Royal Knight#12	966,2,2
-prt_cas,115,256,11	duplicate(GuardBG)	Royal Knight#13	966,2,2
-prt_cas,129,219,11	duplicate(GuardBG)	Royal Knight#14	966,2,2
-prt_cas,129,216,11	duplicate(GuardBG)	Royal Knight#15	966,2,2
-prt_cas,95,208,1	duplicate(GuardBG)	Royal Knight#16	966,2,2
-prt_cas,92,208,1	duplicate(GuardBG)	Royal Knight#17	966,2,2
-prt_cas,54,216,7	duplicate(GuardBG)	Royal Knight#18	966,2,2
-prt_cas,54,219,7	duplicate(GuardBG)	Royal Knight#19	966,2,2
-prt_cas,70,259,7	duplicate(GuardBG)	Royal Knight#20	966,2,2
-prt_cas,70,255,7	duplicate(GuardBG)	Royal Knight#21	966,2,2
+prt_cas,76,310,5	duplicate(GuardBG)	Royal Knight#7	966,2,2
+prt_cas,79,310,5	duplicate(GuardBG)	Royal Knight#8	966,2,2
+prt_cas,108,310,5	duplicate(GuardBG)	Royal Knight#9	966,2,2
+prt_cas,111,310,5	duplicate(GuardBG)	Royal Knight#10	966,2,2
+prt_cas,115,259,11	duplicate(GuardBG)	Royal Knight#11	966,2,2
+prt_cas,115,256,11	duplicate(GuardBG)	Royal Knight#12	966,2,2
+prt_cas,129,219,11	duplicate(GuardBG)	Royal Knight#13	966,2,2
+prt_cas,129,216,11	duplicate(GuardBG)	Royal Knight#14	966,2,2
+prt_cas,95,208,1	duplicate(GuardBG)	Royal Knight#15	966,2,2
+prt_cas,92,208,1	duplicate(GuardBG)	Royal Knight#16	966,2,2
+prt_cas,54,216,7	duplicate(GuardBG)	Royal Knight#17	966,2,2
+prt_cas,54,219,7	duplicate(GuardBG)	Royal Knight#18	966,2,2
+prt_cas,70,259,7	duplicate(GuardBG)	Royal Knight#19	966,2,2
+prt_cas,70,255,7	duplicate(GuardBG)	Royal Knight#20	966,2,2
 
 //WELCOME GUARD
 prt_cas,99,248,5	duplicate(GuardBG#WC)	Royal Knight#22	966
 prt_cas,108,248,5	duplicate(GuardBG#WC)	Royal Knight#23	966
 prt_cas,88,248,5	duplicate(GuardBG#WC)	Royal Knight#24	966
 prt_cas,79,248,5	duplicate(GuardBG#WC)	Royal Knight#25	966
-
-//prt_cas,54,219,5	script	GuardBG#19	966,{
-//
-//OnTouch:
-//emotion e_gasp;
-//mes "[Royal Knight]";
-//mes "Halt!! This area is off limit!!";
-//close;
-//}
 
 bat_a01	mapflag	battleground
 bat_a01	mapflag	nosave	SavePoint
@@ -330,12 +320,12 @@ bat_a01	mapflag	nobranch
 bat_a01	mapflag	noicewall
 //bat_a01	mapflag	hidemobhpbar
 
-prt_cas	mapflag	nosave	SavePoint
-prt_cas	mapflag	nowarp
-prt_cas	mapflag	nowarpto
-prt_cas	mapflag	noteleport
+//prt_cas	mapflag	nosave	SavePoint
+//prt_cas	mapflag	nowarp
+//prt_cas	mapflag	nowarpto
+//prt_cas	mapflag	noteleport
 prt_cas	mapflag	nomemo
-prt_cas	mapflag	nopenalty
+//prt_cas	mapflag	nopenalty
 prt_cas	mapflag	nobranch
 prt_cas	mapflag	noicewall
 

@@ -96,11 +96,13 @@
 31128,Cashpoint_Voucher_99,Cashpoint Voucher 99,2,0,,20,,,,,0xFFFFFFFF,63,2,,,,,,{ set #CASHPOINTS, #CASHPOINTS+150; Dispbottom "You got 99 Cashpoints."; Dispbottom "You got extra 51 Cashpoints."; dispbottom "You currently have " +#CASHPOINTS+ " total Cashpoints.";},{},{}
 31129,Welcome Back Package,Welcome Back Package,18,20,,10,,,,,0xFFFFFFFF,63,2,,,,,,{ getitem 31130,1; getitem 671 ,1; getitem 31126,1; getitem 31125,1; getitem 31120,10; getitem 31115,1; getitem 2499,1; getitem 6607,1; getitem 6608,1; },{},{}
 31130,Cloning_Token,Cloning Token,2,10000,,0,,,,,0xFFFFFFFF,63,2,,,,,,{},{},{}
-31152,Donation_Free_Gift_Vol_1,Donation Freegift Vol 1,2,0,,10,,,,,0xFFFFFFFF,7,2,,,,,,{getitem 31124,1; getitem 31123,5; getitem 12214,5; getitem 12264,5; getitem 14545,5; getitem 12587,1;},{},{}
-31153,Donation_Free_Gift_Vol_2,Donation Freegift Vol 2,2,0,,10,,,,,0xFFFFFFFF,7,2,,,,,,{getitem 31152,2;},{},{}
-31154,Donation_Free_Gift_Vol_3,Donation Freegift Vol 3,2,0,,10,,,,,0xFFFFFFFF,7,2,,,,,,{getitem 31152,3;},{},{}
-31155,Donation_Free_Gift_Vol_4,Donation Freegift Vol 3,2,0,,10,,,,,0xFFFFFFFF,7,2,,,,,,{getitem 31152,4;},{},{}
+31152,Donation_Free_Gift_Vol_1,Donation Freegift Vol 1,2,20,,10,,,,,0xFFFFFFFF,63,2,,,,,,{getitem 31124,1; getitem 31123,5; getitem 12214,5; getitem 12264,5; getitem 14545,5; getitem 12587,1;},{},{}
+31153,Donation_Free_Gift_Vol_2,Donation Freegift Vol 2,2,20,,10,,,,,0xFFFFFFFF,63,2,,,,,,{getitem 31152,2;},{},{}
+31154,Donation_Free_Gift_Vol_3,Donation Freegift Vol 3,2,20,,10,,,,,0xFFFFFFFF,63,2,,,,,,{getitem 31152,3;},{},{}
+31155,Donation_Free_Gift_Vol_4,Donation Freegift Vol 3,2,20,,10,,,,,0xFFFFFFFF,63,2,,,,,,{getitem 31152,4;},{},{}
 31159,BF_Badge_M,Honor Badge,3,0,,0,,,,,,,,,,,,,{},{},{}
+31160,500_Sales,Sales Voucher,2,20,,10,,,,,0xFFFFFFFF,63,2,,,,,,{ set #CASHPOINTS, #CASHPOINTS+500; Dispbottom "You got 500 Cashpoints."; dispbottom "You currently have " +#CASHPOINTS+ " total Cashpoints.";},{},{}
+31161,Rare_Mithril_Bag,Rare Mithril Bag,2,20,,10,,,,,0xFFFFFFFF,63,2,,,,,,{getitem 31123,25;},{},{}
 
 // Edited Items 
 4128,Golden_Bug_Card,Golden Thief Bug Card,6,20,,10,,,,,,,,32,,,,,{ .@map$ = strcharinfo(3); bonus bNoMagicDamage,((getmapflag( .@map$,mf_pvp ) || getmapflag( .@map$,mf_gvg ))? 80 : 100 ); bonus bUseSPrate,100; },{},{}
@@ -108,7 +110,7 @@
 
 
 // GM EQ
-31133,GM_RING,GM Ring,4,,,,1000000,1000000,,0,0xFFFFFFFE,63,2,136,,,,,{ skill "AL_HEAL",10; bonus bMdef,1000000; bonus bDef,1000000; bonus bFlee,1000000; bonus bFlee2,1000000; bonus bAspd,193; bonus bLuk,10000; bonus bMaxHp,1000000; bonus2 bHPRegenRate,(( MaxHP * 100 )/100 ),20;},{},{}
+31133,GM_RING,GM Ring,4,,,,1000000,1000000,,0,0xFFFFFFFE,63,2,136,,,,,{ skill "AL_HEAL",10; bonus bMdef,1000000; bonus bDef,1000000; bonus bFlee,1000000; bonus bFlee2,1000000; bonus bAspd,999; bonus bLuk,10000; bonus bMaxHp,2000000; bonus2 bHPRegenRate,(( MaxHP * 200 )/200 ),20;},{},{}
 
 
 // Box Package
@@ -138,3 +140,4 @@
 31156,Piece_Of_Fish,Piece of Fish,0,1500,1000,20,,,,,0xFFFFFFFF,63,2,,,,,,{itemheal rand(1000,1500),0;},{},{}
 31157,Fish_With_Blue_Back,Fish With Blue Back,0,30000,25000,20,,,,,0xFFFFFFFF,63,2,,,,,,{itemheal rand(4000,4500),0;},{},{}
 31158,Unknown_Fish,Unknown Fish,0,15000,10000,20,,,,,0xFFFFFFFF,63,2,,,,,,{itemheal rand(2000,2500),0;},{},{}
+31162,Hero_Badge,Hero Badge,3,0,,0,,,,,,,,,,,,,{},{},{}
