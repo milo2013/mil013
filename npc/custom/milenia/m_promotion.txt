@@ -2,7 +2,6 @@ milenia,99,152,11	script	Information Staff	640,{
 	
 	cutin "gc_mayssel01",2;
 	mes "[Lady Mia]";
-	mes "   ";
 	mes "^ff0000SALES!!!^000000";
 	mes "100 Donation Credit got 500 Cashpoints!!";
 	mes "(Normal Price 99 Donation Credit got 150 Cashpoints)";
