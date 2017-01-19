@@ -138,11 +138,21 @@ milenia,102,161,5	script	MVP Ladder	10192,{
 	}
 	cleanmap .eventmap$;
 	warpparty .eventmap$, 0,0, .party_id, strnpcinfo(4);
+							if ( #MVP_timer > gettimetick(2) ) {
+						Dispbottom "You're kicked from MVP Ladder!! Please wait till your Cooling Down ended!!";
+						warp "milenia",0,0;
+					}
 	donpcevent strnpcinfo(0)+"::OnMvpDead";
 	sleep .timeout * 60000;
 	if ( .round == .totalround +1 ) {
 		getpartymember .party_id, 1;
 		getpartymember .party_id, 2;
+		
+	// item reward for completing the entire ladder
+	setarray .@itemsFinish[0],"6277","7879";
+	set .finish_item_id, .@itemsFinish[rand (getarraysize(.@itemsFinish)) ];
+	set .inish_item_amount, 1;
+	
 		mapannounce .eventmap$, "Congratulations... You were able to defeat all the MVPs!", bc_map;
 		for ( .@i = 0; .@i < $@partymembercount; .@i++ ) {
 			if ( isloggedin( $@partymemberaid[.@i], $@partymembercid[.@i] ) ) {
@@ -151,6 +161,13 @@ milenia,102,161,5	script	MVP Ladder	10192,{
 					getitem .finish_item_id, .finish_item_amount;
 			}
 		}
+		
+	// bonus reward if ladder completed within a certain time (in minutes)
+	.bonus_time = 10; // if completed within 10 minutes, this reward is given
+	setarray .@itemsBonus[0],"6277","7879";
+	set .bonus_item_id, .@itemsBonus[rand (getarraysize(.@itemsBonus)) ];
+	set .bonus_item_amount, rand(1,5);
+		
 		set .@timeused, gettimetick(2) - .@time_enter;
 		if ( .bonus_item_amount && .@timeused < .bonus_time * 60 ) {
 			mapannounce .eventmap$, "You are rewarded a bonus item for completing the ladder within "+ .bonus_time +" minutes.", bc_map;
@@ -181,23 +198,11 @@ milenia,102,161,5	script	MVP Ladder	10192,{
 	.party_id = .round = 0;
 	end;
 
-OnMvpDead:
-
+OnMvpDead:	
 	// item reward for completing each round
-	setarray .@items[0],"31120","6746","7914","31120","969","7844","7231";
+	setarray .@items[0],"607","6746","7914","607","969","7844","7231";
 	set .round_item_id, .@items[rand (getarraysize(.@items)) ];
 	set .round_item_amount, rand(1,3);
-
-	// item reward for completing the entire ladder
-	setarray .@itemsFinish[0],"6277","7879";
-	set .finish_item_id, .@itemsFinish[rand (getarraysize(.@itemsFinish)) ];
-	set .inish_item_amount, 1;
-
-	// bonus reward if ladder completed within a certain time (in minutes)
-	.bonus_time = 10; // if completed within 10 minutes, this reward is given
-	setarray .@itemsBonus[0],"6277","7879";
-	set .bonus_item_id, .@itemsBonus[rand (getarraysize(.@itemsBonus)) ];
-	set .bonus_item_amount, rand(1,5);
 	
 	.round++;
 	if ( .round >= 2 && .round != .totalround +1 && .round_item_amount ) {
@@ -207,10 +212,10 @@ OnMvpDead:
 				if ( strcharinfo(3) == .eventmap$ )
 					getitem .round_item_id, .round_item_amount;
 				if (#MVPDelayRESET == 0){
-					#MVP_timer = gettimetick(2) + 86400;
+					//#MVP_timer = gettimetick(2) + 86400;
+					#MVP_timer = gettimetick(2) + 300;
 					set #MVPDelayRESET,1;
 				}
-
 			}
 		}
 	}
@@ -261,7 +266,7 @@ OnInit:
 	// Time limit (in minutes)
 	// When time runs out, all players inside the room will be kicked out.
 	// Do NOT set this to zero!
-	set .timeout, 60;
+	set .timeout, 20;
 
 	// entrance fee (in Zeny)
 	set .register_cost, 100000;
@@ -309,7 +314,9 @@ OnInit:
 		1646,// Bio3 placeholder    99
 		1708,//	Thanatos			99
 		1751,//	Valkyrie Randgris	99
-		1832;//	Ifrit				99
+		1832,//	Ifrit				99
+		"2235|2236|2238|2239|2240|2241|2237",// Bio4 MVP	100
+		3074; // Time Holder	101
 
 	// number of rounds (default: 39)
 	set .totalround, getarraysize(.mvpid) -1;
@@ -330,12 +337,13 @@ OnInit:
 		mf_nosave,
 		mf_nomemo,
 		mf_noteleport,
-//		mf_nopenalty, // disable exp loss
+		mf_nopenalty, // disable exp loss
 		mf_noreturn,
-//		mf_nobranch,
-//		mf_nomobloot, // disable monster drop loots,
-//		mf_nomvploot, // 2 of these
-		mf_partylock;
+		mf_nobranch,
+		mf_nomobloot, // disable monster drop loots,
+		mf_nomvploot, // 2 of these
+		mf_partylock,
+		mf_hidemobhpbar;
 
 //	Config Ends --------------------------------------------------------------
 
