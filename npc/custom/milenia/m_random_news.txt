@@ -3,7 +3,7 @@ OnInit:
 set .Time,60;		// Announce every x Minute.
 
 setarray .News$[0],	// Random Message to be Announced
-		"Milenia RO : 2 Cashpoints just RM1.00~ Buy in our website..",
+		"Milenia RO : 4 Cashpoints just $1~ Buy in our website..",
 		"Milenia RO : Recommend our server to your friends to make us grow!!",
 		"Milenia RO : New in Milenia RO? use our Milenia Tour NPC to warp any NPC!",
 		"Milenia RO : Please like our FB Page. (facebook.com/MileniaRO)",
