@@ -1,0 +1,18 @@
+function	script	PetLimitFunc	{
+
+OnPCLoadMapEvent:
+set .map$,"farm";
+    getmapxy(@map$, @xb, @yb, 0 );
+        if (@map$ == .map$) {
+                dispbottom "You cannot hatch pet in Dokebi Farm.";
+		mes "[Milenia Officer]";
+		mes "Hello ^ff0000" + strcharinfo(0) + "^000000,";
+		mes "You cannot hatch pet here.";
+		mes "Thank you!";
+                close;
+        }
+		else{
+		bpet;
+		}
+    end;
+}
