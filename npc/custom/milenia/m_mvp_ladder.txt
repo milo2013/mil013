@@ -212,8 +212,8 @@ OnMvpDead:
 				if ( strcharinfo(3) == .eventmap$ )
 					getitem .round_item_id, .round_item_amount;
 				if (#MVPDelayRESET == 0){
-					//#MVP_timer = gettimetick(2) + 86400;
-					#MVP_timer = gettimetick(2) + 300;
+					#MVP_timer = gettimetick(2) + 86400;
+					// test only #MVP_timer = gettimetick(2) + 300;
 					set #MVPDelayRESET,1;
 				}
 			}

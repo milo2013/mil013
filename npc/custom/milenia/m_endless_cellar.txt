@@ -1920,7 +1920,6 @@ OnMyMobDead:
 	next;
 	mes "[Lost Souls]";
 	mes "Thank you so much. Now we can escape from this cold and dark place... to heaven.";
-	getitem 6412, rand (10,20);
 	next;
 	if ((countitem(13412) > 0) && (countitem(13413) > 0)) {
 		mes "[Lost Souls]";
@@ -1962,6 +1961,7 @@ OnMyMobDead:
 	next;
 	mes "[Lost Souls]";
 	mes "Farewell, young adventurer. I wish you good luck.";
+	getitem 6412, rand (10,20);
 	close2;
 	warp "alberta",223,36;
 	end;
