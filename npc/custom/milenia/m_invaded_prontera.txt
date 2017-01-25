@@ -1,0 +1,155 @@
+milenia,67,66,5	script	Novice Kafra	114,{
+	if	(Class > 0){
+		mes "[Kafra Employee]";
+		mes "Sorry.. For Novice only~";
+		}
+		
+	// Make sure the invoking character does not have a cart already
+	if(checkcart() == 1){
+		mes "[Kafra Employee]";
+		mes "You already have";
+		mes "a Pushcart equipped.";
+		mes "Unfortunately, we can't";
+		mes "rent more than one to";
+		mes "each customer at a time.";
+		close;
+	}
+	// Check if the player has the Pushcart skill
+	else if(getskilllv("MC_PUSHCART") == 0) {
+		mes "[Kafra Employee]";
+		mes "You can only rent a cart after learning the \"Push Cart\" skill.";
+		close;
+	}
+	mes "[Kafra Employee]";
+	mes "Have a nice day~";
+	setcart;
+	close;
+}
+
+
+
+milenia,130,163,11	script	Unknown Scout	998,{
+while ( true ) {
+		mes "[Unknown Scout]";
+		mes "Hello Adventurer..";
+		next;
+		switch( select( "Information:Let's Save Prontera!!" )) {
+		case 1:
+			mes "[Unknown Scout]";
+			mes "Our Prontera being invaded!!";
+			mes "Please come to help us!!";
+			mes "Every Monster you kill,we will award you random items.";
+			next;
+			mes "[Unknown Scout]";
+			mes "But there is some Condition..";
+			mes "We only accept ^FF0000Novice^000000 for now!!";
+			mes "And Maximum of ^FF0000"+.MaxPlayers+" Warriors.^000000";
+			mes "Maximum Rewards Limit ^FF0000"+.MaxItemLimit+"^000000";
+			next;
+			mes "[Unknown Scout]";
+			mes "We need ^FF0000100 Delicious Fish^000000 per entry!!";
+			mes "Or....";
+			mes "^FF0000Warrior Emblem^000000";
+			next;
+			break;
+		case 2:
+			if (getpetinfo(1)){
+			mes "[Unknown Scout]";
+			mes "You cannot enter with your pet!!";
+			close;
+			}
+			else if(Class > 0){
+			mes "[Unknown Scout]";
+			mes "Like I said.. We only recruit ^FF0000Novice^000000 only!!";
+			}
+			 else if ( getarraysize( .Hunter ) >= .MaxPlayers ) {
+				mes "Currently the Room is Full. Please try again later.";
+				close;
+			} else if (countitem (31151) > 99) {
+				delitem 31151,100;
+				warp .Map$,0,0;
+				set .Hunter[getarraysize( .Hunter )], getcharid(3);
+				set #FarmHunt,0;
+				end;
+			} else if (countitem (31163) > 0) {
+				warp .Map$,0,0;
+				set .Hunter[getarraysize( .Hunter )], getcharid(3);
+				set #FarmHunt,0;
+				end;
+			}
+			else {
+			mes "[Unknown Scout]";
+			mes "You don't have any ^FF0000Delicious Fish^000000 or ^FF0000Bravery Medal^000000!!";
+			}
+	}
+	close;
+OnNormalKill:
+	monster .Map$,0,0,"--ja--",.normal_mob[rand(.normal_mob_size)],1,strnpcinfo(0)+"::OnNormalKill";
+	getitem .farm_normal[rand(.farm_normal_size)], 1;
+	goto L_kill;
+OnBossKill:
+	monster .Map$,0,0,"--ja--",.boss_mob[rand(.boss_mob_size)],1,strnpcinfo(0)+"::OnBossKill";
+	getitem .farm_boss[rand(.farm_boss_size)], 4;
+L_kill:
+	#FarmHunt++;
+	dispbottom "[ Invaded Prontera ] : Rewarded "+ #FarmHunt +" / "+.MaxItemLimit+" Items";
+	if ( #FarmHunt >= .MaxItemLimit ) {
+		message strcharinfo(0),"Limit Reach , you may join again later.";
+		sleep2 2000;
+		warp "milenia",127,164;
+	}
+	end;
+OnInit:
+	// Maximum Player can join per X Minutes.
+	set .MaxPlayers,5;
+	// Adding X Minutes of Delay before can go in again.
+	//set .DelayMin,30;
+	// Maximum Hunt Limit per round inside the Zone.
+	set .MaxItemLimit,10;
+	// Map that will be used in thos Zone.
+	set .Map$,"prt_q";
+	// Clear Map Every X Minutes.
+	//set .RoomCleanMin,15;
+	// Mapflag Initialization
+	setmapflag .Map$, mf_nomobloot;
+	setmapflag .Map$, mf_nomvploot;
+	setmapflag .Map$, mf_nowarpto;
+	setmapflag .Map$, mf_nosave;
+	setmapflag .Map$, mf_nomemo;
+	setmapflag .Map$, mf_nochat;
+	setmapflag .Map$, mf_novending;
+	//setmapflag .Map$, mf_nocommand,60;
+	setmapflag .Map$, mf_noskill;
+	//setmapflag .Map$, mf_nopet;
+	setmapflag .Map$, mf_noteleport;
+	//setmapflag .Map$, mf_nojobexp;
+	//setmapflag .Map$, mf_nobaseexp;
+	
+	setarray .farm_normal, 13517,13516,969,13517,969,969; // farm 1 of these items when kill normal mobs
+	setarray .farm_boss, 969,969,969; // farm 1 of these items when kill boss monsters
+
+	setarray .normal_mob,3951,3951,3951,3952,3952,3953;
+	setarray .boss_mob,3950,3950,3950;
+	
+	.farm_normal_size = getarraysize(.farm_normal);
+	.farm_boss_size = getarraysize(.farm_boss);
+	.boss_mob_size = getarraysize(.boss_mob);
+	.normal_mob_size = getarraysize(.normal_mob);
+	while ( true ) {
+		//killmonster .Map$, "All";
+		//cleanmap .Map$; // you also forgot about this command
+		mapwarp .Map$,"milenia",119,152;
+		for ( .@i = 0; .@i < 80; .@i++ )
+			monster .Map$,0,0, "Soldier", .normal_mob[ rand( .normal_mob_size ) ], 1, strnpcinfo(0)+"::OnNormalKill";
+		for ( .@i = 0; .@i < 5; .@i++ )
+			monster .Map$,0,0, "General", .boss_mob[ rand( .boss_mob_size ) ], 1, strnpcinfo(0)+"::OnBossKill";
+		//deletearray .Hunter;
+		//announce "[ Dokebi Farm ] : Dokebi Farm has been Cleaned up, another 5 Players may go in now.", bc_blue;
+		//sleep ( .RoomCleanMin * 60000 );
+		//mapannounce .Map$,"[ Dokebi Farm ] : Room Clean Up now...All Users will be warped Out.", bc_map;
+		//killmonster .Map$, "All";
+		//sleep 3000;
+	}
+	end;
+	}
+}
