@@ -146,17 +146,44 @@
 31163,Bravery_Medal,Bravery Medal,3,0,,0,,,,,,,,,,,,,{},{},{}
 31164,Bravery_Medal_Box,Bravery Medal Box,18,10,,10,,,,0,0xFFFFFFFF,63,2,,,,,,{ rentitem 31163,604800; },{},{}
 
-31165,Thief_Figure I,Thief Figure I,4,2,,0,,0,,0,0x00000001,63,2,136,,0,0,0,{ bonus bMaxHP,700; bonus bAgi,15; bonus bLuk,5; skill "TF_DOUBLE",10; skill "TF_BACKSLIDING",10; },{},{}
-31166,Thief_Figure II,Thief Figure II,4,2,,0,,0,,0,0x00000001,63,2,136,,0,0,0,{ bonus bMaxHP,700; bonus bAgi,15; bonus bLuk,5; skill "TF_MISS",10; skill "TF_HIDING",10; },{},{}
-31167,Swordman_Figure I,Swordman Figure I,4,2,,0,,0,,0,0x00000001,63,2,136,,0,0,0,{ bonus bMaxHP,1000; bonus bStr,10; bonus bDex,10; skill "SM_RECOVERY",10; skill "SM_ENDURE",10; },{},{}
-31168,Swordman_Figure II,Swordman Figure II,4,2,,0,,0,,0,0x00000001,63,2,136,,0,0,0,{ bonus bMaxHP,1000; bonus bStr,10; bonus bDex,10; skill "SM_BASH",10; skill "SM_MAGNUM",10; },{},{}
-31169,Magician_Figure I,Magician Figure I,4,2,,0,,0,,0,0x00000001,63,2,136,,0,0,0,{ bonus bMaxSP,750; bonus bInt,10; bonus bDex,10; skill "MG_ENERGYCOAT",10; skill "MG_SRECOVERY",10; },{},{}
-31170,Magician_Figure II,Magician Figure II,4,2,,0,,0,,0,0x00000001,63,2,136,,0,0,0,{ bonus bMaxSP,750; bonus bInt,10; bonus bDex,10; skill "MG_SOULSTRIKE",10; skill "MG_FIREWALL",10; },{},{}
-31171,Archer_Figure I,Archer Figure I,4,2,,0,,0,,0,0x00000001,63,2,136,,0,0,0,{ bonus bMaxHP,550; bonus bMaxSP,150; bonus bAgi,10; bonus bDex,10; skill "AC_OWL",10; skill "AC_SHOWER",10; },{},{}
-31172,Archer_Figure II,Archer Figure II,4,2,,0,,0,,0,0x00000001,63,2,136,,0,0,0,{ bonus bMaxHP,550; bonus bMaxSP,150; bonus bAgi,10; bonus bDex,10; skill "AC_DOUBLE",10; skill "AC_VULTURE",10; },{},{}
-31173,Acolyte_Figure I,Acolyte Figure I,4,2,,0,,0,,0,0x00000001,63,2,136,,0,0,0,{ bonus bMaxHP,150; bonus bMaxSP,550; bonus bInt,20;  skill "AL_TELEPORT",2; skill "AL_INCAGI",10; },{},{}
-31174,Acolyte_Figure II,Acolyte Figure II,4,2,,0,,0,,0,0x00000001,63,2,136,,0,0,0,{ bonus bMaxHP,150; bonus bMaxSP,550; bonus bInt,20; skill "AL_HEAL",10; skill "AL_BLESSING",10; },{},{}
-31175,Merchantr_Figure I,Merchant Figure I,4,2,,0,,0,,0,0x00000001,63,2,136,,0,0,0,{ bonus bMaxHP,700; bonus bMaxSP,50; bonus bAgi,10; bonus bStr,10; skill "MC_INCCARRY",10; skill "MC_CARTREVOLUTION",10; },{},{}
-31176,Merchant_Figure II,Merchant Figure II,4,2,,0,,0,,0,0x00000001,63,2,136,,0,0,0,{ bonus bMaxHP,700; bonus bMaxSP,50; bonus bAgi,10; bonus bStr,10; skill "MC_MAMMONITE",10; skill "MC_PUSHCART",10; },{},{}
+31165,Thief_Figure_I,Thief Figure I,4,2,,0,,0,,0,0x00000001,63,2,136,,0,0,0,{ bonus bMaxHP,700; bonus bAgi,15; bonus bLuk,5; skill "TF_DOUBLE",10; skill "TF_BACKSLIDING",10; },{},{}
+31166,Thief_Figure_II,Thief Figure II,4,2,,0,,0,,0,0x00000001,63,2,136,,0,0,0,{ bonus bMaxHP,700; bonus bAgi,15; bonus bLuk,5; skill "TF_MISS",10; skill "TF_HIDING",10; },{},{}
+31167,Swordman_Figure_I,Swordman Figure I,4,2,,0,,0,,0,0x00000001,63,2,136,,0,0,0,{ bonus bMaxHP,1000; bonus bStr,10; bonus bDex,10; skill "SM_RECOVERY",10; skill "SM_ENDURE",10; },{},{}
+31168,Swordman_Figure_II,Swordman Figure II,4,2,,0,,0,,0,0x00000001,63,2,136,,0,0,0,{ bonus bMaxHP,1000; bonus bStr,10; bonus bDex,10; skill "SM_BASH",10; skill "SM_MAGNUM",10; },{},{}
+31169,Magician_Figure_I,Magician Figure I,4,2,,0,,0,,0,0x00000001,63,2,136,,0,0,0,{ bonus bMaxSP,750; bonus bInt,10; bonus bDex,10; skill "MG_ENERGYCOAT",10; skill "MG_SRECOVERY",10; },{},{}
+31170,Magician_Figure_II,Magician Figure II,4,2,,0,,0,,0,0x00000001,63,2,136,,0,0,0,{ bonus bMaxSP,750; bonus bInt,10; bonus bDex,10; skill "MG_SOULSTRIKE",10; skill "MG_FIREWALL",10; },{},{}
+31171,Archer_Figure_I,Archer Figure I,4,2,,0,,0,,0,0x00000001,63,2,136,,0,0,0,{ bonus bMaxHP,550; bonus bMaxSP,150; bonus bAgi,10; bonus bDex,10; skill "AC_OWL",10; skill "AC_SHOWER",10; },{},{}
+31172,Archer_Figure_II,Archer Figure II,4,2,,0,,0,,0,0x00000001,63,2,136,,0,0,0,{ bonus bMaxHP,550; bonus bMaxSP,150; bonus bAgi,10; bonus bDex,10; skill "AC_DOUBLE",10; skill "AC_VULTURE",10; },{},{}
+31173,Acolyte_Figure_I,Acolyte Figure I,4,2,,0,,0,,0,0x00000001,63,2,136,,0,0,0,{ bonus bMaxHP,150; bonus bMaxSP,550; bonus bInt,20;  skill "AL_TELEPORT",2; skill "AL_INCAGI",10; },{},{}
+31174,Acolyte_Figure_II,Acolyte Figure II,4,2,,0,,0,,0,0x00000001,63,2,136,,0,0,0,{ bonus bMaxHP,150; bonus bMaxSP,550; bonus bInt,20; skill "AL_HEAL",10; skill "AL_BLESSING",10; },{},{}
+31175,Merchant_Figure_I,Merchant Figure I,4,2,,0,,0,,0,0x00000001,63,2,136,,0,0,0,{ bonus bMaxHP,700; bonus bMaxSP,50; bonus bAgi,10; bonus bStr,10; skill "MC_INCCARRY",10; skill "MC_CARTREVOLUTION",10; },{},{}
+31176,Merchant_Figure_II,Merchant Figure II,4,2,,0,,0,,0,0x00000001,63,2,136,,0,0,0,{ bonus bMaxHP,700; bonus bMaxSP,50; bonus bAgi,10; bonus bStr,10; skill "MC_MAMMONITE",10; skill "MC_PUSHCART",10; },{},{}
 
-31177,WOE_WIN_BOX,Woe Winner Box,18,10,,10,,,,0,0xFFFFFFFF,63,2,,,,,,{ getitem 31126,10; getitem 671,50; getitem 14232,10; getitem 12246,5; getitem 6234 ,5; getitem 6230,5; getitem rand(13845,13846,13847,13848),5; },{},{}
+31177,WOE_WIN_BOX,Woe Winner Box,18,10,,10,,,,0,0xFFFFFFFF,63,2,,,,,,{  callfunc "WoeRewadsFunc"; },{},{}
+
+31178,Thief_Figure_I_Box,Thief Figure I Box,18,10,,10,,,,0,0xFFFFFFFF,63,2,,,,,,{ rentitem 31165,432000; },{},{}
+31179,Thief_Figure_I_Box,Thief Figure I Box,18,10,,10,,,,0,0xFFFFFFFF,63,2,,,,,,{ rentitem 31165,604800; },{},{}
+31180,Thief_Figure_II_Box,Thief Figure II Box,18,10,,10,,,,0,0xFFFFFFFF,63,2,,,,,,{ rentitem 31166,432000; },{},{}
+31181,Thief_Figure_II_Box,Thief Figure II Box,18,10,,10,,,,0,0xFFFFFFFF,63,2,,,,,,{ rentitem 31166,604800; },{},{}
+31182,Swordman_Figure_I_Box,Swordman Figure I Box,18,10,,10,,,,0,0xFFFFFFFF,63,2,,,,,,{ rentitem 31167,432000; },{},{}
+31183,Swordman_Figure_I_Box,Swordman Figure I Box,18,10,,10,,,,0,0xFFFFFFFF,63,2,,,,,,{ rentitem 31167,604800; },{},{}
+31184,Swordman_Figure_II_Box,Swordman Figure II Box,18,10,,10,,,,0,0xFFFFFFFF,63,2,,,,,,{ rentitem 31168,432000; },{},{}
+31185,Swordman_Figure_II_Box,Swordman Figure II Box,18,10,,10,,,,0,0xFFFFFFFF,63,2,,,,,,{ rentitem 31168,604800; },{},{}
+31186,Magician_Figure_I_Box,Magician Figure I Box,18,10,,10,,,,0,0xFFFFFFFF,63,2,,,,,,{ rentitem 31169,432000; },{},{}
+31187,Magician_Figure_I_Box,Magician Figure I Box,18,10,,10,,,,0,0xFFFFFFFF,63,2,,,,,,{ rentitem 31169,604800; },{},{}
+31188,Magician_Figure_II_Box,Magician Figure II Box,18,10,,10,,,,0,0xFFFFFFFF,63,2,,,,,,{ rentitem 31170,432000; },{},{}
+31189,Magician_Figure_II_Box,Magician Figure II Box,18,10,,10,,,,0,0xFFFFFFFF,63,2,,,,,,{ rentitem 31170,604800; },{},{}
+31190,Archer_Figure_I_Box,Archer Figure I Box,18,10,,10,,,,0,0xFFFFFFFF,63,2,,,,,,{ rentitem 31171,432000; },{},{}
+31191,Archer_Figure_I_Box,Archer Figure I Box,18,10,,10,,,,0,0xFFFFFFFF,63,2,,,,,,{ rentitem 31171,604800; },{},{}
+31192,Archer_Figure_II_Box,Archer Figure II Box,18,10,,10,,,,0,0xFFFFFFFF,63,2,,,,,,{ rentitem 31172,432000; },{},{}
+31193,Archer_Figure_II_Box,Archer Figure II Box,18,10,,10,,,,0,0xFFFFFFFF,63,2,,,,,,{ rentitem 31172,604800; },{},{}
+31194,Acolyte_Figure_I_Box,Acolyte Figure I Box,18,10,,10,,,,0,0xFFFFFFFF,63,2,,,,,,{ rentitem 31173,432000; },{},{}
+31195,Acolyte_Figure_I_Box,Acolyte Figure I Box,18,10,,10,,,,0,0xFFFFFFFF,63,2,,,,,,{ rentitem 31173,604800; },{},{}
+31196,Acolyte_Figure_II_Box,Acolyte Figure II Box,18,10,,10,,,,0,0xFFFFFFFF,63,2,,,,,,{ rentitem 31174,432000; },{},{}
+31197,Acolyte_Figure_II_Box,Acolyte Figure II Box,18,10,,10,,,,0,0xFFFFFFFF,63,2,,,,,,{ rentitem 31174,604800; },{},{}
+31198,Merchant_Figure_I_Box,Merchant Figure I Box,18,10,,10,,,,0,0xFFFFFFFF,63,2,,,,,,{ rentitem 31175,432000; },{},{}
+31199,Merchant_Figure_I_Box,Merchant Figure I Box,18,10,,10,,,,0,0xFFFFFFFF,63,2,,,,,,{ rentitem 31175,604800; },{},{}
+31200,Merchant_Figure_II_Box,Merchant Figure II Box,18,10,,10,,,,0,0xFFFFFFFF,63,2,,,,,,{ rentitem 31176,432000; },{},{}
+31201,Merchant_Figure_II_Box,Merchant Figure II Box,18,10,,10,,,,0,0xFFFFFFFF,63,2,,,,,,{ rentitem 31176,604800; },{},{}
+
+31202,Figure_Rent_Permit,Figure Rent Permit,3,0,,0,,,,,,,,,,,,,{},{},{}

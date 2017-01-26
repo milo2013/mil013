@@ -1,14 +1,22 @@
 function	script	PetLimitFunc	{
 
 OnPCLoadMapEvent:
-set .map$,"farm";
+setarray .map$,"farm","prt_q";
     getmapxy(@map$, @xb, @yb, 0 );
         if (@map$ == .map$) {
-                dispbottom "You cannot hatch pet in Dokebi Farm.";
+                dispbottom "You cannot hatch pet in here!!";
 		mes "[Milenia Officer]";
 		mes "Hello ^ff0000" + strcharinfo(0) + "^000000,";
-		mes "You cannot hatch pet here.";
-		mes "Thank you!";
+		mes "You cannot hatch pet here!!";
+		mes "Thank you!!";
+                close;
+        }
+		if (@map$ == "prt_q") {
+		dispbottom "You cannot hatch pet in here!!";
+		mes "[Milenia Officer]";
+		mes "Hello ^ff0000" + strcharinfo(0) + "^000000,";
+		mes "You cannot hatch pet here!!";
+		mes "Thank you!!";
                 close;
         }
 		else{
@@ -16,3 +24,18 @@ set .map$,"farm";
 		}
     end;
 }
+
+function	script	WoeRewadsFunc	{
+
+	setarray .@items[0],"13845","13846","13847","13848";
+	set .item_id, .@items[rand (getarraysize(.@items)) ];
+	set .item_amount, 5;
+
+	getitem .item_id, .item_amount;
+	getitem 31126,10; 
+	getitem 671,50; 
+	getitem 14232,10; 
+	getitem 12246,5; 
+	getitem 6234 ,5; 
+	getitem 6230,5;	
+	}

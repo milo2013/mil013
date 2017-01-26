@@ -33,6 +33,7 @@ prt_cas,86,292,5	script	Commander Bobby	470,{ callfunc "qshop",12; }// call shop
 prt_cas,99,292,5	script	Minister of Defence 	684,{ callfunc "qshop",13; }// call shop 13
 prt_cas,101,292,5	script	Minister of Supplies	643,{ callfunc "qshop",14; }// call shop 14
 prt_cas,94,254,5	script	Princess Eleanor	10184,{ callfunc "qshop",15; }// call shop 15
+milenia,65,64,5	script	Novice Figures	10066,{ callfunc "qshop",18,19; }// call shop 18,19
 
 // Script Core
 //============================================================
@@ -63,7 +64,7 @@ OnInit:
 //	setarray .Shops$[1],"<Shop 1>","<Shop 2>"{,...};
 // -----------------------------------------------------------
 
-	setarray .Shops$[1],"Headgears","Wings","Mora Equipments","Other","Cute Headgears","Cool Headgears","New Headgear","Doram Charms","Crimson Equipments","3rd Job Headgear","Weapons Alpha","Weapons Beta","Armor","Food Ration","Hero Equipments","Ladder Quest","Symphony Special";
+	setarray .Shops$[1],"Headgears","Wings","Mora Equipments","Other","Cute Headgears","Cool Headgears","New Headgear","Doram Charms","Crimson Equipments","3rd Job Headgear","Weapons Alpha","Weapons Beta","Armor","Food Ration","Hero Equipments","Ladder Quest","Symphony Special","Figures","Premium Figures";
 
 // -----------------------------------------------------------
 //  Quest items -- do NOT use a reward item more than once!
@@ -415,6 +416,34 @@ OnInit:
 	Add(17,18536,1,0,0,6091,30,7451,30,7562,30,7513,30,7754,30,6004,3,12246,10); //	Foxtail
 	Add(17,18666,1,0,0,978,10,979,10,976,10,980,10,981,10,982,10,671,20); // CD In Mouth
 	
+	Add(18,31178,1,0,0,1214,1,619,1,4545,1,914,50,949,50); // Thief Figure I Box - 5 Days
+	Add(18,31180,1,0,0,1214,1,619,1,4545,1,914,50,949,50); // Thief Figure II Box - 5 Days
+	Add(18,31182,1,0,0,1157,1,619,1,4545,1,914,50,949,50); // Swordman Figure I Box - 5 Days
+	Add(18,31184,1,0,0,1157,1,619,1,4545,1,914,50,949,50); // Swordman Figure II Box - 5 Days
+	Add(18,31186,1,0,0,1604,1,619,1,4545,1,914,50,949,50); // Mage Figure I Box - 5 Days
+	Add(18,31188,1,0,0,1604,1,619,1,4545,1,914,50,949,50); // Mage Figure II Box - 5 Days
+	Add(18,31190,1,0,0,1702,1,619,1,4545,1,914,50,949,50); // Archer Figure I Box - 5 Days
+	Add(18,31192,1,0,0,1702,1,619,1,4545,1,914,50,949,50); // Archer Figure II Box - 5 Days
+	Add(18,31194,1,0,0,1505,1,619,1,4545,1,914,50,949,50); // Acolyte Figure I Box - 5 Days
+	Add(18,31196,1,0,0,1505,1,619,1,4545,1,914,50,949,50); // Acolyte Figure II Box - 5 Days
+	Add(18,31198,1,0,0,1301,1,619,1,4545,1,914,50,949,50); // Merchant Figure I Box - 5 Days
+	Add(18,31200,1,0,0,1301,1,619,1,4545,1,914,50,949,50); // Merchant Figure II Box - 5 Days
+	 
+	Add(19,31179,1,0,0,31202,1); // Thief Figure I Box - 7 Days
+	Add(19,31181,1,0,0,31202,1); // Thief Figure II Box - 7 Days
+	Add(19,31183,1,0,0,31202,1); // Swordman Figure I Box- 7 Days
+	Add(19,31185,1,0,0,31202,1); // Swordman Figure II Box - 7 Days
+	Add(19,31187,1,0,0,31202,1); // Mage Figure I Box- 7 Days
+	Add(19,31189,1,0,0,31202,1); // Mage Figure II Box - 7 Days
+	Add(19,31191,1,0,0,31202,1); // Archer Figure I Box- 7 Days
+	Add(19,31193,1,0,0,31202,1); // Archer Figure II Box - 7 Days
+	Add(19,31195,1,0,0,31202,1); // Acolyte Figure I Box- 7 Days
+	Add(19,31197,1,0,0,31202,1); // Acolyte Figure II Box - 7 Days.
+	Add(19,31199,1,0,0,31202,1); // Merchant Figure I Box- 7 Days
+	Add(19,31201,1,0,0,31202,1); // Merchant Figure II Box - 7 Days
+	
+	
+	
 // -----------------------------------------------------------
 
 	freeloop(0);
@@ -580,3 +609,5 @@ function	script	qshop	{
 -	shop	qshop15	-1,909:-1
 -	shop	qshop16	-1,909:-1
 -	shop	qshop17	-1,909:-1
+-	shop	qshop18	-1,909:-1
+-	shop	qshop19	-1,909:-1

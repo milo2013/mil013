@@ -16,9 +16,13 @@
 //============================================================================
 
 milenia,113,138,5	script	PvP Warper	497,{
+
+OnPCLoadMapEvent:
 	
 	if (pvp01) == 1 {
 	warp "milenia_pvp",82,49;
+	mapannounce "milenia_pvp", strcharinfo(0) + " has entered the PVP Arena!",0;
+	mapannounce "milenia", strcharinfo(0) + " has entered the PVP Arena!",0;
 	set pvp02,1;
 	set pvp01,0;
     end;
@@ -26,6 +30,8 @@ milenia,113,138,5	script	PvP Warper	497,{
 	
 	if (pvp02) == 1 {
 	warp "milenia_pvp",50,16;
+	mapannounce "milenia_pvp", strcharinfo(0) + " has entered the PVP Arena!",0;
+	mapannounce "milenia", strcharinfo(0) + " has entered the PVP Arena!",0;
 	set pvp03,1;
 	set pvp02,0;
     end;
@@ -33,11 +39,15 @@ milenia,113,138,5	script	PvP Warper	497,{
 	
 	if (pvp03) == 1 {
 	warp "milenia_pvp",16,49;
+	mapannounce "milenia_pvp", strcharinfo(0) + " has entered the PVP Arena!",0;
+	mapannounce "milenia", strcharinfo(0) + " has entered the PVP Arena!",0;
 	set pvp03,0;
     end;
 	}
 	
     warp "milenia_pvp",50,83;
+	mapannounce "milenia_pvp", strcharinfo(0) + " has entered the PVP Arena!",0;
+	mapannounce "milenia", strcharinfo(0) + " has entered the PVP Arena!",0;
 	set pvp01,1;
     end;
 }
@@ -542,3 +552,8 @@ milenia,126,138,11	script	PVP Officer	498,{
 }
 
 milenia_pvp	mapflag	nosave	SavePoint
+milenia_pvp	mapflag	pvp
+milenia_pvp	mapflag	pvp_noguild
+milenia_pvp	mapflag	pvp_noparty
+milenia_pvp	mapflag	noteleport
+milenia_pvp	mapflag	nomemo
