@@ -1045,86 +1045,322 @@ function	script	Fish_SkillPoints	{ return; }
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
 //                               DO NOT CHANGE ANYTHING BELOW THIS POINT                              //
 //====================================================================================================//		
+
+//= FISHING EXP ========== 
 function	script	Fishing_Exp	{ 
-callfunc "Fishing_Points"; for (.@i = 0; .@i < getarraysize($@FishingEquips); .@i++) { if(isequipped($@FishingEquips[.@i]))  set FishingNowExp,FishingNowExp+$@FishingEquipsExp[.@i]; } 
+
+callfunc "Fishing_Points"; 
+for (.@i = 0; .@i < getarraysize($@FishingEquips); 
+
+.@i++) { 
+if(isequipped($@FishingEquips[.@i]))  
+set FishingNowExp,FishingNowExp+$@FishingEquipsExp[.@i]; 
+} 
+
 if(query_sql("SELECT `fexp` FROM `fishing_system` WHERE `name` = '"+strcharinfo(0)+"'",.@fexp)){ set .@fexp,FishingNowExp;
-query_sql("UPDATE `fishing_system` SET `fexp` = '"+.@fexp+"' WHERE `name` = '"+strcharinfo(0)+"'"); } else {
-query_sql("INSERT INTO `fishing_system` (`account_id`,`char_id`,`name`,`fexp` ) VALUES ('"+getcharid(3)+"','"+getcharid(0)+"','"+strcharinfo(0)+"','"+escape_sql(.@fexp)+"')"); } 
-if( FishingNowExp >= $@FishingExpMax[ FishingLevel ] ) { set FishingLevel, FishingLevel + 1 ; callfunc "Fish_SkillPoints"; set FishingNowExp, 0 ; dispbottom "Congratulations! Fishing Rank is promoted to ^ff0000" + $@FishingLevelName$[ FishingLevel ] + "^000000" ; 
-for(.@i = 0; .@i < getarraysize($@SpecialFXLVL); .@i++) specialeffect2 $@SpecialFXLVL[.@i]; if($@FishRankCutins == 1) { for( set .@i, 1 ; .@i <= $@FRankUpCutins ; set .@i, .@i + 1 ) { cutin $@FRankUpPicNames$ + .@i, 1 ;  sleep2 $@FLRankPerPic; } }
-if(query_sql("SELECT `flvl` FROM `fishing_system` WHERE `name` = '"+strcharinfo(0)+"'",.@flvl)){ set .@flvl,FishingLevel; query_sql("UPDATE `fishing_system` SET `flvl` = '"+.@flvl+"' WHERE `name` = '"+strcharinfo(0)+"'"); } else {
-query_sql("INSERT INTO `fishing_system` (`account_id`,`char_id`,`name`,`flvl` ) VALUES ('"+getcharid(3)+"','"+getcharid(0)+"','"+strcharinfo(0)+"','"+escape_sql(.@flvl)+"')"); } } 
-if( FishingLevel >= 50) set FishingNowExp,FishingNowExp + 0; return ; }
+query_sql("UPDATE `fishing_system` SET `fexp` = '"+.@fexp+"' WHERE `name` = '"+strcharinfo(0)+"'"); 
+} else {
+query_sql("INSERT INTO `fishing_system` (`account_id`,`char_id`,`name`,`fexp` ) VALUES ('"+getcharid(3)+"','"+getcharid(0)+"','"+strcharinfo(0)+"','"+escape_sql(.@fexp)+"')"); 
+} 
+
+if( FishingNowExp >= $@FishingExpMax[ FishingLevel ] ) { 
+set FishingLevel, FishingLevel + 1 ; 
+callfunc "Fish_SkillPoints"; 
+set FishingNowExp, 0 ; 
+dispbottom "Congratulations! Fishing Rank is promoted to ^ff0000" + $@FishingLevelName$[ FishingLevel ] + "^000000" ; 
+
+for(.@i = 0; 
+.@i < getarraysize($@SpecialFXLVL); 
+.@i++) specialeffect2 $@SpecialFXLVL[.@i]; 
+if($@FishRankCutins == 1) { 
+for( set .@i, 1 ; .@i <= $@FRankUpCutins ; 
+set .@i, .@i + 1 ) { 
+cutin $@FRankUpPicNames$ + .@i, 1 ;  sleep2 $@FLRankPerPic; 
+	} 
+}
+
+if(query_sql("SELECT `flvl` FROM `fishing_system` WHERE `name` = '"+strcharinfo(0)+"'",.@flvl)){ set .@flvl,FishingLevel; query_sql("UPDATE `fishing_system` SET `flvl` = '"+.@flvl+"' WHERE `name` = '"+strcharinfo(0)+"'"); 
+} else {
+query_sql("INSERT INTO `fishing_system` (`account_id`,`char_id`,`name`,`flvl` ) VALUES ('"+getcharid(3)+"','"+getcharid(0)+"','"+strcharinfo(0)+"','"+escape_sql(.@flvl)+"')");
+			} 
+		}
+
+if( FishingLevel >= 50) set FishingNowExp,FishingNowExp + 0; return ; 
+	}
+
+//= FISHING POINTS ========== 
 function	script	Fishing_Points	{
-if($@Toggle == 1 || $@Toggle == 2 || $@Toggle == 3 || $@Toggle == 4) { 
-for (.@i = 0; .@i < getarraysize($@FishingEquips); .@i++) if(isequipped($@FishingEquips[.@i])) {  set #FishingPoints,#FishingPoints+$@FishingEquipsPts[.@i]; }										
-set #FishingPoints,#FishingPoints+$@FishingPoints[FishingLevel]; if(query_sql("SELECT `fpts` FROM `fishing_system` WHERE `name` = '"+strcharinfo(0)+"'",.@fpts)){ 
-set .@fpts,#FishingPoints; query_sql("UPDATE `fishing_system` SET `fpts` = '"+.@fpts+"' WHERE `name` = '"+strcharinfo(0)+"'"); }
-else { query_sql("INSERT INTO `fishing_system` (`account_id`,`char_id`,`name`,`fpts` ) VALUES ('"+getcharid(3)+"','"+getcharid(0)+"','"+strcharinfo(0)+"','"+escape_sql(.@fpts)+"')"); } } return; }
+
+if($@Toggle == 1 || $@Toggle == 2 || $@Toggle == 3 || $@Toggle == 4) {
+ 
+for (.@i = 0; 
+.@i < getarraysize($@FishingEquips); 
+.@i++) if(isequipped($@FishingEquips[.@i])) { 
+ 
+set #FishingPoints,#FishingPoints+$@FishingEquipsPts[.@i]; 
+}	
+									
+set #FishingPoints,#FishingPoints+$@FishingPoints[FishingLevel];
+if(query_sql("SELECT `fpts` FROM `fishing_system` WHERE `name` = '"+strcharinfo(0)+"'",.@fpts)){ 
+
+set .@fpts,#FishingPoints; 
+query_sql("UPDATE `fishing_system` SET `fpts` = '"+.@fpts+"' WHERE `name` = '"+strcharinfo(0)+"'"); 
+}
+else { 
+query_sql("INSERT INTO `fishing_system` (`account_id`,`char_id`,`name`,`fpts` ) VALUES ('"+getcharid(3)+"','"+getcharid(0)+"','"+strcharinfo(0)+"','"+escape_sql(.@fpts)+"')"); 
+		} 
+	} 
+return; 
+}
+
+//= FISH COUNT========== 
 function	script	Fish_Count	{
+
 if(query_sql("SELECT `fcot` FROM `fishing_system` WHERE `name` = '"+strcharinfo(0)+"'",.@fcot)){  
-set .@fcot,.@fcot+1; query_sql("UPDATE `fishing_system` SET `fcot` = '"+.@fcot+"' WHERE `name` = '"+strcharinfo(0)+"'"); } else {
-query_sql("INSERT INTO `fishing_system` (`account_id`,`char_id`,`name`,`fcot`) VALUES ('"+getcharid(3)+"','"+getcharid(0)+"','"+strcharinfo(0)+"','"+escape_sql(.@fcot)+"')"); } return; }
+set .@fcot,.@fcot+1; query_sql("UPDATE `fishing_system` SET `fcot` = '"+.@fcot+"' WHERE `name` = '"+strcharinfo(0)+"'"); 
+} 
+
+else {
+query_sql("INSERT INTO `fishing_system` (`account_id`,`char_id`,`name`,`fcot`) VALUES ('"+getcharid(3)+"','"+getcharid(0)+"','"+strcharinfo(0)+"','"+escape_sql(.@fcot)+"')"); 
+		} 
+return; 
+	}
+	
+//= FISH SUCCESS ========== 
 function	script	Fish_Success	{
-if(query_sql("SELECT `fsuc` FROM `fishing_system` WHERE `name` = '"+strcharinfo(0)+"'",.@fsuc)){  set .@fsuc,.@fsuc+1;
-query_sql("UPDATE `fishing_system` SET `fsuc` = '"+.@fsuc+"' WHERE `name` = '"+strcharinfo(0)+"'"); }
-else { query_sql("INSERT INTO `fishing_system` (`account_id`,`char_id`,`name`,`fsuc`) VALUES ('"+getcharid(3)+"','"+getcharid(0)+"','"+strcharinfo(0)+"','"+escape_sql(.@fsuc)+"')"); } return; }
+
+if(query_sql("SELECT `fsuc` FROM `fishing_system` WHERE `name` = '"+strcharinfo(0)+"'",.@fsuc)){  
+set .@fsuc,.@fsuc+1;
+
+query_sql("UPDATE `fishing_system` SET `fsuc` = '"+.@fsuc+"' WHERE `name` = '"+strcharinfo(0)+"'"); 
+}
+
+else { query_sql("INSERT INTO `fishing_system` (`account_id`,`char_id`,`name`,`fsuc`) VALUES ('"+getcharid(3)+"','"+getcharid(0)+"','"+strcharinfo(0)+"','"+escape_sql(.@fsuc)+"')"); 
+	} 
+return; 
+}
+
+//= FISH FAIL ========== 
 function	script	Fish_Fail	{
+
 if(query_sql("SELECT `ffail` FROM `fishing_system` WHERE `name` = '"+strcharinfo(0)+"'",.@ffail)){ 
-set .@ffail,.@ffail+1; query_sql("UPDATE `fishing_system` SET `ffail` = '"+.@ffail+"' WHERE `name` = '"+strcharinfo(0)+"'"); } else {
-query_sql("INSERT INTO `fishing_system` (`account_id`,`char_id`,`name`,`ffail`) VALUES ('"+getcharid(3)+"','"+getcharid(0)+"','"+strcharinfo(0)+"','"+escape_sql(.@ffail)+"')");} return; }
+
+set .@ffail,.@ffail+1; query_sql("UPDATE `fishing_system` SET `ffail` = '"+.@ffail+"' WHERE `name` = '"+strcharinfo(0)+"'"); 
+} 
+else {
+query_sql("INSERT INTO `fishing_system` (`account_id`,`char_id`,`name`,`ffail`) VALUES ('"+getcharid(3)+"','"+getcharid(0)+"','"+strcharinfo(0)+"','"+escape_sql(.@ffail)+"')");
+	} 
+return; 
+}
+
+//= FISH MOMENTS ========== 
 function	script	Fish_Moments	{
+
 if(query_sql("SELECT `fmom` FROM `fishing_system` WHERE `name` = '"+strcharinfo(0)+"'",.@fmom)){ 
-set .@fmom,.@fmom+1; query_sql("UPDATE `fishing_system` SET `fmom` = '"+.@fmom+"' WHERE `name` = '"+strcharinfo(0)+"'"); }
-else { query_sql("INSERT INTO `fishing_system` (`account_id`,`char_id`,`name`,`fmom`) VALUES ('"+getcharid(3)+"','"+getcharid(0)+"','"+strcharinfo(0)+"','"+escape_sql(.@fmom)+"')"); } return; }
+set .@fmom,.@fmom+1; query_sql("UPDATE `fishing_system` SET `fmom` = '"+.@fmom+"' WHERE `name` = '"+strcharinfo(0)+"'"); 
+}
+else { 
+query_sql("INSERT INTO `fishing_system` (`account_id`,`char_id`,`name`,`fmom`) VALUES ('"+getcharid(3)+"','"+getcharid(0)+"','"+strcharinfo(0)+"','"+escape_sql(.@fmom)+"')"); 
+	} 
+return; 
+}
+
+//= FISH ENCOUNTER ========== 
 function	script	Fish_Encounter	{ 
+
 if(query_sql("SELECT `ffail` FROM `fishing_system` WHERE `name` = '"+strcharinfo(0)+"'",.@fenc)){ set .@fenc,.@fenc+1;
-query_sql("UPDATE `fishing_system` SET `fenc` = '"+.@fenc+"' WHERE `name` = '"+strcharinfo(0)+"'"); } else {
-query_sql("INSERT INTO `fishing_system` (`account_id`,`char_id`,`name`,`fenc`) VALUES ('"+getcharid(3)+"','"+getcharid(0)+"','"+strcharinfo(0)+"','"+escape_sql(.@fenc)+"')"); } return; }
+query_sql("UPDATE `fishing_system` SET `fenc` = '"+.@fenc+"' WHERE `name` = '"+strcharinfo(0)+"'"); 
+} 
+else {
+query_sql("INSERT INTO `fishing_system` (`account_id`,`char_id`,`name`,`fenc`) VALUES ('"+getcharid(3)+"','"+getcharid(0)+"','"+strcharinfo(0)+"','"+escape_sql(.@fenc)+"')"); 
+	} 
+return; 
+}
+
+
+//= FISH EXP DISPLAY =========== 
 function	script	Fishing_ExpDisplay	{ 
-dispbottom "[ Fishing Rank: " + FishingLevel + ", Fishing Exp: " + FishingNowExp + " / " + $@FishingExpMax[ FishingLevel ] + " ] [Fishing Points: "+#FishingPoints+"]"; return; }
+
+dispbottom "[ Fishing Rank: " + FishingLevel + ", Fishing Exp: " + FishingNowExp + " / " + $@FishingExpMax[ FishingLevel ] + " ] [Fishing Points: "+#FishingPoints+"]"; 
+return; 
+}
+
+//= AUTOMATIC FISHING ======= 
 function	script	Automatic_Fishing	{
-for (.@i = 0; .@i < getarraysize($@FishingEquipsNeed); .@i++){ if (!isequipped($@FishingEquipsNeed[.@i])) end; }	
-if ( countitem( $@FishingLure ) ) { input .@item_count ; if ( .@item_count == 0 ) end ; else if ( countitem( $@FishingLure ) >= .@item_count ) { 
-if($@Cuttins==1) { mes "[ ^00007fFishing Statistics^000000 ]";  mes "^ff0000Reading statistics..^000000"; mes "^ffaa00Do not close.....^000000";
-mes ""+getitemname($@FishingLure)+" Count : "+countitem($@FishingLure)+"";  set FishingAbuse,1; }
-callfunc "AutoFishing",$@Fisher_Name$,$@FishingLure,.@item_count; } } end; }
+
+for (.@i = 0; .@i < getarraysize($@FishingEquipsNeed); 
+.@i++){ if (!isequipped($@FishingEquipsNeed[.@i])) 
+end; 
+}	
+
+if ( countitem( $@FishingLure ) ) { 
+input .@item_count ; 
+if ( .@item_count == 0 ) 
+end; 
+
+else if ( countitem( $@FishingLure ) >= .@item_count ) { 
+if($@Cuttins==1) { 
+
+mes "[ ^00007fFishing Statistics^000000 ]";  
+mes "^ff0000Reading statistics..^000000"; 
+mes "^ffaa00Do not close.....^000000";
+mes ""+getitemname($@FishingLure)+" Count : "+countitem($@FishingLure)+"";  
+set FishingAbuse,1; 
+}
+
+callfunc "AutoFishing",$@Fisher_Name$,$@FishingLure,.@item_count; 
+		} 
+	} 
+end; 
+}
+
+
+//= AUTO FISHING ========
 function	script	AutoFishing	{ 
-set .@temp_total_count, countitem( getarg(1) ) ; for ( set .@i, getarg(2) ; .@i > 0  ; set .@i, .@i - 1 ) { delitem getarg(1), 1 ;
-set .@temp_total_count, .@temp_total_count - 1 ; if ( .@temp_total_count != countitem( getarg(1) ) ) { return ; }
-if(callfunc("AutoSuccess")) { callfunc "AutoFishSuccess"; } else return; } return ;}
+
+set .@temp_total_count, countitem( getarg(1) ) ; for ( set .@i, getarg(2) ; .@i > 0  ; set .@i, .@i - 1 ) { 
+delitem getarg(1), 1 ;
+
+set .@temp_total_count, .@temp_total_count - 1 ; 
+
+if ( .@temp_total_count != countitem( getarg(1) ) ) { 
+return ;
+}
+
+if(callfunc("AutoSuccess")) { 
+callfunc "AutoFishSuccess"; 
+} else
+return; 
+	} 
+return ;
+}
+
+//= AUTO SUCCESS =========
 function	script	AutoSuccess	{
-set $@LureCount,$@LureCount+1; if($@Cuttins == 1){ callfunc "FishingCutins"; return 1; } if($@Cuttins == 0){ progressbar "ffffff",$@FishingCastTime; return 1; } }
+
+set $@LureCount,$@LureCount+1; 
+if($@Cuttins == 1){ 
+
+callfunc "FishingCutins";
+return 1; 
+} 
+
+if($@Cuttins == 0){ 
+progressbar "ffffff",$@FishingCastTime; 
+return 1;
+	} 
+ }
+
+//= AUTO FISH SUCCESS =======
 function	script	AutoFishSuccess	{ 
-for (@i = 0; @i < getarraysize($@FishingEquips); @i++){ 
-if(isequipped($@FishingEquips[@i])) set .@equiprates,$@LevelItemRate[FishingLevel]+$@FishingEquipsRate[@i]; }
-set .@chance,.@equiprates+$@FishingItemRate;	set .@probability, rand( 1, 200 ); if (.@probability < .@chance) { 
-specialeffect2 610; callfunc "Fishing_Exp";  callfunc "Fishing_ExpDisplay"; if (.@probability < $@FishingItemSP3Rate ) 
-set .@FReward,$@SuccessReward3[rand(getarraysize($@SuccessReward3))]; else if (.@probability < $@FishingItemSP3Rate + $@FishingItemSP2Rate ) 
-set .@FReward,$@SuccessReward2[rand(getarraysize($@SuccessReward2))]; else if (.@probability < $@FishingItemSP3Rate + $@FishingItemSP2Rate + $@FishingItemSP1Rate ) 
-set .@FReward,$@SuccessReward1[rand(getarraysize($@SuccessReward1))]; else set .@FReward,$@SuccessReward1[rand(getarraysize($@SuccessReward1))];
-if ( !FishingBoxOn ) {  getitem .@FReward,1; dispbottom ""+strcharinfo(0)+": I got a "+getitemname(.@FReward)+"!!";
-callfunc "Fish_Count"; callfunc "Fish_Success"; set $@CaughtFish,$@CaughtFish+1; callfunc "Non_Abuse_Autofish"; return 1;
-} else { callfunc "Fishing_Box_Save", .@FReward ; dispbottom ""+strcharinfo(0)+": I put "+getitemname(.@FReward)+" In the fishing box!!";
-callfunc "Fish_Count";  callfunc "Fish_Success"; set $@CaughtFish,$@CaughtFish+1; callfunc "Non_Abuse_Autofish"; return 1; 
-} } else specialeffect2 611; set .@FFail,$@FishingFailure[rand(getarraysize($@FishingFailure))];
-if ( !FishingBoxOn ) { getitem .@FFail,1; set $@FishFail,$@FishFail+1; dispbottom "Fail to catch fish! But manage to pull-out a "+getitemname(.@FFail)+"!!";
-callfunc "Fish_Fail";  callfunc "Non_Abuse_Autofish"; return 1; } 
-else callfunc "Fishing_Box_Save", .@FFail ;  set $@FishFail,$@FishFail+1; dispbottom "Fail to catch fish! But manage to pull-out a "+getitemname(.@FFail)+", and you put it on the box."; 
-callfunc "Fish_Fail"; callfunc "Non_Abuse_Autofish"; return 1;  }
+
+for (@i = 0; @i < getarraysize($@FishingEquips); 
+
+@i++){ 
+if(isequipped($@FishingEquips[@i])) set .@equiprates,$@LevelItemRate[FishingLevel]+$@FishingEquipsRate[@i]; 
+}
+
+set .@chance,.@equiprates+$@FishingItemRate;	
+set .@probability, rand( 1, 200 ); 
+
+if (.@probability < .@chance) { 
+specialeffect2 610; 
+callfunc "Fishing_Exp";  
+callfunc "Fishing_ExpDisplay"; 
+
+if (.@probability < $@FishingItemSP3Rate ) 
+set .@FReward,$@SuccessReward3[rand(getarraysize($@SuccessReward3))]; 
+
+else if (.@probability < $@FishingItemSP3Rate + $@FishingItemSP2Rate ) 
+set .@FReward,$@SuccessReward2[rand(getarraysize($@SuccessReward2))]; 
+
+else if (.@probability < $@FishingItemSP3Rate + $@FishingItemSP2Rate + $@FishingItemSP1Rate ) 
+set .@FReward,$@SuccessReward1[rand(getarraysize($@SuccessReward1))]; 
+
+else set .@FReward,$@SuccessReward1[rand(getarraysize($@SuccessReward1))];
+
+if ( !FishingBoxOn ) {  
+getitem .@FReward,1; 
+dispbottom ""+strcharinfo(0)+": I got a "+getitemname(.@FReward)+"!!";
+callfunc "Fish_Count"; 
+callfunc "Fish_Success"; 
+set $@CaughtFish,$@CaughtFish+1; 
+callfunc "Non_Abuse_Autofish"; 
+return 1;
+
+} else { 
+callfunc "Fishing_Box_Save", .@FReward ; dispbottom ""+strcharinfo(0)+": I put "+getitemname(.@FReward)+" In the fishing box!!";
+callfunc "Fish_Count";  callfunc "Fish_Success"; set $@CaughtFish,$@CaughtFish+1; callfunc "Non_Abuse_Autofish"; 
+return 1; 
+} 
+} else specialeffect2 611; 
+set .@FFail,$@FishingFailure[rand(getarraysize($@FishingFailure))];
+
+if ( !FishingBoxOn ) { 
+getitem .@FFail,1; 
+set $@FishFail,$@FishFail+1; dispbottom "Fail to catch fish! But manage to pull-out a "+getitemname(.@FFail)+"!!";
+callfunc "Fish_Fail";  callfunc "Non_Abuse_Autofish"; return 1; 
+} 
+
+else callfunc "Fishing_Box_Save", .@FFail ;  set $@FishFail,$@FishFail+1; 
+dispbottom "Fail to catch fish! But manage to pull-out a "+getitemname(.@FFail)+", and you put it on the box."; 
+callfunc "Fish_Fail"; callfunc "Non_Abuse_Autofish"; return 1;  
+}
+
+//= NON ABUSE AUTOFISH ========== 
 function	script	Non_Abuse_Autofish	{ 
-set .@rfish,rand(1,$@GrassNonAbuse); if(.@rfish == rand(1,$@GrassNonAbuse)) { set FishingAbuse,0;
-specialeffect 54; specialeffect 236; hideonnpc strnpcinfo(0); sleep2 250; if($@Cuttins==1) { mes "Total Fish Caught : [ ^aa0000"+$@CaughtFish+"^000000 ]";
-mes "Total Fishing Fails : [ ^555500"+$@FishFail+"^000000 ]"; mes "Total Lure Used: [ ^ffaa00"+$@LureCount+"^000000 ]"; mes "Lure Count: [ ^ff5500"+countitem($@FishingLure)+"^000000 ]";
-sleep2 250; set $@LureCount,0; set $@FishFail,0; set $@CaughtFish,0; sleep2 250; close2; sleep2 250; } sleep2 $@FishHidingTime; hideoffnpc strnpcinfo(0); end; } return; }
+
+set .@rfish,rand(1,$@GrassNonAbuse);
+if(.@rfish == rand(1,$@GrassNonAbuse)) { 
+set FishingAbuse,0;
+specialeffect 54; 
+specialeffect 236; 
+hideonnpc strnpcinfo(0); 
+sleep2 250; 
+
+if($@Cuttins==1) { 
+mes "Total Fish Caught : [ ^aa0000"+$@CaughtFish+"^000000 ]";
+mes "Total Fishing Fails : [ ^555500"+$@FishFail+"^000000 ]"; 
+mes "Total Lure Used: [ ^ffaa00"+$@LureCount+"^000000 ]"; 
+mes "Lure Count: [ ^ff5500"+countitem($@FishingLure)+"^000000 ]";
+sleep2 250; 
+
+set $@LureCount,0; 
+set $@FishFail,0; 
+set $@CaughtFish,0; 
+sleep2 250; 
+close2; 
+sleep2 250; 
+		} 
+
+sleep2 $@FishHidingTime; hideoffnpc strnpcinfo(0); 
+end; 
+		} 
+return; 
+	}
+
+//= FISHING BOX SAVE ========
 function	script	Fishing_Box_Save	{
+
 query_sql "SELECT COUNT(`char_id`) FROM `fishing_system` WHERE `char_id` = " + getcharid(0), .@fexp ;
+
 if ( callfunc( "Fishing_Box_Save_Check", getarg(0), .@tempItemcount ) ) query_sql "UPDATE `fishing_system` SET `item_count` = " + ( .@tempItemcount + 1 ) + " WHERE `char_id` = " + getcharid(0) + " AND `item_id` = " + getarg(0) ;
 else if ( .@fexp >= $@FishingBoxLimit ) getitem getarg(0), 1 ;
-else query_sql "INSERT INTO `fishing_system` ( `char_id`, `item_id`, `item_count` ) VALUES ( " + getcharid(0) + ", " + getarg(0) + ", " + 1 + " )" ; return; }
+
+else query_sql "INSERT INTO `fishing_system` ( `char_id`, `item_id`, `item_count` ) VALUES ( " + getcharid(0) + ", " + getarg(0) + ", " + 1 + " )" ; 
+return; 
+}
+
+//= FISHING BOX SAVE CHECK ========
 function	script	Fishing_Box_Save_Check	{
+
 query_sql "SELECT `item_id`, `item_count` FROM `fishing_system` WHERE `char_id` = " + getcharid(0), .@tempItemID, .@tempItemcount ;
-for ( set .@i, 0 ; .@i < getarraysize( .@tempItemID ) ; set .@i, .@i + 1 ) if ( .@tempItemID[ .@i ] == getarg(0) ) { set getarg(1), .@tempItemcount[ .@i ] ; return 1 ; }  return 0 ; }
+for ( set .@i, 0 ; .@i < getarraysize( .@tempItemID ) ; set .@i, .@i + 1 ) if ( .@tempItemID[ .@i ] == getarg(0) ) { set getarg(1), .@tempItemcount[ .@i ] ; return 1 ; 
+}  
+return 0; 
+}
+
+//= FISHING BOX LOAD PROCESS=========
 function	script	Fishing_Box_Load_Process	{
 set .@p,getarg(0); copyarray .@temp_ID,getarg(1),getarraysize(getarg(1));  copyarray .@temp_count,getarg(2),getarraysize( getarg(2)); set getarg(3), prompt (.@temp_ID[ .@p ] ? getitemname(.@temp_ID[.@p]) + " [ ^ff0000" + .@temp_count[ .@p ] + "^000000 ]" : "", 
 .@temp_ID[ .@p+1 ] ? getitemname( .@temp_ID[ .@p+1 ] ) + " [ ^ff0000" + .@temp_count[ .@p+1 ] + "^000000 ]" : "", .@temp_ID[ .@p+2 ] ? getitemname( .@temp_ID[ .@p+2 ] ) + " [ ^ff0000" + .@temp_count[ .@p+2 ] + "^000000 ]" : "", .@temp_ID[ .@p+3 ] ? getitemname( .@temp_ID[ .@p+3 ] ) + " [ ^ff0000" + .@temp_count[ .@p+3 ] + "^000000 ]" : "", 

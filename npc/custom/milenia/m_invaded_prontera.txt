@@ -88,13 +88,18 @@ milenia,130,163,11	script	Unknown Scout	998,{
 	close;
 
 OnPCDieEvent:
-if (countitem (31163) < 1) {
+	setarray .map$,"prt_q";
+    getmapxy(@map$, @xb, @yb, 0 );
+        if (@map$ == .map$) {
+               
+	if (countitem (31163) < 1) {
 		#Invaded_timer = gettimetick(2) + 300;
 		}
 		mapannounce "prt_q", strcharinfo(0) + " has killed in action!! R.I.P",0;
 		mapannounce "milenia", strcharinfo(0) + " has killed in action during defend Prontera from invaded!! R.I.P!!",0;
 		dispbottom  "[ Invaded Prontera ] : You've died! GAME OVER!!";
 		dispbottom  "[ Invaded Prontera ] : Your rewards count will resume when you're alive as penalty!!";
+	}
 		end;
 OnNormalKill:
 	monster .Map$,0,0,"--ja--",.normal_mob[rand(.normal_mob_size)],1,strnpcinfo(0)+"::OnNormalKill";
