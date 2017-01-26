@@ -1050,28 +1050,28 @@
 // Bows
 //===================================================================
 1701,Bow,Bow,5,1000,,500,15,,5,3,0x000A0849,63,2,34,1,4,1,11,{},{},{}
-1702,Bow_,Bow,5,1000,,500,15,,5,4,0x000A0848,63,2,34,1,4,1,11,{},{},{}
-1703,Bow__,Bow,5,1000,,0,15,,5,0,0x000A0848,63,2,34,1,4,1,11,{ bonus2 bAddDamageClass,1002,500; bonus2 bAddDamageClass,1113,500; bonus2 bAddDamageClass,1031,500; bonus2 bAddDamageClass,1242,500; },{},{}
-1704,Composite_Bow,Composite Bow,5,2500,,600,29,,5,3,0x000A0848,63,2,34,1,4,1,11,{},{},{}
-1705,Composite_Bow_,Composite Bow,5,2500,,600,29,,5,4,0x000A0848,63,2,34,1,4,1,11,{},{},{}
-1706,Composite_Bow__,Composite Bow,5,2500,,600,29,,5,0,0x000A0848,63,2,34,1,4,1,11,{},{},{}
-1707,Great_Bow,Great Bow,5,10000,,1000,50,,5,2,0x000A0848,63,2,34,2,18,1,11,{},{},{}
-1708,Great_Bow_,Great Bow,5,10000,,1000,50,,5,3,0x000A0848,63,2,34,2,18,1,11,{},{},{}
-1709,Great_Bow__,Great Bow,5,10000,,1000,50,,5,0,0x000A0848,63,2,34,2,18,1,11,{},{},{}
-1710,CrossBow,Crossbow,5,17000,,900,65,,5,2,0x000A0848,63,2,34,2,18,1,11,{},{},{}
-1711,CrossBow_,Crossbow,5,17000,,900,65,,5,3,0x000A0848,63,2,34,2,18,1,11,{},{},{}
-1712,CrossBow__,Crossbow,5,17000,,900,65,,5,0,0x000A0848,63,2,34,2,18,1,11,{},{},{}
-1713,Arbalest,Arbalest,5,48000,,1000,90,,5,1,0x000A0848,63,2,34,3,33,1,11,{ bonus bDex,2; },{},{}
-1714,Kakkung,Gakkung Bow,5,42000,,1100,100,,5,1,0x000A0848,63,2,34,3,33,1,11,{},{},{}
-1715,Arbalest_,Arbalest,5,48000,,1000,90,,5,2,0x000A0848,63,2,34,3,33,1,11,{ bonus bDex,2; },{},{}
-1716,Kakkung_,Gakkung Bow,5,42000,,1100,100,,5,2,0x000A0848,63,2,34,3,33,1,11,{},{},{}
+1702,Bow_,Bow,5,1000,,500,15,,5,4,0x000A0849,63,2,34,1,4,1,11,{},{},{}
+1703,Bow__,Bow,5,1000,,0,15,,5,0,0x000A0849,63,2,34,1,4,1,11,{ bonus2 bAddDamageClass,1002,500; bonus2 bAddDamageClass,1113,500; bonus2 bAddDamageClass,1031,500; bonus2 bAddDamageClass,1242,500; },{},{}
+1704,Composite_Bow,Composite Bow,5,2500,,600,29,,5,3,0x000A0849,63,2,34,1,4,1,11,{},{},{}
+1705,Composite_Bow_,Composite Bow,5,2500,,600,29,,5,4,0x000A0849,63,2,34,1,4,1,11,{},{},{}
+1706,Composite_Bow__,Composite Bow,5,2500,,600,29,,5,0,0x000A0849,63,2,34,1,4,1,11,{},{},{}
+1707,Great_Bow,Great Bow,5,10000,,1000,50,,5,2,0x000A0849,63,2,34,2,18,1,11,{},{},{}
+1708,Great_Bow_,Great Bow,5,10000,,1000,50,,5,3,0x000A0849,63,2,34,2,18,1,11,{},{},{}
+1709,Great_Bow__,Great Bow,5,10000,,1000,50,,5,0,0x000A0849,63,2,34,2,18,1,11,{},{},{}
+1710,CrossBow,Crossbow,5,17000,,900,65,,5,2,0x000A0849,63,2,34,2,18,1,11,{},{},{}
+1711,CrossBow_,Crossbow,5,17000,,900,65,,5,3,0x000A0849,63,2,34,2,18,1,11,{},{},{}
+1712,CrossBow__,Crossbow,5,17000,,900,65,,5,0,0x000A0849,63,2,34,2,18,1,11,{},{},{}
+1713,Arbalest,Arbalest,5,48000,,1000,90,,5,1,0x000A0849,63,2,34,3,33,1,11,{ bonus bDex,2; },{},{}
+1714,Kakkung,Gakkung Bow,5,42000,,1100,100,,5,1,0x000A0849,63,2,34,3,33,1,11,{},{},{}
+1715,Arbalest_,Arbalest,5,48000,,1000,90,,5,2,0x000A0849,63,2,34,3,33,1,11,{ bonus bDex,2; },{},{}
+1716,Kakkung_,Gakkung Bow,5,42000,,1100,100,,5,2,0x000A0849,63,2,34,3,33,1,11,{},{},{}
 1718,Hunter_Bow,Hunter Bow,5,64000,,1500,125,,5,0,0x00000800,63,2,34,3,33,1,11,{},{},{}
 1719,Bow_Of_Roguemaster,Roguemaster's Bow,5,20,,500,75,,11,0,0x00000040,63,2,34,4,48,1,11,{},{},{}
 1720,Bow_Of_Rudra,Rudra Bow,5,20,,1200,150,,5,0,0x000A0808,63,2,34,4,48,1,11,{ bonus bAtkEle,Ele_Holy; bonus bInt,5; skill "AL_CURE",1; skill "AL_HEAL",1; bonus2 bResEff,Eff_Poison,5000; bonus2 bResEff,Eff_Curse,5000; bonus2 bResEff,Eff_Silence,5000; bonus2 bResEff,Eff_Confusion,5000; bonus2 bResEff,Eff_Blind,5000; },{},{}
 1721,Repeting_CrossBow,Repeating Crossbow,5,89000,,2000,95,,9,1,0x00020840,63,2,34,3,65,1,11,{},{},{}
 1722,Balistar,Ballista,5,124000,,3500,145,,5,0,0x00080800,63,2,34,4,77,1,11,{},{},{}
 1723,Luna_Bow,Luna Bow,5,20,,2000,100,,5,2,0x00000800,63,2,34,3,30,1,11,{ .@r = getrefine(); bonus bDef,2+3*(.@r>5)+2*(.@r>8); },{},{}
-1724,Dragon_Wing,Dragon Wing,5,20,,1200,100,,5,0,0x000A0848,63,2,34,4,60,1,11,{ bonus3 bAddMonsterDropItem,1765,RC_Dragon,300; bonus bIgnoreDefRace,RC_Dragon; },{},{}
+1724,Dragon_Wing,Dragon Wing,5,20,,1200,100,,5,0,0x000A0849,63,2,34,4,60,1,11,{ bonus3 bAddMonsterDropItem,1765,RC_Dragon,300; bonus bIgnoreDefRace,RC_Dragon; },{},{}
 1725,Bow_Of_Minstrel,Minstrel Bow,5,20,,1700,120,,5,1,0x00080800,63,2,34,4,70,1,11,{ bonus bInt,2; bonus bSPrecovRate,10; },{},{}
 1726,Hunter_Bow_,Hunter Bow,5,64000,,1500,125,,5,1,0x00000800,63,2,34,3,33,1,11,{},{},{}
 1727,Balistar_,Ballista,5,124000,,3500,145,,5,1,0x00080800,63,2,34,4,77,1,11,{},{},{}
@@ -1082,21 +1082,21 @@
 1732,Earth_Bow,Earth Bow,5,20,,1400,105,,5,1,0x000A0808,63,2,34,3,55,1,11,{},{},{}
 1733,Gust_Bow,Gust Bow,5,20,,1400,95,,5,1,0x000A0808,63,2,34,3,55,1,11,{},{},{}
 1734,Orc_Archer_Bow,Orc Archer Bow,5,20,,1600,120,,5,0,0x000A0808,63,2,34,3,65,1,11,{ bonus2 bAddMonsterDropItem,1753,200; },{},{}
-1735,Kkakkung,Kkakkung,5,20,,0,120,,5,0,0x000A0848,63,2,34,1,1,0,11,{ bonus2 bAddClass,Class_All,50; },{},{}
+1735,Kkakkung,Kkakkung,5,20,,0,120,,5,0,0x000A0849,63,2,34,1,1,0,11,{ bonus2 bAddClass,Class_All,50; },{},{}
 1736,Double_Bound,Double Bound,5,20,,900,70,,5,3,0x00000800,18,2,34,3,70,1,11,{ bonus3 bAutoSpell,"AC_DOUBLE",GetSkillLv("AC_DOUBLE"),10; },{},{}
 1737,Ixion_Wing,Ixion Wings,5,20,,300,135,,5,1,0x00000800,18,2,34,4,70,1,11,{ autobonus "{ bonus bAspdRate,7; }",10+(getrefine()*2),7000,BF_WEAPON,"{ specialeffect2 EF_HASTEUP; }"; bonus2 bAddSkillBlow,"AC_CHARGEARROW",3; },{},{}
-1738,BF_Bow1,Valorous Battle CrossBow,5,20,,0,100,,5,0,0x000A0848,63,2,34,3,80,1,11,{ bonus bDex,2; bonus2 bAddRace,RC_DemiHuman,55; bonus2 bAddRace,RC_Player,55; bonus2 bIgnoreDefRaceRate,RC_DemiHuman,20; bonus2 bIgnoreDefRaceRate,RC_Player,20; bonus bUnbreakableWeapon,1; },{},{}
-1739,BF_Bow2,Brave Battle CrossBow,5,20,,0,100,,5,0,0x000A0848,63,2,34,3,80,1,11,{ bonus bDex,2; bonus bInt,10; bonus2 bAddRace,RC_DemiHuman,55; bonus2 bAddRace,RC_Player,55; bonus bUnbreakableWeapon,1; },{},{}
+1738,BF_Bow1,Valorous Battle CrossBow,5,20,,0,100,,5,0,0x000A0849,63,2,34,3,80,1,11,{ bonus bDex,2; bonus2 bAddRace,RC_DemiHuman,55; bonus2 bAddRace,RC_Player,55; bonus2 bIgnoreDefRaceRate,RC_DemiHuman,20; bonus2 bIgnoreDefRaceRate,RC_Player,20; bonus bUnbreakableWeapon,1; },{},{}
+1739,BF_Bow2,Brave Battle CrossBow,5,20,,0,100,,5,0,0x000A0849,63,2,34,3,80,1,11,{ bonus bDex,2; bonus bInt,10; bonus2 bAddRace,RC_DemiHuman,55; bonus2 bAddRace,RC_Player,55; bonus bUnbreakableWeapon,1; },{},{}
 1740,Nepenthes_Bow,Nepenthes Bow,5,20,,1000,105,,5,2,0x00000800,18,2,34,4,60,1,11,{ bonus4 bAutoSpellOnSkill,"AC_DOUBLE","AC_CHARGEARROW",1,20; },{},{}
 1741,Cursed_Lyre,Cursed Lyre,5,20,,1250,125,,5,1,0x00080800,18,2,34,4,80,1,11,{ bonus bLuk,-2; bonus2 bAddEff,Eff_Curse,400; },{},{}
-1742,N_Composite_Bow,Novice Composite Bow,5,1,,0,49,,5,3,0x000A0848,63,2,34,1,4,0,11,{},{},{}
+1742,N_Composite_Bow,Novice Composite Bow,5,1,,0,49,,5,3,0x000A0849,63,2,34,1,4,0,11,{},{},{}
 1743,Krieger_Bow1,Glorious Hunter Bow,5,0,,0,100,,5,0,0x001A0848,63,2,34,4,80,1,11,{ bonus2 bAddRace,RC_DemiHuman,55; bonus2 bAddRace,RC_Player,55; bonus2 bIgnoreDefRaceRate,RC_DemiHuman,20; bonus2 bIgnoreDefRaceRate,RC_Player,20; .@r = getrefine(); bonus bCritAtkRate,.@r * 2; bonus bUnbreakableWeapon,1; if(.@r>5) { bonus2 bAddRace,RC_DemiHuman,pow(min(14,.@r)-4,2); bonus2 bAddRace,RC_Player,pow(min(14,.@r)-4,2); bonus2 bIgnoreDefRaceRate,RC_DemiHuman,5; bonus2 bIgnoreDefRaceRate,RC_Player,5; } if(.@r>8) bonus2 bSkillAtk,"AC_DOUBLE",20; },{},{}
-1744,Bow_Of_Evil,Bow Of Evil,5,20,,0,170,,5,0,0x000A0848,63,2,34,4,1,0,11,{ bonus2 bSkillAtk,"AC_DOUBLE",25; bonus bDex,2; },{},{}
+1744,Bow_Of_Evil,Bow Of Evil,5,20,,0,170,,5,0,0x000A0849,63,2,34,4,1,0,11,{ bonus2 bSkillAtk,"AC_DOUBLE",25; bonus bDex,2; },{},{}
 1745,Falken_Blitz,Falken Blitz,5,20,,1000,100,,5,2,0x00000800,18,2,34,3,50,1,11,{ bonus2 bSkillAtk,"SN_SHARPSHOOTING",10; bonus2 bSkillAtk,"AC_DOUBLE",10; bonus2 bSkillAtk,"AC_CHARGEARROW",10; },{},{}
 1746,Elven_Bow,Elven Bow,5,20,,1500,160,,5,1,0x00080800,63,2,34,3,100,1,11,{ bonus bDex,2; },{},{}
-1747,P_Bow1,Eden Bow I,5,0,,0,82,,5,0,0x000A0848,63,2,34,2,26,0,11,{},{},{}
-1748,P_Bow2,Eden Bow II,5,0,,0,120,,5,0,0x000A0848,63,2,34,2,40,0,11,{},{},{}
-1749,Tourist_Bow,Tourist Bow,5,0,,500,40,,5,0,0x000A0848,63,2,34,1,1,0,11,{ bonus bDex,2; },{},{}
+1747,P_Bow1,Eden Bow I,5,0,,0,82,,5,0,0x000A0849,63,2,34,2,26,0,11,{},{},{}
+1748,P_Bow2,Eden Bow II,5,0,,0,120,,5,0,0x000A0849,63,2,34,2,40,0,11,{},{},{}
+1749,Tourist_Bow,Tourist Bow,5,0,,500,40,,5,0,0x000A0849,63,2,34,1,1,0,11,{ bonus bDex,2; },{},{}
 //===================================================================
 // Arrows
 //===================================================================
@@ -9387,35 +9387,35 @@
 // More Bows
 //===================================================================
 18100,Shooting_Star_C,Shooting Star,5,20,,0,190,,5,0,0x00080800,63,2,34,4,1,1,11,{ bonus bLongAtkRate,20; },{},{}
-18101,F_Bow_Of_Rudra_C,Rudra Bow,5,2,,0,185,,5,0,0x000A0848,63,2,34,4,0,0,11,{ bonus bAtkEle,Ele_Holy; bonus bInt,5; skill "AL_CURE",1; skill "AL_HEAL",1; bonus2 bResEff,Eff_Poison,5000; bonus2 bResEff,Eff_Curse,5000; bonus2 bResEff,Eff_Silence,5000; bonus2 bResEff,Eff_Confusion,5000; bonus2 bResEff,Eff_Blind,5000; },{},{}
-18102,E_Bow_Of_Rudra_C,Rudra Bow,5,2,,0,185,,5,0,0x000A0848,63,2,34,4,0,0,11,{ bonus bAtkEle,Ele_Holy; bonus bInt,5; skill "AL_CURE",1; skill "AL_HEAL",1; bonus2 bResEff,Eff_Poison,5000; bonus2 bResEff,Eff_Curse,5000; bonus2 bResEff,Eff_Silence,5000; bonus2 bResEff,Eff_Confusion,5000; bonus2 bResEff,Eff_Blind,5000; },{},{}
+18101,F_Bow_Of_Rudra_C,Rudra Bow,5,2,,0,185,,5,0,0x000A0849,63,2,34,4,0,0,11,{ bonus bAtkEle,Ele_Holy; bonus bInt,5; skill "AL_CURE",1; skill "AL_HEAL",1; bonus2 bResEff,Eff_Poison,5000; bonus2 bResEff,Eff_Curse,5000; bonus2 bResEff,Eff_Silence,5000; bonus2 bResEff,Eff_Confusion,5000; bonus2 bResEff,Eff_Blind,5000; },{},{}
+18102,E_Bow_Of_Rudra_C,Rudra Bow,5,2,,0,185,,5,0,0x000A0849,63,2,34,4,0,0,11,{ bonus bAtkEle,Ele_Holy; bonus bInt,5; skill "AL_CURE",1; skill "AL_HEAL",1; bonus2 bResEff,Eff_Poison,5000; bonus2 bResEff,Eff_Curse,5000; bonus2 bResEff,Eff_Silence,5000; bonus2 bResEff,Eff_Confusion,5000; bonus2 bResEff,Eff_Blind,5000; },{},{}
 18103,Mystic_Bow,Mystic Bow,5,0,,1700,75:100,,5,0,0x00080800,56,2,34,3,105,1,11,{ bonus bInt,4; bonus2 bSkillUseSP,"WM_SEVERE_RAINSTORM",10; },{},{}
 18104,Adventure_Bow,Adventure Bow,5,0,,0,60,,1,0,0x00080800,63,2,34,1,1,0,11,{ bonus bUnbreakableWeapon,1; },{},{}
 18105,Academy_Bow,Academy Bow,5,0,,1200,90,,5,1,0x00080800,63,2,34,1,1,1,11,{},{},{}
-18106,P_Bow3,Eden Bow III,5,0,,0,140,,5,0,0x000A0848,63,2,34,3,60,0,11,{},{},{}
-18107,Malang_Snow_Crab,Malangdo Crab,5,0,,0,120,,5,0,0x000A0848,63,2,34,1,50,0,11,{ bonus bUnbreakableWeapon,1; bonus bLuk,3; bonus bCritAtkRate,50; if(BaseLevel>99) { bonus bLongAtkRate,10; } },{},{}
+18106,P_Bow3,Eden Bow III,5,0,,0,140,,5,0,0x000A0849,63,2,34,3,60,0,11,{},{},{}
+18107,Malang_Snow_Crab,Malangdo Crab,5,0,,0,120,,5,0,0x000A0849,63,2,34,1,50,0,11,{ bonus bUnbreakableWeapon,1; bonus bLuk,3; bonus bCritAtkRate,50; if(BaseLevel>99) { bonus bLongAtkRate,10; } },{},{}
 18108,Brindle_Eel,Zebra Eel,5,0,,0,180,,5,0,0x00080800,63,2,34,1,50,0,11,{ bonus bUnbreakableWeapon,1; bonus bAgi,3; autobonus "{ bonus bAspd,2; }",10,7000,BF_WEAPON,"{ specialeffect2 EF_HASTEUP; }"; if(BaseLevel>99) { bonus bLongAtkRate,10; } },{},{}
 18109,Catapult,Thief Crossbow,5,56000,,1100,150,,5,2,0x00020000,63,2,34,4,100,1,11,{ .@r = getrefine(); bonus2 bSkillAtk,"SC_TRIANGLESHOT",(.@r*2); bonus2 bSkillUseSP,"SC_TRIANGLESHOT",(.@r*2); },{},{}
 18110,Big_CrossBow,Giant Crossbow,5,56000,,900,160,,5,2,0x00000800,63,2,34,4,110,1,11,{ .@r = getrefine(); bonus2 bSkillAtk,"RA_ARROWSTORM",(.@r*5); bonus2 bSkillUseSP,"RA_ARROWSTORM",-(.@r*5); if(readparam(bAgi)>=120){ bonus bAspd,1; } },{},{}
 18111,Creeper_Bow,Creeper Bow,5,56000,,1500,150,,5,2,0x00080800,63,2,34,3,120,1,11,{ bonus bDex,1; bonus3 bAutoSpell,"PF_SPIDERWEB",1,200; },{},{}
-18112,Upg_Bow,Upg Bow,5,20,,600,60,,5,1,0x000A0848,63,2,34,3,1,0,11,{ .@r = getrefine(); bonus bBaseAtk,(.@r*7); bonus bLongAtkRate,(.@r*2); if(BaseJob==Job_Hunter) bonus bBaseAtk,20; if(BaseLevel>70) bonus bBaseAtk,(((BaseLevel-70)/10)*10); },{},{}
-18113,Velum_Arbalest,Vellum Arbalest,5,20,,1100,50,,5,0,0x000A0848,63,2,34,4,95,1,11,{ bonus3 bSPVanishRaceRate,RC_Player,10000,4; bonus bAspd,-5; },{},{}
-18114,Velum_CrossBow,Vellum CrossBow,5,20,,1100,110,,5,0,0x000A0848,63,2,34,4,95,1,11,{ bonus2 bAddRace,RC_Player,30+getrefine(); bonus2 bIgnoreDefRaceRate,RC_Player,30; },{},{}
-18115,Orc_Archer_Bow_,Orc Archer Bow,5,20,,1600,120,,5,1,0x000A0848,63,2,34,3,65,1,11,{},{},{}
+18112,Upg_Bow,Upg Bow,5,20,,600,60,,5,1,0x000A0849,63,2,34,3,1,0,11,{ .@r = getrefine(); bonus bBaseAtk,(.@r*7); bonus bLongAtkRate,(.@r*2); if(BaseJob==Job_Hunter) bonus bBaseAtk,20; if(BaseLevel>70) bonus bBaseAtk,(((BaseLevel-70)/10)*10); },{},{}
+18113,Velum_Arbalest,Vellum Arbalest,5,20,,1100,50,,5,0,0x000A0849,63,2,34,4,95,1,11,{ bonus3 bSPVanishRaceRate,RC_Player,10000,4; bonus bAspd,-5; },{},{}
+18114,Velum_CrossBow,Vellum CrossBow,5,20,,1100,110,,5,0,0x000A0849,63,2,34,4,95,1,11,{ bonus2 bAddRace,RC_Player,30+getrefine(); bonus2 bIgnoreDefRaceRate,RC_Player,30; },{},{}
+18115,Orc_Archer_Bow_,Orc Archer Bow,5,20,,1600,120,,5,1,0x000A0849,63,2,34,3,65,1,11,{},{},{}
 18116,Metal_Bow,Metal Bow,5,20,,0,50,,5,1,0x00080800,63,2,34,3,1,1,11,{ .@r = getrefine(); if(BaseJob==Job_Hunter && Upper!=2) bonus bBaseAtk,10; bonus bBaseAtk,(.@r*3); bonus bLongAtkRate,.@r; .@i = min(BaseLevel/10,12); if(.@i>2) bonus bBaseAtk,((.@i-2)*5); },{},{}
 18117,Royal_Bow,Royal Bow,5,200000,,1500,80,,5,1,0x000A0808,63,2,34,4,105,1,11,{},{},{}
-18118,TE_Woe_Bow,TE Woe Bow,5,0,,0,120,,5,0,0x000A0848,63,2,34,3,40,1,11,{ bonus2 bAddRace,RC_Player,40; bonus2 bAddEff,Eff_Curse,3000; },{},{}
+18118,TE_Woe_Bow,TE Woe Bow,5,0,,0,120,,5,0,0x000A0849,63,2,34,3,40,1,11,{ bonus2 bAddRace,RC_Player,40; bonus2 bAddEff,Eff_Curse,3000; },{},{}
 18119,Tanos_Bow,Tanos Bow,5,10,,1300,180:110,,,1,0x000A0808,63,2,34,4,120,1,11,{ bonus bInt,6; bonus bVit,6; bonus bLuk,-6; bonus bAtkRate,5; bonus2 bHPLossRate,100,10000; },{},{}
 18120,Bow_Of_Evil_Slayer,Bow Of Evil Slayer,5,10,,1350,,115,,1,0x00020008,63,2,34,,100,1,11,{ bonus2 bAddRace,RC_Demon,10; bonus2 bAddRace,RC_Undead,10; .@r = getrefine(); bonus bAtkRate,(.@r>=9)?(5):((.@r>=12)?(7):(0)); },{},{}
 18121,Bow_of_Vicious_Mind,Bow of Vicious Mind,5,20,,1700,170,,5,1,0x000A0808,63,2,34,4,160,1,11,{ bonus bAtk,pow(min(getrefine(),15),2); },{},{}
 18122,Giant_Bow,Giant Bow,5,20,,3000,195,,5,1,0x00000800,63,2,34,4,130,1,11,{ bonus bLongAtkRate,40; bonus bAspdRate,-15; bonus bHit,50; },{},{}
 18123,Bow_of_Storms,Bow of Storms,5,20,,1500,160,,5,1,0x00080800,63,2,34,4,130,1,11,{ bonus bLongAtkRate,30; bonus2 bSkillCooldown,"WM_SEVERE_RAINSTORM",-2000; bonus2 bSkillUseSP,"WM_SEVERE_RAINSTORM",15; },{},{}
-18124,Half_BF_Bow1,Half BF Bow1,5,20,,0,100,,5,0,0x000A0848,63,2,34,3,80,1,11,{ bonus bDex,2; bonus2 bAddRace,RC_DemiHuman,30; bonus2 bAddRace,RC_Player,30; bonus2 bIgnoreDefRaceRate,RC_DemiHuman,10; bonus2 bIgnoreDefRaceRate,RC_Player,10; bonus bUnbreakableWeapon,1; },{},{}
+18124,Half_BF_Bow1,Half BF Bow1,5,20,,0,100,,5,0,0x000A0849,63,2,34,3,80,1,11,{ bonus bDex,2; bonus2 bAddRace,RC_DemiHuman,30; bonus2 bAddRace,RC_Player,30; bonus2 bIgnoreDefRaceRate,RC_DemiHuman,10; bonus2 bIgnoreDefRaceRate,RC_Player,10; bonus bUnbreakableWeapon,1; },{},{}
 18125,Arcus_Daemonicus,Arcus Daemonicus,5,20,,1000,130,,5,2,0x00020008,63,2,34,4,80,1,11,{ /*Fix me: bonus bAtkRate,50; when equipped with shadow arrows*/ if(getrefine()>9){ bonus bAspd,1; bonus bUseSPrate,-20; } },{},{}
 18126,Blue_Bow,Blue Bow,5,10,,1200,150,,5,1,0x00000800,56,2,2,3,100,1,11,{ bonus bAgi,5; bonus bDex,5; },{},{}
 18127,Ru_Gold_Bow,Ru Gold Bow,5,0,,1200,150,,5,2,0x00000800,56,2,34,3,120,1,11,{ bonus bAgi,8; bonus bDex,8; },{},{}
 18128,Infinity_Bow,Infinity Bow,5,20,,500,160,,5,1,0x00020800,56,2,34,4,100,1,11,{},{},{}
-18130,Crimson_Bow,Crimson Bow,5,20,,1200,120,,5,2,0x000A0848,63,2,34,3,70,1,11,{ .@r = getrefine(); bonus bBaseAtk,((BaseLevel/10)*5)+(.@r<=15?pow(.@r,2):225); },{},{}
+18130,Crimson_Bow,Crimson Bow,5,20,,1200,120,,5,2,0x000A0849,63,2,34,3,70,1,11,{ .@r = getrefine(); bonus bBaseAtk,((BaseLevel/10)*5)+(.@r<=15?pow(.@r,2):225); },{},{}
 18137,Burning_Bow_,Burning Bow,5,20,,1400,95,,5,2,0x000A0808,63,2,34,3,55,1,11,{ bonus2 bSubEle,Ele_Fire,10; },{},{}
 18138,Frozen_Bow_,Frozen Bow,5,20,,1400,100,,5,2,0x000A0808,63,2,34,3,55,1,11,{ bonus2 bAddEff,Eff_Freeze,1000; },{},{}
 18139,Earth_Bow_,Earth Bow,5,20,,1400,105,,5,2,0x000A0808,63,2,34,3,55,1,11,{},{},{}
