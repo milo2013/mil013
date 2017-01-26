@@ -85,7 +85,7 @@ set $@Toggle,3;     // 4 = Fishing Box off but still enables Points/Shop/Quest. 
 //                      FISHING SYSTEM VARIABLES                       //
 /////////////////////////////////////////////////////////////////////////
 // ======== FISHING SKILLS ============================================== 
-set $@FishingMode,0;	// 0 = Lil Troll Version (with Encounters and Rewarding Moments scene.
+set $@FishingMode,1;	// 0 = Lil Troll Version (with Encounters and Rewarding Moments scene.
 					// 1 = Automatic Fishing without Encounter and Rewarding Moments scene. (Grass Version)		
 set $@GrassNonAbuse,3;	// Set value to "rand(1,$@GrassNonAbuse)", for non-abusive Grass Version(Fish still hides recommended is 3).
 // ======== Fishing Animation ===========================================
@@ -99,9 +99,9 @@ setarray $@QuestAmounts[0],1,5,5,1,1,1,5;			// Amount of Reward above.
 // ======== Fish Hiding Time ============================================ 
 set $@FishHidingTime,30000;      				// Fish Hiding Time Milliseconds, 10000 = 10secs.          
 // ======== Fishing Success Reward Setup ================================
-setarray $@SuccessReward1[0],31156,31157,31157;  		// Successful Fishing Reward Level 1         
-setarray $@SuccessReward2[0],31157,31157,31157;		// Successful Fishing Reward Level 2    
-setarray $@SuccessReward3[0],31157,31151,31151;		// Successful Fishing Reward Level 3   
+setarray $@SuccessReward1[0],31156,31157,31157,31203;  		// Successful Fishing Reward Level 1         
+setarray $@SuccessReward2[0],31157,31157,31157,31203;		// Successful Fishing Reward Level 2    
+setarray $@SuccessReward3[0],31157,31151,31151,31203;		// Successful Fishing Reward Level 3   
 // ======== Fishing Moments Rewards  =====================================
 setarray $@JackpotPrize[0],31156,31156,31157,31157,31151;    	// Jackpot Prize(Beware Fish Items only.)  
 setarray $@LuckyTreasureBox[0],969,7228,2636,13106,988;  	// Lucky Treasure Box Prize(Rare Items should be putted here.)

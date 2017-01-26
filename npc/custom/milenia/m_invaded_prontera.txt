@@ -46,7 +46,7 @@ milenia,130,163,11	script	Unknown Scout	998,{
 			mes "Maximum Rewards Limit ^FF0000"+.MaxItemLimit+"^000000";
 			next;
 			mes "[Unknown Scout]";
-			mes "We need ^FF0000100 Fresh Fish^000000 per entry!!";
+			mes "We need ^FF000050 Gold Fish^000000 per entry!!";
 			mes "Or....";
 			mes "^FF0000Bravery Medal^000000";
 			close;
@@ -60,17 +60,17 @@ milenia,130,163,11	script	Unknown Scout	998,{
 			mes "[Unknown Scout]";
 			mes "Like I said.. We only recruit ^FF0000Novice^000000 only!!";
 			}
-			else if (countitem (31151) > 99) {
+			else if (countitem (31203) > 49) {
 				if ( #Invaded_timer > gettimetick(2) ) {
 				mes "[Unknown Scout]";
 				mes "You must wait ^ff0000"+ callfunc( "timeleft__", #Invaded_timer - gettimetick(2) ) +"^000000.";
 				next;
 				mes "[Unknown Scout]";
-				mes "Rent our ^FF0000Bravery Medal^000000 from our Donation Shop for bypass Cooling Down and No More Fresh Fish for enter!!"; 		
+				mes "Rent our ^FF0000Bravery Medal^000000 from our Donation Shop for bypass Cooling Down and No More Gold Fish for enter!!"; 		
 				close;
 				}
 				set #FarmHunt,0;
-				delitem 31151,100;
+				delitem 31203,50;
 				set .Hunter[getarraysize( .Hunter )], getcharid(3);
 				warp .Map$,0,0;
 				end;
@@ -83,7 +83,7 @@ milenia,130,163,11	script	Unknown Scout	998,{
 			}
 			else {
 			mes "[Unknown Scout]";
-			mes "You don't have any ^FF0000Fresh Fish^000000 or ^FF0000Bravery Medal^000000!!";
+			mes "You don't have any ^FF0000Gold Fish^000000 or ^FF0000Bravery Medal^000000!!";
 			}
 	close;
 
@@ -123,7 +123,7 @@ L_kill:
 	end;
 OnInit:
 	// Maximum Hunt Limit per round inside the Zone.
-	set .MaxItemLimit,10;
+	set .MaxItemLimit,250;
 	// Map that will be used in thos Zone.
 	set .Map$,"prt_q";
 	// Mapflag Initialization
@@ -136,10 +136,9 @@ OnInit:
 	setmapflag .Map$, mf_novending;
 	//setmapflag .Map$, mf_nocommand,60;
 	//setmapflag .Map$, mf_noskill;
-	//setmapflag .Map$, mf_nopet;
 	//setmapflag .Map$, mf_noteleport;
-	//setmapflag .Map$, mf_nojobexp;
-	//setmapflag .Map$, mf_nobaseexp;
+	setmapflag .Map$, mf_nojobexp;
+	setmapflag .Map$, mf_nobaseexp;
 	
 	setarray .farm_normal, 13517,13516,969,13517,969,969; // farm 1 of these items when kill normal mobs
 	setarray .farm_boss, 969,969,969; // farm 1 of these items when kill boss monsters
@@ -154,7 +153,7 @@ OnInit:
 
 		for ( .@i = 0; .@i < 200; .@i++ )
 			monster .Map$,0,0, "Soldier", .normal_mob[ rand( .normal_mob_size ) ], 1, strnpcinfo(0)+"::OnNormalKill";
-		for ( .@i = 0; .@i < 5; .@i++ )
+		for ( .@i = 0; .@i < 1; .@i++ )
 			monster .Map$,0,0, "General", .boss_mob[ rand( .boss_mob_size ) ], 1, strnpcinfo(0)+"::OnBossKill";
 	}
 }
