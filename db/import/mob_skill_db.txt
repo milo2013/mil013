@@ -151,6 +151,8 @@
 3953,Invader Commander@MG_FIREBALL,chase,17,2,500,0,5000,yes,target,always,0,,,,,,,
 3953,Invader Commander@SM_MAGNUM,attack,7,5,500,500,5000,no,self,always,0,,,,,,6,
 3953,Invader Commander@NPC_SELFDESTRUCTION,idle,173,1,10000,2000,5000,no,self,skillused,173,,,,,,,
+//3953,Invader Commander@NPC_SUMMONSLAVE,attack,196,5,10000,2000,60000,no,self,slavele,3,3952,3952,,,,18,
+//3953,Invader Commander@NPC_SUMMONSLAVE,idle,196,5,10000,2000,60000,no,self,slavele,3,3952,3952,,,,18,
 3950,Invader General@AL_HEAL,attack,28,9,10000,500,5000,no,friend,friendhpltmaxrate,60,,,,,,18,
 3950,Invader General@AL_HEAL,attack,28,9,10000,500,5000,no,self,myhpltmaxrate,30,,,,,,18,
 3950,Invader General@AL_HEAL,chase,28,9,10000,500,5000,no,friend,friendhpltmaxrate,60,,,,,,18,

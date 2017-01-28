@@ -1438,6 +1438,7 @@
 	export_constant(SC_GEFFEN_MAGIC1);
 	export_constant(SC_GEFFEN_MAGIC2);
 	export_constant(SC_GEFFEN_MAGIC3);
+	export_constant(SC_MAXPAIN);
 #ifdef RENEWAL
 	export_constant(SC_EXTREMITYFIST2);
 #endif
@@ -2546,6 +2547,15 @@
 	script_set_constant("Size_Large",SZ_BIG,false);
 	script_set_constant("Size_All",SZ_ALL,false);
 
+	/* ai */
+	export_constant(AI_NONE);
+	export_constant(AI_ATTACK);
+	export_constant(AI_SPHERE);
+	export_constant(AI_FLORA);
+	export_constant(AI_ZANZOU);
+	export_constant(AI_LEGION);
+	export_constant(AI_FAW);
+
 	/* battle flags */
 	export_constant(BF_WEAPON);
 	export_constant(BF_MAGIC);
@@ -3203,6 +3213,39 @@
 	export_constant(IE_NOMEMBER);
 	export_constant(IE_NOINSTANCE);
 	export_constant(IE_OTHER);
+	
+	/* months */
+	export_constant(JANUARY);
+	export_constant(FEBRUARY);
+	export_constant(MARCH);
+	export_constant(APRIL);
+	export_constant(MAY);
+	export_constant(JUNE);
+	export_constant(JULY);
+	export_constant(AUGUST);
+	export_constant(SEPTEMBER);
+	export_constant(OCTOBER);
+	export_constant(NOVEMBER);
+	export_constant(DECEMBER);
+	
+	/* days of the week */
+	export_constant(SUNDAY);
+	export_constant(MONDAY);
+	export_constant(TUESDAY);
+	export_constant(WEDNESDAY);
+	export_constant(THURSDAY);
+	export_constant(FRIDAY);
+	export_constant(SATURDAY);
+	
+	/* date types */
+	export_constant(DT_SECOND);
+	export_constant(DT_MINUTE);
+	export_constant(DT_HOUR);
+	export_constant(DT_DAYOFWEEK);
+	export_constant(DT_DAYOFMONTH);
+	export_constant(DT_MONTH);
+	export_constant(DT_YEAR);
+	export_constant(DT_DAYOFYEAR);
 
 	/* item groups */
 	export_constant(IG_BLUEBOX);

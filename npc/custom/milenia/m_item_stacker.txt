@@ -44,9 +44,9 @@ farm,96,176,11	duplicate(Milenia Item Stacker)	Checkpoint#04	721
 farm,131,134,11	duplicate(Milenia Item Stacker)	Checkpoint#05	721
 farm,53,153,11	duplicate(Milenia Item Stacker)	Checkpoint#06	721
 
-prt_q,219,119,11	duplicate(Milenia Item Stacker)	Checkpoint#07	721
-prt_q,88,166,5	duplicate(Milenia Item Stacker)	Checkpoint#08	721
-prt_q,88,294,5	duplicate(Milenia Item Stacker)	Checkpoint#09	721
-prt_q,276,212,11	duplicate(Milenia Item Stacker)	Checkpoint#10	721
-prt_q,33,212,5	duplicate(Milenia Item Stacker)	Checkpoint#11	721
-prt_q,156,195,5	duplicate(Milenia Item Stacker)	Checkpoint#12	721
+prt_q,219,119,11	duplicate(Milenia Item Stacker)	Prontera Guard#07	10134
+prt_q,88,166,5	duplicate(Milenia Item Stacker)	Prontera Guard#08	10134
+prt_q,88,294,5	duplicate(Milenia Item Stacker)	Prontera Guard#09	10134
+prt_q,276,212,11	duplicate(Milenia Item Stacker)	Prontera Guard#10	10134
+prt_q,33,212,5	duplicate(Milenia Item Stacker)	Prontera Guard#11	10134
+prt_q,156,195,5	duplicate(Milenia Item Stacker)	Prontera Guard#12	10134

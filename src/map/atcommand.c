@@ -3487,16 +3487,13 @@ ACMD_FUNC(agitstart)
 {
 	nullpo_retr(-1, sd);
 
-	if (agit_flag) {
+	if( guild_agit_start() ){
+		clif_displaymessage(fd, msg_txt(sd,72)); // War of Emperium has been initiated.
+		return 0;
+	}else{
 		clif_displaymessage(fd, msg_txt(sd,73)); // War of Emperium is currently in progress.
 		return -1;
 	}
-
-	agit_flag = true;
-	guild_agit_start();
-	clif_displaymessage(fd, msg_txt(sd,72)); // War of Emperium has been initiated.
-
-	return 0;
 }
 
 /**
@@ -3506,16 +3503,13 @@ ACMD_FUNC(agitstart2)
 {
 	nullpo_retr(-1, sd);
 
-	if (agit2_flag) {
+	if( guild_agit2_start() ){
+		clif_displaymessage(fd, msg_txt(sd,403)); // "War of Emperium SE has been initiated."
+		return 0;
+	}else{
 		clif_displaymessage(fd, msg_txt(sd,404)); // "War of Emperium SE is currently in progress."
 		return -1;
 	}
-
-	agit2_flag = true;
-	guild_agit2_start();
-	clif_displaymessage(fd, msg_txt(sd,403)); // "War of Emperium SE has been initiated."
-
-	return 0;
 }
 
 /**
@@ -3525,16 +3519,13 @@ ACMD_FUNC(agitstart3)
 {
 	nullpo_retr(-1, sd);
 
-	if (agit3_flag) {
+	if( guild_agit3_start() ){
+		clif_displaymessage(fd, msg_txt(sd,749)); // "War of Emperium TE has been initiated."
+		return 0;
+	}else{
 		clif_displaymessage(fd, msg_txt(sd,750)); // "War of Emperium TE is currently in progress."
 		return -1;
 	}
-
-	agit3_flag = true;
-	guild_agit3_start();
-	clif_displaymessage(fd, msg_txt(sd,749)); // "War of Emperium TE has been initiated."
-
-	return 0;
 }
 
 /**
@@ -3544,16 +3535,13 @@ ACMD_FUNC(agitend)
 {
 	nullpo_retr(-1, sd);
 
-	if (!agit_flag) {
+	if( guild_agit_end() ){
+		clif_displaymessage(fd, msg_txt(sd,74)); // War of Emperium has been ended.
+		return 0;
+	}else{
 		clif_displaymessage(fd, msg_txt(sd,75)); // War of Emperium is currently not in progress.
 		return -1;
 	}
-
-	agit_flag = false;
-	guild_agit_end();
-	clif_displaymessage(fd, msg_txt(sd,74)); // War of Emperium has been ended.
-
-	return 0;
 }
 
 /**
@@ -3563,16 +3551,13 @@ ACMD_FUNC(agitend2)
 {
 	nullpo_retr(-1, sd);
 
-	if (!agit2_flag) {
+	if( guild_agit2_end() ){
+		clif_displaymessage(fd, msg_txt(sd,405)); // "War of Emperium SE has been ended."
+		return 0;
+	}else{
 		clif_displaymessage(fd, msg_txt(sd,406)); // "War of Emperium SE is currently not in progress."
 		return -1;
 	}
-
-	agit2_flag = false;
-	guild_agit2_end();
-	clif_displaymessage(fd, msg_txt(sd,405)); // "War of Emperium SE has been ended."
-
-	return 0;
 }
 
 /**
@@ -3582,16 +3567,13 @@ ACMD_FUNC(agitend3)
 {
 	nullpo_retr(-1, sd);
 
-	if (!agit3_flag) {
+	if( guild_agit3_end() ){
+		clif_displaymessage(fd, msg_txt(sd,751));// War of Emperium TE has been ended.
+		return 0;
+	}else{
 		clif_displaymessage(fd, msg_txt(sd,752));// War of Emperium TE is currently not in progress.
 		return -1;
 	}
-
-	agit3_flag = false;
-	guild_agit3_end();
-	clif_displaymessage(fd, msg_txt(sd,751));// War of Emperium TE has been ended.
-
-	return 0;
 }
 
 /*==========================================
@@ -4443,6 +4425,45 @@ ACMD_FUNC(partyspy)
 	return 0;
 }
 
+ACMD_FUNC(clanspy){
+	char clan_name[NAME_LENGTH];
+	struct clan* c;
+	nullpo_retr(-1, sd);
+
+	memset(clan_name, '\0', sizeof(clan_name));
+	memset(atcmd_output, '\0', sizeof(atcmd_output));
+
+	if( !enable_spy ){
+		clif_displaymessage(fd, msg_txt(sd, 1125)); // The mapserver has spy command support disabled.
+		return -1;
+	}
+
+	if( !message || !*message || sscanf( message, "%23[^\n]", clan_name ) < 1 ){
+		clif_displaymessage(fd, msg_txt(sd, 1499)); // Please enter a clan name/ID (usage: @clanspy <clan_name/ID>).
+		return -1;
+	}
+
+	if ((c = clan_searchname(clan_name)) != NULL || // name first to avoid error when name begin with a number
+		(c = clan_search(atoi(message))) != NULL) {
+		if (sd->clanspy == c->id) {
+			sd->clanspy = 0;
+			sprintf(atcmd_output, msg_txt(sd, 1500), c->name); // No longer spying on the %s clan.
+			clif_displaymessage(fd, atcmd_output);
+		}
+		else {
+			sd->clanspy = c->id;
+			sprintf(atcmd_output, msg_txt(sd, 1501), c->name); // Spying on the %s clan.
+			clif_displaymessage(fd, atcmd_output);
+		}
+	}
+	else {
+		clif_displaymessage(fd, msg_txt(sd, 1502)); // Incorrect clan name/ID.
+		return -1;
+	}
+
+	return 0;
+}
+
 /*==========================================
  * @repairall [Valaris]
  *------------------------------------------*/
@@ -4590,15 +4611,12 @@ ACMD_FUNC(loadnpc)
 		clif_displaymessage(fd, msg_txt(sd,1132)); // Please enter a script file name (usage: @loadnpc <file name>).
 		return -1;
 	}
-
-	// add to list of script sources and run it
-        if( !npc_addsrcfile(message)  //try to read file
-            || !npc_parsesrcfile(message,true)
-        ){
-            clif_displaymessage(fd, msg_txt(sd,261));
-            return -1;
-        }	
 	
+	if (!npc_addsrcfile(message, true)) {
+		clif_displaymessage(fd, msg_txt(sd,261));
+		return -1;
+	}
+
 	npc_read_event_script();
 
 	clif_displaymessage(fd, msg_txt(sd,262));
@@ -4627,6 +4645,26 @@ ACMD_FUNC(unloadnpc)
 	npc_unload(nd,true);
 	npc_read_event_script();
 	clif_displaymessage(fd, msg_txt(sd,112)); // Npc Disabled.
+	return 0;
+}
+
+ACMD_FUNC(reloadnpcfile) {
+	if (!message || !*message) {
+		clif_displaymessage(fd, msg_txt(sd,733)); // Please enter a NPC file name (usage: @reloadnpcfile <file name>).
+		return -1;
+	}
+
+	if (npc_unloadfile(message))
+		clif_displaymessage(fd, msg_txt(sd,1386)); // File unloaded. Be aware that mapflags and monsters spawned directly are not removed.
+
+	if (!npc_addsrcfile(message, true)) {
+		clif_displaymessage(fd, msg_txt(sd,261)); // Script could not be loaded.
+		return -1;
+	}
+
+	npc_read_event_script();
+
+	clif_displaymessage(fd, msg_txt(sd,262)); // Script loaded.
 	return 0;
 }
 
@@ -6592,7 +6630,7 @@ ACMD_FUNC(npctalk)
 	strtok(name, "#"); // discard extra name identifier if present
 	snprintf(temp, sizeof(temp), "%s : %s", name, mes);
 
-	if(ifcolor) clif_messagecolor(&nd->bl,color,temp);
+	if(ifcolor) clif_messagecolor(&nd->bl,color,temp,true,AREA_CHAT_WOC);
 	else clif_disp_overhead(&nd->bl, temp);
 
 	return 0;
@@ -7916,7 +7954,7 @@ ACMD_FUNC(me)
  *------------------------------------------*/
 ACMD_FUNC(size)
 {
-	int size = 0;
+	int size = SZ_SMALL;
 	nullpo_retr(-1, sd);
 
 	size = cap_value(atoi(message),SZ_SMALL,SZ_BIG);
@@ -7943,7 +7981,7 @@ ACMD_FUNC(sizeall)
 	struct s_mapiterator* iter;
 
 	size = atoi(message);
-	size = cap_value(size,0,2);
+	size = cap_value(size,SZ_SMALL,SZ_BIG);
 
 	iter = mapit_getallusers();
 	for( pl_sd = (TBL_PC*)mapit_first(iter); mapit_exists(iter); pl_sd = (TBL_PC*)mapit_next(iter) ) {
@@ -7968,7 +8006,7 @@ ACMD_FUNC(sizeall)
 
 ACMD_FUNC(sizeguild)
 {
-	int size = 0, i;
+	int size = SZ_SMALL, i;
 	char guild[NAME_LENGTH];
 	struct map_session_data *pl_sd;
 	struct guild *g;
@@ -8381,7 +8419,7 @@ ACMD_FUNC(cash)
 				// If this option is set, the message is already sent by pc function
 				if( !battle_config.cashshop_show_points ){
 					sprintf(output, msg_txt(sd,505), ret, sd->cashPoints);
-					clif_disp_onlyself(sd, output, strlen(output));
+					clif_messagecolor(&sd->bl, color_table[COLOR_LIGHT_GREEN], output, false, SELF);
 				}
 			}
 			else clif_displaymessage(fd, msg_txt(sd,149)); // Unable to decrease the number/value.
@@ -8392,7 +8430,7 @@ ACMD_FUNC(cash)
 				// If this option is set, the message is already sent by pc function
 				if( !battle_config.cashshop_show_points ){
 					sprintf(output, msg_txt(sd,410), ret, sd->cashPoints);
-					clif_disp_onlyself(sd, output, strlen(output));
+					clif_messagecolor(&sd->bl, color_table[COLOR_LIGHT_GREEN], output, false, SELF);
 				}
 			}
 			else clif_displaymessage(fd, msg_txt(sd,41)); // Unable to decrease the number/value.
@@ -8403,13 +8441,13 @@ ACMD_FUNC(cash)
 		if( value > 0 ) {
 			if( (ret=pc_getcash(sd, 0, value, LOG_TYPE_COMMAND)) >= 0){
 			    sprintf(output, msg_txt(sd,506), ret, sd->kafraPoints);
-			    clif_disp_onlyself(sd, output, strlen(output));
+			    clif_messagecolor(&sd->bl, color_table[COLOR_LIGHT_GREEN], output, false, SELF);
 			}
 			else clif_displaymessage(fd, msg_txt(sd,149)); // Unable to decrease the number/value.
 		} else {
 			if( (ret=pc_paycash(sd, -value, -value, LOG_TYPE_COMMAND)) >= 0){
 			    sprintf(output, msg_txt(sd,411), ret, sd->kafraPoints);
-			    clif_disp_onlyself(sd, output, strlen(output));
+			    clif_messagecolor(&sd->bl, color_table[COLOR_LIGHT_GREEN], output, false, SELF);
 			}
 			else clif_displaymessage(fd, msg_txt(sd,41)); // Unable to decrease the number/value.
 		}
@@ -8505,7 +8543,7 @@ ACMD_FUNC(request)
 
 	sprintf(atcmd_output, msg_txt(sd,278), message);	// (@request): %s
 	intif_wis_message_to_gm(sd->status.name, PC_PERM_RECEIVE_REQUESTS, atcmd_output);
-	clif_disp_onlyself(sd, atcmd_output, strlen(atcmd_output));
+	clif_messagecolor(&sd->bl, color_table[COLOR_LIGHT_GREEN], atcmd_output, false, SELF);
 	clif_displaymessage(sd->fd,msg_txt(sd,279));	// @request sent.
 	return 0;
 }
@@ -8529,7 +8567,7 @@ ACMD_FUNC(auction)
 	nullpo_ret(sd);
 
 	if (!battle_config.feature_auction) {
-		clif_colormes(sd->fd, color_table[COLOR_RED], msg_txt(sd, 517));
+		clif_messagecolor(&sd->bl, color_table[COLOR_RED], msg_txt(sd, 517), false, SELF);
 		return 0;
 	}
 
@@ -10395,6 +10433,7 @@ void atcommand_basecommands(void) {
 		ACMD_DEF2("mount", mount_peco),
 		ACMD_DEF(guildspy),
 		ACMD_DEF(partyspy),
+		ACMD_DEF(clanspy),
 		ACMD_DEF(repairall),
 		ACMD_DEF(guildrecall),
 		ACMD_DEF(partyrecall),
@@ -10403,6 +10442,7 @@ void atcommand_basecommands(void) {
 		ACMD_DEF(hidenpc),
 		ACMD_DEF(loadnpc),
 		ACMD_DEF(unloadnpc),
+		ACMD_DEF(reloadnpcfile),
 		ACMD_DEF2("time", servertime),
 		ACMD_DEF(jail),
 		ACMD_DEF(unjail),
