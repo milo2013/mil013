@@ -85,7 +85,7 @@ set $@Toggle,3;     // 4 = Fishing Box off but still enables Points/Shop/Quest. 
 //                      FISHING SYSTEM VARIABLES                       //
 /////////////////////////////////////////////////////////////////////////
 // ======== FISHING SKILLS ============================================== 
-set $@FishingMode,1;	// 0 = Lil Troll Version (with Encounters and Rewarding Moments scene.
+set $@FishingMode,0;	// 0 = Lil Troll Version (with Encounters and Rewarding Moments scene.
 					// 1 = Automatic Fishing without Encounter and Rewarding Moments scene. (Grass Version)		
 set $@GrassNonAbuse,3;	// Set value to "rand(1,$@GrassNonAbuse)", for non-abusive Grass Version(Fish still hides recommended is 3).
 // ======== Fishing Animation ===========================================
@@ -103,8 +103,8 @@ setarray $@SuccessReward1[0],31156,31157,31157,31203;  		// Successful Fishing R
 setarray $@SuccessReward2[0],31157,31157,31157,31203;		// Successful Fishing Reward Level 2    
 setarray $@SuccessReward3[0],31157,31151,31151,31203;		// Successful Fishing Reward Level 3   
 // ======== Fishing Moments Rewards  =====================================
-setarray $@JackpotPrize[0],31156,31156,31157,31157,31151;    	// Jackpot Prize(Beware Fish Items only.)  
-setarray $@LuckyTreasureBox[0],969,7228,2636,13106,988;  	// Lucky Treasure Box Prize(Rare Items should be putted here.)
+setarray $@JackpotPrize[0],31156,31156,31157,31157,31151,31203,31203,31203;    	// Jackpot Prize(Beware Fish Items only.)  
+setarray $@LuckyTreasureBox[0],969,7228,2636,13106,988,31203,31203,31203;  	// Lucky Treasure Box Prize(Rare Items should be putted here.)
 setarray $@Scatter[0],1,2,3;     					// Jackpot Prize Scatter                    
 // ======== Fishing Failure Reward ======================================
 setarray $@FishingFailure[0],31137,713,31140;  	// Failure Fishing Items. (Recommended RottenFish/loots)   
@@ -276,25 +276,53 @@ Fishing Manual.
 //                      AUTOMATIC FISHING MAIN                         //
 // =========================== FISH NPCS ================================
 milenia,115,86,0	script	Swarm of Fish	723,{
-	// ========================== DONT CHANGE ANYTHING BELOW ================
-	if(FishingAbuse == 1) end; if($@Toggle == 3 || $@Toggle == 4) { if(CanFishNow == 0 ) end; } 
-	if($@FishingMode == 1) { callfunc "Automatic_Fishing"; } callfunc "Check_Requirements"; callfunc "Fishing_LoadingCasting"; 
-	callfunc "Fishing_Rates"; OnPCLoginEvent: if(FishingAbuse==1)set FishingAbuse,0; end; OnPCLogoutEvent: if(FishingAbuse==1) set FishingAbuse,0; end;
-}	// ========================== DONT CHANGE ANYTHING ABOVE ================
+
+	if(FishingAbuse == 1) end; 
+	
+	if($@Toggle == 3 || $@Toggle == 4) { 
+	if(CanFishNow == 0 ) end; 
+	} 
+	
+	if($@FishingMode == 1) { 
+	callfunc "Automatic_Fishing"; 
+	} 
+	
+	callfunc "Check_Requirements"; 
+	callfunc "Fishing_LoadingCasting"; 
+	callfunc "Fishing_Rates"; 
+	OnPCLoginEvent: if(FishingAbuse==1)
+	set FishingAbuse,0; 
+	end; 
+	
+	OnPCLogoutEvent: 
+	if(FishingAbuse==1) set FishingAbuse,0; 
+	end;
+	
+}
+
 function	script	Fishing_Rates	{
-	     if($@FishingMode == 0) { set .@random,rand(1000);			// FISHING RATES SETUP										
+	     if($@FishingMode == 0) { 
+		 set .@random,rand(1000);			
+		 
+		 // FISHING RATES SETUP										
 		// Fishing Successful Rate:	// 70% Rate
 		if(.@random>=1 && .@random<=250 || .@random>=351 && .@random<=600 || .@random>=801 && .@random<=1000 ) callfunc "Fishing_Successful";        
+		
 		// Fail Bait Rate:			// 15% Rate
 		if(.@random>=251 && .@random<=300 || .@random>=601 && .@random<=700 ) callfunc "Fail_Bait";   
+		
 		// Monster Encounter Rate:	// 2.5% Rate
 		if(.@random>=301 && .@random<=325) callfunc "Monster_Encounter";              
+		
 		// Jackpot Prize Rate :		// 2.5% Rate
 		if(.@random>=326 && .@random<=350) callfunc "Jackpot_Prize";           
+		
 		// Lucky Treasure Box Rate:	// 2.5% Rate
 		if(.@random>=700 && .@random<=725) callfunc "Lucky_Prize";            
+		
 		// Fish Monsters Caught Rate:	// 2.5% Rate
 		if(.@random>=726 && .@random<=750) callfunc "Fish_Monster_Summons";   
+		
 		//Marine Sphere Caught Rate 	// 5% Rate
 		if(.@random>=751 && .@random<= 800) callfunc "Marine_Sphere_Caught";  
 		}	
@@ -362,122 +390,305 @@ return;
 //                        MONSTER ENCOUNTER SETUP           
 //=======================================================================
 function	script	Monster_Encounter	{
-	emotion e_slur,1;  specialeffect2 109; specialeffect2 199; callfunc "Fishing_Dialogues"; callfunc "FishingCasting";
-	if ($@Cuttins == 1) { specialeffect 236;  specialeffect 54; hideonnpc strnpcinfo(0); sleep2 1000; 
-	mes "^ff0000Grab the line now....^000000"; close2; specialeffect 236;  specialeffect 54; hideoffnpc strnpcinfo(0); } 
+
+	emotion e_slur,1;  
+	specialeffect2 109; 
+	specialeffect2 199; 
+	callfunc "Fishing_Dialogues"; 
+	callfunc "FishingCasting";
+	
+	if ($@Cuttins == 1) { 
+	specialeffect 236;  
+	specialeffect 54; 
+	hideonnpc strnpcinfo(0); 
+	sleep2 1000; 
+	mes "^ff0000Grab the line now....^000000"; close2; specialeffect 236;  specialeffect 54; hideoffnpc strnpcinfo(0); 
+	} 
+	
+	
 	for (.@i = 0; .@i < getarraysize($SpecialFX2); .@i++) specialeffect $@FishingMonsterFX[.@i]; 
-		set .@random,rand(2); sleep2 500; callfunc "Fish_Fail"; callfunc "Fish_Encounter";
+		set .@random,rand(2); 
+		sleep2 500; 
+		callfunc "Fish_Fail";
+		callfunc "Fish_Encounter";
 		announce "Sea Monster: Looks yummy!!",bc_self;
-		if(.@random == 0) { emotion e_omg; emotion e_omg,1;    
+		
+		if(.@random == 0) { 
+			emotion e_omg; emotion e_omg,1;    
 			message strcharinfo(0), "Help!! I'm too young to be eaten!! Please eat GM Symphony instead!!";                		// Change fish monster encounter dialogues here. 
-			setnpcdisplay ""+strnpcinfo(0)+"",1264; }
-		if(.@random == 1) { emotion e_omg; emotion e_omg,1; 
+			setnpcdisplay ""+strnpcinfo(0)+"",1264; 
+			}
+			
+		if(.@random == 1) { 
+			emotion e_omg; emotion e_omg,1; 
 			message strcharinfo(0), "Please!!! I'm still virgin!!"; 					
-			setnpcdisplay ""+strnpcinfo(0)+"",1993; }
-		if(.@random == 2) { emotion e_omg; emotion e_omg,1; 
+			setnpcdisplay ""+strnpcinfo(0)+"",1993; 
+			}
+			
+		if(.@random == 2) { 
+			emotion e_omg; emotion e_omg,1; 
 			message strcharinfo(0), "Noooooooooo!!!!! I want to eat by sexy monster!! Not you!!"; 					 
-			setnpcdisplay ""+strnpcinfo(0)+"",2184; }		
-		specialeffect 117; sleep2 100; specialeffect 942; specialeffect 54; sleep2 100; 
-		specialeffect2 202; specialeffect2 678;  specialeffect 54; sleep2 100; 
-		emotion e_oops;  emotion e_panic,1;  specialeffect2 772; specialeffect2 692; specialeffect 54; sleep2 100;   
-		emotion X,1; emotion e_spit; specialeffect 915; specialeffect 54; specialeffect 236; sleep2 1000; 
-		setnpcdisplay ""+strnpcinfo(0)+"",723; specialeffect 236; hideonnpc strnpcinfo(0);  percentheal -50,-50;
-		set FishingAbuse,0; announce "The Sea Monster grab "+strcharinfo(0)+" feet and dragged him into the water!",bc_map;
-		sleep2 100; warp ""+$@FMap$+"",$@X,$@Y; emotion e_spin,1; // Fish monster encounter, dragged player feet and bring him into other map.
-		hideonnpc strnpcinfo(0);sleep2 $@FishHidingTime; hideoffnpc strnpcinfo(0); end;
+			setnpcdisplay ""+strnpcinfo(0)+"",2184; 
+			}		
+			
+		specialeffect 117; 
+		sleep2 100; 
+		specialeffect 942; 
+		specialeffect 54; 
+		sleep2 100; 
+		specialeffect2 202; 
+		specialeffect2 678;  
+		specialeffect 54; 
+		sleep2 100; 
+		emotion e_oops;  
+		emotion e_panic,1;  
+		specialeffect2 772; 
+		specialeffect2 692; 
+		specialeffect 54; 
+		sleep2 100;   
+		emotion X,1; 
+		emotion e_spit; 
+		specialeffect 915; 
+		specialeffect 54; 
+		specialeffect 236; 
+		sleep2 1000; 
+		setnpcdisplay ""+strnpcinfo(0)+"",723; 
+		specialeffect 236; 
+		hideonnpc strnpcinfo(0);  
+		percentheal -50,-50;
+		set FishingAbuse,0; 
+		announce "The Sea Monster grab "+strcharinfo(0)+" feet and dragged him into the water!",bc_map;
+		sleep2 100; 
+		warp ""+$@FMap$+"",$@X,$@Y; 
+		emotion e_spin,1; // Fish monster encounter, dragged player feet and bring him into other map.
+		hideonnpc strnpcinfo(0);
+		sleep2 
+		$@FishHidingTime; 
+		hideoffnpc strnpcinfo(0); 
+		end;
 return; 
 }
 //=======================================================================
 //                         LUCKY PRIZE SETUP                
 //=======================================================================
-function	script	Lucky_Prize	{	// WARNING! Do not can mes > "dispbottom or message" if as you wanted. Certainly to prevent abuse. 
-	callfunc "Fishing_Dialogues"; callfunc "FishingCasting"; if ($@Cuttins == 1) { specialeffect 236;  specialeffect 54; hideonnpc strnpcinfo(0); sleep2 1000; 
-	mes "^ff0000Grab the line now....^000000"; close2; specialeffect 236;  specialeffect 54; hideoffnpc strnpcinfo(0); } 
+function	script	Lucky_Prize	{	
+// WARNING! Do not can mes > "dispbottom or message" if as you wanted. Certainly to prevent abuse. 
+	
+	callfunc "Fishing_Dialogues"; 
+	callfunc "FishingCasting"; 
+	
+	if ($@Cuttins == 1) { 
+	specialeffect 236;  
+	specialeffect 54;
+	hideonnpc strnpcinfo(0);
+	sleep2 1000; 
+	mes "^ff0000Grab the line now....^000000";
+	close2; 
+	
+	specialeffect 236;  
+	specialeffect 54; 
+	hideoffnpc strnpcinfo(0); 
+	} 
+	
 	set .@FReward,$@SuccessReward1[rand(getarraysize($@SuccessReward1))];  
-	getitem .@FReward,1; callfunc "Fish_Count"; callfunc "Fishing_Exp";           	
-	setnpcdisplay ""+strnpcinfo(0)+"",1340; mes "[ ^ff0000Treasure Box Appeared^000000 ]..."; sleep2 2000;  
-	for (.@i = 0; .@i < getarraysize($SpecialFX); .@i++) specialeffect2 $@FishingSFX1[.@i];
+	getitem .@FReward,1;
+	callfunc "Fish_Count"; 
+	callfunc "Fishing_Exp";           	
+	setnpcdisplay ""+strnpcinfo(0)+"",1340;
+	mes "[ ^ff0000Treasure Box Appeared^000000 ]..."; 
+	sleep2 2000;  
+	for (.@i = 0; 
+	.@i < getarraysize($SpecialFX); 
+	.@i++) specialeffect2 $@FishingSFX1[.@i];
 	set .@FReward,$@SuccessReward1[rand(getarraysize($@SuccessReward1))]; 
-	getitem .@FReward,1;  callfunc "Fish_Count"; callfunc "Fishing_Exp"; 
-	mes "I need to unlock it...."; 	sleep2 2000; 				
+	getitem .@FReward,1;  
+	
+	callfunc "Fish_Count"; 
+	callfunc "Fishing_Exp"; 
+	mes "I need to unlock it...."; 	
+	sleep2 2000; 				
 	mes "There are ^00007f1,2,3^000000 numbers listed in the lock switch..";  
 	set .@FReward,$@SuccessReward2[rand(getarraysize($@SuccessReward2))]; 
-	getitem .@FReward,1; callfunc "Fish_Count"; callfunc "Fishing_Exp"; 
-	for (.@i = 0; .@i < getarraysize($SpecialFX2$); .@i++) specialeffect $FishingSFX2$[.@i]; 
+	getitem .@FReward,1; 
+	
+	callfunc "Fish_Count"; 
+	callfunc "Fishing_Exp"; 
+	for (.@i = 0; .@i < getarraysize($SpecialFX2$); 
+	.@i++) specialeffect $FishingSFX2$[.@i]; 
 	set .@FReward,$@SuccessReward3[rand(getarraysize($@SuccessReward3))];		
-	getitem .@FReward,1; callfunc "Fishing_Exp"; callfunc "Fish_Count"; sleep2 2000; 
-	for (.@i = 0; .@i < getarraysize($SpecialFX); .@i++) specialeffect2 $@FishingSFX1[.@i];
-	set @chance,rand(1,3); input .@luckydraw; if(.@luckydraw==@chance) {                                 
+	getitem .@FReward,1; 
+	
+	callfunc "Fishing_Exp"; 
+	callfunc "Fish_Count"; 
+	sleep2 2000; 
+	for (.@i = 0;
+	.@i < getarraysize($SpecialFX); 
+	.@i++) specialeffect2 $@FishingSFX1[.@i];
+	set @chance,rand(1,3);
+	input .@luckydraw;
+	if(.@luckydraw==@chance) {                                 
 		mes "^ff0000I unlocked the treasure box!^000000"; close2;            	  
-		for (.@i = 0; .@i < getarraysize($SpecialFX); .@i++) specialeffect2 $@FishingSFX1[.@i];
-			set .@FLucky,$@LuckyTreasureBox[rand(getarraysize($@LuckyTreasureBox))];
-			callfunc "Fishing_Exp"; callfunc "Fish_Count"; getitem .@FLucky,1;    // This is where the player gets the Lucky Prize(Recommended Rare Items)
-			announce ""+strcharinfo(0)+" got "+getitemname(.@FLucky)+" from fishing.",bc_all,0x00FF00;  
-			dispbottom "[ Minor Bonus Boost Applied! ] [ Fishing Rank: " + FishingLevel + ", Fishing Exp: " + FishingNowExp + " / " + $@FishingExpMax[ FishingLevel ] + " ] [Fishing Points: "+#FishingPoints+"]"; 
-			set FishingAbuse,0; setnpcdisplay ""+strnpcinfo(0)+"",723; callfunc "Fish_Moments"; callfunc "Fish_Success"; specialeffect 54; specialeffect 236; hideonnpc strnpcinfo(0); sleep2 $@FishHidingTime; hideoffnpc strnpcinfo(0); end;
+		for (.@i = 0; .@i < getarraysize($SpecialFX); 
+		.@i++) specialeffect2 $@FishingSFX1[.@i];
+		set .@FLucky,$@LuckyTreasureBox[rand(getarraysize($@LuckyTreasureBox))];
+		callfunc "Fishing_Exp"; 
+		callfunc "Fish_Count"; 
+		getitem .@FLucky,1;    // This is where the player gets the Lucky Prize(Recommended Rare Items)
+		announce ""+strcharinfo(0)+" got "+getitemname(.@FLucky)+" from fishing.",bc_all,0x00FF00;  
+		dispbottom "[ Minor Bonus Boost Applied! ] [ Fishing Rank: " + FishingLevel + ", Fishing Exp: " + FishingNowExp + " / " + $@FishingExpMax[ FishingLevel ] + " ] [Fishing Points: "+#FishingPoints+"]"; 
+		set FishingAbuse,0; setnpcdisplay ""+strnpcinfo(0)+"",723; 
+		callfunc "Fish_Moments"; 
+		callfunc "Fish_Success"; 
+		specialeffect 54; 
+		specialeffect 236; 
+		hideonnpc strnpcinfo(0); 
+		sleep2 $@FishHidingTime; 
+		hideoffnpc strnpcinfo(0); 
+		end;
 	}
 	else 
-		mes "Too bad the treasure box disappear!"; emotion e_sob,1;  close2; 
+		mes "Too bad the treasure box disappear!"; 
+		emotion e_sob,1;  
+		close2; 
 		dispbottom "[ Minor Bonus Boost Applied! ] [ Fishing Rank: " + FishingLevel + ", Fishing Exp: " + FishingNowExp + " / " + $@FishingExpMax[ FishingLevel ] + " ] [Fishing Points: "+#FishingPoints+"]"; 
-		set FishingAbuse,0; setnpcdisplay ""+strnpcinfo(0)+"",723;specialeffect 54; specialeffect 236;  hideonnpc strnpcinfo(0); sleep2 $@FishHidingTime; hideoffnpc strnpcinfo(0); end;
+		set FishingAbuse,0; 
+		setnpcdisplay ""+strnpcinfo(0)+"",723;
+		specialeffect 54; specialeffect 236;  
+		hideonnpc strnpcinfo(0); 
+		sleep2 $@FishHidingTime; 
+		hideoffnpc strnpcinfo(0); 
+		end;
 return; 
 }
 //=======================================================================
 //                        JACKPOT PRIZE SETUP                
 //=======================================================================
 function	script	Jackpot_Prize	{		// Modify to your liking, add effects, more dialouges or whatever! :)
-	callfunc "Fishing_Dialogues"; callfunc "FishingCasting"; if ($@Cuttins == 1) { specialeffect 236;  specialeffect 54; hideonnpc strnpcinfo(0); sleep2 1000; 
-	mes "^ff0000Grab the line now....^000000"; close2; specialeffect 236;  specialeffect 54; hideoffnpc strnpcinfo(0); } 
-	specialeffect2 857; specialeffect 236;  specialeffect 54; emotion e_omg,1; setnpcdisplay ""+strnpcinfo(0)+"",2196; sleep2 250;
+	callfunc "Fishing_Dialogues"; 
+	callfunc "FishingCasting"; 
+	if ($@Cuttins == 1) { 
+	specialeffect 236;  
+	specialeffect 54; 
+	hideonnpc strnpcinfo(0); 
+	sleep2 1000; 
+	mes "^ff0000Grab the line now....^000000"; 
+	close2; 
+	
+	specialeffect 236;  
+	specialeffect 54; 
+	hideoffnpc strnpcinfo(0); 
+	} 
+	
+	specialeffect2 857; 
+	specialeffect 236;  specialeffect 54;
+	emotion e_omg,1; 
+	setnpcdisplay ""+strnpcinfo(0)+"",2196; 
+	sleep2 250;
 	announce "The blessings from God of the Sea rains upon "+strcharinfo(0)+"",bc_map; 
 	callfunc "JackpotScene"; callfunc "JackpotScene"; callfunc "JackpotScene"; callfunc "JackpotScene";
 	callfunc "JackpotScene"; callfunc "JackpotScene"; callfunc "JackpotScene"; callfunc "JackpotScene";
 	callfunc "JackpotScene"; callfunc "JackpotScene"; callfunc "JackpotScene"; callfunc "JackpotScene"; 
 	callfunc "JackpotScene"; callfunc "JackpotScene"; callfunc "Fish_Moments"; callfunc "Fish_Success"; 
 	dispbottom "[ Major Bonus Boost Applied! ] [ Fishing Rank: " + FishingLevel + ", Fishing Exp: " + FishingNowExp + " / " + $@FishingExpMax[ FishingLevel ] + " ] [Fishing Points: "+#FishingPoints+"]";
-	set FishingAbuse,0; setnpcdisplay ""+strnpcinfo(0)+"",723; specialeffect 54; specialeffect 236; hideonnpc strnpcinfo(0); sleep2 $@FishHidingTime; hideoffnpc strnpcinfo(0); end;
+	set FishingAbuse,0; setnpcdisplay ""+strnpcinfo(0)+"",723; 
+	specialeffect 54; 
+	specialeffect 236; 
+	hideonnpc strnpcinfo(0); 
+	sleep2 $@FishHidingTime; 
+	hideoffnpc strnpcinfo(0); 
+	end;
 return;
 }	
+
 function	script	JackpotScene	{		// You can change this Jackpot Encounter Scene.
-	getmapxy(@fm$,@x,@y,0); set .@jackpot,$@JackpotPrize[rand(getarraysize($@JackpotPrize))]; getitem .@jackpot,1; 
-	set .@FishScattered,$@JackpotPrize[rand(getarraysize($@JackpotPrize))]; specialeffect 54; specialeffect 236;
-	set $@Scatter,$@Scatter[rand(getarraysize($@Scatter))];  makeitem .@FishScattered,$@Scatter,@fm$,@x+rand(-3,3),@y+rand(-3,3); 
-	specialeffect2 810; specialeffect2 563; callfunc "Fishing_Exp"; callfunc "Fish_Count"; sleep2 1000; 
+	getmapxy(@fm$,@x,@y,0); 
+	set .@jackpot,$@JackpotPrize[rand(getarraysize($@JackpotPrize))]; 
+	getitem .@jackpot,1; 
+	
+	set .@FishScattered,$@JackpotPrize[rand(getarraysize($@JackpotPrize))]; 
+	specialeffect 54; 
+	specialeffect 236;
+	set $@Scatter,$@Scatter[rand(getarraysize($@Scatter))]; 
+	makeitem .@FishScattered,$@Scatter,@fm$,@x+rand(-3,3),@y+rand(-3,3); 
+	specialeffect2 810; specialeffect2 563;
+	callfunc "Fishing_Exp"; 
+	callfunc "Fish_Count"; 
+	sleep2 1000; 
 return;
 }	
 //=======================================================================
 //                          FISH MONSTER SUMMONS               
 //=======================================================================
 function	script	Fish_Monster_Summons	{
-	callfunc "Fishing_Dialogues"; callfunc "FishingCasting"; if ($@Cuttins == 1) { specialeffect 236;  specialeffect 54; hideonnpc strnpcinfo(0); sleep2 1000; 
-	mes "^ff0000Grab the line now....^000000"; close2; } 
-	getmapxy(@fm$,@x,@y,0); set FishingAbuse,0; set .@rn,rand(0,getarraysize($FishingMonster)-1); 
+
+	callfunc "Fishing_Dialogues";
+	callfunc "FishingCasting"; 
+	if ($@Cuttins == 1) { 
+	specialeffect 236;  
+	specialeffect 54; 
+	hideonnpc strnpcinfo(0); 
+	sleep2 1000; 
+	mes "^ff0000Grab the line now....^000000"; 
+	close2; 
+	} 
+	
+	getmapxy(@fm$,@x,@y,0); 
+	set FishingAbuse,0; 
+	set .@rn,rand(0,getarraysize($FishingMonster)-1); 
 	//cutin $@FishMonsterSummon$,3;
 	monster @fm$,@x,@y,getmonsterinfo($FishingMonster[.@rn],0),$FishingMonster[@rn],1; 
 	message strcharinfo(0), "OMG I caught Fish Monsters!!"; 
 	for(set .ctr,0; .ctr<=10; set .ctr, .ctr + 1) if(rand(1, 5) <= 1) {
 		//cutin $@FishMonsterSummon1$,3;
-		monster @fm$,@x,@y,getmonsterinfo($FishingMonster[.@rn],0),$FishingMonster[.@rn], 1;  } cutin "",255; callfunc "Fish_Fail"; 
-	callfunc "Fish_Encounter"; sleep2 $@FishHidingTime; hideoffnpc strnpcinfo(0); end;
+		monster @fm$,@x,@y,getmonsterinfo($FishingMonster[.@rn],0),$FishingMonster[.@rn], 1; 
+	} 
+	cutin "",255;
+	callfunc "Fish_Fail"; 
+	callfunc "Fish_Encounter"; 
+	sleep2 $@FishHidingTime; 
+	hideoffnpc strnpcinfo(0); 
+	end;
 return; 
 }
 //=======================================================================
 //                          MARINE SPHERE CAUGHT               
 //=======================================================================
 function	script	Marine_Sphere_Caught	{
-	callfunc "Fishing_Dialogues"; callfunc "FishingCasting";
-	emotion e_omg,1; if ($@Cuttins == 1) { specialeffect 236;  specialeffect 54; hideonnpc strnpcinfo(0); sleep2 1000; 
-	mes "^ff0000Grab the line now....^000000"; close2; specialeffect 236;  specialeffect 54; hideoffnpc strnpcinfo(0); }  
+	callfunc "Fishing_Dialogues"; 
+	callfunc "FishingCasting";
+	emotion e_omg,1; 
+	
+	if ($@Cuttins == 1) { 
+	specialeffect 236;  
+	specialeffect 54; 
+	hideonnpc strnpcinfo(0); 
+	sleep2 1000; 
+	mes "^ff0000Grab the line now....^000000"; 
+	close2; 
+	specialeffect 236;  
+	specialeffect 54; 
+	hideoffnpc strnpcinfo(0); 
+	}  
+	
 	message strcharinfo(0), "OMG??!!!!...."; 
      //cutin $@MarineSphere$,3;
 	setnpcdisplay ""+strnpcinfo(0)+"",1142,2;     			// Change NPC Display to Marine Sphere.
 	sleep2 1000; emotion e_com; sleep2 500;
-	emotion e_heh,1; sleep2 500;							// This scene is very funny! :)	
-	set FishingAbuse,0; atcommand "@nuke "+strcharinfo(0);  	// You can change @die if you have @nuke restrictions.
+	emotion e_heh,1; 
+	sleep2 500;							// This scene is very funny! :)	
+	set FishingAbuse,0; 
+	atcommand "@nuke "+strcharinfo(0);  	// You can change @die if you have @nuke restrictions.
 	announce "The Marine Sphere that "+strcharinfo(0)+" caught exploded in his face!",bc_map; // KABOOOM EFFECT! :D
 	for (.@i = 0; .@i < getarraysize(.@SpecialFXMarine); .@i++) specialeffect .@SpecialFXMarine[.@i];
-	setnpcdisplay ""+strnpcinfo(0)+"",723;	cutin "",255; callfunc "Fish_Fail"; specialeffect 54; specialeffect 236; 
-	hideonnpc strnpcinfo(0); sleep2 $@FishHidingTime; hideoffnpc strnpcinfo(0); end;
+	setnpcdisplay ""+strnpcinfo(0)+"",723;	cutin "",255; 
+	callfunc "Fish_Fail"; 
+	specialeffect 54; 
+	specialeffect 236; 
+	hideonnpc strnpcinfo(0); 
+	sleep2 
+	$@FishHidingTime; 
+	hideoffnpc strnpcinfo(0);
+	end;
 return;
 }
 /////////////////////////////////////////////////////////////////////////

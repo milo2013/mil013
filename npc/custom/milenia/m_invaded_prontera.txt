@@ -127,7 +127,7 @@ OnBossKill:
 	monster .Map$,0,0,"--ja--",.boss_mob[rand(.boss_mob_size)],1,strnpcinfo(0)+"::OnBossKill";
 	getitem .farm_boss[rand(.farm_boss_size)], 10;
 	mapannounce "prt_q", strcharinfo(0) + " has killed the Invader General and Claimed 10 Gold pieces!!",0;
-	mapannounce "milenia", strcharinfo(0) + " has killed the Invader General and Claimed 10 Gold pieces!!",0;
+	//mapannounce "milenia", strcharinfo(0) + " has killed the Invader General and Claimed 10 Gold pieces!!",0;
 	goto L_kill;
 	
 L_kill:
@@ -185,9 +185,9 @@ OnInit:
 			monster .Map$,0,0, "Invader Soldier", .normal_mob[ rand( .normal_mob_size ) ], 1, strnpcinfo(0)+"::OnNormalKill";
 		for ( .@i = 0; .@i < 100; .@i++ )
 			monster .Map$,0,0, "Invader Captain", .captain_mob[ rand( .captain_mob_size ) ], 1, strnpcinfo(0)+"::OnCaptainKill";
-		for ( .@i = 0; .@i < 50; .@i++ )
-			monster .Map$,0,0, "Invader Commander", .commander_mob[ rand( .commander_mob_size ) ], 1, strnpcinfo(0)+"::OnCommanderKill";
 		for ( .@i = 0; .@i < 25; .@i++ )
+			monster .Map$,0,0, "Invader Commander", .commander_mob[ rand( .commander_mob_size ) ], 1, strnpcinfo(0)+"::OnCommanderKill";
+		for ( .@i = 0; .@i < 15; .@i++ )
 			monster .Map$,0,0, "Invader General", .boss_mob[ rand( .boss_mob_size ) ], 1, strnpcinfo(0)+"::OnBossKill";
 
 	}

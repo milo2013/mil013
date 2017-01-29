@@ -188,3 +188,5 @@
 
 31202,Figure_Rent_Permit,Figure Rent Permit,3,0,,0,,,,,,,,,,,,,{},{},{}
 31203,Gold_Fish,Gold Fish,0,10,10,20,,,,,0xFFFFFFFF,63,2,,,,,,{ itemheal rand(5000,5500),0; },{},{}
+31204,Exchange_Permit,Ladder Exchange Permit,3,0,,0,,,,,,,,,,,,,{},{},{}
+31205,Exchange_Permit_2,Ladder Exchange Permit II,3,0,,0,,,,,,,,,,,,,{},{},{}

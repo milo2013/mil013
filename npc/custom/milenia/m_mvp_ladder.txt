@@ -149,10 +149,11 @@ milenia,102,161,5	script	MVP Ladder	10192,{
 		getpartymember .party_id, 2;
 		
 	// item reward for completing the entire ladder
-	setarray .@itemsFinish[0],"6277","7879";
-	set .finish_item_id, .@itemsFinish[rand (getarraysize(.@itemsFinish)) ];
-	set .inish_item_amount, 1;
-	
+	//setarray .@itemsFinish[0],"6277","7879";
+	//set .finish_item_id, .@itemsFinish[rand (getarraysize(.@itemsFinish)) ];
+	//set .inish_item_amount, 1;
+	set .finish_item_id, 31205;
+	set .finish_item_amount, 1;
 		mapannounce .eventmap$, "Congratulations... You were able to defeat all the MVPs!", bc_map;
 		for ( .@i = 0; .@i < $@partymembercount; .@i++ ) {
 			if ( isloggedin( $@partymemberaid[.@i], $@partymembercid[.@i] ) ) {
@@ -164,9 +165,11 @@ milenia,102,161,5	script	MVP Ladder	10192,{
 		
 	// bonus reward if ladder completed within a certain time (in minutes)
 	.bonus_time = 10; // if completed within 10 minutes, this reward is given
-	setarray .@itemsBonus[0],"6277","7879";
-	set .bonus_item_id, .@itemsBonus[rand (getarraysize(.@itemsBonus)) ];
-	set .bonus_item_amount, rand(1,5);
+	//setarray .@itemsBonus[0],"6277","7879";
+	//set .bonus_item_id, .@itemsBonus[rand (getarraysize(.@itemsBonus)) ];
+	//set .bonus_item_amount, ;
+	set .bonus_item_id, 31205;
+	set .bonus_item_amount, 5;
 		
 		set .@timeused, gettimetick(2) - .@time_enter;
 		if ( .bonus_item_amount && .@timeused < .bonus_time * 60 ) {
@@ -200,9 +203,13 @@ milenia,102,161,5	script	MVP Ladder	10192,{
 
 OnMvpDead:	
 	// item reward for completing each round
-	setarray .@items[0],"607","6746","7914","607","969","7844","7231";
-	set .round_item_id, .@items[rand (getarraysize(.@items)) ];
-	set .round_item_amount, rand(1,3);
+	//setarray .@items[0],"607","6746","7914","607","969","7844","7231";
+	//set .round_item_id, .@items[rand (getarraysize(.@items)) ];
+	//set .round_item_amount, rand(1,3);
+	set .round_item_id,31204;
+	set .round_item_amount,1;
+	
+
 	
 	.round++;
 	if ( .round >= 2 && .round != .totalround +1 && .round_item_amount ) {
@@ -230,6 +237,8 @@ OnMvpDead:
 	sleep .delay * 1000;
 	if ( .mvpid[.round] == 1646 )  // pick random Bio3 MVP
 		.mvpid[.round] = rand(1646,1651);
+	if ( .mvpid[.round] == 2235 )  // pick random Bio4 MVP
+		.mvpid[.round] = rand(2235,2241);	
 	monster .eventmap$,0,0, "--ja--", .mvpid[.round], 1, strnpcinfo(0)+"::OnMvpDead";
 	mapannounce .eventmap$, getmonsterinfo( .mvpid[.round], MOB_NAME ) +" has spawned!", bc_map|bc_blue;
 	end;
@@ -315,7 +324,7 @@ OnInit:
 		1708,//	Thanatos			99
 		1751,//	Valkyrie Randgris	99
 		1832,//	Ifrit				99
-		"2235|2236|2238|2239|2240|2241|2237",// Bio4 MVP	100
+		2235,// Bio4 MVP	100
 		3074; // Time Holder	101
 
 	// number of rounds (default: 39)
