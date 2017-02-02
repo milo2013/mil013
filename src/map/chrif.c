@@ -1173,17 +1173,9 @@ int chrif_disconnectplayer(int fd) {
 		return -1;
 	}
 
-	if (!sd->fd) { //No connection
-		if (sd->state.autotrade){
-			if( sd->state.vending ){
-				vending_closevending(sd);
-			}
-			else if( sd->state.buyingstore ){
-				buyingstore_close(sd);
-			}
-
-			map_quit(sd); //Remove it.
-		}
+	if (!sd->fd) {
+		if (sd->state.autotrade)
+			map_quit(sd);
 		//Else we don't remove it because the char should have a timer to remove the player because it force-quit before,
 		//and we don't want them kicking their previous instance before the 10 secs penalty time passes. [Skotlex]
 		return 0;
@@ -1612,9 +1604,6 @@ void chrif_parse_ack_vipActive(int fd) {
 				ShowError("intif_parse_ack_vipActive: Storage size for player %s (%d:%d) is larger than MAX_STORAGE. Storage size has been set to MAX_STORAGE.\n", sd->status.name, sd->status.account_id, sd->status.char_id);
 				sd->storage.max_amount = MAX_STORAGE;
 			}
-			// Magic Stone requirement avoidance for VIP.
-			if (battle_config.vip_gemstone)
-				sd->special_state.no_gemstone = 2; // need to be done after status_calc_bl(bl,first);
 		} else if (sd->vip.enabled) {
 			sd->vip.enabled = 0;
 			sd->vip.time = 0;

@@ -3,6 +3,8 @@ OnInit:
 set .Time,60;		// Announce every x Minute.
 
 setarray .News$[0],	// Random Message to be Announced
+		"Milenia RO : Milenia now in Discord~ Join us at mileniaro.com/discord~",
+		"Milenia RO : RM1.00 = 1 Cashpoints~ Donate via Maybank2u now!!",
 		"Milenia RO : 4 Cashpoints just $1~ Buy in our website..",
 		"Milenia RO : Recommend our server to your friends to make us grow!!",
 		"Milenia RO : New in Milenia RO? use our Milenia Tour NPC to warp any NPC!",

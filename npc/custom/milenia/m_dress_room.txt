@@ -43,6 +43,12 @@ Laccessroom:
 	// Only 3rd job's have access to a 2nd body style.
 	// Note: Not all of the new body styles are out. Best to limit only to jobs that do have them.
 	if (
+	Class == 4069 || // Wanderer Regular
+	Class == 4076 || // Wanderer Reborn
+	Class == 4105 || // Wanderer Baby
+	Class == 4068 || // Minstrel Regular
+	Class == 4075 || // Minstrel Reborn
+	Class == 4104 || // Minstrel Baby
 	//Class == 4051 || // Rune Knight Regular [x]
 	//Class == 4060 || // Rune Knight Reborn [x]
 	//Class == 4096 || // Rune Knight Baby [x]
