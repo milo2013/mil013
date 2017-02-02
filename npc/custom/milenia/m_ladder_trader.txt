@@ -16,23 +16,61 @@ milenia,100,161,5	script	MVP Ladder Exchanger	10183,{
     next;
 	switch(select("Permit Exchange:Permit Exchange II:Close")) {
 		case 1:
-			if (countitem (.IDP)) < 1{
 			mes "[Ladder Exchanger]";
-			mes "Sorry! You don't have any permit to exchange!!";
-			close;
-			}
+			mes "Please select which Exchange do you want?";
 			next;
-			goto Ltrade;
+			switch(select("Ladder Material:Red Reagent or Golden Tread:Close")) {
+			case 1:
+				if (countitem (.IDP)) < 1{
+				mes "[Ladder Exchanger]";
+				mes "Sorry! You don't have any permit to exchange!!";
+				close;
+				}
+				next;
+				mes "[Ladder Exchanger]";
+				mes "Every 1 MVP Ladder Permit I you may exhange 1 Random Material.";
+				next;
+				switch(select("Got it!:Close")) {
+				case 1:
+					goto Ltrade;
+				case 2:
+					close;
+					break;
+					}
+			case 2:
+				if (countitem (.IDP)) < 100{
+				mes "[Ladder Exchanger]";
+				mes "Sorry! You don't have any permit to exchange!!";
+				close;
+				break;
+				}
+				next;
+				mes "[Ladder Exchanger]";
+				mes "Every 100 MVP Ladder Permit I you may exchange 1 Red Reagent or 1 Golden Tread randomly.";
+				next;
+				switch(select("Got it!:Close")) {
+				case 1:
+					goto Ltrade3;
+				case 2:
+					close;
+					break;
+					}
+			case 3:
+				close;
+				break;
+				}
 		case 2:
 			if (countitem (.IDP2)) < 1{
 			mes "[Ladder Exchanger]";
 			mes "Sorry! You don't have any permit to exchange!!";
 			close;
+			break;
 			}
 			next;
 			goto Ltrade2;
 		case 3:
 			close;
+			break;
 	}
 			
 	// PERMIT EXCHANGE
@@ -77,6 +115,28 @@ milenia,100,161,5	script	MVP Ladder Exchanger	10183,{
 		}
 	next;
 	goto Ltrade2;
+	
+	// PERMIT 1 - OPTIONAL
+	Ltrade3:
+	
+	setarray .@itemsBonus[0],"6277","7879";
+	set .bonus_item_id, .@itemsBonus[rand (getarraysize(.@itemsBonus)) ];
+	set .bonus_item_amount,1;
+	set .Exchange, .Exchange + 1;
+	
+	mes "[Ladder Exchanger]";
+    mes "Exchanging your permit....";
+	message strcharinfo(0),"Exchanging permit "+(.Exchange)+"/"+((.Total) / 100)+".";
+	getitem .bonus_item_id, .bonus_item_amount;
+	delitem .IDP,100;
+		if (.Exchange) == ((.Total) / 100){
+		next;
+		mes "[Ladder Exchanger]";
+		mes "Sorry! You have reach the limit for exchange!!";
+		close;
+		}
+	next;
+	goto Ltrade3;
 	
 
 	OnInit:

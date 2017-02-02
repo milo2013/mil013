@@ -91,7 +91,6 @@ OnInit:
 	.boss_mob_size = getarraysize(.boss_mob);
 	.normal_mob_size = getarraysize(.normal_mob);
 	while ( true ) {
-		atcommand strcharinfo(0) + "@autoattack";
 		killmonster .Map$, "All";
 		cleanmap .Map$; // you also forgot about this command
 		mapwarp .Map$,"milenia",119,152;
