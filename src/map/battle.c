@@ -2474,7 +2474,7 @@ static bool is_attack_hitting(struct Damage wd, struct block_list *src, struct b
 	else if (nk&NK_IGNORE_FLEE)
 		return true;
 
-	if( sc && sc->data[SC_NEUTRALBARRIER] && (wd.flag&(BF_LONG|BF_MAGIC)) == BF_LONG )
+	if( tsc && tsc->data[SC_NEUTRALBARRIER] && (wd.flag&(BF_LONG|BF_MAGIC)) == BF_LONG )
 		return false;
 
 	flee = tstatus->flee;
@@ -4413,17 +4413,17 @@ struct Damage battle_attack_sc_bonus(struct Damage wd, struct block_list *src, s
 		if (sc->data[SC_EDP]) {
 			switch(skill_id) {
 				case AS_SPLASHER:
-				// Pre-Renewal only: Soul Breaker and Meteor Assault ignores EDP
+				case ASC_METEORASSAULT:
+				// Pre-Renewal only: Soul Breaker ignores EDP
 				// Renewal only: Grimtooth and Venom Knife ignore EDP
-				// Both: Venom Splasher ignores EDP [helvetica]
+				// Both: Venom Splasher and Meteor Assault ignore EDP [helvetica]
 #ifndef RENEWAL
 				case ASC_BREAKER:
-				case ASC_METEORASSAULT:
 #else
 				case AS_GRIMTOOTH:
 				case AS_VENOMKNIFE:
 #endif
-					break; // skills above have no effect with edp
+					break; // skills above have no effect with EDP
 
 #ifdef RENEWAL
 				// renewal EDP mode requires renewal enabled as well
@@ -7290,7 +7290,7 @@ enum damage_lv battle_weapon_attack(struct block_list* src, struct block_list* t
 
 	map_freeblock_lock();
 
-	if( skill_check_shadowform(target, damage, wd.div_) ) {
+	if( !(tsc && tsc->data[SC_DEVOTION]) && !vanish_damage && skill_check_shadowform(target, damage, wd.div_) ) {
 		if( !status_isdead(target) )
 			skill_additional_effect(src, target, 0, 0, wd.flag, wd.dmg_lv, tick);
 		if( wd.dmg_lv > ATK_BLOCK )
@@ -8020,6 +8020,7 @@ static const struct _battle_data {
 	{ "pet_max_atk1",                       &battle_config.pet_max_atk1,                    750,    0,      INT_MAX,        },
 	{ "pet_max_atk2",                       &battle_config.pet_max_atk2,                    1000,   0,      INT_MAX,        },
 	{ "pet_disable_in_gvg",                 &battle_config.pet_no_gvg,                      0,      0,      1,              },
+	{ "pet_master_dead",                    &battle_config.pet_master_dead,                 0,      0,      1,              },
 	{ "skill_min_damage",                   &battle_config.skill_min_damage,                2|4,    0,      1|2|4,          },
 	{ "finger_offensive_type",              &battle_config.finger_offensive_type,           0,      0,      1,              },
 	{ "heal_exp",                           &battle_config.heal_exp,                        0,      0,      INT_MAX,        },
@@ -8403,6 +8404,8 @@ static const struct _battle_data {
 	{ "tarotcard_equal_chance",             &battle_config.tarotcard_equal_chance,          0,      0,      1,              },
 	{ "change_party_leader_samemap",        &battle_config.change_party_leader_samemap,     1,      0,      1,              },
 	{ "dispel_song",                        &battle_config.dispel_song,                     0,      0,      1,              },
+	{ "guild_maprespawn_clones",			&battle_config.guild_maprespawn_clones,			0,		0,		1,				},
+	{ "hide_fav_sell", 			&battle_config.hide_fav_sell,			0,      0,      1,              },
 
 #include "../custom/battle_config_init.inc"
 };
