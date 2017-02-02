@@ -25,6 +25,12 @@ function updatePoints;//This will updates the points of the player stored in the
 set .npcname$,"[Points Exchanger]";
 	
 //Initialization of the Rewards
+add_item(19602,1,60,"2017 Costume");//Invisible Costume
+add_item(19603,1,60,"2017 Costume");//Invisible Costume
+add_item(19604,1,60,"2017 Costume");//Invisible Costume
+
+add_item(31124,1,300,"2017 Items");//3Days Refine Certificate
+
 add_item(5372,1,60,"Cash Headgear");//Koneko Hat
 add_item(18600,1,150,"Cash Headgear");//Cat Ear Beret
 add_item(5457,1,80,"Cash Headgear");//Moon Rabbit hat
