@@ -1633,13 +1633,16 @@ Player_Menu:
 	mes "Hello ^ff0000" + strcharinfo(0) + "^000000,";
 	mes "Do you want me to pull you out?!";
 	next;
-	switch(select("Sure!!:Nope")) {
+	switch(select("Sure!!:Nope~:I want swimming inside!!")) {
 				case 1:
 					warp "milenia",133,109;
 					break;
 				case 2:
 					close;
-					break;	
+					break;
+				case 3:
+					warp "milenia",112,97;
+					break;
 	}
 	
 	end;
@@ -1652,14 +1655,17 @@ Player_Menu:
 	mes "Hello ^ff0000" + strcharinfo(0) + "^000000,";
 	mes "Do you want me to pull you out?!";
 	next;
-	switch(select("Sure!!:Nope")) {
+	switch(select("Sure!!:Nope~:I want swimming inside!!")) {
 				case 1:
 					warp "milenia",106,80;
 					break;
 				case 2:
 					close;
 					break;	
-	}
+				case 3:
+					warp "milenia",127,90;
+					break;
+	}			
 	
 	end;
 	}

@@ -53,7 +53,8 @@ OnPCLoginEvent:
 			end;
 		}
 	}
-	.@i = (gettime(7) * 365 * 24 * 60) + (gettime(8) * 24 * 60) + (gettime(3) * 60) + gettime(2);
+	//.@i = (gettime(7) * 365 * 24 * 60) + (gettime(8) * 24 * 60) + (gettime(3) * 60) + gettime(2);
+	.@i = (gettime(8) * 24 * 60) + (gettime(3) * 60) + gettime(2);
 	if(.@i >= (#LastDailyReward + .MinWait) && .Rest){
 		message strcharinfo(0),"[Daily Rewards]: To collect reward you must remain logged in for "+ .Rest +" minutes";
 		sleep2 1000 + .Rest * 60000;
@@ -112,15 +113,17 @@ OnPCLoginEvent:
 			}
 		}
 		message strcharinfo(0),"[Daily Rewards]: You have collected your daily reward, for "+callfunc("F_InsertPlural",#DRewardCon,"day")+" in a row.";
-		#LastDailyReward = (gettime(7) * 365 * 24 * 60) + (gettime(8) * 24 * 60) + (gettime(3) * 60) + gettime(2) - .Rest;
+		//#LastDailyReward = (gettime(7) * 365 * 24 * 60) + (gettime(8) * 24 * 60) + (gettime(3) * 60) + gettime(2) - .Rest;
+		#LastDailyReward = (gettime(8) * 24 * 60) + (gettime(3) * 60) + gettime(2) - .Rest;
 		end;
 	}
 OnNextCmnd:
 	if(!.@i) .@i = (gettime(7) * 365 * 24 * 60) + (gettime(8) * 24 * 60) + (gettime(3) * 60) + gettime(2) - .Rest;
-	.@days = (#LastDailyReward + .MinWait - .@i)/60/24;
+	//.@days = (#LastDailyReward + .MinWait - .@i)/60/24;
 	.@hours = ((#LastDailyReward + .MinWait - .@i)/60)%24;
 	.@mins = (#LastDailyReward + .MinWait - .@i)%60;
-	message strcharinfo(0),"[Daily Rewards]: You have "+ ((.@days) ? .@days +" Days " : "") +""+ ((.@hours) ? .@hours +" Hours " : "") +""+ ((.@mins) ? .@mins +" Minutes " : "") +"till your next reward.";
+	//message strcharinfo(0),"[Daily Rewards]: You have "+ ((.@days) ? .@days +" Days " : "") +""+ ((.@hours) ? .@hours +" Hours " : "") +""+ ((.@mins) ? .@mins +" Minutes " : "") +"till your next reward.";
+	message strcharinfo(0),"[Daily Rewards]: You have "+ ((.@hours) ? .@hours +" Hours " : "") +""+ ((.@mins) ? .@mins +" Minutes " : "") +"till your next reward.";
 	if(.Mode & 128){
 		if(#DRewardCon + 1 >= getarraysize(.Rewards$)){
 			if(.Reset)	.@DRewardCon = 1;
