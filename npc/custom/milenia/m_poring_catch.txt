@@ -96,7 +96,7 @@ OnGMStart:
 	announce "(Poring Manager) : If you want to join, come at the middle of Prontera, enter the warp portal.",0;
 	enablenpc "PoringCatcher";
 	sleep 2000;
-	announce "(Poring Manager) : Prize: will be TCG and Gold Coins",0;
+	announce "(Poring Manager) : Prize: will be Gold Coin and Poring Coins",0;
 	sleep 2000;
 	announce "(Poring Manager) : The portal is going to close in one minute.",0;  
 	sleep 60000;
@@ -137,7 +137,7 @@ OnClock0900:
 	announce "(Poring Manager) : If you want to join, come at the Milenia Town, enter the warp portal.",0;
 	enablenpc "PoringCatcher";
 	sleep 2000;
-	announce "(Poring Manager) : Prize: will be random amount of Gold and Poring Coin!!",0;
+	announce "(Poring Manager) : Prize: will be Gold Coin and Poring Coin!!",0;
 	sleep 2000;
 	announce "(Poring Manager) : The portal is going to close in one minute.",0;  
 	sleep 60000;
@@ -233,7 +233,7 @@ OnMobKilled:
    killmonster "poring_w01.gat","All";
    atcommand "@doommap";
    //getitem 7227,1;
-   getitem 675,rand(1,100);
+   getitem 671,1;
    getitem 7539,rand(1,5);
    announce "Poring Banker: We have a winner! well done " + strcharinfo(0) + ".",0;
    warp "SavePoint",0,0;
