@@ -44,6 +44,8 @@
 0,2576,100 //Heroic Backpack
 0,18541,70 //Little Feather Hat
 0,15097,120 //Brave Hidden Cloth
+1,18574,30 // Lord Of Death Helm
+1,2177,30 // Shield Of Death
 1,5518,75 //Large Baphomet Horns
 1,5377,60 //Gentleman's Pipe
 1,5013,80 //Lord Kaho's Horn
