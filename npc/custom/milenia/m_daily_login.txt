@@ -55,16 +55,16 @@ OnPCLoginEvent:
 	}
 	//.@i = (gettime(7) * 365 * 24 * 60) + (gettime(8) * 24 * 60) + (gettime(3) * 60) + gettime(2);
 	.@i = (gettime(8) * 24 * 60) + (gettime(3) * 60) + gettime(2);
-	if(.@i >= (#LastDailyReward + .MinWait) && .Rest){
+	if(.@i >= (#LastDailyReward2 + .MinWait) && .Rest){
 		message strcharinfo(0),"[Daily Rewards]: To collect reward you must remain logged in for "+ .Rest +" minutes";
 		sleep2 1000 + .Rest * 60000;
 	}
-	if(.@i >= (#LastDailyReward + .MinWait)){
+	if(.@i >= (#LastDailyReward2 + .MinWait)){
 		if(checkvending() & 2 && .Mode & 64){
 			message strcharinfo(0),"[Daily Rewards]: Venders cannot recive rewards.";
 			end;
 		}
-		if(.@i < #LastDailyReward + .MaxWait)
+		if(.@i < #LastDailyReward2 + .MaxWait)
 			#DRewardCon += 1;
 		else	#DRewardCon = 1;
 		if(#DRewardCon >= getarraysize(.Rewards$)){
@@ -113,15 +113,15 @@ OnPCLoginEvent:
 			}
 		}
 		message strcharinfo(0),"[Daily Rewards]: You have collected your daily reward, for "+callfunc("F_InsertPlural",#DRewardCon,"day")+" in a row.";
-		//#LastDailyReward = (gettime(7) * 365 * 24 * 60) + (gettime(8) * 24 * 60) + (gettime(3) * 60) + gettime(2) - .Rest;
-		#LastDailyReward = (gettime(8) * 24 * 60) + (gettime(3) * 60) + gettime(2) - .Rest;
+		//#LastDailyReward2 = (gettime(7) * 365 * 24 * 60) + (gettime(8) * 24 * 60) + (gettime(3) * 60) + gettime(2) - .Rest;
+		#LastDailyReward2 = (gettime(8) * 24 * 60) + (gettime(3) * 60) + gettime(2) - .Rest;
 		end;
 	}
 OnNextCmnd:
 	if(!.@i) .@i = (gettime(7) * 365 * 24 * 60) + (gettime(8) * 24 * 60) + (gettime(3) * 60) + gettime(2) - .Rest;
-	//.@days = (#LastDailyReward + .MinWait - .@i)/60/24;
-	.@hours = ((#LastDailyReward + .MinWait - .@i)/60)%24;
-	.@mins = (#LastDailyReward + .MinWait - .@i)%60;
+	//.@days = (#LastDailyReward2 + .MinWait - .@i)/60/24;
+	.@hours = ((#LastDailyReward2 + .MinWait - .@i)/60)%24;
+	.@mins = (#LastDailyReward2 + .MinWait - .@i)%60;
 	//message strcharinfo(0),"[Daily Rewards]: You have "+ ((.@days) ? .@days +" Days " : "") +""+ ((.@hours) ? .@hours +" Hours " : "") +""+ ((.@mins) ? .@mins +" Minutes " : "") +"till your next reward.";
 	message strcharinfo(0),"[Daily Rewards]: You have "+ ((.@hours) ? .@hours +" Hours " : "") +""+ ((.@mins) ? .@mins +" Minutes " : "") +"till your next reward.";
 	if(.Mode & 128){
