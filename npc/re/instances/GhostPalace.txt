@@ -1,0 +1,889 @@
+//===== Hercules Script ====================================== 
+//= Ghost Palace Tournament (jRO Servers)
+//===== By: ================================================== 
+//=  pengc2010
+//===== Current Version: ===================================== 
+//= 1.1 (Chinese version)
+//===== Compatible With: ===================================== 
+//= Hercules
+//===== Additional Comments: ================================= 
+//= [twRO Playing Conversion]
+//= 1.0 First Version [pengc2010]
+//= 1.1 [Custome] Add shards trade npc [pengc2010]
+//= 1.2 Compatible rAthena [Fiction]
+//=      Add Mob Skills, Quest, Mob DB - New Shop
+//============================================================
+
+//1@spa	mapflag	src4instance
+//1@spa	mapflag	zone	Memorial Dungeon
+1@spa	mapflag	nowarp
+1@spa	mapflag	nowarpto
+1@spa	mapflag	noteleport
+1@spa	mapflag	nosave	SavePoint
+1@spa	mapflag	nomemo
+1@spa	mapflag	nobranch
+1@spa	mapflag	nopenalty
+1@spa	mapflag	noicewall
+1@spa	mapflag	monster_noteleport
+
+function	script	questprogress	{
+	.@id = getarg(0);
+	.@type = getarg(1, HAVEQUEST);
+	.@val = checkquest(.@id, .@type);
+	if(.@val == -1){
+		return 0;
+	}else if(.@val == 0 || .@val == 1){
+		return 1;
+	}else if(.@val == 2){
+		return 2;
+	}else{ // Unknown state
+		return 0;
+	}
+}
+
+-	itemshop	Gray Shard Exchanger#GSE	-1,6672,1438:100,1496:100,1669:100,1836:100,1933:100,1988:100,2023:100,13093:100,13441:100,16028:100,18119:100,21009:100,28000:100,28100:100,2187:50,15090:50,15091:50,18820:50,20721:50,22033:50
+
+
+dali,48,133,3	script	Gray Gear Exchange#gpend	4_M_RUSKING,{
+	mes "[King's Spirit]";
+	mes "Do you have any ^996600Gray Shards^000000?";
+	mes "I can make some equipments for you...";
+	next;
+	if(select("Exchange for Gray Equipment","Leave") == 2)
+		close;
+	mes "-------------------";
+	mes "| ^ff00001P = 1 Gray Shard^000000 |";
+	mes "--------------------";
+	callshop "Gray Shard Exchanger#GSE",0;
+	end;	
+	
+	
+	
+end;
+}
+
+dali,43,129,5	script	Unpleasant R. Guard	4_M_SAKRAYROYAL,{
+	if(BaseLevel < 110) {
+		mes "[Unpleasant R. Guard]";
+		mes "Please help me adventurers!";
+		mes "The Palace I was guarding was suddenly attacked by monsters!";
+		next;
+		mes "So weak... you must be level 110 at least.";
+		close;
+	}
+	if (questprogress(1261)) {
+		if (questprogress(1261, PLAYTIME) == 2) {
+			mes "You may enter the Ghost Palace again.";
+			erasequest 1261;
+			if(questprogress(1260)) erasequest 1260;
+			close;
+		}
+		mes "You are still on cooldown for Ghost Palace.";
+		close;
+	}
+
+/*	if(questprogress(1260)) {
+
+			mes "[Unpleasant R. Guard]";
+			mes "Did the gate close?";
+			mes "Please enter the gate as soon as you can next time.";
+			erasequest 1260;
+			close;
+			}
+		mes "[Unpleasant R. Guard]";
+		mes "Please go ahead, ^0000ffThe entrance is behind me.^000000";
+		mes "I will be right behind you!";
+		close;
+	
+	*/
+	set .@party_id,getcharid(1);
+	
+	if (!.@party_id) {
+		mes "[Unpleasant R. Guard]";
+		mes "The Palace is dangerous, please come back when you have a team assembled.";
+		close;
+	}
+	if (getcharid(0) != getpartyleader(.@party_id,2)) {
+		mes "[Unpleasant R. Guard]";
+		mes "Please help me adventurers!";
+		mes "Have your party leader to speak to me.";
+		close;
+	}
+	mes "[Unpleasant R. Guard]";
+	mes "Please help me!";
+	mes "The Palace I was guarding was suddenly attacked by monsters!";
+	next;
+	mes "[Unpleasant R. Guard]";
+	mes "While I was battling them,";
+	mes "Princess Tiara went missing!";
+	mes "Please help me find her.";
+	mes "I know the secret passage to the castle.";
+	next;
+	mes "[Unpleasant R. Guard]";
+	mes "Would you help me?";
+	mes "I can't do this by myself...";
+	next;
+	if(select("No problem.","Not right now.")==2) {
+		mes "[Unpleasant R. Guard]";
+		mes "Is that so...";
+		mes "Princess Tiara...";
+		close;
+	}
+if (instance_create("Ghost Palace") < 0) {
+		mes "Instance generation failed.";
+		mes "Tip: Please try again with a new party.";
+		close;
+	}
+		if(!questprogress(1260)) setquest 1260;
+		mes "[Unpleasant R. Guard]";
+		mes "Thank you. Let me open the secret passage for you.";
+		mes "Go ahead, ^0000ffthe entrance is behind me.^000000";
+		mes "I will be right there with you!";
+		close;
+
+}
+
+dali,40,134,0	script	Dimensional Gate#gp	PORTAL,{
+	if (questprogress(1261)) {
+		if (questprogress(1261, PLAYTIME) == 2) {
+			mes "You may enter the Ghost Palace again.";
+			erasequest 1261;
+			if(questprogress(1260)) erasequest 1260;
+			close;
+		}
+		mes "You are still on cooldown for Ghost Palace.";
+		close;
+	}
+	if(getcharid(0) == getpartyleader(.@party_id,2) && !questprogress(1260)) {
+		mes "[Unpleasant R. Guard]";
+		mes "Please help me adventurers!";
+		mes "Have your party leader to speak to me.";
+		close;
+	}
+	mes "[Unpleasant R. Guard]";
+	mes "Are you ready to enter";
+	mes "the secret passage to the castle?";
+	next;
+	if(select("I'm ready.","Not yet.") == 2) {
+		mes "[Unpleasant R. Guard]";
+		mes "Is that so?";
+		mes "Please talk to me when you are ready. We must hurry.";
+		close;
+	} 
+	switch(instance_enter("Ghost Palace")) {
+			case 3:
+				mes "An unknown error has occurred.";
+				close;
+			case 2:
+				mes "The memorial dungeon Ghost Palace does not exist.";
+				mes "The party leader did not generate the dungeon yet.";
+				close;
+			case 1:
+				mes "Only the registered members can enter the instance Ghost Palace.";
+				close;
+			case 0:
+	mapannounce "dali",strcharinfo(0)+" of "+getpartyname(getcharid(1))+" is entering the Ghost Palace.",bc_map,"0x00ff99"; //FW_NORMAL 12 0 0
+	if(!questprogress(1260)) setquest 1260;
+	setquest 1261;
+				close;
+			}
+
+}
+
+
+//=====================================================================
+// Instance Start
+//=====================================================================
+
+1@spa,197,204,5	script	The King#gp1	4_M_RUSKING,{
+	.@party_id = getcharid(1);
+	if (getcharid(0) != getpartyleader(.@party_id,2)) {
+			mes "Please wait for party leader to start the cutscene.";
+			close;
+	}
+	mes "[The King]";
+	mes "I hereby promote you to one of Princess Tiara's personal guard.";
+	mes "I believe in your excellent swordsmanship and your loyalty.";
+	mes "Now it's time for you to prove yourself!";
+	npctalk "I hereby promote you to one of Princess Tiara's personal guard. I believe in your excellent swordsmanship and your loyalty. Now it's time for you to prove yourself!", instance_npcname("The King#gp1");
+	next;
+	mes "[Unpleasant R. Guard]";
+	mes "I will guard the princess with my life!";
+	npctalk "I will guard the princess with my life!",instance_npcname("Unpleasant R. Guard#gp1");
+	next;
+	mes "[The King]";
+	mes "The prince of our neighbouring kingdom has asked for Princess Tiara's hand in marriage.";
+	mes "I expect him to be visiting her shortly.";
+	mes "Please prepare for his arrival.";
+	npctalk "The prince of our neighbouring kingdom has asked for Princess Tiara's hand in marriage. I expect him to be visiting her shortly. Please prepare for his arrival.", instance_npcname("The King#gp1");
+	next;
+	mes "[Unpleasant R. Guard]";
+	mes "... Yes Your Majesty.";
+	npctalk "...Yes Your Majesty.",instance_npcname("Unpleasant R. Guard#gp1");
+	next;
+	mes "[The King]";
+	mes "What is this?!";
+	mes "Why are there monsters in the city?!";
+	mes "Destroy them!";
+	npctalk "What is this?! Why are there monsters in the city?! Destroy them!", instance_npcname("The King#gp1");
+	close2;
+	donpcevent instance_npcname("#gp1control") +"::OnStart";
+	end;
+}
+
+1@spa,198,201,1	script	Unpleasant R. Guard#gp1	4_M_SAKRAYROYAL,{
+	mes "[Unpleasant R. Guard]";
+	mes "Your Majesty...";
+	close;
+}
+
+1@spa,1,1,1	script	#gp1control	HIDDEN_NPC,{
+		end;
+	OnStart:
+		hideonnpc instance_npcname("Unpleasant R. Guard#gp1");
+		hideonnpc instance_npcname("The King#gp1");
+		sleep 1000;
+	OnSummon:
+		sleep 2000;
+		.@mapname$ = instance_mapname("1@spa");
+		.@label$ = instance_npcname("#gp1control") + "::OnMyMobDead";
+		areamonster .@mapname$,182,190,214,214,"--ja--",2949,2,.@label$;
+		areamonster .@mapname$,182,190,214,214,"--ja--",2948,2,.@label$;
+		end;
+	
+	OnMyMobDead:
+		if(mobcount(instance_mapname("1@spa"),instance_npcname("#gp1control")+"::OnMyMobDead"))
+			end;
+		if('gp1 < 2) {
+			++ 'gp1;
+			donpcevent instance_npcname("#gp1control") + "::OnSummon";
+			end;
+		}
+		mapannounce instance_mapname("1@spa"), "You may access palace level 2.", bc_map, "0XFFFF00";
+		enablenpc instance_npcname("#gp1warp");
+		disablenpc instance_npcname("#gp1control");
+		end;
+		
+	OnInstanceInit:
+		'gp1 = 0;
+		disablenpc instance_npcname("#gp1warp");
+		end;		
+}
+
+
+1@spa,197,217,0	warp	#gp1warp	1,1,1@spa,114,120
+
+
+
+1@spa,132,122,0	script	Unpleasant R. Guard#gp2	4_M_SAKRAYROYAL,{
+	.@party_id = getcharid(1);
+	if (getcharid(0) != getpartyleader(.@party_id,2)) {
+			mes "Please wait for party leader to start the cutscene.";
+			close;
+	}
+	cutin "npc-tiara",3;
+	mes "[Unpleasant R. Guard]";
+	mes "Princess,";
+	mes "the king has invited the prince of our neighbouring kingdom to discuss your marriage.";
+	mes "Please be prepared.";
+	npctalk "Princess, the king has invited the prince of our neighbouring kingdom to discuss your marriage. Please be prepared.", instance_npcname("Unpleasant R. Guard#gp2");
+	next;
+	mes "[Princess Tiara]";
+	mes "My marriage? What would happen if they reach an agreement...?";
+	npctalk "My marriage? What would happen if they reach an agreement...?",instance_npcname("Princess Tiara#gp2");
+	next;
+	mes "[Unpleasant R. Guard]";
+	mes "Then... all I can do is to guard you and protect you.";
+	npctalk "Then... all I can do is to guard you and protect you.", instance_npcname("Unpleasant R. Guard#gp2");
+	next;
+	mes "[Princess Tiara]";
+	mes "Then what can I do for you?";
+	npctalk "Then what can I do for you?",instance_npcname("Princess Tiara#gp2");
+	next;
+	mes "[Unpleasant R. Guard]";
+	mes "......";
+	mes "Be the beloved princess that you are meant to be,";
+	mes "for the king,";
+	mes "and for me too...";
+	npctalk "...... Be the beloved princess that you are meant to be, for the king, and for me too...", instance_npcname("Unpleasant R. Guard#gp2");
+	next;
+	mes "[Princess Tiara]";
+	mes "Going to a strange place and marrying a stranger... Is that really what you want for me?";
+	npctalk "Going to a strange place and marrying a stranger... Is that really what you want for me?",instance_npcname("Princess Tiara#gp2");
+	next;
+	mes "[Unpleasant R. Guard]";
+	mes "I will be by your side everyday,";
+	mes "protecting you every moment.";
+	mes "Please just be happy.";
+	npctalk "I will be by your side everyday, protecting you every moment. Please just be happy.", instance_npcname("Unpleasant R. Guard#gp2");
+	next;
+	mes "[Princess Tiara]";
+	mes "I... AHH what are these monsters?!";
+	npctalk "I... AHH what are these monsters?!",instance_npcname("Princess Tiara#gp2");
+	next;
+	mes "[Unpleasant R. Guard]";
+	mes "Princess! This way!";
+	npctalk "Princess! This way!", instance_npcname("Unpleasant R. Guard#gp2");
+	close2;
+	cutin "npc-tiara",255;
+	donpcevent instance_npcname("#gp2control") +"::OnStart";
+	end;
+}
+
+1@spa,135,125,3	script	Princess Tiara#gp2	4_F_MAYSEL,{
+	cutin "npc-tiara",3;
+	mes "[Princess Tiara]";
+	mes "Is this really ok...?";
+	close2;
+	cutin "",255;
+	end;
+}
+
+1@spa,1,1,1	script	#gp2control	HIDDEN_NPC,{
+		end;
+	OnStart:
+		hideonnpc instance_npcname("Unpleasant R. Guard#gp2");
+		hideonnpc instance_npcname("Princess Tiara#gp2");
+		sleep 1000;
+	OnSummon:
+		sleep 2000;
+		.@mapname$ = instance_mapname("1@spa");
+		.@label$ = instance_npcname("#gp2control") + "::OnMyMobDead";
+		areamonster .@mapname$,143,96,94,143,"--ja--",2950,3,.@label$;
+		areamonster .@mapname$,143,96,94,143,"--ja--",2951,4,.@label$;
+		areamonster .@mapname$,143,96,94,143,"--ja--",2952,3,.@label$;
+		end;
+	
+	OnMyMobDead:
+		if(mobcount(instance_mapname("1@spa"),instance_npcname("#gp2control")+"::OnMyMobDead"))
+			end;
+		mapannounce instance_mapname("1@spa"), "You may access palace level 3.", bc_map, "0XFFFF00";
+		enablenpc instance_npcname("#gp2warp");
+		disablenpc instance_npcname("#gp2control");
+		end;
+		
+	OnInstanceInit:
+		disablenpc instance_npcname("#gp2warp");
+		end;		
+}
+
+1@spa,117,137,0	warp	#gp2warp	1,1,1@spa,60,43
+
+
+1@spa,30,58,5	script	Unpleasant R. Guard#gp3	4_M_SAKRAY_TIED,{ 
+	end;
+}
+
+1@spa,32,54,1	script	The King#gp3	4_M_RUSKING,{
+	.@party_id = getcharid(1);
+	if (getcharid(0) != getpartyleader(.@party_id,2)) {
+			mes "Please wait for party leader to start the cutscene.";
+			close;
+	}
+	mes "[The King]";
+	mes "You! You are the one that let the monsters in aren't you!";
+	mes "You want to get rid of me, so you can keep the princess for yourself?";
+	npctalk "You! You are the one that let the monsters in aren't you! You want to get rid of me, so you can keep the princess for yourself?", instance_npcname("The King#gp3");
+	next;
+	mes "[Unpleasant R. Guard]";
+	mes "I'm innocent Your Majesty! This is a set-up!";
+	npctalk "I'm innocent Your Majesty! This is a set-up!",instance_npcname("Unpleasant R. Guard#gp3");
+	next;
+	mes "[The King]";
+	mes "Shut up with all your lies.";
+	mes "You betrayed me.";
+	mes "And I will make you pay!";
+	npctalk "Shut up with all your lies. You betrayed me. And I will make you pay!", instance_npcname("The King#gp3");
+	next;
+	mes "[The King]";
+	mes "Enjoy the rest of your life";
+	mes "in this dark, cold, nightmare!";
+	npctalk "Enjoy the rest of your life in this dark, cold, nightmare!",instance_npcname("The King#gp3");
+	close2;
+	donpcevent instance_npcname("#gp3control") +"::OnStart";
+	end;
+}
+
+1@spa,30,52,0	script	Soldier#gp31	4_M_KY_SOLD,{ 
+	mes "[Soldier]";
+	mes "I can't believe it... He would never...!";
+	close;
+}
+
+1@spa,28,52,0	script	Knight#gp3	4_M_KY_KNT,{ 
+	mes "[Knight]";
+	mes "Why would you betray us? I don't buy it!";
+	close;
+}
+
+1@spa,34,53,1	script	Soldier#gp32	4_M_CRU_SOLD,{
+	mes "[Soldier]";
+	mes "This is impossible..!";
+	close;
+}
+
+1@spa,25,53,0	script	Soldier#gp33	4_M_CRU_SOLD,{ 
+	mes "[Soldier]";
+	mes "...";
+	close;
+}
+
+
+1@spa,1,1,1	script	#gp3control	HIDDEN_NPC,{
+		end;
+	OnStart:
+		hideonnpc instance_npcname("The King#gp3");
+		hideonnpc instance_npcname("Soldier#gp31");
+		hideonnpc instance_npcname("Soldier#gp32");
+		hideonnpc instance_npcname("Soldier#gp33");
+		hideonnpc instance_npcname("Knight#gp3");
+		donpcevent instance_npcname("Unknown Voice#gp3") + "::OnStart";
+		end;
+
+	OnSummon:
+		initnpctimer;
+		.@mapname$ = instance_mapname("1@spa");
+		.@label$ = instance_npcname("#gp3control") + "::OnMyMobDead";
+		areamonster .@mapname$,61,63,24,24,"--ja--",2953,2 + 'gp3,.@label$;
+		'talkid[0] = $@mobid[0];
+		'talkid[1] = $@mobid[1];
+		areamonster .@mapname$,61,63,24,24,"--ja--",2954,3 + 'gp3,.@label$;
+		'talkid[2] = $@mobid[0];
+		areamonster .@mapname$,61,63,24,24,"--ja--",2955,2 + 'gp3,.@label$;
+		'talkid[3] = $@mobid[0];
+		end;
+
+	OnTimer2000:
+		stopnpctimer;
+		unittalk 'talkid[0], "Loyal palace guard...";
+ 		unittalk 'talkid[1], "Run away while you can!";
+		unittalk 'talkid[2], "You've been framed...";
+		unittalk 'talkid[3], "and your princess might suffer too!";
+		end;
+
+	
+	OnMyMobDead:
+		if(mobcount(instance_mapname("1@spa"),instance_npcname("#gp3control")+"::OnMyMobDead"))
+			end;
+		if(!'gp3) {
+			mapannounce instance_mapname("1@spa"), "You may access palace level 4.", bc_map, "0XFFFF00";
+			enablenpc instance_npcname("#gp3warp");
+			donpcevent instance_npcname("#gp4control") + "::OnSummon";
+			disablenpc instance_npcname("#gp1warp");
+		}
+		++ 'gp3;
+		if('gp3 < 5)
+			donpcevent instance_npcname("#gp3control") + "::OnSummon";
+		else {
+			stopnpctimer;
+			disablenpc instance_npcname("#gp3control");
+		}
+		end;
+		
+	OnInstanceInit:
+		disablenpc instance_npcname("#gp3warp");
+		'gp3 = 0;
+		end;		
+}
+
+1@spa,35,56,1	script	Unknown Voice#gp3	4_TRACE,{
+		end;
+	OnStart:
+		initnpctimer;
+		end;
+	OnTimer3000:
+		npctalk "Poor you. Your loyalty only got you framed.";
+		end;
+	OnTimer6000:
+		npctalk "Even your princess will be caught up in this conspiracy, haha!";
+		end;
+	OnTimer9000:
+		npctalk "Who is it? Show yourself!",instance_npcname("Unpleasant R. Guard#gp3");
+		end;
+	OnTimer12000:
+		npctalk "Oh? Interesting. You can hear my voice? That's good news for me.";
+		end;
+	OnTimer15000:
+		npctalk "...?",instance_npcname("Unpleasant R. Guard#gp3");
+		end;
+	OnTimer18000:
+		npctalk "Tell me, want to sign a contract with me? I can grant you immense power. All I need is your soul. Haha!";
+		end;
+	OnTimer21000:
+		npctalk "I... I...",instance_npcname("Unpleasant R. Guard#gp3");
+		end;
+	OnTimer24000:
+		npctalk "Do we have a deal?";
+		end;
+	OnTimer27000:
+		stopnpctimer;
+		hideonnpc instance_npcname("Unknown Voice#gp3");
+		hideonnpc instance_npcname("Unpleasant R. Guard#gp3");
+		donpcevent instance_npcname("#gp3control") + "::OnSummon";
+		end;
+}
+
+1@spa,54,28,0	script	#gp3warp	WARPNPC,1,1,{
+	if(!'gp5)	{
+warp instance_mapname("1@spa"),218,186;
+	}
+	else {
+		if(questprogress(40024)) completequest 40024;
+		warp "dali",49,127;
+	}
+	end;
+}
+
+
+1@spa,1,1,1	script	#gp4control	HIDDEN_NPC,{
+		end;
+	OnStart:
+		end;
+
+	OnSummon:
+		.@mapname$ = instance_mapname("1@spa");
+		.@label$ = instance_npcname("#gp4control") + "::OnMyMobDead";
+		areamonster .@mapname$,182,217,214,188,"--ja--",2949,rand(2,3),.@label$;
+		areamonster .@mapname$,182,217,214,188,"--ja--",2956,rand(2,3),.@label$;
+		end;
+	
+	OnMyMobDead:
+		if(mobcount(instance_mapname("1@spa"),instance_npcname("#gp4control")+"::OnMyMobDead"))
+			end;
+		++ 'gp4;
+		if('gp4 > 3 )
+			donpcevent instance_npcname("#gp4control") + "::OnStory";
+		else
+			donpcevent instance_npcname("#gp4control") + "::OnSummon";
+		end;
+		
+	OnStory:
+		for(.@i = 1; .@i <= 4; ++.@i)
+				enablenpc instance_npcname("Corpse#gp4"+.@i);
+		enablenpc instance_npcname("King's Corpse#gp4");
+		enablenpc instance_npcname("Unpleasant R. Guard#gp4");
+		enablenpc instance_npcname("Thanatos#gp4");
+		enablenpc instance_npcname("Prince#gp4");
+		end;
+		
+	OnBoss:
+		for(.@i = 1; .@i <= 4; ++.@i)
+				hideonnpc instance_npcname("Corpse#gp4"+.@i);
+		hideonnpc instance_npcname("King's Corpse#gp4");
+		hideonnpc instance_npcname("Unpleasant R. Guard#gp4");
+		hideonnpc instance_npcname("Thanatos#gp4");
+		hideonnpc instance_npcname("Prince#gp4");
+		sleep 1000;
+		monster instance_mapname("1@spa"),197,218,"--ja--",2959,1,instance_npcname("#gp4control")+"::OnBossDead";
+		end;
+	
+	OnBossDead:
+		mapannounce instance_mapname("1@spa"), "You may access palace level 5.", bc_map, "0XFFFF00";
+		enablenpc instance_npcname("#gp4warp");
+		donpcevent instance_npcname("#gp5control") + "::OnStart";
+		disablenpc instance_npcname("#gp4control");
+		end;
+			
+	OnInstanceInit:
+		disablenpc instance_npcname("#gp4warp");
+		for(.@i = 1; .@i <= 4; ++.@i)
+				disablenpc instance_npcname("Corpse#gp4"+.@i);
+		disablenpc instance_npcname("King's Corpse#gp4");
+		disablenpc instance_npcname("Unpleasant R. Guard#gp4");
+		disablenpc instance_npcname("Thanatos#gp4");
+		disablenpc instance_npcname("Prince#gp4");
+		'gp4 = 0;
+		end;		
+}
+
+1@spa,201,198,1	script	Corpse#gp41	4_M_DIEMAN,{}
+1@spa,191,207,0	script	Corpse#gp42	4_M_DIEMAN,{}
+1@spa,206,209,0	script	Corpse#gp43	4_M_DIEMAN,{}
+1@spa,189,193,0	script	Corpse#gp44	4_M_DIEMAN,{}
+1@spa,194,214,5	script	King's Corpse#gp4	4_M_TRISTAN,{}
+1@spa,197,218,0	script	Thanatos#gp4	HIDDEN_WARP_NPC,{}
+
+1@spa,199,214,1	script	Unpleasant R. Guard#gp4	4_M_SAKRAYROYAL,{
+	.@party_id = getcharid(1);
+	if (getcharid(0) != getpartyleader(.@party_id,2)) {
+			mes "Please wait for party leader to start the cutscene.";
+			close;
+	}
+	mes "[Unpleasant R. Guard]";
+	mes "Where is Princess Tiara?!";
+	npctalk "Where is Princess Tiara?!",instance_npcname("Unpleasant R. Guard#gp4");
+	next;
+	mes "[Prince]";
+	mes "You are a bit late. But since you brought what I needed, I will forgive you. Hahaha.";
+	npctalk "You are a bit late. But since you brought what I needed, I will forgive you. Hahaha.",instance_npcname("Prince#gp4");
+	next;
+	mes "[Prince]";
+	mes "Cursed Sword Thanatos, prepare to accept your new master!";
+	npctalk "Cursed Sword Thanatos, prepare to accept your new master!",instance_npcname("Prince#gp4");
+	next;
+	cutin "tartanos",3;
+	mes "[Thanatos]";
+	mes "You. Dare. To mock me!";
+	npctalk "You. Dare. To mock me!",instance_npcname("Thanatos#gp4");
+	next;
+	mes "[Prince]";
+	mes "UHAAAAAHHHH!";
+	npctalk "UHAAAAAHHHH!",instance_npcname("Prince#gp4");
+	close2;
+	cutin "",255;
+	donpcevent instance_npcname("#gp4control") + "::OnBoss";
+	end;	
+}
+
+1@spa,197,218,5	script	Prince#gp4	4_M_KNIGHT_SILVER,{
+}
+
+1@spa,178,186,0	warp	#gp4warp	1,1,1@spa,30,57
+
+1@spa,1,1,1	script	#gp5control	HIDDEN_NPC,{
+		end;
+	OnStart:
+		stopnpctimer instance_npcname("#gp3control");
+		disablenpc instance_npcname("#gp3control");
+		killmonster instance_mapname("1@spa"), "All";
+		disablenpc instance_npcname("#gp3warp");
+		enablenpc instance_npcname("Unpleasant R. Guard#gp5");
+		enablenpc instance_npcname("Princess Tiara#gp5");
+		end;
+	
+	OnStart2:	
+		hideonnpc instance_npcname("Unpleasant R. Guard#gp5");
+		hideonnpc instance_npcname("Princess Tiara#gp5");
+		sleep 2000;
+	OnSummon:
+		initnpctimer;
+		.@mapname$ = instance_mapname("1@spa");
+		.@label$ = instance_npcname("#gp5control") + "::OnMyMobDead";
+		areamonster .@mapname$,61,63,24,24,"--ja--",2957,rand(1,2),.@label$;
+		'talkid[0] = $@mobid[0];
+		areamonster .@mapname$,61,63,24,24,"--ja--",2954,2,.@label$;
+		'talkid[1] = $@mobid[0];
+		'talkid[2] = $@mobid[1];
+		areamonster .@mapname$,61,63,24,24,"--ja--",2956,rand(1,2),.@label$;
+		'talkid[3] = $@mobid[0];
+		end;
+	
+	OnTimer2000:
+		stopnpctimer;
+		unittalk 'talkid[0],"Open your eyes and look! We are not monsters!";
+ 		unittalk 'talkid[1], "Sakray killed the princess!";
+		unittalk 'talkid[2], "Sakray... Sakray you...!";
+		unittalk 'talkid[3], "Sakray killed the king! Now he wants to kill us!";
+		end;
+	
+	OnMyMobDead:
+		if(mobcount(instance_mapname("1@spa"),instance_npcname("#gp5control")+"::OnMyMobDead"))
+			end;
+		++ 'gp5;
+		if('gp5 > 2 )
+			donpcevent instance_npcname("#gp5control") + "::OnStory";
+		else
+			donpcevent instance_npcname("#gp5control") + "::OnSummon";
+		end;
+	
+	OnStory:
+		stopnpctimer;
+		'BossID = monster(instance_mapname("1@spa"),44,47,"--ja--",2961,1,instance_npcname("#gp4control")+"::OnBossDead");
+		setunitdata 'BossID,29,1;
+		unittalk 'BossID, "Thanatos, if I can't be your master, I will simply destroy you!";
+		sleep 3000;
+		unittalk 'BossID,"...ughh.. nooo. this is not happening!!...";
+		sleep 1000;
+		enablenpc instance_npcname("Sakray#gp5");
+		enablenpc instance_npcname("Thanatos#gp5");
+		unitkill 'BossID;
+		end;
+	
+	OnEnd:
+		mapannounce instance_mapname("1@spa"), "Princess Tiara's Voice: Then, what can I do for you?", bc_map, "0XFFFFFF";
+		sleep 3000;
+		mapannounce instance_mapname("1@spa"), "Sakray's Voice: I will be by your side everyday, protecting you every moment. Please just be happy.", bc_map, "0XFFFFFF";
+		sleep 3000;
+		mapannounce instance_mapname("1@spa"), "Thanatos: Sakray, don't forget about our blood contract.", bc_map, "0XFF0000";
+		sleep 3000;
+		mapannounce instance_mapname("1@spa"), "Thanatos: Your soul belongs to me until I find my blood sacrifice, ahahaha...", bc_map, "0XFF0000";
+		sleep 3000;
+		mapannounce instance_mapname("1@spa"), "Sakray's Voice: Rest in peace in my shadows!", bc_map, "0XFFFFFF";
+		sleep 3000;
+		mapannounce instance_mapname("1@spa"), "Sakray's Voice: In this eternal darkness!", bc_map, "0XFFFFFF";
+		sleep 3000;
+		mapannounce instance_mapname("1@spa"), "The exit is just ahead. It is time to leave.", bc_map, "0XFFFF00";
+		enablenpc instance_npcname("The King#gpend");
+		enablenpc instance_npcname("#gp3warp");
+		end;
+	
+	OnInstanceInit:
+		disablenpc instance_npcname("Unpleasant R. Guard#gp5");
+		disablenpc instance_npcname("Princess Tiara#gp5");
+		disablenpc instance_npcname("Thanatos#gp5");
+		disablenpc instance_npcname("Sakray#gp5");
+		disablenpc instance_npcname("The King#gpend");
+		'gp5 = 0;
+		end;
+}
+
+1@spa,57,42,0	script	Unpleasant R. Guard#gp5	4_M_SAKRAYROYAL,{
+	.@party_id = getcharid(1);
+	if (getcharid(0) != getpartyleader(.@party_id,2)) {
+			mes "Please wait for party leader to start the cutscene.";
+			close;
+	}
+	mes "[Princess Tiara]";
+	mes "You... kept your promise!";
+	npctalk "You... kept your promise!",instance_npcname("Princess Tiara#gp5");
+	next;
+	mes "[Unpleasant R. Guard]";
+	mes "Princess!";
+	npctalk "Princess!", instance_npcname("Unpleasant R. Guard#gp5");
+	next;
+	cutin "npc-tiara",3;
+	mes "[Princess Tiara]";
+	mes "Thank you... now I can be happy... by..your..side...";
+	npctalk "Thank you... now I can be happy... by..your..side...",instance_npcname("Princess Tiara#gp5");
+	next;
+	mes "[Unpleasant R. Guard]";
+	mes "No princess, no!!";
+	npctalk "No princess, no!!", instance_npcname("Unpleasant R. Guard#gp5");
+	next;
+	mes "[Princess Tiara]";
+	mes "Promise me, we will be together, forever...";
+	npctalk "Promise me, we will be together, forever...",instance_npcname("Princess Tiara#gp5");
+	next;
+	mes "[Princess Tiara]";
+	mes "I love you...";
+	npctalk "I love you...",instance_npcname("Princess Tiara#gp5");
+	next;
+	cutin "b-tiara",3;
+	mes "[Unpleasant R. Guard]";
+	mes "AHHHHHHHH!!!";
+	npctalk "AHHHHHHHH!!!", instance_npcname("Unpleasant R. Guard#gp5");
+	close2;
+	cutin "", 255;
+	donpcevent instance_npcname("#gp5control") +"::OnStart2";
+	end;
+}
+
+1@spa,60,43,3	script	Princess Tiara#gp5	4_F_MAYSEL,{
+}
+
+1@spa,40,44,6	script	Sakray#gp5	4_M_SAKRAY,{
+	.@party_id = getcharid(1);
+	if (getcharid(0) != getpartyleader(.@party_id,2)) {
+			mes "Please wait for party leader to start the cutscene.";
+			close;
+	}
+	mes "[Unpleasant R. Guard]";
+	mes "Are you happy now, Thanatos?!";
+	npctalk "Are you happy now, Thanatos?!", instance_npcname("Sakray#gp5");
+	next;
+	mes "[^ff0000Thanatos^000000]";
+	mes "^ff0000Sakray, give me their blood.^000000";
+	npctalk "Sakray, give me their blood.", instance_npcname("Thanatos#gp5");
+	next;
+	mes "[Sakray]";
+	mes "Fine!";
+	mes "See that, adventurers?";
+	npctalk "Fine! See that, adventurers?", instance_npcname("Sakray#gp5");
+	next;
+	mes "["+strcharinfo(0)+"]";
+	mes "Sakray, what is this?";
+	mes "Is this a trap? Or do you want our sympathy?";
+	unittalk getcharid(3),"Sakray, what is this? Is this a trap? Or do you want our sympathy?";
+	next;
+	mes "[Sakray]";
+	mes "Neither.";
+	mes "I don't need anything like that against scrubs like you.";
+	npctalk "I don't need anything like that against scrubs like you.", instance_npcname("Sakray#gp5");
+	next;
+	mes "["+strcharinfo(0)+"]";
+	mes "Then why...";
+	unittalk getcharid(3),"Then why...";
+	next;
+	cutin "cry-b",3;
+	mes "[Sakray]";
+	mes "Just trying to rid myself of what's left of my humanity, through you.";
+	npctalk "Just trying to rid myself of what's left of my humanity, through you.", instance_npcname("Sakray#gp5");
+	next;
+	mes "[Sakray]";
+	mes "I must say, the results were satisfactory.";
+	npctalk "I must say, the results were satisfactory.", instance_npcname("Sakray#gp5");
+	next;
+	cutin "",255;
+	mes "[^ff0000Thanatos^000000]";
+	mes "^ff0000Hurry up! I need more blood!^000000";
+	npctalk "Hurry up! I need more blood!", instance_npcname("Thanatos#gp5");
+	next;
+	mes "[Sakray]";
+	mes "Adventurers, tell me. What would you do if you were me?";
+	npctalk "Adventurers, tell me. What would you do if you were me?", instance_npcname("Sakray#gp5");
+	next;
+	mes "[Sakray]";
+	mes "How do you escape from this curse?";
+	npctalk "How do you escape from this curse?", instance_npcname("Sakray#gp5");
+	next;
+	mes "["+strcharinfo(0)+"]";
+	mes "......";
+	unittalk getcharid(3),"......";
+	next;
+	mes "[Sakray]";
+	mes "Ahaha, so, grow strong for me.";
+	npctalk "Ahaha, so, grow strong for me.", instance_npcname("Sakray#gp5");
+	next;
+	mes "[Sakray]";
+	mes "When you are strong enough, I will find you, and offer your blood to Thanatos.";
+	npctalk "When you are strong enough, I will find you, and offer your blood to Thanatos.", instance_npcname("Sakray#gp5");
+	next;
+	mes "[Sakray]";
+	mes "Until then.";
+	npctalk "Until then.", instance_npcname("Sakray#gp5");
+	close2;
+	donpcevent instance_npcname("#gp5control") + "::OnEnd";
+	hideonnpc instance_npcname("Sakray#gp5");
+	hideonnpc instance_npcname("Thanatos#gp5");
+	end; 
+}
+1@spa,40,44,0	script	Thanatos#gp5	HIDDEN_WARP_NPC,{}
+
+1@spa,48,29,1	script	The King#gpend	4_M_RUSKING,{
+	mes "[The King]";
+	mes "Are you.. from the outside?";
+	mes "I didn't think I would see living people here...";
+	next;
+	mes "[The King]";
+	mes "Do you have any ^996600Gray Shards^000000?";
+	mes "Would you give them to me?";
+	mes "These are the memories of that loyal guard,";
+	mes "memories of his loved ones,";
+	mes "all shattered, into shards...";
+	next;
+	mes "[The King]";
+	mes "Would you give me these ^999999Gray Shards^000000?";
+	mes "I am no longer amongst this world...";
+	mes "And I can no longer see.";
+	mes "As a reprimand for my sins, my soul may not leave this Ghost Palace.";
+	next;
+	mes "[The King]";
+	mes "I heard that Sakray is collecting these Gray Shards,";
+	mes "So he can discard his memories, and his humanity, entirely.";
+	next;
+	mes "[The King]";
+	mes "Maybe we can use ^996600Gray Shards^000000 to make equipments against Thanatos.";
+	mes "That way...";
+	next;
+	mes "[The King]";
+	mes "Maybe we can still save Sakray's soul...";
+	next;
+	if(select("Exchange for Gray Equipment","Leave") == 2)
+		close;
+	mes "-------------------";
+	mes "| ^ff00001P = 1 Gray Shard^000000 |";
+	mes "--------------------";
+	callshop "Gray Shard Exchanger#GSE",0;
+	end;	
+}
+
