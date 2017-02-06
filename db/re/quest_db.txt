@@ -3455,3 +3455,10 @@
 
 66000,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,"Endless Cellar Effect"
 66001,82800,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,"Endless Cellar Time Limit"
+
+//----------Trail of Heroes - Cursed Swordman 'Ghost Palace' memorial dungeon
+
+1260,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,"Cursed Swordman"
+1261,82800,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,"Cursed Swordman"
+1262,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,"Cursed Swordman"
+1263,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,"Cursed Swordman"

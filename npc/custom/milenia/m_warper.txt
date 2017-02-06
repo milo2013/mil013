@@ -428,7 +428,7 @@ G6: Go("schg_dun01",200,124);
 menu	"Bakonawa Lake",I1, "Bangungot Hospital 2F",I2, "Buwaya Cave",I3,
     	"Endless Tower",I4, "Hazy Forest",I5, "Malangdo Culvert",I6, "Nidhoggur's Nest",I7,
     	"Octopus Cave",I8, "Old Glast Heim",I9, "Orc's Memory",I10, "Sealed Shrine",I11,
-    	"Wolfchev's Laboratory",I12,"Sara's Memory",I13,"Nightmare Jitterbug",I14,"Endless Cellar",I15,"Geffen Magic Tournament",I16,"Horror Toy Factory",I17,"Faceworm's Nest",I18;
+    	"Wolfchev's Laboratory",I12,"Sara's Memory",I13,"Nightmare Jitterbug",I14,"Endless Cellar (Shadow EQ)",I15,"Geffen Magic Tournament",I16,"Horror Toy Factory",I17,"Faceworm's Nest",I18,"Ghost Palace",I19;
 
 I1: Restrict("RE");
 	Go("ma_scene01",172,175);
@@ -462,6 +462,8 @@ I17: Restrict("RE");
 	Go("xmas",237,300);
 I18: Restrict("RE");	
 	Go("dali",83,62);
+I19: Restrict("RE");	
+	Go("dali",48,128);
 	
 // --------------------------------------------------
 	Special:

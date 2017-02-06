@@ -22,6 +22,7 @@
 15,Geffen Magic Tournament,7200,300,1@gef,119,209,1@gef_in,1@ge_st
 16,Horror Toy Factory,3600,300,1@xm_d,111,22
 17,Faceworm's Nest,3600,300,1@face,112,374
+18,Ghost Palace,3600,300,1@spa,198,188
 // Custom
 26,Nightmarish Jitterbug,3600,300,1@jtb,16,18
 50,MVP Ladder,3600,300,guild_vs2-2,49,49
