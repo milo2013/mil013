@@ -124,7 +124,7 @@ prtg_cas01,15,208,0	script	#Lever_PR01	111,{
 
 // Guild Dungeon Switch
 //============================================================
-prtg_cas01,94,200,0	duplicate(gdlever)	#prtg_cas01	111
+prtg_cas01,94,200,0	duplicate(gdleverPR)	#prtg_cas01	111
 
 // Guild Treasure Spawns
 //============================================================

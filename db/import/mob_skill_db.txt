@@ -165,4 +165,4 @@
 3950,Invader General@NPC_SUMMONSLAVE,attack,196,5,10000,2000,60000,no,self,slavele,3,3953,3953,,,,18,
 3950,Invader General@NPC_SUMMONSLAVE,idle,196,5,10000,2000,60000,no,self,slavele,3,3953,3953,,,,18,
 3950,Invader General@SA_REVERSEORCISH,attack,294,1,500,0,30000,yes,target,always,0,,,,,,18,
-3950,Invader General@SA_REVERSEORCISH,chase,294,1,500,0,30000,yes,target,always,0,,,,,,18,
+//3950,Invader General@SA_REVERSEORCISH,chase,294,1,500,500,5000,no,target,always,0,,,,,,18,

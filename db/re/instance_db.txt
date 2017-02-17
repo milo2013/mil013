@@ -23,7 +23,9 @@
 16,Horror Toy Factory,3600,300,1@xm_d,111,22
 17,Faceworm's Nest,3600,300,1@face,112,374
 18,Ghost Palace,3600,300,1@spa,198,188
+19,Bios Island,7200,300,1@dth1,19,94,1@dth2,1@dth3
 // Custom
-26,Nightmarish Jitterbug,3600,300,1@jtb,16,18
+26,Nightmarish Jitterbug,14400,300,1@jtb,16,18
+27,Charleston Crisis,14400,300,1@mcd,127,282
 50,MVP Ladder,3600,300,guild_vs2-2,49,49
 52,Endless Cellar,14400,300,1@new,50,355,2@new,3@new,4@new,5@new,6@new

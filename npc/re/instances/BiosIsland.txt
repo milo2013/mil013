@@ -1,0 +1,1308 @@
+moro_cav,45,60,4	script	Wandering Old Man	847,{
+	set .@party_id,getcharid(1);
+	set .@md_name$,"Bios Island";
+
+	set .@bios_timer,checkquest(15005,PLAYTIME); // 1 week
+	
+	//dispbottom "15005 = " + .@bios_timer;
+	
+	if (!instance_check_party(.@party_id,1)) {
+		mes "Make or join a party with more than 1 member and try again.";
+		close;
+	}
+	if (.@bios_timer == -1) {
+		if (getcharid(0) == getpartyleader(.@party_id,2)) {
+			mes "Confirmed the party has been made. Would you like to reserve entrance to the Bios Island?";
+			next;
+			switch(select("Generate dungeon "+.@md_name$+":Enter the dungeon:Cancel")) {
+			case 1:
+				if (instance_create(.@md_name$) < 0) {
+					mes "Party Name: "+ getpartyname(.@party_id);
+					mes "Party Leader: "+strcharinfo(0);
+					mes "^0000ff"+.@md_name$+" ^000000- Reservation Failed!";
+					close;
+				}
+				mes "^0000ff"+.@md_name$+"^000000 - Try to reserve";
+				mes "After making a reservation, you have to talk to NPC behind and select the menu 'Enter the Dungeon' to enter the dungeon.";
+				close;
+			case 2:
+				callsub L_Enter,0,1;
+			case 3:
+				close;
+			}
+		}
+		switch(select("Enter the "+.@md_name$+":Cancel")) {
+		case 1:
+			callsub L_Enter,1,1;
+		case 2:
+			end;
+		}
+	} else if ((.@bios_timer == 0)) {
+
+		set .@dun_lim_time,bios_timer+43200; // 1 week
+		//set .@dun_lim_time2,bios_timer+14400; // 4 hours
+		set .@dun_cur_time,gettimetick(2);
+		set .@dun_ent_t,(.@dun_lim_time - .@dun_cur_time);
+		set .@dun_h,(.@dun_ent_t / 3600);
+		set .@dun_m,(.@dun_ent_t - (.@dun_h * 3600)) / 60;
+		set .@dun_s,.@dun_ent_t - ((.@dun_h * 3600) + (.@dun_m * 60));
+
+		mes "Due to the tower's aftereffects, you cannot enter the dungeon right now, " + .@dun_h + "hours " + .@dun_m + "minutes " + .@dun_s + "seconds left to enter the next dungeon.";
+		close;
+		end;
+	} else {
+		set bios_timer,0;
+		erasequest 15005;
+		//erasequest 3136;
+		mes "^0000ffThe records and after effects related to the Bios Island have been removed. You can generate and enter the Bios Island again.^000000";
+		close;
+	}
+
+L_Enter:
+	switch(instance_enter("Bios Island")) {
+	case 3:
+		mes "An unknown error has occurred.";
+		close;
+	case 2:
+		mes "The memorial dungeon Bios Island does not exist.";
+		mes "The party leader did not generate the dungeon yet.";
+		close;
+	case 1:
+		mes "You can enter the dungeon after making the party.";
+		close;
+	case 0:
+		mapannounce "e_tower", strcharinfo(0) +" of the party, "+ getpartyname( getcharid(1) ) +", is entering the dungeon, Bios Island.",bc_map,"0x00ff99",FW_NORMAL,12;
+		if (getarg(1)) {
+			set bios_timer,gettimetick(2);
+			//setquest 15005;
+			//setquest 3136;
+		}
+		//warp "1@tower",52,354;
+		if (getarg(0) == 0) close;
+		else end;
+	}
+
+
+//OnInit:
+//	waitingroom "Bios Island", 0;
+//  end; 
+
+
+}
+
+
+//============================= i n s t a n c e p a r t ================================
+
+1@dth1,67,97,6	script	Vrid#ep14bs_st	468,{
+	end;
+OnInstanceInit:
+	donpcevent instance_npcname("Vrid#ep14bs_st")+"::OnEnable";
+	end;
+OnEnable:
+	hideoffnpc instance_npcname("Vrid#ep14bs_st");
+	end;
+OnDisable:
+	hideonnpc instance_npcname("Vrid#ep14bs_st");
+	end;
+OnChat1:
+	npctalk "So there are othere people too.";
+	end;
+OnChat2:
+	npctalk "Are you also ordered to prevent Morroc from ressurecting?";
+	end;
+OnChat3:
+	npctalk "I'm Vrid and this is Zeith, We've been traveling around the world fighting for justice.";
+	end;
+OnChat4:
+	npctalk "Hey, Zeith say something.";
+	end;
+OnChat8:
+	npctalk "Don't mind him. He's not so quiet when there are only two of us.";
+	end;
+OnChat10:
+	npctalk "We only came because the old geezer down below kept rambling about Morroc's resurrection.";
+	end;
+OnChat11:
+	npctalk "Err, what's this place? I just touched the seed, and suddenly the scenery changed.";
+	end;
+OnChat12:
+	npctalk "Holy cow!, are we flying in the sky?!";
+	end;
+OnChat17:
+	npctalk "...";
+	end;
+OnChat18:
+	npctalk "Whoever you are, we'll kill you before you do!";
+	end;
+OnChat21:
+	npctalk "Who's he? is he trying to resurrect Morroc?";
+	end;
+OnChat22:
+	npctalk "Let's chase him! Zeith, hurry!";
+	end;
+}
+
+1@dth1,71,97,4	script	Zeith#ep14bs_st	467,{
+	end;
+OnInstanceInit:
+	donpcevent instance_npcname("Zeith#ep14bs_st")+"::OnEnable";
+	end;
+OnEnable:
+	hideoffnpc instance_npcname("Zeith#ep14bs_st");
+	end;
+OnDisable:
+	hideonnpc instance_npcname("Zeith#ep14bs_st");
+	end;
+OnChat5:
+	npctalk "...";
+	end;
+OnChat6:
+	npctalk "I'm Zeith.";
+	end;
+OnChat7:
+	npctalk "...";
+	end;
+OnChat9:
+	npctalk "...You talk enough for both of us.";
+	end;
+OnChat14:
+	npctalk "Who's there?!";
+	end;
+OnChat23:
+	npctalk "...Ack";
+	end;
+OnChat24:
+	npctalk "I hate running...";
+	end;
+}
+
+1@dth1,74,94,4	script	Reaper Yanku#ep14bs_st	10028,{
+	end;
+OnInstanceInit:
+	donpcevent instance_npcname("Reaper Yanku#ep14bs_st")+"::OnDisable";
+	end;
+OnEnable:
+	hideoffnpc instance_npcname("Reaper Yanku#ep14bs_st");
+	end;
+OnDisable:
+	hideonnpc instance_npcname("Reaper Yanku#ep14bs_st");
+	end;
+OnChat15:
+	npctalk "*Chuckle* This is the Isle of Bios, a place i conjured up in my mind.";
+	end;
+OnChat16:
+	npctalk "You've walked into the trap, making yourself willing sacrifices for my Lord Morroc. Aren't you afraid of dying?";
+	end;
+OnChat19:
+	npctalk "Don't tempt me, human.";
+	end;
+OnChat20:
+	npctalk "I want to watch you die slowly and painfully *Chuckle*";
+	end;
+}
+
+1@dth1,74,94,4	script	?????#ep14bs_st	111,{
+	end;
+OnInstanceInit:
+	donpcevent instance_npcname("?????#ep14bs_st")+"::OnDisable";
+	end;
+OnEnable:
+	enablenpc instance_npcname("?????#ep14bs_st");
+	end;
+OnDisable:
+	disablenpc instance_npcname("?????#ep14bs_st");
+	end;
+OnChat13:
+	npctalk "*Chuckle* Do you want to know where you are?";
+	end;
+}
+
+1@dth1,56,94,0	script	#ep14bs_stchat	-1,5,5,{
+	end;
+OnTouch:
+	donpcevent instance_npcname("#ep14bs_stchat")+"::OnEnable";
+	end;
+OnInstanceInit:
+	enablenpc instance_npcname("#ep14bs_stchat");
+	end;
+OnEnable:
+	enablenpc instance_npcname("#ep14bs_stchat");
+	initnpctimer;
+	donpcevent instance_npcname("#ep14bs_stchat")+"::OnDisable";
+	end;
+OnDisable:
+	disablenpc instance_npcname("#ep14bs_stchat");
+	end;
+OnTimer3000:
+	donpcevent instance_npcname("Vrid#ep14bs_st")+"::OnChat1";
+	end;
+OnTimer6000:
+	donpcevent instance_npcname("Vrid#ep14bs_st")+"::OnChat2";
+	end;
+OnTimer9000:
+	donpcevent instance_npcname("Vrid#ep14bs_st")+"::OnChat3";
+	end;
+OnTimer12000:
+	donpcevent instance_npcname("Vrid#ep14bs_st")+"::OnChat4";
+	end;
+OnTimer15000:
+	donpcevent instance_npcname("Zeith#ep14bs_st")+"::OnChat5";
+	end;
+OnTimer18000:
+	donpcevent instance_npcname("Zeith#ep14bs_st")+"::OnChat6";
+	end;
+OnTimer21000:
+	donpcevent instance_npcname("Zeith#ep14bs_st")+"::OnChat7";
+	end;
+OnTimer24000:
+	donpcevent instance_npcname("Vrid#ep14bs_st")+"::OnChat8";
+	end;
+OnTimer27000:
+	donpcevent instance_npcname("Zeith#ep14bs_st")+"::OnChat9";
+	end;
+OnTimer30000:
+	donpcevent instance_npcname("Vrid#ep14bs_st")+"::OnChat10";
+	end;
+OnTimer33000:
+	donpcevent instance_npcname("Vrid#ep14bs_st")+"::OnChat11";
+	end;
+OnTimer36000:
+	donpcevent instance_npcname("Vrid#ep14bs_st")+"::OnChat12";
+	end;
+OnTimer39000:
+	donpcevent instance_npcname("?????#ep14bs_st")+"::OnEnable";
+	donpcevent instance_npcname("?????#ep14bs_st")+"::OnChat13";
+	end;
+OnTimer42000:
+	donpcevent instance_npcname("Zeith#ep14bs_st")+"::OnChat14";
+	end;
+OnTimer45000:
+	donpcevent instance_npcname("?????#ep14bs_st")+"::OnDisable";
+	donpcevent instance_npcname("Reaper Yanku#ep14bs_st")+"::OnEnable";
+	donpcevent instance_npcname("Reaper Yanku#ep14bs_st")+"::OnChat15";
+	end;
+OnTimer48000:
+	donpcevent instance_npcname("Reaper Yanku#ep14bs_st")+"::OnChat16";
+	end;
+OnTimer51000:
+	donpcevent instance_npcname("Vrid#ep14bs_st")+"::OnChat17";
+	end;
+OnTimer54000:
+	donpcevent instance_npcname("Vrid#ep14bs_st")+"::OnChat18";
+	end;
+OnTimer57000:
+	donpcevent instance_npcname("Reaper Yanku#ep14bs_st")+"::OnChat19";
+	end;
+OnTimer60000:
+	donpcevent instance_npcname("Reaper Yanku#ep14bs_st")+"::OnChat20";
+	end;
+OnTimer63000:
+	donpcevent instance_npcname("Vrid#ep14bs_st")+"::OnChat21";
+	end;
+OnTimer66000:
+	donpcevent instance_npcname("Vrid#ep14bs_st")+"::OnChat22";
+	donpcevent instance_npcname("Reaper Yanku#ep14bs_st")+"::OnDisable";
+	end;
+OnTimer69000:
+	donpcevent instance_npcname("Zeith#ep14bs_st")+"::OnChat23";
+	end;
+OnTimer72000:
+	donpcevent instance_npcname("Zeith#ep14bs_st")+"::OnChat24";
+	end;
+OnTimer75000:
+	donpcevent instance_npcname("Vrid#ep14bs_st")+"::OnDisable";
+	end;
+OnTimer76000:
+	donpcevent instance_npcname("Zeith#ep14bs_st")+"::OnDisable";
+	mapannounce instance_mapname("1@dth1"), "<SYSTEM> : Eliminate all the enemies on the Island and exit through the door on the other side to move on the next area.",bc_map,"0xFFFF00";
+  donpcevent instance_npcname("#ep14bs_stcmob")+"::OnEnable";
+	stopnpctimer;
+	end;
+}
+
+//Control MOB
+//====================
+1@dth2,56,94,0	script	#ep14bs_stcmoba	-1,5,5,{
+	end;
+OnInstanceInit:
+	donpcevent instance_npcname("#ep14bs_stcmoba")+"::OnDisable";
+	end;
+OnTouch:
+	initnpctimer;
+	donpcevent instance_npcname("#ep14bs_stcmobb")+"::OnEnable";
+	end;
+OnDisable:
+	disablenpc instance_npcname("#ep14bs_stcmoba");
+	end;
+OnEnable:
+	enablenpc instance_npcname("#ep14bs_stcmoba");
+	end;
+OnTimer2000:
+	mapannounce instance_mapname("1@dth2"), "<SYSTEM> : Eliminate all the enemies on the Island and exit through the door on the other side to move on the next area.",bc_map,"0xFFFF00";
+	donpcevent instance_npcname("#ep14bs_stcmobb")+"::OnEnable";
+	stopnpctimer;
+	end;
+}
+
+1@dth1,0,0,0	script	#ep14bs_stcmob	-1,{
+	end;
+OnInstanceInit:
+	donpcevent instance_npcname("#ep14bs_stcmob")+"::OnDisable";
+	end;
+OnEnable:
+	enablenpc instance_npcname("#ep14bs_stcmob");
+	donpcevent instance_npcname("#ep14bs_stcmob")+"::OnRespawn";
+	end;
+OnDisable:
+	disablenpc instance_npcname("#ep14bs_stcmob");
+	end;
+OnRespawn:
+  .@map$ = instance_mapname("1@dth1");
+  .@label$ = instance_npcname("#ep14bs_stcmob")+"::OnMyMobDead";
+	areamonster .@map$,98,40,250,171,"--ja--",3010,18,.@label$;
+	areamonster .@map$,98,40,250,171,"--ja--",3011,18,.@label$;
+	areamonster .@map$,98,40,250,171,"--ja--",3012,11,.@label$;
+	areamonster .@map$,150,170,161,160,"--ja--",3010,1,.@label$;
+	areamonster .@map$,150,170,161,160,"--ja--",3011,1,.@label$;
+	areamonster .@map$,150,170,161,160,"--ja--",3012,1,.@label$;
+	areamonster .@map$,289,115,327,92,"--ja--",3010,1,.@label$;
+	areamonster .@map$,289,115,327,92,"--ja--",3011,1,.@label$;
+	areamonster .@map$,289,115,327,92,"--ja--",3012,1,.@label$;
+	areamonster .@map$,219,156,232,139,"--ja--",3010,1,.@label$;
+	areamonster .@map$,219,156,232,139,"--ja--",3011,1,.@label$;
+	areamonster .@map$,219,156,232,139,"--ja--",3012,1,.@label$;
+	monster .@map$,201,169,"--ja--",3011,1,.@label$;
+	monster .@map$,274,104,"--ja--",3011,1,.@label$;
+	monster .@map$,164,79,"--ja--",3012,1,.@label$;
+	monster .@map$,163,45,"--ja--",3011,1,.@label$;
+	monster .@map$,131,47,"--ja--",3010,1,.@label$;
+	monster .@map$,127,171,"--ja--",3010,1,.@label$;
+	monster .@map$,131,47,"--ja--",3012,1,.@label$;
+	monster .@map$,131,47,"--ja--",3011,1,.@label$;
+	monster .@map$,93,94,"--ja--",3010,1,.@label$;
+	monster .@map$,93,94,"--ja--",3011,1,.@label$;
+	monster .@map$,210,100,"--ja--",3012,1,.@label$;
+	monster .@map$,197,102,"--ja--",3010,1,.@label$;
+	monster .@map$,185,142,"--ja--",3010,1,.@label$;
+	monster .@map$,250,146,"--ja--",3012,1,.@label$;
+	monster .@map$,247,142,"--ja--",3011,1,.@label$;
+	monster .@map$,209,51,"--ja--",3010,1,.@label$;
+	monster .@map$,212,54,"--ja--",3012,1,.@label$;
+	monster .@map$,234,59,"--ja--",3011,1,.@label$;
+	monster .@map$,249,78,"--ja--",3010,1,.@label$;
+	end;
+OnMyMobDead:
+  .@map$ = instance_mapname("1@dth1");
+  .@label$ = instance_npcname("#ep14bs_stcmob")+"::OnMyMobDead";
+	set .@callnum,85; //75 for original value
+	set .@a_mob_num,mobcount(.@map$,.@label$);
+	set .@mob_dead_num,.@callnum - .@a_mob_num;
+	if (.@mob_dead_num == 65) {
+		mapannounce instance_mapname("1@dth1"), "<SYSTEM> : 10 - monsters remain on island.",bc_map,"0xFFFF00";
+	}
+	else if (.@mob_dead_num == 70) {
+		mapannounce instance_mapname("1@dth1"), "<SYSTEM> : 5 - monsters remain on island.",bc_map,"0xFFFF00";
+	}
+	else if (.@mob_dead_num == 74) {
+		mapannounce instance_mapname("1@dth1"), "<SYSTEM> : 1 - monsters remain on island.",bc_map,"0xFFFF00";
+	}
+	else if (.@mob_dead_num == 75) {
+		mapannounce instance_mapname("1@dth1"), "<SYSTEM> : You have eliminated all the monsters. Use the exit at 3 o'clock to move on to the next area",bc_map,"0xFFFF00";
+		donpcevent instance_npcname("#bioswarp1")+"::OnEnable";
+		donpcevent instance_npcname("#ep14bs_stcmobb")+"::OnEnable";
+		donpcevent instance_npcname("#ep14bs_stcmoba")+"::OnEnable";
+		donpcevent instance_npcname("#ep14bs_stcmob")+"::OnDisable";
+	}
+	end;
+}
+
+1@dth2,0,0,0	script	#ep14bs_stcmobb	-1,{
+	end;
+OnInstanceInit:
+	donpcevent instance_npcname("#ep14bs_stcmobb")+"::OnDisable";
+	end;
+OnEnable:
+	enablenpc instance_npcname("#ep14bs_stcmobb");
+	donpcevent instance_npcname("#ep14bs_stcmobb")+"::OnRespawn";
+	end;
+OnDisable:
+	disablenpc instance_npcname("#ep14bs_stcmobb");
+	end;
+OnRespawn:
+  .@map$ = instance_mapname("1@dth2");
+  .@label$ = instance_npcname("#ep14bs_stcmobb")+"::OnMyMobDead";
+	areamonster .@map$,98,40,250,171,"--ja--",3013,18,.@label$;
+	areamonster .@map$,98,40,250,171,"--ja--",3014,18,.@label$;
+	areamonster .@map$,98,40,250,171,"--ja--",3015,11,.@label$;
+	areamonster .@map$,150,170,161,160,"--ja--",3013,1,.@label$;
+	areamonster .@map$,150,170,161,160,"--ja--",3014,1,.@label$;
+	areamonster .@map$,150,170,161,160,"--ja--",3015,1,.@label$;
+	areamonster .@map$,289,115,327,92,"--ja--",3013,1,.@label$;
+	areamonster .@map$,289,115,327,92,"--ja--",3014,1,.@label$;
+	areamonster .@map$,289,115,327,92,"--ja--",3015,1,.@label$;
+	areamonster .@map$,219,156,232,139,"--ja--",3013,1,.@label$;
+	areamonster .@map$,219,156,232,139,"--ja--",3014,1,.@label$;
+	areamonster .@map$,219,156,232,139,"--ja--",3015,1,.@label$;
+	monster .@map$,201,169,"--ja--",3014,1,.@label$;
+	monster .@map$,274,104,"--ja--",3014,1,.@label$;
+	monster .@map$,164,79,"--ja--",3015,1,.@label$;
+	monster .@map$,163,45,"--ja--",3014,1,.@label$;
+	monster .@map$,131,47,"--ja--",3013,1,.@label$;
+	monster .@map$,127,171,"--ja--",3013,1,.@label$;
+	monster .@map$,131,47,"--ja--",3015,1,.@label$;
+	monster .@map$,131,47,"--ja--",3014,1,.@label$;
+	monster .@map$,93,94,"--ja--",3013,1,.@label$;
+	monster .@map$,93,94,"--ja--",3014,1,.@label$;
+	monster .@map$,210,100,"--ja--",3015,1,.@label$;
+	monster .@map$,197,102,"--ja--",3013,1,.@label$;
+	monster .@map$,185,142,"--ja--",3013,1,.@label$;
+	monster .@map$,250,146,"--ja--",3015,1,.@label$;
+	monster .@map$,247,142,"--ja--",3014,1,.@label$;
+	monster .@map$,209,51,"--ja--",3013,1,.@label$;
+	monster .@map$,212,54,"--ja--",3015,1,.@label$;
+	monster .@map$,234,59,"--ja--",3014,1,.@label$;
+	monster .@map$,249,78,"--ja--",3013,1,.@label$;
+	end;
+OnMyMobDead:
+  .@map$ = instance_mapname("1@dth2");
+  .@label$ = instance_npcname("#ep14bs_stcmobb")+"::OnMyMobDead";
+	set .@callnum,85; //75 for original value
+	set .@b_mob_num,mobcount(.@map$,.@label$);
+	set .@mob_dead_num,.@callnum - .@b_mob_num;
+	if (.@mob_dead_num == 65) {
+		mapannounce instance_mapname("1@dth2"), "<SYSTEM> 10 - monsters remain on island.",bc_map,"0xFFFF00";
+	}
+	else if (.@mob_dead_num == 70) {
+		mapannounce instance_mapname("1@dth2"), "<SYSTEM> 5 - monsters remain on island.",bc_map,"0xFFFF00";
+	}
+	else if (.@mob_dead_num == 74) {
+		mapannounce instance_mapname("1@dth2"), "<SYSTEM> 1 - monsters remain on island.",bc_map,"0xFFFF00";
+	}
+	else if (.@mob_dead_num == 75) {
+		mapannounce instance_mapname("1@dth2"), "<SYSTEM> You have eliminated all the monsters. Use the exit at 3 o'clock to move on to the next area",bc_map,"0xFFFF00";
+		donpcevent instance_npcname("#bioswarp2")+"::OnEnable";
+		enablenpc instance_npcname("#ep14bs_stchatb");
+		donpcevent instance_npcname("Vrid#bios3_00q")+"::OnEnable";
+		donpcevent instance_npcname("Zeith#bios3_00q")+"::OnEnable";
+	}
+	end;
+}
+
+1@dth3,0,0,0	script	#ep14bs_stcmobc	-1,{
+	end;
+OnInstanceInit:
+	donpcevent instance_npcname("#ep14bs_stcmobc")+"::OnDisable";
+	end;
+OnEnable:
+	enablenpc instance_npcname("#ep14bs_stcmobc");
+	donpcevent instance_npcname("#ep14bs_stcmobc")+"::OnRespawn";
+	end;
+OnDisable:
+	disablenpc instance_npcname("#ep14bs_stcmobc");
+	end;
+OnRespawn:
+  .@map$ = instance_mapname("1@dth3");
+  .@label$ = instance_npcname("#ep14bs_stcmobc")+"::OnMyMobDead";
+	monster .@map$,62,80,"--ja--",3016,1,.@label$;
+	monster .@map$,64,80,"--ja--",3016,1,.@label$;
+	monster .@map$,66,80,"--ja--",3016,1,.@label$;
+	monster .@map$,68,80,"--ja--",3016,1,.@label$;
+	monster .@map$,72,80,"--ja--",3016,1,.@label$;
+	monster .@map$,74,80,"--ja--",3016,1,.@label$;
+	monster .@map$,76,80,"--ja--",3016,1,.@label$;
+	monster .@map$,78,80,"--ja--",3016,1,.@label$;
+	monster .@map$,62,93,"--ja--",3016,1,.@label$;
+	monster .@map$,64,93,"--ja--",3016,1,.@label$;
+	monster .@map$,66,93,"--ja--",3016,1,.@label$;
+	monster .@map$,68,93,"--ja--",3016,1,.@label$;
+	monster .@map$,72,93,"--ja--",3016,1,.@label$;
+	monster .@map$,74,93,"--ja--",3016,1,.@label$;
+	monster .@map$,76,93,"--ja--",3016,1,.@label$;
+	monster .@map$,78,93,"--ja--",3016,1,.@label$;
+	monster .@map$,62,85,"--ja--",3016,1,.@label$;
+	monster .@map$,64,85,"--ja--",3016,1,.@label$;
+	monster .@map$,66,85,"--ja--",3016,1,.@label$;
+	monster .@map$,68,85,"--ja--",3016,1,.@label$;
+	monster .@map$,72,85,"--ja--",3016,1,.@label$;
+	monster .@map$,74,85,"--ja--",3016,1,.@label$;
+	monster .@map$,76,85,"--ja--",3016,1,.@label$;
+	monster .@map$,78,85,"--ja--",3016,1,.@label$;
+	end;
+OnMyMobDead:
+  .@map$ = instance_mapname("1@dth3");
+  .@label$ = instance_npcname("#ep14bs_stcmobc")+"::OnMyMobDead";
+	set .@callnum,24;
+	set .@c_mob_num,mobcount(.@map$,.@label$);
+	set .@mob_dead_num,.@callnum - .@c_mob_num;
+	if (.@mob_dead_num == 24) {
+		initnpctimer;
+	}
+	end;
+OnTimer2000:
+	donpcevent instance_npcname("Vrid#bios3_00f")+"::OnChat31";
+	end;
+OnTimer4000:
+	donpcevent instance_npcname("Zeith#bios3_00f")+"::OnChat32";
+	end;
+OnTimer5000:
+	donpcevent instance_npcname("#ep14bs_stcmobd")+"::OnEnable";
+	stopnpctimer;
+	donpcevent instance_npcname("#ep14bs_stcmobc")+"::OnDisable";
+	end;
+}
+
+1@dth3,0,0,0	script	#ep14bs_stcmobd	-1,{
+	end;
+OnInstanceInit:
+	donpcevent instance_npcname("#ep14bs_stcmobd")+"::OnDisable";
+	end;
+OnEnable:
+	enablenpc instance_npcname("#ep14bs_stcmobd");
+	donpcevent instance_npcname("#ep14bs_stcmobd")+"::OnRespawn";
+	end;
+OnDisable:
+	disablenpc instance_npcname("#ep14bs_stcmobd");
+	end;
+OnRespawn:
+  .@map$ = instance_mapname("1@dth3");
+  .@label$ = instance_npcname("#ep14bs_stcmobd")+"::OnMyMobDead";
+	monster .@map$,62,80,"--ja--",3017,1,.@label$;
+	monster .@map$,64,80,"--ja--",3017,1,.@label$;
+	monster .@map$,66,80,"--ja--",3017,1,.@label$;
+	monster .@map$,68,80,"--ja--",3017,1,.@label$;
+	monster .@map$,72,80,"--ja--",3017,1,.@label$;
+	monster .@map$,74,80,"--ja--",3017,1,.@label$;
+	monster .@map$,76,80,"--ja--",3017,1,.@label$;
+	monster .@map$,78,80,"--ja--",3017,1,.@label$;
+	monster .@map$,62,93,"--ja--",3017,1,.@label$;
+	monster .@map$,64,93,"--ja--",3017,1,.@label$;
+	monster .@map$,66,93,"--ja--",3017,1,.@label$;
+	monster .@map$,68,93,"--ja--",3017,1,.@label$;
+	monster .@map$,72,93,"--ja--",3017,1,.@label$;
+	monster .@map$,74,93,"--ja--",3017,1,.@label$;
+	monster .@map$,76,93,"--ja--",3017,1,.@label$;
+	monster .@map$,78,93,"--ja--",3017,1,.@label$;
+	monster .@map$,62,85,"--ja--",3017,1,.@label$;
+	monster .@map$,64,85,"--ja--",3017,1,.@label$;
+	monster .@map$,66,85,"--ja--",3017,1,.@label$;
+	monster .@map$,68,85,"--ja--",3017,1,.@label$;
+	monster .@map$,72,85,"--ja--",3017,1,.@label$;
+	monster .@map$,74,85,"--ja--",3017,1,.@label$;
+	monster .@map$,76,85,"--ja--",3017,1,.@label$;
+	monster .@map$,78,85,"--ja--",3017,1,.@label$;
+	end;
+OnMyMobDead:
+  .@map$ = instance_mapname("1@dth3");
+  .@label$ = instance_npcname("#ep14bs_stcmobd")+"::OnMyMobDead";
+	set .@callnum,24;
+	set .@d_mob_num,mobcount(.@map$,.@label$);
+	set .@mob_dead_num,.@callnum - .@d_mob_num;
+	if (.@mob_dead_num == 24) {
+		initnpctimer;
+	}
+	end;
+OnTimer2000:
+	donpcevent instance_npcname("Vrid#bios3_00f")+"::OnChat33";
+	end;
+OnTimer4000:
+	donpcevent instance_npcname("Zeith#bios3_00f")+"::OnChat34";
+	end;
+OnTimer5000:
+	donpcevent instance_npcname("#ep14bs_stcmobe")+"::OnEnable";
+	stopnpctimer;
+	donpcevent instance_npcname("#ep14bs_stcmobd")+"::OnDisable";
+	end;
+}
+
+1@dth3,0,0,0	script	#ep14bs_stcmobe	-1,{
+	end;
+OnInstanceInit:
+	donpcevent instance_npcname("#ep14bs_stcmobe")+"::OnDisable";
+	end;
+OnEnable:
+	enablenpc instance_npcname("#ep14bs_stcmobe");
+	donpcevent instance_npcname("#ep14bs_stcmobe")+"::OnRespawn";
+	end;
+OnDisable:
+	disablenpc instance_npcname("#ep14bs_stcmobe");
+	end;
+OnRespawn:
+  .@map$ = instance_mapname("1@dth3");
+  .@label$ = instance_npcname("#ep14bs_stcmobe")+"::OnMyMobDead";
+	monster .@map$,62,80,"--ja--",3018,1,.@label$;
+	monster .@map$,64,80,"--ja--",3018,1,.@label$;
+	monster .@map$,66,80,"--ja--",3018,1,.@label$;
+	monster .@map$,68,80,"--ja--",3018,1,.@label$;
+	monster .@map$,72,80,"--ja--",3018,1,.@label$;
+	monster .@map$,74,80,"--ja--",3018,1,.@label$;
+	monster .@map$,76,80,"--ja--",3018,1,.@label$;
+	monster .@map$,78,80,"--ja--",3018,1,.@label$;
+	monster .@map$,62,93,"--ja--",3018,1,.@label$;
+	monster .@map$,64,93,"--ja--",3018,1,.@label$;
+	monster .@map$,66,93,"--ja--",3018,1,.@label$;
+	monster .@map$,68,93,"--ja--",3018,1,.@label$;
+	monster .@map$,72,93,"--ja--",3018,1,.@label$;
+	monster .@map$,74,93,"--ja--",3018,1,.@label$;
+	monster .@map$,76,93,"--ja--",3018,1,.@label$;
+	monster .@map$,78,93,"--ja--",3018,1,.@label$;
+	monster .@map$,62,85,"--ja--",3018,1,.@label$;
+	monster .@map$,64,85,"--ja--",3018,1,.@label$;
+	monster .@map$,66,85,"--ja--",3018,1,.@label$;
+	monster .@map$,68,85,"--ja--",3018,1,.@label$;
+	monster .@map$,72,85,"--ja--",3018,1,.@label$;
+	monster .@map$,74,85,"--ja--",3018,1,.@label$;
+	monster .@map$,76,85,"--ja--",3018,1,.@label$;
+	monster .@map$,78,85,"--ja--",3018,1,.@label$;
+	end;
+OnMyMobDead:
+  .@map$ = instance_mapname("1@dth3");
+  .@label$ = instance_npcname("#ep14bs_stcmobe")+"::OnMyMobDead";
+	set .@callnum,24;
+	set .@e_mob_num,mobcount(.@map$,.@label$);
+	set .@mob_dead_num,.@callnum - .@e_mob_num;
+	if (.@mob_dead_num == 24) {
+		donpcevent instance_npcname("Reaper Yanku#bios3_00q")+"::OnEnable";
+		initnpctimer;
+	}
+	end;
+OnTimer5000:
+	donpcevent instance_npcname("Reaper Yanku#bios3_00q")+"::OnChat35";
+	end;
+OnTimer9000:
+	donpcevent instance_npcname("Vrid#bios3_00f")+"::OnChat36";
+	end;
+OnTimer13000:
+	donpcevent instance_npcname("Reaper Yanku#bios3_00q")+"::OnChat37";
+	end;
+OnTimer17000:
+	donpcevent instance_npcname("Reaper Yanku#bios3_00q")+"::OnDisable";
+	donpcevent instance_npcname("#ep14bs_stcmobf")+"::OnEnable";
+	end;
+OnTimer21000:
+	donpcevent instance_npcname("Vrid#bios3_00f")+"::OnChat38";
+	donpcevent instance_npcname("#ep14bs_stchatr")+"::OnEnable";
+	stopnpctimer;
+	donpcevent instance_npcname("#ep14bs_stcmobe")+"::OnDisable";
+	end;
+}
+
+1@dth3,0,0,0	script	#ep14bs_stcmobf	-1,{
+	end;
+OnInstanceInit:
+	donpcevent instance_npcname("#ep14bs_stcmobf")+"::OnDisable";
+	'npcMvpKill = 0;
+	end;
+OnEnable:
+	enablenpc instance_npcname("#ep14bs_stcmobf");
+	donpcevent instance_npcname("#ep14bs_stcmobf")+"::OnRespawn";
+	end;
+OnDisable:
+	disablenpc instance_npcname("#ep14bs_stcmobf");
+	end;
+OnRespawn:
+	monster instance_mapname("1@dth3"),70,67,"Reaper Yanku",3029,1,instance_npcname("#ep14bs_stcmobf")+"::OnMyMobDead";
+	end;
+OnMyMobDead:
+  .@f_mob_num = mobcount(instance_mapname("1@dth3"),instance_npcname("#ep14bs_stcmobf")+"::OnMyMobDead");
+	if (!.@f_mob_num) {
+		donpcevent instance_npcname("#ep14bs_stchatr")+"::OnDisable2";
+		initnpctimer;
+	}
+	end;
+OnTimer3000:
+	donpcevent instance_npcname("Reaper Yanku#bios3_00q")+"::OnEnable";
+	end;
+OnTimer6000:
+	donpcevent instance_npcname("Reaper Yanku#bios3_00q")+"::OnChat43";
+	end;
+OnTimer9000:
+	donpcevent instance_npcname("Reaper Yanku#bios3_00q")+"::OnChat44";
+	end;
+OnTimer12000:
+	donpcevent instance_npcname("Reaper Yanku#bios3_00q")+"::OnChat45";
+	end;
+OnTimer13000:
+	donpcevent instance_npcname("Vrid#bios3_00f")+"::OnDisable";
+	donpcevent instance_npcname("Zeith#bios3_00f")+"::OnDisable";
+	end;
+OnTimer13500:
+	donpcevent instance_npcname("Vrid#bios3_00q")+"::OnEnable";
+	donpcevent instance_npcname("Zeith#bios3_00q")+"::OnEnable";
+	end;
+OnTimer14000:
+	donpcevent instance_npcname("Reaper Yanku#bios3_00q")+"::OnDisable";
+	end;
+OnTimer16000:
+	donpcevent instance_npcname("Vrid#bios3_00q")+"::OnChat46";
+	end;
+OnTimer19000:
+	donpcevent instance_npcname("Zeith#bios3_00q")+"::OnChat47";
+	end;
+OnTimer22000:
+	donpcevent instance_npcname("Vrid#bios3_00q")+"::OnChat48";
+	end;
+OnTimer25000:
+	donpcevent instance_npcname("Vrid#bios3_00q")+"::OnChat49";
+	end;
+OnTimer28000:
+	donpcevent instance_npcname("Vrid#bios3_00q")+"::OnChat50";
+	end;
+OnTimer31000:
+	'npcMvpKill  = 1;
+	stopnpctimer;
+	donpcevent instance_npcname("#ep14bs_stcmobf")+"::OnDisable";
+	end;
+}
+
+1@dth1,291,103,0	script	#bioswarp1	45,1,2,{
+	end;
+OnInstanceInit:
+	donpcevent instance_npcname("#bioswarp1")+"::OnDisable";
+	end;
+OnDisable:
+	disablenpc instance_npcname("#bioswarp1");
+	end;
+OnEnable:
+	enablenpc instance_npcname("#bioswarp1");
+	end;
+OnTouch:
+	warp instance_mapname("1@dth2"),17,93;
+	end;
+}
+1@dth2,291,103,0	script	#bioswarp2	45,1,2,{
+	end;
+OnInstanceInit:
+	donpcevent instance_npcname("#bioswarp2")+"::OnDisable";
+	end;
+OnDisable:
+	disablenpc instance_npcname("#bioswarp2");
+	end;
+OnEnable:
+	enablenpc instance_npcname("#bioswarp2");
+	end;
+OnTouch:
+	if(!checkquest(56430))setquest 56430; //Boss Hunting
+	warp instance_mapname("1@dth3"),45,68;
+	end;
+}
+
+1@dth3,64,74,6	script	Vrid#bios3_00q	468,{
+	if ('npcMvpKill) {
+		mes "[Vrid]";
+		mes "I came by this Hero Token by accident";
+		mes "I want to give it to you!";
+		next;
+		mes "[Vrid]";
+		mes "Now let's get out of here!";
+		getitem 6684,1; //Proof of The Heroic
+		
+		//if(checkquest(40019)) completequest 40019;
+		//if(checkquest(15006)) erasequest 15006;
+		setquest 15005;
+		//if(!checkquest(51720)) {
+        //setquest 51720;
+        //completequest 51720;
+		//}
+		warp "prontera",155,135;
+		close;
+		end;
+	}
+	end;
+OnInstanceInit:
+	donpcevent instance_npcname("Vrid#bios3_00q")+"::OnDisable";
+	end;
+OnEnable:
+	hideoffnpc instance_npcname("Vrid#bios3_00q");
+	end;
+OnDisable:
+	hideonnpc instance_npcname("Vrid#bios3_00q");
+	end;
+OnChat1:
+	npctalk "You're lucky to be here. I got tottaly lost the moment I entered that maze.";
+	end;
+OnChat2:
+	npctalk "If it weren't for Zeith, I'd still be in there, wandering. Thanks Zeith!";
+	end;
+OnChat4:
+	npctalk "What's up?";
+	end;
+OnChat7:
+	npctalk "Umm... I think you're right.";
+	end;
+OnChat8:
+	npctalk "They're all small in the beginning and then we faced bigger and stronger ones over time.";
+	end;
+OnChat9:
+	npctalk "To me, that sounds natural. What are you worried about?";
+	end;
+OnChat13:
+	npctalk "You again?";
+	end;
+OnChat17:
+	npctalk "Shut up! you fiend! We don't have time for your lackeys!";
+	end;
+OnChat18:
+	npctalk "I'll get rid of you myself!";
+	end;
+OnChat46:
+	npctalk "Ah, finally I can move!";
+	end;
+OnChat48:
+	npctalk "We could have died if it weren't for you!";
+	end;
+OnChat49:
+	npctalk "I want to give you something for saving our lives.";
+	end;
+OnChat50:
+	npctalk "Talk to me again when you're ready to accept it.";
+	end;
+}
+1@dth3,72,74,4	script	Zeith#bios3_00q	467,{
+	if ('npcMvpKill) {
+		mes "[Zeith]";
+		mes "Vrid seems to have something for you...";
+		close;
+	}
+	end;
+OnInstanceInit:
+	donpcevent instance_npcname("Zeith#bios3_00q")+"::OnDisable";
+	end;
+OnEnable:
+	hideoffnpc instance_npcname("Zeith#bios3_00q");
+	end;
+OnDisable:
+	hideonnpc instance_npcname("Zeith#bios3_00q");
+	end;
+OnChat3:
+	npctalk "...Something's been bothering me.";
+	end;
+OnChat5:
+	npctalk "...I've got the feeling that the monsters were growing stronger with time.";
+	end;
+OnChat6:
+	npctalk "Just like children growing up into adults.";
+	end;
+OnChat10:
+	npctalk "Well, I'm curious about the monster we'll face now.";
+	end;
+OnChat11:
+	npctalk "...";
+	end;
+OnChat47:
+	npctalk "Hmpf, I'm ashamed of myself for being so weak...";
+	end;
+}
+
+1@dth3,64,74,6	script	Vrid#bios3_00f	10036,{
+	end;
+OnInstanceInit:
+	donpcevent instance_npcname("Vrid#bios3_00f")+"::OnDisable";
+	end;
+OnEnable:
+	hideoffnpc instance_npcname("Vrid#bios3_00f");
+	specialeffect 89;
+	specialeffect EF_FIREHIT;
+	end;
+OnDisable:
+	specialeffect EF_ICECRASH;
+	hideonnpc instance_npcname("Vrid#bios3_00f");
+	end;
+OnChat21:
+	npctalk "Ugh! W-what's going on?! I-I can't move!";
+	end;
+OnChat28:
+	npctalk "Ugh!";
+	end;
+OnChat29:
+	npctalk "I don't want to die!";
+	end;
+OnChat31:
+	npctalk "Wow! you're amazing! Did you kill them all?";
+	end;
+OnChat33:
+	npctalk "Holy cow!";
+	end;
+OnChat36:
+	npctalk "You're cheating! Release us and fight fairly!";
+	end;
+OnChat38:
+	npctalk "Damn it, I can't move";
+	end;
+OnChat40:
+	npctalk "You cheater, fight fairly!";
+	end;
+OnChat41:
+	npctalk "I'm sorry we can't help!";
+	end;
+}
+
+1@dth3,68,74,4	script	#widefreeze	139,10,10,{
+		sc_start	SC_FREEZE,10000,0;
+		end;
+
+	OnInstanceInit:
+		disablenpc instance_npcname("#widefreeze");
+		end;
+	
+	OnEnable:
+		initnpctimer;
+		enablenpc instance_npcname("#widefreeze");
+		end;
+	
+	OnTimer3000:
+		stopnpctimer;
+		disablenpc instance_npcname("#widefreeze");
+		end;
+}
+
+1@dth3,72,74,4	script	Zeith#bios3_00f	10035,{
+	end;
+OnInstanceInit:
+	donpcevent instance_npcname("Zeith#bios3_00f")+"::OnDisable";
+	end;
+OnEnable:
+	hideoffnpc instance_npcname("Zeith#bios3_00f");
+	specialeffect 89;
+	specialeffect EF_FIREHIT;
+	end;
+OnDisable:
+	specialeffect EF_ICECRASH;
+	hideonnpc instance_npcname("Zeith#bios3_00f");
+	end;
+OnChat22:
+	npctalk "N-neither can I! I can't move my feet!";
+	end;
+OnChat30:
+	npctalk "...Ugh!";
+	end;
+OnChat32:
+	npctalk "Nope, we aren't so lucky, more is on the way!";
+	end;
+OnChat34:
+	npctalk "...You got this kid!";
+	end;
+OnChat39:
+	npctalk "Yanku has a strange magic be careful!";
+	end;
+OnChat42:
+	npctalk "I can't get out of his magic!";
+	end;
+}
+
+1@dth3,70,67,4	script	Reaper Yanku#bios3_00q	10028,{
+	end;
+OnInstanceInit:
+	donpcevent instance_npcname("Reaper Yanku#bios3_00q")+"::OnDisable";
+	end;
+OnEnable:
+	hideoffnpc instance_npcname("Reaper Yanku#bios3_00q");
+	end;
+OnDisable:
+	hideonnpc instance_npcname("Reaper Yanku#bios3_00q");
+	end;
+OnChat12:
+	npctalk "*Chuckle* at least one of you has a good head on his shoulders.";
+	end;
+OnChat14:
+	npctalk "Are you curios about your next adversaries?";
+	end;
+OnChat15:
+	npctalk "Ahead of you is an army of the immortal.";
+	donpcevent instance_npcname("--ja--#1bios3_")+"::OnEnable";
+	donpcevent instance_npcname("--ja--#2bios3_")+"::OnEnable";
+	donpcevent instance_npcname("--ja--#3bios3_")+"::OnEnable";
+	donpcevent instance_npcname("--ja--#4bios3_")+"::OnEnable";
+	donpcevent instance_npcname("--ja--#5bios3_")+"::OnEnable";
+	donpcevent instance_npcname("--ja--#6bios3_")+"::OnEnable";
+	donpcevent instance_npcname("--ja--#7bios3_")+"::OnEnable";
+	donpcevent instance_npcname("--ja--#8bios3_")+"::OnEnable";
+	donpcevent instance_npcname("--ja--#9bios3_")+"::OnEnable";
+	donpcevent instance_npcname("--ja--#10bios3_")+"::OnEnable";
+	donpcevent instance_npcname("--ja--#11bios3_")+"::OnEnable";
+	donpcevent instance_npcname("--ja--#12bios3_")+"::OnEnable";
+	donpcevent instance_npcname("--ja--#13bios3_")+"::OnEnable";
+	donpcevent instance_npcname("--ja--#14bios3_")+"::OnEnable";
+	donpcevent instance_npcname("--ja--#15bios3_")+"::OnEnable";
+	donpcevent instance_npcname("--ja--#16bios3_")+"::OnEnable";
+	donpcevent instance_npcname("--ja--#17bios3_")+"::OnEnable";
+	donpcevent instance_npcname("--ja--#18bios3_")+"::OnEnable";
+	donpcevent instance_npcname("--ja--#19bios3_")+"::OnEnable";
+	donpcevent instance_npcname("--ja--#20bios3_")+"::OnEnable";
+	donpcevent instance_npcname("--ja--#21bios3_")+"::OnEnable";
+	donpcevent instance_npcname("--ja--#22bios3_")+"::OnEnable";
+	donpcevent instance_npcname("--ja--#23bios3_")+"::OnEnable";
+	donpcevent instance_npcname("--ja--#24bios3_")+"::OnEnable";
+	specialeffect EF_READYPORTAL;
+	end;
+OnChat16:
+	npctalk "*Chuckl*...Come out my men!";
+	end;
+OnChat19:
+	npctalk "Right back at you, bigmouth";
+	end;
+OnChat20:
+	npctalk "I'll teach you how terrifying it is to be helpless in the face of horror!";
+	donpcevent instance_npcname("Vrid#bios3_00q")+"::OnDisable";
+	donpcevent instance_npcname("Zeith#bios3_00q")+"::OnDisable";
+	donpcevent instance_npcname("Vrid#bios3_00f")+"::OnEnable";
+	donpcevent instance_npcname("Zeith#bios3_00f")+"::OnEnable";
+	donpcevent instance_npcname("#widefreeze")+"::OnEnable";
+	end;
+OnChat23:
+	npctalk "On the isle of Bios, each day is a lifetime.";
+	end;
+OnChat24:
+	npctalk "You must have noticed my soldiers have grown up before the sunset";
+	end;
+OnChat25:
+	npctalk "After nightfall, they've reached the final stage of their development. life beyond death.";
+	end;
+OnChat26:
+	npctalk "That's right it's time for you to experience death.";
+	end;
+OnChat27:
+	npctalk "Get ready to feel the fear of death! HA HA HA HA!";
+	//2segundos despues
+	donpcevent instance_npcname("Reaper Yanku#bios3_00q")+"::OnDisable";
+	end;
+OnChat35:
+	mapannounce instance_mapname("1@dth3"), "Reaper Yanku : I underestimated you, or my soldiers aren't as strong as I thought.",bc_map,"0xFF0000";
+	end;
+OnChat37:
+	mapannounce instance_mapname("1@dth3"), "Reaper Yanku : You're still talking. I'll just kill you myself and get it over with!",bc_map,"0xFF0000";
+	end;
+OnChat43:
+	npctalk "HA HA HA HA!";
+	end;
+OnChat44:
+	npctalk "...You're strong";
+	end;
+OnChat45:
+	npctalk "Soon Lord Morroc will return. HA HA HA... The fear of death will follow you wherever you go!";
+	end;
+}
+
+1@dth3,70,67,4	script	#ep14bs_stchatb	-1,8,8,{
+	end;
+OnTouch:
+	donpcevent instance_npcname("#ep14bs_stchatb")+"::OnEnable";
+	end;
+OnInstanceInit:
+	donpcevent instance_npcname("#ep14bs_stchatb")+"::OnDisable";
+	end;
+OnEnable:
+	initnpctimer;
+	donpcevent instance_npcname("#ep14bs_stchatb")+"::OnDisable";
+	end;
+OnDisable:
+	disablenpc instance_npcname("#ep14bs_stchatb");
+	end;
+OnTimer3000:
+	donpcevent instance_npcname("Vrid#bios3_00q")+"::OnChat1";
+	end;
+OnTimer6000:
+	donpcevent instance_npcname("Vrid#bios3_00q")+"::OnChat2";
+	end;
+OnTimer9000:
+	donpcevent instance_npcname("Zeith#bios3_00q")+"::OnChat3";
+	end;
+OnTimer12000:
+	donpcevent instance_npcname("Vrid#bios3_00q")+"::OnChat4";
+	end;
+OnTimer15000:
+	donpcevent instance_npcname("Zeith#bios3_00q")+"::OnChat5";
+	end;
+OnTimer18000:
+	donpcevent instance_npcname("Zeith#bios3_00q")+"::OnChat6";
+	end;
+OnTimer21000:
+	donpcevent instance_npcname("Vrid#bios3_00q")+"::OnChat7";
+	end;
+OnTimer24000:
+	donpcevent instance_npcname("Vrid#bios3_00q")+"::OnChat8";
+	end;
+OnTimer27000:
+	donpcevent instance_npcname("Vrid#bios3_00q")+"::OnChat9";
+	end;
+OnTimer30000:
+	donpcevent instance_npcname("Zeith#bios3_00q")+"::OnChat10";
+	end;
+OnTimer33000:
+	donpcevent instance_npcname("Zeith#bios3_00q")+"::OnChat11";
+	end;
+OnTimer36000:
+	donpcevent instance_npcname("Reaper Yanku#bios3_00q")+"::OnEnable";
+	donpcevent instance_npcname("Reaper Yanku#bios3_00q")+"::OnChat12";
+	end;
+OnTimer39000:
+	donpcevent instance_npcname("Vrid#bios3_00q")+"::OnChat13";
+	end;
+OnTimer42000:
+	donpcevent instance_npcname("Reaper Yanku#bios3_00q")+"::OnChat14";
+	end;
+OnTimer45000:
+	donpcevent instance_npcname("Reaper Yanku#bios3_00q")+"::OnChat15";
+	end;
+OnTimer48000:
+	donpcevent instance_npcname("Reaper Yanku#bios3_00q")+"::OnChat16";
+	end;
+OnTimer51000:
+	donpcevent instance_npcname("Vrid#bios3_00q")+"::OnChat17";
+	end;
+OnTimer54000:
+	donpcevent instance_npcname("Vrid#bios3_00q")+"::OnChat18";
+	end;
+OnTimer57000:
+	donpcevent instance_npcname("Reaper Yanku#bios3_00q")+"::OnChat19";
+	end;
+OnTimer60000:
+	donpcevent instance_npcname("Reaper Yanku#bios3_00q")+"::OnChat20";
+	end;
+OnTimer63000:
+	donpcevent instance_npcname("Vrid#bios3_00f")+"::OnChat21";
+	end;
+OnTimer66000:
+	donpcevent instance_npcname("Zeith#bios3_00f")+"::OnChat22";
+	end;
+OnTimer69000:
+	donpcevent instance_npcname("Reaper Yanku#bios3_00q")+"::OnChat23";
+	end;
+OnTimer72000:
+	donpcevent instance_npcname("Reaper Yanku#bios3_00q")+"::OnChat24";
+	end;
+OnTimer75000:
+	donpcevent instance_npcname("Reaper Yanku#bios3_00q")+"::OnChat25";
+	end;
+OnTimer78000:
+	donpcevent instance_npcname("Reaper Yanku#bios3_00q")+"::OnChat26";
+	end;
+OnTimer81000:
+	donpcevent instance_npcname("Reaper Yanku#bios3_00q")+"::OnChat27";
+	donpcevent instance_npcname("--ja--#1bios3_")+"::OnDisable";
+	donpcevent instance_npcname("--ja--#2bios3_")+"::OnDisable";
+	donpcevent instance_npcname("--ja--#3bios3_")+"::OnDisable";
+	donpcevent instance_npcname("--ja--#4bios3_")+"::OnDisable";
+	donpcevent instance_npcname("--ja--#5bios3_")+"::OnDisable";
+	donpcevent instance_npcname("--ja--#6bios3_")+"::OnDisable";
+	donpcevent instance_npcname("--ja--#7bios3_")+"::OnDisable";
+	donpcevent instance_npcname("--ja--#8bios3_")+"::OnDisable";
+	donpcevent instance_npcname("--ja--#9bios3_")+"::OnDisable";
+	donpcevent instance_npcname("--ja--#10bios3_")+"::OnDisable";
+	donpcevent instance_npcname("--ja--#11bios3_")+"::OnDisable";
+	donpcevent instance_npcname("--ja--#12bios3_")+"::OnDisable";
+	donpcevent instance_npcname("--ja--#13bios3_")+"::OnDisable";
+	donpcevent instance_npcname("--ja--#14bios3_")+"::OnDisable";
+	donpcevent instance_npcname("--ja--#15bios3_")+"::OnDisable";
+	donpcevent instance_npcname("--ja--#16bios3_")+"::OnDisable";
+	donpcevent instance_npcname("--ja--#17bios3_")+"::OnDisable";
+	donpcevent instance_npcname("--ja--#18bios3_")+"::OnDisable";
+	donpcevent instance_npcname("--ja--#19bios3_")+"::OnDisable";
+	donpcevent instance_npcname("--ja--#20bios3_")+"::OnDisable";
+	donpcevent instance_npcname("--ja--#21bios3_")+"::OnDisable";
+	donpcevent instance_npcname("--ja--#22bios3_")+"::OnDisable";
+	donpcevent instance_npcname("--ja--#23bios3_")+"::OnDisable";
+	donpcevent instance_npcname("--ja--#24bios3_")+"::OnDisable";
+	donpcevent instance_npcname("#ep14bs_stcmobc")+"::OnEnable";
+	end;
+OnTimer83000:
+	donpcevent instance_npcname("Reaper Yanku#bios3_00q")+"::OnDisable";
+	end;
+OnTimer84000:
+	donpcevent instance_npcname("Vrid#bios3_00f")+"::OnChat28";
+	end;
+OnTimer87000:
+	donpcevent instance_npcname("Vrid#bios3_00f")+"::OnChat29";
+	end;
+OnTimer90000:
+	donpcevent instance_npcname("Zeith#bios3_00f")+"::OnChat30";
+	stopnpctimer;
+	end;
+}
+
+1@dth3,0,0,0	script	#ep14bs_stchatr	-1,{
+	end;
+OnInstanceInit:
+	donpcevent instance_npcname("#ep14bs_stchatr")+"::OnDisable";
+	end;
+OnEnable:
+	enablenpc instance_npcname("#ep14bs_stchatr");
+	initnpctimer;
+	end;
+OnDisable:
+	disablenpc instance_npcname("#ep14bs_stchatr");
+	end;
+OnDisable2:
+	stopnpctimer;
+	disablenpc instance_npcname("#ep14bs_stchatr");
+	end;
+OnReplay:
+	initnpctimer;
+	end;
+OnTimer2000:
+	set .@chat_ran,rand(1,3);
+	if (.@chat_ran == 1) {
+		donpcevent instance_npcname("Vrid#bios3_00f")+"::OnChat38";
+		end;
+	}
+	else if (.@chat_ran == 2) {
+		donpcevent instance_npcname("Vrid#bios3_00f")+"::OnChat40";
+		end;
+	}
+	else if (.@chat_ran == 3) {
+		donpcevent instance_npcname("Vrid#bios3_00f")+"::OnChat41";
+		end;
+	}
+OnTimer6000:
+	set .@chat_ran,rand(1,3);
+	if (.@chat_ran == 1) {
+		donpcevent instance_npcname("Zeith#bios3_00f")+"::OnChat34";
+		end;
+	}
+	else if (.@chat_ran == 2) {
+		donpcevent instance_npcname("Zeith#bios3_00f")+"::OnChat39";
+		end;
+	}
+	else if (.@chat_ran == 3) {
+		donpcevent instance_npcname("Zeith#bios3_00f")+"::OnChat42";
+		end;
+	}
+OnTimer50000:
+	stopnpctimer;
+	donpcevent instance_npcname("#ep14bs_stchatr")+"::OnReplay";
+	end;
+}
+
+1@dth3,62,80,3	script	--ja--#1bios3_	3016,{
+	end;
+OnInstanceInit:
+OnDisable:
+	disablenpc instance_npcname(strnpcinfo(0));
+	end;
+OnEnable:
+	enablenpc instance_npcname(strnpcinfo(0));
+	end;
+}
+
+1@dth3,64,80,3	duplicate(--ja--#1bios3_)	--ja--#2bios3_	3016
+1@dth3,66,80,3	duplicate(--ja--#1bios3_)	--ja--#3bios3_	3016
+1@dth3,68,80,3	duplicate(--ja--#1bios3_)	--ja--#4bios3_	3016
+1@dth3,72,80,3	duplicate(--ja--#1bios3_)	--ja--#5bios3_	3016
+1@dth3,74,80,3	duplicate(--ja--#1bios3_)	--ja--#6bios3_	3016
+1@dth3,76,80,3	duplicate(--ja--#1bios3_)	--ja--#7bios3_	3016
+1@dth3,78,80,3	duplicate(--ja--#1bios3_)	--ja--#8bios3_	3016
+1@dth3,62,93,3	duplicate(--ja--#1bios3_)	--ja--#9bios3_	3016
+1@dth3,64,93,3	duplicate(--ja--#1bios3_)	--ja--#10bios3_	3016
+1@dth3,66,93,3	duplicate(--ja--#1bios3_)	--ja--#11bios3_	3016
+1@dth3,68,93,3	duplicate(--ja--#1bios3_)	--ja--#12bios3_	3016
+1@dth3,72,93,3	duplicate(--ja--#1bios3_)	--ja--#13bios3_	3016
+1@dth3,74,93,3	duplicate(--ja--#1bios3_)	--ja--#14bios3_	3016
+1@dth3,76,93,3	duplicate(--ja--#1bios3_)	--ja--#15bios3_	3016
+1@dth3,78,93,3	duplicate(--ja--#1bios3_)	--ja--#16bios3_	3016
+1@dth3,62,85,3	duplicate(--ja--#1bios3_)	--ja--#17bios3_	3016
+1@dth3,64,85,3	duplicate(--ja--#1bios3_)	--ja--#18bios3_	3016
+1@dth3,66,85,3	duplicate(--ja--#1bios3_)	--ja--#19bios3_	3016
+1@dth3,68,85,3	duplicate(--ja--#1bios3_)	--ja--#20bios3_	3016
+1@dth3,72,85,3	duplicate(--ja--#1bios3_)	--ja--#21bios3_	3016
+1@dth3,74,85,3	duplicate(--ja--#1bios3_)	--ja--#22bios3_	3016
+1@dth3,76,85,3	duplicate(--ja--#1bios3_)	--ja--#23bios3_	3016
+1@dth3,78,85,3	duplicate(--ja--#1bios3_)	--ja--#24bios3_	3016

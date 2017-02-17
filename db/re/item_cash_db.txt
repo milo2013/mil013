@@ -35,15 +35,15 @@
 0,20314,30 //New Wave Sunglasses
 0,19727,30 //Develing Hat
 0,20034,30 //Jack Battle Bat
-0,15093,120 // Brave Plate
-0,15094,120 // Brave Magic Coat
-0,15096,120 // Heroic Trade-Mail
+//0,15093,120 // Brave Plate
+//0,15094,120 // Brave Magic Coat
+//0,15096,120 // Heroic Trade-Mail
 0,5208,40//Rideword Hat
 0,19509,20 //Butterfly Wing Ears
 0,2589,200 //Fallen Angel Wing
 0,2576,100 //Heroic Backpack
 0,18541,70 //Little Feather Hat
-0,15097,120 //Brave Hidden Cloth
+//0,15097,120 //Brave Hidden Cloth
 1,18574,30 // Lord Of Death Helm
 1,2177,30 // Shield Of Death
 1,5518,75 //Large Baphomet Horns

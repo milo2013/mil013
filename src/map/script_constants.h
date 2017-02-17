@@ -3732,6 +3732,7 @@
 	export_constant(IG_BOMB);
 	export_constant(IG_THROWABLE);
 	export_constant(IG_MERCENARY);
+	export_constant(IG_PRIZE_OF_HERO);
 
 	#undef export_constant
 

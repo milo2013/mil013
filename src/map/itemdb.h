@@ -722,6 +722,7 @@ enum e_random_item_group {
 	IG_BOMB,
 	IG_THROWABLE,
 	IG_MERCENARY,
+	IG_PRIZE_OF_HERO,
 };
 
 ///Item combo struct

@@ -1,0 +1,497 @@
+//NPC????? (Need mechanic job)??????????!!!!!!!!
+//==============================================
+
+1@mcd,176,179,5	script	New Oz#15_00a	625,{
+	cutin "nines01.bmp",0;
+	mes "[New Oz]";
+	mes "When I read a letter to Charlotte, I suddenly fell to this place. What do you think of this?";
+	close2;
+	cutin "nines01.bmp",255;
+	end;
+OnInstanceInit:
+	donpcevent instance_npcname("New Oz#15_00a")+"::OnEnable";
+	end;
+OnDisable:
+	disablenpc instance_npcname("New Oz#15_00a");
+	end;
+OnEnable:
+	enablenpc instance_npcname("New Oz#15_00a");
+	end;
+}
+	
+1@mcd,114,82,4	script	Gosh#01_00y	646,{
+	cutin "igu04.bmp",2;
+	mes "[Gosh]";
+	mes "Are you enjoying your adventure? This place is full of machines. But in the old days, it was probably a study. Do you see those books?";
+	close2;
+	cutin "igu04.bmp",255;
+	end;
+OnInstanceInit:
+	donpcevent instance_npcname("Gosh#01_00y")+"::OnEnable";
+	end;
+OnDisable:
+	disablenpc instance_npcname("Gosh#01_00y");
+	end;
+OnEnable:
+	enablenpc instance_npcname("Gosh#01_00y");
+	end;
+}
+
+//CUSTOM EQ EXCHANGE
+//=========================
+-	itemshop	Charleston Exchanger	-1,6752,1549:200,28101:200,16033:200,21011:200,22043:200,22044:200,20733:200,2996:200,20732:200,22043:200,2995:200
+
+verus04,69,115,4	script	Charleston Equipment	10053,{
+		callshop "Charleston Exchanger",0;
+}
+	
+	
+//NPC EQUIP (SEMI-CUSTOM)
+//==========================
+
+verus04,64,112,4	script	Charleston Mass#1	10053,{
+	cutin "dalle03.bmp",2;
+	mes "[Charleston Mass Production]";
+	mes "What is it ...";
+	mes "Guest ...";
+	mes "Turns language usage into sales mode.";
+	next;
+	cutin "dalle01.bmp",2;
+	mes "[Charleston Mass Production]";
+	mes "Charleston Factory Bestselling!";
+	mes	"^FF0000Reinforced Parts Gloves^000000"; 
+	mes "and";
+	mes "^FF0000 Muscle Strength Supplement^000000";
+	mes "NOW SELLING!";
+	next;
+	mes "[Charleston Mass Production]";
+	mes "We sell one only ^FF0000 3,999,999z ^000000!";
+	mes "Ultra-High-Performance";
+	mes "Ultra-Action equipment";
+	mes "that can not be more perfect than this! ";
+	next;
+	mes "[Charleston Mass Production]";
+	mes "I also doing ^FF0000File Bunker Upgrade^000000";
+	next;
+	switch(select("More Information","Strengthening Parts Exchange","Replace Complementary Device","File Bunker Upgrade"))
+	{
+		case 1:
+			cutin "dalle03.bmp",2;
+			mes "[Charleston Mass Production]";
+			mes "I am Charleston Mass Production who has not received any numbering. When it was made at the factory, it might be that 100 units or 1000 units were made.";
+			next;
+			mes "[Charleston Mass Production]";
+			mes "And the original standing there. He is a real Charleston. the problem is...";
+			next;
+			mes "[Charleston Mass Production]";
+			mes "At the time of the Charleston factory escape, both Unit 1 and Unit 2 were much damaged. The battle of the day was great!";
+			next;
+			mes "[Charleston Mass Production]";
+			mes "Do you imagine? Dr. Bee's numerous creatures are crushed by Charleston No. 1 and Charleston No.2!";
+			next;
+			mes "[Charleston Mass Production]";
+			mes "I've also crashed all the mass-produced Charlestons that have been remodeled by Dr. Bee ...";
+			next;
+			mes "[Charleston Mass Production]";
+			mes "Oh, of course, there was a mass production model that was protected as the first one without being remodeled like me. All of the mass production models that upgrade the products are the same ones.";
+			next;
+			mes "[Charleston Mass Production]";
+			mes "Thanks to the modified Unit 3, we were able to escape. And here is where we arrived.";
+			next;
+			mes "[Charleston Mass Production]";
+			mes "Do not misunderstand. This place was crushed like this before we arrived. It has nothing to do with us. Perhaps...";
+			next;
+			mes "[Charleston Mass Production]";
+			mes "The story is different for a while. Anyway the problem is this.";
+			next;
+			mes "[Charleston Mass Production]";
+			mes "Unit 1 and Unit 2 almost broke down to the point where they lost their function. I tried to recover each other's parts. But there was a limit.";
+			next;
+			mes "[Charleston Mass Production]";
+			mes "It was too much damage. Eventually, we could bring the two parts together and barely start os on a single gase.";
+			next;
+			mes "[Charleston Mass Production]";
+			mes "And now it is the appearance. The destroyed factory is blamed for it and wants to go back. I think the data is messed up. Did he call it amnesia?";
+			next;
+			mes "[Charleston Mass Production]";
+			mes "If you look only at the data, memory of the second unit ... So, most of the memory of the second unit is hit when you are human. But the approach of os ... so 'emotion' is closer to Unit 1";
+			next;
+			mes "[Charleston Mass Production]";
+			mes "So now Charleston can not know whether it is Unit 1 or Unit 2. I do not know what I miss or what I remember.";
+			next;
+			mes "[Charleston Mass Production]";
+			mes "And I am self-righteous. Lost data with unsuccessful robots. With failed robots that could not keep their colleagues. We always try to comfort...";
+			next;
+			mes "[Charleston Mass Production]";
+			mes "She says. I do not know if I do not have a memory. But does she know?";
+			next;
+			mes "[Charleston Mass Production]";
+			mes "Human memory can be as much as time or emotion, or it can be forgotten.";
+			next;
+			mes "[Charleston Mass Production]";
+			mes "Man is always going to make mistakes and failures one step closer to the experience. The previous sentence quoted some data from the factory '^FF0000' book '^000000.";
+			next;
+			mes "[Charleston Mass Production]";
+			mes "Charleston ^FF0000 There was a small library in the south ^000000 factory. It just turned into robot development room.";
+			next;
+			mes "[Charleston Mass Production]";
+			mes "She may have gone a step closer to 'man'. If you overcome your sadness now ... hah ...";
+			next;
+			mes "[Charleston Mass Production]";
+			mes "I tried to complain because OS was frustrating. I think it's time to defragment.";
+			close2;
+			cutin "",255;
+			end;
+		case 2:
+			mes "[Charleston Mass Production]";
+			mes "Strengthening Parts - Gloves!";
+			mes "Category: Armor. And it can not be destroyed!";
+			mes "Damage reduced by 10% for small and medium-sized monsters!";
+			mes "7 Damage reduced to 10% for large monsters when smelting!";
+			mes "9 Minor and medium-sized monsters receive 5% more damage when smelting!";
+			next;
+			mes "[Charleston Mass Production]";
+			mes "Weight : 300 ";
+			mes "Required level : 100";
+			mes "^FF0000Mechanic only equipment!^000000";
+			mes "^FF0000 Price : 3,999,999 Zeny^000000";
+			mes "^FF0000 Required Material : 100 Charleston Parts^000000";
+			next;
+			mes "[Charleston Mass Production]";
+			mes "Do you really want to buy ^FF0000 Reinforced Parts - Gloves ^000000?";
+			next;
+			switch(select("Think again.","Buy"))
+			{
+				case 1:
+					mes "[Charleston Mass Production]";
+					mes "It is a good product, but please decide carefully.";
+					close2;
+					cutin "",255;
+					end;
+				case 2:
+					if (Zeny >= 3999999) && (countitem (6752) >= 100) {
+						set Zeny, Zeny - 3999999;
+						delitem 6752,100;
+						mes "[Charleston Mass Production]";
+						mes "Thanks a lot!";
+						getitem 15111,1; //Reinforced Parts - Gloves
+						close;
+					} else {
+						mes "[Charleston Mass Production]";
+						mes "A good product should get enough value. Please check back if you do not have enough funds.";
+						close2;
+						cutin "",255;
+						end;
+					}
+			}
+		case 3:
+			mes "[Charleston Mass Production]";
+			mes "Muscle Strength Supplementary Device!";
+			mes "ATK+ 5%!";
+			mes "Increase of 1% of ATK per 4 smelting!";
+			mes "Use it with your fitness, agility supplement, and dexterity supplement to do better!";
+			next;
+			mes "[Charleston Mass Production]";
+			mes "Weight : 200 ";
+			mes "Required level : 100";
+			mes "^FF0000It is an Mechanic only item!^000000";
+			mes "^FF0000Price : 3,999,999 Zeny^000000";
+			mes "^FF0000 Required Material : 100 Charleston Parts^000000";
+			next;
+			mes "[Charleston Mass Production]";
+			mes "Do you really want to buy ^FF0000 Muscle Strength Supplementary Device ^000000?";
+			next;
+			switch(select("Think again.","Buy"))
+			{
+				case 1:
+					mes "[Charleston Mass Production]";
+					mes "It is a good product, but please decide carefully.";
+					close2;
+					cutin "",255;
+					end;
+				case 2:
+					if (Zeny >= 3999999) && (countitem (6752) >= 100) {
+						set Zeny, Zeny - 3999999;
+						delitem 6752,100;
+						mes "[Charleston Mass Production]";
+						mes "Thanks a lot!";
+						getitem 15110,1; //Strength Supplement Equipment
+						close;
+					} else {
+						mes "[Charleston Mass Production]";
+						mes "A good product should get enough value. Please check back if you do not have enough funds.";
+						close2;
+						cutin "",255;
+						end;
+					}
+			}
+		case 4:
+			mes "[Charleston Mass Production]";
+			mes "Last work of Charleston factory! I will not be able to get such good equipment everywhere.";
+			next;
+			mes "[Charleston Mass Production]";
+			mes "To upgrade the file bunker ";
+			mes "^FF0000 1 File Bunker which is the base ^000000 ";
+			mes "^FF0000 300 Sheets of Crushed Steel Plates ^000000";
+			mes "^FF0000 15 Malfunctioning Engines ^000000 are required.";
+			next;
+			switch(select("File Bunker S","File Bunker P","File Bunker T"))
+			{
+				case 1:
+					mes "[Charleston Mass Production]";
+					mes "File Bunker S !!!";
+					mes "Type: Blunt";
+					mes "Offense Power : 400";
+					mes "Increases Attack Speed per 2 refine.";
+					next;
+					mes "[Charleston Mass Production]";
+					mes "Weight : 300";
+					mes "Weapon Level : 4";
+					mes "Required level : 130";
+					mes "Mechanic only! There is also a card socket!";
+					next;
+					mes "[Charleston Mass Production]";
+					mes "Do you really want to upgrade ^FF0000 file Bunker S ^000000?";
+					next;
+					switch(select("Think again.","Buy"))
+					{
+						case 1:
+							mes "[Charleston Mass Production]";
+							mes "It is a good product, but please decide carefully.";
+							close2;
+							cutin "",255;
+							end;
+						case 2:
+							if (countitem(1549) == 1) && (countitem(6751) > 299) && (countitem(6750) > 14) {
+								specialeffect2 EF_REPAIRWEAPON;
+								progressbar "ffff00",5;
+								set .@pileS_ran,rand(1,10);
+								if (.@piles_ran < 5) {
+									specialeffect2 EF_REFINEOK;
+									delitem 1549,1; // Pile Bunker
+									delitem 6751,300; //Crushed Can Iron Plate
+									delitem 6750,15; //Failed Engine
+									getitem 16030,1; //Pile Bunker S
+									close2;
+									cutin "",255;;
+									end;
+								} else {
+									specialeffect2 EF_REFINEFAIL;
+									delitem 1549,1; // Pile Bunker
+									delitem 6751,300; //Crushed Can Iron Plate
+									delitem 6750,15; //Failed Engine
+									close2;
+									cutin "",255;
+									end;
+								}
+							} else {
+								mes "[Charleston Mass Production]";
+								mes "I guess you do not have enough supplies to upgrade!";
+								close2;
+								cutin "",255;
+								end;
+							}
+					}
+				case 2:
+					mes "[Charleston Mass Production]";
+					mes "File Bunker P!!!";
+					mes "Type: Blunt";
+					mes "Offense Power : 450";
+					mes "Increased ATK 5 every refine";
+					next;
+					mes "[Charleston Mass Production]";
+					mes "Weight : 400";
+					mes "Weapon Level : 4";
+					mes "Required level : 130";
+					mes "An item for Mechanic only!";
+					next;
+					mes "[Charleston Mass Production]";
+					mes "Do you really want to upgrade^ FF0000 File Bunker P ^000000?";
+					next;
+					switch(select("Think again.","Buy"))
+					{
+						case 1:
+							mes "[Charleston Mass Production]";
+							mes "It is a good product, but please decide carefully.";
+							close2;
+							cutin "",255;
+							end;
+						case 2:
+							if (countitem(1549) == 1) && (countitem(6751) > 299) && (countitem(6750) > 14) {
+								specialeffect2 EF_REPAIRWEAPON;
+								progressbar "ffff00",5;
+								set .@pileS_ran,rand(1,10);
+								if (.@piles_ran < 5) {
+									specialeffect2 EF_REFINEOK;
+									delitem 1549,1; // Pile Bunker
+									delitem 6751,300; //Crushed Can Iron Plate
+									delitem 6750,15; //Failed Engine
+									getitem 16031,1; //Pile Bunker P
+									close2;
+									cutin "",255;
+									end;
+								} else {
+									specialeffect2 EF_REFINEFAIL;
+									delitem 1549,1; // Pile Bunker
+									delitem 6751,300; //Crushed Can Iron Plate
+									delitem 6750,15; //Failed Engine
+									close2;
+									cutin "",255;;
+									end;
+								}
+							} else {
+								mes "[Charleston Mass Production]";
+								mes "I guess I do not have enough supplies to upgrade!";
+								close2;
+								cutin "",255;
+								end;
+							}
+					}
+				case 3:
+					mes "[Charleston Mass Production]";
+					mes "File Bunker T!!!";
+					mes "Type: Blunt";
+					mes "Offense power : 400";
+					mes "Reduced 1% SP consumption every refine";
+					next;
+					mes "[Charleston Mass Production]";
+					mes "Weight : 350";
+					mes "Weapon Level : 4";
+					mes "Required level : 130";
+					mes "Mechanic only! There is also a card socket!";
+					next;
+					mes "[Charleston Mass Production]";
+					mes "Do you really want to upgrade ^FF0000 file Bunker T ^000000?";
+					next;
+					switch(select("Think again.","Buy"))
+					{
+						case 1:
+							mes "[Charleston Mass Production]";
+							mes "It's a good product, but please decide carefully..";
+							close2;
+							cutin "",255;
+							end;
+						case 2:
+							if (countitem(1549) == 1) && (countitem(6751) > 299) && (countitem(6750) > 14) {
+								specialeffect2 EF_REPAIRWEAPON;
+								progressbar "ffff00",5;
+								set .@pileS_ran,rand(1,10);
+								if (.@piles_ran < 5) {
+									specialeffect2 EF_REFINEOK;
+									delitem 1549,1; // Pile Bunker
+									delitem 6751,300; //Crushed Can Iron Plate
+									delitem 6750,15; //Failed Engine
+									getitem 16032,1; //Pile Bunker T
+									close2;
+									cutin "",255;
+									end;
+								} else {
+									specialeffect2 EF_REFINEFAIL;
+									delitem 1549,1; // Pile Bunker
+									delitem 6751,300; //Crushed Can Iron Plate
+									delitem 6750,15; //Failed Engine
+									close2;
+									cutin "",255;
+									end;
+								}
+							} else {
+								mes "[Charleston Mass Production]";
+								mes "I guess you do not have enough supplies to upgrade!";
+								close2;
+								cutin "",255;
+								end;
+							}
+					}
+			}
+	}
+}
+
+// same method enchant in mora village (1 option explain, 2 option add enchants, 3 option remove enchants, if you equip is +9 add special enchants).
+//====================================== UNKNOWN %, ENCHANTS AVAILABLE, ETC (NO SCRIPTING FOR NOW).
+verus04,71,106,5	script	Charleston Mass#2	10053,{
+	cutin "dalle01.bmp",2;
+	// NOT COMPLETE
+	mes "[Charleston Mass Production]";
+	mes "This script not complete yet.";
+	mes "Please wait till GM Rakuzas complete it. Thanks!";
+	cutin "",255;
+	close;
+	
+	//BEGIN HERE
+	mes "[Charleston Mass Production]";
+	mes "We are upgrading our Charleston factory products. If you have any related items, please let me know.";
+	next;
+	switch(select("I'd like to hear more about it.","Give the product a status","Initial Strength"))
+	{
+		case 1:
+			mes "[Charleston Mass Production]";
+			mes "I am getting 1 Zeny and 1 Charleston Part for 1 Reinforcement, or Initialization.";
+			next;
+			mes "[Charleston Mass Production]";
+			mes "For reference, if you bring your equipment up to ^ff0000 + 9 smelting ^000000, you will be able to choose a greater hidden power.";
+			next;
+			mes "[Charleston Mass Production]";
+			mes "And one more thing, I know how to refrain from destroying and damaging your cards when you give them power, so you can rest assured.";
+			close2;
+			cutin "",255;
+			end;
+		case 2:
+			mes "[Charleston Mass Production]";
+			mes "Before upgrading, please equip your equipment in advance and select it.";
+			next;
+			switch(select("I'll wear the equipment.","Shoes","Weapon","Armor","Accessory"))
+			{
+				case 1:
+					mes "[Charleston Mass Production]";
+					mes "Please come back once you have installed the equipment.";
+					close2;
+					cutin "",255;
+					end;
+				case 2:
+					close2;
+					cutin "",255;
+					end;
+				case 3:
+					close2;
+					cutin "",255;
+					end;
+				case 4:
+					close2;
+					cutin "",255;
+					end;
+				case 5:
+					close2;
+					cutin "",255;
+					end;
+			}
+		case 3:
+			mes "[Charleston Mass Production]";
+			mes "Before upgrading, please equip your equipment in advance and select it.";
+			next;
+			switch(select("I'll wear the equipment.","Shoes","Weapon","Armor","Accessory"))
+			{
+				case 1:
+					mes "[Charleston Mass Production]";
+					mes "Please come back once you have equipped the equipment.";
+					close2;
+					cutin "",255;
+					end;
+				case 2:
+					close2;
+					cutin "",255;
+					end;
+				case 3:
+					close2;
+					cutin "",255;
+					end;
+				case 4:
+					close2;
+					cutin "",255;
+					end;
+				case 5:
+					close2;
+					cutin "",255;
+					end;
+			}
+	}
+}

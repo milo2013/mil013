@@ -39,3 +39,54 @@ function	script	WoeRewadsFunc	{
 	getitem 6234 ,5; 
 	getitem 6230,5;	
 	}
+	
+function	script	PrizeHeroFunc	{
+
+	.@item_rate = rand(1,50);
+	
+	if ((.@item_rate) >= 45) && ((.@item_rate) <= 50){
+	
+	setarray .@items[0],"522","547","608";
+	set .item_id, .@items[rand (getarraysize(.@items)) ];
+	set .item_amount, 100;
+	
+	getitem .item_id, .item_amount;
+	}
+	
+	if ((.@item_rate) >= 25) && ((.@item_rate) <= 44) {
+	
+	setarray .@items[0],"607","678";
+	set .item_id, .@items[rand (getarraysize(.@items)) ];
+	set .item_amount, 50;
+	
+	getitem .item_id, .item_amount;
+	}
+	
+	if ((.@item_rate) >= 15 ) && ((.@item_rate) <= 24) {
+	
+	setarray .@items[0],"12075","12080","12090","12095","12100";
+	set .item_id, .@items[rand (getarraysize(.@items)) ];
+	set .item_amount, 10;
+	
+	getitem .item_id, .item_amount;
+	}
+	
+	if ((.@item_rate) >= 2) && ((.@item_rate)<= 14) {
+	
+	setarray .@items[0],"12623";
+	set .item_id, .@items[rand (getarraysize(.@items)) ];
+	set .item_amount, 1;
+	
+	getitem .item_id, .item_amount;
+	}
+	
+	if (.@item_rate) == 1 {
+
+	setarray .@items[0],"15093","15094","15095","15096","15097","15098","22035","22036","22037";
+	set .item_id, .@items[rand (getarraysize(.@items)) ];
+	set .item_amount, 1;
+	
+	getitem .item_id, .item_amount;
+	}
+
+}

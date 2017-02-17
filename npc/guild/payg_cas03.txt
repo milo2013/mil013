@@ -121,7 +121,7 @@ payg_cas03,163,167,0	script	#lever_PA03	111,{
 
 // Guild Dungeon Switch
 //============================================================
-payg_cas03,38,42,0	duplicate(gdlever)	#payg_cas03	111
+payg_cas03,38,42,0	duplicate(gdleverPA)	#payg_cas03	111
 
 // Guild Treasure Spawns
 //============================================================

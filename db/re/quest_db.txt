@@ -3462,3 +3462,15 @@
 1261,82800,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,"Cursed Swordman"
 1262,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,"Cursed Swordman"
 1263,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,"Cursed Swordman"
+
+//charleston crisis.
+13184,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,"Charleston Factory"
+13185,82800,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,"Charleston Factory - Waiting"
+13186,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,"Charleston Factory - Completed"
+13187,0,3125,50,0,0,0,0,0,0,0,0,0,0,0,0,0,"Step processing"
+13188,82800,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,"Step processing - standby"
+
+// Bios Island 
+15005,82800,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,"Memorial Dungeon: Isle of Bios"
+15006,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,"Isle of Bios Exploration"
+15007,7200,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,"Memorial Dungeon: Isle of Bios"
