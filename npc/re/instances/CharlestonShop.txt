@@ -39,7 +39,7 @@ OnEnable:
 
 //CUSTOM EQ EXCHANGE
 //=========================
--	itemshop	Charleston Exchanger	-1,6752,1549:200,28101:200,16033:200,21011:200,22043:200,22044:200,20733:200,2996:200,20732:200,22043:200,2995:200
+-	itemshop	Charleston Exchanger	-1,6752,1549:150,28101:150,16033:150,21011:150,22043:150,22044:150,20733:150,2996:150,20732:150,22043:150,2995:150
 
 verus04,69,115,4	script	Charleston Equipment	10053,{
 		callshop "Charleston Exchanger",0;

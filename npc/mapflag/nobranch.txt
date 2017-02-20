@@ -116,3 +116,6 @@ te_aldecas2	mapflag	nobranch
 te_aldecas3	mapflag	nobranch
 te_aldecas4	mapflag	nobranch
 te_aldecas5	mapflag	nobranch
+
+// CUSTOM MAP
+milenia	mapflag	nobranch

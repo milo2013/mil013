@@ -71,8 +71,8 @@ milenia,155,113,5	script	Shadow Blacksmith#nomal	482,{
 		
 		set Oridecon,984; // Oridecon
 		set Elunium,985;  // Elunium
-		set Enriched_Oridecon, 6910; // Enrich Oridecon
-		set Enriched_Elunium,6911;   // Enrich Elunium
+		set Enriched_Oridecon,7620; // Enrich Oridecon
+		set Enriched_Elunium,7619;   // Enrich Elunium
 		set HD_Oridecon,6240;  // HD Oridecon
 		set HD_Elunium,6241;   // HD Elunium
 		
