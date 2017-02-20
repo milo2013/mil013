@@ -13,6 +13,7 @@ menu "Autoloot ["+( (login_loot)? "^00BB22On^000000" : "^FF2200Off^000000")+"]",
 "Malaysia Channel ["+( (login_my)? "^00BB22On^000000" : "^FF2200Off^000000")+"]",my_chat,
 "Indonesia Channel ["+( (login_id)? "^00BB22On^000000" : "^FF2200Off^000000")+"]",id_chat,
 "Philippine  Channel ["+( (login_ph)? "^00BB22On^000000" : "^FF2200Off^000000")+"]",ph_chat,
+"Vietnam  Channel ["+( (login_vn)? "^00BB22On^000000" : "^FF2200Off^000000")+"]",vn_chat,
 "@NoAsk ["+( (login_noask)? "^00BB22On^000000" : "^FF2200Off^000000")+"]",no_ask;
 
 auto_loot:
@@ -166,7 +167,7 @@ ph_chat:
 next;
 mes .@n$;
 mes "Status: "+( (login_ph) ? "^00BB22On^000000" : "^FF2200Off^000000");
-menu "I want to "+((!llogin_ph) ? "^00BB22enable^000000" : "^FF2200disable^000000")+" it.",-,"Nothing",L_quit;
+menu "I want to "+((!login_ph) ? "^00BB22enable^000000" : "^FF2200disable^000000")+" it.",-,"Nothing",L_quit;
 next;
 
 mes .@n$;
@@ -180,6 +181,27 @@ set login_ph,0;
 atcommand "@channel leave #ph";
 dispbottom "You leave #ph channel.";
 set autojoinPH,1;
+}
+close;
+
+vn_chat:
+next;
+mes .@n$;
+mes "Status: "+( (login_vn) ? "^00BB22On^000000" : "^FF2200Off^000000");
+menu "I want to "+((!login_vn) ? "^00BB22enable^000000" : "^FF2200disable^000000")+" it.",-,"Nothing",L_quit;
+next;
+
+mes .@n$;
+if(login_vn == 0) {
+mes "Vietnam  Channel is now ^00BB22On^000000.";
+set login_vn,1;
+atcommand "@join #vn";
+} else if(login_vn == 1) {
+mes "Vietnam Channel is now ^FF2200Off^000000.";
+set login_vn,0;
+atcommand "@channel leave #vn";
+dispbottom "You leave #vn channel.";
+set autojoinVN,1;
 }
 close;
 
@@ -297,6 +319,12 @@ dispbottom "Indonesia Channel is now On.";
 if(login_ph == 1) {
 atcommand "@join #ph";
 dispbottom "Philippine  Channel is now On.";
+}
+
+// VIETNAM  CHANNEL		
+if(login_ph == 1) {
+atcommand "@join #vn";
+dispbottom "Vietnam Channel is now On.";
 }
 
 		

@@ -71,7 +71,7 @@ function	script	PrizeHeroFunc	{
 	getitem .item_id, .item_amount;
 	}
 	
-	if ((.@item_rate) >= 2) && ((.@item_rate)<= 14) {
+	if ((.@item_rate) >= 11) && ((.@item_rate)<= 14) {
 	
 	setarray .@items[0],"12623";
 	set .item_id, .@items[rand (getarraysize(.@items)) ];
@@ -80,7 +80,7 @@ function	script	PrizeHeroFunc	{
 	getitem .item_id, .item_amount;
 	}
 	
-	if (.@item_rate) == 1 {
+	if ((.@item_rate) >= 1) && ((.@item_rate)<= 10) {
 
 	setarray .@items[0],"15093","15094","15095","15096","15097","15098","22035","22036","22037";
 	set .item_id, .@items[rand (getarraysize(.@items)) ];

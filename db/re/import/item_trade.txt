@@ -20,3 +20,20 @@
 //	Balmung cannot be dropped, traded, or placed in Guild Storage (1+2+64).
 //	Only groups of group-level 50 and up can override this setting.
 
+31124,475,100	// Milenia_Certificate_Box
+31125,475,100	// Milenia_Certificate_Box
+31126,507,100	// Cashpoint_Voucher_10
+31127,507,100	// Cashpoint_Voucher_50
+31128,507,100	// Cashpoint_Voucher_99
+31130,507,100	// Cloning_Token
+31133,507,100	// GM_RING
+31152,503,100	// Donation_Free_Gift_Vol_1
+31153,507,100	// Donation_Free_Gift_Vol_2
+31154,507,100	// Donation_Free_Gift_Vol_3
+31155,507,100	// Donation_Free_Gift_Vol_4
+31160,507,100	// 500_Sales
+31161,507,100	// Rare_Mithril_Bag
+31162,475,100	// Hero_Badge
+31163,475,100	// Bravery_Medal
+31164,475,100	// Bravery_Medal_Box
+31202,219,100	// Figure_Rent_Permit
