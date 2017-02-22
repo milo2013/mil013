@@ -106,3 +106,6 @@ que_avan01	mapflag	nosave	SavePoint
 1@sara	mapflag	nosave	SavePoint
 1@gef_in	mapflag	nosave	SavePoint
 dali	mapflag	nosave	SavePoint
+
+// Milenia
+farm	mapflag	nosave	SavePoint
