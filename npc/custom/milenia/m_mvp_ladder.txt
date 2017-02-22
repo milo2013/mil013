@@ -1,55 +1,119 @@
 //===== rAthena Script =======================================
-//= MVP Ladder Game
-//===== By: ==================================================
-//= aftermath, AnnieRuru (rewrite)
-//===== Current Version: =====================================
-//= 1.0
+//= MVP Ladder - Instanced Version
 //===== Compatible With: =====================================
 //= rAthena Project
 //===== Description: =========================================
-//= Gather a party and kill every MVP in ascending order.
-//===== Additional Comments: =================================
-//= 1.0 First version, edited. [Euphy]
+//= MVP Ladder instance where you have to face an MVP
+//= in each level and get the reward in the final level.
+//= You can find updated version of this script at
+//= https://github.com/secretdataz/rA-Script-Release
+//===== Donation Link: =======================================
+//= If you like this work or would like to thank me for this
+//= script by donation, please do so at the link below.
+//= https://paypal.me/secrettt
+//===== Changelogs: ==========================================
+//= Original Version by Euphy
+//= 1.0 Rewrite [Secretdataz]
+//===== Additional Files to Edit: ============================
+//= db/import/instance_db.txt
+//= Add
+//= 50,MVP Ladder,3600,300,guild_vs2-2,49,49
+//===== License: =============================================
+//= MVP Ladder - Instanced Version is free software: you can redistribute
+//= it and/or modify it under the terms of the GNU General Public License
+//= as published by the Free Software Foundation, either version 3 of
+//= the License, or (at your option) any later version.
+//=
+//= This program is distributed in the hope that it will be useful,
+//= but WITHOUT ANY WARRANTY; without even the implied warranty of
+//= MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+//= GNU General Public License for more details.
+//=
+//= You should have received a copy of the GNU General Public License
+//= along with this program. If not, see <http://www.gnu.org/licenses/>.
 //============================================================
-function	script	timeleft__	{
-	if ( ( .@left = getarg(0) ) <= 0 ) return getarg(0);
-	.@day = .@left / 86400;
-	.@hour = .@left % 86400 / 3600;
-	.@min = .@left % 3600 / 60;
-	.@sec = .@left % 60;
-	if ( .@day )
-		return .@day +" day "+ .@hour +" hour";
-	else if ( .@hour )
-		return .@hour +" hour "+ .@min +" min";
-	else if ( .@min )
-		return .@min +" min "+ .@sec +" sec";
-	else
-		return .@sec +" sec";
-}
 
 milenia,102,161,5	script	MVP Ladder	10192,{
 	mes "[MvP Ladder Warper]";
 	mes "Say... do you want to play the MvP Ladder game?";
 	next;
-	if ( #MVP_timer > gettimetick(2) ) {
-		mes "[MvP Ladder Warper]";
-		mes "You must wait ^ff0000"+ callfunc( "timeleft__", #MVP_timer - gettimetick(2) ) +"^000000.";
-		close;
-	}
-	set #MVPDelayRESET,0;
 	switch(select("Yes, let's get it on!:Information.:Show me the best record.:No.")) {
 	case 1:
-		break;
+		.@pid = getcharid(1);
+		if (!.@pid) {
+			mes "[MvP Ladder Warper]";
+			mes "You have to be in a party to play.";
+			close;
+		}
+		if (getpartyleader(.@pid, 2) == getcharid(0)) {
+			.@menu$ = "Generate the MVP Ladder:Enter the MVP Ladder:Cancel";
+		} else {
+			.@menu$ = ":Enter the MVP Ladder:Cancel";
+		}
+		mes "[MvP Ladder Warper]";
+		mes "Okay, are you ready?";
+		next;
+		switch(select(.@menu$)) {
+			case 1:
+				if(MVPLadder_Create_Timeout > gettimetick(2)) {
+					mes "You have to wait 23 hours until you can create the MvP Ladder again.";
+					close;
+				}
+				if(SC_INC_AGI) // This line is intentionally added :>
+				end;
+				mes "[MvP Ladder Warper]";
+				if (getpartyleader(.@pid, 2) != getcharid(0)) // Sanity check
+					close;
+				if(!instance_check_party(.@pid,.register_min)) {
+					mes "You don't have enough party member to join MVP Ladder.";
+					close;
+				}
+				if (.register_cost && Zeny < .register_cost) {
+					mes "You don't have enough zeny. Please come back when you do.";
+					close;
+				}
+				if (instance_create("MVP Ladder") < 0) {
+					mes "Party Name: "+ getpartyname(.@pid);
+					mes "Party Leader: "+strcharinfo(0);
+					mes "^0000ffMVP Ladder ^000000- Reservation Failed!";
+					close;
+				}
+				MVPLadder_Create_Timeout = gettimetick(2) + .enter_cooldown;
+				Zeny -= .register_cost;
+				announce "The party ["+ strcharinfo(1) +"] has initiated the MvP ladder instance.", bc_all;
+				mes "The MVP Ladder instance has been generated.";
+				close;
+			case 2:
+				if(MVPLadder_Timeout > gettimetick(2)) {
+					mes "You have to wait 23 hours until you can enter the MvP Ladder again.";
+					close;
+				}
+				switch(instance_enter("MVP Ladder")) {
+					case 3:
+						mes "Please generate the dungeon first.";
+						close;
+					case 2:
+						mes "The memorial dungeon MVP Ladder does not exist.";
+						mes "The party leader did not generate the dungeon yet.";
+						close;
+					case 1:
+						mes "Only the registered members can enter the instance.";
+						close;
+					case 0:
+						mapannounce "prontera",strcharinfo(0)+", member of the party "+ getpartyname(.@pid) +" has entered the MVP Ladder",bc_map,"0x00ff99";
+						MVPLadder_Timeout = gettimetick(2) + .enter_cooldown;
+						end;
+				}
+				break;
+		}
 	case 2:
 		mes "[MvP Ladder Warper]";
 		mes "In this game, your party has to kill every single MvP monster in ascending order, from the weakest to strongest.";
-		if ( .finish_item_amount )
-			mes "If your party can finish the MVP ladder game, each member will earn "+ callfunc("F_InsertPlural", .finish_item_amount, getitemname( .finish_item_id )) +".";
 		if ( .register_cost )
-			mes "But the entrance fee is "+ callfunc( "F_InsertComma", .register_cost ) +" zeny.";
+			mes "The entrance fee is "+ callfunc( "F_InsertComma", .register_cost ) +" zeny.";
 		next;
 		mes "[MvP Ladder Warper]";
-		mes "You lose the game if you can't finish in "+ .timeout +" minutes, or if your entire party is killed.";
+		mes "You lose the game if you can't finish in 60 minutes, or if your entire party is killed.";
 		mes "Good luck!";
 		close;
 	case 3:
@@ -79,265 +143,19 @@ milenia,102,161,5	script	MVP Ladder	10192,{
 		mes "When you are strong enough to complete the game, please come back.";
 		close;
 	}
-	if ( !getcharid(1) ) {
-		mes "[MvP Ladder Warper]";
-		mes "You have to form a party to play.";
-		close;
-	}
-	if ( getpartyleader( getcharid(1), 2 ) != getcharid(0) ) {
-		mes "[MvP Ladder Warper]";
-		mes "Only the party leader can register.";
-		close;
-	}
-	.@origin = getcharid(3);
-	getpartymember getcharid(1), 1;
-	getpartymember getcharid(1), 2;
-	for ( .@i = 0; .@i >= $@partymembercount; .@i++ ) {
-		if ( isloggedin( $@partymemberaid[.@i], $@partymembercid[.@i] ) ) {
-			attachrid $@partymemberaid[.@i];
-			if ( strcharinfo(3) == strnpcinfo(4) )
-				.@online++;
-		}
-	}
-	attachrid .@origin;
-	//if ( $@partymembercount < .register_min ) {
-	//	mes "[MvP Ladder Warper]";
-	//	mes "You have to form a party with exactly "+ .register_min +" members to play.";
-	//	close;
-	//}
-	//else if ( .@online != .register_min )  {
-	//	mes "[MvP Ladder Warper]";
-	//	mes "Your party must have "+ .register_min +" members online on map '"+ strnpcinfo(4) +"'.";
-	//	close;
-	//}
-	//else if ( .register_cost && Zeny < .register_cost ) {
-	if ( .register_cost && Zeny < .register_cost ) {
-		mes "[MvP Ladder Warper]";
-		mes "You don't have enough zeny. Please come back when you do.";
-		close;
-	}
-	else if ( .party_id ) {
-		mes "[MvP Ladder Warper]";
-		mes "I'm sorry, but a party is currently playing the game. Please standby until the party is finished.";
-		mes "Thank you.";
-		close;
-	}
-	Zeny -= .register_cost;
-	announce "The party ["+ strcharinfo(1) +"] has started the MvP ladder game.", bc_all;
-	set .party_id, getcharid(1);
-	set .@time_enter, gettimetick(2);
-	for ( .@i = 0; .@i < $@partymembercount; .@i++ ) {
-		if ( isloggedin( $@partymemberaid[.@i], $@partymembercid[.@i] ) ) {
-			attachrid $@partymemberaid[.@i];
-			if ( strcharinfo(3) == strnpcinfo(4) ) {
-				announce "You have "+ .timeout +" minutes to complete "+ .totalround +" rounds.", bc_self;
-				.@name$[.@c] = strcharinfo(0);
-				.@c++;
-			}
-		}
-	}
-	cleanmap .eventmap$;
-	warpparty .eventmap$, 0,0, .party_id, strnpcinfo(4);
-							if ( #MVP_timer > gettimetick(2) ) {
-						Dispbottom "You're kicked from MVP Ladder!! Please wait till your Cooling Down ended!!";
-						warp "milenia",0,0;
-					}
-	donpcevent strnpcinfo(0)+"::OnMvpDead";
-	sleep .timeout * 60000;
-	if ( .round == .totalround +1 ) {
-		getpartymember .party_id, 1;
-		getpartymember .party_id, 2;
-		
-	// item reward for completing the entire ladder
-	//setarray .@itemsFinish[0],"6277","7879";
-	//set .finish_item_id, .@itemsFinish[rand (getarraysize(.@itemsFinish)) ];
-	//set .inish_item_amount, 1;
-	set .finish_item_id, 31205;
-	set .finish_item_amount, 1;
-		mapannounce .eventmap$, "Congratulations... You were able to defeat all the MVPs!", bc_map;
-		for ( .@i = 0; .@i < $@partymembercount; .@i++ ) {
-			if ( isloggedin( $@partymemberaid[.@i], $@partymembercid[.@i] ) ) {
-				attachrid $@partymemberaid[.@i];
-				if ( strcharinfo(3) == .eventmap$ )
-					getitem .finish_item_id, .finish_item_amount;
-			}
-		}
-		
-	// bonus reward if ladder completed within a certain time (in minutes)
-	.bonus_time = 10; // if completed within 10 minutes, this reward is given
-	//setarray .@itemsBonus[0],"6277","7879";
-	//set .bonus_item_id, .@itemsBonus[rand (getarraysize(.@itemsBonus)) ];
-	//set .bonus_item_amount, ;
-	set .bonus_item_id, 31205;
-	set .bonus_item_amount, 5;
-		
-		set .@timeused, gettimetick(2) - .@time_enter;
-		if ( .bonus_item_amount && .@timeused < .bonus_time * 60 ) {
-			mapannounce .eventmap$, "You are rewarded a bonus item for completing the ladder within "+ .bonus_time +" minutes.", bc_map;
-			for ( .@i = 0; .@i < $@partymembercount; .@i++ ) {
-				if ( isloggedin( $@partymemberaid[.@i], $@partymembercid[.@i] ) ) {
-					attachrid $@partymemberaid[.@i];
-					if ( strcharinfo(3) == .eventmap$ )
-						getitem .bonus_item_id, .bonus_item_amount;
-				}
-			}
-		}
-
-		if ( !$mvpladdderparty_time || .@timeused < $mvpladdderparty_time ) {
-			mapannounce .eventmap$, "And you broke the record! [ "+( .@timeused / 60 )+" min "+( .@timeused % 60 )+" sec ]", bc_map;
-			set $mvpladdderparty_time, .@timeused;
-			set $mvpladdderparty_name$, getpartyname( .party_id );
-			copyarray $mvpladderparty_member$, .@name$, .register_min;
-		}
-		else
-			mapannounce .eventmap$, "Time used [ "+( .@timeused / 60 )+" min "+( .@timeused % 60 )+" sec ]", bc_map;
-		sleep 10000;
-		announce "The party ["+ getpartyname( .party_id ) +"] has finished the MvP ladder game!", bc_all;
-	}
-	else
-		announce "The party ["+ getpartyname( .party_id ) +"] has failed to finish the MvP ladder game.", bc_all;
-	mapwarp .eventmap$, .map$, .x, .y;
-	killmonsterall .eventmap$;
-	.party_id = .round = 0;
 	end;
-
-OnMvpDead:	
-	// item reward for completing each round
-	//setarray .@items[0],"607","6746","7914","607","969","7844","7231";
-	//set .round_item_id, .@items[rand (getarraysize(.@items)) ];
-	//set .round_item_amount, rand(1,3);
-	set .round_item_id,31204;
-	set .round_item_amount,1;
-	
-
-	
-	.round++;
-	if ( .round >= 2 && .round != .totalround +1 && .round_item_amount ) {
-		for ( .@i = 0; .@i < $@partymembercount; .@i++ ) {
-			if ( isloggedin( $@partymemberaid[.@i], $@partymembercid[.@i] ) ) {
-				attachrid $@partymemberaid[.@i];
-				if ( strcharinfo(3) == .eventmap$ )
-					getitem .round_item_id, .round_item_amount;
-				if (#MVPDelayRESET == 0){
-					#MVP_timer = gettimetick(2) + 86400;
-					// test only #MVP_timer = gettimetick(2) + 300;
-					set #MVPDelayRESET,1;
-				}
-			}
-		}
-	}
-	if ( .round == .totalround +1 ) {
-		awake strnpcinfo(0);
-		end;
-	}
-	else if ( .round == .totalround )
-		mapannounce .eventmap$, "The final Round will begin in "+ .delay +" seconds...", bc_map;
-	else
-		mapannounce .eventmap$, "Starting round "+ .round +" in "+ .delay +" seconds...", bc_map;
-	sleep .delay * 1000;
-	if ( .mvpid[.round] == 1646 )  // pick random Bio3 MVP
-		.mvpid[.round] = rand(1646,1651);
-	if ( .mvpid[.round] == 2235 )  // pick random Bio4 MVP
-		.mvpid[.round] = rand(2235,2241);	
-	monster .eventmap$,0,0, "--ja--", .mvpid[.round], 1, strnpcinfo(0)+"::OnMvpDead";
-	mapannounce .eventmap$, getmonsterinfo( .mvpid[.round], MOB_NAME ) +" has spawned!", bc_map|bc_blue;
-	end;
-
-OnPCLogoutEvent:
-	if ( hp > 0 )
-		.@less_one = 1;
-	else
-		end;
-OnPCDieEvent:
-	if ( strcharinfo(3) != .eventmap$ || !getcharid(1) ) end;
-	if ( getcharid(1) != .party_id ) end;
-	getpartymember .party_id, 1;
-	getpartymember .party_id, 2;
-	for ( .@i = 0; .@i < $@partymembercount; .@i++ ) {
-		if ( isloggedin( $@partymemberaid[.@i], $@partymembercid[.@i] ) ) {
-			attachrid $@partymemberaid[.@i];
-			if ( strcharinfo(3) == .eventmap$ && hp > 0 )
-				.@alive++;
-		}
-	}
-	if ( .@less_one )
-		.@alive--;
-	if ( !.@alive ) {
-		mapannounce .eventmap$, "Party wiped!", bc_map;
-		sleep 10000;
-		awake strnpcinfo(0);
-	}
-	end;
-
 OnInit:
-//	Configurations -----------------------------------------------------
-
-	// Time limit (in minutes)
-	// When time runs out, all players inside the room will be kicked out.
-	// Do NOT set this to zero!
-	set .timeout, 20;
-
+	// Cooldown of entering in seconds
+	.enter_cooldown = 82800;
+	
 	// entrance fee (in Zeny)
-	set .register_cost, 100000;
+	.register_cost = 100000;
 
-	// exact amount of party members needed to start the game
-	set .register_min, 1;
-
-	// id of each mvp. you can add more
-	setarray .mvpid[1],
-		1086,//	Golden Thief Bug	64
-		1115,//	Eddga				65
-		1150,//	Moonlight Flower	67
-		1159,//	Phreeoni			69
-		1112,//	Drake				70
-		1583,//	Tao Gunka			70
-		1492,//	Incantation Samurai	71
-		1046,//	Doppelgangger		72
-		1252,//	Garm				73
-		1418,//	Evil Snake Lord		73
-		1059,//	Mistress			74
-		1190,//	Orc Lord			74
-		1087,//	Orc Hero			77
-		1251,//	Knight of Windstorm	77
-		1038,//	Osiris				78
-		1658,//	Ygnizem				79
-		1272,//	Dark Lord			80
-		1871,//	Fallen Bishop		80
-		1039,//	Baphomet			81
-		1147,//	Maya				81
-		1785,//	Atroce				82
-		1389,//	Dracula				85
-		1630,//	Bacsojin			85
-		1885,//	Gorynych			85
-		1623,//	RSX 0806			86
-		1511,//	Amon Ra				88
-		1688,//	Lady Tanee			89
-		1768,//	Gloom Under Night	89
-		1719,//	Datale				90
-		1734,//	Kiel D-01			90
-		1157,//	Pharaoh				93
-		1373,//	Lord of Death		94
-		1312,//	Turtle General		97
-		1779,//	Ktullanux			98
-		1874,//	Beelzebub			98
-		1646,// Bio3 placeholder    99
-		1708,//	Thanatos			99
-		1751,//	Valkyrie Randgris	99
-		1832,//	Ifrit				99
-		2235,// Bio4 MVP	100
-		3074; // Time Holder	101
-
-	// number of rounds (default: 39)
-	set .totalround, getarraysize(.mvpid) -1;
-
-	// time delay between rounds, in seconds (default: 3)
-	set .delay, 5;
+	// amount of party members needed to start the game
+	.register_min = 1;
 
 	// minimum GM level to reset the best record
-	set .gmlvlreset, 99;
-
-	// event map
-	set .eventmap$, "guild_vs2-2";
+	.gmlvlreset = 99;
 
 	// mapflag configuration
 	setarray .@mapflag,
@@ -346,22 +164,159 @@ OnInit:
 		mf_nosave,
 		mf_nomemo,
 		mf_noteleport,
-		mf_nopenalty, // disable exp loss
+		mf_monster_noteleport, // disable teleporting for monsters
+//		mf_nopenalty, // disable exp loss
 		mf_noreturn,
-		mf_nobranch,
-		mf_nomobloot, // disable monster drop loots,
-		mf_nomvploot, // 2 of these
-		mf_partylock,
-		mf_hidemobhpbar;
+//		mf_nobranch,
+//		mf_nomobloot, // disable monster drop loots,
+//		mf_nomvploot, // 2 of these
+		mf_partylock;
 
-//	Config Ends --------------------------------------------------------------
-
-	mapannounce .eventmap$, "An administrator has refreshed the server. Please re-register. We apologize for the inconvenience.", bc_map;
-	getmapxy .map$, .x, .y, UNITTYPE_NPC;
-	mapwarp .eventmap$, .map$, .x, .y;
-	killmonsterall .eventmap$;
 	.@size = getarraysize( .@mapflag );
 	for ( .@i = 0; .@i < .@size; .@i++ )
-		setmapflag .eventmap$, .@mapflag[.@i];
+		setmapflag "guild_vs2-2", .@mapflag[.@i];
+	end;
+}
+
+guild_vs2-2,0,0,0	script	#SCMLControl	EF_NONE,{ // Ugly :P
+	end;
+OnInstanceInit:
+	// id of each mvp written as string. You can make the script randomize mob ids by putting | as delimiter.
+	setarray 'mvpid$[0],
+		"1086",//	Golden Thief Bug	64
+		"1115",//	Eddga				65
+		"1150",//	Moonlight Flower	67
+		"1159",//	Phreeoni			69
+		"1112",//	Drake				70
+		"1583",//	Tao Gunka			70
+		"1492",//	Incantation Samurai	71
+		"1046",//	Doppelgangger		72
+		"1252",//	Garm				73
+		"1418",//	Evil Snake Lord		73
+		"1059",//	Mistress			74
+		"1190",//	Orc Lord			74
+		"1087",//	Orc Hero			77
+		"1251",//	Knight of Windstorm	77
+		"1038",//	Osiris				78
+		"1658",//	Ygnizem				79
+		"1272",//	Dark Lord			80
+		"1871",//	Fallen Bishop		80
+		"1039",//	Baphomet			81
+		"1147",//	Maya				81
+		"1785",//	Atroce				82
+		"1389",//	Dracula				85
+		"1630",//	Bacsojin			85
+		"1885",//	Gorynych			85
+		"1623",//	RSX 0806			86
+		"1511",//	Amon Ra				88
+		"1688",//	Lady Tanee			89
+		"1768",//	Gloom Under Night	89
+		"1719",//	Datale				90
+		"1734",//	Kiel D-01			90
+		"1157",//	Pharaoh				93
+		"1373",//	Lord of Death		94
+		"1312",//	Turtle General		97
+		"1779",//	Ktullanux			98
+		"1874",//	Beelzebub			98
+		"1646|1647|1648|1649|1650|1651",	// 	Bio3 bosses		    99
+		"1708",//	Thanatos			99
+		"1751",//	Valkyrie Randgris	99
+		"1832";//	Ifrit				99
+
+	// number of rounds (default: 39)
+	'mvpamount = getarraysize('mvpid$)-1;
+	'round = -1;
+
+	// item reward for completing each round
+	set .round_item_id,31204;
+	set .round_item_amount,1;
+
+	// item reward for completing the entire ladder
+	set .finish_item_id, 31205;
+	set .finish_item_amount, 1;
+
+	// bonus reward if ladder completed within a certain time (in minutes)
+	'bonus_time = 45; // if completed within 45 minutes, this reward is given
+	set .round_item_id,31204;
+	set .round_item_amount,1;
+
+	// time delay between rounds, in seconds (default: 3)
+	'delay = 5;
+	killmonsterall instance_mapname("guild_vs2-2");
+	initnpctimer;
+	end;
+
+OnTimer1000:
+	if('state && !getmapusers(instance_mapname("guild_vs2-2"))){
+		initnpctimer;
+		end;
+	}
+	sleep 5000;
+	instance_announce 0,"The MVP Ladder is going to start in 30 seconds. Prepare yourself!",bc_map|bc_blue;
+	sleep 20000;
+	instance_announce 0,"The MVP Ladder is going to start in 10 seconds.",bc_map|bc_blue;
+	sleep 5000;
+	instance_announce 0,"The MVP Ladder is going to start in 5 seconds.",bc_map|bc_blue;
+	sleep 1000;
+	instance_announce 0,"The MVP Ladder is going to start in 4 seconds.",bc_map|bc_blue;
+	sleep 1000;
+	instance_announce 0,"The MVP Ladder is going to start in 3 seconds.",bc_map|bc_blue;
+	sleep 1000;
+	instance_announce 0,"The MVP Ladder is going to start in 2 seconds.",bc_map|bc_blue;
+	sleep 1000;
+	instance_announce 0,"The MVP Ladder is going to start in a second.",bc_map|bc_blue;
+	sleep 1000;
+	instance_announce 0,"The MVP Ladder has started!",bc_map|bc_blue;
+	'time_enter = gettimetick(2);
+	'state = 1;
+	stopnpctimer;
+	// Fall through
+OnMyMobDead:
+	++'round;
+	if('round == 'mvpamount) {
+		.@party_id = getcharid(1);
+		getpartymember .@party_id, 1;
+		getpartymember .@party_id, 2;
+		instance_announce 0, "Congratulations... You were able to defeat all the MVPs!", bc_map;
+		for ( .@i = 0; .@i < $@partymembercount; .@i++ ) {
+			if ( isloggedin( $@partymemberaid[.@i], $@partymembercid[.@i] ) ) {
+				attachrid $@partymemberaid[.@i];
+				if ( strcharinfo(3) == instance_mapname("guild_vs2-2") )
+					getitem 'finish_item_id, 'finish_item_amount;
+			}
+		}
+		.@timeused = gettimetick(2) - 'time_enter;
+		if ( 'bonus_item_amount && .@timeused < 'bonus_time * 60 ) {
+			instance_announce 0, "You are rewarded a bonus item for completing the ladder within "+ 'bonus_time +" minutes.", bc_map;
+			for ( .@i = 0; .@i < $@partymembercount; .@i++ ) {
+				if ( isloggedin( $@partymemberaid[.@i], $@partymembercid[.@i] ) ) {
+					attachrid $@partymemberaid[.@i];
+					if ( strcharinfo(3) == instance_mapname("guild_vs2-2") ){
+						getitem 'bonus_item_id, 'bonus_item_amount;
+						.@name$[.@c++] = strcharinfo(0);
+					}
+				}
+			}
+		}
+
+		if ( !$mvpladdderparty_time || .@timeused < $mvpladdderparty_time ) {
+			instance_announce 0, "And you broke the record! [ "+( .@timeused / 60 )+" min "+( .@timeused % 60 )+" sec ]", bc_map;
+			$mvpladdderparty_time = .@timeused;
+			$mvpladdderparty_name$ = getpartyname( .@party_id );
+			copyarray $mvpladderparty_member$, .@name$, .@c;
+		}
+		else
+			instance_announce 0, "Time used [ "+( .@timeused / 60 )+" min "+( .@timeused % 60 )+" sec ]", bc_map;
+		sleep 10000;
+		announce "The party ["+ getpartyname( .@party_id ) +"] has finished the MvP ladder game!", bc_all;
+		instance_warpall "milenia",102,161;
+		instance_destroy();
+		end;
+	}
+	instance_announce 0,"A new MVP will spawn at the center of the map in " + 'delay + " seconds. Prepare yourself!",bc_map|bc_blue;
+	sleep 'delay * 1000;
+	explode(.@mobids$,'mvpid$['round],"|");
+	.@mobid = atoi(.@mobids$[rand(getarraysize(.@mobids$))]);
+	monster instance_mapname("guild_vs2-2"),49,49,"--ja--",.@mobid,1,instance_npcname("#SCMLControl") + "::OnMyMobDead";
 	end;
 }
