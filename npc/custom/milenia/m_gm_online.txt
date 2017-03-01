@@ -12,7 +12,7 @@ cutin "", 255;
 end;
 
 OnInit:
-set .MinGMLevel,1;              // Min. GM Level to Show in Online Lists
+set .MinGMLevel,2;              // Min. GM Level to Show in Online Lists
 end;
 
 OnPCLoginEvent:
