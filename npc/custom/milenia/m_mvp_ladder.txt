@@ -202,17 +202,15 @@ milenia,102,161,5	script	MVP Ladder	10192,{
 	end;
 
 OnMvpDead:	
+	
+	.round++;
+	if ( .round >= 2 && .round != .totalround +1 && .round_item_amount ) {
 	// item reward for completing each round
 	//setarray .@items[0],"607","6746","7914","607","969","7844","7231";
 	//set .round_item_id, .@items[rand (getarraysize(.@items)) ];
 	//set .round_item_amount, rand(1,3);
 	set .round_item_id,31204;
 	set .round_item_amount,1;
-	
-
-	
-	.round++;
-	if ( .round >= 2 && .round != .totalround +1 && .round_item_amount ) {
 		for ( .@i = 0; .@i < $@partymembercount; .@i++ ) {
 			if ( isloggedin( $@partymemberaid[.@i], $@partymembercid[.@i] ) ) {
 				attachrid $@partymemberaid[.@i];
