@@ -1961,8 +1961,8 @@ OnMyMobDead:
 	next;
 	mes "[Lost Souls]";
 	mes "Farewell, young adventurer. I wish you good luck.";
-	getitem 6412, rand (10,20);
 	close2;
+	getitem 6412, rand (10,20);
 	warp "alberta",223,36;
 	end;
 
