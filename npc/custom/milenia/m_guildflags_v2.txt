@@ -1,2 +1,32 @@
 milenia,148,168,11	duplicate(OutsideFlagsPR1)	Kriemhild#16	722
 milenia,91,168,5	duplicate(OutsideFlagsPA3)	Holy Shadow#13	722
+
+payg_cas03	mapflag	nomemo
+payg_cas03	mapflag	noreturn
+payg_cas03	mapflag	nosave	SavePoint
+payg_cas03	mapflag	noteleport
+payg_cas03	mapflag	nowarp
+
+prtg_cas01	mapflag	nomemo
+prtg_cas01	mapflag	noreturn
+prtg_cas01	mapflag	nosave	SavePoint
+prtg_cas01	mapflag	noteleport
+prtg_cas01	mapflag	nowarp
+
+cedi_1	mapflag	nomemo
+cedi_1	mapflag	noreturn
+cedi_1	mapflag	nosave	SavePoint
+cedi_1	mapflag	noteleport
+cedi_1	mapflag	nowarp
+
+cedi_2	mapflag	nomemo
+cedi_2	mapflag	noreturn
+cedi_2	mapflag	nosave	SavePoint
+cedi_2	mapflag	noteleport
+cedi_2	mapflag	nowarp
+
+cedi_2	mapflag	nomemo
+cedi_2	mapflag	noreturn
+cedi_2	mapflag	nosave	SavePoint
+cedi_2	mapflag	noteleport
+cedi_2	mapflag	nowarp

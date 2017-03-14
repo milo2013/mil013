@@ -90,7 +90,7 @@ switch(select("Start Event:Stop Event:Nothing"))
 
 
 OnGMStart:
-	killmonster "poring_w01.gat","All";
+	killmonster "poring.gat","All";
 	announce "(Poring Manager) : A Gamemaster started a Poring Catcher Event now.",0;
 	sleep 3000;
 	announce "(Poring Manager) : If you want to join, come at the middle of Prontera, enter the warp portal.",0;
@@ -102,7 +102,7 @@ OnGMStart:
 	sleep 60000;
 	announce "(Poring Manager) : The portal has been closed.",0;
 	disablenpc "PoringCatcher";
-	if(getmapusers("poring_w01") == 0) 
+	if(getmapusers("poring") == 0) 
 	{
 		disablenpc "Poring Banker";
 		announce "Event Poring Catcher didn't start because there's no players.",0;
@@ -114,9 +114,9 @@ OnGMStart:
 
 OnGMStop:
 
-	killmonster "poring_w01.gat","All";
+	killmonster "poring.gat","All";
 	announce "A Gamemaster has stopped the Poring Catcher Event",0;
-	mapwarp "poring_w01.gat","prontera.gat",155,173;
+	mapwarp "poring.gat","prontera.gat",155,173;
 	disablenpc "Poring Banker";
 	disablenpc "PoringCatcher";
 	end;
@@ -131,7 +131,7 @@ OnClock0000:
 OnClock0300:
 OnClock0600:
 OnClock0900:
-	killmonster "poring_w01.gat","All";
+	killmonster "poring.gat","All";
 	announce "(Poring Manager) : Poring Catcher Event will start at the moment.",0;
 	sleep 3000;
 	announce "(Poring Manager) : If you want to join, come at the Milenia Town, enter the warp portal.",0;
@@ -143,7 +143,7 @@ OnClock0900:
 	sleep 60000;
 	announce "(Poring Manager) : The portal has been closed.",0;
 	disablenpc "PoringCatcher";
-	if(getmapusers("poring_w01") == 0) 
+	if(getmapusers("poring") == 0) 
 	{
 		disablenpc "Poring Banker";
 		announce "Event Poring Catcher didn't start because no players found in map.",0;
@@ -158,7 +158,7 @@ OnInit:
 	disablenpc "PoringCatcher";
 }
 //---------All Job Registration----------------------------------------
-milenia,120,148,0	warp	PoringCatcher	2,2,poring_w01,105,128
+milenia,83,149,0	warp	PoringCatcher	2,2,poring,94,96
 
 //---------------------------------------------------------------------
 
@@ -167,36 +167,36 @@ milenia,120,148,0	warp	PoringCatcher	2,2,poring_w01,105,128
 -	script	Poring Banker	-1,{
 
 OnEnable:
-mapannounce "poring_w01","Poring Manager: The Poring Catcher Event will start shortly",0;
+mapannounce "poring","Poring Manager: The Poring Catcher Event will start shortly",0;
 sleep2 10000;
-mapannounce "poring_w01","Poring Manager: I will be summoning 100 porings with different names kill the real poring",0;
+mapannounce "poring","Poring Manager: I will be summoning 100 porings with different names kill the real poring",0;
 sleep2 10000;
-mapannounce "poring_w01","Poring Manager: What are we waiting for?..Let's Catch some Porings!!...",0;
+mapannounce "poring","Poring Manager: What are we waiting for?..Let's Catch some Porings!!...",0;
 sleep2 10000;
 goto L_Start;
 end;
 L_Start:
-	if(getmapusers("poring_w01") == 0) goto L_None;
-	if(getmapusers("poring_w01") >= 1) {
+	if(getmapusers("poring") == 0) goto L_None;
+	if(getmapusers("poring") >= 1) {
 
-	mapannounce "poring_w01","Poring Manager: Get ready at the count of 5 we will start!....",0;
+	mapannounce "poring","Poring Manager: Get ready at the count of 5 we will start!....",0;
 	sleep2 6000;
-	mapannounce "poring_w01","Poring Manager: 5",0;
+	mapannounce "poring","Poring Manager: 5",0;
 	sleep2 5000;
-	mapannounce "poring_w01","Poring Manager: 4",0;
+	mapannounce "poring","Poring Manager: 4",0;
 	sleep2 4000;
-	mapannounce "poring_w01","Poring Manager: 3",0;
+	mapannounce "poring","Poring Manager: 3",0;
 	sleep2 3000;
-	mapannounce "poring_w01","Poring Manager: 2",0;
+	mapannounce "poring","Poring Manager: 2",0;
 	sleep2 2000;
-	mapannounce "poring_w01","Poring Manager: 1",0;
+	mapannounce "poring","Poring Manager: 1",0;
 	donpcevent "Poringsummoner::OnSummon";
 	end;
 	}
 
 	L_None:
 	disablenpc "Poring Banker";
-	killmonster "poring_w01.gat","All";
+	killmonster "poring.gat","All";
 	end;
 }
 
@@ -204,25 +204,25 @@ L_Start:
 -	script	Poringsummoner	-1,{
 
 OnSummon:
-   if(getmapusers("poring_w01") == 0) goto L_2None;
-   monster "poring_w01.gat",0,0,"Poring",1002,1,"poringwin::OnMobKilled";
-   monster "poring_w01.gat",0,0,"Pouring",1002,10,"poringlose::OnMobKilled";
-   monster "poring_w01.gat",0,0,"Proing",1002,10,"poringlose::OnMobKilled";
-   monster "poring_w01.gat",0,0,"Poirng",1002,10,"poringlose::OnMobKilled";
-   monster "poring_w01.gat",0,0,"Poing",1002,10,"poringlose::OnMobKilled";
-   monster "poring_w01.gat",0,0,"I'm not a Poring",1002,5,"poringlose::OnMobKilled";
-   monster "poring_w01.gat",0,0,"Gnirop",1002,1,"poringlose::OnMobKilled";
-   monster "poring_w01.gat",0,0,"Poring",1113,1,"poringlose::OnMobKilled";
-   monster "poring_w01.gat",0,0,"Poring",1062,1,"poringlose::OnMobKilled";
-   monster "poring_w01.gat",0,0,"Por|ng",1002,10,"poringlose::OnMobKilled";
-   monster "poring_w01.gat",0,0,"Por1ng",1002,10,"poringlose::OnMobKilled";
-   monster "poring_w01.gat",0,0,"Porong",1002,10,"poringlose::OnMobKilled";
-   monster "poring_w01.gat",0,0,"P0ring",1002,10,"poringlose::OnMobKilled";
-   monster "poring_w01.gat",0,0,"P@ring",1002,10,"poringlose::OnMobKilled";
-   monster "poring_w01.gat",0,0,"Porng",1002,1,"poringlose::OnMobKilled";end;
+   if(getmapusers("poring") == 0) goto L_2None;
+   monster "poring.gat",0,0,"Poring",1002,1,"poringwin::OnMobKilled";
+   monster "poring.gat",0,0,"Pouring",1002,10,"poringlose::OnMobKilled";
+   monster "poring.gat",0,0,"Proing",1002,10,"poringlose::OnMobKilled";
+   monster "poring.gat",0,0,"Poirng",1002,10,"poringlose::OnMobKilled";
+   monster "poring.gat",0,0,"Poing",1002,10,"poringlose::OnMobKilled";
+   monster "poring.gat",0,0,"I'm not a Poring",1002,5,"poringlose::OnMobKilled";
+   monster "poring.gat",0,0,"Gnirop",1002,1,"poringlose::OnMobKilled";
+   monster "poring.gat",0,0,"Poring",1113,1,"poringlose::OnMobKilled";
+   monster "poring.gat",0,0,"Poring",1062,1,"poringlose::OnMobKilled";
+   monster "poring.gat",0,0,"Por|ng",1002,10,"poringlose::OnMobKilled";
+   monster "poring.gat",0,0,"Por1ng",1002,10,"poringlose::OnMobKilled";
+   monster "poring.gat",0,0,"Porong",1002,10,"poringlose::OnMobKilled";
+   monster "poring.gat",0,0,"P0ring",1002,10,"poringlose::OnMobKilled";
+   monster "poring.gat",0,0,"P@ring",1002,10,"poringlose::OnMobKilled";
+   monster "poring.gat",0,0,"Porng",1002,1,"poringlose::OnMobKilled";end;
 L_2None:
 disablenpc "Poring Banker";
-killmonster "poring_w01.gat","All";
+killmonster "poring.gat","All";
 end;
 }
 
@@ -230,7 +230,7 @@ end;
 -	script	poringwin	-1,{
 
 OnMobKilled:
-   killmonster "poring_w01.gat","All";
+   killmonster "poring.gat","All";
    atcommand "@doommap";
    //getitem 7227,1;
    getitem 671,1;
@@ -251,12 +251,12 @@ OnMobKilled:
 
 
 //==================Mapflags========================\\
-poring_w01	mapflag	nowarp
-poring_w01	mapflag	nowarpto
-poring_w01	mapflag	noteleport
-poring_w01	mapflag	nosave
-poring_w01	mapflag	nomemo
-poring_w01	mapflag	nobranch
-poring_w01	mapflag	noloot
-poring_w01	mapflag	noskill
-poring_w01	mapflag	nopenalty
+poring	mapflag	nowarp
+poring	mapflag	nowarpto
+poring	mapflag	noteleport
+poring	mapflag	nosave
+poring	mapflag	nomemo
+poring	mapflag	nobranch
+poring	mapflag	noloot
+poring	mapflag	noskill
+poring	mapflag	nopenalty

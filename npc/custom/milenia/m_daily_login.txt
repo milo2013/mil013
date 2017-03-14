@@ -1,302 +1,186 @@
-//===== EinherjarRO Scripts ================================== 
-//= Daily Rewards
-//===== By: ================================================== 
-//= Stolao
-//===== Current Version: ===================================== 
-//= 1.84
-//===== Compatible With: ===================================== 
-//= rAthena SVN
-//===== Description: ========================================= 
-//= A reward system for players who play more frequently
-//===== Todo: ================================================
-//= Maybe make .MinWait an array mins,days,weeks,months,years;
-//= Make Logging out then it continue count
-//= Make a Overweight easy collect
-//= Remove use of sleep2
-//= Suggestions?
-//===== Additional Comments: =================================
-//= For Older See Old Versions
-//= 1.7A No Rewards for Autotraders option added
-//= 1.7B Tabulation Cleanup
-//= 1.7C Added custom item binding mode [Secretdataz]
-//= 1.7D Added cutin for next day option + command
-//= 1.7E Added IP Check
-//= 1.7F Moved .Rest Message to after .MinWait Check
-//= 1.80 Added MacAddress check for those using Gepard Shield (disabled by default)
-//= 1.81 Fixed Typo in .MacCheck
-//= 1.82 Moved .Rest Check before rewards check to prevent bug
-//= 1.83 Added strnpcinfo(3) for bindatcomands
-//= 1.84 Rephrased some conf settings
-//= 1.85 Fixed Capilazation
-//= 1.86 Small Tabulation Tweaks
-//===== Contact Info: ========================================
-//= [Stolao] 
-//= Email: Taingram11@gmail.com
-//============================================================
--	script	LOGIN	-1,{
-OnWhisperGlobal:
-OnLoginCmnd:
-OnPCLoginEvent:
-	if(.IPCheck){
-		query_sql("SELECT last_ip FROM `login` WHERE account_id = "+getcharid(3)+"", .@LastIp$);
-		query_sql("SELECT account_id FROM `login` WHERE last_ip = '"+.@LastIp$+"'", .@AccountId);
-		if(getarraysize(.@AccountId) > .IPCheck){
-			message strcharinfo(0),"[Daily Rewards]: Rewards are limited to "+.IPCheck+" per IP sorry.";
-			end;
-		}
-	}
-	if(.MacCheck){
-		query_sql("SELECT last_unique_id FROM `login` WHERE account_id = "+getcharid(3)+"", .@last_unique_id$);
-		query_sql("SELECT account_id FROM `login` WHERE last_unique_id = '"+.@last_unique_id$+"'", .@AccountId2);
-		if(getarraysize(.@AccountId2) > .MacCheck){
-			message strcharinfo(0),"[Daily Rewards]: Rewards are limited to "+.MacCheck+" per computer sorry.";
-			end;
-		}
-	}
-	//.@i = (gettime(7) * 365 * 24 * 60) + (gettime(8) * 24 * 60) + (gettime(3) * 60) + gettime(2);
-	.@i = (gettime(8) * 24 * 60) + (gettime(3) * 60) + gettime(2);
-	if(.@i >= (#LastDailyReward2 + .MinWait) && .Rest){
-		message strcharinfo(0),"[Daily Rewards]: To collect reward you must remain logged in for "+ .Rest +" minutes";
-		sleep2 1000 + .Rest * 60000;
-	}
-	if(.@i >= (#LastDailyReward2 + .MinWait)){
-		if(checkvending() & 2 && .Mode & 64){
-			message strcharinfo(0),"[Daily Rewards]: Venders cannot recive rewards.";
-			end;
-		}
-		if(.@i < #LastDailyReward2 + .MaxWait)
-			#DRewardCon += 1;
-		else	#DRewardCon = 1;
-		if(#DRewardCon >= getarraysize(.Rewards$)){
-			if(.Reset)
-				#DRewardCon = 1;
-			else	.@g = getarraysize(.Rewards$)-1;
-		} else	.@g = #DRewardCon;
-		explode(.@XT$,.Rewards$[.@g],",");
-		for(.@x = 0; .@x < getarraysize(.@XT$); .@x++)
-			.@TT[.@x] = atoi(.@XT$[.@x]);
-		if(.Mode & 1 && .@TT[4] > 0){
-			for(.@x = 4; .@x <= getarraysize(.@TT) - 1 ; .@x += 2){
-				.@itms[getarraysize(.@itms)] = .@TT[.@x];
-				.@qnts[getarraysize(.@qnts)] = .@TT[.@x + 1];
-			}
-			if(checkweight2(.@itms,.@qnts)){
-				for(.@x = 0; .@x < getarraysize(.@itms) && .@x < getarraysize(.@qnts); .@x++){
-					if(.Mode & 32)
-						getitembound  .@itms[.@x], .@qnts[.@x], .Bound_Mode;
-					else	getitem  .@itms[.@x], .@qnts[.@x];
-				}
-			} else {
-				message strcharinfo(0),"[Daily Rewards]: You can not carry the prizes, please use storage and relog.";
-				if(#DRewardCon) #DRewardCon -= 1;
-				end;
-			}
-		}
-		if(.Mode & 16)
-			cutin .Cutins$[#DRewardCon],4;
-		if(.Mode & 2){
-			if(.@TT[0]){
-				zeny += .@TT[0];
-				message strcharinfo(0),"[Daily Rewards]: Recieved "+ .@TT[0] +"z";
-			}
-			if(.@TT[1]){
-				setd getd(.Points$[0]),getd(.Points$[0]) + .@TT[1];
-				message strcharinfo(0),"[Daily Rewards]: Recieved "+ .@TT[1] +" "+.Points$[1];
-			}
-		}
-		if(.Mode & 4 && (.@TT[3] || .@TT[4]))
-			getexp .@TT[3], .@TT[4];
-		if(.Mode & 8){
-			for(.@x = 0; .@x < getarraysize(.BuffInfo); .@x += 4){
-				if(#DRewardCon % .BuffInfo[.@x + 1] == 0)
-					sc_start .BuffInfo[.@x], .BuffInfo[.@x + 2] * 60000, .BuffInfo[.@x + 3];
-			}
-		}
-		message strcharinfo(0),"[Daily Rewards]: You have collected your daily reward, for "+callfunc("F_InsertPlural",#DRewardCon,"day")+" in a row.";
-		//#LastDailyReward2 = (gettime(7) * 365 * 24 * 60) + (gettime(8) * 24 * 60) + (gettime(3) * 60) + gettime(2) - .Rest;
-		#LastDailyReward2 = (gettime(8) * 24 * 60) + (gettime(3) * 60) + gettime(2) - .Rest;
-		end;
-	}
-OnNextCmnd:
-	if(!.@i) .@i = (gettime(7) * 365 * 24 * 60) + (gettime(8) * 24 * 60) + (gettime(3) * 60) + gettime(2) - .Rest;
-	//.@days = (#LastDailyReward2 + .MinWait - .@i)/60/24;
-	.@hours = ((#LastDailyReward2 + .MinWait - .@i)/60)%24;
-	.@mins = (#LastDailyReward2 + .MinWait - .@i)%60;
-	//message strcharinfo(0),"[Daily Rewards]: You have "+ ((.@days) ? .@days +" Days " : "") +""+ ((.@hours) ? .@hours +" Hours " : "") +""+ ((.@mins) ? .@mins +" Minutes " : "") +"till your next reward.";
-	message strcharinfo(0),"[Daily Rewards]: You have "+ ((.@hours) ? .@hours +" Hours " : "") +""+ ((.@mins) ? .@mins +" Minutes " : "") +"till your next reward.";
-	if(.Mode & 128){
-		if(#DRewardCon + 1 >= getarraysize(.Rewards$)){
-			if(.Reset)	.@DRewardCon = 1;
-			else	.@g = getarraysize(.Rewards$)-1;
-		} else	.@g = #DRewardCon + 1;
-		cutin .Cutins$[.@g],4;
-	}
-	end;
-OnInit:
-	// Basic Settings
-	//   1: Item | 2: Points | 4: Exp  
-	//   8: Gain Buffs Every X Consecutive Days logged in
-	//   16: Show Cutins | 32: Bound Items
-	//   64: No Rewards ffor Autotraders
-	//   128: Show Next Day Cutin
-	//     (a bit value, e.g. 3 = Items & Points from Multi)
-	.Mode = 1|2|4|8|16|64;
 
-	// Number of times same IP can recive rewards
-	//   0 = unlimited
-	.IPCheck = 0;
 
-	// Number of times same Computer (MacAdress) can recive rewards
-	//   0 = unlimited
-	.MacCheck = 0;
+/*
 
-	// Item Binding Mode
-	//	 Bound_Account : Account Bound item
-	//	 Bound_Guild   : Guild Bound item
-	//	 Bound_Party   : Party Bound item
-	//	 Bound_Char    : Character Bound item
-	.Bound_Mode = Bound_Account;
-	
-	// To disable the command '@loginreward' comment the next lines
-	// * Needs extra commands for typos
-	bindatcmd("relog",strnpcinfo(3)+"::OnLoginCmnd",0,99);
-	bindatcmd("nextreward",strnpcinfo(3)+"::OnNextCmnd",0,99);
+CREATE TABLE IF NOT EXISTS `ero_daily_rewards` (
+	`id` INT(11) UNSIGNED NOT NULL AUTO_INCREMENT,
+	`aid` INT(11) UNSIGNED NOT NULL,
+	`status` TINYINT(11) UNSIGNED NOT NULL DEFAULT '1',
+	`time` DATETIME NOT NULL DEFAULT '0000-00-00 00:00:00',
+	PRIMARY KEY (`id`),
+	KEY (`aid`)
+) ENGINE=MyISAM;
 
-	// Minimum minutes between collecting daily reward
-	//   Day: 22*60 - 24*60
-	//   Week: 10080
-	.MinWait = 1320;
+*/
 
-	// Minutes before losing the consecutive reward
-	//   Day: 48*60 - 50*60
-	//   Week: 20160
-	.MaxWait = 3000;
-
-	// What to do upon reaching last day defined
-	//   [0] Repeat last day
-	//   [1] Restart at 1
-	.Reset = 1;
-
-	// Number of mins after logging before collecting prize
-	.Rest = 0;
-
-	// Point Type
-	//   [0] Points earned
-	//   [1] Point name in mes
-	setarray .Points$,"#KAFRAPOINTS","K-Points";
-
-	// Consecutive Days Buff
-	// Each buff contains 4 variables (32 Total Max)
-	// <Type>,<Days>,<Duration>,<Rate>, // Buff 1
-	// <Type>,<Days>,<Duration>,<Rate>, // Buff 2
-	//   ...;
-	//
-	//  Example: 188,7,45,3
-	//    -Every 7th consecutive day logged in Player gains +3 Str for 45 mins
-	//
-	//  Type is 188, which references which SC_ to use, SC_INCSTR in this example
-	//     -For a full list of SC_ visit the db/const.txt
-	//  Days is days buff is applied, in this example 7, so every 7th day, 14,21,28....
-	//  Duration is buff duration is Minuits, in this example 45 mins
-	//  Rate is buff strength, in this example player gains 3 Str
-	setarray .BuffInfo	
-				,260,1,360,1	// Life Insurance for 360 Mins Every 1st Day
-				,198,2,120,10	// +10% Hp for 120 Mins Every 2nd Day
-				,196,3,120,25	// +25 Flee for 120 Mins Every 3rd Day
-				,257,4,240,50	// +50% Exp for 240 Mins Every 4th Day
-				,260,5,360,1	// Life Insurance for 360 Mins Every 5th Day
-				,198,6,120,10	// +10% Hp for 120 Mins Every 6th Day
-				,196,7,120,25	// +25 Flee for 120 Mins Every 7th Day
-				,260,8,360,3	// Life Insurance for 360 Mins Every 8th Day
-				,198,9,120,50	// +50% Hp for 120 Mins Every 9th Day
-				,196,10,120,50	// +50 Flee for 120 Mins Every 10th Day
-				,257,11,240,100	// +100% Exp for 240 Mins Every 11th Day
-				,198,12,120,50	// +50% Hp for 120 Mins Every 12th Day
-				,196,13,120,50	// +50 Flee for 120 Mins Every 13th Day
-				,257,14,240,100	// +100% Exp for 240 Mins Every 14th Day
-				,260,15,360,1	 // Life Insurance for 360 Mins Every 15th Day
-				,198,16,120,100	 // +100% Hp for 120 Mins Every 16th Day
-				,196,17,120,100	 // +100Flee for 120 Mins Every 17th Day
-				,257,18,240,200 // +200% Exp for 240 Mins Every 18th Day
-				,198,19,120,100	 // +100% Hp for 120 Mins Every 19th Day
-				,196,20,120,100	 // +100Flee for 120 Mins Every 20th Day
-				,257,21,240,200 // +200% Exp for 240 Mins Every 21th Day
-				,260,22,360,1	 // Life Insurance for 360 Mins Every 22th Day
-				,198,23,120,100	 // +100% Hp for 120 Mins Every 23th Day
-				,196,24,120,100	 // +100Flee for 120 Mins Every 24th Day
-				,257,25,240,200 // +200% Exp for 240 Mins Every 25th Day
-				,198,26,120,100	 // +100% Hp for 120 Mins Every 26th Day
-				,196,27,120,100	 // +100Flee for 120 Mins Every 27th Day
-				,257,28,240,200; // +200% Exp for 240 Mins Every 28th Day
-
-	// Daily Prize items (max 128 days):
-	//   "<Zeny>|<Points>|<BaseExp>|<JobExp>|<itemID-1>|<amount-1>|<itemID-2>|<amount-2>...etc", // Day 1
-	//   "<Zeny>|<Points>|<BaseExp>|<JobExp>|<itemID-1>|<amount-1>|<itemID-2>|<amount-2>...etc"  // Day 2
-	//   ...;
-	// Total length of any days string must be 255 or shorter
-	// * If players login longer than the last set
-	//   day, they will keep getting the last prize.
-	setarray .Rewards$[1],
-		"0,0,0,0,547,20",			// Day 1: 20 Condense White Potion 
-		"100000",					// Day 2: 100k Zeny
-		"0,0,0,0,12900,1",			// Day 3: Battle Manual Box
-		"0,0,0,0,12211,10",			// Day 4: 10 Kafra Card
-		"0,0,0,0,12396,1",			// Day 5: Gift Box? 
-		"0,0,0,0,12350,1",			// Day 6: 10 Angeling Potion 
-		"0,0,0,0,13582,1",			// Day 7: Convex Mirror 5 Box
-		"0,0,0,0,31126,1",			// Day 8: Cashpoints Voucher 10's
-		"0,0,0,0,17229,1",			// Day 9:  Infinite Flywing Box
-		"0,0,0,0,12395,2",			// Day 10: Tantan Noodle 
-		"0,0,0,0,12396,1",			// Day 11: Gift Box? 
-		"0,0,0,0,12992,1",			// Day 12: Adventurer Returns Support Box
-		"0,0,0,0,13900,1",			// Day 13: Disguise Summoning 10 Box
-		"500000",					// Day 14: 500k Zeny
-		"0,0,0,0,31130,1",			// Day 15: Cloning Token
-		"0,0,0,0,31123,2",			// Day 16: Rare Mithril
-		"0,0,0,0,605,20",			// Day 17: 20 Anodyne
-		"0,0,0,0,17264,1",			// Day 18: Infinite Awakening Potion 3rd Box
-		"0,0,0,0,12019,10",			// Day 19: 10  Holy Egg
-		"0,0,0,0,12902,1",			// Day 20: Bubble Gum Box
-		"0,0,0,0,17265,1",			// Day 21: Infinite Berserk Potion 3rd Box
-		"0,0,0,0,13609,1",			// Day 22: Megaphone 5 Box -
-		"0,0,0,0,12314,1",			// Day 23: Adventurer Returns Support Box
-		"0,0,0,0,12368,2",			// Day 24: 2 Splendid Mirror
-		"0,0,0,0,14033,1",			// Day 25: Mimic Summoning 10 Box
-		"1000000",					// Day 26: 1mil Zeny
-		"0,0,0,0,31120,50",			// Day 27: 50 Condense Yggberry Potion 
-		"0,0,0,0,31124,1";			// Day 28: 3 Days Milenia Certificate
-
-	// Cutin Array
-	//	Shows a cuting for each date
-	//	
-	setarray .Cutins$[1],
-			"day01",
-			"day02",
-			"day03",
-			"day04",
-			"day05",
-			"day06",
-			"day07",
-			"day08",		
-			"day09",
-			"day10",
-			"day11",
-			"day12",
-			"day13",
-			"day14",
-			"day15",
-			"day16",
-			"day17",
-			"day18",
-			"day19",
-			"day20",
-			"day21",
-			"day22",
-			"day23",
-			"day24",
-			"day25",
-			"day26",
-			"day27",
-			"day28";
-end;
+milenia,112,163,5	script	Daily Login Rewards	953,{
+	doevent "daily_login_reward::OnTalk";
 }
+
+
+-	script	daily_login_reward	-1,{
+	function reward_list;
+	
+	function	reward_list	{
+		.@give_reward = getarg( 0,0 );
+		.@argcount = getargcount() - 2;
+		
+		mes "Today rewards:";
+		if ( .@argcount >= 1 ) {
+			for ( .@i = 1; .@i <= .@argcount; .@i += 2 ) {
+				.@item_id = getarg( .@i,0 );
+				.@amount = getarg( .@i+1,0 );
+				
+				mes .@amount +"x "+getitemname( .@item_id );
+				if ( .@give_reward )
+					getitem getarg( .@i ),getarg( .@i + 1 );
+			}
+			if ( .@give_reward )
+				#online_reward_dayofyear = .dayofyear;
+				
+				
+			.@give_reward = ( #online_reward_dayofyear != .dayofyear && .dayofyear > 0 && #online_minute >= .minute );
+				
+			if ( !.@give_reward && #online_minute && #online_minute < .minute ) {
+				mes " ";
+				mes "You still need to accumulate another total of "+( .minute - #online_minute )+" minute(s) before you can get the rewards.";
+			}
+		}
+		else {
+			mes "> none";
+		}
+		return;
+	}
+	
+	OnInit:
+		// duration to count as completed daily login.
+		.minute = 60;
+		// check interval
+		.interval_check_sec = 60;
+		// idle stop reward
+		.idle_sec = 300;
+		// cutin name format.
+		.cutin_name_format$ = "login_day_%02d";
+		.npc_name$ = strnpcinfo(0);
+		bindatcmd "dailies",.npc_name$+"::OnTalk";
+		
+	OnHour00:
+		.today = atoi( gettimestr( "%Y%m%d",10 ) );
+		.dayofyear = gettime(8);
+		.@is_reset = ( gettime(5) == 1 );
+		if ( .@is_reset ) {
+			query_sql( "UPDATE `ero_daily_rewards` SET `status` = 2 WHERE `status` = 1" );
+		}
+		callsub( L_restart, .@is_reset );
+		end;
+		
+	OnTalk:
+		query_sql( "SELECT COUNT(`aid`) FROM `ero_daily_rewards` WHERE `aid` = "+getcharid(3)+" AND `status` <> 2",.@size );
+		
+		if ( .cutin_name_format$ != "" )
+			cutin sprintf( .cutin_name_format$,.@size ),4;
+			
+		mes "[Daily Rewards]";
+		mes "Total Daily Login = "+.@size+" Day(s)";
+		mes " ";
+		next;
+		if ( select( "Claim Rewards","Cancel" ) == 1 ) {
+
+				.@give_reward = ( #online_reward_dayofyear != .dayofyear && .dayofyear > 0 && #online_minute >= .minute );
+				
+				mes "[Daily Rewards]";
+				switch( .@size ) {
+					case 0:
+						mes "You have to reach the minimum online playtime to complete the daily cycle.";
+						mes " ";
+					// case X: reward_list( <itemid>,<amount>,...,<item>,<amount> ); break;
+					case 1: reward_list( .@give_reward, 14170,5,12913,5 ); 	break;		// Blessing Box(10) 5x Increase Agi Box(10) 5x
+					case 2: reward_list( .@give_reward, 12016,25 ); 		break;		// Speed Potion 25x
+					case 3: reward_list( .@give_reward, 12900,1 ); 			break;		// Battle Manual Box 1x
+					case 4: reward_list( .@give_reward, 12211,10); 			break;		// Kafra Card 10x
+					case 5: reward_list( .@give_reward, 14232,10 ); 		break;		// Yggberrybox(10) 10x
+					case 6: reward_list( .@give_reward, 12350,10 ); 		break;		// Angeling Potion 10x
+					case 7: reward_list( .@give_reward, 13582,1 ); 			break;		// Convex Mirror 5 Box 1x
+					case 8: reward_list( .@give_reward, 31126,1 ); 			break;		// Cashpoints Voucher 10's 1x
+					case 9: reward_list( .@give_reward, 17229,1 ); 			break;		// Infinite Flywing Box (7 Days) 1x
+					case 10: reward_list( .@give_reward, 6457,1,6235,1); 	break;		// +5&6 Armor Refine Ticket 1x
+					case 11: reward_list( .@give_reward, 16268,1 ); 		break;		// HE Bubblezgum Box 10 1x
+					case 12: reward_list( .@give_reward, 12992,1 ); 		break;		// Adventurer Returns Support Box 1x
+					case 13: reward_list( .@give_reward, 616,5 ); 			break;		// Old Card Album 2x
+					case 14: reward_list( .@give_reward, 12214,5 ); 		break;		// Convex Mirror 5x
+					case 15: reward_list( .@give_reward, 7621,2 ); 			break;		// Token of Siegfried 2x
+					case 16: reward_list( .@give_reward, 12885,1 ); 		break;		// Infinite Awakening Potion 1x
+					case 17: reward_list( .@give_reward, 17228,1 ); 		break;		// Infinite Berserk Potion 1x
+					case 18: reward_list( .@give_reward, 12210,5 ); 		break;		// Bubble Gum 5x
+					case 19: reward_list( .@give_reward, 13582,2 ); 		break;		// Convex Mirror 5 Box 2x
+					case 20: reward_list( .@give_reward, 6456,1,6231,1 ); 	break;		// +5&6 Weapon Refine 1x
+					case 21: reward_list( .@give_reward, 7621,5 ); 			break;		// Token of Siegfried 5x
+					case 22: reward_list( .@give_reward, 12103,1 ); 		break;		// Bloody Branch 1x
+					case 23: reward_list( .@give_reward, 7539,10 ); 		break;		// Poring Coin 10x
+					case 24: reward_list( .@give_reward, 6228,1,6232,1 ); 	break;		// +9 Armor&Weapon Refine 1x
+					case 25: reward_list( .@give_reward, 7539,20 ); 		break;		// Poring Coin 20x
+					case 26: reward_list( .@give_reward, 12103,2 ); 		break;		// Bloody Branch 2x
+					case 27: reward_list( .@give_reward, 31120,50 ); 		break;		// 50 Condense Yggberry Potion 
+					case 28: reward_list( .@give_reward, 31124,1 ); 		break;		// 3 Days Milenia Certificate 
+					//case 29: reward_list( .@give_reward, 12314,1 ); 		break;		// Gympass Box(10) 1x
+					//case 30: reward_list( .@give_reward, 31120,50 ); 		break;		// 50 Condense Yggberry Potion 
+					//case 31: reward_list( .@give_reward, 31124,1 ); 		break;		// 3 Days Milenia Certificate
+						mes "No rewards available for this day.";
+						close;
+				}
+				
+				if ( .@size && #online_reward_dayofyear == .dayofyear ) {
+					next;
+					mes "[Daily Rewards]";
+					mes "You've claimed the rewards for "+.@size+" day(s), try again tomorrow.";
+				}
+		}
+		close;
+		
+	OnUpdate:
+		if ( checkidle() < .idle_sec ) {
+			#online_minute++;
+			
+			if ( #online_minute >= .minute && #online_reward_dayofyear != .today ) {
+				query_sql( "INSERT INTO `ero_daily_rewards` ( `aid`,`time` ) VALUES ( "+getcharid(3)+",NOW() )" );
+				dispbottom "You have completed daily login for today.";
+			}
+			else {
+				dispbottom "Daily Reward start counting # currently "+#online_minute+"/"+.minute+" minutes.";
+			}
+		}
+		
+	OnPCLoginEvent:
+		if ( #online_reward_dayofyear != .dayofyear && .dayofyear > 0 ) {
+			if ( #online_reward_dayofyear ) {
+				#online_reward_dayofyear = 0;
+				#online_minute = 0;
+			}
+			if ( #online_minute < .minute ) {
+				deltimer .npc_name$+"::OnUpdate";
+				addtimer ( .interval_check_sec * 1000 ),.npc_name$+"::OnUpdate";
+			}
+			
+			// if ( .cutin_name_format$ != "" ) {
+			// 	query_sql( "SELECT COUNT(`aid`) FROM `ero_daily_rewards` WHERE `aid` = "+getcharid(3)+" AND `status` <> 2",.@size );
+			// 	cutin sprintf( .cutin_name_format$,.@size ),4;
+			// }
+		}
+		end;
+		
+	L_restart:
+		.@value = getarg( 0,0 );
+		
+		query_sql( "SELECT `account_id` FROM `char` WHERE `online` = 1",.@aid );
+		.@aid_size = getarraysize( .@aid );
+		for ( .@i = 0; .@i < .@aid_size; .@i++ )
+			if ( attachrid( .@aid[.@i] ) ) {
+				#online_minute = 0;
+				doevent .npc_name$+"::OnPCLoginEvent";
+			}
+		end;
+}
+
+
+
+

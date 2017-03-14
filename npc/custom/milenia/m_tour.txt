@@ -9,7 +9,7 @@ Player_Menu:
 	mes "I can teleport you to any Milenia NPC.";
 	mes "Where do you want to go?";
 	next;
-	switch(select("Basic:Trading:Market Place:Mini Games:Quest:Special:Refiner:Zeny Farming")) {
+	switch(select("Basic:Trading:Market Place:Mini Games:Quest:Special:Refiner:Zeny Farming:Cedi MVP System")) {
 		case 1:
 			mes "[Milenia]";
 			mes "Please select which NPC you would like to be teleported to.";
@@ -221,6 +221,9 @@ Player_Menu:
 					break;
 			}
 			break;
+			case 9:
+				warp "milenia",209,113;
+				break;
 	}
 	end;
 }
@@ -236,3 +239,4 @@ milenia,169,100,11	duplicate(Milenia Tour)	Milenia Tour#refine	721
 milenia,43,147,11	duplicate(Milenia Tour)	Milenia Tour#mine	721
 milenia,69,68,5	duplicate(Milenia Tour)	Milenia Tour#novice	721
 milenia,130,82,11	duplicate(Milenia Tour)	Milenia Tour#fish	721
+milenia,218,118,11	duplicate(Milenia Tour)	Milenia Tour#cedi	721

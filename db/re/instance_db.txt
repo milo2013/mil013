@@ -29,3 +29,7 @@
 27,Charleston Crisis,14400,300,1@mcd,127,282
 50,MVP Ladder,3600,300,guild_vs2-2,49,49
 52,Endless Cellar,14400,300,1@new,50,355,2@new,3@new,4@new,5@new,6@new
+101,LV1 Elite MVP Ladder,3600,300,1@ldr,9,39
+102,LV2 Elite MVP Ladder,3600,300,2@ldr,39,72
+103,LV3 Elite MVP Ladder,3600,300,3@ldr,72,40
+104,LV4 Elite MVP Ladder,3600,300,4@ldr,39,7

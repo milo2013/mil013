@@ -2175,7 +2175,7 @@
 2990,Pendant_of_Harmony,Pendant of Harmony,4,20,,100,,0,,0,0xFFFFFFFF,63,2,136,,130,,,{ bonus bMatkRate,6; bonus bHPrecovRate,50; bonus bSPrecovRate,50; bonus2 bSubEle,Ele_Holy,5; bonus5 bAutoSpell,"AB_RENOVATIO",1,100,BF_NORMAL,0; bonus4 bAutoSpellWhenHit,"PR_SANCTUARY",3,100,0; bonus bStr,-5; },{},{}
 2991,Pendant_of_Chaos,Pendant of Chaos,4,20,,100,,0,,0,0xFFFFFFFF,63,2,136,,130,,,{ bonus bAtkRate,6; bonus2 bSubEle,Ele_Dark,5; bonus2 bResEff,Eff_Confusion,10000; bonus2 bAddEff,Eff_Confusion,500; bonus4 bAutoSpellWhenHit,"SC_CHAOSPANIC",1,100,1; bonus bInt,-5; },{},{}
 2992,Pendant_of_Maelstrom,Pendant of Maelstrom,4,20,,100,,0,,1,0xFFFFFFFF,63,2,136,,130,,,{ bonus bAtkRate,6; bonus bMatkRate,6; bonus bAllStats,1; bonus5 bAutoSpellWhenHit,"SC_MAELSTROM",1,100,BF_MAGIC,0; },{},{}
-2995,DEX_Complement,DEX Complement,4,20,,100,,0,,1,0x00000400,56,2,136,,100,0,0,{ bonus bUseSPrate,-10; bonus bDelayrate,-10; bonus bVariableCastrate,-10; bonus2 bSkillVariableCast,"NC_AXEBOOMERANG",-2000; if(getequipid(EQI_HAND_R) == 1368) { bonus bAtkRate,100; } },{},{}
+2995,DEX_Complement,DEX Complement,4,20,,100,,0,,1,0x00000400,56,2,136,,100,0,0,{ bonus bUseSPrate,-10; bonus bDelayrate,-10; bonus bVariableCastrate,-10; bonus2 bSkillCooldown,"NC_AXEBOOMERANG",-2000; bonus2 bSkillAtk,"NC_AXEBOOMERANG",100; },{},{}
 2996,Reinforced_Parts_Gun_Barrel,Reinforced Parts - Gun Barrel,4,10,,500,,,,1,0xFFFFFFFF,63,2,136,,100,,,{ bonus bAtkRate,4; bonus bHit,10; bonus2 bSkillAtk,"NC_BOOSTKNUCKLE",25; },{},{}
 2997,RWC_Gold_Brooch,RWC Gold Brooch,4,10,,200,,0,,1,0xFFFFFFFF,63,2,136,,0,0,,{ bonus bBaseAtk,25; bonus bMatk,20; },{},{}
 2998,Shining_Trapezohedron,Shining Trapezohedron,4,0,,100,,,,1,0xFFFFFFFF,63,2,136,1,90,1,,{ bonus2 bSubEle,Ele_Holy,10; },{},{}
@@ -7934,7 +7934,7 @@
 13970,Iron_10_Box,Iron Box,18,20,,10,,,,,0xFFFFFFFF,63,2,,,,,,{ getitem 998,10; },{},{}
 13971,Steel_10_Box,Steel Box,18,20,,10,,,,,0xFFFFFFFF,63,2,,,,,,{ getitem 999,10; },{},{}
 13972,Coal_10_Box,Coal Box,18,20,,10,,,,,0xFFFFFFFF,63,2,,,,,,{ getitem 1003,10; },{},{}
-13973,Poison_Bottle_30_Box,Poison Bottle Box,18,20,,10,,,,,0xFFFFFFFF,63,2,,,,,,{ getitem 678,30; },{},{}
+13973,Poison_Bottle_30_Box,Poison Bottle Box,18,20,,10,,,,,0xFFFFFFFF,63,2,,,,,,{ getitem 678,100; },{},{}
 13974,TW_Scroll01,Fisherman Scroll,2,20,,10,,,,,0xFFFFFFFF,63,2,,,,,,{},{},{}
 13975,Picture_Diary_Box,Diary Magic Powder Box,18,20,,10,,,,,0xFFFFFFFF,63,2,,,,,,{ rentitem 12304,604800; },{},{}
 13976,Mini_Heart_Box,Mini Heart Magic Powder Box,18,20,,10,,,,,0xFFFFFFFF,63,2,,,,,,{ rentitem 12305,604800; },{},{}

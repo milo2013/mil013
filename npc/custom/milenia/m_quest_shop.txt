@@ -34,6 +34,8 @@ prt_cas,99,292,5	script	Minister of Defence 	684,{ callfunc "qshop",13; }// call
 prt_cas,101,292,5	script	Minister of Supplies	643,{ callfunc "qshop",14; }// call shop 14
 prt_cas,94,254,5	script	Princess Eleanor	10184,{ callfunc "qshop",15; }// call shop 15
 milenia,65,64,5	script	Novice Figures	10066,{ callfunc "qshop",18,19; }// call shop 18,19
+milenia,65,59,5	script	RWC Exchanger	10120,{ callfunc "qshop",21; }// call shop 21
+milenia,82,59,11	script	Rare Costume	10126,{ callfunc "qshop",22; }// call shop 22
 
 // Script Core
 //============================================================
@@ -64,7 +66,7 @@ OnInit:
 //	setarray .Shops$[1],"<Shop 1>","<Shop 2>"{,...};
 // -----------------------------------------------------------
 
-	setarray .Shops$[1],"Headgears","Wings","Mora Equipments","Other","Cute Headgears","Cool Headgears","New Headgear","Doram Charms","Crimson Equipments","3rd Job Headgear","Weapons Alpha","Weapons Beta","Armor","Food Ration","Hero Equipments","Ladder Quest","Symphony Special","Figures","Premium Figures","Useable Quest";
+	setarray .Shops$[1],"Headgears","Wings","Mora Equipments","Other","Cute Headgears","Cool Headgears","New Headgear","Doram Charms","Crimson Equipments","3rd Job Headgear","Weapons Alpha","Weapons Beta","Armor","Food Ration","Hero Equipments","Ladder Quest","Symphony Special","Figures","Premium Figures","Useable Quest","RWC Exchanger","Rare Costume";
 
 // -----------------------------------------------------------
 //  Quest items -- do NOT use a reward item more than once!
@@ -460,6 +462,29 @@ OnInit:
 	Add(20,12660,1,0,0,707,25,710,25); // Mavka	
 	Add(20,12663,1,0,0,4001,50); // Poring	
 	Add(20,12659,1,0,0,1004,50); // Raydric	
+		
+	Add(21,31219,1,0,0,31206,15); // Chambered RWC 2012 Pendant	
+	Add(21,31220,1,0,0,31206,15); // Chambered RWC 2012 Ring
+	Add(21,31221,1,0,0,31206,15); // RWC 2012 Pendant	
+	Add(21,31222,1,0,0,31206,15); // RWC 2012 Ring	
+	Add(21,31223,1,0,0,31206,15); // RWC Silver Brooch
+	Add(21,31224,1,0,0,31206,15); // RWC Gold Brooch
+	Add(21,31225,1,0,0,31206,20); // RWC Commemorative Pin
+	Add(21,31226,1,0,0,31206,25); // RWC Commemorative Pin
+	Add(21,31227,1,0,0,31206,15); // RWC Commemorative Pin
+	
+	Add(22,20234,1,0,0,7539,50,7231,50,6516,1,6517,1,6518,1,6004,1,671,20,31228,20,31229,10,31230,5); 	// Bapho Costume
+	Add(22,18740,1,0,0,7539,50,7231,50,6516,1,6517,1,6518,1,6004,1,671,20,31228,20,31229,10,31230,5); 	// Hair Of Strong
+	Add(22,5914,1,0,0,7539,50,7231,50,6516,1,6517,1,6518,1,6004,1,671,20,31228,20,31229,10,31230,5); 	// Butterfly
+	Add(22,20132,1,0,0,7539,50,7231,50,6516,1,6517,1,6518,1,6004,1,671,20,31228,20,31229,10,31230,5); 	// Viscous Mind
+	Add(22,20201,1,0,0,7539,50,7231,50,6516,1,6517,1,6518,1,6004,1,671,20,31228,20,31229,10,31230,5); 	// Banshee
+	Add(22,19584,1,0,0,7539,50,7231,50,6516,1,6517,1,6518,1,6004,1,671,20,31228,20,31229,10,31230,5); 	// Dagger in Mouth
+	Add(22,20285,1,0,0,7539,50,7231,50,6516,1,6517,1,6518,1,6004,1,671,20,31228,20,31229,10,31230,5); 	// Blowing Scattered Sakura	
+	Add(22,20798,1,0,0,7539,50,7231,50,6516,1,6517,1,6518,1,6004,1,671,20,31228,20,31229,10,31230,5); 	// Grim Reaper Protection
+	Add(22,19566,1,0,0,7539,50,7231,50,6516,1,6517,1,6518,1,6004,1,671,20,31228,20,31229,10,31230,5); 	// Samurai Mask	
+	Add(22,20404,1,0,0,7539,50,7231,50,6516,1,6517,1,6518,1,6004,1,671,20,31228,20,31229,10,31230,5); 	// Blessing Of Angel	
+	Add(22,20459,1,0,0,7539,50,7231,50,6516,1,6517,1,6518,1,6004,1,671,20,31228,20,31229,10,31230,5); 	// Valhalla Idol	
+	
 	
 	
 // -----------------------------------------------------------
@@ -630,3 +655,5 @@ function	script	qshop	{
 -	shop	qshop18	-1,909:-1
 -	shop	qshop19	-1,909:-1
 -	shop	qshop20	-1,909:-1
+-	shop	qshop21	-1,909:-1
+-	shop	qshop22	-1,909:-1
