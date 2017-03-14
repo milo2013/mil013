@@ -1,0 +1,312 @@
+
+
+-	shop	nectar_shop	-1,909:100
+
+-	script	Tier_Reward	-1,{
+OnTalk:
+	.@party_id = getcharid(1);
+	.@map$ = strcharinfo(3);
+	.@label$ = @label$;
+	.@label$ = @label$;
+	
+	if( getcharid(0) != getpartyleader( .@party_id,2 ) ){
+		message strcharinfo(0),"You're not Party Leader.";
+		killmonster .@map$,"All";
+		monster .@map$,50,50,"--ja--",1324,1,.@label$;
+		end;
+	}else{
+		mes "Please ensure you distribute the Rewards. If you cancelled this, your party might not able to receive any rewards.";
+		next;
+		mes "Reward List :";
+		for( .@i = 0; .@i < @size; .@i++ )
+			mes "^777777 ~ "+getitemname( @reward[.@i] )+"^000000";
+		if( prompt( "Start Distribute Rewards","Warp Out" ) == 1 ){
+			getpartymember .@party_id;
+			getpartymember .@party_id,1;
+			getpartymember .@party_id,2;
+			.@party_size = $@partymembercount;
+			copyarray .@party_aid[0],$@partymemberaid[0],.@party_size;
+			copyarray .@party_name$[0],$@partymembername$[0],.@party_size;
+			for( .@i = 0; .@i < $@partymembercount; .@i++ ){
+				if( isloggedin( $@partymemberaid[.@i],$@partymembercid[.@i] ) )
+					.@party_name_menu$ = .@party_name_menu$ + $@partymembername$[.@i];
+				.@party_name_menu$ = .@party_name_menu$ +":";
+			}
+			for( .@i = 0; .@i < @size; .@i++ ){
+				next;
+				mes "^777777 ~ "+getitemname( @reward[.@i] )+"^000000";
+				if( prompt( "Distribute Randomly","Pick a Player" ) == 2 ){
+					.@name = select( .@party_name_menu$ ) - 1;
+					message .@party_name$[.@name],"Gained "+getitemname( @reward[.@i] )+" ( Distribute by Leader )";
+				}else{
+					.@name = rand( .@party_size );
+					message .@party_name$[.@name],"Gained "+getitemname( @reward[.@i] )+" ( Distribute Randomly )";
+				}
+				getitem @reward[.@i],1,.@party_aid[.@name];
+			}
+		}
+		mes "Please wait..warping out";
+		mapannounce .@map$,"All Rewards distributed. Warping out in 5 seconds.",0;
+		sleep2 5000;
+		mapwarp .@map$,"milenia",209,113;
+	}
+	end;
+	
+}
+
+milenia,203,110,4	script	Ancient Tapestry	510,{
+.@party_id = getcharid(1);
+
+if( !.@party_id ){
+	mes "You need a Party.";
+}else if( getpartyleader( .@party_id,2 ) != getcharid(0) ){
+	mes "You're not Party Leader.";
+}else{
+	@tier = select( "Tier D","Tier C","Tier B" ) - 1;
+	mes "Give me the Nectar .";
+	mes "1 x "+getitemname( .nectar[@tier] );
+	npcshopattach "nectar_shop",1;
+	callshop "nectar_shop",2;
+	end;
+}
+close;
+
+OnSellItem:
+	if( getmapusers( .map$ ) ){
+		mes "Someone is inside the "+.npc_name$+" now. Please try again later.";
+	}else if( @sold_nameid == .nectar[@tier] ){
+		mes "Trade Successfully.";
+		delitem @sold_nameid,1;
+		killmonster .map$,"All";
+		warpparty .map$,0,0,getcharid(1);
+		.tier = @tier;
+		monster .map$,0,0,"--ja--",getd( ".tier_"+.tier+"_mob[ "+rand( getd( ".tier_"+.tier+"_mob_size" ) )+" ]" ),1,.npc_name$+"::OnMVPKill";
+	}else{
+		mes "You have to give me 1 x "+getitemname( .nectar[@tier] );
+	}
+	close;
+	
+OnMVPKill:
+	mapannounce .map$,"Congratz you all have finished this Tier successfully. Party Leader gained the Bio Sample and Reward Treasure Chest spawned.",0;
+	getitem .bio_sample[.tier],1,getpartyleader( getcharid(1),1 );
+	killmonster .map$,"All";
+	monster .map$,117,111,"--ja--",1324,1,.npc_name$+"::OnBoxKill";
+	end;
+	
+OnBoxKill:
+	deletearray @reward;
+	@label$ = .npc_name$+"::OnBoxKill";
+	@size = getd( ".tier_reward_"+.tier+"_size" );
+	copyarray @reward[0],getd( ".tier_reward_"+.tier+"[0]" ),@size;
+	doevent "Tier_Reward::OnTalk";
+	end;
+	
+OnInit:
+// map used for mvp killing
+.map$ = "cedi_1";
+
+// required nectar for each tier
+setarray .nectar,
+	31207,	// item id for clear nectar
+	31208,	// item id for yellow nectar
+	31209,	// item id for red nectar
+	31210;	// item id for blue nectar
+
+// tier reward
+setarray .tier_reward_0,31228;
+setarray .tier_reward_1,31228;
+setarray .tier_reward_2,31228;
+
+// .tier monster
+setarray .tier_0_mob,3954,3955,3956,3957,3958,3959,3960,3961;
+setarray .tier_1_mob,3962,3963,3964,3965;
+setarray .tier_2_mob,3966,3967;
+
+// bio sample
+setarray .bio_sample,
+	31214,	// item id for bio sample
+	31215,	// item id for quality bio sample
+	31216;	// item id for pristine bio sample
+
+	
+.nectar_size = getarraysize( .nectar );
+.tier_reward_0_size = getarraysize( .tier_reward_0 );
+.tier_reward_1_size = getarraysize( .tier_reward_1 );
+.tier_reward_2_size = getarraysize( .tier_reward_2 );
+.tier_0_mob_size = getarraysize( .tier_0_mob );
+.tier_1_mob_size = getarraysize( .tier_1_mob );
+.tier_2_mob_size = getarraysize( .tier_2_mob );
+.npc_name$ = strnpcinfo(0);
+setmapflag .map$,mf_partylock;
+setmapflag .map$,mf_nomobloot;
+setmapflag .map$,mf_nomvploot;
+// setmapflag .map$,mf_nocommand;
+mapwarp .map$,"milenia",209,113;
+end;
+
+}
+
+
+
+
+milenia,209,110,4	script	Watery Lair	604,{
+.@party_id = getcharid(1);
+
+if( !.@party_id ){
+	mes "You need a Party.";
+}else if( getpartyleader( .@party_id,2 ) != getcharid(0) ){
+	mes "You're not Party Leader.";
+}else{
+	@tier = select( "Tier A" ) - 1;
+	mes "Give me the Nectar .";
+	mes "1 x "+getitemname( .nectar[@tier] );
+	npcshopattach "nectar_shop",1;
+	callshop "nectar_shop",2;
+	end;
+}
+close;
+
+OnSellItem:
+	if( getmapusers( .map$ ) ){
+		mes "Someone is inside the "+.npc_name$+" now. Please try again later.";
+	}else if( @sold_nameid == .nectar[@tier] ){
+		mes "Trade Successfully.";
+		delitem @sold_nameid,1;
+		killmonster .map$,"All";
+		warpparty .map$,0,0,getcharid(1);
+		.tier = @tier;
+		monster .map$,0,0,"--ja--",getd( ".tier_"+.tier+"_mob[ "+rand( getd( ".tier_"+.tier+"_mob_size" ) )+" ]" ),1,.npc_name$+"::OnMVPKill";
+	}else{
+		mes "You have to give me 1 x "+getitemname( .nectar[@tier] );
+	}
+	close;
+	
+OnMVPKill:
+	mapannounce .map$,"Congratz you all have finished this Tier successfully. Party Leader gained the Bio Sample and Reward Treasure Chest spawned.",0;
+	getitem .bio_sample[.tier],1,getpartyleader( getcharid(1),1 );
+	monster .map$,117,111,"--ja--",1324,1,.npc_name$+"::OnBoxKill";
+	end;
+	
+OnBoxKill:
+	deletearray @reward;
+	@label$ = .npc_name$+"::OnBoxKill";
+	@size = getd( ".tier_reward_"+.tier+"_size" );
+	copyarray @reward[0],getd( ".tier_reward_"+.tier+"[0]" ),@size;
+	doevent "Tier_Reward::OnTalk";
+	end;
+	
+OnInit:
+// map used for mvp killing
+.map$ = "cedi_2";
+
+// required nectar for each tier
+setarray .nectar,
+	31210;  // item id for blue nectar
+
+// tier reward
+setarray .tier_reward_0,31229;
+
+// .tier monster
+setarray .tier_0_mob,3968;
+
+// bio sample
+setarray .bio_sample,
+	31217;	// item id for consummate bio sample
+	
+.nectar_size = getarraysize( .nectar );
+.tier_reward_0_size = getarraysize( .tier_reward_0 );
+.tier_0_mob_size = getarraysize( .tier_0_mob );
+.npc_name$ = strnpcinfo(0);
+setmapflag .map$,mf_partylock;
+setmapflag .map$,mf_nomobloot;
+setmapflag .map$,mf_nomvploot;
+// setmapflag .map$,mf_nocommand;
+mapwarp .map$,"milenia",209,113;
+end;
+
+}
+
+
+
+milenia,216,110,4	script	Beacon	501,{
+.@party_id = getcharid(1);
+
+if( !.@party_id ){
+	mes "You need a Party.";
+}else if( getpartyleader( .@party_id,2 ) != getcharid(0) ){
+	mes "You're not Party Leader.";
+}else{
+	@tier = select( "Tier D-2","Tier C-2","Tier B-2" ) - 1;
+	mes "Give me the Ambrosia.";
+	mes "1 x "+getitemname( .ambrosia[@tier] );
+	npcshopattach "nectar_shop",1;
+	callshop "nectar_shop",2;
+	end;
+}
+close;
+
+OnSellItem:
+	if( getmapusers( .map$ ) ){
+		mes "Someone is inside the "+.npc_name$+" now. Please try again later.";
+	}else if( @sold_nameid == .ambrosia[@tier] ){
+		mes "Trade Successfully.";
+		delitem @sold_nameid,1;
+		killmonster .map$,"All";
+		warpparty .map$,0,0,getcharid(1);
+		.tier = @tier;
+		monster .map$,0,0,"--ja--",getd( ".tier_"+.tier+"_mob[ "+rand( getd( ".tier_"+.tier+"_mob_size" ) )+" ]" ),1,.npc_name$+"::OnMVPKill";
+	}else{
+		mes "You have to give me 1 x "+getitemname( .ambrosia[@tier] );
+	}
+	close;
+	
+OnMVPKill:
+	mapannounce .map$,"Congratz you all have finished this Tier successfully. Bonus Tier doesnt have Bio Sample reward but Reward Treasure Chest spawned.",0;
+	monster .map$,117,111,"--ja--",1324,1,.npc_name$+"::OnBoxKill";
+	end;
+	
+OnBoxKill:
+	deletearray @reward;
+	@label$ = .npc_name$+"::OnBoxKill";
+	@size = getd( ".tier_reward_"+.tier+"_size" );
+	copyarray @reward[0],getd( ".tier_reward_"+.tier+"[0]" ),@size;
+	doevent "Tier_Reward::OnTalk";
+	end;
+	
+OnInit:
+//map user for mvp killing
+.map$ = "cedi_3";
+
+// ambrosia item id
+setarray .ambrosia,
+	31211,	// item id for clear ambrosia
+	31212,	// item id for yellow ambrosia
+	31213;	// item id for red ambrosia
+	
+// tier reward
+setarray .tier_reward_0,31230;
+setarray .tier_reward_1,31230;
+setarray .tier_reward_2,31230;
+
+// .tier monster
+setarray .tier_0_mob,3969,3970,3971;
+setarray .tier_1_mob,3972,3973;
+setarray .tier_2_mob,3974;
+
+.nectar_size = getarraysize( .nectar );
+.tier_reward_0_size = getarraysize( .tier_reward_0 );
+.tier_reward_1_size = getarraysize( .tier_reward_1 );
+.tier_reward_2_size = getarraysize( .tier_reward_2 );
+.tier_0_mob_size = getarraysize( .tier_0_mob );
+.tier_1_mob_size = getarraysize( .tier_1_mob );
+.tier_2_mob_size = getarraysize( .tier_2_mob );
+.npc_name$ = strnpcinfo(0);
+setmapflag .map$,mf_partylock;
+setmapflag .map$,mf_nomobloot;
+setmapflag .map$,mf_nomvploot;
+// setmapflag .map$,mf_nocommand;
+mapwarp .map$,"milenia",209,113;
+end;
+
+}
+
