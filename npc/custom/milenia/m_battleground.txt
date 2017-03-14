@@ -320,12 +320,12 @@ bat_a01	mapflag	nobranch
 bat_a01	mapflag	noicewall
 //bat_a01	mapflag	hidemobhpbar
 
-//prt_cas	mapflag	nosave	SavePoint
-//prt_cas	mapflag	nowarp
-//prt_cas	mapflag	nowarpto
-//prt_cas	mapflag	noteleport
+prt_cas	mapflag	nosave	SavePoint
+prt_cas	mapflag	nowarp
+prt_cas	mapflag	nowarpto
+prt_cas	mapflag	noteleport
 prt_cas	mapflag	nomemo
-//prt_cas	mapflag	nopenalty
+prt_cas	mapflag	nopenalty
 prt_cas	mapflag	nobranch
 prt_cas	mapflag	noicewall
 

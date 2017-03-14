@@ -140,11 +140,11 @@
 7,31115,20 //Mora Coins Bag
 7,6417,3 //Silvervine Fruit
 7,31116,20 //Silvervine Fruit Bag
-7,13973,1 // Poison Bottle
+7,13973,10 // Poison Bottle 100
 7,31117,2 // Acid Demonstration Box 50
 7,31118,3 // Acid Demonstration Box 100
 7,14103,3 //Gympass Box 1
 7,17475,20 //Gympass Box 10
 
-8,501,1 // test
+//8,501,1 // test
 //end here //

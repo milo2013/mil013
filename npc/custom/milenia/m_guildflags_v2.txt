@@ -12,3 +12,21 @@ prtg_cas01	mapflag	noreturn
 prtg_cas01	mapflag	nosave	SavePoint
 prtg_cas01	mapflag	noteleport
 prtg_cas01	mapflag	nowarp
+
+cedi_1	mapflag	nomemo
+cedi_1	mapflag	noreturn
+cedi_1	mapflag	nosave	SavePoint
+cedi_1	mapflag	noteleport
+cedi_1	mapflag	nowarp
+
+cedi_2	mapflag	nomemo
+cedi_2	mapflag	noreturn
+cedi_2	mapflag	nosave	SavePoint
+cedi_2	mapflag	noteleport
+cedi_2	mapflag	nowarp
+
+cedi_2	mapflag	nomemo
+cedi_2	mapflag	noreturn
+cedi_2	mapflag	nosave	SavePoint
+cedi_2	mapflag	noteleport
+cedi_2	mapflag	nowarp

@@ -46,3 +46,5 @@
 
 
 milenia,113,156,6	duplicate(Healer FREE)	FREE Healer#ractemp2	478
+payon,177,106,6	duplicate(Healer FREE)	FREE Healer#ractemp2	478
+prontera,163,192,6	duplicate(Healer FREE)	FREE Healer#ractemp3	478
