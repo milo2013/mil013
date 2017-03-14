@@ -636,7 +636,7 @@
 6231,475,100	// Guarantee_Weapon_6Up
 6232,475,100	// Guarantee_Armor_9Up
 6233,475,100	// Guarantee_Armor_8Up
-6234,475,100	// Guarantee_Armor_7Up
+6234,479,100	// Guarantee_Armor_7Up
 6235,475,100	// Guarantee_Armor_6Up
 6236,499,100	// Blue_Card_7
 6237,507,100	// Guarana_Fruit
@@ -1283,6 +1283,7 @@
 12221,475,100	// Megaphone_
 12238,467,100	// New_Year_Rice_Cake_1
 12239,467,100	// New_Year_Rice_Cake_2
+12246,479,100	// Magic_Card_Album
 12258,499,100	// Bombring_Box
 12259,507,100	// Miracle_Medicine
 12261,507,100	// Secret_Medicine

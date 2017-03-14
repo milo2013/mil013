@@ -37,3 +37,4 @@
 31163,475,100	// Bravery_Medal
 31164,475,100	// Bravery_Medal_Box
 31202,219,100	// Figure_Rent_Permit
+31206,511,100	// RWC_Coupon

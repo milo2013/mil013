@@ -1172,7 +1172,7 @@
 12241	//M_Center_Potion
 12242	//M_Awakening_Potion
 12243	//M_Berserk_Potion
-12246	//Magic_Card_Album
+12246  // Magic_Card_Album
 12260	//Cool_Summer_Outfit
 12290	//Mysterious_Can
 12291	//Mysterious_PET_Bottle

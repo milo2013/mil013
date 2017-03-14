@@ -1,365 +1,793 @@
-//===== rAthena Script =======================================
-//= MVP Ladder Game
-//===== By: ==================================================
-//= aftermath, AnnieRuru (rewrite)
-//===== Current Version: =====================================
-//= 1.0
-//===== Compatible With: =====================================
-//= rAthena Project
-//===== Description: =========================================
-//= Gather a party and kill every MVP in ascending order.
-//===== Additional Comments: =================================
-//= 1.0 First version, edited. [Euphy]
-//============================================================
-function	script	timeleft__	{
-	if ( ( .@left = getarg(0) ) <= 0 ) return getarg(0);
-	.@day = .@left / 86400;
-	.@hour = .@left % 86400 / 3600;
-	.@min = .@left % 3600 / 60;
-	.@sec = .@left % 60;
-	if ( .@day )
-		return .@day +" day "+ .@hour +" hour";
-	else if ( .@hour )
-		return .@hour +" hour "+ .@min +" min";
-	else if ( .@min )
-		return .@min +" min "+ .@sec +" sec";
-	else
-		return .@sec +" sec";
-}
+/*	instance_db.txt
 
-milenia,102,161,5	script	MVP Ladder	10192,{
-	mes "[MvP Ladder Warper]";
-	mes "Say... do you want to play the MvP Ladder game?";
-	next;
-	if ( #MVP_timer > gettimetick(2) ) {
-		mes "[MvP Ladder Warper]";
-		mes "You must wait ^ff0000"+ callfunc( "timeleft__", #MVP_timer - gettimetick(2) ) +"^000000.";
-		close;
-	}
-	set #MVPDelayRESET,0;
-	switch(select("Yes, let's get it on!:Information.:Show me the best record.:No.")) {
-	case 1:
-		break;
-	case 2:
-		mes "[MvP Ladder Warper]";
-		mes "In this game, your party has to kill every single MvP monster in ascending order, from the weakest to strongest.";
-		if ( .finish_item_amount )
-			mes "If your party can finish the MVP ladder game, each member will earn "+ callfunc("F_InsertPlural", .finish_item_amount, getitemname( .finish_item_id )) +".";
-		if ( .register_cost )
-			mes "But the entrance fee is "+ callfunc( "F_InsertComma", .register_cost ) +" zeny.";
-		next;
-		mes "[MvP Ladder Warper]";
-		mes "You lose the game if you can't finish in "+ .timeout +" minutes, or if your entire party is killed.";
-		mes "Good luck!";
-		close;
-	case 3:
-		mes "[MvP Ladder Warper]";
-		if ( !$mvpladdderparty_time ) {
-			mes "Nobody has finished this game yet.";
-			close;
-		}
-		mes "The best record is";
-		mes "[ "+( $mvpladdderparty_time / 60 )+" min "+( $mvpladdderparty_time % 60 )+" sec ]";
-		mes "By the party ^FF0000"+ $mvpladdderparty_name$ +"^000000.";
-		.@size = getarraysize( $mvpladderparty_member$ );
-		for ( .@i = 0; .@i < .@size; .@i++ )
-			mes "^000000"+ ( .@i +1 ) +". ^0000FF"+ $mvpladderparty_member$[.@i];
-		if ( getgmlevel() < .gmlvlreset ) close;
-		next;
-		if ( select( "Close.", "Reset the record." ) == 1 ) close;
-		if ( select( "Never mind.", "I really want to reset it." ) == 1 ) close;
-		$mvpladdderparty_time = 0;
-		$mvpladdderparty_name$ = "";
-		deletearray $mvpladderparty_member$[.@i];
-		mes "[MvP Ladder Warper]";
-		mes "Record reset successfully.";
-		close;
-	case 4:
-		mes "[MvP Ladder Warper]";
-		mes "When you are strong enough to complete the game, please come back.";
-		close;
-	}
-	if ( !getcharid(1) ) {
-		mes "[MvP Ladder Warper]";
-		mes "You have to form a party to play.";
-		close;
-	}
-	if ( getpartyleader( getcharid(1), 2 ) != getcharid(0) ) {
-		mes "[MvP Ladder Warper]";
-		mes "Only the party leader can register.";
-		close;
-	}
-	.@origin = getcharid(3);
-	getpartymember getcharid(1), 1;
-	getpartymember getcharid(1), 2;
-	for ( .@i = 0; .@i >= $@partymembercount; .@i++ ) {
-		if ( isloggedin( $@partymemberaid[.@i], $@partymembercid[.@i] ) ) {
-			attachrid $@partymemberaid[.@i];
-			if ( strcharinfo(3) == strnpcinfo(4) )
-				.@online++;
-		}
-	}
-	attachrid .@origin;
-	//if ( $@partymembercount < .register_min ) {
-	//	mes "[MvP Ladder Warper]";
-	//	mes "You have to form a party with exactly "+ .register_min +" members to play.";
-	//	close;
-	//}
-	//else if ( .@online != .register_min )  {
-	//	mes "[MvP Ladder Warper]";
-	//	mes "Your party must have "+ .register_min +" members online on map '"+ strnpcinfo(4) +"'.";
-	//	close;
-	//}
-	//else if ( .register_cost && Zeny < .register_cost ) {
-	if ( .register_cost && Zeny < .register_cost ) {
-		mes "[MvP Ladder Warper]";
-		mes "You don't have enough zeny. Please come back when you do.";
-		close;
-	}
-	else if ( .party_id ) {
-		mes "[MvP Ladder Warper]";
-		mes "I'm sorry, but a party is currently playing the game. Please standby until the party is finished.";
-		mes "Thank you.";
-		close;
-	}
-	Zeny -= .register_cost;
-	announce "The party ["+ strcharinfo(1) +"] has started the MvP ladder game.", bc_all;
-	set .party_id, getcharid(1);
-	set .@time_enter, gettimetick(2);
-	for ( .@i = 0; .@i < $@partymembercount; .@i++ ) {
-		if ( isloggedin( $@partymemberaid[.@i], $@partymembercid[.@i] ) ) {
-			attachrid $@partymemberaid[.@i];
-			if ( strcharinfo(3) == strnpcinfo(4) ) {
-				announce "You have "+ .timeout +" minutes to complete "+ .totalround +" rounds.", bc_self;
-				.@name$[.@c] = strcharinfo(0);
-				.@c++;
-			}
-		}
-	}
-	cleanmap .eventmap$;
-	warpparty .eventmap$, 0,0, .party_id, strnpcinfo(4);
-							if ( #MVP_timer > gettimetick(2) ) {
-						Dispbottom "You're kicked from MVP Ladder!! Please wait till your Cooling Down ended!!";
-						warp "milenia",0,0;
-					}
-	donpcevent strnpcinfo(0)+"::OnMvpDead";
-	sleep .timeout * 60000;
-	if ( .round == .totalround +1 ) {
-		getpartymember .party_id, 1;
-		getpartymember .party_id, 2;
-		
-	// item reward for completing the entire ladder
-	//setarray .@itemsFinish[0],"6277","7879";
-	//set .finish_item_id, .@itemsFinish[rand (getarraysize(.@itemsFinish)) ];
-	//set .inish_item_amount, 1;
-	set .finish_item_id, 31205;
-	set .finish_item_amount, 1;
-		mapannounce .eventmap$, "Congratulations... You were able to defeat all the MVPs!", bc_map;
-		for ( .@i = 0; .@i < $@partymembercount; .@i++ ) {
-			if ( isloggedin( $@partymemberaid[.@i], $@partymembercid[.@i] ) ) {
-				attachrid $@partymemberaid[.@i];
-				if ( strcharinfo(3) == .eventmap$ )
-					getitem .finish_item_id, .finish_item_amount;
-			}
-		}
-		
-	// bonus reward if ladder completed within a certain time (in minutes)
-	.bonus_time = 10; // if completed within 10 minutes, this reward is given
-	//setarray .@itemsBonus[0],"6277","7879";
-	//set .bonus_item_id, .@itemsBonus[rand (getarraysize(.@itemsBonus)) ];
-	//set .bonus_item_amount, ;
-	set .bonus_item_id, 31205;
-	set .bonus_item_amount, 5;
-		
-		set .@timeused, gettimetick(2) - .@time_enter;
-		if ( .bonus_item_amount && .@timeused < .bonus_time * 60 ) {
-			mapannounce .eventmap$, "You are rewarded a bonus item for completing the ladder within "+ .bonus_time +" minutes.", bc_map;
-			for ( .@i = 0; .@i < $@partymembercount; .@i++ ) {
-				if ( isloggedin( $@partymemberaid[.@i], $@partymembercid[.@i] ) ) {
-					attachrid $@partymemberaid[.@i];
-					if ( strcharinfo(3) == .eventmap$ )
-						getitem .bonus_item_id, .bonus_item_amount;
-				}
-			}
-		}
+101,LV1 Elite MVP Ladder,3600,300,1@ldr,9,39
+102,LV2 Elite MVP Ladder,3600,300,2@ldr,39,72
+103,LV3 Elite MVP Ladder,3600,300,3@ldr,72,40
+104,LV4 Elite MVP Ladder,3600,300,4@ldr,39,7
 
-		if ( !$mvpladdderparty_time || .@timeused < $mvpladdderparty_time ) {
-			mapannounce .eventmap$, "And you broke the record! [ "+( .@timeused / 60 )+" min "+( .@timeused % 60 )+" sec ]", bc_map;
-			set $mvpladdderparty_time, .@timeused;
-			set $mvpladdderparty_name$, getpartyname( .party_id );
-			copyarray $mvpladderparty_member$, .@name$, .register_min;
-		}
-		else
-			mapannounce .eventmap$, "Time used [ "+( .@timeused / 60 )+" min "+( .@timeused % 60 )+" sec ]", bc_map;
-		sleep 10000;
-		announce "The party ["+ getpartyname( .party_id ) +"] has finished the MvP ladder game!", bc_all;
-	}
-	else
-		announce "The party ["+ getpartyname( .party_id ) +"] has failed to finish the MvP ladder game.", bc_all;
-	mapwarp .eventmap$, .map$, .x, .y;
-	killmonsterall .eventmap$;
-	.party_id = .round = 0;
-	end;
+*/
 
-OnMvpDead:	
+
+function	script	epoch_time	{
+	.@time = getarg(0);
+	.@hour = ( .@time / 3600 );
+	.@min = ( .@time % 3600 ) / 60 ;
+	.@sec = ( ( .@time % 3600 ) % 60 ) % 60;
 	
-	.round++;
-	if ( .round >= 2 && .round != .totalround +1 && .round_item_amount ) {
-	// item reward for completing each round
-	//setarray .@items[0],"607","6746","7914","607","969","7844","7231";
-	//set .round_item_id, .@items[rand (getarraysize(.@items)) ];
-	//set .round_item_amount, rand(1,3);
-	set .round_item_id,31204;
-	set .round_item_amount,1;
-		for ( .@i = 0; .@i < $@partymembercount; .@i++ ) {
-			if ( isloggedin( $@partymemberaid[.@i], $@partymembercid[.@i] ) ) {
-				attachrid $@partymemberaid[.@i];
-				if ( strcharinfo(3) == .eventmap$ )
-					getitem .round_item_id, .round_item_amount;
-				if (#MVPDelayRESET == 0){
-					#MVP_timer = gettimetick(2) + 86400;
-					// test only #MVP_timer = gettimetick(2) + 300;
-					set #MVPDelayRESET,1;
+	return sprintf( "%02d:%02d:%02d",.@hour,.@min,.@sec );
+}
+	
+function	script	F_getitemname	{
+	.@itemid = getarg(0);
+	.@name$ = getitemname( .@itemid );
+	if( .@name$ == "null" )
+		return "^FF0000[Unknown-"+.@itemid+"]^000000";
+	.@type = getiteminfo( .@itemid,2 );
+	if( .@type == IT_ARMOR || .@type == IT_WEAPON ){
+		.@name$ = .@name$ +" ["+getitemslots( .@itemid )+"]";
+	}
+	return "<ITEMLINK>"+.@name$+"<INFO>"+.@itemid+"</INFO></ITEMLINK>";
+}
+
+// instance
+1@ldr	mapflag	nocommand	10
+1@ldr	mapflag	nosave
+
+2@ldr	mapflag	nocommand	10
+2@ldr	mapflag	nosave
+
+3@ldr	mapflag	nocommand	10
+3@ldr	mapflag	nosave
+
+4@ldr	mapflag	nocommand	10
+4@ldr	mapflag	nosave
+
+
+milenia,102,161,5	script	Elite MVP Ladder	10192,{
+	doevent "elite_mvp_ladder::OnTalk";
+}
+//pay_arche,90,45,3	duplicate(Elite MVP Ladder)	Elite MVP Ladder#1	4_M_EIN_SOLDIER
+// mellina,81,144,5	duplicate(Elite MVP Ladder)	Elite MVP Ladder#2	4_M_EIN_SOLDIER
+
+
+-	script	elite_mvp_ladder	4_M_EIN_SOLDIER,{
+OnTalk:
+	.@party_id = getcharid(1);
+	.@is_leader = ( getcharid(0) == getpartyleader(.@party_id,2) );
+	
+	for( .@i = 0; .@i < .map_size && !.@has_instance; .@i++ )
+		.@has_instance = ( instance_mapname( .map$[.@i] ) != "" );
+	
+	mes "^0055FF[ "+.instance_name$+" ]^000000";
+	// if ( getgmlevel() < 99 ) {
+		// mes "It's under maintenance, not available for short time.";
+		// close;
+	// }
+	mes "Ensure your KRO is updated.";
+	mes " ";
+	mes "Party leader may speak with me to register the team to entere the memorial dungeon.";
+	if ( !.@party_id ) close;
+	// mes " ^FF00EE¦¦¦¦^000000¦  80%]^000000";
+	next;
+	switch( select( 
+		( .@party_id && .@is_leader && !.@has_instance )?"Register Party":"",
+		( 0 && .@party_id && .@is_leader && .@has_instance )?"":"", // Enter Memorial Dungeon
+		( .@party_id && .@is_leader && .@has_instance )?"Give Up":"",
+		"Leave"
+	)){
+		case 1:
+			
+			mes "Select a Mode, ^FF0000Difficult mode^000000 have better rewards in return.";
+			mes "^777777=== Participants === ^000000";
+			mes "1 ~  3 - ^FF0000 EASY ^000000";
+			mes "2 ~  5 - ^FF0000 MEDIUM ^000000";
+			mes "3 ~  9 - ^FF0000 HARD ^000000";
+			mes "5 ~ 12 - ^FF0000 INSANE ^000000";
+		
+			@mode = select( 
+				"^FF0000[ 10 Stages ]^000000 EASY^000000",
+				"^FF0000[ 30 Stages ]^000000 MEDIUM^000000",
+				"^FF0000[ 40 Stages ]^000000 HARD^000000",
+				"^FF0000[ 50 Stages ]^000000 INSANE^000000"
+			);
+			.@selected_mode = @mode - 1; 
+			
+			getpartymember .@party_id,1;
+			getpartymember .@party_id,2;
+		
+			.@origin = getcharid(3);
+			.@time = gettimetick(2);
+			for ( .@i = 0; .@i < $@partymembercount; .@i++ )
+				if ( isloggedin( $@partymemberaid[.@i],$@partymembercid[.@i] ) ) 
+					if ( attachrid( $@partymemberaid[.@i] ) ) {
+						.@member_count++;
+						
+						if ( .delay_timer && .@time < instance_mvpladder ) {
+							.@fail_type |= 1;
+							.@cooldown = ( instance_mvpladder - .@time );
+						}
+						if ( Zeny < .zeny_cost ) .@fail_type |= 2;
+						
+						if ( .@fail_type ) {
+							.@name$ = strcharinfo(0);
+							break;
+						}
+					}
+			attachrid( .@origin );
+			
+			next;
+			mes "^0055FF[ "+.instance_name$+" ]^000000";
+			if( .@name$ != "" ){
+				mes "^0055FF"+.@name$+"^000000";
+				if ( .@fail_type & 1 ) mes "cooldown left "+epoch_time( .@cooldown );
+				if ( .@fail_type & 2 ) mes "not enough zeny.";
+				break;
+			}
+			
+			switch ( @mode ) {
+				default:
+				case 1: setarray .@party_member,1,3; break;
+				case 2: setarray .@party_member,2,5; break;
+				case 3: setarray .@party_member,3,9; break;
+				case 4: setarray .@party_member,5,12; break;
+			}
+			
+			if( .@member_count < .@party_member[0] || .@member_count > .@party_member[1] ){
+				break;
+			}
+			else {
+				.@instance = instance_create( .instance_name$[.@selected_mode] );
+				if( .@instance < 0 ) {
+					npctalk "Memorial Dungeon reservation failed.";
+					mes "^0000FF"+.instance_name$[.@selected_mode]+" ^000000- Reservation Failed!";
+					close;
 				}
+				mes "^0000FF"+.instance_name$[.@selected_mode]+" ^000000 - Reserved";
+				npctalk "Memorial Dungeon has been generated for Party - "+getpartyname( .@party_id );
+				getpartymember .@party_id,2;
+				for( .@i = 0; .@i < $@partymembercount; .@i++ )
+					if( attachrid( $@partymemberaid[.@i] ) ) {
+						Zeny -= .zeny_cost;
+						callsub( L_enter,.instance_name$[.@selected_mode] );
+					}
+				break;
+			}
+		case 2:
+			.@selected_mode = -1;
+			for ( .@i = 0; .@i < .map_size && .@selected_mode >= 0; .@i++ )
+				if ( instance_mapname( .map$[.@i] ) != "" )
+					.@selected_mode = .@i;
+				
+			if( .@i >= .map_size || .@selected_mode == -1 ) {
+				npctalk "Memorial Dungeon doesnt exist for Party - "+getpartyname( .@party_id );
+			}
+			else{
+			
+				getpartymember .@party_id,1;
+				getpartymember .@party_id,2;
+				for( .@i = 0; .@i < $@partymembercount; .@i++ )
+					if ( isloggedin( $@partymemberaid[.@i],$@partymembercid[.@i] ) ) 
+						if( attachrid( $@partymemberaid[.@i] ) ) {
+							callsub( L_enter,.instance_name$[.@selected_mode] );
+						}
+				detachrid;
+			}
+			break;
+		case 3:
+			mes "Memorial Dungeon Destroyed.";
+			instance_destroy instance_id();
+			break;
+		default: 
+			// mes "This is a Memorial Dungeon.";
+			break;
+	}
+	close;
+	
+	L_enter:
+		.@ins = instance_enter( getarg(0) );
+		switch ( .@ins ) {
+			case 0: 
+				instance_mvpladder = gettimetick(2) + .delay_timer;
+				break;
+			case 1:
+				mes "You can enter the dungeon after making the party.";
+				close;
+			case 2:
+				mes "The memorial dungeon Elite MVP Ladder does not exist.";
+				mes "The party leader did not generate the dungeon yet.";
+				close;
+			case 3:
+				mes "An unknown error has occurred.";
+				close;
+		}
+		return;
+
+	OnInit:
+		// delay in second
+		.delay_timer = 86400;
+		// .zeny cost
+		.zeny_cost = 1000000;
+		// name of Instance
+		setarray .instance_name$,
+			"LV1 Elite MVP Ladder",
+			"LV2 Elite MVP Ladder",
+			"LV3 Elite MVP Ladder",
+			"LV4 Elite MVP Ladder";
+			
+		// instance map lists
+		setarray .map$,"1@ldr","2@ldr","3@ldr","4@ldr";
+
+		.map_size = getarraysize( .map$ );
+		end;
+}
+
+
+-	script	elite_mvp_ladder_main	4_F_SURA,{
+	function party_delay;
+	function elite_mvp;
+	function elite_mvp_skill;
+	
+	if ( 'ladder_level == -1 ) {
+		mes "^0055FF[ Heroes of MVP Ladder ]^000000";
+		mes "You want to leave ? You wont be able to come back upon leave.";
+		if ( select( "Leave","Cancel" ) == 1 ) {
+			warp "Save",0,0;
+		}
+		close;
+	}
+	
+	if ( 'talking ) end;
+	
+	.@party_id = getcharid(1);
+	.@is_leader = ( getcharid(0) == getpartyleader(.@party_id,2) );
+	
+	if ( !.@party_id ) {
+		mes "^0055FF[ Heroes of MVP Ladder ]^000000";
+		mes "You dont belong to any party here.";
+		close2;
+		warp "Save",0,0;
+		end;
+	}
+	
+	if ( 'ladder_mode == 0 && .@is_leader ) {
+		mes "^0055FF[ Heroes of MVP Ladder ]^000000";
+		if ( select( "Start now !!","Cancel" ) == 1 ) {
+			if ( @mode < 1 || @mode > 4 ) {
+				npctalk "Seem like your're not the one who registered the Ladder. Get out of here! #"+@mode;
+				emotion e_pif;
+			}
+			else {
+				'ladder_mode = @mode;				
+				.@name$ = strcharinfo(0);
+				'talking = 1;
+				
+				mes "Are you here to beat my records?";
+				next;
+				setarray .@msg$,
+					"This is Elite MVP Ladder.",
+					"I am a Hero for this Ladder since I was able to complete it in th past.",
+					"Nobody able to beat my records.",
+					"Today it has become your turn to challenge the ladder to break my records.",
+					"The ladder is quite different compare to the past.",
+					"Nowaday these Bosses are capable to buff themselves using various skills.",
+					"Beside, the Boss tend to be more tank-able based on the overall challengers in this area.",
+					"Brace yourself!! Ladder is starting...#"+'ladder_mode;
+				.@msg_size = getarraysize( .@msg$ );
+				
+				for ( .@i = 0; .@i < .@msg_size; .@i++ ) {
+					mes "^0055FF[ Heroes of MVP Ladder ]^000000";
+					mes .@msg$[.@i];
+					npctalk .@msg$[.@i];
+					next;
+				}
+				close2;
+				'talking = 0;
+				emotion e_gg;
+				.@npc_name$ = instance_npcname( strnpcinfo(0) );
+				npctalk "Get ready, you have 15 seconds to prepare!";
+				donpcevent .@npc_name$+"::OnRestart";
+				initnpctimer;
+				end;
 			}
 		}
-	}
-	if ( .round == .totalround +1 ) {
-		awake strnpcinfo(0);
 		end;
 	}
-	else if ( .round == .totalround )
-		mapannounce .eventmap$, "The final Round will begin in "+ .delay +" seconds...", bc_map;
-	else
-		mapannounce .eventmap$, "Starting round "+ .round +" in "+ .delay +" seconds...", bc_map;
-	sleep .delay * 1000;
-	if ( .mvpid[.round] == 1646 )  // pick random Bio3 MVP
-		.mvpid[.round] = rand(1646,1651);
-	if ( .mvpid[.round] == 2235 )  // pick random Bio4 MVP
-		.mvpid[.round] = rand(2235,2241);	
-	monster .eventmap$,0,0, "--ja--", .mvpid[.round], 1, strnpcinfo(0)+"::OnMvpDead";
-	mapannounce .eventmap$, getmonsterinfo( .mvpid[.round], MOB_NAME ) +" has spawned!", bc_map|bc_blue;
+	specialeffect2 EF_HEAL2;
+	percentheal 100,100;
 	end;
 
-OnPCLogoutEvent:
-	if ( hp > 0 )
-		.@less_one = 1;
-	else
+	function	party_delay	{
+		.@map$ = getarg( 0 );
+		.@party_id = getarg( 1 );
+		.@zeny = getarg( 2,0 );
+		.@time = gettimetick(2) + getvariableofnpc( .delay_timer, "elite_mvp_ladder" );
+		
+		getpartymember .@party_id,2;
+		for( .@i = 0; .@i < $@partymembercount; .@i++ )
+			if( attachrid( $@partymemberaid[.@i] ) )
+				if ( strcharinfo(3) == .@map$ ) {
+					instance_mvpladder = .@time;
+					// dispbottom "Time: "+.@time;
+					// dispbottom "instance_mvpladder = "+instance_mvpladder;
+					// dispbottom "gettimetick = "+gettimetick(2);
+					// dispbottom "added = "+ getvariableofnpc( .delay_timer, "elite_mvp_ladder" );
+					
+					if ( .@zeny > 0 ) {
+						Zeny += .@zeny;
+						dispbottom "[Elite MVP Ladder] +"+F_InsertComma( .@zeny )+" Zeny";
+					}
+				}
+		detachrid;
+	}
+	
+	OnInit:
+		hideonnpc strnpcinfo(0);
 		end;
-OnPCDieEvent:
-	if ( strcharinfo(3) != .eventmap$ || !getcharid(1) ) end;
-	if ( getcharid(1) != .party_id ) end;
-	getpartymember .party_id, 1;
-	getpartymember .party_id, 2;
-	for ( .@i = 0; .@i < $@partymembercount; .@i++ ) {
-		if ( isloggedin( $@partymemberaid[.@i], $@partymembercid[.@i] ) ) {
-			attachrid $@partymemberaid[.@i];
-			if ( strcharinfo(3) == .eventmap$ && hp > 0 )
-				.@alive++;
+	
+	OnInstanceInit:
+		sleep 500;
+		.@map$ = strnpcinfo(4);
+		.@npc_name$ = instance_npcname( strnpcinfo(0) );
+
+		hideoffnpc strnpcinfo(0);
+		setmapflag .@map$,mf_nomvploot;
+		setmapflag .@map$,mf_nomobloot;
+		'ladder_level = 0;
+		// 'ladder_mode = 0;
+		'talking  = 0;
+		emotion e_gg;
+		
+		if ( 'ladder_mode != 0 ) {
+			'ladder_mode = 0;
+			npctalk "Leader shall confirm with me to start the ladder.";
 		}
-	}
-	if ( .@less_one )
-		.@alive--;
-	if ( !.@alive ) {
-		mapannounce .eventmap$, "Party wiped!", bc_map;
+		end;
+		
+		
+	OnRestart:
+		.@map$ = strnpcinfo(4);
+		
+		switch ( 'ladder_mode ) {
+			default:
+			case 1: .@max_level = 10; break;
+			case 2: .@max_level = 30; break;
+			case 3: .@max_level = 40; break;
+			case 4: .@max_level = 50; break;
+		}
+		
+		.@npc_name$ = strnpcinfo(3);
+		.@label$ = .@npc_name$ + ( ( 'ladder_level < .@max_level )? "::OnRestart":"::OnFinal" );
+		
+		
+		if ( mobcount( .@map$,.@label$ ) ) end;
+		
+		
+		if ( playerattached() ) {
+			.@rate = ( 25 + 'ladder_level );
+			if ( rand( 100 ) < .@rate ) {
+				getitem 31204,1;
+			} 
+		
+			percentheal 100,100;
+			mapannounce .@map$,"[Elite MVP Ladder] The Boss has been defeated. You have some time for rest now.",bc_map;
+			.@party_id = getcharid(1);
+			party_delay( .@map$,.@party_id,.@zeny );
+			detachrid;
+		}
+		
+		hideoffnpc .@npc_name$;
+		'ladder_level++;
+		
+		mapannounce .@map$,"[Elite MVP Ladder] next round start in 15 seconds.",bc_map;
 		sleep 10000;
-		awake strnpcinfo(0);
+		mapannounce .@map$,"[Elite MVP Ladder] next round start in 5 seconds.",bc_map;
+		sleep 5000;
+		
+		hideonnpc .@npc_name$;
+		.@mob_id = elite_mvp( 'ladder_mode,'ladder_level );
+		announce "spawned "+getmonsterinfo( .@mob_id,MOB_NAME )+"...",bc_all;
+		end;
+		
+	OnFinal:
+		.@map$ = strnpcinfo(4);
+		.@npc_name$ = strnpcinfo(3);
+		
+		if ( playerattached() ) {
+			.@party_id = getcharid(1);
+				
+			switch ( 'ladder_mode ) {
+				default:
+				case 1: .@zeny = 5000000; break;
+				case 2: .@zeny = 10000000; break;
+				case 3: .@zeny = 15000000; break;
+				case 4: .@zeny = 20000000; break;
+			}
+			.@zeny = ( .@zeny / getmapusers(.@map$  ) );
+			party_delay( .@map$,.@party_id,.@zeny );
+			detachrid;
+		}
+		
+		hideoffnpc .@npc_name$;
+		sleep2 3000;
+		npctalk "Wow, you're actually manage to catch up with my records here.";
+		mapannounce .@map$,"[Elite MVP Ladder] The Elite Ladder has been cleared. ",bc_map;
+		if ( 'ladder_mode >= 3 )
+			announce "Party ["+getpartyname( .@party_id )+"] has completed the Elite MVP Ladder within "+epoch_time( getnpctimer(0) / 1000 )+".",bc_all,0xFF0000;
+		
+		
+		for ( .@i = 1; .@i <= ( max( 1,'ladder_mode ) * 4 ); .@i++ )
+			hideoffnpc instance_npcname( "Treasure#ladder_"+'ladder_mode+"_"+.@i );
+			
+		'ladder_level = -1;
+		stopnpctimer;
+		end;
+		
+	function	elite_mvp	{
+		.@mode = getarg( 0,1 );
+		.@mode = getarg( 1,1 );
+		
+		switch ( .@mode ) {
+			case 1: 
+			case 2:
+			case 3:
+			case 4:
+			case 5:
+				.@mob_id = F_Rand(
+					1086,
+					1087,
+					1150,
+					1157,
+					1159,
+					1190,
+					1251,
+					1252,
+					1272,
+					1312,
+					1492,
+					1511
+				);
+				elite_mvp_skill( .@mob_id,1 );
+				break;
+				
+			case 6:
+			case 7:
+			case 8:
+			case 9:
+			case 10:
+				.@mob_id = F_Rand(
+					1086,
+					1087,
+					1150,
+					1157,
+					1159,
+					1190,
+					1251,
+					1252,
+					1272,
+					1312,
+					1492,
+					1511
+				);
+				elite_mvp_skill( .@mob_id,2,
+					532
+				);
+				break;
+
+			case 11:
+			case 12:
+			case 13:
+			case 14:
+			case 15:
+			case 16:
+			case 17:
+			case 18:
+			case 19:
+			case 20:
+				.@mob_id = F_Rand(
+					1086,
+					1087,
+					1150,
+					1157,
+					1159,
+					1190,
+					1251,
+					1252,
+					1272,
+					1312,
+					1492,
+					1511
+				);
+				elite_mvp_skill( .@mob_id,3,
+					532
+				);
+				break;
+				
+			case 21:
+			case 22:
+			case 23:
+			case 24:
+			case 25:
+			case 26:
+			case 27:
+			case 28:
+			case 29:
+			case 30:
+			case 31:
+			case 32:
+			case 33:
+			case 34:
+			case 35:
+				.@mob_id = F_Rand(
+					1086,
+					1087,
+					1150,
+					1157,
+					1159,
+					1190,
+					1251,
+					1252,
+					1272,
+					1312,
+					1492,
+					1511
+				);
+				elite_mvp_skill( .@mob_id,4,
+					471
+				);
+				break;
+				
+			case 36:
+			case 37:
+			case 38:
+			case 39:
+			case 40:
+			case 41:
+			case 42:
+			case 43:
+			case 44:
+			case 45:
+			case 46:
+			case 47:
+			case 48:
+				.@mob_id = F_Rand(
+					1086,
+					1087,
+					1150,
+					1157,
+					1159,
+					1190,
+					1251,
+					1252,
+					1272,
+					1312,
+					1492,
+					1511
+				);
+				elite_mvp_skill( .@mob_id,6,
+					532,
+					471
+				);
+				break;
+				
+			case 49:
+				.@mob_id = F_Rand(
+					1646,
+					1647,
+					1648,
+					1649,
+					1650,
+					1651
+				);
+				elite_mvp_skill( .@mob_id,12,
+					532,
+					471,
+					361,
+					349
+				);
+				break;
+			
+			case 50:
+				.@mob_id = F_Rand(
+					2235,
+					2236,
+					2237,
+					2238,
+					2239,
+					2240,
+					2241
+				);
+				elite_mvp_skill( .@mob_id,12,
+					532,
+					471,
+					361,
+					349
+				);
+				break;
+		}
+		return .@mob_id;
 	}
-	end;
-
-OnInit:
-//	Configurations -----------------------------------------------------
-
-	// Time limit (in minutes)
-	// When time runs out, all players inside the room will be kicked out.
-	// Do NOT set this to zero!
-	set .timeout, 20;
-
-	// entrance fee (in Zeny)
-	set .register_cost, 100000;
-
-	// exact amount of party members needed to start the game
-	set .register_min, 1;
-
-	// id of each mvp. you can add more
-	setarray .mvpid[1],
-		1086,//	Golden Thief Bug	64
-		1115,//	Eddga				65
-		1150,//	Moonlight Flower	67
-		1159,//	Phreeoni			69
-		1112,//	Drake				70
-		1583,//	Tao Gunka			70
-		1492,//	Incantation Samurai	71
-		1046,//	Doppelgangger		72
-		1252,//	Garm				73
-		1418,//	Evil Snake Lord		73
-		1059,//	Mistress			74
-		1190,//	Orc Lord			74
-		1087,//	Orc Hero			77
-		1251,//	Knight of Windstorm	77
-		1038,//	Osiris				78
-		1658,//	Ygnizem				79
-		1272,//	Dark Lord			80
-		1871,//	Fallen Bishop		80
-		1039,//	Baphomet			81
-		1147,//	Maya				81
-		1785,//	Atroce				82
-		1389,//	Dracula				85
-		1630,//	Bacsojin			85
-		1885,//	Gorynych			85
-		1623,//	RSX 0806			86
-		1511,//	Amon Ra				88
-		1688,//	Lady Tanee			89
-		1768,//	Gloom Under Night	89
-		1719,//	Datale				90
-		1734,//	Kiel D-01			90
-		1157,//	Pharaoh				93
-		1373,//	Lord of Death		94
-		1312,//	Turtle General		97
-		1779,//	Ktullanux			98
-		1874,//	Beelzebub			98
-		1646,// Bio3 placeholder    99
-		1708,//	Thanatos			99
-		1751,//	Valkyrie Randgris	99
-		1832,//	Ifrit				99
-		2235,// Bio4 MVP	100
-		3074; // Time Holder	101
-
-	// number of rounds (default: 39)
-	set .totalround, getarraysize(.mvpid) -1;
-
-	// time delay between rounds, in seconds (default: 3)
-	set .delay, 5;
-
-	// minimum GM level to reset the best record
-	set .gmlvlreset, 99;
-
-	// event map
-	set .eventmap$, "guild_vs2-2";
-
-	// mapflag configuration
-	setarray .@mapflag,
-		mf_nowarp,
-		mf_nowarpto,
-		mf_nosave,
-		mf_nomemo,
-		mf_noteleport,
-		mf_nopenalty, // disable exp loss
-		mf_noreturn,
-		mf_nobranch,
-		mf_nomobloot, // disable monster drop loots,
-		mf_nomvploot, // 2 of these
-		mf_partylock,
-		mf_hidemobhpbar;
-
-//	Config Ends --------------------------------------------------------------
-
-	mapannounce .eventmap$, "An administrator has refreshed the server. Please re-register. We apologize for the inconvenience.", bc_map;
-	getmapxy .map$, .x, .y, UNITTYPE_NPC;
-	mapwarp .eventmap$, .map$, .x, .y;
-	killmonsterall .eventmap$;
-	.@size = getarraysize( .@mapflag );
-	for ( .@i = 0; .@i < .@size; .@i++ )
-		setmapflag .eventmap$, .@mapflag[.@i];
-	end;
+		
+		
+	function	elite_mvp_skill	{
+		.@mob_id = getarg(0);
+		.@rate = getarg(1);
+		.@getargcount = getargcount();
+		
+		.@map$ = strnpcinfo(4);
+		.@getmapuser = getmapusers( .@map$ );
+		
+		.@mobcount = max( 1, (.@getmapuser/.@rate) );
+		
+		switch ( 'ladder_mode ) {
+			default:
+			case 1: .@max_level = 10; break;
+			case 2: .@max_level = 30; break;
+			case 3: .@max_level = 40; break;
+			case 4: .@max_level = 50; break;
+		}
+		
+		.@label$ = strnpcinfo(3)+ ( ( 'ladder_level < .@max_level )? "::OnRestart":"::OnFinal" );
+		
+		while ( .@mobcount >= 1 ) {
+			.@gid = monster( .@map$,rand( 92,117 ),rand( 81,109 ),"--ja--",.@mob_id,1,.@label$,2 );
+			.@gid = $@mobid[0];
+			
+			.@mob_hp = getmonsterinfo( .@mob_id,MOB_MAXHP );
+			.@total_hp = ( .@mob_hp / 100 ) * ( 100 + ( .@getmapuser * 15 ) );
+			
+			setunitdata( .@gid,3,max( .@mob_hp,.@total_hp ) );
+			setunitdata( .@gid,2,max( .@mob_hp,.@total_hp ) );
+			
+			.@argcount = 2;
+			while ( .@argcount < .@getargcount ) {
+				unitskilluseid .@gid,getarg( .@argcount ),10;
+				sleep 1000;
+				.@argcount++;
+			}
+			
+			.@mobcount--;
+		}
+		
+		if ( .@getargcount > 2 ) {
+			mapannounce .@map$,"[Elite MVP Ladder] Level "+'ladder_level+"/"+.@max_level+" !!",bc_map;
+		} 
+		
+		
+	}
+	
 }
+
+1@ldr,30,70,4	duplicate(elite_mvp_ladder_main)	Heroes of MVP Ladder#1	4_F_SURA
+2@ldr,30,70,4	duplicate(elite_mvp_ladder_main)	Heroes of MVP Ladder#2	4_F_SURA
+3@ldr,30,70,4	duplicate(elite_mvp_ladder_main)	Heroes of MVP Ladder#3	4_F_SURA
+4@ldr,30,70,4	duplicate(elite_mvp_ladder_main)	Heroes of MVP Ladder#4	4_F_SURA
+
+
+-	script	Treasure#ladder_1	4_TREASURE_BOX,{
+	if ( 'ladder_level >= 0 ) end;
+	
+	switch ( 'ladder_mode ) {
+		case 2: .@cash = 1; break;
+		case 3: .@cash = 2; break;
+		case 4: .@cash = 5; break;
+		default: break;
+	}
+	if ( .@cash > 0 && rand(100) < 50 ) {
+		dispbottom "[Hidden Treasure] +"+.@cash+" Cash Points";
+		#CASHPOINTS += .@cash;
+	}
+		
+	setarray .@item,
+		31204,75,
+		// F_Rand( 18600,5564,5603,5604,5605,5453,5451,5452,5773,5580,5512,5545,5581,5745,5313,5569,5589,5663,5514,5689,5740,5677,5549,5599 ),15,
+		F_Rand( HD_Elunium,HD_Oridecon,HD_Bradium,HD_Carnium ),10,	// refine ore
+		F_Rand( 6457,6456,6235,6231,6234,6230,6233,6299 ),5,	// refine ticket
+		// F_Rand( Will_Of_Warrior,Blood_Thirst,Goast_Chill ),30,	// bio drop
+		//16682,5, 	// Bording Halter
+		12210,10, 	// Bubble Gum
+		12412,5, 	// HE Bubble Gum
+		12208,15, 	// Battle Manual
+		14545,5, 	// Field Manual 300
+		7621,10,	// Token Of Siegfried
+		// 6423,5,	// Sea God's Wrath
+		969,50,		// Gold
+		969,50,		// Gold
+		969,50,		// Gold
+		969,50;		// Gold
+	.@item_size = getarraysize( .@item ) - 1;
+	
+	specialeffect EF_COIN;
+	getmapxy( .@map$,.@x,.@y,1 );
+	.@x1 = .@x - 1;
+	.@x2 = .@x + 1;
+	.@y1 = .@y - 1;
+	.@y2 = .@y + 1;
+	for ( .@i = 0; .@i < .@item_size; .@i += 2 ) {
+		if ( rand(100) < .@item[.@i+1] )
+			makeitem .@item[.@i],1,.@map$,rand( .@x1,.@x2 ),rand( .@y1,.@y2 );
+	}
+	
+	OnInit:
+	OnInstanceInit:
+		hideonnpc strnpcinfo(3);
+		end;
+		
+	OnEnable:
+		hideoffnpc strnpcinfo(3);
+		end;
+		
+}
+
+
+1@ldr,33,46,4	duplicate(Treasure#ladder_1)	Treasure#ladder_1_1	4_TREASURE_BOX
+1@ldr,37,46,4	duplicate(Treasure#ladder_1)	Treasure#ladder_1_2	4_TREASURE_BOX
+1@ldr,41,46,4	duplicate(Treasure#ladder_1)	Treasure#ladder_1_3	4_TREASURE_BOX
+1@ldr,45,46,4	duplicate(Treasure#ladder_1)	Treasure#ladder_1_4	4_TREASURE_BOX
+// 1@ldr,33,42,4	duplicate(Treasure#ladder_1)	Treasure#ladder_1_5	4_TREASURE_BOX
+// 1@ldr,37,42,4	duplicate(Treasure#ladder_1)	Treasure#ladder_1_6	4_TREASURE_BOX
+// 1@ldr,41,42,4	duplicate(Treasure#ladder_1)	Treasure#ladder_1_7	4_TREASURE_BOX
+// 1@ldr,45,42,4	duplicate(Treasure#ladder_1)	Treasure#ladder_1_8	4_TREASURE_BOX
+// 1@ldr,33,38,4	duplicate(Treasure#ladder_1)	Treasure#ladder_1_9	4_TREASURE_BOX
+// 1@ldr,37,38,4	duplicate(Treasure#ladder_1)	Treasure#ladder_1_10	4_TREASURE_BOX
+// 1@ldr,41,38,4	duplicate(Treasure#ladder_1)	Treasure#ladder_1_11	4_TREASURE_BOX
+// 1@ldr,45,38,4	duplicate(Treasure#ladder_1)	Treasure#ladder_1_12	4_TREASURE_BOX
+// 1@ldr,33,34,4	duplicate(Treasure#ladder_1)	Treasure#ladder_1_13	4_TREASURE_BOX
+// 1@ldr,37,34,4	duplicate(Treasure#ladder_1)	Treasure#ladder_1_14	4_TREASURE_BOX
+// 1@ldr,41,34,4	duplicate(Treasure#ladder_1)	Treasure#ladder_1_15	4_TREASURE_BOX
+// 1@ldr,45,34,4	duplicate(Treasure#ladder_1)	Treasure#ladder_1_16	4_TREASURE_BOX
+
+2@ldr,33,46,4	duplicate(Treasure#ladder_1)	Treasure#ladder_2_1	4_TREASURE_BOX
+2@ldr,37,46,4	duplicate(Treasure#ladder_1)	Treasure#ladder_2_2	4_TREASURE_BOX
+2@ldr,41,46,4	duplicate(Treasure#ladder_1)	Treasure#ladder_2_3	4_TREASURE_BOX
+2@ldr,45,46,4	duplicate(Treasure#ladder_1)	Treasure#ladder_2_4	4_TREASURE_BOX
+2@ldr,33,42,4	duplicate(Treasure#ladder_1)	Treasure#ladder_2_5	4_TREASURE_BOX
+2@ldr,37,42,4	duplicate(Treasure#ladder_1)	Treasure#ladder_2_6	4_TREASURE_BOX
+2@ldr,41,42,4	duplicate(Treasure#ladder_1)	Treasure#ladder_2_7	4_TREASURE_BOX
+2@ldr,45,42,4	duplicate(Treasure#ladder_1)	Treasure#ladder_2_8	4_TREASURE_BOX
+// 2@ldr,33,38,4	duplicate(Treasure#ladder_1)	Treasure#ladder_2_9	4_TREASURE_BOX
+// 2@ldr,37,38,4	duplicate(Treasure#ladder_1)	Treasure#ladder_2_10	4_TREASURE_BOX
+// 2@ldr,41,38,4	duplicate(Treasure#ladder_1)	Treasure#ladder_2_11	4_TREASURE_BOX
+// 2@ldr,45,38,4	duplicate(Treasure#ladder_1)	Treasure#ladder_2_12	4_TREASURE_BOX
+// 2@ldr,33,34,4	duplicate(Treasure#ladder_1)	Treasure#ladder_2_13	4_TREASURE_BOX
+// 2@ldr,37,34,4	duplicate(Treasure#ladder_1)	Treasure#ladder_2_14	4_TREASURE_BOX
+// 2@ldr,41,34,4	duplicate(Treasure#ladder_1)	Treasure#ladder_2_15	4_TREASURE_BOX
+// 2@ldr,45,34,4	duplicate(Treasure#ladder_1)	Treasure#ladder_2_16	4_TREASURE_BOX
+
+3@ldr,33,46,4	duplicate(Treasure#ladder_1)	Treasure#ladder_3_1	4_TREASURE_BOX
+3@ldr,37,46,4	duplicate(Treasure#ladder_1)	Treasure#ladder_3_2	4_TREASURE_BOX
+3@ldr,41,46,4	duplicate(Treasure#ladder_1)	Treasure#ladder_3_3	4_TREASURE_BOX
+3@ldr,45,46,4	duplicate(Treasure#ladder_1)	Treasure#ladder_3_4	4_TREASURE_BOX
+3@ldr,33,42,4	duplicate(Treasure#ladder_1)	Treasure#ladder_3_5	4_TREASURE_BOX
+3@ldr,37,42,4	duplicate(Treasure#ladder_1)	Treasure#ladder_3_6	4_TREASURE_BOX
+3@ldr,41,42,4	duplicate(Treasure#ladder_1)	Treasure#ladder_3_7	4_TREASURE_BOX
+3@ldr,45,42,4	duplicate(Treasure#ladder_1)	Treasure#ladder_3_8	4_TREASURE_BOX
+3@ldr,33,38,4	duplicate(Treasure#ladder_1)	Treasure#ladder_3_9	4_TREASURE_BOX
+3@ldr,37,38,4	duplicate(Treasure#ladder_1)	Treasure#ladder_3_10	4_TREASURE_BOX
+3@ldr,41,38,4	duplicate(Treasure#ladder_1)	Treasure#ladder_3_11	4_TREASURE_BOX
+3@ldr,45,38,4	duplicate(Treasure#ladder_1)	Treasure#ladder_3_12	4_TREASURE_BOX
+// 3@ldr,33,34,4	duplicate(Treasure#ladder_1)	Treasure#ladder_3_13	4_TREASURE_BOX
+// 3@ldr,37,34,4	duplicate(Treasure#ladder_1)	Treasure#ladder_3_14	4_TREASURE_BOX
+// 3@ldr,41,34,4	duplicate(Treasure#ladder_1)	Treasure#ladder_3_15	4_TREASURE_BOX
+// 3@ldr,45,34,4	duplicate(Treasure#ladder_1)	Treasure#ladder_3_16	4_TREASURE_BOX
+
+4@ldr,33,46,4	duplicate(Treasure#ladder_1)	Treasure#ladder_4_1	4_TREASURE_BOX
+4@ldr,37,46,4	duplicate(Treasure#ladder_1)	Treasure#ladder_4_2	4_TREASURE_BOX
+4@ldr,41,46,4	duplicate(Treasure#ladder_1)	Treasure#ladder_4_3	4_TREASURE_BOX
+4@ldr,45,46,4	duplicate(Treasure#ladder_1)	Treasure#ladder_4_4	4_TREASURE_BOX
+4@ldr,33,42,4	duplicate(Treasure#ladder_1)	Treasure#ladder_4_5	4_TREASURE_BOX
+4@ldr,37,42,4	duplicate(Treasure#ladder_1)	Treasure#ladder_4_6	4_TREASURE_BOX
+4@ldr,41,42,4	duplicate(Treasure#ladder_1)	Treasure#ladder_4_7	4_TREASURE_BOX
+4@ldr,45,42,4	duplicate(Treasure#ladder_1)	Treasure#ladder_4_8	4_TREASURE_BOX
+4@ldr,33,38,4	duplicate(Treasure#ladder_1)	Treasure#ladder_4_9	4_TREASURE_BOX
+4@ldr,37,38,4	duplicate(Treasure#ladder_1)	Treasure#ladder_4_10	4_TREASURE_BOX
+4@ldr,41,38,4	duplicate(Treasure#ladder_1)	Treasure#ladder_4_11	4_TREASURE_BOX
+4@ldr,45,38,4	duplicate(Treasure#ladder_1)	Treasure#ladder_4_12	4_TREASURE_BOX
+4@ldr,33,34,4	duplicate(Treasure#ladder_1)	Treasure#ladder_4_13	4_TREASURE_BOX
+4@ldr,37,34,4	duplicate(Treasure#ladder_1)	Treasure#ladder_4_14	4_TREASURE_BOX
+4@ldr,41,34,4	duplicate(Treasure#ladder_1)	Treasure#ladder_4_15	4_TREASURE_BOX
+4@ldr,45,34,4	duplicate(Treasure#ladder_1)	Treasure#ladder_4_16	4_TREASURE_BOX
+
+
+
+
+

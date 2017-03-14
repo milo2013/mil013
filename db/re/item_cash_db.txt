@@ -115,7 +115,7 @@
 5,14604,2 //Oh s
 5,14605,5 //OL S
 5,12279,5 // Undead E S
-6,13718,30 // Abrasive Box 10
+6,13718,15 // Abrasive Box 10
 6,12922,10 // Token of Siegfried
 6,13610,15 //Enriched Elunium 5
 6,16393,15 //HE Oridecon 5

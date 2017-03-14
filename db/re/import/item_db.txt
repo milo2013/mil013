@@ -190,3 +190,54 @@
 31203,Gold_Fish,Gold Fish,0,10,10,20,,,,,0xFFFFFFFF,63,2,,,,,,{ itemheal rand(5000,5500),0; },{},{}
 31204,Exchange_Permit,Ladder Exchange Permit,3,0,,0,,,,,,,,,,,,,{},{},{}
 31205,Exchange_Permit_2,Ladder Exchange Permit II,3,0,,0,,,,,,,,,,,,,{},{},{}
+
+// RWC
+31206,RWC_Medal,RWC Medal,3,0,,0,,,,,,,,,,,,,{},{},{}
+31219,Chambered_RWC_2012_Pendant,Chambered RWC 2012 Pendant,18,10,,10,,,,0,0xFFFFFFFF,63,2,,,,,,{ rentitem 2969,604800; },{},{}
+31220,Chambered_RWC_2012_Ring,Chambered RWC 2012 Ring,18,10,,10,,,,0,0xFFFFFFFF,63,2,,,,,,{ rentitem 2967,604800; },{},{}
+31221,RWC_2012_Pendant,RWC 2012 Pendant,18,10,,10,,,,0,0xFFFFFFFF,63,2,,,,,,{ rentitem 2968,604800; },{},{}
+31222,RWC_2012_Ring,RWC 2012 Ring,18,10,,10,,,,0,0xFFFFFFFF,63,2,,,,,,{ rentitem 2966,604800; },{},{}
+31223,RWC_Silver_Brooch,RWC Silver Brooch,18,10,,10,,,,0,0xFFFFFFFF,63,2,,,,,,{ rentitem 2999,604800; },{},{}
+31224,RWC_Gold_Brooch,RWC Gold Brooch,18,10,,10,,,,0,0xFFFFFFFF,63,2,,,,,,{ rentitem 2997,604800; },{},{}
+31225,RWC_Commemorative_Pin,RWC Commemorative Pin,18,10,,10,,,,0,0xFFFFFFFF,63,2,,,,,,{ rentitem 18821,604800; },{},{}
+31226,RWC_Champ_Crown,RWC Champ Crown,18,10,,10,,,,0,0xFFFFFFFF,63,2,,,,,,{ rentitem 18779,604800; },{},{}
+31227,RWC_Memory_Knife,RWC Memory Knife,18,10,,10,,,,0,0xFFFFFFFF,63,2,,,,,,{ rentitem 13092,604800; },{},{}
+
+// ============  CEDI SYSTEM
+// Nectar
+31207,Clear_Nectar,Clear Nectar,3,6,,10,,,,,,,,,,,,,{},{},{}
+31208,Yellow_Nectar,Yellow Nectar,3,6,,10,,,,,,,,,,,,,{},{},{}
+31209,Red_Nectar,Red Nectar,3,6,,10,,,,,,,,,,,,,{},{},{}
+31210,Blue_Nectar,Blue Nectar,3,6,,10,,,,,,,,,,,,,{},{},{}
+
+// Ambrosia
+31211,Clear_Ambrosia,Clear Ambrosia,3,6,,10,,,,,,,,,,,,,{},{},{}
+31212,Yellow_Ambrosia,Yellow Ambrosia,3,6,,10,,,,,,,,,,,,,{},{},{}
+31213,Red_Ambrosia,Red Ambrosia,3,6,,10,,,,,,,,,,,,,{},{},{}
+
+// Bio Sample
+31214,Bio_Sample,Bio Sample,3,6,,10,,,,,,,,,,,,,{},{},{}
+31215,Quality_Bio_Sample,Quality Bio Sample,3,6,,10,,,,,,,,,,,,,{},{},{}
+31216,Pristine_Bio_Sample,Pristine Bio Sample,3,6,,10,,,,,,,,,,,,,{},{},{}
+31217,Consummate_Bio_Sample,Consummate Bio Sample,3,6,,10,,,,,,,,,,,,,{},{},{}
+
+// === CUSTOM ITEM
+31218,Premium_Coupon,Premium Coupon,3,0,,0,,,,,,,,,,,,,{},{},{}
+31228,Lost_Ancient_Scroll,Lost Ancient Scroll,3,0,,0,,,,,,,,,,,,,{},{},{}
+31229,Lost_Ancient_Letter,Lost Ancient Letter,3,0,,0,,,,,,,,,,,,,{},{},{}
+31230,Ancient_Royal_Letter,Ancient Royal Letter,3,0,,0,,,,,,,,,,,,,{},{},{} 
+
+
+// BIOS ISLAND
+22537,Prize_Of_Hero,Prize of Hero,2,10,,10,,,,,0xFFFFFFFF,63,2,,,,,,{ callfunc "PrizeHeroFunc"; },{},{}
+
+
+
+
+
+
+
+
+
+// BIOS ISLAND
+22537,Prize_Of_Hero,Prize of Hero,2,10,,10,,,,,0xFFFFFFFF,63,2,,,,,,{ callfunc "PrizeHeroFunc"; },{},{}
