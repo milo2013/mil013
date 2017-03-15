@@ -621,11 +621,11 @@ OnTalk:
 				elite_mvp_skill( .@mob_id,6,532,471	);
 				break;
 			case 49:
-				.@mob_id = F_Rand( 3074	); // Time Holder
+				.@mob_id = F_Rand( 2240 ); // Clown Alphoccio  
 				elite_mvp_skill( .@mob_id,12,532,471,361,349 );
 				break;
 			case 50:
-				.@mob_id = F_Rand( 1502 ); // Pori Pori
+				.@mob_id = F_Rand( 3074 ); // Time Holder
 				elite_mvp_skill( .@mob_id,12,532,471,361,349 );
 				break;
 		}
