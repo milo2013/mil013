@@ -22,7 +22,7 @@
 	if (@HD > gettimetick(2))
 		end;
 	if (.@Price) {
-		message strcharinfo(0), "Healing costs " + callfunc("F_InsertComma",.@Price) + " Zeny and Cooling Down 1 minutes!";
+		message strcharinfo(0), "Healing costs " + callfunc("F_InsertComma",.@Price) + " Zeny and Cooling Down 60 seconds!";
 		if (Zeny < .@Price)
 			end;
 		if (select("^0055FFHeal^000000:^777777Cancel^000000") == 2)
@@ -30,7 +30,7 @@
 		Zeny -= .@Price;
 	}
 	specialeffect2 EF_HEAL2;
-	savepoint "milenia",119,152;
+	//savepoint "milenia",119,152;
 	percentheal 100,100;
 	if (.@Buffs) {
 	specialeffect2 EF_INCAGILITY; sc_start SC_INCREASEAGI,300000,10;

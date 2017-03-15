@@ -80,9 +80,9 @@ OnTalk:
 			mes "Select a Mode, ^FF0000Difficult mode^000000 have better rewards in return.";
 			mes "^777777=== Participants === ^000000";
 			mes "1 ~  3 - ^FF0000 EASY ^000000";
-			mes "2 ~  5 - ^FF0000 MEDIUM ^000000";
-			mes "3 ~  9 - ^FF0000 HARD ^000000";
-			mes "5 ~ 12 - ^FF0000 INSANE ^000000";
+			mes "1 ~  5 - ^FF0000 MEDIUM ^000000";
+			mes "1 ~  9 - ^FF0000 HARD ^000000";
+			mes "1 ~ 12 - ^FF0000 INSANE ^000000";
 		
 			@mode = select( 
 				"^FF0000[ 10 Stages ]^000000 EASY^000000",
@@ -127,9 +127,9 @@ OnTalk:
 			switch ( @mode ) {
 				default:
 				case 1: setarray .@party_member,1,3; break;
-				case 2: setarray .@party_member,2,5; break;
-				case 3: setarray .@party_member,3,9; break;
-				case 4: setarray .@party_member,5,12; break;
+				case 2: setarray .@party_member,1,5; break;
+				case 3: setarray .@party_member,1,9; break;
+				case 4: setarray .@party_member,1,12; break;
 			}
 			
 			if( .@member_count < .@party_member[0] || .@member_count > .@party_member[1] ){
@@ -205,6 +205,7 @@ OnTalk:
 	OnInit:
 		// delay in second
 		.delay_timer = 86400;
+		// test delay //.delay_timer = 120;
 		// .zeny cost
 		.zeny_cost = 1000000;
 		// name of Instance
@@ -265,7 +266,7 @@ OnTalk:
 				next;
 				setarray .@msg$,
 					"This is Elite MVP Ladder.",
-					"I am a Hero for this Ladder since I was able to complete it in th past.",
+					"I am a Hero for this Ladder since I was able to complete it in the past.",
 					"Nobody able to beat my records.",
 					"Today it has become your turn to challenge the ladder to break my records.",
 					"The ladder is quite different compare to the past.",
@@ -284,7 +285,7 @@ OnTalk:
 				'talking = 0;
 				emotion e_gg;
 				.@npc_name$ = instance_npcname( strnpcinfo(0) );
-				npctalk "Get ready, you have 15 seconds to prepare!";
+				npctalk "Get ready, you have 5 seconds to prepare!";
 				donpcevent .@npc_name$+"::OnRestart";
 				initnpctimer;
 				end;
@@ -363,7 +364,7 @@ OnTalk:
 		
 		
 		if ( playerattached() ) {
-			.@rate = ( 25 + 'ladder_level );
+			.@rate = ( 95 + 'ladder_level );
 			if ( rand( 100 ) < .@rate ) {
 				getitem 31204,1;
 			} 
@@ -378,8 +379,8 @@ OnTalk:
 		hideoffnpc .@npc_name$;
 		'ladder_level++;
 		
-		mapannounce .@map$,"[Elite MVP Ladder] next round start in 15 seconds.",bc_map;
-		sleep 10000;
+		//mapannounce .@map$,"[Elite MVP Ladder] next round start in 15 seconds.",bc_map;
+		//sleep 10000;
 		mapannounce .@map$,"[Elite MVP Ladder] next round start in 5 seconds.",bc_map;
 		sleep 5000;
 		
@@ -428,180 +429,204 @@ OnTalk:
 		
 		switch ( .@mode ) {
 			case 1: 
-			case 2:
-			case 3:
-			case 4:
-			case 5:
-				.@mob_id = F_Rand(
-					1086,
-					1087,
-					1150,
-					1157,
-					1159,
-					1190,
-					1251,
-					1252,
-					1272,
-					1312,
-					1492,
-					1511
-				);
+				.@mob_id = F_Rand( 1115 ); // Eddga
 				elite_mvp_skill( .@mob_id,1 );
 				break;
-				
+			case 2:
+				.@mob_id = F_Rand( 1086 ); // Golden Thief Bug
+				elite_mvp_skill( .@mob_id,1 );
+				break;	
+			case 3:
+				.@mob_id = F_Rand( 1583 ); // Tao Gunka
+				elite_mvp_skill( .@mob_id,1 );
+				break;				
+			case 4:
+				.@mob_id = F_Rand( 1511 ); // Amon Ra
+				elite_mvp_skill( .@mob_id,1 );
+				break;					
+			case 5:
+				.@mob_id = F_Rand( 1389 ); // Dracula
+				elite_mvp_skill( .@mob_id,1 );
+				break;	
 			case 6:
+				.@mob_id = F_Rand( 1159 ); // Phreeoni
+				elite_mvp_skill( .@mob_id,1 );
+				break;				
 			case 7:
+				.@mob_id = F_Rand( 1785 ); // Atroce
+				elite_mvp_skill( .@mob_id,1 );
+				break;				
 			case 8:
+				.@mob_id = F_Rand( 1688 ); // Lady Tanee
+				elite_mvp_skill( .@mob_id,1 );
+				break;				
 			case 9:
+				.@mob_id = F_Rand( 1059 ); // Mistress
+				elite_mvp_skill( .@mob_id,1 );
+				break;				
 			case 10:
-				.@mob_id = F_Rand(
-					1086,
-					1087,
-					1150,
-					1157,
-					1159,
-					1190,
-					1251,
-					1252,
-					1272,
-					1312,
-					1492,
-					1511
-				);
-				elite_mvp_skill( .@mob_id,2,
-					532
-				);
+				.@mob_id = F_Rand( 1150 ); // Moonlight Flower
+				elite_mvp_skill( .@mob_id,2,532);
 				break;
-
 			case 11:
+				.@mob_id = F_Rand( 1038 ); // Osiris
+				elite_mvp_skill( .@mob_id,2,532);
+				break;
 			case 12:
+				.@mob_id = F_Rand( 1112 ); // Drake
+				elite_mvp_skill( .@mob_id,2,532);
+				break;
 			case 13:
+				.@mob_id = F_Rand( 1157 ); // Pharaoh
+				elite_mvp_skill( .@mob_id,2,532);
+				break;
 			case 14:
+				.@mob_id = F_Rand( 1252 ); // Hatii
+				elite_mvp_skill( .@mob_id,2,532);
+				break;
 			case 15:
+				.@mob_id = F_Rand( 1312 ); // Turtle General
+				elite_mvp_skill( .@mob_id,2,532);
+				break;
 			case 16:
+				.@mob_id = F_Rand( 1147 ); // Maya
+				elite_mvp_skill( .@mob_id,2,532);
+				break;
 			case 17:
+				.@mob_id = F_Rand( 1885 ); // Gopinch
+				elite_mvp_skill( .@mob_id,2,532);
+				break;
 			case 18:
+				.@mob_id = F_Rand( 1046 ); // Dopple
+				elite_mvp_skill( .@mob_id,2,532);
+				break;
 			case 19:
+				.@mob_id = F_Rand( 1658 ); // Egnigem Cenia
+				elite_mvp_skill( .@mob_id,2,532);
+				break;
 			case 20:
-				.@mob_id = F_Rand(
-					1086,
-					1087,
-					1150,
-					1157,
-					1159,
-					1190,
-					1251,
-					1252,
-					1272,
-					1312,
-					1492,
-					1511
-				);
-				elite_mvp_skill( .@mob_id,3,
-					532
-				);
+				.@mob_id = F_Rand( 1734 ); // Kiel-D
+				elite_mvp_skill( .@mob_id,3,532);
 				break;
-				
 			case 21:
+				.@mob_id = F_Rand( 1087 ); // Orc Hero
+				elite_mvp_skill( .@mob_id,3,532);
+				break;
 			case 22:
+				.@mob_id = F_Rand( 1418 ); // Evil Snake Lord
+				elite_mvp_skill( .@mob_id,3,532);
+				break;
 			case 23:
+				.@mob_id = F_Rand( 1492 ); // Samurai Specter
+				elite_mvp_skill( .@mob_id,3,532);
+				break;
 			case 24:
+				.@mob_id = F_Rand( 1685 ); // Vesper
+				elite_mvp_skill( .@mob_id,3,532);
+				break;
 			case 25:
+				.@mob_id = F_Rand( 1768 ); // Gloom Under Night
+				elite_mvp_skill( .@mob_id,3,532);
+				break;
 			case 26:
+				.@mob_id = F_Rand( 1630 ); // White Lady
+				elite_mvp_skill( .@mob_id,3,532);
+				break;
 			case 27:
+				.@mob_id = F_Rand( 1871 ); // Fallen Bishop
+				elite_mvp_skill( .@mob_id,3,532);
+				break;
 			case 28:
+				.@mob_id = F_Rand( 1039 ); // Baphomet
+				elite_mvp_skill( .@mob_id,3,532);
+				break;
 			case 29:
+				.@mob_id = F_Rand( 1272 ); // Dark Lord
+				elite_mvp_skill( .@mob_id,3,532);
+				break;
 			case 30:
+				.@mob_id = F_Rand( 1719 ); // Detale
+				elite_mvp_skill( .@mob_id,3,532);
+				break;
 			case 31:
+				.@mob_id = F_Rand( 1832 ); // Ifrit
+				elite_mvp_skill( .@mob_id,3,532);
+				break;
 			case 32:
+				.@mob_id = F_Rand( 1373 ); // Lord Of The Dead
+				elite_mvp_skill( .@mob_id,3,532);
+				break;
 			case 33:
+				.@mob_id = F_Rand( 1190 ); // Orc Lord
+				elite_mvp_skill( .@mob_id,3,532);
+				break;
 			case 34:
+				.@mob_id = F_Rand( 1623 ); // RSX
+				elite_mvp_skill( .@mob_id,3,532);
+				break;
 			case 35:
-				.@mob_id = F_Rand(
-					1086,
-					1087,
-					1150,
-					1157,
-					1159,
-					1190,
-					1251,
-					1252,
-					1272,
-					1312,
-					1492,
-					1511
-				);
-				elite_mvp_skill( .@mob_id,4,
-					471
-				);
+				.@mob_id = F_Rand( 1251 ); // Stormy Knight	
+				elite_mvp_skill( .@mob_id,4,471);
 				break;
-				
 			case 36:
+				.@mob_id = F_Rand( 1751 ); // Valkyrie
+				elite_mvp_skill( .@mob_id,4,471);
+				break;
 			case 37:
+				.@mob_id = F_Rand( 1917 ); // Wounded Morroc
+				elite_mvp_skill( .@mob_id,4,471);
+				break;
 			case 38:
+				.@mob_id = F_Rand( 1874 ); // Beelzebub
+				elite_mvp_skill( .@mob_id,4,471);
+				break;
 			case 39:
+				.@mob_id = F_Rand( 1647 ); // Assasin Cross Eremes
+				elite_mvp_skill( .@mob_id,4,471);
+				break;
 			case 40:
+				.@mob_id = F_Rand( 1649 ); // High Priest Margaretha
+				elite_mvp_skill( .@mob_id,4,471);
+				break;
 			case 41:
+				.@mob_id = F_Rand( 1651 ); // High Wizard Katherine
+				elite_mvp_skill( .@mob_id,4,471);
+				break;
 			case 42:
+				.@mob_id = F_Rand( 1646 ); // Lord Knight Seirin
+				elite_mvp_skill( .@mob_id,4,471);
+				break;
 			case 43:
+				.@mob_id = F_Rand( 1648 ); // Master Smith Howart
+				elite_mvp_skill( .@mob_id,4,471);
+				break;
 			case 44:
+				.@mob_id = F_Rand( 1650 ); // Sniper Cecil
+				elite_mvp_skill( .@mob_id,4,471);
+				break;
 			case 45:
+				.@mob_id = F_Rand( 2237 ); // Professor Celia
+				elite_mvp_skill( .@mob_id,6,532,471	);
+				break;
 			case 46:
+				.@mob_id = F_Rand( 2236 ); // Creator Flamel
+				elite_mvp_skill( .@mob_id,6,532,471	);
+				break;
 			case 47:
+				.@mob_id = F_Rand( 2238 ); // Champion Chen
+				elite_mvp_skill( .@mob_id,6,532,471	);
+				break;
 			case 48:
-				.@mob_id = F_Rand(
-					1086,
-					1087,
-					1150,
-					1157,
-					1159,
-					1190,
-					1251,
-					1252,
-					1272,
-					1312,
-					1492,
-					1511
-				);
-				elite_mvp_skill( .@mob_id,6,
-					532,
-					471
-				);
+				.@mob_id = F_Rand( 2235 ); // Paladin Randel
+				elite_mvp_skill( .@mob_id,6,532,471	);
 				break;
-				
 			case 49:
-				.@mob_id = F_Rand(
-					1646,
-					1647,
-					1648,
-					1649,
-					1650,
-					1651
-				);
-				elite_mvp_skill( .@mob_id,12,
-					532,
-					471,
-					361,
-					349
-				);
+				.@mob_id = F_Rand( 3074	); // Time Holder
+				elite_mvp_skill( .@mob_id,12,532,471,361,349 );
 				break;
-			
 			case 50:
-				.@mob_id = F_Rand(
-					2235,
-					2236,
-					2237,
-					2238,
-					2239,
-					2240,
-					2241
-				);
-				elite_mvp_skill( .@mob_id,12,
-					532,
-					471,
-					361,
-					349
-				);
+				.@mob_id = F_Rand( 1502 ); // Pori Pori
+				elite_mvp_skill( .@mob_id,12,532,471,361,349 );
 				break;
 		}
 		return .@mob_id;

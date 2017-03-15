@@ -455,4 +455,4 @@ end;
 }
 
 prontera,151,193,5	duplicate(Milenia War Master)	Milenia War Master#PR	483
-payon,187,109,5	duplicate(Milenia War Master)	Milenia War Master#PA	483
+payon,166,98,5	duplicate(Milenia War Master)	Milenia War Master#PA	483
