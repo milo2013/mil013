@@ -46,7 +46,7 @@ milenia,130,163,11	script	Unknown Scout	998,{
 			mes "Maximum Rewards Limit ^FF0000"+.MaxItemLimit+"^000000";
 			next;
 			mes "[Unknown Scout]";
-			mes "We need ^FF000050 Gold Fish^000000 per entry!!";
+			mes "We need ^FF00001 Gold Fish^000000 per entry!!";
 			mes "Or....";
 			mes "^FF0000Bravery Medal^000000";
 			next;
@@ -106,27 +106,27 @@ OnPCDieEvent:
 		#Invaded_timer = gettimetick(2) + 300;
 		}
 		mapannounce "prt_q", strcharinfo(0) + " has killed in action!! R.I.P",0;
-		mapannounce "milenia", strcharinfo(0) + " has killed in action during defend Prontera from invaded!! R.I.P!!",0;
+		//mapannounce "milenia", strcharinfo(0) + " has killed in action during defend Prontera from invaded!! R.I.P!!",0;
 		dispbottom  "[ Invaded Prontera ] : You've died! GAME OVER!!";
 		dispbottom  "[ Invaded Prontera ] : Your rewards count will resume when you're alive as penalty!!";
 	}
 		end;
 OnNormalKill:
 	monster .Map$,0,0,"--ja--",.normal_mob[rand(.normal_mob_size)],1,strnpcinfo(0)+"::OnNormalKill";
-	getitem .farm_normal[rand(.farm_normal_size)], 1;
+	getitem .farm_normal[rand(.farm_normal_size)], 2;
 	goto L_kill;
 OnCaptainKill:
 	monster .Map$,0,0,"--ja--",.captain_mob[rand(.captain_mob_size)],1,strnpcinfo(0)+"::OnCaptainKill";
-	getitem .farm_captain[rand(.farm_captain_size)], 2;
+	getitem .farm_captain[rand(.farm_captain_size)], 5;
 	goto L_kill;	
 OnCommanderKill:
 	monster .Map$,0,0,"--ja--",.commander_mob[rand(.commander_mob_size)],1,strnpcinfo(0)+"::OnCommanderKill";
-	getitem .farm_commander[rand(.farm_commander_size)], 5;
+	getitem .farm_commander[rand(.farm_commander_size)], 10;
 	goto L_kill;
 OnBossKill:
 	monster .Map$,0,0,"--ja--",.boss_mob[rand(.boss_mob_size)],1,strnpcinfo(0)+"::OnBossKill";
-	getitem .farm_boss[rand(.farm_boss_size)], 10;
-	mapannounce "prt_q", strcharinfo(0) + " has killed the Invader General and Claimed 10 Gold pieces!!",0;
+	getitem .farm_boss[rand(.farm_boss_size)], 15;
+	mapannounce "prt_q", strcharinfo(0) + " has killed the Invader General and Claimed 15 Gold pieces!!",0;
 	//mapannounce "milenia", strcharinfo(0) + " has killed the Invader General and Claimed 10 Gold pieces!!",0;
 	goto L_kill;
 	
@@ -145,7 +145,7 @@ L_kill:
 	end;
 OnInit:
 	// Maximum Hunt Limit per round inside the Zone.
-	set .MaxItemLimit,250;
+	set .MaxItemLimit,500;
 	// Map that will be used in thos Zone.
 	set .Map$,"prt_q";
 	// Mapflag Initialization
@@ -162,8 +162,8 @@ OnInit:
 	setmapflag .Map$, mf_nojobexp;
 	setmapflag .Map$, mf_nobaseexp;
 	
-	setarray .farm_normal, 13517,13516,969; // farm 1 of these items when kill normal mobs
-	setarray .farm_captain,13517,13517,969; // farm 1 of these items when kill boss monsters
+	setarray .farm_normal, 13517,13517,969; // farm 1 of these items when kill normal mobs
+	setarray .farm_captain,13517,969,969; // farm 1 of these items when kill boss monsters
 	setarray .farm_commander,13517,969,969; // farm 1 of these items when kill boss monsters
 	setarray .farm_boss, 969,969,969; // farm 1 of these items when kill boss monsters
 
