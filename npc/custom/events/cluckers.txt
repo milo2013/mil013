@@ -21,7 +21,7 @@
 
 milenia,141,153,11	script	Cluckers	800,{
 
-	set .@GMAccess,80;	// GM level required to access NPC
+	set .@GMAccess,1;	// GM level required to access NPC
 
 	if (.startcluck) {
 		specialeffect2 EF_HIT3;

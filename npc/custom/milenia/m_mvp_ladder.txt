@@ -32,15 +32,19 @@ function	script	F_getitemname	{
 // instance
 1@ldr	mapflag	nocommand	10
 1@ldr	mapflag	nosave
+1@ldr	mapflag	noteleport
 
 2@ldr	mapflag	nocommand	10
 2@ldr	mapflag	nosave
+2@ldr	mapflag	noteleport
 
 3@ldr	mapflag	nocommand	10
 3@ldr	mapflag	nosave
+3@ldr	mapflag	noteleport
 
 4@ldr	mapflag	nocommand	10
 4@ldr	mapflag	nosave
+4@ldr	mapflag	noteleport
 
 
 milenia,102,161,5	script	Elite MVP Ladder	10192,{
@@ -386,7 +390,7 @@ OnTalk:
 		
 		hideonnpc .@npc_name$;
 		.@mob_id = elite_mvp( 'ladder_mode,'ladder_level );
-		announce "spawned "+getmonsterinfo( .@mob_id,MOB_NAME )+"...",bc_all;
+		mapannounce .@map$, "spawned "+getmonsterinfo( .@mob_id,MOB_NAME )+"...",bc_all;
 		end;
 		
 	OnFinal:
