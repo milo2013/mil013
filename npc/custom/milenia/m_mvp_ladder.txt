@@ -208,6 +208,7 @@ OnTalk:
 
 	OnInit:
 		// delay in second
+		//
 		.delay_timer = 86400;
 		// test delay //.delay_timer = 120;
 		// .zeny cost
@@ -368,11 +369,17 @@ OnTalk:
 		
 		
 		if ( playerattached() ) {
-			.@rate = ( 95 + 'ladder_level );
-			if ( rand( 100 ) < .@rate ) {
-				getitem 31204,1;
-			} 
-		
+		//	.@rate = ( 95 + 'ladder_level );
+		//	if ( rand( 100 ) < .@rate ) {
+		//		getitem 31204,1;
+		//	}
+
+		.@party_id = getcharid(1);
+			
+		getpartymember .@party_id;
+		for ( .@i = 0; .@i < $@partymembercount; .@i++ ) {
+				getitem 31204,1,$@partymemberaid[.@i];
+		}
 			percentheal 100,100;
 			mapannounce .@map$,"[Elite MVP Ladder] The Boss has been defeated. You have some time for rest now.",bc_map;
 			.@party_id = getcharid(1);
@@ -645,7 +652,8 @@ OnTalk:
 		.@map$ = strnpcinfo(4);
 		.@getmapuser = getmapusers( .@map$ );
 		
-		.@mobcount = max( 1, (.@getmapuser/.@rate) );
+		//.@mobcount = max( 1, (.@getmapuser/.@rate) );
+		.@mobcount = 1;
 		
 		switch ( 'ladder_mode ) {
 			default:
