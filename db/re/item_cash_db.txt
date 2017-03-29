@@ -98,7 +98,7 @@
 5,12916,10 //Assumptio 5
 5,14174,5 //Adrenaline 5
 5,12915,10 //Aspersio 5
-5,13546,10 //Chemical Protection Weapon 5
+5,13546,10 //Chemical Protection Weapon 5 - fixed
 5,13545,10 //Chemical Protection Armour
 5,13543,5 //Chemical Protection Helm
 5,13544,5 //Chemical Protection Shield
