@@ -208,9 +208,8 @@ OnTalk:
 
 	OnInit:
 		// delay in second
-		//.delay_timer = 86400;
-		// test delay //
-		.delay_timer = 120;
+		.delay_timer = 86400;
+		// test delay //.delay_timer = 120;
 		// .zeny cost
 		.zeny_cost = 1000000;
 		// name of Instance
@@ -378,7 +377,7 @@ OnTalk:
 			
 		getpartymember .@party_id;
 		for ( .@i = 0; .@i < $@partymembercount; .@i++ ) {
-				getitem 7615,1,$@partymemberaid[.@i];
+				getitem 31204,1,$@partymemberaid[.@i];
 		}
 			percentheal 100,100;
 			mapannounce .@map$,"[Elite MVP Ladder] The Boss has been defeated. You have some time for rest now.",bc_map;
