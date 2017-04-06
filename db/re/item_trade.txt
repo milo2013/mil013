@@ -20,6 +20,10 @@
 //	Balmung cannot be dropped, traded, or placed in Guild Storage (1+2+64).
 //	Only groups of group-level 50 and up can override this setting.
 
+// aku tukar yang (Krieger) sahaja ~ krieger = Glorious 
+
+
+
 547,8,100	// White_Slim_Potion
 598,475,100	// Light_Red_Pot
 599,475,100	// Light_Orange_Pot
@@ -34,7 +38,7 @@
 1177,475,100	// Muramash
 1183,499,100	// BF_Two_Handed_Sword1
 1184,499,100	// BF_Two_Handed_Sword2
-1187,499,100	// Krieger_Twohand_Sword1
+1187,459,100	// Krieger_Twohand_Sword1
 1190,507,100	// Claymore_C
 1192,499,100	// P_Slayer1
 1193,499,100	// P_Slayer2
@@ -47,15 +51,15 @@
 1274,507,100	// Unholy_Touch_C
 1279,499,100	// BF_Katar1
 1280,499,100	// BF_Katar2
-1281,499,100	// Krieger_Katar1
-1282,499,100	// Krieger_Katar2
+1281,459,100	// Krieger_Katar1
+1282,459,100	// Krieger_Katar2
 1283,507,100	// Katar_Of_Speed
 1286,507,100	// Jamadhar_C
 1288,507,100	// Bloody_Fear_C
 1289,499,100	// P_Katar1
 1296,499,100	// Metal_Katar
 1299,499,100	// TE_Woe_Katar
-1310,499,100	// Krieger_Onehand_Axe1
+1310,459,100	// Krieger_Onehand_Axe1
 1312,507,100	// Orcish_Axe_C
 1313,499,100	// Tourist_Axe
 1319,499,100	// TE_Woe_Axe
@@ -65,7 +69,7 @@
 1378,507,100	// Great_Axe_C
 1379,499,100	// BF_Two_Handed_Axe1
 1380,499,100	// BF_Two_Handed_Axe2
-1382,499,100	// Krieger_Twohand_Axe1
+1382,459,100	// Krieger_Twohand_Axe1
 1386,507,100	// Doom_Slayer_I
 1388,507,100	// Two_Handed_Axe_C
 1391,499,100	// P_Two_Handed_Axe1
@@ -75,7 +79,7 @@
 1423,475,100	// Pole_XO
 1424,507,100	// Skewer_C
 1425,499,100	// BF_Spear1
-1426,499,100	// Krieger_Onehand_Spear1
+1426,459,100	// Krieger_Onehand_Spear1
 1427,507,100	// Spear_Of_Excellent
 1428,475,100	// Long_Horn_M
 1429,475,100	// Hunting_Spear_M
@@ -83,7 +87,7 @@
 1434,499,100	// P_Spear1
 1437,499,100	// TE_Woe_Pike
 1482,499,100	// BF_Lance1
-1486,499,100	// Krieger_Twohand_Spear1
+1486,459,100	// Krieger_Twohand_Spear1
 1487,507,100	// Lance_C
 1488,507,100	// Ahlspiess_C
 1489,507,100	// Spearfish_
@@ -95,15 +99,15 @@
 1537,507,100	// Quadrille_C
 1542,499,100	// BF_Morning_Star1
 1543,499,100	// BF_Morning_Star2
-1546,499,100	// Krieger_Onehand_Mace1
+1546,459,100	// Krieger_Onehand_Mace1
 1547,507,100	// Mace_Of_Madness
 1563,507,100	// Diary_Of_Great_Sage_C
 1566,475,100	// Diary_Of_Great_Basil
 1567,507,100	// Hardback_C
 1574,499,100	// BF_Book1
 1575,499,100	// BF_Book2
-1576,499,100	// Krieger_Book1
-1577,499,100	// Krieger_Book2
+1576,459,100	// Krieger_Book1
+1577,459,100	// Krieger_Book2
 1578,507,100	// Book_Of_Prayer
 1579,475,100	// Death_Note_M
 1580,507,100	// Encyclopedia_C
@@ -119,8 +123,8 @@
 1634,499,100	// BF_Staff3
 1635,499,100	// BF_Staff4
 1638,507,100	// Healing_Staff_C
-1640,499,100	// Krieger_Onehand_Staff1
-1641,499,100	// Krieger_Onehand_Staff2
+1640,459,100	// Krieger_Onehand_Staff1
+1641,459,100	// Krieger_Onehand_Staff2
 1642,507,100	// Staff_Of_Darkness
 1644,475,100	// Piercing_Staff_M
 1645,475,100	// Lich_Bone_Wand_M
@@ -139,7 +143,7 @@
 1735,475,100	// Kkakkung
 1738,499,100	// BF_Bow1
 1739,499,100	// BF_Bow2
-1743,499,100	// Krieger_Bow1
+1743,459,100	// Krieger_Bow1
 1744,507,100	// Bow_Of_Evil
 1747,499,100	// P_Bow1
 1748,499,100	// P_Bow2
@@ -147,8 +151,8 @@
 1817,507,100	// Kaiser_Knuckle_C
 1823,499,100	// BF_Knuckle1
 1824,499,100	// BF_Knuckle2
-1826,499,100	// Krieger_Knuckle1
-1827,499,100	// Krieger_Knuckle2
+1826,459,100	// Krieger_Knuckle1
+1827,459,100	// Krieger_Knuckle2
 1828,507,100	// Monk_Knuckle
 1829,507,100	// Fist_C
 1831,499,100	// P_Knuckle1
@@ -156,7 +160,7 @@
 1921,475,100	// Guh_Moon_Gom
 1923,499,100	// BF_Instrument1
 1924,499,100	// BF_Instrument2
-1927,499,100	// Krieger_Instrument1
+1927,459,100	// Krieger_Instrument1
 1928,507,100	// Berserk_Guitar_I
 1929,507,100	// Guitar_C
 1931,499,100	// P_Guitar1
@@ -165,13 +169,13 @@
 1975,475,100	// Queen_Is_Whip
 1977,499,100	// BF_Whip1
 1978,499,100	// BF_Whip2
-1981,499,100	// Krieger_Whip1
+1981,459,100	// Krieger_Whip1
 1982,507,100	// Phenomena_Whip
 1983,507,100	// Rante_C
 1986,499,100	// P_Tail1
 1987,499,100	// TE_Woe_Rope
 1994,467,100	// Infinity_Whip
-2002,499,100	// Krieger_Twohand_Staff1
+2002,459,100	// Krieger_Twohand_Staff1
 2003,475,100	// Destruction_Rod_M
 2018,499,100	// Metal_Staff
 2019,499,100	// TE_Woe_Two_Hand_Staff
@@ -203,9 +207,9 @@
 2385,507,100	// Recuperative_Armor
 2392,507,100	// Old_Pant
 2393,499,100	// N_Adventurer's_Suit
-2394,499,100	// Krieger_Suit1
-2395,499,100	// Krieger_Suit2
-2396,499,100	// Krieger_Suit3
+2394,459,100	// Krieger_Suit1
+2395,459,100	// Krieger_Suit2
+2396,459,100	// Krieger_Suit3
 2398,475,100	// Sniping_Suit_M
 2414,499,100	// Novice_Boots
 2427,467,100	// Golden_Shoes
@@ -220,9 +224,9 @@
 2439,507,100	// Refresh_Shoes
 2442,507,100	// Boots_Perforated
 2443,499,100	// Fish_Shoes
-2444,499,100	// Krieger_Shoes1
-2445,499,100	// Krieger_Shoes2
-2446,499,100	// Krieger_Shoes3
+2444,459,100	// Krieger_Shoes1
+2445,459,100	// Krieger_Shoes2
+2446,459,100	// Krieger_Shoes3
 2449,475,100	// Variant_Shoes_M
 2455,467,100	// Time_Keepr_Boots
 2456,499,100	// Para_Team_Boots1
@@ -243,7 +247,7 @@
 2543,507,100	// Sylphid_Manteau
 2547,507,100	// Cheap_Running_Shirts
 2548,507,100	// Muffler_C
-2549,499,100	// Krieger_Muffler1
+2549,459,100	// Krieger_Muffler1
 2551,475,100	// Rider_Insignia_M
 2552,475,100	// Mithril_Magic_Cape_M
 2559,467,100	// Time_Keepr_Manteau
@@ -324,9 +328,9 @@
 2769,499,100	// Archer_Figure
 2770,499,100	// Thief_Figure
 2771,499,100	// Merchant_Figure
-2772,499,100	// Krieger_Ring1
-2773,499,100	// Krieger_Ring2
-2774,499,100	// Krieger_Ring3
+2772,459,100	// Krieger_Ring1
+2773,459,100	// Krieger_Ring2
+2774,459,100	// Krieger_Ring3
 2777,1,100	// Shaman_Ring
 2778,1,100	// Shaman_Earing
 2779,1,100	// Dark_Knight_Belt
@@ -1626,7 +1630,7 @@
 13029,475,100	// Prinsence_Knife
 13036,499,100	// BF_Dagger1
 13037,499,100	// BF_Dagger2
-13042,499,100	// Krieger_Dagger1
+13042,459,100	// Krieger_Dagger1
 13043,507,100	// Fortune_Sword_I
 13044,507,100	// House_Auger_I
 13045,507,100	// Kamaitachi_I
@@ -1642,7 +1646,7 @@
 13083,499,100	// TE_Woe_Knife
 13108,499,100	// BF_Pistol1
 13109,507,100	// Wasteland_Outlaw_C
-13110,499,100	// Krieger_Pistol1
+13110,459,100	// Krieger_Pistol1
 13111,507,100	// Sharpshooter_Revolver
 13112,499,100	// P_Revolver1
 13113,499,100	// P_Revolver2
@@ -1657,9 +1661,9 @@
 13173,499,100	// BF_Shotgun1
 13174,499,100	// BF_Launcher1
 13175,507,100	// Lever_Action_Rifle_C
-13176,499,100	// Krieger_Rifle1
-13177,499,100	// Krieger_Gatling1
-13178,499,100	// Krieger_Shotgun1
+13176,459,100	// Krieger_Rifle1
+13177,459,100	// Krieger_Gatling1
+13178,459,100	// Krieger_Shotgun1
 13179,499,100	// Krieger_Launcher1
 13184,499,100	// TE_Woe_Rifle
 13185,499,100	// TE_Woe_Gatling
@@ -1672,7 +1676,7 @@
 13295,499,100	// Light_Shuriken
 13305,499,100	// BF_Huuma_Shuriken1
 13306,499,100	// BF_Huuma_Shuriken2
-13307,499,100	// Krieger_Huuma_Shuriken1
+13307,459,100	// Krieger_Huuma_Shuriken1
 13308,507,100	// Huuma_Blaze_I
 13309,507,100	// Huuma_Giant_Wheel_C
 13310,499,100	// P_Huuma_Suriken1
@@ -1689,9 +1693,9 @@
 13409,507,100	// Immaterial_Sword_C
 13410,499,100	// BF_Sword1
 13411,499,100	// BF_Sword2
-13416,499,100	// Krieger_Onehand_Sword1
-13417,499,100	// Krieger_Onehand_Sword2
-13418,499,100	// Krieger_Onehand_Sword3
+13416,459,100	// Krieger_Onehand_Sword1
+13417,459,100	// Krieger_Onehand_Sword2
+13418,459,100	// Krieger_Onehand_Sword3
 13419,507,100	// Holy_Saber
 13422,507,100	// Flamberge_C
 13423,499,100	// P_Sabre1
