@@ -344,14 +344,14 @@ L_GM_Menu:
 					if(.@og_stat[.@a]==2&&.@status[.@a]==-1)
 						set .@b, .@b+1;
 					if(.@og_stat[.@a]==2&&.@status[.@a]!=-1)
-						query_sql("INSERT INTO `news_events` (`post_name`,`post_id`,`title`,`message`,`time`,`status`) "+
+						query_sql("INSERT INTO `news_changelog` (`post_name`,`post_id`,`title`,`message`,`time`,`status`) "+
 							"VALUES ('"+.@post_name$[.@a]+
 							"',"+.@post_id[.@a]+
 							",'"+escape_sql(.@title$[.@a])+
 							"','"+escape_sql(.@message$[.@a])+"',"+
 							"CURDATE(),"+((.@status[.@a]>=1)?1:0)+")");
 					if(.@status[.@a]!=.@og_stat[.@a]&&.@status[.@a]!=-1)
-						query_sql("UPDATE `news_events`"+
+						query_sql("UPDATE `news_changelog`"+
 							"SET `status`="+((.@status[.@a]>=1)?1:0)+" "+
 							"WHERE `id`="+(.@id[.@a]+.@b)+";");
 					if(.@status[.@a]<0&&.@og_stat[.@a]!=2)
