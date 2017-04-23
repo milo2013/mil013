@@ -355,7 +355,7 @@ L_GM_Menu:
 							"SET `status`="+((.@status[.@a]>=1)?1:0)+" "+
 							"WHERE `id`="+(.@id[.@a]+.@b)+";");
 					if(.@status[.@a]<0&&.@og_stat[.@a]!=2)
-						query_sql("DELETE FROM `news_events`"+
+						query_sql("DELETE FROM `news_changelog`"+
 							"WHERE `id`="+(.@id[.@a]+.@b)+";");
 				}
 				mes .npc$;
