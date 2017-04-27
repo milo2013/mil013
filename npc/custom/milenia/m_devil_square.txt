@@ -17,6 +17,57 @@
 //============================================================
   
 milenia,120,143,5	script	Devil Square Guardian#1	406,{
+	
+		query_sql("SELECT COUNT(char_id) FROM `char` LEFT JOIN `login` ON `char`.account_id=login.account_id WHERE online AND last_ip = (SELECT `last_ip` FROM `login` WHERE `account_id` = "+getcharid(3)+")",.@count);
+		if( .@count > 1 ) {
+		
+        mes "[Devil Square Guardian]";
+		mes "Hello ^ff0000" + strcharinfo(0) + "^000000!";
+		next;
+		mes "[Duke Bradley]";
+		mes "I't's seem you trying to cheat!!";
+		next;
+		mes "[Duke Bradley]";
+		mes "Only 1 IP can enter this event!!";
+		mes "[Duke Bradley]";
+		mes "Please logout other account to enter!";
+		next;
+		close2;
+		warp "pvp_n_8-5",96,103;
+		end;
+		}
+		
+		if (countitem (7621) >= 1){ // Token Check
+        mes "[Devil Square Guardian]";
+        mes "^FF0000Token of Siegfried^000000 is probited in Devil Square!";
+		next;
+		mes "[Devil Square Guardian]";
+		mes "Please save in your storage!";
+		callfunc "F_KafStor",2,0,0;
+		close;
+		}
+		
+		if (countitem (12211) >= 1){ // Kafra Card Check
+        mes "[Devil Square Guardian]";
+        mes "^FF0000Kafra Card^000000 is probited in Devil Square!";
+		next;
+		mes "[Devil Square Guardian]";
+		mes "Please save in your storage!";
+		callfunc "F_KafStor",2,0,0;
+		close;
+		}
+		
+		if (countitem (23177) >= 1){ // Kafra Card Check
+        mes "[Devil Square Guardian]";
+        mes "^FF0000Kafra Card^000000 is probited in Devil Square!";
+		next;
+		mes "[Devil Square Guardian]";
+		mes "Please save in your storage!";
+		callfunc "F_KafStor",2,0,0;
+		close;
+		}
+		 
+			
         set .@gm_level, 99; // GM level required to start/stop the event
         mes "[Devil Square Guardian]";
         mes "This is the entrance to ^FF0000Devil Square^000000.";
@@ -31,7 +82,7 @@ milenia,120,143,5	script	Devil Square Guardian#1	406,{
                         mes "8.00AM and 8.00PM Daily!";
                         close;
                 }
-                if (BaseLevel < 70 || Zeny < 20000) { // requirements
+                if (BaseLevel < 70 || Zeny < 500000) { // requirements
                         mes "[Devil Square Guardian]";
                         mes "You do not meet the requirements to enter Devil Square.";
                         mes " ";
@@ -42,8 +93,8 @@ milenia,120,143,5	script	Devil Square Guardian#1	406,{
                 }
                 Zeny -= 500000;
                 announce strcharinfo(0)+" has entered Devil Square.", bc_npc;
-                percentheal 1,1;
-                warp "ordeal_1-1",183,182;
+                percentheal 100,100;
+                warp "ds",39,59;
                 close;
         case 2:
                 mes "[Devil Square Guardian]";
@@ -116,55 +167,54 @@ OnThu2000:
 OnFri2000:
 OnSat2000:
 OnSun2000:
-
-OnSun1740:
 		hideoffnpc "Devil Square Guardian#1";
+		hideoffnpc "Devil Square Guardian#2";
 		sleep 1000;
 		set $MVPdefeat,0;
         set $start, 1;
-        disablenpc "ord11-12"; //from npc/warps/pvp.txt
+        //disablenpc "ds"; //from npc/warps/pvp.txt
         disablenpc "Devil Square Guardian#2";
-        mapannounce "ordeal_1-1","Devil Square is now closed.", bc_map;
+        mapannounce "ds","Devil Square is now closed.", bc_map;
         getmapxy .@map$, .@x, .@y, 1;
-        mapwarp "ordeal_1-1", "prontera", 156, 191;
-        killmonsterall "ordeal_1-1";
+        mapwarp "ds","milenia",119,152;
+        killmonsterall "ds";
 
-        announce "Devil Square is OPEN. The event will begin in 3 minutes.", bc_all;
-        announce "Join now and win 250 CASHPOINTS!!",bc_all;
-        sleep 60000;
-		if (.stopped == 1) {
-			set .stopped, 0;
-			end;
-		}
-        announce "Devil Square will begin in 2 minutes.", bc_all;
-        announce "Join now and win 250 CASHPOINTS!!",bc_all;
-        sleep 60000;
-		if (.stopped) {
-			set .stopped, 0;
-			end;
-		}		
+        //announce "Devil Square is OPEN. The event will begin in 3 minutes.", bc_all;
+        //announce "Join now and win upto 100 CASHPOINTS!!",bc_all;
+        //sleep 60000;
+		//if (.stopped == 1) {
+		//	set .stopped, 0;
+		//	end;
+		//}
+       // announce "Devil Square will begin in 2 minutes.", bc_all;
+       // announce "Join now and win upto 100 CASHPOINTS!!",bc_all;
+        //sleep 60000;
+		//if (.stopped) {
+		//	set .stopped, 0;
+		//	end;
+		//}		
         announce "Devil Square will begin in 1 minute.", bc_all;
-        announce "Join now and win 250 CASHPOINTS!!",bc_all;
+        announce "Join now and win 50 CASHPOINTS!!",bc_all;
         sleep 50000;
 		if (.stopped) {
 			set .stopped, 0;
 			end;
 		}		
         announce "Devil Square will begin in 10 seconds.", bc_all;
-        announce getmapusers("ordeal_1-1")+" players inside.", bc_all;
+        announce getmapusers("ds")+" players inside.", bc_all;
         sleep 5000;
 		if (.stopped) {
 			set .stopped, 0;
 			end;
 		}		
         announce "Devil Square will begin in 5 seconds.", bc_all;
-        announce getmapusers("ordeal_1-1")+" players inside.", bc_all;
+        announce getmapusers("ds")+" players inside.", bc_all;
         sleep 5000;    
 		if (.stopped) {
 			set .stopped, 0;
 			end;
 		}		
-        if ( !getmapusers("ordeal_1-1") ){
+        if ( !getmapusers("ds") ){
                 announce "No brave soul has entered the Devil Square.", bc_all;
                 goto OnStopEvent;
         }
@@ -174,12 +224,13 @@ OnSun1740:
         set .mob, 0;
 		delwaitingroom;
 		hideonnpc "Devil Square Guardian#1";
-        set .monsterset, query_sql("SELECT id, iname, hp FROM `mob_db_re` where LV <= 70 and LV >= 60 and hp < 99999999 and MEXP = 0 and not iName='Treasure Chest' ORDER BY RAND() LIMIT 100", .monsterid, .monstername$, .monsterhp);
-        for (set .@x,0; .@x<getmapusers("ordeal_1-1"); set .@x, .@x+1){
+        //set .monsterset, query_sql("SELECT id, iname, hp FROM `mob_db_re` where LV <= 70 and LV >= 60 and hp < 99999999 and MEXP = 0 and not iName='Treasure Chest' ORDER BY RAND() LIMIT 100", .monsterid, .monstername$, .monsterhp);
+        set .monsterset, query_sql("SELECT id, iname, hp FROM `mob_db_re` where LV <= 120 and LV >= 99 and hp < 99999999 and MEXP = 0 and not iName='Treasure Chest' ORDER BY RAND() LIMIT 100", .monsterid, .monstername$, .monsterhp);
+		for (set .@x,0; .@x<getmapusers("ds"); set .@x, .@x+1){
 				set .monstercount,3;
                 for (set .@y,0; .@y<.monstercount; set .@y, .@y+1 ) {
 						set .monster, rand(0,.monsterset-1);
-                        areamonster "ordeal_1-1",183,182,246,244,"[DS] "+.monstername$[.monster],.monsterid[.monster],.monstercount,strnpcinfo(0)+"::OnDevilDead";         
+                        areamonster "ds",27,51,51,27,"[DS] "+.monstername$[.monster],.monsterid[.monster],.monstercount,strnpcinfo(0)+"::OnDevilDead";         
                         set .mob, .mob+.monstercount;
                 }
         }
@@ -190,11 +241,11 @@ OnDevilDead:
         if ( .mob <= 10 && .mob >= 1)
                 announce "Devil Square : "+ .mob +" monsters remaining in round 1.", bc_map;
         else if ( .mob <= 0 ) {
-                //mapannounce "ordeal_1-1","Devil Square is entering round 2 in 60 seconds", bc_map;
+                //mapannounce "ds","Devil Square is entering round 2 in 60 seconds", bc_map;
                 //sleep 50000;
-                mapannounce "ordeal_1-1","Devil Square is entering round 2 in 10 seconds.", bc_map;
+                mapannounce "ds","Devil Square is entering round 2 in 10 seconds.", bc_map;
                 sleep 5000;
-                mapannounce "ordeal_1-1","Devil Square is entering round 2 in 5 seconds.", bc_map;
+                mapannounce "ds","Devil Square is entering round 2 in 5 seconds.", bc_map;
                 sleep 5000;                    
                 goto OnDevil2;
         }
@@ -203,12 +254,13 @@ OnDevilDead:
 OnDevil2:
         set .round,2;
         set .mob, 0;
-        set .monsterset, query_sql("SELECT id, iname, hp FROM `mob_db_re` where LV <= 75 and LV >= 70 and hp < 99999999 and MEXP = 0 and not iName='Treasure Chest' ORDER BY RAND() LIMIT 100", .monsterid, .monstername$, .monsterhp);
-        for (set .@x,0; .@x<getmapusers("ordeal_1-1"); set .@x, .@x+1){
+        //set .monsterset, query_sql("SELECT id, iname, hp FROM `mob_db_re` where LV <= 75 and LV >= 70 and hp < 99999999 and MEXP = 0 and not iName='Treasure Chest' ORDER BY RAND() LIMIT 100", .monsterid, .monstername$, .monsterhp);
+        set .monsterset, query_sql("SELECT id, iname, hp FROM `mob_db_re` where LV <= 140 and LV >= 120 and hp < 99999999 and MEXP = 0 and not iName='Treasure Chest' ORDER BY RAND() LIMIT 100", .monsterid, .monstername$, .monsterhp);
+		for (set .@x,0; .@x<getmapusers("ds"); set .@x, .@x+1){
 				set .monstercount,3;
                 for (set .@y,0; .@y<.monstercount; set .@y, .@y+1 ) {
 						set .monster, rand(0,.monsterset-1);
-                        areamonster "ordeal_1-1",183,182,246,244,"[DS] "+.monstername$[.monster],.monsterid[.monster],.monstercount,strnpcinfo(0)+"::OnDevilDead2";         
+                        areamonster "ds",27,51,51,27,"[DS] "+.monstername$[.monster],.monsterid[.monster],.monstercount,strnpcinfo(0)+"::OnDevilDead2";         
                         set .mob, .mob+.monstercount;
                 }
         }
@@ -217,13 +269,13 @@ OnDevil2:
 OnDevilDead2:
         set .mob, .mob - 1;
         if ( .mob <= 10 && .mob >= 1)
-                mapannounce "ordeal_1-1","Devil Square : "+ .mob +" monsters remaining in round 2.", bc_map;
+                mapannounce "ds","Devil Square : "+ .mob +" monsters remaining in round 2.", bc_map;
         else if ( .mob <= 0 ) {
-                //mapannounce "ordeal_1-1","Devil Square is entering round 3 in 60 seconds", bc_map;
+                //mapannounce "ds","Devil Square is entering round 3 in 60 seconds", bc_map;
                 //sleep 50000;
-                mapannounce "ordeal_1-1","Devil Square is entering round 3 in 10 seconds.", bc_all;
+                mapannounce "ds","Devil Square is entering round 3 in 10 seconds.", bc_all;
                 sleep 5000;
-                mapannounce "ordeal_1-1","Devil Square is entering round 3 in 5 seconds.", bc_all;
+                mapannounce "ds","Devil Square is entering round 3 in 5 seconds.", bc_all;
                 sleep 5000;                            
                 goto OnDevil3;
         }
@@ -232,15 +284,16 @@ OnDevilDead2:
 OnDevil3:
         set .round, 3;
         set .mob, 0;
-        set .monsterset, query_sql("SELECT id, iname, hp FROM `mob_db_re` where LV <= 80 and LV >= 75 and hp < 99999999 and MEXP = 0 and not iName='Treasure Chest' ORDER BY RAND() LIMIT 100", .monsterid, .monstername$, .monsterhp);
-        for (set .@x,0; .@x<getmapusers("ordeal_1-1"); set .@x, .@x+1){
+        //set .monsterset, query_sql("SELECT id, iname, hp FROM `mob_db_re` where LV <= 80 and LV >= 75 and hp < 99999999 and MEXP = 0 and not iName='Treasure Chest' ORDER BY RAND() LIMIT 100", .monsterid, .monstername$, .monsterhp);
+        set .monsterset, query_sql("SELECT id, iname, hp FROM `mob_db_re` where LV <= 160 and LV >= 140 and hp < 99999999 and MEXP = 0 and not iName='Treasure Chest' ORDER BY RAND() LIMIT 100", .monsterid, .monstername$, .monsterhp);
+		for (set .@x,0; .@x<getmapusers("ds"); set .@x, .@x+1){
 				//set .monster, rand(0,.monsterset-1);
                 //if (.monsterhp[.monster] > 15000) set .monstercount, 1;
                 //else 
 				set .monstercount,3;
                 for (set .@y,0; .@y<.monstercount; set .@y, .@y+1 ) {
 						set .monster, rand(0,.monsterset-1);
-                        areamonster "ordeal_1-1",183,182,246,244,"[DS] "+.monstername$[.monster],.monsterid[.monster],.monstercount,strnpcinfo(0)+"::OnDevilDead3";         
+                        areamonster "ds",27,51,51,27,"[DS] "+.monstername$[.monster],.monsterid[.monster],.monstercount,strnpcinfo(0)+"::OnDevilDead3";         
                         set .mob, .mob+.monstercount;
                 }
         }
@@ -249,9 +302,9 @@ OnDevil3:
 OnDevilDead3:
 		set .mob, .mob - 1;
         if ( .mob <= 10 && .mob >= 1)
-                mapannounce "ordeal_1-1","Devil Square : "+ .mob +" monsters remaining in round 2.", bc_map;
+                mapannounce "ds","Devil Square : "+ .mob +" monsters remaining in round 2.", bc_map;
         else if ( .mob <= 0 ) {
-                mapannounce "ordeal_1-1","Devil Square : Watchout!! An MVP Has entered the realm!!", bc_map;                            
+                mapannounce "ds","Devil Square : Watchout!! An MVP Has entered the realm!!", bc_map;                            
                 goto OnDevilMVP;
         }
         end;
@@ -259,36 +312,38 @@ OnDevilDead3:
  
 OnDevilMVP:
         set.mob, 0;
-		if (getmapusers("ordeal_1-1") <= 5){
+		if (getmapusers("ds") <= 5){
+			//set .monsterset, query_sql("SELECT id, iname FROM `mob_db_re` where LV <= 120 and LV >= 1 and MEXP>1", .monsterid, .monstername$);
 			set .monsterset, query_sql("SELECT id, iname FROM `mob_db_re` where LV <= 120 and LV >= 1 and MEXP>1", .monsterid, .monstername$);
 		} else {
-			set .monsterset, query_sql("SELECT id, iname FROM `mob_db_re` where LV <= 120 and LV >= 100 and MEXP>1", .monsterid, .monstername$);
+			//set .monsterset, query_sql("SELECT id, iname FROM `mob_db_re` where LV <= 120 and LV >= 100 and MEXP>1", .monsterid, .monstername$);
+			set .monsterset, query_sql("SELECT id, iname FROM `mob_db_re` where LV <= 170 and LV >= 160 and MEXP>1", .monsterid, .monstername$);
 		}
         set .monstercount, 1;
         set .monster, rand(0,.monsterset-1);
-        areamonster "ordeal_1-1",183,182,246,244,"[DS] "+.monstername$[.monster],.monsterid[.monster],1,strnpcinfo(0)+"::OnDevilMVPDead";              
+        areamonster "ds",27,51,51,27,"[DS] "+.monstername$[.monster],.monsterid[.monster],1,strnpcinfo(0)+"::OnDevilMVPDead";              
         end;
  
 OnDevilMVPDead:
 		set $MVPDefeat, $MVPDefeat + 5;
 		set .divisor,2;
 		if (rand(1,.divisor+$MVPDefeat) == 1) { 
-			mapannounce "ordeal_1-1","Devil Square : It's not over yet! Another MVP Has entered the realm!!", bc_map;
+			mapannounce "ds","Devil Square : It's not over yet! Another MVP Has entered the realm!!", bc_map;
 			goto OnDevilMVP;
 		}
-		mapannounce "ordeal_1-1","The Devil Square has been eradicated!", bc_map;
-		mapannounce "ordeal_1-1","Treasure chests have appeared across the map!", bc_map;
+		mapannounce "ds","The Devil Square has been eradicated!", bc_map;
+		mapannounce "ds","Treasure chests have appeared across the map!", bc_map;
 		goto OnDevil4; 
         end;   
        
 OnDevil4:
         set .round, 4;
         set .monsterset, query_sql("SELECT id FROM `mob_db_re`  where iName='Treasure Chest';", .monsterid);
-        for (set .@x,0; .@x<getmapusers("ordeal_1-1"); set .@x, .@x+1){
+        for (set .@x,0; .@x<getmapusers("ds"); set .@x, .@x+1){
                 set .monstercount,3;
                 for (set .@y,0; .@y<.monstercount; set .@y, .@y+1 ) {
                         set .monster, rand(0,.monsterset-1);
-                        areamonster "ordeal_1-1",183,182,246,244,"[DS] "+.monstername$[.monster],.monsterid[.monster],1,strnpcinfo(0)+"::OnTreasureDead";         
+                        areamonster "ds",27,51,51,27,"[DS] "+.monstername$[.monster],.monsterid[.monster],1,strnpcinfo(0)+"::OnTreasureDead";         
                         set .mob, .mob + 1;
                 }
         }
@@ -310,8 +365,8 @@ OnGMStopEvent:
 		set .stopped, 1;
 		announce "Devil Square : A GM has manually stopped the event.",bc_all;
 OnStopEvent:
-        killmonsterall "ordeal_1-1";
-        enablenpc "ord11-12"; //from npc/warps/pvp.txt
+        killmonsterall "ds";
+        //enablenpc "ord11-12"; //from npc/warps/pvp.txt
         enablenpc "Devil Square Guardian#2";
 		hideonnpc "Devil Square Guardian#1";
 		delwaitingroom;
@@ -322,44 +377,68 @@ OnInit:
 		bindatcmd "enableds",strnpcinfo(3)+"::OnGMStartEvent";
 		bindatcmd "disableds",strnpcinfo(3)+"::OnGMStopEvent";
 		hideonnpc "Devil Square Guardian#1";
+		hideonnpc "Devil Square Guardian#2";
 		end;
 
 OnPCDieEvent:
+		setarray .map$,"ds";
+		getmapxy(@map$, @xb, @yb, 0 );
+        if (@map$ == .map$) {
 		announce "You have have died!", bc_self;
-		sleep 3000;
-		attachrid(getcharid(3,strcharinfo(0)));
-		mes "Do you want to revive for ^FF0000100 CASHPOINTS^000000?";
+		sleep 300;
+		attachrid(getcharid(3,$@player$));
+		mes "Do you want to revive for ^FF000010 CASHPOINTS^000000?";
+		next;
 		Switch(select("Yes:No")) {
-			case 1:
-				set #CASHPOINTS, #CASHPOINTS - 100;
-				announce "You will revive in 3 seconds.", bc_self;
-				sleep 3000;
+				case 1:
+				set #CASHPOINTS, #CASHPOINTS - 10;
+				dispbottom "Your balance is "+(#CASHPOINTS)+" Cashpoints!";
+				announce "You will revive soon.", bc_self;
+				//sleep 300;
+				close2;
 				atcommand "@alive";
-				close;
-			case 2:
-				close;		
+				end;
+				
+				case 2:
+				close2;
+				end;
+			}
 		}
 
 
 }
  
  
-ordeal_1-1,246,245,7	script	Devil Square Guardian#2	406,{
+//ds,246,245,7	script	Devil Square Guardian#2	406,{
+ds,39,19,7	script	Devil Square Guardian#2	406,{
         mes "[Exit]";
         mes "Farewell.";
-        mes "Here is your 250 CASHPOINTS for joining!";
-        //set #CASHPOINTS, #CASHPOINTS + 250;
+        mes "Here is your 50 CASHPOINTS for joining!";
+        //set #CASHPOINTS, #CASHPOINTS + (rand (1,100));
+		set #CASHPOINTS, #CASHPOINTS + 50;
+		dispbottom "You got 50 Cashpoints!!";
         close2;
-        warp "SavePoint",0,0;
+		//mapannounce "ds", strcharinfo(0) + " has found the Devil Square Guardian and claim Hidden Cashpoints!",0;
+		//mapannounce "milenia", strcharinfo(0) + " has found the Devil Square Guardian and claim Hidden Cashpoints!",0;
+        warp "milenia",119,152;
         end;
 }
+
+ds,19,39,7	script	Jumper#1	723,{
+	warp "ds",40,40;
+	}
+	
+ds,60,39,7	script	Jumper#2	723,{
+	warp "ds",39,32;
+	}
  
-ordeal_1-1	mapflag	nowarp
-ordeal_1-1	mapflag	nowarpto
-ordeal_1-1	mapflag	noteleport
-ordeal_1-1	mapflag	monster_noteleport
-ordeal_1-1	mapflag	nosave	SavePoint
-ordeal_1-1	mapflag	nomemo
-ordeal_1-1	mapflag	nobranch
-ordeal_1-1	mapflag	nopenalty
-ordeal_1-1	mapflag	noicewall
+ds	mapflag	nowarp
+ds	mapflag	nowarpto
+ds	mapflag	noteleport
+ds	mapflag	monster_noteleport
+ds	mapflag	nosave	SavePoint
+ds	mapflag	nomemo
+ds	mapflag	nobranch
+ds	mapflag	nopenalty
+ds	mapflag	noicewall
+ds	mapflag	restricted	1

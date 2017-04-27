@@ -25,6 +25,26 @@ setarray .map$,"farm","prt_q";
     end;
 }
 
+function	script	TokenLimitFunc	{
+
+OnPCLoadMapEvent:
+setarray .map$,"ds";
+    getmapxy(@map$, @xb, @yb, 0 );
+        if (@map$ == .map$) {
+                dispbottom "You use this in here!!";
+		mes "[Milenia Officer]";
+		mes "Hello ^ff0000" + strcharinfo(0) + "^000000,";
+		mes "You use this in here!";
+		mes "Thank you!!";
+		getitem 31231,1;
+                close;
+        }
+		else{
+		getitem 7621,1; // Token of Siegfried
+		}
+    end;
+}
+
 function	script	WoeRewadsFunc	{
 
 	setarray .@items[0],"13845","13846","13847","13848";

@@ -13,7 +13,7 @@ setarray .News$[0],	// Random Message to be Announced
 		"Milenia RO : Dont forget to join Prontera WoE at Sunday!",
 		"Milenia RO : Did you know you may exchange Zeny into Cashpoints?",
 		"Milenia RO : Do you know we have Pet Support System?",
-		"Milenia RO : Enjoy our server? Please support us with buy our Cash Points~",
+		"Milenia RO : Enjoy our server? Please support us with donating~",
 		"Milenia RO : Are you new player? Take our FREE Novice item at Novice Support~",
 		"Milenia RO : Enjoy our server? Please give review at RMS to help us grow bigger~",
 		"Milenia RO : Lack of money? Farm your money at our Dokebi Farm~",
