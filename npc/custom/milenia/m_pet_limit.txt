@@ -40,7 +40,7 @@ setarray .map$,"ds";
                 close;
         }
 		else{
-		getitem 7621,1; // Token of Siegfried
+		getitem 7621,10; // Token of Siegfried
 		}
     end;
 }

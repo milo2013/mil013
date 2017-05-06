@@ -2229,3 +2229,31 @@ OnTimer1000:
 	donpcevent instance_npcname("#Effect30")+"::OnEnable";
 	end;
 }
+
+1@tower	mapflag	nomemo
+2@tower	mapflag	nomemo
+3@tower	mapflag	nomemo
+4@tower	mapflag	nomemo
+5@tower	mapflag	nomemo
+6@tower	mapflag	nomemo
+
+1@tower	mapflag	nosave	SavePoint
+2@tower	mapflag	nosave	SavePoint
+3@tower	mapflag	nosave	SavePoint
+4@tower	mapflag	nosave	SavePoint
+5@tower	mapflag	nosave	SavePoint
+6@tower	mapflag	nosave	SavePoint
+
+// Milenia
+1@tower	mapflag	noteleport
+1@tower	mapflag	monster_noteleport
+2@tower	mapflag	noteleport
+2@tower	mapflag	monster_noteleport
+3@tower	mapflag	noteleport
+3@tower	mapflag	monster_noteleport
+4@tower	mapflag	noteleport
+4@tower	mapflag	monster_noteleport
+5@tower	mapflag	noteleport
+5@tower	mapflag	monster_noteleport
+6@tower	mapflag	noteleport
+6@tower	mapflag	monster_noteleport
