@@ -58,7 +58,7 @@ function	script	WoeRewadsFunc	{
 	getitem 12246,5; 
 	getitem 6234 ,5; 
 	getitem 6230,5;
-	getitem 31206,2;
+	getitem 31206,10;
 	}
 	
 function	script	PrizeHeroFunc	{

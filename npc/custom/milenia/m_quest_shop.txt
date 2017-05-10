@@ -462,16 +462,24 @@ OnInit:
 	Add(20,12660,1,0,0,707,25,710,25); // Mavka	
 	Add(20,12663,1,0,0,4001,50); // Poring	
 	Add(20,12659,1,0,0,1004,50); // Raydric	
-		
-	Add(21,31219,1,0,0,31206,15); // Chambered RWC 2012 Pendant	
-	Add(21,31220,1,0,0,31206,15); // Chambered RWC 2012 Ring
-	Add(21,31221,1,0,0,31206,15); // RWC 2012 Pendant	
-	Add(21,31222,1,0,0,31206,15); // RWC 2012 Ring	
-	Add(21,31223,1,0,0,31206,15); // RWC Silver Brooch
-	Add(21,31224,1,0,0,31206,15); // RWC Gold Brooch
-	Add(21,31225,1,0,0,31206,20); // RWC Commemorative Pin
-	Add(21,31226,1,0,0,31206,25); // RWC Commemorative Pin
-	Add(21,31227,1,0,0,31206,15); // RWC Commemorative Pin
+	
+
+	Add(21,2967,1,0,0,31206,250);  	// Chambered RWC 2012 Ring [1]
+	Add(21,2969,1,0,0,31206,250); 	// Chambered RWC 2012 Pendant [1] 
+	Add(21,2966,1,0,0,31206,250); 	// RWC 2012 Ring [0]
+	Add(21,2968,1,0,0,31206,250); 	// RWC 2012 Pendant [0]
+	Add(21,18509,1,0,0,31206,500); 	// RWC2010 Indonesia [1]
+	
+
+	//Add(21,31219,1,0,0,31206,15); // Chambered RWC 2012 Pendant	
+	//Add(21,31220,1,0,0,31206,15); // Chambered RWC 2012 Ring
+	//Add(21,31221,1,0,0,31206,15); // RWC 2012 Pendant	
+	//Add(21,31222,1,0,0,31206,15); // RWC 2012 Ring	
+	//Add(21,31223,1,0,0,31206,15); // RWC Silver Brooch
+	//Add(21,31224,1,0,0,31206,15); // RWC Gold Brooch
+	//Add(21,31225,1,0,0,31206,20); // RWC Commemorative Pin
+	//Add(21,31226,1,0,0,31206,25); // RWC Commemorative Pin
+	//Add(21,31227,1,0,0,31206,15); // RWC Commemorative Pin
 	
 	Add(22,20234,1,0,0,7539,50,7231,50,6516,1,6517,1,6518,1,6004,1,671,20,31228,20,31229,10,31230,5); 	// Bapho Costume
 	Add(22,18740,1,0,0,7539,50,7231,50,6516,1,6517,1,6518,1,6004,1,671,20,31228,20,31229,10,31230,5); 	// Hair Of Strong

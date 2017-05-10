@@ -41,6 +41,12 @@ milenia,100,161,5	script	MVP Ladder Exchanger	10183,{
 				if (countitem (.IDP)) < 100{
 				mes "[Ladder Exchanger]";
 				mes "Sorry! You don't have any permit to exchange!!";
+				next;
+				mes "[Ladder Exchanger]";
+				mes "You need at least 100 MVP Ladder Permit I to exchange!";
+				next;
+				mes "[Ladder Exchanger]";
+				mes "Please come back when you have enough permit! Thanks!";
 				close;
 				break;
 				}
