@@ -227,6 +227,8 @@
 31229,Lost_Ancient_Letter,Lost Ancient Letter,3,0,,0,,,,,,,,,,,,,{},{},{}
 31230,Ancient_Royal_Letter,Ancient Royal Letter,3,0,,0,,,,,,,,,,,,,{},{},{} 
 31231,Siegfried_Box,Token Of Siegfried,2,10,,10,,,,,0xFFFFFFFF,63,2,,,,,,{ callfunc "TokenLimitFunc"; },{},{}
+31232,Shop_Permit_Box,Shop Permit Box,2,10,,10,,,,,0xFFFFFFFF,63,2,,,,,,{ getitem 31233,10; },{},{}
+31233,Shop Permit,Shop Permit,2,10,,10,,,,,0xFFFFFFFF,63,2,,,,,,{ callfunc "UniversalShopFunc"; },{},{}
 
 
 // BIOS ISLAND

@@ -140,7 +140,7 @@ if( !.@equipment_count ){
 	end;
 }
 else if  (countitem (31121)) < 1 {
-	message strcharinfo(0),"Sorry, but you didnt have Refine Certificate to use our service!";
+	message strcharinfo(0),"Sorry, but you didnt have Refine Certificate to use our service! Please buy from our Donation Shop!";
 	end;
 }else{
 

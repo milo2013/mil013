@@ -25,6 +25,10 @@ setarray .map$,"farm","prt_q";
     end;
 }
 
+function	script	UniversalShopFunc	{
+warp "milenia",71,185;
+}
+
 function	script	TokenLimitFunc	{
 
 OnPCLoadMapEvent:

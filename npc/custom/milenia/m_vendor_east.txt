@@ -35,7 +35,9 @@ set .map$,"milenia";
 setcell .map$,0,0,284,365,cell_novending,1;
 
 // x and y horizone ..
-setarray .x_line,144,148,152,156,160,164,168,172,176,180,184,188,192,95,91,87,83,79,75,71,67,63,59,55,51,47;
+setarray .x_line,144,148,152,156,160,164,168,172,176,180,184,188,192;
+//95,91,87,83,79,75,71,67,63,59,55,51,47;
+
 setarray .y_line,174,178,182,186,174,178,182,186;
 
 set .x_line_size,getarraysize( .x_line );
@@ -88,8 +90,17 @@ while( .@map$ != "" ){
 end;
 }
 
+
+milenia,118,179,5	script	West Market Officer	533,{
+
+mes " [ West Market Officer ]";
+mes " You want to warp to ^FF0000Universal Shop^000000?";
+	if( select( "Sure!","Cancel" ) == 1 ){
+	warp "milenia",71,185;
+	}
+}
+
 // Add more if needed.
-milenia,118,179,5	duplicate(East Market Officer)	West Market Officer	533
 milenia,1,1,4	duplicate(vend_slot)	#vend_slot1	858
 milenia,1,1,4	duplicate(vend_slot)	#vend_slot2	858
 milenia,1,1,4	duplicate(vend_slot)	#vend_slot3	858

@@ -17,8 +17,8 @@ setarray .News$[0],	// Random Message to be Announced
 		"Milenia RO : Are you new player? Take our FREE Novice item at Novice Support~",
 		"Milenia RO : Enjoy our server? Please give review at RMS to help us grow bigger~",
 		"Milenia RO : Lack of money? Farm your money at our Dokebi Farm~",
-		"Milenia RO : Please balance your game with your work and study~";,
-		"Milenia RO : DOUBLE DONATION SALES from 24 April till 8 May 2017! Check our page for details!";
+		"Milenia RO : Please balance your game with your work and study~";
+		//"Milenia RO : DOUBLE DONATION SALES from 24 April till 8 May 2017! Check our page for details!";
 		
 while( 1 ){
 	announce .News$[ rand( getarraysize( .News$ ) ) ],0;

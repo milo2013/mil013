@@ -76,12 +76,12 @@ Player_Menu:
 			mes "[Milenia]";
 			mes "Please select which NPC you would like to be teleported to.";
 			next;
-			switch(select("Milenia Item Mall:Milenia Market West :Milenia Market East")) {
+			switch(select("Milenia Item Mall:Universal Shop :Player Vendor")) {
 				case 1:
 					warp "milenia",95,185;
 					break;	
 				case 2:
-					warp "milenia",62,183;
+					warp "milenia",71,185;
 					break;
 				case 3:
 					warp "milenia",162,180;

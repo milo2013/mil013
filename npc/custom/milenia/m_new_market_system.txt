@@ -1,0 +1,691 @@
+
+/* Load the SQL Table into your Database
+
+CREATE TABLE IF NOT EXISTS `e_market` (
+  `id` BIGINT(20) UNSIGNED NOT NULL AUTO_INCREMENT,
+  
+  `npc_id` SMALLINT(5) UNSIGNED NOT NULL DEFAULT '0',
+  `header` VARCHAR(50) NOT NULL DEFAULT 'MARKET',
+  `owner_id` INT(11) UNSIGNED NOT NULL DEFAULT '0',
+  `currency` INT(11) NOT NULL DEFAULT '0',
+  `cost` INT(11) UNSIGNED NOT NULL DEFAULT '0',
+  `expire` int(11) unsigned NOT NULL default '0',
+  
+  `nameid` SMALLINT(5) UNSIGNED NOT NULL DEFAULT '0',
+  `amount` INT(11) UNSIGNED NOT NULL DEFAULT '0',
+  `refine` TINYINT(3) UNSIGNED NOT NULL DEFAULT '0',
+  `card0` SMALLINT(5) UNSIGNED NOT NULL DEFAULT '0',
+  `card1` SMALLINT(5) UNSIGNED NOT NULL DEFAULT '0',
+  `card2` SMALLINT(5) UNSIGNED NOT NULL DEFAULT '0',
+  `card3` SMALLINT(5) UNSIGNED NOT NULL DEFAULT '0',
+  
+  `status` TINYINT(4) UNSIGNED NOT NULL DEFAULT '1',
+  `last_edit` int(11) unsigned NOT NULL default '0',
+  `buyer_id` INT(11) UNSIGNED NOT NULL DEFAULT '0',
+  
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM;
+
+*/
+
+/*
+	StatusID
+	0 - Maintenance
+	1 - Selling/Available
+	2 - Expired + not collected
+	3 - Sold + not collected
+	4 - Returned items/sales to owner
+*/
+
+
+-	script	market_npc_main	-1,{
+	function func_Item;
+	function func_Item_Card;
+	function func_Currency_Show;
+	function func_Currency_Check;
+	function func_Currency_Pay;
+	function func_Currency_Retrieve;
+	
+	OnTalk:
+		.@npc_id = atoi( strnpcinfo(2) );
+		.@gettimetick = gettimetick(2);
+		.@aid = getcharid(3);
+		.@npc_name$ = strnpcinfo(3);
+		
+		disable_items;
+		if ( .@npc_id <= 0 ) {
+			mes "Invalid shop.";
+		}
+		else {
+			
+			deltimer .@npc_name$+"::OnClearData";
+			addtimer 1000,.@npc_name$+"::OnClearData";
+			
+			.@sql$ = "SELECT `header`,`owner_id`,`currency`"
+				+ " FROM `e_market`"
+				+ " WHERE `npc_id` = "+.@npc_id
+				+ " AND `status` < 2"
+				+ " AND `expire` > "+.@gettimetick
+				+ " LIMIT 1";
+			query_sql( .@sql$, .@header$, .@owner_id, .@currency );
+			
+			.@sql$ = "SELECT `id`, ( `cost` * `amount` ),`nameid`,`amount`,`refine`,`card0`,`card1`,`card2`,`card3`,`last_edit` "
+				+ " FROM `e_market`"
+				+ " WHERE `npc_id` = "+.@npc_id
+				+ " AND `status` < 2"
+				+ " AND `nameid` > 0"
+				+ " AND `amount` > 0"
+				+ " AND `cost` > 0"
+				+ " AND `expire` > "+.@gettimetick
+				+ " LIMIT "+.max_item;
+			query_sql( .@sql$, .@id, .@cost, .@nameid, .@amount, .@refine, .@card0, .@card1, .@card2, .@card3, .@last_edit );
+			.@id_size = getarraysize( .@id );
+			
+			for ( .@i = 0; .@i < .@id_size; .@i++ ) {
+				.@menu$ = .@menu$ + "["+( .@i + 1 )+".] " + func_Item( .@nameid[.@i],.@amount[.@i],.@refine[.@i],.@card0[.@i],.@card1[.@i],.@card2[.@i],.@card3[.@i] ) + " - cost " + F_InsertComma( .@cost[.@i] ) + ":";
+			}
+					
+			if ( .@owner_id ) {
+				mes "^FF0000["+.@header$+"]^000000";
+				mes "Currently Selling "+.@id_size+" item(s)";
+				mes " ";
+				mes "Currency: "+func_Currency_Show( .@currency );
+			}
+			else {
+				mes "[Universal Shop]";
+				mes "Would you like to open a shop ?";
+			}
+			next;
+			switch ( select( 
+				( .@id_size > 0 ) ? "Visit Shop" : "",
+				( .@owner_id <= 0 ) ? "Create Shop" : "",
+				"Collect Item/Sales",
+				"Information"
+			)) {
+				case 1:
+					do {
+						mes "^FF0000["+.@header$+"]^000000";
+						mes "Pick an Item to view.";
+						mes "Currently Selling "+.@id_size+" item(s)";
+						mes " ";
+						mes "Currency: "+func_Currency_Show( .@currency );
+						
+						.@i = select( .@menu$ ) - 1;
+						next;
+						mes "^FF0000["+.@header$+"]^000000";
+						mes func_Item( .@nameid[.@i],.@amount[.@i],.@refine[.@i],.@card0[.@i],.@card1[.@i],.@card2[.@i],.@card3[.@i] );
+						func_Item_Card( .@card0[.@i],.@card1[.@i],.@card2[.@i],.@card3[.@i] );
+						mes " ";
+						if ( .@amount[.@i] > 1 )
+							mes "Cost per Unit: "+F_InsertComma( .@cost[.@i] / .@amount[.@i] )+" x "+func_Currency_Show( .@currency );
+						mes "Total Cost: "+F_InsertComma( .@cost[.@i] )+" x "+func_Currency_Show( .@currency );
+						mes " ";
+						if ( select( 
+							( .@owner_id && .@owner_id != .@aid ) ? "Buy "+func_Item( .@nameid[.@i],.@amount[.@i],.@refine[.@i],.@card0[.@i],.@card1[.@i],.@card2[.@i],.@card3[.@i] ) : "",
+							"Back" 
+						) == 1 ) {
+							if ( select( "Confirm Purchase","Back" ) == 1 ) {
+								query_sql( "SELECT `id`,`last_edit`,`status` FROM `e_market` WHERE `id` = "+.@id[.@i]+" LIMIT 1",.@new_id,.@new_edit,.@new_status );
+								
+								if ( !.@new_id || .@new_edit > .@last_edit[.@i] || .@new_status != 1 ) {
+									mes "Item has been updated, please recheck the shop for latest items.";
+								}
+								else if ( func_Currency_Check( .@currency,.@cost[.@i] ) ) {
+									.@gettimetick = gettimetick(2);
+									query_sql( "UPDATE `e_market` SET `buyer_id` = "+.@aid+", `status` = 3, `last_edit` = "+.@gettimetick+" WHERE `id` = "+.@new_id+" AND `last_edit` = "+.@new_edit );
+									func_Currency_Pay( .@currency,.@cost[.@i] );
+									getitem2 .@nameid[.@i],.@amount[.@i],1,.@refine[.@i],0,.@card0[.@i],.@card1[.@i],.@card2[.@i],.@card3[.@i];
+									mes "Purchased "+func_Item( .@nameid[.@i],.@amount[.@i],.@refine[.@i],.@card0[.@i],.@card1[.@i],.@card2[.@i],.@card3[.@i] );
+									donpcevent .@npc_name$+"::OnCreateHeader";
+									close;
+								}
+								else {
+									mes "^FF0000Insufficient fund.^000000";
+								}
+							}
+						}
+						next;
+					} while ( 1 );
+					break;
+				case 2:
+					if (countitem (31233) < 1) {
+					mes "[ ^FF0000WARNING^000000 ]";
+					mes "You dont have ^FF0000"+(getitemname (31233))+"^000000!!";
+					next;
+					mes "[ Universal Shop ]";
+					mes "Please get it from ^FF0000Cash Shop^000000 or buy from our ^FF0000Donation Shop (Website)^000000.";
+					mes "Thank You~";
+					break;
+					}
+					mes "[ ^FF0000WARNING^000000 ]";
+					mes "Don't sell these items:";
+					mes " ~ item with extra bonus, rental or bounded.";
+					mes " ~ store same item in storage to avoid selling wrong item";
+					mes " ";
+					.@setup_header$ = "New Shop - "+strcharinfo(0);
+					query_sql( "SELECT `owner_id` FROM `e_market` WHERE `npc_id` = "+.@npc_id+" AND `status` < 2 LIMIT 1",.@current_owner_id );
+					query_sql( "SELECT `npc_id` FROM `e_market` WHERE `owner_id` = "+.@aid+" AND `status` < 2 AND `nameid` > 0 AND `amount` > 0 LIMIT 1",.@current_npc_id );
+					
+					if ( .@current_npc_id && .@current_npc_id != .@npc_id ) {
+						mes "You already create a shop from another NPC. Close it before you can open a new shop.";
+						break;
+					}
+					else if ( .@current_owner_id && .@current_owner_id != .@aid ) {
+						mes "You're too late, someone already opened a shop before you.";
+						break;
+					}
+					else if ( !.@current_owner_id ) {
+						query_sql( "INSERT INTO `e_market` ( `npc_id`,`header`,`owner_id`,`expire` ) VALUES ( "+.@npc_id+", '"+escape_sql( .@setup_header$ )+"', "+.@aid+", "+( gettimetick(2) + 600 )+" )" );
+					}
+					
+					next;
+					
+					@attached_market_npc = .@npc_id;
+					
+					deletearray .@setup_item_price;
+					deletearray .@setup_item_id;
+					getinventorylist;
+					.@setup_inventory_count = @inventorylist_count;
+					copyarray .@setup_item_id,@inventorylist_id,.@setup_inventory_count;
+					copyarray .@setup_item_amount,@inventorylist_amount,.@setup_inventory_count;
+					copyarray .@setup_item_equip,@inventorylist_equip,.@setup_inventory_count;
+					copyarray .@setup_item_refine,@inventorylist_refine,.@setup_inventory_count;
+					copyarray .@setup_item_card1,@inventorylist_card1,.@setup_inventory_count;
+					copyarray .@setup_item_card2,@inventorylist_card2,.@setup_inventory_count;
+					copyarray .@setup_item_card3,@inventorylist_card3,.@setup_inventory_count;
+					copyarray .@setup_item_card4,@inventorylist_card4,.@setup_inventory_count;
+					copyarray .@setup_item_expire,@inventorylist_expire,.@setup_inventory_count;
+					copyarray .@setup_item_bound,@inventorylist_bound,.@setup_inventory_count;
+					
+					do {
+						.@is_complete = ( 
+							.@setup_header$ != ""
+							&& .@setup_currency >= -2
+							&& .@setup_item_size > 0
+						);
+					
+						.@option = select(
+							"Edit Shop Name ["+.@setup_header$+"]",
+							"Edit Currency ["+func_Currency_Show( .@setup_currency )+"]",
+							"Manage Items ["+.@setup_item_size+" items]",
+							( .@is_complete ) ? "Done, open shop" : ""
+						);
+						switch ( .@option ) {
+							case 1:
+								mes "[Universal Shop]";
+								mes "Enter your Shop Name:";
+								mes "^FF0000WARNING!!^000000";
+								mes "^FF0000Please use proper words or you will be banned!^000000";
+								while( input( .@setup_header$, 1, 50 ) );
+								.@setup_header$ = replacestr( .@setup_header$, ":", " " );
+								break;
+							case 2:
+								do {
+									mes "[Universal Shop]";
+									mes "Select a Currency:";
+									.@setup_currency = select( 
+										"Kafra Point",
+										"Cash Point",
+										"Zeny",
+										"Item"
+									) - 3;
+									if ( .@setup_currency > 0 ) {
+										mes "[Universal Shop]";
+										mes "Enter Currency's ItemID:";
+										input .@setup_currency,0,32767;
+										if ( .@setup_currency ) 
+											if ( getitemname( .@setup_currency ) == "null" )
+												.@setup_currency = -3;
+									}
+								} while( .@setup_currency <= -3 );
+								break;
+							case 3:
+								if ( .@setup_currency <= -3 ) {
+									mes "[Universal Shop]";
+									mes "Please setup a currency first.";
+								}
+								else {
+									do {
+										next;
+										.@sub_item_add$ = "";
+										.@sub_item_delete$ = "";
+										.@setup_item_size = 0;
+										for ( .@i = 0; .@i < .@setup_inventory_count; .@i++ ) {
+											if ( .@setup_item_equip[.@i] <= 0 && .@setup_item_expire[.@i] <= 0 && !.@setup_item_bound[.@i] ) {
+												.@item_name$ = func_Item( .@setup_item_id[.@i],.@setup_item_amount[.@i],.@setup_item_refine[.@i],.@setup_item_card1[.@i],.@setup_item_card2[.@i],.@setup_item_card3[.@i],.@setup_item_card4[.@i] );
+												if ( .@setup_item_price[.@i] > 0 ) {
+													.@setup_item_size++;
+													
+													
+													mes "^FF0000["+.@setup_item_size+"]^000000"+.@item_name$;
+													mes " -> ^FFBF00"+F_InsertComma( .@setup_item_price[.@i] )+"x "+func_Currency_Show( .@setup_currency )+"^000000 per unit";
+													.@sub_item_delete$ = .@sub_item_delete$ + .@item_name$;
+												}
+												else {
+													.@sub_item_add$ = .@sub_item_add$ + .@item_name$;
+												}
+											}
+											.@sub_item_add$ = .@sub_item_add$ + ":";
+											.@sub_item_delete$ = .@sub_item_delete$ + ":";
+										}
+										.@sub_option = select( 
+											( .@setup_item_size < .max_item ) ? "Add Item" : "",
+											( .@setup_item_size ) ? "Delete Item" : "",
+											"Back"
+										);
+										switch ( .@sub_option ) {
+											case 1:
+												mes "Which item to add?";
+												.@i = select( .@sub_item_add$ ) - 1;
+												mes func_Item( .@setup_item_id[.@i],.@setup_item_amount[.@i],.@setup_item_refine[.@i],.@setup_item_card1[.@i],.@setup_item_card2[.@i],.@setup_item_card3[.@i],.@setup_item_card4[.@i] );
+												func_Item_Card( .@setup_item_card1[.@i],.@setup_item_card2[.@i],.@setup_item_card3[.@i],.@setup_item_card4[.@i] );
+												if ( @inventorylist_amount[.@i] > 1 ) {
+													mes "Enter amount to sell:";
+													input .@setup_item_amount[.@i],0,@inventorylist_amount[.@i];
+												}
+												if ( .@setup_item_amount[.@i] ) {
+													mes "Enter cost per unit:";
+													.@max_cost_value = ( ( .@currency > 0 ) ? .max_amount_item : .max_amount_zeny );
+													input .@setup_item_price[.@i],0,.@max_cost_value;
+												}
+												break;
+											case 2:
+												mes "Which item to delete?";
+												.@i = select( .@sub_item_delete$ ) - 1;
+												.@setup_item_price[.@i] = 0;
+												break;
+											default: break;
+										}
+									} while ( .@sub_option < 3 );
+								}
+								break;
+							default: break;
+						}
+						next;
+					} while ( .@option < 4 );
+					mes "[Milenia Universal Shop]";
+					mes "Shop created.";
+					delitem 31233,1;
+					dispbottom "Universal Shop Currency : "+func_Currency_Show( .@currency );
+					.@gettimetick = gettimetick(2);
+					for ( .@i = 0; .@i < .@setup_inventory_count; .@i++ ) {
+						if ( .@setup_item_price[.@i] > 0 && countitem2( .@setup_item_id[.@i],1,.@setup_item_refine[.@i],0,.@setup_item_card1[.@i],.@setup_item_card2[.@i],.@setup_item_card3[.@i],.@setup_item_card4[.@i] ) >= .@setup_item_amount[.@i] ) {
+							delitem2 .@setup_item_id[.@i],.@setup_item_amount[.@i],1,.@setup_item_refine[.@i],0,.@setup_item_card1[.@i],.@setup_item_card2[.@i],.@setup_item_card3[.@i],.@setup_item_card4[.@i];
+							dispbottom " > "+func_Item( .@setup_item_id[.@i],.@setup_item_amount[.@i],.@setup_item_refine[.@i],.@setup_item_card1[.@i],.@setup_item_card2[.@i],.@setup_item_card3[.@i],.@setup_item_card4[.@i] )+" , total cost - "+F_InsertComma( .@setup_item_price[.@i] )+"x "+func_Currency_Show( .@setup_currency )+" per unit";
+							.@sql$ = "INSERT INTO `e_market`"
+									+ " ( `npc_id`,`header`,`owner_id`,`currency`,`cost`,`expire`,`nameid`,`amount`,`refine`,`card0`,`card1`,`card2`,`card3`,`last_edit` )"
+									+ " VALUES"
+									+ " ( "+.@npc_id+",'"+escape_sql( .@setup_header$ )+"',"+.@aid+","+.@setup_currency+","+.@setup_item_price[.@i]+","+( .@gettimetick + .shop_duration )+","+.@setup_item_id[.@i]+","+.@setup_item_amount[.@i]+","+.@setup_item_refine[.@i]+","+.@setup_item_card1[.@i]+","+.@setup_item_card2[.@i]+","+.@setup_item_card3[.@i]+","+.@setup_item_card4[.@i]+","+.@gettimetick+" )";
+							query_sql( .@sql$ );
+						}
+					}
+					dispbottom "#Reminder : Your shop will auto closed in 5 days from now.";
+					if (countitem (31233) >= 1){
+					dispbottom "1 "+(getitemname (31233))+" deducted as Service Fee. Your balance is "+(countitem (31233))+" "+(getitemname (31233))+". ";
+					}
+					if (countitem (31233) < 1){
+					dispbottom "1 "+(getitemname (31233))+" deducted as Service Fee. Your balance is "+(countitem (31233))+" "+(getitemname (31233))+". ";
+					dispbottom "Please buy Shop Permit in Cash Shop or Donation Shop to sell item in the future.";
+					}
+					
+					donpcevent .@npc_name$+"::OnCreateHeader";
+					break;
+				case 3:
+					.@gettimetick = gettimetick(2);
+					deletearray .@id;
+					switch( select( 
+						"Collect Expired Item",
+						"Collect Sold Item",
+						"Close Active Shop"
+					)) {
+						case 1: 
+							.@sql$ = "SELECT `id`,`nameid`,`amount`,`refine`,`card0`,`card1`,`card2`,`card3`,`status`"
+								+ " FROM `e_market`"
+								+ " WHERE `owner_id` = "+.@aid
+								+ " AND `nameid` > 0"
+								+ " AND `amount` > 0"
+								+ " AND `cost` > 0"
+								+ " AND `status` = 2";
+							query_sql( .@sql$, .@id, .@nameid, .@amount, .@refine, .@card0, .@card1, .@card2, .@card3, .@status );
+							.@id_size = getarraysize( .@id );
+							
+							if ( .@id_size > 0 ) {
+								for ( .@i = 0; .@i < .@id_size; .@i++ ) {
+									if ( .@status[.@i] == 2 ) {
+										if ( checkweight( .@nameid[.@i], .@amount[.@i] ) ) {
+											.@retrived_item_count++;
+											query_sql( "UPDATE `e_market` SET `status` = 4, `last_edit` = "+.@gettimetick+" WHERE `id` = "+.@id[.@i]+" LIMIT 1" );
+											dispbottom "Retrieved " + func_Item( .@nameid[.@i],.@amount[.@i],.@refine[.@i],.@card0[.@i],.@card1[.@i],.@card2[.@i],.@card3[.@i] );
+											getitem2 .@nameid[.@i],.@amount[.@i],1,.@refine[.@i],0,.@card0[.@i],.@card1[.@i],.@card2[.@i],.@card3;
+										}
+										else {
+											break;
+										}
+									}
+								}
+								mes "Retrieved "+F_InsertComma( .@retrived_item_count )+" x items";
+							}
+							else {
+								mes "Nothing to retrieve.";
+							}
+							break;
+						case 2: 
+							.@sql$ = "SELECT `id`,`currency`,( `cost` * `amount` ),`status`"
+								+ " FROM `e_market`"
+								+ " WHERE `owner_id` = "+.@aid
+								+ " AND `nameid` > 0"
+								+ " AND `amount` > 0"
+								+ " AND `cost` > 0"
+								+ " AND `status` = 3";
+							query_sql( .@sql$, .@sale_id, .@currency, .@cost, .@status );
+							.@sale_id_size = getarraysize( .@sale_id );
+							
+							if ( .@sale_id_size > 0 ) {
+								for ( .@i = 0; .@i < .@sale_id_size; .@i++ ) {
+									if ( .@status[.@i] == 3 ) {
+										if ( func_Currency_Retrieve( .@currency[.@i],.@cost[.@i] ) ) {
+											query_sql( "UPDATE `e_market` SET `status` = 4, `last_edit` = "+.@gettimetick+" WHERE `id` = "+.@sale_id[.@i]+" LIMIT 1" );
+											mes "Retrieved "+F_InsertComma( .@cost[.@i] )+" x "+func_Currency_Show( .@currency[.@i] );
+										}
+										else {
+											mes "You cant hold that much of Zeny/Item/Points now.";
+											break;
+										}
+									}
+								}
+							}
+							else {
+								mes "Nothing to retrieve.";
+							}
+							break;
+						case 3:
+							.@sql$ = "SELECT `id`,`nameid`,`amount`,`refine`,`card0`,`card1`,`card2`,`card3`,`status`"
+								+ " FROM `e_market`"
+								+ " WHERE `owner_id` = "+.@aid
+								+ " AND `nameid` > 0"
+								+ " AND `amount` > 0"
+								+ " AND `cost` > 0"
+								+ " AND `status` < 2";
+							
+							query_sql( .@sql$, .@id, .@nameid, .@amount, .@refine, .@card0, .@card1, .@card2, .@card3, .@status );
+							.@id_size = getarraysize( .@id );
+							
+							if ( .@id_size > 0 ) {
+								mes "item to be collected "+.@id_size+" item(s).";
+								
+								for ( .@i = 0; .@i < .@id_size; .@i++ ) {
+									if ( .@status[.@i] < 2 ) {
+										if ( checkweight( .@nameid[.@i], .@amount[.@i] ) ) {
+											.@retrived_item_count++;
+											query_sql( "UPDATE `e_market` SET `status` = 4, `last_edit` = "+.@gettimetick+" WHERE `id` = "+.@id[.@i]+" LIMIT 1" );
+											dispbottom "Retrieved " + func_Item( .@nameid[.@i],.@amount[.@i],.@refine[.@i],.@card0[.@i],.@card1[.@i],.@card2[.@i],.@card3[.@i] );
+											getitem2 .@nameid[.@i],.@amount[.@i],1,.@refine[.@i],0,.@card0[.@i],.@card1[.@i],.@card2[.@i],.@card3;
+										}
+										else {
+											break;
+										}
+									}
+								}
+								mes "Retrieved "+F_InsertComma( .@retrived_item_count )+" x items";
+							}
+							else {
+								mes "[Milenia Universal Shop]";
+								mes "^FF0000ERROR!^000000";
+								mes "Nothing to retrieve!";
+								next;
+								mes "[Milenia Universal Shop]";
+								mes "Maybe you are not the shop owner?";
+							}
+							break;
+						default:
+							break;
+					}
+					donpcevent .@npc_name$+"::OnCreateHeader";
+					break;
+				default:
+					mes "[Milenia Universal Shop]";
+					mes "Please put your desired currency and your amount of item.";
+					mes " ";
+					mes " ";
+					mes " ";
+					mes " ";
+					mes "This script donated by ^FF0000Lofa^000000!";
+					next;
+					mes "[Milenia Universal Shop]";	
+					mes "^FF0000 WARNING!! Please be advised!!";
+					mes "____________________________";
+					mes "[1] Your Shop will auto close";
+					mes "after 5 Days!";
+					mes "[2] Max selling Zeny amount";
+					mes "is 1B Zeny per item.";
+					mes "[3] Your Capped Zeny is 1B Zeny.^000000";
+					break;
+			}
+		}
+		close;
+		
+	OnClearData:
+		.@npc_id = atoi( strnpcinfo(2) );
+		.@aid = getcharid(3);
+		if ( .@npc_id && .@aid ) {
+			query_sql( "DELETE FROM `e_market` WHERE `npc_id` = "+.@npc_id+" AND ( `nameid` = 0 OR `amount` = 0 ) AND `owner_id` = "+.@aid );
+		}
+		end;
+
+	OnPCLogoutEvent:
+		if ( strnpcinfo(2) == "" && @attached_market_npc ) {
+			query_sql( "DELETE FROM `e_market` WHERE `npc_id` = "+@attached_market_npc+" AND ( `nameid` = 0 OR `amount` = 0 ) AND `owner_id` = "+getcharid(3) );
+		}
+		end;
+		
+	OnInit:
+		if ( strnpcinfo(2) == "" ) {
+			// max item to vend in NPC
+			.max_item = 12;
+			// Max duration(seconds) of shop opened in NPC
+			//.shop_duration = ( 7 * 24 * 3600 ); // 7 Days
+			.shop_duration = 432000; // 5 Days
+			// Max Zeny of Server
+			.max_amount_zeny = 1000000000;
+			// Max Amount of Item can be hold by Player
+			.max_amount_item = 30000;
+			
+			query_sql( "DELETE FROM `e_market` WHERE ( `nameid` = 0 AND `amount` = 0 )" );
+		}
+		else {
+			sleep 1000;
+			donpcevent strnpcinfo(3)+"::OnCreateHeader";
+		}
+		end;
+		
+	OnMinute00:
+	OnMinute30:
+		if ( strnpcinfo(2) != "" ) {
+			.@gettimetick = gettimetick(2);
+			query_sql( "UPDATE `e_market` SET `status` = 2, `last_edit` = "+.@gettimetick+" WHERE `status` = 1 AND `expire` <= "+.@gettimetick );
+			sleep 1000;
+			donpcevent strnpcinfo(3)+"::OnCreateHeader";
+		}
+		end;
+		
+	OnCreateHeader:
+		query_sql( "SELECT `header` FROM `e_market` WHERE `npc_id` = "+strnpcinfo(2)+" AND `status` = 1 AND `nameid` > 0 AND `amount` > 0 AND `expire` > "+gettimetick(2)+" LIMIT 1", .@header$ );
+		delwaitingroom;
+		if ( .@header$ != "" )
+			waitingroom .@header$,0;
+		end;
+		
+	function	func_Item	{
+		.@nameid = getarg( 0,0 );
+		.@amount = getarg( 1,1 );
+		.@refine = getarg( 2,0 );
+		
+		for ( .@i = 3; .@i <= 6; .@i++ )
+			.@card_count += ( getarg( .@i,0 ) > 0 );
+			
+		.@name$ = getitemname( .@nameid );
+		.@type = getiteminfo( .@nameid,2 );
+		.@slot = getitemslots( .@nameid );
+		
+		if ( .@type == IT_ARMOR || .@type == IT_WEAPON ) {
+			if ( .@slot )
+				.@name$ = .@name$ + "["+.@slot+"]";
+			if ( .@card_count )
+				.@name$ = .@name$ + " ("+.@card_count+" Cards)";
+			if ( .@refine )
+				.@name$ = "+" + .@refine + " " + .@name$;
+		}
+		.@name$ = F_InsertComma( .@amount ) + "x " + .@name$;
+	
+		return replacestr( .@name$, ":", " " );
+	}
+	
+	function	func_Item_Card	{
+		for ( .@i = 0; .@i < 4; .@i++ ) {
+			.@card_id = getarg( .@i,0 );
+			if ( .@card_id ) {
+				.@count = getd( ".@card_"+.@card_id );
+				if ( !.@count ) {
+					.@card[.@c] = .@card_id;
+					.@c++;
+				}
+				setd( ".@card_"+.@card_id ),.@count + 1;
+			}
+		}
+		
+		for ( .@i = 0; .@i < .@c; .@i++ ) {
+			.@count = getd( ".@card_"+.@card[.@i] );
+			if ( .@count ) 
+				mes " > "+.@count+"x "+getitemname( .@card[.@i] );
+		}
+		return;
+	}
+	
+	function	func_Currency_Show	{
+		.@currency = getarg( 0,0 );
+		
+		if ( .@currency == 0 ) {
+			return "Zeny";
+		}
+		else if ( .@currency == -1 ) {
+			return "Cash Point";
+		}
+		else if ( .@currency == -2 ) {
+			return "Kafra Point";
+		}
+		else {
+			return getitemname( .@currency );
+		}
+	}
+	
+	function	func_Currency_Check	{
+		.@currency = getarg( 0,0 );
+		.@amount = getarg( 1,0 );
+		
+		if ( .@currency == 0 ) {
+			return ( Zeny >= .@amount );
+		}
+		else if ( .@currency == -1 ) {
+			return ( #CASHPOINTS >= .@amount );
+		}
+		else if ( .@currency == -2 ) {
+			return ( #KAFRAPOINTS >= .@amount );
+		}
+		else {
+			return ( countitem( .@currency ) >= .@amount );
+		}
+	}
+
+	function	func_Currency_Pay	{
+		.@currency = getarg( 0,0 );
+		.@amount = getarg( 1,0 );
+		
+		if ( .@currency == 0 ) {
+			Zeny -= .@amount;
+		}
+		else if ( .@currency == -1 ) {
+			#CASHPOINTS -= .@amount;
+		}
+		else if ( .@currency == -2 ) {
+			#KAFRAPOINTS -= .@amount;
+		}
+		else {
+			delitem .@currency,.@amount;
+		}
+		return;
+	}
+	
+	function	func_Currency_Retrieve	{
+		.@currency = getarg( 0,0 );
+		.@amount = getarg( 1,0 );
+		
+		if ( .@currency == 0 ) {
+			if ( ( .max_amount_zeny - Zeny ) < .@amount )
+				return 0;
+			Zeny += .@amount;
+			dispbottom "Retrieved "+F_InsertComma( .@amount )+" Zeny";
+		}
+		else if ( .@currency == -1 ) {
+			if ( ( .max_amount_zeny - #CASHPOINTS ) < .@amount )
+				return 0;
+			#CASHPOINTS += .@amount;
+			dispbottom "Retrieved "+F_InsertComma( .@amount )+" CASHPOINTS";
+		}
+		else if ( .@currency == -2 ) {
+			if ( ( .max_amount_zeny - #KAFRAPOINTS ) < .@amount )
+				return 0;
+			#KAFRAPOINTS += .@amount;
+			dispbottom "Retrieved "+F_InsertComma( .@amount )+" KAFRAPOINTS";
+		}
+		else {
+			if ( getitemname( .@currency ) == "null" )
+				return 0;
+			if ( !checkweight( .@currency,.@amount ) )
+				return 0;
+			if ( ( .max_amount_item - countitem( .@currency ) ) < .@amount )
+				return 0;
+			getitem .@currency,.@amount;
+			dispbottom "Retrieved "+F_InsertComma( .@amount )+" x "+getitemname( .@currency );
+		}
+		return 1;
+	}
+}
+
+
+// -- duplicate more NPC if you need more slot.
+milenia,95,174,5	duplicate(market_npc_main)	Universal Shop 01#1	464
+milenia,95,178,5	duplicate(market_npc_main)	Universal Shop 02#2	464
+milenia,95,182,5	duplicate(market_npc_main)	Universal Shop 03#3	464
+
+milenia,89,174,5	duplicate(market_npc_main)	Universal Shop 04#4	464
+milenia,89,178,5	duplicate(market_npc_main)	Universal Shop 05#5	464
+milenia,89,182,5	duplicate(market_npc_main)	Universal Shop 06#6	464
+
+milenia,83,174,5	duplicate(market_npc_main)	Universal Shop 07#7	464
+milenia,83,178,5	duplicate(market_npc_main)	Universal Shop 08#8	464
+milenia,83,182,5	duplicate(market_npc_main)	Universal Shop 09#9	464
+
+milenia,77,174,5	duplicate(market_npc_main)	Universal Shop 10#10	464
+milenia,77,178,5	duplicate(market_npc_main)	Universal Shop 11#11	464
+milenia,77,182,5	duplicate(market_npc_main)	Universal Shop 12#12	464
+
+milenia,71,174,5	duplicate(market_npc_main)	Universal Shop 13#13	464
+milenia,71,178,5	duplicate(market_npc_main)	Universal Shop 14#14	464
+milenia,71,182,5	duplicate(market_npc_main)	Universal Shop 15#15	464
+
+milenia,65,174,5	duplicate(market_npc_main)	Universal Shop 16#16	464
+milenia,65,178,5	duplicate(market_npc_main)	Universal Shop 17#17	464
+milenia,65,182,5	duplicate(market_npc_main)	Universal Shop 18#18	464
+
+milenia,59,174,5	duplicate(market_npc_main)	Universal Shop 19#19	464
+milenia,59,178,5	duplicate(market_npc_main)	Universal Shop 20#20	464
+milenia,59,182,5	duplicate(market_npc_main)	Universal Shop 21#21	464
+
+milenia,53,174,5	duplicate(market_npc_main)	Universal Shop 22#22	464
+milenia,53,178,5	duplicate(market_npc_main)	Universal Shop 23#23	464
+milenia,53,182,5	duplicate(market_npc_main)	Universal Shop 24#24	464
+
+milenia,47,174,5	duplicate(market_npc_main)	Universal Shop 25#25	464
+milenia,47,178,5	duplicate(market_npc_main)	Universal Shop 26#26	464
+milenia,47,182,5	duplicate(market_npc_main)	Universal Shop 27#27	464
+//alberta,50,245,5	duplicate(market_npc_main)	Market NPC#2	4_BOARD3
