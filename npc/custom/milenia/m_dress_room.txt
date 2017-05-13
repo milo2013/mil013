@@ -43,6 +43,9 @@ Laccessroom:
 	// Only 3rd job's have access to a 2nd body style.
 	// Note: Not all of the new body styles are out. Best to limit only to jobs that do have them.
 	if (
+	Class == 4072 || // Shadow Chaser Regular
+	Class == 4079 || // Shadow Chaser Reborn
+	Class == 4108 || // Shadow Chaser Baby
 	Class == 4069 || // Wanderer Regular
 	Class == 4076 || // Wanderer Reborn
 	Class == 4105 || // Wanderer Baby

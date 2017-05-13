@@ -92,6 +92,10 @@ glast_01,204,273,6	script	Hugin#ghinstance	755,{
 // Floor 1
 //============================================================
 1@gl_k,149,41,6	script	Varmunt#ghinstance1	654,{
+	
+	
+	// nanti sambung //hideoffpc	instance_npcname("Treasure#OGH1");
+	
 	if (getcharid(0) == getpartyleader(getcharid(1),2)) {
 		mes "Hey ^0000ffguys^000000, were you sent here to help me?";
 		npctalk "Varmunt : Hey guys, were you sent here to help me?";
@@ -1652,8 +1656,38 @@ OnTimer80000:
 	end;
 }
 
+
+// Treasure Room
+
+// Treasure Box
+//1@gl_k,170,134,1	Treasure#OGH1	111,{
+//	
+//	OnInstanceInit:
+//	hideonnpc	instance_npcname("Treasure#OGH1");
+//	end;
+//		
+//		makeitem 6608,1,173,139;
+//		makeitem 6607,1,170,139;
+//		makeitem 6608,1,168,139;
+//		makeitem 6608,1,173,136;
+//		
+//	hideonnpc	instance_npcname("Treasure#OGH1");
+//	end;
+//}
+		
+		
 2@gl_k,158,241,1	script	Hugin#ghinstance1	755,{
-	if (checkquest(12319,HUNTING) == 2) {
+	
+	// Custom Treasure Project by Rakuzas
+	
+	// Last Map OGH
+	//2@gl_k,150,166,0	warp	ogh#1	1,1,2@gl_k,150,154
+	//2@gl_k,150,27,0	warp	ogh#2	1,1,1@gl_k,150,279
+	
+	// Secrect Chamber
+	//1@gl_k,270,263,0	warp	ogh#3	1,1,1@gl_k,151,143
+	
+		if (checkquest(12319,HUNTING) == 2) {
 		mes "[Hugin]";
 		mes "Well, you are pretty ridiculous. Beginners shouldn't get the loot Amdarias drops.";
 		erasequest 12319;

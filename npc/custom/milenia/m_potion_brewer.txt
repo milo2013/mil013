@@ -12,7 +12,7 @@ milenia,34,147,11	script	Potion Expert	46,{
 if (tutorial == 1){
 Lbrewing:
 mes "[^0000FF Potion Expert ^000000]";
-mes "To check your exp just use ^FF0000@brewing^000000. So, Do you want to brew ^000088Yggdrasil Berry Potions^000000 ?";
+mes "To check your exp just use ^FF0000@brewing^000000. So, Do you want to brew ^000088Super Potion^000000 ?";
 next;
 switch(select("Yup!!:Nah~ Just looking")) {
 
@@ -82,16 +82,16 @@ mes "[^0000FF Potion Expert ^000000]";
 mes "Congratulations! You've succeeded!";
 if(BrewExp < 10000) dispbottom "You've gained 1 Brewing Exp.";
 if(BrewExp == 1000) { set BrewLvl,1;
-dispbottom "Congratulations! Your Brewing Mastery is now Level 1!";
-announce strcharinfo(0)+"'s Brewing Mastery reached Level 1!",bc_all,0x00FFFF;
+dispbottom "Congratulations! Your Brewing Mastery is now Level 1! You're now Amatuer Brewer!";
+announce strcharinfo(0)+"'s Brewing Mastery reached Level 1 and now become Amatuer Brewer!",bc_all,0x00FFFF;
 }
 else if(BrewExp == 5000) { set BrewLvl,2;
-dispbottom "Congratulations! Your Brewing Mastery is now Level 2!";
-announce strcharinfo(0)+"'s Brewing Mastery reached Level 2!",bc_all,0x00FFFF;
+dispbottom "Congratulations! Your Brewing Mastery is now Level 2! You're now Expert Brewer!";
+announce strcharinfo(0)+"'s Brewing Mastery reached Level 2! and now become Expert Brewer!",bc_all,0x00FFFF;
 }
 else if(BrewExp == 10000) { set BrewLvl,3;
-dispbottom "Congratulations! Your Brewing Mastery is now Level 3!";
-announce strcharinfo(0)+"'s Brewing Mastery reached Max Level!",bc_all,0x00FFFF;
+dispbottom "Congratulations! Your Brewing Mastery is now Level 3! You're now Legend Brewer!";
+announce strcharinfo(0)+"'s Brewing Mastery reached Max Level and now become Legend Brewer!",bc_all,0x00FFFF;
 }
 next;
 goto Lbrewing;
@@ -194,16 +194,16 @@ mes "[^0000FF Potion Expert ^000000]";
 mes "Congratulations! You've succeeded!";
 if(BrewExp < 10000) dispbottom "You've gained 1 Brewing Exp.";
 if(BrewExp == 1000) { set BrewLvl,1;
-dispbottom "Congratulations! Your Brewing Mastery is now Level 1!";
-announce strcharinfo(0)+"'s Brewing Mastery reached Level 1!",bc_all,0x00FFFF;
+dispbottom "Congratulations! Your Brewing Mastery is now Level 1! You're now Amatuer Brewer!";
+announce strcharinfo(0)+"'s Brewing Mastery reached Level 1 and now become Amatuer Brewer!",bc_all,0x00FFFF;
 }
 else if(BrewExp == 5000) { set BrewLvl,2;
-dispbottom "Congratulations! Your Brewing Mastery is now Level 2!";
-announce strcharinfo(0)+"'s Brewing Mastery reached Level 2!",bc_all,0x00FFFF;
+dispbottom "Congratulations! Your Brewing Mastery is now Level 2! You're now Expert Brewer!";
+announce strcharinfo(0)+"'s Brewing Mastery reached Level 2! and now become Expert Brewer!",bc_all,0x00FFFF;
 }
 else if(BrewExp == 10000) { set BrewLvl,3;
-dispbottom "Congratulations! Your Brewing Mastery is now Level 3!";
-announce strcharinfo(0)+"'s Brewing Mastery reached Max Level!",bc_all,0x00FFFF;
+dispbottom "Congratulations! Your Brewing Mastery is now Level 3! You're now Legend Brewer!";
+announce strcharinfo(0)+"'s Brewing Mastery reached Max Level and now become Legend Brewer!",bc_all,0x00FFFF;
 }
 close;
 
@@ -225,9 +225,29 @@ close;
 	
 	-	script	cmdBrewing	-1,{
 OnCmdBrewing:
-	dispbottom "Your brewing EXP is "+(BrewExp)+".";
-	dispbottom "Your brewing Level is "+(@BrewLvl)+".";
+	if (BrewLvl == 0){
+	dispbottom "Your brewing Level is Wannabe Brewer.";
+	dispbottom "Your brewing EXP is "+(BrewExp)+"/1000 to next Level.";
 	end;
+	}
+	
+	if (BrewLvl == 1){
+	dispbottom "Your brewing Level is Amatuer Brewer.";
+	dispbottom "Your brewing EXP is "+(BrewExp)+"/5000 to next Level.";
+	end;
+	}
+	
+	if (BrewLvl == 2){
+	dispbottom "Your brewing Level is Expert Brewer.";
+	dispbottom "Your brewing EXP is "+(BrewExp)+"/10000 to next Level.";
+	end;
+	}
+	
+	if (BrewLvl == 3){
+	dispbottom "Your brewing Level is Legend Brewer.";
+	dispbottom "Your brewing EXP is already Max Level.";
+	end;
+	}
 	
 OnInit:
 bindatcmd "brewing","cmdBrewing::OnCmdBrewing";

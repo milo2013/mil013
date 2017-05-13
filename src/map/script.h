@@ -681,6 +681,18 @@ enum random_option_attribute {
 	ROA_VALUE,
 	ROA_PARAM,
 };
+
+enum instance_info_type {
+	IIT_ID,
+	IIT_TIME_LIMIT,
+	IIT_IDLE_TIMEOUT,
+	IIT_ENTER_MAP,
+	IIT_ENTER_X,
+	IIT_ENTER_Y,
+	IIT_MAPCOUNT,
+	IIT_MAP
+};
+
 /**
  * used to generate quick script_array entries
  **/
@@ -704,6 +716,8 @@ int conv_num(struct script_state *st,struct script_data *data);
 const char* conv_str(struct script_state *st,struct script_data *data);
 void pop_stack(struct script_state* st, int start, int end);
 int run_script_timer(int tid, unsigned int tick, int id, intptr_t data);
+void script_stop_sleeptimers(int id);
+struct linkdb_node *script_erase_sleepdb(struct linkdb_node *n);
 void run_script_main(struct script_state *st);
 
 void script_stop_instances(struct script_code *code);
@@ -717,7 +731,7 @@ struct DBMap* script_get_userfunc_db(void);
 void script_run_autobonus(const char *autobonus, struct map_session_data *sd, unsigned int pos);
 
 bool script_get_constant(const char* name, int* value);
-void script_set_constant(const char* name, int value, bool isparameter);
+void script_set_constant(const char* name, int value, bool isparameter, bool deprecated);
 void script_hardcoded_constants(void);
 
 void script_cleararray_pc(struct map_session_data* sd, const char* varname, void* value);

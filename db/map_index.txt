@@ -1076,3 +1076,4 @@ cedi_1
 cedi_2
 cedi_3
 ds
+mining

@@ -1786,6 +1786,11 @@ packet_keys: 0x01581359,0x452D6FFA,0x6AFB6E2E // [Shakto]
 0x096E,-1,mergeitem_req,2:4 // CZ_REQ_MERGE_ITEM
 0x096F,7,ZC_ACK_MERGE_ITEM,2:4:6 // ZC_ACK_MERGE_ITEM
 0x0974,2,mergeitem_cancel,0 // CZ_CANCEL_MERGE_ITEM
+0x0844,2,cashshopopen,0
+0x0849,16 //clif_cashshop_result
+0x0848,-1,cashshopbuy,2:6:4:10
+0x084a,2,cashshopclose,0
+0x08c9,2,cashshopitemlist,0
 
 //2012-04-18aRagexeRE [Special Thanks to Judas!]
 packet_ver: 31
@@ -2394,6 +2399,7 @@ packet_keys: 0x2DFF467C,0x444B37EE,0x2C1B634F // [YomRawr]
 0x0A00,269		// ZC_SHORTCUT_KEY_LIST_V3
 0x0A01,3,hotkeyrowshift,2	// CZ_SHORTCUTKEYBAR_ROTATE
 0x0A02,4			// ZC_DRESSROOM_OPEN
+0x0A0E,14		// ZC_BATTLEFIELD_NOTIFY_HP2
 0x09F7,75		// ZC_PROPERTY_HOMUN_2
 0x09E5,18		// ZC_DELETEITEM_FROM_MCSTORE2
 0x09E6,22		// ZC_UPDATE_ITEM_FROM_BUYING_STORE2
@@ -2544,6 +2550,9 @@ packet_keys: 0x62C86D09,0x75944F17,0x112C133D // [YomRawr]
 // Pet Evolution System
 0x09FB,-1,dull,0	// CZ_PET_EVOLUTION
 0x09FC,6		// ZC_PET_EVOLUTION_RESULT
+
+//2015-05-20aRagexe
+0x0A3D,18,saleadd,2:6:8:12:16
 
 //2015-09-16Ragexe
 packet_ver: 53

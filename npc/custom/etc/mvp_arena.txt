@@ -17,7 +17,7 @@
 //============================================================
 
 // Entrance
-milenia,117,154,5	script	MVP Warper	768,{
+milenia,113,156,5	script	MVP Warper	768,{
 	mes "[ ^0065DFMVP Warper^000000 ]";
 	mes "Would you like to enter";
 	mes "the MVP Arena?";

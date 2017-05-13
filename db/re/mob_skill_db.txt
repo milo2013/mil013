@@ -11090,6 +11090,12 @@
 3954,Detale@SM_PROVOKE,attack,6,10,10000,0,30000,yes,target,always,0,,,,,,6,
 3954,Detale@SM_MAGNUM,attack,7,25,10000,0,5000,yes,self,attackpcge,2,,,,,,,
 3954,Detale@AL_HEAL,idle,28,11,10000,0,5000,yes,self,myhpltmaxrate,30,,,,,,47,
+3181,Runaway Captain Felock@MG_FIREBOLT,angry,19,3,500,1500,5000,yes,target,always,0,,,,,,,
+3181,Runaway Captain Felock@MG_FIREBOLT,attack,19,3,500,1500,5000,yes,target,always,0,,,,,,,
+3181,Runaway Captain Felock@MG_FIREBOLT,chase,19,3,500,1500,5000,yes,target,always,0,,,,,,,
+3181,Runaway Captain Felock@MG_FIREBOLT,follow,19,3,500,1500,5000,yes,target,always,0,,,,,,,
+3181,Runaway Captain Felock@NPC_FIREATTACK,angry,186,3,500,500,5000,no,target,always,0,,,,,,,
+3181,Runaway Captain Felock@NPC_FIREATTACK,attack,186,3,500,500,5000,no,target,always,0,,,,,,,
 3954,Detale@AL_HEAL,attack,28,11,10000,0,5000,yes,self,myhpltmaxrate,30,,,,,,47,
 3954,Detale@AL_HEAL,chase,28,11,10000,0,5000,yes,self,myhpltmaxrate,30,,,,,,47,
 

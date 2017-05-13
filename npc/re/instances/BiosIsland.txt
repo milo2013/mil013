@@ -1,3 +1,71 @@
+moro_cav,46,59,4	script	Wandering Old Woman	846,{
+	
+	mes "[ Wandering Old Woman ]";
+	mes " Hello young adventurer..";
+	next;
+		switch(select("Hello Grandma~:Just Ignore")) {
+			case 1:
+				mes "[ Wandering Old Woman ]";
+				mes "You look like a good person..";
+				next;
+				mes "[ Wandering Old Woman ]";
+				mes "It's seem you have ^FF0000"+(countitem (6684))+"^000000 piece of ^FF0000"+(getitemname (6684))+"^000000 ";
+				next;
+					switch(select("How did you know?")) {
+						case 1:
+							mes "[ Wandering Old Woman ]";
+							mes " I'm old enough to guess";
+							next;
+								if (countitem (6684) < 10){ 
+								mes "[ Wandering Old Woman ]";
+								mes " Come again if you have ^FF000010^000000 piece of ^FF0000"+(getitemname(6684))+"^000000";
+								close;
+								break;
+								}
+							mes "[ Wandering Old Woman ]";
+							mes "So.. You want to trade with "+(getitemname (22537))+"?";
+							next;
+								switch(select("No Thanks.. I want to keep it:Sure! Why not?")) {
+									case 1:
+										emotion e_sob;
+										mes "[ Wandering Old Woman ]";
+										mes "*CRYING*";
+										mes "It's ok..... Goodbye...";
+										close;
+										break;
+									case 2:
+										mes "[ Wandering Old Woman ]";
+										mes "Here.. Take it..";
+										emotion e_thx;
+										mes "have a nice day~";
+											if (countitem (6684) >= 10){ 
+												delitem 6684,10; //Proof of The Heroic
+												getitem 22537,1; //Prize of Hero
+												close;
+												break;
+											}
+											else {
+												emotion e_pif;
+												mes "[ Wandering Old Woman ]";
+												mes "You don't have enough "+(getitemname (6684))+"! ";
+												close;
+												break;
+											}
+								}
+					}
+					
+			case 2:
+			mes "[ Wandering Old Woman ]";
+			mes "....";
+			close;
+			break;
+		}
+}
+										
+										
+	
+	
+
 moro_cav,45,60,4	script	Wandering Old Man	847,{
 	set .@party_id,getcharid(1);
 	set .@md_name$,"Bios Island";
@@ -795,6 +863,7 @@ OnTouch:
 		mes "[Vrid]";
 		mes "Now let's get out of here!";
 		getitem 6684,1; //Proof of The Heroic
+		getitem 22537,1; // Prize of Hero
 		
 		//if(checkquest(40019)) completequest 40019;
 		//if(checkquest(15006)) erasequest 15006;

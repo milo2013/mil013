@@ -430,7 +430,7 @@ menu	"Bakonawa Lake",I1, "Bangungot Hospital 2F",I2, "Buwaya Cave",I3,
     	"Octopus Cave",I8, "Old Glast Heim",I9, "Orc's Memory",I10, "Sealed Shrine",I11,
     	"Wolfchev's Laboratory",I12,"Sara's Memory",I13,"Nightmare Jitterbug",I14,
 		"Endless Cellar (Shadow EQ)",I15,"Geffen Magic Tournament",I16,"Horror Toy Factory",
-		I17,"Faceworm's Nest",I18,"Ghost Palace",I19,"Bios Island",I20,"Charleston Crisis (BETA VERSION)",I21;
+		I17,"Faceworm's Nest",I18,"Ghost Palace",I19,"Bios Island",I20,"Charleston Crisis (MILENIA RO VERSION)",I21,"Airship Assault",I22;
 
 I1: Restrict("RE");
 	Go("ma_scene01",172,175);
@@ -470,6 +470,8 @@ I20: Restrict("RE");
 	Go("moro_cav",43,63);
 I21: Restrict("RE");	
 	Go("verus04",77,114);
+I22: Restrict("RE");	
+	Go("dali02",138,82);
 	
 // --------------------------------------------------
 	Special:

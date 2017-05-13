@@ -802,6 +802,7 @@ int WFIFOSET(int fd, size_t len)
 		gepard_process_packet(fd, s->wdata + s->wdata_size, len, &s->send_crypt);
 	}
 	// Gepard Shield
+	
 	s->wdata_size += len;
 #ifdef SHOW_SERVER_STATS
 	socket_data_qo += len;
@@ -1454,6 +1455,7 @@ void socket_init(void)
 #endif
 
 	socket_config_read(SOCKET_CONF_FILENAME);
+	
 	// Gepard Shield
 	gepard_config_read();
 	// Gepard Shield
@@ -2047,4 +2049,3 @@ void gepard_send_info(int fd, unsigned short info_type, char* message)
 	safestrncpy((char*)WFIFOP(fd, 6), message, message_len);
 	WFIFOSET(fd, packet_len);
 }
-

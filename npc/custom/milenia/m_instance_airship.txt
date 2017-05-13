@@ -933,6 +933,7 @@ OnTimer2000:
 	cutin "h_iris02.bmp",255;
 	mes "- Pow! Puff!";
 	next;
+	cutin "", 255;
 	donpcevent instance_npcname("Gremlin#1air2")+"::OnEffect";
 	sleep2 200;
 	donpcevent instance_npcname("Gremlin#2air2")+"::OnEffect";
@@ -1012,15 +1013,18 @@ OnTimer2000:
 	mes "Hoo ... I threw out the breath of Wyvern ... The cracker appeared. But can we deal with these guys?";
 	next;
 	//cutin "ep14_Loki02.bmp",255;
+	cutin "",255;
 	mes "[Wyvern]";
 	mes "Kuo Oo...!!";
 	next;
 	//cutin "ep14_Loki02.bmp",2;
+	cutin "",255;
 	mes "[Loki]";
 	mes "The annoying guys are here....";
 	mes "Hey! I'll deal with one of you. You take that guy....";
 	close2;
 	//cutin "ep14_Loki02.bmp",255;
+	cutin "",255;
 	donpcevent instance_npcname("Fenrir#air2")+"::OnDisable";
 	donpcevent instance_npcname("Loki#air2")+"::OnDisable";
 	donpcevent instance_npcname("Iris#air2")+"::OnDisable";

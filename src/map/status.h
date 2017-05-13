@@ -1834,9 +1834,7 @@ enum sc_opt1 {
 	//Aegis uses OPT1 = 5 to identify undead enemies (which also grants them immunity to the other opt1 changes)
 	OPT1_STONEWAIT = 6, //Petrifying
 	OPT1_BURNING,
-	OPT1_FREEZING,
 	OPT1_IMPRISON,
-	OPT1_CRYSTALIZE,
 };
 
 ///opt2: (HEALTHSTATE_*) Stackable status changes.
@@ -1907,6 +1905,7 @@ enum e_option {
 	OPTION_DRAGON5		= 0x04000000,
 	OPTION_HANBOK		= 0x08000000,
 	OPTION_OKTOBERFEST	= 0x10000000,
+	OPTION_AUTOATTACK   = 0x10000000,
 
 	// compound constant for older carts
 	OPTION_CART	= OPTION_CART1|OPTION_CART2|OPTION_CART3|OPTION_CART4|OPTION_CART5,
@@ -1914,7 +1913,6 @@ enum e_option {
 	// compound constants
 	OPTION_DRAGON	= OPTION_DRAGON1|OPTION_DRAGON2|OPTION_DRAGON3|OPTION_DRAGON4|OPTION_DRAGON5,
 	OPTION_COSTUME	= OPTION_WEDDING|OPTION_XMAS|OPTION_SUMMER|OPTION_HANBOK|OPTION_OKTOBERFEST,
-	OPTION_AUTOATTACK   = 0x10000000,
 };
 
 ///Defines for the manner system [Skotlex]

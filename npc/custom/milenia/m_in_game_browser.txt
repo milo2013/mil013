@@ -3,6 +3,49 @@
 //===== By: ==================================================
 //= Nova http://www.novaragnarok.com
 //============================================================
+-	script	RakuzasBrowser	-1,{
+end;
+
+OnInit:
+	bindatcmd "donate",strnpcinfo(3)+"::OnAtcommand";
+	bindatcmd "shop",strnpcinfo(3)+"::OnAtcommand";
+	bindatcmd "forum",strnpcinfo(3)+"::OnAtcommand";
+	bindatcmd "bug",strnpcinfo(3)+"::OnAtcommand";
+	bindatcmd "wiki",strnpcinfo(3)+"::OnAtcommand";
+	end;
+	
+	OnAtcommand:
+	mes "^3355FF[ Rakuzas ingame Browser ]^000000";
+	mes "Note that ingame browser may not work properly.";
+	mes "Thank you!";
+	next;
+	
+	switch(select("Make Donation:Donation Shop:Milenia Forum:Wiki:Bug Report:Close")){
+		case 1:
+			mes .name$;
+			mes "<URL>Click here to make a donation.<INFO>https://mileniaro.com/?module=account&action=login&return_url=%2F%3Fmodule%3Ddonate</INFO></URL>";
+				close;
+		case 2:
+			mes .name$;
+			mes "<URL>Click here to open Donation Shop.<INFO>https://mileniaro.com/?module=purchase</INFO></URL>";
+				close;
+		case 3:
+			mes .name$;
+			mes "<URL>Click here to open the forum!<INFO>https://mileniaro.com/forum/</INFO></URL>";
+				close;
+		case 4:
+			mes .name$;
+			mes "<URL>Click here to make a bug report!<INFO>https://mileniaro.com/wiki/index.php?title=Main_Page</INFO></URL>";
+				close;	
+		case 5:
+			mes .name$;
+			mes "<URL>Click here to make a bug report!<INFO>https://mileniaro.com/forum/categories/bug-report</INFO></URL>";
+				close;	
+		case 6:
+			end;
+	}
+	end;
+}
 
 -	script	NovaSearch	-1,{
 end;

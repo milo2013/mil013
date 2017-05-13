@@ -91,6 +91,16 @@ end;
 
 }
 
+-	script	MaintenanceMon07	-1,{
+
+OnMon0631: 
+set .News$[0],"Server will be close for maintenance.  Thank you.";
+announce .News$,0;
+atcommand "@kickall";
+end;
+
+}
+
 // Friday //
 
 // News Script Original Modified by Isaiah
@@ -182,6 +192,16 @@ end;
 OnFri0630: 
 set .News$[0],"Server will be close for maintenance. Please relogin after 5 to 10 minutes. Thank you.";
 announce .News$,0;
+end;
+
+}
+
+-	script	MaintenanceFri07	-1,{
+
+OnFri0631: 
+set .News$[0],"Server will be close for maintenance.  Thank you.";
+announce .News$,0;
+atcommand "@kickall";
 end;
 
 }

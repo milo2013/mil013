@@ -17,7 +17,6 @@
 
 #include <time.h>
 
-// GEPARD START
 
 extern bool is_gepard_active;
 extern uint32 min_allowed_gepard_version;
@@ -110,7 +109,10 @@ void gepard_send_info(int fd, unsigned short info_type, char* message);
 bool gepard_process_packet(int fd, uint8* packet_data, uint32 packet_size, struct gepard_crypt_link* link);
 void gepard_enc_dec(uint8* in_data, uint8* out_data, unsigned int data_size, struct gepard_crypt_link* link);
 
-// GEPARD END
+
+#ifdef __cplusplus
+extern "C" {
+#endif
 
 #define FIFOSIZE_SERVERLINK 256*1024
 
@@ -198,6 +200,7 @@ struct socket_data
 	struct gepard_crypt_link recv_crypt;
 	struct gepard_crypt_link sync_crypt;
 	// Gepard Shield
+	
 };
 
 
@@ -282,6 +285,10 @@ void set_eof(int fd);
 void send_shortlist_add_fd(int fd);
 // Do pending network sends (and eof handling) from the shortlist.
 void send_shortlist_do_sends();
+#endif
+
+#ifdef __cplusplus
+}
 #endif
 
 #endif /* _SOCKET_H_ */
