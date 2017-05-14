@@ -651,25 +651,28 @@ OnEnable:
 	enablenpc instance_npcname("#airshipputmob1");
 	set .@map$, instance_mapname("1@air1");
 	set .@label$, instance_npcname("#airshipputmob1")+"::OnMyMobDead";
-	areamonster .@map$,36,49,98,77,"Rotar Zairo",1392,9,.@label$;
-	areamonster .@map$,36,49,98,77,"Beholder",1713,10,.@label$;
+	areamonster .@map$,36,49,98,77,"Rotar Zairo A",1392,9,.@label$;
+	areamonster .@map$,36,49,98,77,"Acidus B",1713,10,.@label$;
 	
-	monster .@map$,62,92,"Rotar Zairo",1392,1,.@label$;
-	monster .@map$,61,88,"Rotar Zairo",1392,1,.@label$;
+	monster .@map$,62,92,"Rotar Zairo C",1392,1,.@label$;
+	monster .@map$,61,84,"Rotar Zairo D",1392,1,.@label$;
 	
-	monster .@map$,62,32,"Rotar Zairo",1392,1,.@label$;
-	monster .@map$,60,36,"Rotar Zairo",1392,1,.@label$;
+	monster .@map$,62,32,"Rotar Zairo E",1392,1,.@label$;
+	monster .@map$,60,36,"Rotar Zairo F",1392,1,.@label$;
 	
-	monster .@map$,19,66,"Rotar Zairo",1392,1,.@label$;
-	monster .@map$,19,64,"Rotar Zairo",1392,1,.@label$;
-	monster .@map$,19,62,"Rotar Zairo",1392,1,.@label$;
-	monster .@map$,19,60,"Rotar Zairo",1392,1,.@label$;
-	areamonster .@map$,102,68,117,54,"Beholder",1713,3,.@label$;
+	monster .@map$,19,66,"Rotar Zairo G",1392,1,.@label$;
+	monster .@map$,19,64,"Rotar Zairo H",1392,1,.@label$;
+	monster .@map$,19,62,"Rotar Zairo I",1392,1,.@label$;
+	monster .@map$,19,60,"Rotar Zairo J",1392,1,.@label$;
+	areamonster .@map$,102,68,117,54,"Acidus K",1713,3,.@label$;
 	set .MyMobs,30;
+	set .MyMobsCount,29;
 	end;
 OnMyMobDead:
 	set .@map$, instance_mapname("1@air1");
+	mapannounce .@map$, ""+(.MyMobsCount)+"/30 Intruder left!",bc_map,"0xFFFF00";
 	set .MyMobs, .MyMobs-1;
+	set .MyMobsCount, .MyMobsCount-1;
 	if (.MyMobs == 0) {
 		donpcevent instance_npcname("#airshipputmob1")+"::OnComplete";
 	}

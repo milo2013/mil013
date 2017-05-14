@@ -10321,6 +10321,7 @@ void atcommand_basecommands(void) {
 		ACMD_DEF(set_allowed_gepard_version),
 		ACMD_DEF(get_allowed_gepard_version),
 #include "../custom/atcommand_def.inc"
+		ACMD_DEF(autoattack),
 		ACMD_DEF2R("warp", mapmove, ATCMD_NOCONSOLE),
 		ACMD_DEF(where),
 		ACMD_DEF(jumpto),
