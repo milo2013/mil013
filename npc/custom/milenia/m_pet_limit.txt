@@ -25,6 +25,21 @@ setarray .map$,"farm","prt_q";
     end;
 }
 
+-	script	woeStatus	-1,{
+	end;
+	
+OnAgitStart:
+OnAgitStart2:
+	set $woeStatus, 1;
+	end;
+	
+OnInit:
+OnAgitEnd:
+OnAgitEnd2:
+	set $woeStatus, 0;
+	end;
+}
+
 function	script	UniversalShopFunc	{
 warp "milenia",71,185;
 }
