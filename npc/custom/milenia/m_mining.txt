@@ -300,7 +300,7 @@ mining,107,43,11	script	Mining Corp CEO	1681,{
 	mes "[^888800 Mining Corp CEO ^000000]";
 	mes "Can't talk now.. Comeback later..";
 	set @miningCEO, @miningCEO + 1;
-	dispbottom "Currently "+(@miningCEO)+" ";
+	//dispbottom "Currently "+(@miningCEO)+" ";
 	close;
 
 	}
@@ -309,7 +309,7 @@ mining,107,43,11	script	Mining Corp CEO	1681,{
 	emotion e_an;
 	mes "Don't disturb me!";
 	set @miningCEO, @miningCEO + 1;
-	dispbottom "Currently "+(@miningCEO)+" ";
+	//dispbottom "Currently "+(@miningCEO)+" ";
 	close;
 
 
