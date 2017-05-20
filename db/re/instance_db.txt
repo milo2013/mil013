@@ -34,3 +34,4 @@
 102,LV2 Elite MVP Ladder,3600,300,2@ldr,39,72
 103,LV3 Elite MVP Ladder,3600,300,3@ldr,72,40
 104,LV4 Elite MVP Ladder,3600,300,4@ldr,39,7
+105,Vicious Prison,3600,300,1@prison,245,16

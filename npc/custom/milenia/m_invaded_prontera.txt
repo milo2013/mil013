@@ -66,7 +66,7 @@ milenia,130,163,11	script	Unknown Scout	998,{
 			mes "[Unknown Scout]";
 			mes "Like I said.. We only recruit ^FF0000Novice^000000 only!!";
 			}
-			else if (countitem (31203) > 49) {
+			else if (countitem (31203) > 0) {
 				if ( #Invaded_timer > gettimetick(2) ) {
 				mes "[Unknown Scout]";
 				mes "You must wait ^ff0000"+ callfunc( "timeleft__", #Invaded_timer - gettimetick(2) ) +"^000000.";
@@ -76,7 +76,7 @@ milenia,130,163,11	script	Unknown Scout	998,{
 				close;
 				}
 				set #FarmHunt,0;
-				delitem 31203,50;
+				delitem 31203,1;
 				set .Hunter[getarraysize( .Hunter )], getcharid(3);
 				warp .Map$,0,0;
 				mapannounce "prt_q", strcharinfo(0) + " has join to protect Invaded Prontera!!",0;

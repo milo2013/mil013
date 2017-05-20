@@ -229,6 +229,12 @@
 31231,Siegfried_Box,Token Of Siegfried,2,10,,10,,,,,0xFFFFFFFF,63,2,,,,,,{ callfunc "TokenLimitFunc"; },{},{}
 31232,Shop_Permit_Box,Shop Permit Box,2,10,,10,,,,,0xFFFFFFFF,63,2,,,,,,{ getitem 31233,10; },{},{}
 31233,Shop Permit,Shop Permit,2,10,,10,,,,,0xFFFFFFFF,63,2,,,,,,{ getitem 31233,1; callfunc "UniversalShopFunc"; },{},{}
+31234,Broken_Picklock,Broken Picklock,2,10,,10,,,,,0xFFFFFFFF,63,2,,,,,,{},{},{}
+31235,Picklock,Picklock,2,10,,10,,,,,0xFFFFFFFF,63,2,,,,,,{},{},{}
+31236,Bloody_Page,Bloody Page,2,10,,10,,,,,0xFFFFFFFF,63,2,,,,,,{},{},{}
+31237,Bloody_Edge,Bloody Edge,2,10,,10,,,,,0xFFFFFFFF,63,2,,,,,,{},{},{}
+31238,Book_About_True_Life,Book About True Life,2,10,,10,,,,,0xFFFFFFFF,63,2,,,,,,{},{},{}
+31239,Crystal_Of_Feardom,Crystal Of Feardom,2,10,,10,,,,,0xFFFFFFFF,63,2,,,,,,{},{},{}
 
 
 // BIOS ISLAND
