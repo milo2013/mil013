@@ -1,0 +1,118 @@
+milenia,28,147,11	script	Vicious Material Trader	742,{
+
+	mes "[Escaped Prisoner]";
+	set .Exchange,0;
+	mes "Let's see.. Hmmm..";
+	next;
+	mes "[Escaped Prisoner]";
+	mes "You have..";
+    mes "^ff0000" + getitemname(.IDP) + "^000000 : ^ff0000 "+countitem(.IDP) +" ^000000";
+	set .Total, countitem (.IDP);
+    next;
+	mes "[Escaped Prisoner]";
+    mes "Do you me to exchange this Crystal?";
+    next;
+	switch(select("Crystal Exchange:Close")) {
+		case 1:
+			mes "[Escaped Prisoner]";
+			mes "Please select which Exchange do you want?";
+			next;
+			switch(select("Vicious Material:Book About True Life:Close")) {
+			case 1:
+				if (countitem (.IDP)) < 1{
+				mes "[Escaped Prisoner]";
+				mes "Sorry! You don't have any Crystal to exchange!!";
+				close;
+				}
+				next;
+				mes "[Escaped Prisoner]";
+				mes "Every 1 Crystal Of Feardom I you may exhange 1 Random Material.";
+				next;
+				switch(select("Got it!:Close")) {
+				case 1:
+					goto Ltrade;
+				case 2:
+					close;
+					break;
+					}
+			case 2:
+				if (countitem (.IDP)) < 100{
+				mes "[Escaped Prisoner]";
+				mes "Sorry! You don't have any Crystal to exchange!!";
+				next;
+				mes "[Escaped Prisoner]";
+				mes "You need at least 100 Crystal Of Feardom!!";
+				next;
+				mes "[Escaped Prisoner]";
+				mes "Please come back when you have enough Crystal! Thanks!";
+				close;
+				break;
+				}
+				next;
+				mes "[Escaped Prisoner]";
+				mes "Every 100 Crystal Of Feardom I you may exchange 1 Red Reagent or 1 Book About True Life.";
+				next;
+				switch(select("Got it!:Close")) {
+				case 1:
+					goto Ltrade3;
+				case 2:
+					close;
+					break;
+					}
+			case 3:
+				close;
+				break;
+				}
+		case 2:
+			close;
+			break;
+	}
+			
+	// Crystal EXCHANGE
+	Ltrade:
+	setarray .@items[0],"31236","31237";
+	set .round_item_id, .@items[rand (getarraysize(.@items)) ];
+	set .round_item_amount, rand(1,3);
+	set .Exchange, .Exchange + 1;
+	
+	mes "[Escaped Prisoner]";
+    mes "Exchanging your Crystal....";
+	message strcharinfo(0),"Exchanging Crystal "+(.Exchange)+"/"+(.Total)+".";
+	getitem .round_item_id, .round_item_amount;
+	delitem .IDP,1;
+		if (.Exchange) == (.Total){
+		next;
+		mes "[Escaped Prisoner]";
+		mes "Sorry! You have reach the limit for exchange!!";
+		close;
+		}
+	next;
+	goto Ltrade;
+		
+	// PERMIT 1 - OPTIONAL
+	Ltrade3:
+	
+	setarray .@itemsBonus[0],"31238";
+	set .bonus_item_id, .@itemsBonus[rand (getarraysize(.@itemsBonus)) ];
+	set .bonus_item_amount,1;
+	set .Exchange, .Exchange + 1;
+	
+	mes "[Escaped Prisoner]";
+    mes "Exchanging your Crystal....";
+	message strcharinfo(0),"Exchanging Crystal "+(.Exchange)+"/"+((.Total) / 100)+".";
+	getitem .bonus_item_id, .bonus_item_amount;
+	delitem .IDP,100;
+		if (.Exchange) == ((.Total) / 100){
+		next;
+		mes "[Escaped Prisoner]";
+		mes "Sorry! You have reach the limit for exchange!!";
+		close;
+		}
+	next;
+	goto Ltrade3;
+	
+
+	OnInit:
+    set .IDP,31239; // Crystal
+    end;
+}
