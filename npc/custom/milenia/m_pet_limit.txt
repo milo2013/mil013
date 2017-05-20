@@ -23,7 +23,7 @@ setarray .map$,"farm","prt_q";
 		bpet;
 		}
     end;
-}
+	}
 
 -	script	woeStatus	-1,{
 	end;
@@ -50,10 +50,10 @@ OnPCLoadMapEvent:
 setarray .map$,"ds";
     getmapxy(@map$, @xb, @yb, 0 );
         if (@map$ == .map$) {
-                dispbottom "You use this in here!!";
+                dispbottom "You cannot use this in here!!";
 		mes "[Milenia Officer]";
 		mes "Hello ^ff0000" + strcharinfo(0) + "^000000,";
-		mes "You use this in here!";
+		mes "You cannot use this in here!";
 		mes "Thank you!!";
 		getitem 31231,1;
                 close;
