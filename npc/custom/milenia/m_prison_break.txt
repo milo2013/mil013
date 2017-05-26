@@ -1,15 +1,3 @@
-//===== rAthena Script =======================================
-//= Instance: Prison Break
-//===== By: ==================================================
-//= Akkarin
-//===== Compatible With: =====================================
-//= ROwser
-//===== Description: =========================================
-//= Scripts for the instance "Prison Break"
-//===== Additional Comments: =================================
-//= 1.0 First Version.
-//============================================================
-
 milenia,31,147,11	script	Escaped Prisoner	10056,{
 	set .@party_id,getcharid(1);
 	set .@md_name$,"Vicious Prison";
@@ -51,21 +39,23 @@ milenia,31,147,11	script	Escaped Prisoner	10056,{
 		}
 	} else if ((.@prison_timer == 0)) {
 
-		set .@dun_lim_time,prison_timer+43200; // 1 week
-		//set .@dun_lim_time2,prison_timer+14400; // 4 hours
+		set .@dun_lim_time,prison_timer+82800; // 23 Hours
 		set .@dun_cur_time,gettimetick(2);
 		set .@dun_ent_t,(.@dun_lim_time - .@dun_cur_time);
 		set .@dun_h,(.@dun_ent_t / 3600);
 		set .@dun_m,(.@dun_ent_t - (.@dun_h * 3600)) / 60;
 		set .@dun_s,.@dun_ent_t - ((.@dun_h * 3600) + (.@dun_m * 60));
 
-		mes "Due to the tower's aftereffects, you cannot enter the dungeon right now, " + .@dun_h + "hours " + .@dun_m + "minutes " + .@dun_s + "seconds left to enter the next dungeon.";
+		mes "Due to the prison's aftereffects,";
+		mes "you cannot enter the dungeon right now!";
+		next;
+		mes " ^FF0000 [ REMAINING TIME TO ENTER ] ^000000";
+		mes " ^FF0000"+ .@dun_h + "^000000 hours ^FF0000" + .@dun_m + "^000000 minutes ^FF0000" + .@dun_s + "^000000 seconds left to enter again.";
 		close;
 		end;
 	} else {
 		set prison_timer,0;
 		erasequest 66002;
-		//erasequest 3136;
 		mes "^0000ffThe records and after effects related to the Vicious Prison have been removed. You can generate and enter the Vicious Prison again.^000000";
 		close;
 	}
@@ -86,10 +76,8 @@ L_Enter:
 		mapannounce "milenia", strcharinfo(0) +" of the party, "+ getpartyname( getcharid(1) ) +", is entering the dungeon, Vicious Prison.",bc_map,"0x00ff99",FW_NORMAL,12;
 		if (getarg(1)) {
 			set prison_timer,gettimetick(2);
-			//setquest 66002;
-			//setquest 3136;
+			setquest 66002;
 		}
-		//warp "1@tower",52,354;
 		if (getarg(0) == 0) close;
 		else end;
 	}

@@ -3512,5 +3512,5 @@
 15051,82800,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,"Airship Assault Time Limit"
 
 // Prison Break 600 82800
-66002,600,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,"Memorial Dungeon: Prison Break"
-66003,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,"Prison Break Exploration"
+66002,82800,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,"Memorial Dungeon: Prison Break"
+66003,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,"Prison Break - Waiting"

@@ -50,9 +50,6 @@ function	script	F_getitemname	{
 milenia,102,161,5	script	Elite MVP Ladder	10192,{
 	doevent "elite_mvp_ladder::OnTalk";
 }
-//pay_arche,90,45,3	duplicate(Elite MVP Ladder)	Elite MVP Ladder#1	4_M_EIN_SOLDIER
-// mellina,81,144,5	duplicate(Elite MVP Ladder)	Elite MVP Ladder#2	4_M_EIN_SOLDIER
-
 
 -	script	elite_mvp_ladder	4_M_EIN_SOLDIER,{
 OnTalk:
@@ -83,10 +80,10 @@ OnTalk:
 			
 			mes "Select a Mode, ^FF0000Difficult mode^000000 have better rewards in return.";
 			mes "^777777=== Participants === ^000000";
-			mes "1 ~  3 - ^FF0000 EASY ^000000";
+			mes "1 ~  5 - ^FF0000 EASY ^000000";
 			mes "1 ~  5 - ^FF0000 MEDIUM ^000000";
-			mes "1 ~  9 - ^FF0000 HARD ^000000";
-			mes "1 ~ 12 - ^FF0000 INSANE ^000000";
+			mes "1 ~  5 - ^FF0000 HARD ^000000";
+			mes "1 ~ 5 - ^FF0000 INSANE ^000000";
 		
 			@mode = select( 
 				"^FF0000[ 10 Stages ]^000000 EASY^000000",
@@ -130,10 +127,10 @@ OnTalk:
 			
 			switch ( @mode ) {
 				default:
-				case 1: setarray .@party_member,1,3; break;
+				case 1: setarray .@party_member,1,5; break;
 				case 2: setarray .@party_member,1,5; break;
-				case 3: setarray .@party_member,1,9; break;
-				case 4: setarray .@party_member,1,12; break;
+				case 3: setarray .@party_member,1,5; break;
+				case 4: setarray .@party_member,1,5; break;
 			}
 			
 			if( .@member_count < .@party_member[0] || .@member_count > .@party_member[1] ){
@@ -372,13 +369,10 @@ OnTalk:
 		//	if ( rand( 100 ) < .@rate ) {
 		//		getitem 31204,1;
 		//	}
-
-		.@party_id = getcharid(1);
-			
-		getpartymember .@party_id;
-		for ( .@i = 0; .@i < $@partymembercount; .@i++ ) {
-				getitem 31204,1,$@partymemberaid[.@i];
-		}
+	
+			addrid(2,0,getcharid(1));
+			getitem 31204,1;
+		
 			percentheal 100,100;
 			mapannounce .@map$,"[Elite MVP Ladder] The Boss has been defeated. You have some time for rest now.",bc_map;
 			.@party_id = getcharid(1);
@@ -418,7 +412,7 @@ OnTalk:
 			detachrid;
 		}
 		
-		hideoffnpc .@npc_name$;
+		//hideoffnpc .@npc_name$;
 		sleep2 3000;
 		npctalk "Wow, you're actually manage to catch up with my records here.";
 		mapannounce .@map$,"[Elite MVP Ladder] The Elite Ladder has been cleared. ",bc_map;
