@@ -3513,4 +3513,4 @@
 
 // Prison Break 600 82800
 66002,82800,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,"Memorial Dungeon: Prison Break"
-66003,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,"Prison Break - Waiting"
+66003,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,"Prison Break Exploration"
