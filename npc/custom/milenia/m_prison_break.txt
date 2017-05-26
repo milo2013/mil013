@@ -51,7 +51,7 @@ milenia,31,147,11	script	Escaped Prisoner	10056,{
 		}
 	} else if ((.@prison_timer == 0)) {
 
-		set .@dun_lim_time,prison_timer+43200; // 1 week
+		set .@dun_lim_time,prison_timer+82800; // 23 Hours
 		//set .@dun_lim_time2,prison_timer+14400; // 4 hours
 		set .@dun_cur_time,gettimetick(2);
 		set .@dun_ent_t,(.@dun_lim_time - .@dun_cur_time);
