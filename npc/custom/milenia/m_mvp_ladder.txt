@@ -8,7 +8,7 @@
 */
 
 
-function	script	epoch_time	{
+function	script	epoch_time_ladder	{
 	.@time = getarg(0);
 	.@hour = ( .@time / 3600 );
 	.@min = ( .@time % 3600 ) / 60 ;
@@ -120,7 +120,7 @@ OnTalk:
 			mes "^0055FF[ "+.instance_name$+" ]^000000";
 			if( .@name$ != "" ){
 				mes "^0055FF"+.@name$+"^000000";
-				if ( .@fail_type & 1 ) mes "cooldown left "+epoch_time( .@cooldown );
+				if ( .@fail_type & 1 ) mes "cooldown left "+epoch_time_ladder( .@cooldown );
 				if ( .@fail_type & 2 ) mes "not enough zeny.";
 				break;
 			}
@@ -417,7 +417,7 @@ OnTalk:
 		npctalk "Wow, you're actually manage to catch up with my records here.";
 		mapannounce .@map$,"[Elite MVP Ladder] The Elite Ladder has been cleared. ",bc_map;
 		if ( 'ladder_mode >= 3 )
-			announce "Party ["+getpartyname( .@party_id )+"] has completed the Elite MVP Ladder within "+epoch_time( getnpctimer(0) / 1000 )+".",bc_all,0xFF0000;
+			announce "Party ["+getpartyname( .@party_id )+"] has completed the Elite MVP Ladder within "+epoch_time_ladder( getnpctimer(0) / 1000 )+".",bc_all,0xFF0000;
 		
 		
 		for ( .@i = 1; .@i <= ( max( 1,'ladder_mode ) * 4 ); .@i++ )

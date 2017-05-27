@@ -405,8 +405,8 @@ if(MineLvl == 0) {
 	if(@minechance == 2) {
 	misceffect 154;
 	set MineExp,MineExp+1;
-	if(@purechance == 3) getitem 7757,1;
-	else getitem 7233,1;
+	if(@purechance == 3) getitem 7757,rand (1,5);
+	else getitem 7233,rand (1,10);
 	goto Lsuccess;
 	}
 else {
@@ -430,8 +430,8 @@ else if(MineLvl == 1) {
 	if(@minechance == 2) {
 	misceffect 154;
 	set MineExp,MineExp+1;
-	if(@purechance == 3) getitem 7757,1;
-	else getitem 7233,1;
+	if(@purechance == 3) getitem 7757,rand (1,5);
+	else getitem 7233,rand (1,10);
 	goto Lsuccess;
 	}
 else {
@@ -453,8 +453,8 @@ else if(MineLvl == 2) {
 	if(@minechance == 2) {
 	misceffect 154;
 	set MineExp,MineExp+1;
-	if(@purechance == 3) getitem 7757,1;
-	else getitem 7233,1;
+	if(@purechance == 3) getitem 7757,rand (1,5);
+	else getitem 7233,rand (1,10);
 	goto Lsuccess;
 	}
 else {
@@ -475,8 +475,8 @@ if(MineLvl == 3) {
 	if(@minechance == 2) {
 	misceffect 154;
 	set MineExp,MineExp+1;
-	if(@purechance == 3) getitem 7757,1;
-	else getitem 7233,1;
+	if(@purechance == 3) getitem 7757,rand (1,5);
+	else getitem 7233,rand (1,10);
 	goto Lsuccess;
 	}
 else {
@@ -581,8 +581,8 @@ if(MineLvl == 0) {
 	if(@minechance == 2) {
 	misceffect 154;
 	set MineExp,MineExp+1;
-	if(@purechance == 3) getitem 7757,1;
-	else getitem 7233,1;
+	if(@purechance == 3) getitem 7757,rand (1,5);
+	else getitem 7233,rand (1,10);
 	goto Lsuccess;
 	}
 else {
@@ -606,8 +606,8 @@ else if(MineLvl == 1) {
 	if(@minechance == 2) {
 	misceffect 154;
 	set MineExp,MineExp+1;
-	if(@purechance == 3) getitem 7757,1;
-	else getitem 7233,1;
+	if(@purechance == 3) getitem 7757,rand (1,5);
+	else getitem 7233,rand (1,10);
 	goto Lsuccess;
 	}
 else {
@@ -629,8 +629,8 @@ else if(MineLvl == 2) {
 	if(@minechance == 2) {
 	misceffect 154;
 	set MineExp,MineExp+1;
-	if(@purechance == 3) getitem 7757,1;
-	else getitem 7233,1;
+	if(@purechance == 3) getitem 7757,rand (1,5);
+	else getitem 7233,rand (1,10);
 	goto Lsuccess;
 	}
 else {
@@ -651,8 +651,8 @@ if(MineLvl == 3) {
 	if(@minechance == 2) {
 	misceffect 154;
 	set MineExp,MineExp+1;
-	if(@purechance == 3) getitem 7757,1;
-	else getitem 7233,1;
+	if(@purechance == 3) getitem 7757,rand (1,5);
+	else getitem 7233,rand (1,10);
 	goto Lsuccess;
 	}
 else {
@@ -757,8 +757,8 @@ if(MineLvl == 0) {
 	if(@minechance == 2) {
 	misceffect 154;
 	set MineExp,MineExp+1;
-	if(@purechance == 3) getitem 7757,1;
-	else getitem 7233,1;
+	if(@purechance == 3) getitem 7757,rand (1,5);
+	else getitem 7233,rand (1,10);
 	goto Lsuccess;
 	}
 else {
@@ -782,8 +782,8 @@ else if(MineLvl == 1) {
 	if(@minechance == 2) {
 	misceffect 154;
 	set MineExp,MineExp+1;
-	if(@purechance == 3) getitem 7757,1;
-	else getitem 7233,1;
+	if(@purechance == 3) getitem 7757,rand (1,5);
+	else getitem 7233,rand (1,10);
 	goto Lsuccess;
 	}
 else {
@@ -805,8 +805,8 @@ else if(MineLvl == 2) {
 	if(@minechance == 2) {
 	misceffect 154;
 	set MineExp,MineExp+1;
-	if(@purechance == 3) getitem 7757,1;
-	else getitem 7233,1;
+	if(@purechance == 3) getitem 7757,rand (1,5);
+	else getitem 7233,rand (1,10);
 	goto Lsuccess;
 	}
 else {
@@ -827,8 +827,8 @@ if(MineLvl == 3) {
 	if(@minechance == 2) {
 	misceffect 154;
 	set MineExp,MineExp+1;
-	if(@purechance == 3) getitem 7757,1;
-	else getitem 7233,1;
+	if(@purechance == 3) getitem 7757,rand (1,5);
+	else getitem 7233,rand (1,10);
 	goto Lsuccess;
 	}
 else {
@@ -933,8 +933,8 @@ if(MineLvl == 0) {
 	if(@minechance == 2) {
 	misceffect 154;
 	set MineExp,MineExp+1;
-	if(@purechance == 3) getitem 7757,1;
-	else getitem 7233,1;
+	if(@purechance == 3) getitem 7757,rand (1,5);
+	else getitem 7233,rand (1,10);
 	goto Lsuccess;
 	}
 else {
@@ -958,8 +958,8 @@ else if(MineLvl == 1) {
 	if(@minechance == 2) {
 	misceffect 154;
 	set MineExp,MineExp+1;
-	if(@purechance == 3) getitem 7757,1;
-	else getitem 7233,1;
+	if(@purechance == 3) getitem 7757,rand (1,5);
+	else getitem 7233,rand (1,10);
 	goto Lsuccess;
 	}
 else {
@@ -981,8 +981,8 @@ else if(MineLvl == 2) {
 	if(@minechance == 2) {
 	misceffect 154;
 	set MineExp,MineExp+1;
-	if(@purechance == 3) getitem 7757,1;
-	else getitem 7233,1;
+	if(@purechance == 3) getitem 7757,rand (1,5);
+	else getitem 7233,rand (1,10);
 	goto Lsuccess;
 	}
 else {
@@ -1003,8 +1003,8 @@ if(MineLvl == 3) {
 	if(@minechance == 2) {
 	misceffect 154;
 	set MineExp,MineExp+1;
-	if(@purechance == 3) getitem 7757,1;
-	else getitem 7233,1;
+	if(@purechance == 3) getitem 7757,rand (1,5);
+	else getitem 7233,rand (1,10);
 	goto Lsuccess;
 	}
 else {
@@ -1109,8 +1109,8 @@ if(MineLvl == 0) {
 	if(@minechance == 2) {
 	misceffect 154;
 	set MineExp,MineExp+1;
-	if(@purechance == 3) getitem 7757,1;
-	else getitem 7233,1;
+	if(@purechance == 3) getitem 7757,rand (1,5);
+	else getitem 7233,rand (1,10);
 	goto Lsuccess;
 	}
 else {
@@ -1134,8 +1134,8 @@ else if(MineLvl == 1) {
 	if(@minechance == 2) {
 	misceffect 154;
 	set MineExp,MineExp+1;
-	if(@purechance == 3) getitem 7757,1;
-	else getitem 7233,1;
+	if(@purechance == 3) getitem 7757,rand (1,5);
+	else getitem 7233,rand (1,10);
 	goto Lsuccess;
 	}
 else {
@@ -1157,8 +1157,8 @@ else if(MineLvl == 2) {
 	if(@minechance == 2) {
 	misceffect 154;
 	set MineExp,MineExp+1;
-	if(@purechance == 3) getitem 7757,1;
-	else getitem 7233,1;
+	if(@purechance == 3) getitem 7757,rand (1,5);
+	else getitem 7233,rand (1,10);
 	goto Lsuccess;
 	}
 else {
@@ -1179,8 +1179,8 @@ if(MineLvl == 3) {
 	if(@minechance == 2) {
 	misceffect 154;
 	set MineExp,MineExp+1;
-	if(@purechance == 3) getitem 7757,1;
-	else getitem 7233,1;
+	if(@purechance == 3) getitem 7757,rand (1,5);
+	else getitem 7233,rand (1,10);
 	goto Lsuccess;
 	}
 else {
@@ -1286,8 +1286,8 @@ if(MineLvl == 0) {
 	if(@minechance == 2) {
 	misceffect 154;
 	set MineExp,MineExp+1;
-	if(@purechance == 3) getitem 7757,1;
-	else getitem 7233,1;
+	if(@purechance == 3) getitem 7757,rand (1,5);
+	else getitem 7233,rand (1,10);
 	goto Lsuccess;
 	}
 else {
@@ -1311,8 +1311,8 @@ else if(MineLvl == 1) {
 	if(@minechance == 2) {
 	misceffect 154;
 	set MineExp,MineExp+1;
-	if(@purechance == 3) getitem 7757,1;
-	else getitem 7233,1;
+	if(@purechance == 3) getitem 7757,rand (1,5);
+	else getitem 7233,rand (1,10);
 	goto Lsuccess;
 	}
 else {
@@ -1334,8 +1334,8 @@ else if(MineLvl == 2) {
 	if(@minechance == 2) {
 	misceffect 154;
 	set MineExp,MineExp+1;
-	if(@purechance == 3) getitem 7757,1;
-	else getitem 7233,1;
+	if(@purechance == 3) getitem 7757,rand (1,5);
+	else getitem 7233,rand (1,10);
 	goto Lsuccess;
 	}
 else {
@@ -1356,8 +1356,8 @@ if(MineLvl == 3) {
 	if(@minechance == 2) {
 	misceffect 154;
 	set MineExp,MineExp+1;
-	if(@purechance == 3) getitem 7757,1;
-	else getitem 7233,1;
+	if(@purechance == 3) getitem 7757,rand (1,5);
+	else getitem 7233,rand (1,10);
 	goto Lsuccess;
 	}
 else {
@@ -1462,8 +1462,8 @@ if(MineLvl == 0) {
 	if(@minechance == 2) {
 	misceffect 154;
 	set MineExp,MineExp+1;
-	if(@purechance == 3) getitem 7757,1;
-	else getitem 7233,1;
+	if(@purechance == 3) getitem 7757,rand (1,5);
+	else getitem 7233,rand (1,10);
 	goto Lsuccess;
 	}
 else {
@@ -1487,8 +1487,8 @@ else if(MineLvl == 1) {
 	if(@minechance == 2) {
 	misceffect 154;
 	set MineExp,MineExp+1;
-	if(@purechance == 3) getitem 7757,1;
-	else getitem 7233,1;
+	if(@purechance == 3) getitem 7757,rand (1,5);
+	else getitem 7233,rand (1,10);
 	goto Lsuccess;
 	}
 else {
@@ -1510,8 +1510,8 @@ else if(MineLvl == 2) {
 	if(@minechance == 2) {
 	misceffect 154;
 	set MineExp,MineExp+1;
-	if(@purechance == 3) getitem 7757,1;
-	else getitem 7233,1;
+	if(@purechance == 3) getitem 7757,rand (1,5);
+	else getitem 7233,rand (1,10);
 	goto Lsuccess;
 	}
 else {
@@ -1532,8 +1532,8 @@ if(MineLvl == 3) {
 	if(@minechance == 2) {
 	misceffect 154;
 	set MineExp,MineExp+1;
-	if(@purechance == 3) getitem 7757,1;
-	else getitem 7233,1;
+	if(@purechance == 3) getitem 7757,rand (1,5);
+	else getitem 7233,rand (1,10);
 	goto Lsuccess;
 	}
 else {
@@ -1638,8 +1638,8 @@ if(MineLvl == 0) {
 	if(@minechance == 2) {
 	misceffect 154;
 	set MineExp,MineExp+1;
-	if(@purechance == 3) getitem 7757,1;
-	else getitem 7233,1;
+	if(@purechance == 3) getitem 7757,rand (1,5);
+	else getitem 7233,rand (1,10);
 	goto Lsuccess;
 	}
 else {
@@ -1663,8 +1663,8 @@ else if(MineLvl == 1) {
 	if(@minechance == 2) {
 	misceffect 154;
 	set MineExp,MineExp+1;
-	if(@purechance == 3) getitem 7757,1;
-	else getitem 7233,1;
+	if(@purechance == 3) getitem 7757,rand (1,5);
+	else getitem 7233,rand (1,10);
 	goto Lsuccess;
 	}
 else {
@@ -1686,8 +1686,8 @@ else if(MineLvl == 2) {
 	if(@minechance == 2) {
 	misceffect 154;
 	set MineExp,MineExp+1;
-	if(@purechance == 3) getitem 7757,1;
-	else getitem 7233,1;
+	if(@purechance == 3) getitem 7757,rand (1,5);
+	else getitem 7233,rand (1,10);
 	goto Lsuccess;
 	}
 else {
@@ -1708,8 +1708,8 @@ if(MineLvl == 3) {
 	if(@minechance == 2) {
 	misceffect 154;
 	set MineExp,MineExp+1;
-	if(@purechance == 3) getitem 7757,1;
-	else getitem 7233,1;
+	if(@purechance == 3) getitem 7757,rand (1,5);
+	else getitem 7233,rand (1,10);
 	goto Lsuccess;
 	}
 else {
@@ -1814,8 +1814,8 @@ if(MineLvl == 0) {
 	if(@minechance == 2) {
 	misceffect 154;
 	set MineExp,MineExp+1;
-	if(@purechance == 3) getitem 7757,1;
-	else getitem 7233,1;
+	if(@purechance == 3) getitem 7757,rand (1,5);
+	else getitem 7233,rand (1,10);
 	goto Lsuccess;
 	}
 else {
@@ -1839,8 +1839,8 @@ else if(MineLvl == 1) {
 	if(@minechance == 2) {
 	misceffect 154;
 	set MineExp,MineExp+1;
-	if(@purechance == 3) getitem 7757,1;
-	else getitem 7233,1;
+	if(@purechance == 3) getitem 7757,rand (1,5);
+	else getitem 7233,rand (1,10);
 	goto Lsuccess;
 	}
 else {
@@ -1862,8 +1862,8 @@ else if(MineLvl == 2) {
 	if(@minechance == 2) {
 	misceffect 154;
 	set MineExp,MineExp+1;
-	if(@purechance == 3) getitem 7757,1;
-	else getitem 7233,1;
+	if(@purechance == 3) getitem 7757,rand (1,5);
+	else getitem 7233,rand (1,10);
 	goto Lsuccess;
 	}
 else {
@@ -1884,8 +1884,8 @@ if(MineLvl == 3) {
 	if(@minechance == 2) {
 	misceffect 154;
 	set MineExp,MineExp+1;
-	if(@purechance == 3) getitem 7757,1;
-	else getitem 7233,1;
+	if(@purechance == 3) getitem 7757,rand (1,5);
+	else getitem 7233,rand (1,10);
 	goto Lsuccess;
 	}
 else {
@@ -1990,8 +1990,8 @@ if(MineLvl == 0) {
 	if(@minechance == 2) {
 	misceffect 154;
 	set MineExp,MineExp+1;
-	if(@purechance == 3) getitem 7757,1;
-	else getitem 7233,1;
+	if(@purechance == 3) getitem 7757,rand (1,5);
+	else getitem 7233,rand (1,10);
 	goto Lsuccess;
 	}
 else {
@@ -2015,8 +2015,8 @@ else if(MineLvl == 1) {
 	if(@minechance == 2) {
 	misceffect 154;
 	set MineExp,MineExp+1;
-	if(@purechance == 3) getitem 7757,1;
-	else getitem 7233,1;
+	if(@purechance == 3) getitem 7757,rand (1,5);
+	else getitem 7233,rand (1,10);
 	goto Lsuccess;
 	}
 else {
@@ -2038,8 +2038,8 @@ else if(MineLvl == 2) {
 	if(@minechance == 2) {
 	misceffect 154;
 	set MineExp,MineExp+1;
-	if(@purechance == 3) getitem 7757,1;
-	else getitem 7233,1;
+	if(@purechance == 3) getitem 7757,rand (1,5);
+	else getitem 7233,rand (1,10);
 	goto Lsuccess;
 	}
 else {
@@ -2060,8 +2060,8 @@ if(MineLvl == 3) {
 	if(@minechance == 2) {
 	misceffect 154;
 	set MineExp,MineExp+1;
-	if(@purechance == 3) getitem 7757,1;
-	else getitem 7233,1;
+	if(@purechance == 3) getitem 7757,rand (1,5);
+	else getitem 7233,rand (1,10);
 	goto Lsuccess;
 	}
 else {
@@ -2167,8 +2167,8 @@ if(MineLvl == 0) {
 	if(@minechance == 2) {
 	misceffect 154;
 	set MineExp,MineExp+1;
-	if(@purechance == 3) getitem 7757,1;
-	else getitem 7233,1;
+	if(@purechance == 3) getitem 7757,rand (1,5);
+	else getitem 7233,rand (1,10);
 	goto Lsuccess;
 	}
 else {
@@ -2192,8 +2192,8 @@ else if(MineLvl == 1) {
 	if(@minechance == 2) {
 	misceffect 154;
 	set MineExp,MineExp+1;
-	if(@purechance == 3) getitem 7757,1;
-	else getitem 7233,1;
+	if(@purechance == 3) getitem 7757,rand (1,5);
+	else getitem 7233,rand (1,10);
 	goto Lsuccess;
 	}
 else {
@@ -2215,8 +2215,8 @@ else if(MineLvl == 2) {
 	if(@minechance == 2) {
 	misceffect 154;
 	set MineExp,MineExp+1;
-	if(@purechance == 3) getitem 7757,1;
-	else getitem 7233,1;
+	if(@purechance == 3) getitem 7757,rand (1,5);
+	else getitem 7233,rand (1,10);
 	goto Lsuccess;
 	}
 else {
@@ -2237,8 +2237,8 @@ if(MineLvl == 3) {
 	if(@minechance == 2) {
 	misceffect 154;
 	set MineExp,MineExp+1;
-	if(@purechance == 3) getitem 7757,1;
-	else getitem 7233,1;
+	if(@purechance == 3) getitem 7757,rand (1,5);
+	else getitem 7233,rand (1,10);
 	goto Lsuccess;
 	}
 else {
@@ -2343,8 +2343,8 @@ if(MineLvl == 0) {
 	if(@minechance == 2) {
 	misceffect 154;
 	set MineExp,MineExp+1;
-	if(@purechance == 3) getitem 7757,1;
-	else getitem 7233,1;
+	if(@purechance == 3) getitem 7757,rand (1,5);
+	else getitem 7233,rand (1,10);
 	goto Lsuccess;
 	}
 else {
@@ -2368,8 +2368,8 @@ else if(MineLvl == 1) {
 	if(@minechance == 2) {
 	misceffect 154;
 	set MineExp,MineExp+1;
-	if(@purechance == 3) getitem 7757,1;
-	else getitem 7233,1;
+	if(@purechance == 3) getitem 7757,rand (1,5);
+	else getitem 7233,rand (1,10);
 	goto Lsuccess;
 	}
 else {
@@ -2391,8 +2391,8 @@ else if(MineLvl == 2) {
 	if(@minechance == 2) {
 	misceffect 154;
 	set MineExp,MineExp+1;
-	if(@purechance == 3) getitem 7757,1;
-	else getitem 7233,1;
+	if(@purechance == 3) getitem 7757,rand (1,5);
+	else getitem 7233,rand (1,10);
 	goto Lsuccess;
 	}
 else {
@@ -2413,8 +2413,8 @@ if(MineLvl == 3) {
 	if(@minechance == 2) {
 	misceffect 154;
 	set MineExp,MineExp+1;
-	if(@purechance == 3) getitem 7757,1;
-	else getitem 7233,1;
+	if(@purechance == 3) getitem 7757,rand (1,5);
+	else getitem 7233,rand (1,10);
 	goto Lsuccess;
 	}
 else {
@@ -2519,8 +2519,8 @@ if(MineLvl == 0) {
 	if(@minechance == 2) {
 	misceffect 154;
 	set MineExp,MineExp+1;
-	if(@purechance == 3) getitem 7757,1;
-	else getitem 7233,1;
+	if(@purechance == 3) getitem 7757,rand (1,5);
+	else getitem 7233,rand (1,10);
 	goto Lsuccess;
 	}
 else {
@@ -2544,8 +2544,8 @@ else if(MineLvl == 1) {
 	if(@minechance == 2) {
 	misceffect 154;
 	set MineExp,MineExp+1;
-	if(@purechance == 3) getitem 7757,1;
-	else getitem 7233,1;
+	if(@purechance == 3) getitem 7757,rand (1,5);
+	else getitem 7233,rand (1,10);
 	goto Lsuccess;
 	}
 else {
@@ -2567,8 +2567,8 @@ else if(MineLvl == 2) {
 	if(@minechance == 2) {
 	misceffect 154;
 	set MineExp,MineExp+1;
-	if(@purechance == 3) getitem 7757,1;
-	else getitem 7233,1;
+	if(@purechance == 3) getitem 7757,rand (1,5);
+	else getitem 7233,rand (1,10);
 	goto Lsuccess;
 	}
 else {
@@ -2589,8 +2589,8 @@ if(MineLvl == 3) {
 	if(@minechance == 2) {
 	misceffect 154;
 	set MineExp,MineExp+1;
-	if(@purechance == 3) getitem 7757,1;
-	else getitem 7233,1;
+	if(@purechance == 3) getitem 7757,rand (1,5);
+	else getitem 7233,rand (1,10);
 	goto Lsuccess;
 	}
 else {
@@ -2695,8 +2695,8 @@ if(MineLvl == 0) {
 	if(@minechance == 2) {
 	misceffect 154;
 	set MineExp,MineExp+1;
-	if(@purechance == 3) getitem 7757,1;
-	else getitem 7233,1;
+	if(@purechance == 3) getitem 7757,rand (1,5);
+	else getitem 7233,rand (1,10);
 	goto Lsuccess;
 	}
 else {
@@ -2720,8 +2720,8 @@ else if(MineLvl == 1) {
 	if(@minechance == 2) {
 	misceffect 154;
 	set MineExp,MineExp+1;
-	if(@purechance == 3) getitem 7757,1;
-	else getitem 7233,1;
+	if(@purechance == 3) getitem 7757,rand (1,5);
+	else getitem 7233,rand (1,10);
 	goto Lsuccess;
 	}
 else {
@@ -2743,8 +2743,8 @@ else if(MineLvl == 2) {
 	if(@minechance == 2) {
 	misceffect 154;
 	set MineExp,MineExp+1;
-	if(@purechance == 3) getitem 7757,1;
-	else getitem 7233,1;
+	if(@purechance == 3) getitem 7757,rand (1,5);
+	else getitem 7233,rand (1,10);
 	goto Lsuccess;
 	}
 else {
@@ -2765,8 +2765,8 @@ if(MineLvl == 3) {
 	if(@minechance == 2) {
 	misceffect 154;
 	set MineExp,MineExp+1;
-	if(@purechance == 3) getitem 7757,1;
-	else getitem 7233,1;
+	if(@purechance == 3) getitem 7757,rand (1,5);
+	else getitem 7233,rand (1,10);
 	goto Lsuccess;
 	}
 else {
@@ -2871,8 +2871,8 @@ if(MineLvl == 0) {
 	if(@minechance == 2) {
 	misceffect 154;
 	set MineExp,MineExp+1;
-	if(@purechance == 3) getitem 7757,1;
-	else getitem 7233,1;
+	if(@purechance == 3) getitem 7757,rand (1,5);
+	else getitem 7233,rand (1,10);
 	goto Lsuccess;
 	}
 else {
@@ -2896,8 +2896,8 @@ else if(MineLvl == 1) {
 	if(@minechance == 2) {
 	misceffect 154;
 	set MineExp,MineExp+1;
-	if(@purechance == 3) getitem 7757,1;
-	else getitem 7233,1;
+	if(@purechance == 3) getitem 7757,rand (1,5);
+	else getitem 7233,rand (1,10);
 	goto Lsuccess;
 	}
 else {
@@ -2919,8 +2919,8 @@ else if(MineLvl == 2) {
 	if(@minechance == 2) {
 	misceffect 154;
 	set MineExp,MineExp+1;
-	if(@purechance == 3) getitem 7757,1;
-	else getitem 7233,1;
+	if(@purechance == 3) getitem 7757,rand (1,5);
+	else getitem 7233,rand (1,10);
 	goto Lsuccess;
 	}
 else {
@@ -2941,8 +2941,8 @@ if(MineLvl == 3) {
 	if(@minechance == 2) {
 	misceffect 154;
 	set MineExp,MineExp+1;
-	if(@purechance == 3) getitem 7757,1;
-	else getitem 7233,1;
+	if(@purechance == 3) getitem 7757,rand (1,5);
+	else getitem 7233,rand (1,10);
 	goto Lsuccess;
 	}
 else {
@@ -3047,8 +3047,8 @@ if(MineLvl == 0) {
 	if(@minechance == 2) {
 	misceffect 154;
 	set MineExp,MineExp+1;
-	if(@purechance == 3) getitem 7757,1;
-	else getitem 7233,1;
+	if(@purechance == 3) getitem 7757,rand (1,5);
+	else getitem 7233,rand (1,10);
 	goto Lsuccess;
 	}
 else {
@@ -3072,8 +3072,8 @@ else if(MineLvl == 1) {
 	if(@minechance == 2) {
 	misceffect 154;
 	set MineExp,MineExp+1;
-	if(@purechance == 3) getitem 7757,1;
-	else getitem 7233,1;
+	if(@purechance == 3) getitem 7757,rand (1,5);
+	else getitem 7233,rand (1,10);
 	goto Lsuccess;
 	}
 else {
@@ -3095,8 +3095,8 @@ else if(MineLvl == 2) {
 	if(@minechance == 2) {
 	misceffect 154;
 	set MineExp,MineExp+1;
-	if(@purechance == 3) getitem 7757,1;
-	else getitem 7233,1;
+	if(@purechance == 3) getitem 7757,rand (1,5);
+	else getitem 7233,rand (1,10);
 	goto Lsuccess;
 	}
 else {
@@ -3117,8 +3117,8 @@ if(MineLvl == 3) {
 	if(@minechance == 2) {
 	misceffect 154;
 	set MineExp,MineExp+1;
-	if(@purechance == 3) getitem 7757,1;
-	else getitem 7233,1;
+	if(@purechance == 3) getitem 7757,rand (1,5);
+	else getitem 7233,rand (1,10);
 	goto Lsuccess;
 	}
 else {
@@ -3223,8 +3223,8 @@ if(MineLvl == 0) {
 	if(@minechance == 2) {
 	misceffect 154;
 	set MineExp,MineExp+1;
-	if(@purechance == 3) getitem 7757,1;
-	else getitem 7233,1;
+	if(@purechance == 3) getitem 7757,rand (1,5);
+	else getitem 7233,rand (1,10);
 	goto Lsuccess;
 	}
 else {
@@ -3248,8 +3248,8 @@ else if(MineLvl == 1) {
 	if(@minechance == 2) {
 	misceffect 154;
 	set MineExp,MineExp+1;
-	if(@purechance == 3) getitem 7757,1;
-	else getitem 7233,1;
+	if(@purechance == 3) getitem 7757,rand (1,5);
+	else getitem 7233,rand (1,10);
 	goto Lsuccess;
 	}
 else {
@@ -3271,8 +3271,8 @@ else if(MineLvl == 2) {
 	if(@minechance == 2) {
 	misceffect 154;
 	set MineExp,MineExp+1;
-	if(@purechance == 3) getitem 7757,1;
-	else getitem 7233,1;
+	if(@purechance == 3) getitem 7757,rand (1,5);
+	else getitem 7233,rand (1,10);
 	goto Lsuccess;
 	}
 else {
@@ -3293,8 +3293,8 @@ if(MineLvl == 3) {
 	if(@minechance == 2) {
 	misceffect 154;
 	set MineExp,MineExp+1;
-	if(@purechance == 3) getitem 7757,1;
-	else getitem 7233,1;
+	if(@purechance == 3) getitem 7757,rand (1,5);
+	else getitem 7233,rand (1,10);
 	goto Lsuccess;
 	}
 else {
@@ -3399,8 +3399,8 @@ if(MineLvl == 0) {
 	if(@minechance == 2) {
 	misceffect 154;
 	set MineExp,MineExp+1;
-	if(@purechance == 3) getitem 7757,1;
-	else getitem 7233,1;
+	if(@purechance == 3) getitem 7757,rand (1,5);
+	else getitem 7233,rand (1,10);
 	goto Lsuccess;
 	}
 else {
@@ -3424,8 +3424,8 @@ else if(MineLvl == 1) {
 	if(@minechance == 2) {
 	misceffect 154;
 	set MineExp,MineExp+1;
-	if(@purechance == 3) getitem 7757,1;
-	else getitem 7233,1;
+	if(@purechance == 3) getitem 7757,rand (1,5);
+	else getitem 7233,rand (1,10);
 	goto Lsuccess;
 	}
 else {
@@ -3447,8 +3447,8 @@ else if(MineLvl == 2) {
 	if(@minechance == 2) {
 	misceffect 154;
 	set MineExp,MineExp+1;
-	if(@purechance == 3) getitem 7757,1;
-	else getitem 7233,1;
+	if(@purechance == 3) getitem 7757,rand (1,5);
+	else getitem 7233,rand (1,10);
 	goto Lsuccess;
 	}
 else {
@@ -3469,8 +3469,8 @@ if(MineLvl == 3) {
 	if(@minechance == 2) {
 	misceffect 154;
 	set MineExp,MineExp+1;
-	if(@purechance == 3) getitem 7757,1;
-	else getitem 7233,1;
+	if(@purechance == 3) getitem 7757,rand (1,5);
+	else getitem 7233,rand (1,10);
 	goto Lsuccess;
 	}
 else {
@@ -3575,8 +3575,8 @@ if(MineLvl == 0) {
 	if(@minechance == 2) {
 	misceffect 154;
 	set MineExp,MineExp+1;
-	if(@purechance == 3) getitem 7757,1;
-	else getitem 7233,1;
+	if(@purechance == 3) getitem 7757,rand (1,5);
+	else getitem 7233,rand (1,10);
 	goto Lsuccess;
 	}
 else {
@@ -3600,8 +3600,8 @@ else if(MineLvl == 1) {
 	if(@minechance == 2) {
 	misceffect 154;
 	set MineExp,MineExp+1;
-	if(@purechance == 3) getitem 7757,1;
-	else getitem 7233,1;
+	if(@purechance == 3) getitem 7757,rand (1,5);
+	else getitem 7233,rand (1,10);
 	goto Lsuccess;
 	}
 else {
@@ -3623,8 +3623,8 @@ else if(MineLvl == 2) {
 	if(@minechance == 2) {
 	misceffect 154;
 	set MineExp,MineExp+1;
-	if(@purechance == 3) getitem 7757,1;
-	else getitem 7233,1;
+	if(@purechance == 3) getitem 7757,rand (1,5);
+	else getitem 7233,rand (1,10);
 	goto Lsuccess;
 	}
 else {
@@ -3645,8 +3645,8 @@ if(MineLvl == 3) {
 	if(@minechance == 2) {
 	misceffect 154;
 	set MineExp,MineExp+1;
-	if(@purechance == 3) getitem 7757,1;
-	else getitem 7233,1;
+	if(@purechance == 3) getitem 7757,rand (1,5);
+	else getitem 7233,rand (1,10);
 	goto Lsuccess;
 	}
 else {
@@ -3751,8 +3751,8 @@ if(MineLvl == 0) {
 	if(@minechance == 2) {
 	misceffect 154;
 	set MineExp,MineExp+1;
-	if(@purechance == 3) getitem 7757,1;
-	else getitem 7233,1;
+	if(@purechance == 3) getitem 7757,rand (1,5);
+	else getitem 7233,rand (1,10);
 	goto Lsuccess;
 	}
 else {
@@ -3776,8 +3776,8 @@ else if(MineLvl == 1) {
 	if(@minechance == 2) {
 	misceffect 154;
 	set MineExp,MineExp+1;
-	if(@purechance == 3) getitem 7757,1;
-	else getitem 7233,1;
+	if(@purechance == 3) getitem 7757,rand (1,5);
+	else getitem 7233,rand (1,10);
 	goto Lsuccess;
 	}
 else {
@@ -3799,8 +3799,8 @@ else if(MineLvl == 2) {
 	if(@minechance == 2) {
 	misceffect 154;
 	set MineExp,MineExp+1;
-	if(@purechance == 3) getitem 7757,1;
-	else getitem 7233,1;
+	if(@purechance == 3) getitem 7757,rand (1,5);
+	else getitem 7233,rand (1,10);
 	goto Lsuccess;
 	}
 else {
@@ -3821,8 +3821,8 @@ if(MineLvl == 3) {
 	if(@minechance == 2) {
 	misceffect 154;
 	set MineExp,MineExp+1;
-	if(@purechance == 3) getitem 7757,1;
-	else getitem 7233,1;
+	if(@purechance == 3) getitem 7757,rand (1,5);
+	else getitem 7233,rand (1,10);
 	goto Lsuccess;
 	}
 else {
@@ -3927,8 +3927,8 @@ if(MineLvl == 0) {
 	if(@minechance == 2) {
 	misceffect 154;
 	set MineExp,MineExp+1;
-	if(@purechance == 3) getitem 7757,1;
-	else getitem 7233,1;
+	if(@purechance == 3) getitem 7757,rand (1,5);
+	else getitem 7233,rand (1,10);
 	goto Lsuccess;
 	}
 else {
@@ -3952,8 +3952,8 @@ else if(MineLvl == 1) {
 	if(@minechance == 2) {
 	misceffect 154;
 	set MineExp,MineExp+1;
-	if(@purechance == 3) getitem 7757,1;
-	else getitem 7233,1;
+	if(@purechance == 3) getitem 7757,rand (1,5);
+	else getitem 7233,rand (1,10);
 	goto Lsuccess;
 	}
 else {
@@ -3975,8 +3975,8 @@ else if(MineLvl == 2) {
 	if(@minechance == 2) {
 	misceffect 154;
 	set MineExp,MineExp+1;
-	if(@purechance == 3) getitem 7757,1;
-	else getitem 7233,1;
+	if(@purechance == 3) getitem 7757,rand (1,5);
+	else getitem 7233,rand (1,10);
 	goto Lsuccess;
 	}
 else {
@@ -3997,8 +3997,8 @@ if(MineLvl == 3) {
 	if(@minechance == 2) {
 	misceffect 154;
 	set MineExp,MineExp+1;
-	if(@purechance == 3) getitem 7757,1;
-	else getitem 7233,1;
+	if(@purechance == 3) getitem 7757,rand (1,5);
+	else getitem 7233,rand (1,10);
 	goto Lsuccess;
 	}
 else {
@@ -4103,8 +4103,8 @@ if(MineLvl == 0) {
 	if(@minechance == 2) {
 	misceffect 154;
 	set MineExp,MineExp+1;
-	if(@purechance == 3) getitem 7757,1;
-	else getitem 7233,1;
+	if(@purechance == 3) getitem 7757,rand (1,5);
+	else getitem 7233,rand (1,10);
 	goto Lsuccess;
 	}
 else {
@@ -4128,8 +4128,8 @@ else if(MineLvl == 1) {
 	if(@minechance == 2) {
 	misceffect 154;
 	set MineExp,MineExp+1;
-	if(@purechance == 3) getitem 7757,1;
-	else getitem 7233,1;
+	if(@purechance == 3) getitem 7757,rand (1,5);
+	else getitem 7233,rand (1,10);
 	goto Lsuccess;
 	}
 else {
@@ -4151,8 +4151,8 @@ else if(MineLvl == 2) {
 	if(@minechance == 2) {
 	misceffect 154;
 	set MineExp,MineExp+1;
-	if(@purechance == 3) getitem 7757,1;
-	else getitem 7233,1;
+	if(@purechance == 3) getitem 7757,rand (1,5);
+	else getitem 7233,rand (1,10);
 	goto Lsuccess;
 	}
 else {
@@ -4173,8 +4173,8 @@ if(MineLvl == 3) {
 	if(@minechance == 2) {
 	misceffect 154;
 	set MineExp,MineExp+1;
-	if(@purechance == 3) getitem 7757,1;
-	else getitem 7233,1;
+	if(@purechance == 3) getitem 7757,rand (1,5);
+	else getitem 7233,rand (1,10);
 	goto Lsuccess;
 	}
 else {
@@ -4279,8 +4279,8 @@ if(MineLvl == 0) {
 	if(@minechance == 2) {
 	misceffect 154;
 	set MineExp,MineExp+1;
-	if(@purechance == 3) getitem 7757,1;
-	else getitem 7233,1;
+	if(@purechance == 3) getitem 7757,rand (1,5);
+	else getitem 7233,rand (1,10);
 	goto Lsuccess;
 	}
 else {
@@ -4304,8 +4304,8 @@ else if(MineLvl == 1) {
 	if(@minechance == 2) {
 	misceffect 154;
 	set MineExp,MineExp+1;
-	if(@purechance == 3) getitem 7757,1;
-	else getitem 7233,1;
+	if(@purechance == 3) getitem 7757,rand (1,5);
+	else getitem 7233,rand (1,10);
 	goto Lsuccess;
 	}
 else {
@@ -4327,8 +4327,8 @@ else if(MineLvl == 2) {
 	if(@minechance == 2) {
 	misceffect 154;
 	set MineExp,MineExp+1;
-	if(@purechance == 3) getitem 7757,1;
-	else getitem 7233,1;
+	if(@purechance == 3) getitem 7757,rand (1,5);
+	else getitem 7233,rand (1,10);
 	goto Lsuccess;
 	}
 else {
@@ -4349,8 +4349,8 @@ if(MineLvl == 3) {
 	if(@minechance == 2) {
 	misceffect 154;
 	set MineExp,MineExp+1;
-	if(@purechance == 3) getitem 7757,1;
-	else getitem 7233,1;
+	if(@purechance == 3) getitem 7757,rand (1,5);
+	else getitem 7233,rand (1,10);
 	goto Lsuccess;
 	}
 else {
@@ -4455,8 +4455,8 @@ if(MineLvl == 0) {
 	if(@minechance == 2) {
 	misceffect 154;
 	set MineExp,MineExp+1;
-	if(@purechance == 3) getitem 7757,1;
-	else getitem 7233,1;
+	if(@purechance == 3) getitem 7757,rand (1,5);
+	else getitem 7233,rand (1,10);
 	goto Lsuccess;
 	}
 else {
@@ -4480,8 +4480,8 @@ else if(MineLvl == 1) {
 	if(@minechance == 2) {
 	misceffect 154;
 	set MineExp,MineExp+1;
-	if(@purechance == 3) getitem 7757,1;
-	else getitem 7233,1;
+	if(@purechance == 3) getitem 7757,rand (1,5);
+	else getitem 7233,rand (1,10);
 	goto Lsuccess;
 	}
 else {
@@ -4503,8 +4503,8 @@ else if(MineLvl == 2) {
 	if(@minechance == 2) {
 	misceffect 154;
 	set MineExp,MineExp+1;
-	if(@purechance == 3) getitem 7757,1;
-	else getitem 7233,1;
+	if(@purechance == 3) getitem 7757,rand (1,5);
+	else getitem 7233,rand (1,10);
 	goto Lsuccess;
 	}
 else {
@@ -4525,8 +4525,8 @@ if(MineLvl == 3) {
 	if(@minechance == 2) {
 	misceffect 154;
 	set MineExp,MineExp+1;
-	if(@purechance == 3) getitem 7757,1;
-	else getitem 7233,1;
+	if(@purechance == 3) getitem 7757,rand (1,5);
+	else getitem 7233,rand (1,10);
 	goto Lsuccess;
 	}
 else {
@@ -4631,8 +4631,8 @@ if(MineLvl == 0) {
 	if(@minechance == 2) {
 	misceffect 154;
 	set MineExp,MineExp+1;
-	if(@purechance == 3) getitem 7757,1;
-	else getitem 7233,1;
+	if(@purechance == 3) getitem 7757,rand (1,5);
+	else getitem 7233,rand (1,10);
 	goto Lsuccess;
 	}
 else {
@@ -4656,8 +4656,8 @@ else if(MineLvl == 1) {
 	if(@minechance == 2) {
 	misceffect 154;
 	set MineExp,MineExp+1;
-	if(@purechance == 3) getitem 7757,1;
-	else getitem 7233,1;
+	if(@purechance == 3) getitem 7757,rand (1,5);
+	else getitem 7233,rand (1,10);
 	goto Lsuccess;
 	}
 else {
@@ -4679,8 +4679,8 @@ else if(MineLvl == 2) {
 	if(@minechance == 2) {
 	misceffect 154;
 	set MineExp,MineExp+1;
-	if(@purechance == 3) getitem 7757,1;
-	else getitem 7233,1;
+	if(@purechance == 3) getitem 7757,rand (1,5);
+	else getitem 7233,rand (1,10);
 	goto Lsuccess;
 	}
 else {
@@ -4701,8 +4701,8 @@ if(MineLvl == 3) {
 	if(@minechance == 2) {
 	misceffect 154;
 	set MineExp,MineExp+1;
-	if(@purechance == 3) getitem 7757,1;
-	else getitem 7233,1;
+	if(@purechance == 3) getitem 7757,rand (1,5);
+	else getitem 7233,rand (1,10);
 	goto Lsuccess;
 	}
 else {
@@ -4807,8 +4807,8 @@ if(MineLvl == 0) {
 	if(@minechance == 2) {
 	misceffect 154;
 	set MineExp,MineExp+1;
-	if(@purechance == 3) getitem 7757,1;
-	else getitem 7233,1;
+	if(@purechance == 3) getitem 7757,rand (1,5);
+	else getitem 7233,rand (1,10);
 	goto Lsuccess;
 	}
 else {
@@ -4832,8 +4832,8 @@ else if(MineLvl == 1) {
 	if(@minechance == 2) {
 	misceffect 154;
 	set MineExp,MineExp+1;
-	if(@purechance == 3) getitem 7757,1;
-	else getitem 7233,1;
+	if(@purechance == 3) getitem 7757,rand (1,5);
+	else getitem 7233,rand (1,10);
 	goto Lsuccess;
 	}
 else {
@@ -4855,8 +4855,8 @@ else if(MineLvl == 2) {
 	if(@minechance == 2) {
 	misceffect 154;
 	set MineExp,MineExp+1;
-	if(@purechance == 3) getitem 7757,1;
-	else getitem 7233,1;
+	if(@purechance == 3) getitem 7757,rand (1,5);
+	else getitem 7233,rand (1,10);
 	goto Lsuccess;
 	}
 else {
@@ -4877,8 +4877,8 @@ if(MineLvl == 3) {
 	if(@minechance == 2) {
 	misceffect 154;
 	set MineExp,MineExp+1;
-	if(@purechance == 3) getitem 7757,1;
-	else getitem 7233,1;
+	if(@purechance == 3) getitem 7757,rand (1,5);
+	else getitem 7233,rand (1,10);
 	goto Lsuccess;
 	}
 else {
@@ -4983,8 +4983,8 @@ if(MineLvl == 0) {
 	if(@minechance == 2) {
 	misceffect 154;
 	set MineExp,MineExp+1;
-	if(@purechance == 3) getitem 7757,1;
-	else getitem 7233,1;
+	if(@purechance == 3) getitem 7757,rand (1,5);
+	else getitem 7233,rand (1,10);
 	goto Lsuccess;
 	}
 else {
@@ -5008,8 +5008,8 @@ else if(MineLvl == 1) {
 	if(@minechance == 2) {
 	misceffect 154;
 	set MineExp,MineExp+1;
-	if(@purechance == 3) getitem 7757,1;
-	else getitem 7233,1;
+	if(@purechance == 3) getitem 7757,rand (1,5);
+	else getitem 7233,rand (1,10);
 	goto Lsuccess;
 	}
 else {
@@ -5031,8 +5031,8 @@ else if(MineLvl == 2) {
 	if(@minechance == 2) {
 	misceffect 154;
 	set MineExp,MineExp+1;
-	if(@purechance == 3) getitem 7757,1;
-	else getitem 7233,1;
+	if(@purechance == 3) getitem 7757,rand (1,5);
+	else getitem 7233,rand (1,10);
 	goto Lsuccess;
 	}
 else {
@@ -5053,8 +5053,8 @@ if(MineLvl == 3) {
 	if(@minechance == 2) {
 	misceffect 154;
 	set MineExp,MineExp+1;
-	if(@purechance == 3) getitem 7757,1;
-	else getitem 7233,1;
+	if(@purechance == 3) getitem 7757,rand (1,5);
+	else getitem 7233,rand (1,10);
 	goto Lsuccess;
 	}
 else {
@@ -5159,8 +5159,8 @@ if(MineLvl == 0) {
 	if(@minechance == 2) {
 	misceffect 154;
 	set MineExp,MineExp+1;
-	if(@purechance == 3) getitem 7757,1;
-	else getitem 7233,1;
+	if(@purechance == 3) getitem 7757,rand (1,5);
+	else getitem 7233,rand (1,10);
 	goto Lsuccess;
 	}
 else {
@@ -5184,8 +5184,8 @@ else if(MineLvl == 1) {
 	if(@minechance == 2) {
 	misceffect 154;
 	set MineExp,MineExp+1;
-	if(@purechance == 3) getitem 7757,1;
-	else getitem 7233,1;
+	if(@purechance == 3) getitem 7757,rand (1,5);
+	else getitem 7233,rand (1,10);
 	goto Lsuccess;
 	}
 else {
@@ -5207,8 +5207,8 @@ else if(MineLvl == 2) {
 	if(@minechance == 2) {
 	misceffect 154;
 	set MineExp,MineExp+1;
-	if(@purechance == 3) getitem 7757,1;
-	else getitem 7233,1;
+	if(@purechance == 3) getitem 7757,rand (1,5);
+	else getitem 7233,rand (1,10);
 	goto Lsuccess;
 	}
 else {
@@ -5229,8 +5229,8 @@ if(MineLvl == 3) {
 	if(@minechance == 2) {
 	misceffect 154;
 	set MineExp,MineExp+1;
-	if(@purechance == 3) getitem 7757,1;
-	else getitem 7233,1;
+	if(@purechance == 3) getitem 7757,rand (1,5);
+	else getitem 7233,rand (1,10);
 	goto Lsuccess;
 	}
 else {
@@ -5335,8 +5335,8 @@ if(MineLvl == 0) {
 	if(@minechance == 2) {
 	misceffect 154;
 	set MineExp,MineExp+1;
-	if(@purechance == 3) getitem 7757,1;
-	else getitem 7233,1;
+	if(@purechance == 3) getitem 7757,rand (1,5);
+	else getitem 7233,rand (1,10);
 	goto Lsuccess;
 	}
 else {
@@ -5360,8 +5360,8 @@ else if(MineLvl == 1) {
 	if(@minechance == 2) {
 	misceffect 154;
 	set MineExp,MineExp+1;
-	if(@purechance == 3) getitem 7757,1;
-	else getitem 7233,1;
+	if(@purechance == 3) getitem 7757,rand (1,5);
+	else getitem 7233,rand (1,10);
 	goto Lsuccess;
 	}
 else {
@@ -5383,8 +5383,8 @@ else if(MineLvl == 2) {
 	if(@minechance == 2) {
 	misceffect 154;
 	set MineExp,MineExp+1;
-	if(@purechance == 3) getitem 7757,1;
-	else getitem 7233,1;
+	if(@purechance == 3) getitem 7757,rand (1,5);
+	else getitem 7233,rand (1,10);
 	goto Lsuccess;
 	}
 else {
@@ -5405,8 +5405,8 @@ if(MineLvl == 3) {
 	if(@minechance == 2) {
 	misceffect 154;
 	set MineExp,MineExp+1;
-	if(@purechance == 3) getitem 7757,1;
-	else getitem 7233,1;
+	if(@purechance == 3) getitem 7757,rand (1,5);
+	else getitem 7233,rand (1,10);
 	goto Lsuccess;
 	}
 else {
@@ -5511,8 +5511,8 @@ if(MineLvl == 0) {
 	if(@minechance == 2) {
 	misceffect 154;
 	set MineExp,MineExp+1;
-	if(@purechance == 3) getitem 7757,1;
-	else getitem 7233,1;
+	if(@purechance == 3) getitem 7757,rand (1,5);
+	else getitem 7233,rand (1,10);
 	goto Lsuccess;
 	}
 else {
@@ -5536,8 +5536,8 @@ else if(MineLvl == 1) {
 	if(@minechance == 2) {
 	misceffect 154;
 	set MineExp,MineExp+1;
-	if(@purechance == 3) getitem 7757,1;
-	else getitem 7233,1;
+	if(@purechance == 3) getitem 7757,rand (1,5);
+	else getitem 7233,rand (1,10);
 	goto Lsuccess;
 	}
 else {
@@ -5559,8 +5559,8 @@ else if(MineLvl == 2) {
 	if(@minechance == 2) {
 	misceffect 154;
 	set MineExp,MineExp+1;
-	if(@purechance == 3) getitem 7757,1;
-	else getitem 7233,1;
+	if(@purechance == 3) getitem 7757,rand (1,5);
+	else getitem 7233,rand (1,10);
 	goto Lsuccess;
 	}
 else {
@@ -5581,8 +5581,8 @@ if(MineLvl == 3) {
 	if(@minechance == 2) {
 	misceffect 154;
 	set MineExp,MineExp+1;
-	if(@purechance == 3) getitem 7757,1;
-	else getitem 7233,1;
+	if(@purechance == 3) getitem 7757,rand (1,5);
+	else getitem 7233,rand (1,10);
 	goto Lsuccess;
 	}
 else {
@@ -5687,8 +5687,8 @@ if(MineLvl == 0) {
 	if(@minechance == 2) {
 	misceffect 154;
 	set MineExp,MineExp+1;
-	if(@purechance == 3) getitem 7757,1;
-	else getitem 7233,1;
+	if(@purechance == 3) getitem 7757,rand (1,5);
+	else getitem 7233,rand (1,10);
 	goto Lsuccess;
 	}
 else {
@@ -5712,8 +5712,8 @@ else if(MineLvl == 1) {
 	if(@minechance == 2) {
 	misceffect 154;
 	set MineExp,MineExp+1;
-	if(@purechance == 3) getitem 7757,1;
-	else getitem 7233,1;
+	if(@purechance == 3) getitem 7757,rand (1,5);
+	else getitem 7233,rand (1,10);
 	goto Lsuccess;
 	}
 else {
@@ -5735,8 +5735,8 @@ else if(MineLvl == 2) {
 	if(@minechance == 2) {
 	misceffect 154;
 	set MineExp,MineExp+1;
-	if(@purechance == 3) getitem 7757,1;
-	else getitem 7233,1;
+	if(@purechance == 3) getitem 7757,rand (1,5);
+	else getitem 7233,rand (1,10);
 	goto Lsuccess;
 	}
 else {
@@ -5757,8 +5757,8 @@ if(MineLvl == 3) {
 	if(@minechance == 2) {
 	misceffect 154;
 	set MineExp,MineExp+1;
-	if(@purechance == 3) getitem 7757,1;
-	else getitem 7233,1;
+	if(@purechance == 3) getitem 7757,rand (1,5);
+	else getitem 7233,rand (1,10);
 	goto Lsuccess;
 	}
 else {
@@ -5863,8 +5863,8 @@ if(MineLvl == 0) {
 	if(@minechance == 2) {
 	misceffect 154;
 	set MineExp,MineExp+1;
-	if(@purechance == 3) getitem 7757,1;
-	else getitem 7233,1;
+	if(@purechance == 3) getitem 7757,rand (1,5);
+	else getitem 7233,rand (1,10);
 	goto Lsuccess;
 	}
 else {
@@ -5888,8 +5888,8 @@ else if(MineLvl == 1) {
 	if(@minechance == 2) {
 	misceffect 154;
 	set MineExp,MineExp+1;
-	if(@purechance == 3) getitem 7757,1;
-	else getitem 7233,1;
+	if(@purechance == 3) getitem 7757,rand (1,5);
+	else getitem 7233,rand (1,10);
 	goto Lsuccess;
 	}
 else {
@@ -5911,8 +5911,8 @@ else if(MineLvl == 2) {
 	if(@minechance == 2) {
 	misceffect 154;
 	set MineExp,MineExp+1;
-	if(@purechance == 3) getitem 7757,1;
-	else getitem 7233,1;
+	if(@purechance == 3) getitem 7757,rand (1,5);
+	else getitem 7233,rand (1,10);
 	goto Lsuccess;
 	}
 else {
@@ -5933,8 +5933,8 @@ if(MineLvl == 3) {
 	if(@minechance == 2) {
 	misceffect 154;
 	set MineExp,MineExp+1;
-	if(@purechance == 3) getitem 7757,1;
-	else getitem 7233,1;
+	if(@purechance == 3) getitem 7757,rand (1,5);
+	else getitem 7233,rand (1,10);
 	goto Lsuccess;
 	}
 else {
@@ -6039,8 +6039,8 @@ if(MineLvl == 0) {
 	if(@minechance == 2) {
 	misceffect 154;
 	set MineExp,MineExp+1;
-	if(@purechance == 3) getitem 7757,1;
-	else getitem 7233,1;
+	if(@purechance == 3) getitem 7757,rand (1,5);
+	else getitem 7233,rand (1,10);
 	goto Lsuccess;
 	}
 else {
@@ -6064,8 +6064,8 @@ else if(MineLvl == 1) {
 	if(@minechance == 2) {
 	misceffect 154;
 	set MineExp,MineExp+1;
-	if(@purechance == 3) getitem 7757,1;
-	else getitem 7233,1;
+	if(@purechance == 3) getitem 7757,rand (1,5);
+	else getitem 7233,rand (1,10);
 	goto Lsuccess;
 	}
 else {
@@ -6087,8 +6087,8 @@ else if(MineLvl == 2) {
 	if(@minechance == 2) {
 	misceffect 154;
 	set MineExp,MineExp+1;
-	if(@purechance == 3) getitem 7757,1;
-	else getitem 7233,1;
+	if(@purechance == 3) getitem 7757,rand (1,5);
+	else getitem 7233,rand (1,10);
 	goto Lsuccess;
 	}
 else {
@@ -6109,8 +6109,8 @@ if(MineLvl == 3) {
 	if(@minechance == 2) {
 	misceffect 154;
 	set MineExp,MineExp+1;
-	if(@purechance == 3) getitem 7757,1;
-	else getitem 7233,1;
+	if(@purechance == 3) getitem 7757,rand (1,5);
+	else getitem 7233,rand (1,10);
 	goto Lsuccess;
 	}
 else {
@@ -6215,8 +6215,8 @@ if(MineLvl == 0) {
 	if(@minechance == 2) {
 	misceffect 154;
 	set MineExp,MineExp+1;
-	if(@purechance == 3) getitem 7757,1;
-	else getitem 7233,1;
+	if(@purechance == 3) getitem 7757,rand (1,5);
+	else getitem 7233,rand (1,10);
 	goto Lsuccess;
 	}
 else {
@@ -6240,8 +6240,8 @@ else if(MineLvl == 1) {
 	if(@minechance == 2) {
 	misceffect 154;
 	set MineExp,MineExp+1;
-	if(@purechance == 3) getitem 7757,1;
-	else getitem 7233,1;
+	if(@purechance == 3) getitem 7757,rand (1,5);
+	else getitem 7233,rand (1,10);
 	goto Lsuccess;
 	}
 else {
@@ -6263,8 +6263,8 @@ else if(MineLvl == 2) {
 	if(@minechance == 2) {
 	misceffect 154;
 	set MineExp,MineExp+1;
-	if(@purechance == 3) getitem 7757,1;
-	else getitem 7233,1;
+	if(@purechance == 3) getitem 7757,rand (1,5);
+	else getitem 7233,rand (1,10);
 	goto Lsuccess;
 	}
 else {
@@ -6285,8 +6285,8 @@ if(MineLvl == 3) {
 	if(@minechance == 2) {
 	misceffect 154;
 	set MineExp,MineExp+1;
-	if(@purechance == 3) getitem 7757,1;
-	else getitem 7233,1;
+	if(@purechance == 3) getitem 7757,rand (1,5);
+	else getitem 7233,rand (1,10);
 	goto Lsuccess;
 	}
 else {
@@ -6391,8 +6391,8 @@ if(MineLvl == 0) {
 	if(@minechance == 2) {
 	misceffect 154;
 	set MineExp,MineExp+1;
-	if(@purechance == 3) getitem 7757,1;
-	else getitem 7233,1;
+	if(@purechance == 3) getitem 7757,rand (1,5);
+	else getitem 7233,rand (1,10);
 	goto Lsuccess;
 	}
 else {
@@ -6416,8 +6416,8 @@ else if(MineLvl == 1) {
 	if(@minechance == 2) {
 	misceffect 154;
 	set MineExp,MineExp+1;
-	if(@purechance == 3) getitem 7757,1;
-	else getitem 7233,1;
+	if(@purechance == 3) getitem 7757,rand (1,5);
+	else getitem 7233,rand (1,10);
 	goto Lsuccess;
 	}
 else {
@@ -6439,8 +6439,8 @@ else if(MineLvl == 2) {
 	if(@minechance == 2) {
 	misceffect 154;
 	set MineExp,MineExp+1;
-	if(@purechance == 3) getitem 7757,1;
-	else getitem 7233,1;
+	if(@purechance == 3) getitem 7757,rand (1,5);
+	else getitem 7233,rand (1,10);
 	goto Lsuccess;
 	}
 else {
@@ -6461,8 +6461,8 @@ if(MineLvl == 3) {
 	if(@minechance == 2) {
 	misceffect 154;
 	set MineExp,MineExp+1;
-	if(@purechance == 3) getitem 7757,1;
-	else getitem 7233,1;
+	if(@purechance == 3) getitem 7757,rand (1,5);
+	else getitem 7233,rand (1,10);
 	goto Lsuccess;
 	}
 else {
@@ -6567,8 +6567,8 @@ if(MineLvl == 0) {
 	if(@minechance == 2) {
 	misceffect 154;
 	set MineExp,MineExp+1;
-	if(@purechance == 3) getitem 7757,1;
-	else getitem 7233,1;
+	if(@purechance == 3) getitem 7757,rand (1,5);
+	else getitem 7233,rand (1,10);
 	goto Lsuccess;
 	}
 else {
@@ -6592,8 +6592,8 @@ else if(MineLvl == 1) {
 	if(@minechance == 2) {
 	misceffect 154;
 	set MineExp,MineExp+1;
-	if(@purechance == 3) getitem 7757,1;
-	else getitem 7233,1;
+	if(@purechance == 3) getitem 7757,rand (1,5);
+	else getitem 7233,rand (1,10);
 	goto Lsuccess;
 	}
 else {
@@ -6615,8 +6615,8 @@ else if(MineLvl == 2) {
 	if(@minechance == 2) {
 	misceffect 154;
 	set MineExp,MineExp+1;
-	if(@purechance == 3) getitem 7757,1;
-	else getitem 7233,1;
+	if(@purechance == 3) getitem 7757,rand (1,5);
+	else getitem 7233,rand (1,10);
 	goto Lsuccess;
 	}
 else {
@@ -6637,8 +6637,8 @@ if(MineLvl == 3) {
 	if(@minechance == 2) {
 	misceffect 154;
 	set MineExp,MineExp+1;
-	if(@purechance == 3) getitem 7757,1;
-	else getitem 7233,1;
+	if(@purechance == 3) getitem 7757,rand (1,5);
+	else getitem 7233,rand (1,10);
 	goto Lsuccess;
 	}
 else {
@@ -6743,8 +6743,8 @@ if(MineLvl == 0) {
 	if(@minechance == 2) {
 	misceffect 154;
 	set MineExp,MineExp+1;
-	if(@purechance == 3) getitem 7757,1;
-	else getitem 7233,1;
+	if(@purechance == 3) getitem 7757,rand (1,5);
+	else getitem 7233,rand (1,10);
 	goto Lsuccess;
 	}
 else {
@@ -6768,8 +6768,8 @@ else if(MineLvl == 1) {
 	if(@minechance == 2) {
 	misceffect 154;
 	set MineExp,MineExp+1;
-	if(@purechance == 3) getitem 7757,1;
-	else getitem 7233,1;
+	if(@purechance == 3) getitem 7757,rand (1,5);
+	else getitem 7233,rand (1,10);
 	goto Lsuccess;
 	}
 else {
@@ -6791,8 +6791,8 @@ else if(MineLvl == 2) {
 	if(@minechance == 2) {
 	misceffect 154;
 	set MineExp,MineExp+1;
-	if(@purechance == 3) getitem 7757,1;
-	else getitem 7233,1;
+	if(@purechance == 3) getitem 7757,rand (1,5);
+	else getitem 7233,rand (1,10);
 	goto Lsuccess;
 	}
 else {
@@ -6813,8 +6813,8 @@ if(MineLvl == 3) {
 	if(@minechance == 2) {
 	misceffect 154;
 	set MineExp,MineExp+1;
-	if(@purechance == 3) getitem 7757,1;
-	else getitem 7233,1;
+	if(@purechance == 3) getitem 7757,rand (1,5);
+	else getitem 7233,rand (1,10);
 	goto Lsuccess;
 	}
 else {
@@ -6919,8 +6919,8 @@ if(MineLvl == 0) {
 	if(@minechance == 2) {
 	misceffect 154;
 	set MineExp,MineExp+1;
-	if(@purechance == 3) getitem 7757,1;
-	else getitem 7233,1;
+	if(@purechance == 3) getitem 7757,rand (1,5);
+	else getitem 7233,rand (1,10);
 	goto Lsuccess;
 	}
 else {
@@ -6944,8 +6944,8 @@ else if(MineLvl == 1) {
 	if(@minechance == 2) {
 	misceffect 154;
 	set MineExp,MineExp+1;
-	if(@purechance == 3) getitem 7757,1;
-	else getitem 7233,1;
+	if(@purechance == 3) getitem 7757,rand (1,5);
+	else getitem 7233,rand (1,10);
 	goto Lsuccess;
 	}
 else {
@@ -6967,8 +6967,8 @@ else if(MineLvl == 2) {
 	if(@minechance == 2) {
 	misceffect 154;
 	set MineExp,MineExp+1;
-	if(@purechance == 3) getitem 7757,1;
-	else getitem 7233,1;
+	if(@purechance == 3) getitem 7757,rand (1,5);
+	else getitem 7233,rand (1,10);
 	goto Lsuccess;
 	}
 else {
@@ -6989,8 +6989,8 @@ if(MineLvl == 3) {
 	if(@minechance == 2) {
 	misceffect 154;
 	set MineExp,MineExp+1;
-	if(@purechance == 3) getitem 7757,1;
-	else getitem 7233,1;
+	if(@purechance == 3) getitem 7757,rand (1,5);
+	else getitem 7233,rand (1,10);
 	goto Lsuccess;
 	}
 else {
@@ -7095,8 +7095,8 @@ if(MineLvl == 0) {
 	if(@minechance == 2) {
 	misceffect 154;
 	set MineExp,MineExp+1;
-	if(@purechance == 3) getitem 7757,1;
-	else getitem 7233,1;
+	if(@purechance == 3) getitem 7757,rand (1,5);
+	else getitem 7233,rand (1,10);
 	goto Lsuccess;
 	}
 else {
@@ -7120,8 +7120,8 @@ else if(MineLvl == 1) {
 	if(@minechance == 2) {
 	misceffect 154;
 	set MineExp,MineExp+1;
-	if(@purechance == 3) getitem 7757,1;
-	else getitem 7233,1;
+	if(@purechance == 3) getitem 7757,rand (1,5);
+	else getitem 7233,rand (1,10);
 	goto Lsuccess;
 	}
 else {
@@ -7143,8 +7143,8 @@ else if(MineLvl == 2) {
 	if(@minechance == 2) {
 	misceffect 154;
 	set MineExp,MineExp+1;
-	if(@purechance == 3) getitem 7757,1;
-	else getitem 7233,1;
+	if(@purechance == 3) getitem 7757,rand (1,5);
+	else getitem 7233,rand (1,10);
 	goto Lsuccess;
 	}
 else {
@@ -7165,8 +7165,8 @@ if(MineLvl == 3) {
 	if(@minechance == 2) {
 	misceffect 154;
 	set MineExp,MineExp+1;
-	if(@purechance == 3) getitem 7757,1;
-	else getitem 7233,1;
+	if(@purechance == 3) getitem 7757,rand (1,5);
+	else getitem 7233,rand (1,10);
 	goto Lsuccess;
 	}
 else {
@@ -7271,8 +7271,8 @@ if(MineLvl == 0) {
 	if(@minechance == 2) {
 	misceffect 154;
 	set MineExp,MineExp+1;
-	if(@purechance == 3) getitem 7757,1;
-	else getitem 7233,1;
+	if(@purechance == 3) getitem 7757,rand (1,5);
+	else getitem 7233,rand (1,10);
 	goto Lsuccess;
 	}
 else {
@@ -7296,8 +7296,8 @@ else if(MineLvl == 1) {
 	if(@minechance == 2) {
 	misceffect 154;
 	set MineExp,MineExp+1;
-	if(@purechance == 3) getitem 7757,1;
-	else getitem 7233,1;
+	if(@purechance == 3) getitem 7757,rand (1,5);
+	else getitem 7233,rand (1,10);
 	goto Lsuccess;
 	}
 else {
@@ -7319,8 +7319,8 @@ else if(MineLvl == 2) {
 	if(@minechance == 2) {
 	misceffect 154;
 	set MineExp,MineExp+1;
-	if(@purechance == 3) getitem 7757,1;
-	else getitem 7233,1;
+	if(@purechance == 3) getitem 7757,rand (1,5);
+	else getitem 7233,rand (1,10);
 	goto Lsuccess;
 	}
 else {
@@ -7341,8 +7341,8 @@ if(MineLvl == 3) {
 	if(@minechance == 2) {
 	misceffect 154;
 	set MineExp,MineExp+1;
-	if(@purechance == 3) getitem 7757,1;
-	else getitem 7233,1;
+	if(@purechance == 3) getitem 7757,rand (1,5);
+	else getitem 7233,rand (1,10);
 	goto Lsuccess;
 	}
 else {

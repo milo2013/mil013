@@ -55,6 +55,7 @@ else if(BrewLvl == 2)  { set @brewchance,rand(1,3); //33.33% chance to brew on L
 	misceffect 305;
 	set BrewExp,BrewExp+1;
 	getnameditem 31120,strcharinfo(0); //Change Item ID, Must match the potion to be made!
+	getnameditem 31120,strcharinfo(0); //Change Item ID, Must match the potion to be made!
 	goto Lsuccess01;
 	}
 	else {
@@ -67,6 +68,8 @@ else if(BrewLvl == 3)  { set @brewchance,rand(1,2); //50% chance to brew on Lvl 
 	misceffect 305;
 	//if(BrewExp < 10000)
 	set BrewExp,BrewExp+1;
+	getnameditem 31120,strcharinfo(0); //Change Item ID, Must match the potion to be made!
+	getnameditem 31120,strcharinfo(0); //Change Item ID, Must match the potion to be made!
 	getnameditem 31120,strcharinfo(0); //Change Item ID, Must match the potion to be made!
 	goto Lsuccess01;
 	}

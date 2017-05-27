@@ -45,7 +45,7 @@ Player_Menu:
 			mes "[Milenia]";
 			mes "Please select which NPC you would like to be teleported to.";
 			next;
-			switch(select("Michimaru's Workshop:Milenia Hyper Dealer:Quest Shop:3rd Job Shop:Ammunition:Ingredients:Pet Food Shop:Cash Shop")) {
+			switch(select("Michimaru's Workshop:Milenia Hyper Dealer:Quest Shop:3rd Job Shop:Ammunition:Ingredients:Pet Food Shop:Cash Shop:Vicious Trader")) {
 				case 1:
 					warp "milenia",135,182;
 					break;	
@@ -69,6 +69,9 @@ Player_Menu:
 					break;
 				case 8:
 					warp "milenia",73,61;
+					break;
+				case 9:
+					warp "milenia",28,145;
 					break;
 			}
 			break;
