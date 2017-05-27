@@ -14749,20 +14749,28 @@ BUILDIN_FUNC(message)
  *------------------------------------------*/
 BUILDIN_FUNC(npctalk)
 {
-	struct npc_data* nd = NULL;
-	const char* str = script_getstr(st,2);
+	const char* str;
 
-	if (script_hasdata(st, 3))
+	struct npc_data* nd = (struct npc_data *)map_id2bl(st->oid);
+	str = script_getstr(st,2);
+
+	if (script_hasdata(st, 3)) {
 		nd = npc_name2id(script_getstr(st, 3));
-	else
-		nd = (struct npc_data *)map_id2bl(st->oid);
-	if (nd != NULL) {
-		char message[256];
-		safesnprintf(message, sizeof(message), "%s", str);
+	} else {
+		nd = map_id2nd(st->oid);
+	}
+
+	if(nd)
+	{
+		char name[NAME_LENGTH], message[256];
+		safestrncpy(name, nd->name, sizeof(name));
+		strtok(name, "#"); // discard extra name identifier if present
+		safesnprintf(message, sizeof(message), "%s : %s", name, str);
 		clif_disp_overhead(&nd->bl, message);
 	}
 	return SCRIPT_CMD_SUCCESS;
 }
+
 
 /**
  * Sends a message to the waitingroom of the invoking NPC.

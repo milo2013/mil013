@@ -8,12 +8,37 @@ milenia,28,147,11	script	Vicious Material Trader	742,{
 	mes "You have..";
     mes "^ff0000" + getitemname(.IDP) + "^000000 : ^ff0000 "+countitem(.IDP) +" ^000000";
 	set .Total, countitem (.IDP);
+	mes "^ff0000" + getitemname(.IDP2) + "^000000 : ^ff0000 "+countitem(.IDP2) +" ^000000";
+	set .Total2, countitem (.IDP2);
     next;
 	mes "[Escaped Prisoner]";
     mes "Do you me to exchange this Crystal?";
     next;
-	switch(select("Crystal Exchange:Close")) {
+	switch(select("Fragment Exchange:Crystal Exchange:Close")) {
 		case 1:
+			if (countitem (.IDP2)) < 20 {
+				mes "[Escaped Prisoner]";
+				mes "Sorry! You don't have enough Crystal to exchange!!";
+				close;
+				}
+			if (countitem (.IDP2)) < 1 {
+				mes "[Escaped Prisoner]";
+				mes "Sorry! You don't have any Crystal to exchange!!";
+				close;
+				}
+				
+				next;
+				mes "[Escaped Prisoner]";
+				mes "Every 20 Crystal Of Feardom Fragment I you may exhange 1 Crystal Of Feardom .";
+				next;
+				switch(select("Got it!:Close")) {
+				case 1:
+					goto Ltrade2;
+				case 2:
+					close;
+					break;
+					}
+		case 2:
 			mes "[Escaped Prisoner]";
 			mes "Please select which Exchange do you want?";
 			next;
@@ -50,7 +75,7 @@ milenia,28,147,11	script	Vicious Material Trader	742,{
 				}
 				next;
 				mes "[Escaped Prisoner]";
-				mes "Every 100 Crystal Of Feardom I you may exchange 1 Red Reagent or 1 Book About True Life.";
+				mes "Every 100 Crystal Of Feardom I will change into 1 Book About True Life.";
 				next;
 				switch(select("Got it!:Close")) {
 				case 1:
@@ -63,7 +88,7 @@ milenia,28,147,11	script	Vicious Material Trader	742,{
 				close;
 				break;
 				}
-		case 2:
+		case 3:
 			close;
 			break;
 	}
@@ -72,7 +97,7 @@ milenia,28,147,11	script	Vicious Material Trader	742,{
 	Ltrade:
 	setarray .@items[0],"31236","31237";
 	set .round_item_id, .@items[rand (getarraysize(.@items)) ];
-	set .round_item_amount, rand(1,3);
+	set .round_item_amount, rand(1,2);
 	set .Exchange, .Exchange + 1;
 	
 	mes "[Escaped Prisoner]";
@@ -88,6 +113,27 @@ milenia,28,147,11	script	Vicious Material Trader	742,{
 		}
 	next;
 	goto Ltrade;
+	
+	// Crystal Fragment EXCHANGE
+	Ltrade2:
+	setarray .@items[0],"31239";
+	set .round_item_id2, .@items[rand (getarraysize(.@items)) ];
+	set .round_item_amount2,1;
+	set .Exchange, .Exchange + 1;
+	
+	mes "[Escaped Prisoner]";
+    mes "Exchanging your Crystal....";
+	message strcharinfo(0),"Exchanging Crystal Fragment"+(.Exchange)+"/"+((.Total2) / 20)+".";
+	getitem .round_item_id2, .round_item_amount2;
+	delitem .IDP2,20;
+		if (.Exchange) == ((.Total2) / 20 ){
+		next;
+		mes "[Escaped Prisoner]";
+		mes "Sorry! You have reach the limit for exchange!!";
+		close;
+		}
+	next;
+	goto Ltrade2;
 		
 	// PERMIT 1 - OPTIONAL
 	Ltrade3:
@@ -114,5 +160,6 @@ milenia,28,147,11	script	Vicious Material Trader	742,{
 
 	OnInit:
     set .IDP,31239; // Crystal
+	set .IDP2,31240; // Crystal Fragment
     end;
 }

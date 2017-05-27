@@ -452,8 +452,8 @@
 5453,475,100	// Dragonhelm_Copper
 5460,499,100	// Adv_Dragon_Skull
 5461,499,100	// Adv_Whisper_Mask
-5462,507,100	// Spiked_Scarf
-5463,507,100	// Rainbow_Scarf
+5462,475,100	// Spiked_Scarf
+5463,475,100	// Rainbow_Scarf
 5479,1,100	// Shaman's_Hair_Ornament
 5480,1,100	// Bizofnil_Wing_Deco
 5481,1,100	// Hermose_Cap
@@ -711,11 +711,11 @@
 6415,507,100	// Strange_Embryo
 6416,499,100	// Pet_Exchange
 6417,475,100	// Silvervine
-6418,499,100	// Agrade_Coin
-6419,499,100	// Bgrade_Coin
-6420,499,100	// Cgrade_Coin
-6421,499,100	// Dgrade_Coin
-6422,499,100	// Egrade_Coin
+6418,467,100	// Agrade_Coin
+6419,467,100	// Bgrade_Coin
+6420,467,100	// Cgrade_Coin
+6421,467,100	// Dgrade_Coin
+6422,467,100	// Egrade_Coin
 6424,499,100	// Halloween_Fragment
 6425,499,100	// Halloween_Certificate
 6426,499,100	// Bad_Can
@@ -747,7 +747,7 @@
 6465,467,100	// Guard_Coin
 6480,507,100	// Event_coin
 6484,475,100	// Enchant_Book
-6488,465,100	// Thanks_Invest_Ticket
+6488,401,100	// Thanks_Invest_Ticket
 6489,467,100	// Cats_Invest_Certif
 6500,499,100	// Sharp_Bamboo
 6501,499,100	// Salt_Bag
