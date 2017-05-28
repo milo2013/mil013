@@ -269,75 +269,74 @@ OnMyMobDead1:
 	setarray .@items[0],"31240","31239","31240","31240","31240";
 	set .round_item_id, .@items[rand (getarraysize(.@items)) ];
 	set .round_item_amount, 1;
-	makeitem .round_item_id, .round_item_amount,instance_mapname("1@prison"),230,18;
-	set .@dead, mobcount(instance_mapname("1@prison"),instance_npcname("#inst01Monsters1")+"::OnMyMobDead1");
-	if (.@dead == 0) {
-		monster instance_mapname("1@prison"),215,15,"Prison Guard",2448,1,instance_npcname("#inst01Monsters1")+"::OnMyMobDead2";
-		monster instance_mapname("1@prison"),215,15,"Prison Guard",2446,1,instance_npcname("#inst01Monsters1")+"::OnMyMobDead2";
-		mapannounce instance_mapname("1@prison"),"Prisoner : Ahhhh.. Their Twins are already here!!",bc_map;
-	}
+	//makeitem .round_item_id, .round_item_amount,instance_mapname("1@prison"),230,18;
+	addrid(2,0,getcharid(1));
+	getitem .round_item_id,1;
+	detachrid;
+	monster instance_mapname("1@prison"),215,15,"Prison Guard",2448,1,instance_npcname("#inst01Monsters1")+"::OnMyMobDead2";
+	mapannounce instance_mapname("1@prison"),"Prisoner : Ahhhh.. Their Twins are already here!!",bc_map;
 	end;
-
+	
 OnMyMobDead2:
 	setarray .@items[0],"31240","31239","31240","31240","31240";
 	set .round_item_id, .@items[rand (getarraysize(.@items)) ];
 	set .round_item_amount, 1;
-	makeitem .round_item_id, .round_item_amount,instance_mapname("1@prison"),215,15;
-	set .@dead, mobcount(instance_mapname("1@prison"),instance_npcname("#inst01Monsters1")+"::OnMyMobDead2");
-	if (.@dead == 0) {
-		monster instance_mapname("1@prison"),208,39,"Prison Guard",2444,1,instance_npcname("#inst01Monsters1")+"::OnMyMobDead3";
-		monster instance_mapname("1@prison"),208,39,"Prison Guard",2449,1,instance_npcname("#inst01Monsters1")+"::OnMyMobDead3";
-		mapannounce instance_mapname("1@prison"),"Prisoner : Another twin?! Ahh great!",bc_map;
-	}
+	//makeitem .round_item_id, .round_item_amount,instance_mapname("1@prison"),230,18;
+	addrid(2,0,getcharid(1));
+	getitem .round_item_id,1;
+	detachrid;
+	monster instance_mapname("1@prison"),215,15,"Prison Guard",2446,1,instance_npcname("#inst01Monsters1")+"::OnMyMobDead3";
 	end;
 
 OnMyMobDead3:
 	setarray .@items[0],"31240","31239","31240","31240","31240";
 	set .round_item_id, .@items[rand (getarraysize(.@items)) ];
 	set .round_item_amount, 1;
-	makeitem .round_item_id, .round_item_amount,instance_mapname("1@prison"),208,39;
-	set .@dead, mobcount(instance_mapname("1@prison"),instance_npcname("#inst01Monsters1")+"::OnMyMobDead3");
-	if (.@dead == 0) {
-		monster instance_mapname("1@prison"),225,46,"Prison Guard",2447,1,instance_npcname("#inst01Monsters1")+"::OnMyMobDead4";
-		mapannounce instance_mapname("1@prison"),"Prisoner : Who are you? All previous twin sister?",bc_map;
-		sleep 1000;
-		mapannounce instance_mapname("1@prison"),"Prison Guard : You will not escape!! I will kick your ass!!",bc_map;
-	}
+	//makeitem .round_item_id, .round_item_amount,instance_mapname("1@prison"),230,18;
+	addrid(2,0,getcharid(1));
+	getitem .round_item_id,1;
+	detachrid;
+	monster instance_mapname("1@prison"),208,39,"Prison Guard",2444,1,instance_npcname("#inst01Monsters1")+"::OnMyMobDead4";
+	mapannounce instance_mapname("1@prison"),"Prisoner : Another twin?! Ahh great!",bc_map;
 	end;
-
+	
 OnMyMobDead4:
 	setarray .@items[0],"31240","31239","31240","31240","31240";
 	set .round_item_id, .@items[rand (getarraysize(.@items)) ];
 	set .round_item_amount, 1;
-	makeitem .round_item_id, .round_item_amount,instance_mapname("1@prison"),225,46;
-	set .@dead, mobcount(instance_mapname("1@prison"),instance_npcname("#inst01Monsters1")+"::OnMyMobDead4");
-	if (.@dead == 0) {
-		monster instance_mapname("1@prison"),159,56,"Prison Guard",2996,1,instance_npcname("#inst01Monsters1")+"::OnMyMobDead5";
-		mapannounce instance_mapname("1@prison"),"Prisoner : Faster man.. You're too slow!!",bc_map;
-	}
+	//makeitem .round_item_id, .round_item_amount,instance_mapname("1@prison"),230,18;
+	addrid(2,0,getcharid(1));
+	getitem .round_item_id,1;
+	detachrid;
+	monster instance_mapname("1@prison"),208,39,"Prison Guard",2449,1,instance_npcname("#inst01Monsters1")+"::OnMyMobDead5";
 	end;
 
 OnMyMobDead5:
 	setarray .@items[0],"31240","31239","31240","31240","31240";
 	set .round_item_id, .@items[rand (getarraysize(.@items)) ];
 	set .round_item_amount, 1;
-	makeitem .round_item_id, .round_item_amount,instance_mapname("1@prison"),156,56;
-	set .@dead, mobcount(instance_mapname("1@prison"),instance_npcname("#inst01Monsters1")+"::OnMyMobDead5");
-	if (.@dead == 0) {
-	mapannounce instance_mapname("1@prison"),"Prisoner : Great!! Now even ghost in here.....",bc_map;
-	monster instance_mapname("1@prison"),161,57,"Wandering Soul",1765,1,instance_npcname("#inst01Monsters1")+"::OnMyMobDead6";
-	}	
+	//makeitem .round_item_id, .round_item_amount,instance_mapname("1@prison"),230,18;
+	addrid(2,0,getcharid(1));
+	getitem .round_item_id,1;
+	detachrid;
+	monster instance_mapname("1@prison"),225,46,"Prison Guard",2447,1,instance_npcname("#inst01Monsters1")+"::OnMyMobDead6";
+	mapannounce instance_mapname("1@prison"),"Prisoner : Who are you? All previous twin sister?",bc_map;
+	sleep 1000;
+	mapannounce instance_mapname("1@prison"),"Prison Guard : You will not escape!! I will kick your ass!!",bc_map;
 	end;
 
 OnMyMobDead6:
 	setarray .@items[0],"31240","31239","31240","31240","31240";
 	set .round_item_id, .@items[rand (getarraysize(.@items)) ];
 	set .round_item_amount, 1;
-	makeitem .round_item_id, .round_item_amount,instance_mapname("1@prison"),161,57;
-	set .@dead, mobcount(instance_mapname("1@prison"),instance_npcname("#inst01Monsters1")+"::OnMyMobDead6");
+	//makeitem .round_item_id, .round_item_amount,instance_mapname("1@prison"),230,18;
+	addrid(2,0,getcharid(1));
+	getitem .round_item_id,1;
+	detachrid;
+	set .@dead, mobcount(instance_mapname("1@prison"),instance_npcname("#inst01Monsters1")+"::OnMyMobDead4");
 	if (.@dead == 0) {
-	mapannounce instance_mapname("1@prison"),"Prisoner : Shoooo!! Shoooo!",bc_map;
-	monster instance_mapname("1@prison"),176,74,"Wandering Soul",2112,1,instance_npcname("#inst01Monsters1")+"::OnMyMobDead7";
+		monster instance_mapname("1@prison"),159,56,"Prison Guard",2483,1,instance_npcname("#inst01Monsters1")+"::OnMyMobDead7";
+		mapannounce instance_mapname("1@prison"),"Prisoner : Faster man.. You're too slow!!",bc_map;
 	}
 	end;
 
@@ -345,173 +344,491 @@ OnMyMobDead7:
 	setarray .@items[0],"31240","31239","31240","31240","31240";
 	set .round_item_id, .@items[rand (getarraysize(.@items)) ];
 	set .round_item_amount, 1;
-	makeitem .round_item_id, .round_item_amount,instance_mapname("1@prison"),176,74;
-	set .@dead, mobcount(instance_mapname("1@prison"),instance_npcname("#inst01Monsters1")+"::OnMyMobDead7");
-	if (.@dead == 0) {
-		monster instance_mapname("1@prison"),160,97,"Wandering Soul",2113,1,instance_npcname("#inst01Monsters1")+"::OnMyMobDead8";
-		monster instance_mapname("1@prison"),160,97,"Wandering Soul",2441,1,instance_npcname("#inst01Monsters1")+"::OnMyMobDead8";
-		mapannounce instance_mapname("1@prison"),"Prisoner : Can't you just please let us pass?!",bc_map;
-	}
+	//makeitem .round_item_id, .round_item_amount,instance_mapname("1@prison"),230,18;
+	addrid(2,0,getcharid(1));
+	getitem .round_item_id,1;
+	detachrid;
+	mapannounce instance_mapname("1@prison"),"Prisoner : Great!! Now even ghost in here.....",bc_map;
+	monster instance_mapname("1@prison"),161,57,"Wandering Soul",2319,1,instance_npcname("#inst01Monsters1")+"::OnMyMobDead8";
 	end;
-	
+
 OnMyMobDead8:
 	setarray .@items[0],"31240","31239","31240","31240","31240";
 	set .round_item_id, .@items[rand (getarraysize(.@items)) ];
 	set .round_item_amount, 1;
-	makeitem .round_item_id, .round_item_amount,instance_mapname("1@prison"),160,97;
-	set .@dead, mobcount(instance_mapname("1@prison"),instance_npcname("#inst01Monsters1")+"::OnMyMobDead8");
-	if (.@dead == 0) {
-		monster instance_mapname("1@prison"),167,104,"Wandering Soul",1734,1,instance_npcname("#inst01Monsters1")+"::OnMyMobDead9";
-		monster instance_mapname("1@prison"),167,104,"Wandering Soul",1650,1,instance_npcname("#inst01Monsters1")+"::OnMyMobDead9";	
-		mapannounce instance_mapname("1@prison"),"Prisoner : You go ahead.. Going to rest a bit..",bc_map;
-	}
+	//makeitem .round_item_id, .round_item_amount,instance_mapname("1@prison"),230,18;
+	addrid(2,0,getcharid(1));
+	getitem .round_item_id,1;
+	detachrid;
+	mapannounce instance_mapname("1@prison"),"Prisoner : Shoooo!! Shoooo!",bc_map;
+	monster instance_mapname("1@prison"),176,74,"Wandering Soul",2112,1,instance_npcname("#inst01Monsters1")+"::OnMyMobDead9";
 	end;
-	
+
 OnMyMobDead9:
 	setarray .@items[0],"31240","31239","31240","31240","31240";
 	set .round_item_id, .@items[rand (getarraysize(.@items)) ];
 	set .round_item_amount, 1;
-	makeitem .round_item_id, .round_item_amount,instance_mapname("1@prison"),167,104;
-	set .@dead, mobcount(instance_mapname("1@prison"),instance_npcname("#inst01Monsters1")+"::OnMyMobDead9");
-	if (.@dead == 0) {
-		monster instance_mapname("1@prison"),130,144,"Wandering Soul",2241,1,instance_npcname("#inst01Monsters1")+"::OnMyMobDead10";
-		monster instance_mapname("1@prison"),130,144,"Wandering Soul",1871,1,instance_npcname("#inst01Monsters1")+"::OnMyMobDead10";
-		mapannounce instance_mapname("1@prison"),"Prisoner : Too tired to shout.. Go.. Gooo..",bc_map;
-		}
+	//makeitem .round_item_id, .round_item_amount,instance_mapname("1@prison"),230,18;
+	addrid(2,0,getcharid(1));
+	getitem .round_item_id,1;
+	monster instance_mapname("1@prison"),160,97,"Wandering Soul",2113,1,instance_npcname("#inst01Monsters1")+"::OnMyMobDead10";
+	mapannounce instance_mapname("1@prison"),"Prisoner : Can't you just please let us pass?!",bc_map;
 	end;
 	
 OnMyMobDead10:
 	setarray .@items[0],"31240","31239","31240","31240","31240";
 	set .round_item_id, .@items[rand (getarraysize(.@items)) ];
 	set .round_item_amount, 1;
-	makeitem .round_item_id, .round_item_amount,instance_mapname("1@prison"),130,144;
-	set .@dead, mobcount(instance_mapname("1@prison"),instance_npcname("#inst01Monsters1")+"::OnMyMobDead10");
-	if (.@dead == 0) {
-		monster instance_mapname("1@prison"),103,144,"Wandering Soul",1658,1,instance_npcname("#inst01Monsters1")+"::OnMyMobDead11";
-		monster instance_mapname("1@prison"),103,144,"Wandering Soul",2111,1,instance_npcname("#inst01Monsters1")+"::OnMyMobDead11";
-		monster instance_mapname("1@prison"),103,144,"Wandering Soul",2442,1,instance_npcname("#inst01Monsters1")+"::OnMyMobDead11";
-		mapannounce instance_mapname("1@prison"),"Prisoner : Almost there.. Come on man..",bc_map;
-	}
+	//makeitem .round_item_id, .round_item_amount,instance_mapname("1@prison"),230,18;
+	addrid(2,0,getcharid(1));
+	getitem .round_item_id,1;
+	monster instance_mapname("1@prison"),160,97,"Wandering Soul",2441,1,instance_npcname("#inst01Monsters1")+"::OnMyMobDead11";
 	end;
 	
 OnMyMobDead11:
 	setarray .@items[0],"31240","31239","31240","31240","31240";
 	set .round_item_id, .@items[rand (getarraysize(.@items)) ];
 	set .round_item_amount, 1;
-	makeitem .round_item_id, .round_item_amount,instance_mapname("1@prison"),103,144;
-	set .@dead, mobcount(instance_mapname("1@prison"),instance_npcname("#inst01Monsters1")+"::OnMyMobDead11");
-	if (.@dead == 0) {
-		monster instance_mapname("1@prison"),103,144,"Grim Reaper",3029,1,instance_npcname("#inst01Monsters1")+"::OnMyMobDead12";
-		monster instance_mapname("1@prison"),103,144,"Wandering Soul",2235,1,instance_npcname("#inst01Monsters1")+"::OnMyMobDead12";
-		monster instance_mapname("1@prison"),103,144,"Wandering Soul",2240,1,instance_npcname("#inst01Monsters1")+"::OnMyMobDead12";
-		monster instance_mapname("1@prison"),103,144,"Prison Guard",1251,1,instance_npcname("#inst01Monsters1")+"::OnMyMobDead12";
-		monster instance_mapname("1@prison"),103,144,"Prison Guard",2108,1,instance_npcname("#inst01Monsters1")+"::OnMyMobDead12";
-		mapannounce instance_mapname("1@prison"),"Prisoner : Grim Reaper?! Please spare my life! I'm still virgin!",bc_map;
-	}
+	//makeitem .round_item_id, .round_item_amount,instance_mapname("1@prison"),230,18;
+	addrid(2,0,getcharid(1));
+	getitem .round_item_id,1;
+	detachrid;
+	monster instance_mapname("1@prison"),167,104,"Wandering Soul",1734,1,instance_npcname("#inst01Monsters1")+"::OnMyMobDead12";
+	mapannounce instance_mapname("1@prison"),"Prisoner : You go ahead.. Going to rest a bit..",bc_map;
 	end;
 	
 OnMyMobDead12:
 	setarray .@items[0],"31240","31239","31240","31240","31240";
 	set .round_item_id, .@items[rand (getarraysize(.@items)) ];
 	set .round_item_amount, 1;
-	makeitem .round_item_id, .round_item_amount,instance_mapname("1@prison"),103,144;
-	set .@dead, mobcount(instance_mapname("1@prison"),instance_npcname("#inst01Monsters1")+"::OnMyMobDead12");
-	if (.@dead == 0) {
-		monster instance_mapname("1@prison"),170,179,"Wandering Soul",2098,1,instance_npcname("#inst01Monsters1")+"::OnMyMobDead13";
-		monster instance_mapname("1@prison"),170,211,"Wandering Soul",1112,1,instance_npcname("#inst01Monsters1")+"::OnMyMobDead13";
-		monster instance_mapname("1@prison"),170,211,"Wandering Soul",2239,1,instance_npcname("#inst01Monsters1")+"::OnMyMobDead13";
-		mapannounce instance_mapname("1@prison"),"Prisoner : I don't have idea what to say.. LOL",bc_map;
-	}
+	//makeitem .round_item_id, .round_item_amount,instance_mapname("1@prison"),230,18;
+	addrid(2,0,getcharid(1));
+	getitem .round_item_id,1;
+	detachrid;
+	monster instance_mapname("1@prison"),167,104,"Wandering Soul",1650,1,instance_npcname("#inst01Monsters1")+"::OnMyMobDead13";	
+	mapannounce instance_mapname("1@prison"),"Prisoner : You go ahead.. Going to rest a bit..",bc_map;
 	end;
 	
 OnMyMobDead13:
 	setarray .@items[0],"31240","31239","31240","31240","31240";
 	set .round_item_id, .@items[rand (getarraysize(.@items)) ];
 	set .round_item_amount, 1;
-	makeitem .round_item_id, .round_item_amount,instance_mapname("1@prison"),170,179;
-	set .@dead, mobcount(instance_mapname("1@prison"),instance_npcname("#inst01Monsters1")+"::OnMyMobDead13");
-	if (.@dead == 0) {
-		monster instance_mapname("1@prison"),187,211,"Wandering Soul",2238,1,instance_npcname("#inst01Monsters1")+"::OnMyMobDead14";
-		monster instance_mapname("1@prison"),187,211,"Prison Guard",2341,1,instance_npcname("#inst01Monsters1")+"::OnMyMobDead14";
-		monster instance_mapname("1@prison"),187,211,"Prison Guard",2236,1,instance_npcname("#inst01Monsters1")+"::OnMyMobDead14";
-		mapannounce instance_mapname("1@prison"),"Prisoner : Dear Admin.. Can you make my script shorter?",bc_map;
-	}
+	//makeitem .round_item_id, .round_item_amount,instance_mapname("1@prison"),230,18;
+	addrid(2,0,getcharid(1));
+	getitem .round_item_id,1;
+	detachrid;
+	monster instance_mapname("1@prison"),130,144,"Wandering Soul",2241,1,instance_npcname("#inst01Monsters1")+"::OnMyMobDead14";
+	mapannounce instance_mapname("1@prison"),"Prisoner : Too tired to shout.. Go.. Gooo..",bc_map;
 	end;
 	
 OnMyMobDead14:
 	setarray .@items[0],"31240","31239","31240","31240","31240";
 	set .round_item_id, .@items[rand (getarraysize(.@items)) ];
 	set .round_item_amount, 1;
-	makeitem .round_item_id, .round_item_amount,instance_mapname("1@prison"),187,211;
-	set .@dead, mobcount(instance_mapname("1@prison"),instance_npcname("#inst01Monsters1")+"::OnMyMobDead14");
-	if (.@dead == 0) {
-		monster instance_mapname("1@prison"),169,234,"Wandering Soul",1157,1,instance_npcname("#inst01Monsters1")+"::OnMyMobDead15";
-		monster instance_mapname("1@prison"),169,234,"Grim Reaper",2255,1,instance_npcname("#inst01Monsters1")+"::OnMyMobDead15";
-		monster instance_mapname("1@prison"),169,234,"Prison Guard",2165,1,instance_npcname("#inst01Monsters1")+"::OnMyMobDead15";
-		monster instance_mapname("1@prison"),169,234,"Prison Guard",1785,1,instance_npcname("#inst01Monsters1")+"::OnMyMobDead15";
-		monster instance_mapname("1@prison"),169,234,"Prison Guard",1312,1,instance_npcname("#inst01Monsters1")+"::OnMyMobDead15";
-		mapannounce instance_mapname("1@prison"),"Prisoner : Reaper again?! *Facepalm*",bc_map;
-	}
+	//makeitem .round_item_id, .round_item_amount,instance_mapname("1@prison"),230,18;
+	addrid(2,0,getcharid(1));
+	getitem .round_item_id,1;
+	detachrid;
+	monster instance_mapname("1@prison"),130,144,"Wandering Soul",1871,1,instance_npcname("#inst01Monsters1")+"::OnMyMobDead15";
 	end;
 	
 OnMyMobDead15:
 	setarray .@items[0],"31240","31239","31240","31240","31240";
 	set .round_item_id, .@items[rand (getarraysize(.@items)) ];
 	set .round_item_amount, 1;
-	makeitem .round_item_id, .round_item_amount,instance_mapname("1@prison"),169,234;
-	set .@dead, mobcount(instance_mapname("1@prison"),instance_npcname("#inst01Monsters1")+"::OnMyMobDead15");
-	if (.@dead == 0) {
-		monster instance_mapname("1@prison"),149,267,"Wandering Soul",2112,1,instance_npcname("#inst01Monsters1")+"::OnMyMobDead16";
-		monster instance_mapname("1@prison"),149,267,"Wandering Soul",1651,1,instance_npcname("#inst01Monsters1")+"::OnMyMobDead16";
-		monster instance_mapname("1@prison"),149,267,"Prison Guard",1492,1,instance_npcname("#inst01Monsters1")+"::OnMyMobDead16";
-		monster instance_mapname("1@prison"),149,267,"Prison Guard",1418,1,instance_npcname("#inst01Monsters1")+"::OnMyMobDead16";
-		monster instance_mapname("1@prison"),149,267,"Prison Warden",2564,1,instance_npcname("#inst01Monsters1")+"::OnMyMobDead16";
-		mapannounce instance_mapname("1@prison"),"Prisoner : Almost out! Since Prison Warden in here!",bc_map;
-	}
+	//makeitem .round_item_id, .round_item_amount,instance_mapname("1@prison"),230,18;
+	addrid(2,0,getcharid(1));
+	getitem .round_item_id,1;
+	detachrid;
+	monster instance_mapname("1@prison"),103,144,"Wandering Soul",1658,1,instance_npcname("#inst01Monsters1")+"::OnMyMobDead16";
+	mapannounce instance_mapname("1@prison"),"Prisoner : Almost there.. Come on man..",bc_map;
 	end;
 	
 OnMyMobDead16:
 	setarray .@items[0],"31240","31239","31240","31240","31240";
 	set .round_item_id, .@items[rand (getarraysize(.@items)) ];
 	set .round_item_amount, 1;
-	makeitem .round_item_id, .round_item_amount,instance_mapname("1@prison"),149,267;
-	set .@dead, mobcount(instance_mapname("1@prison"),instance_npcname("#inst01Monsters1")+"::OnMyMobDead16");
-	if (.@dead == 0) {
-		monster instance_mapname("1@prison"),174,266,"Wandering Soul",1649,1,instance_npcname("#inst01Monsters1")+"::OnMyMobDead17";
-		monster instance_mapname("1@prison"),174,266,"Prison Guard",2156,1,instance_npcname("#inst01Monsters1")+"::OnMyMobDead17";
-		monster instance_mapname("1@prison"),174,266,"Prison Guard",1980,1,instance_npcname("#inst01Monsters1")+"::OnMyMobDead17";
-		monster instance_mapname("1@prison"),174,266,"Prison Guard",1150,1,instance_npcname("#inst01Monsters1")+"::OnMyMobDead17";
-		monster instance_mapname("1@prison"),174,266,"Prison Warden",2253,1,instance_npcname("#inst01Monsters1")+"::OnMyMobDead17";
-		mapannounce instance_mapname("1@prison"),"Prisoner : Let's kick some ass!",bc_map;
-		}
+	//makeitem .round_item_id, .round_item_amount,instance_mapname("1@prison"),230,18;
+	addrid(2,0,getcharid(1));
+	getitem .round_item_id,1;
+	detachrid;
+	monster instance_mapname("1@prison"),103,144,"Wandering Soul",2111,1,instance_npcname("#inst01Monsters1")+"::OnMyMobDead17";
 	end;
-	
+
 OnMyMobDead17:
 	setarray .@items[0],"31240","31239","31240","31240","31240";
 	set .round_item_id, .@items[rand (getarraysize(.@items)) ];
 	set .round_item_amount, 1;
-	makeitem .round_item_id, .round_item_amount,instance_mapname("1@prison"),174,266;
-	set .@dead, mobcount(instance_mapname("1@prison"),instance_npcname("#inst01Monsters1")+"::OnMyMobDead17");
-	if (.@dead == 0) {
-		monster instance_mapname("1@prison"),173,290,"Wandering Soul",2237,1,instance_npcname("#inst01Monsters1")+"::OnMyMobDeadEND";
-		monster instance_mapname("1@prison"),173,290,"Prison Guard",1630,1,instance_npcname("#inst01Monsters1")+"::OnMyMobDeadEND";
-		monster instance_mapname("1@prison"),173,290,"Prison Guard",1708,1,instance_npcname("#inst01Monsters1")+"::OnMyMobDeadEND";
-		monster instance_mapname("1@prison"),173,290,"Prison Guard",1623,1,instance_npcname("#inst01Monsters1")+"::OnMyMobDeadEND";
-		monster instance_mapname("1@prison"),173,290,"Prison Warden",1876,1,instance_npcname("#inst01Monsters1")+"::OnMyMobDeadEND";
+	//makeitem .round_item_id, .round_item_amount,instance_mapname("1@prison"),230,18;
+	addrid(2,0,getcharid(1));
+	getitem .round_item_id,1;
+	detachrid;
+	monster instance_mapname("1@prison"),103,144,"Wandering Soul",2442,1,instance_npcname("#inst01Monsters1")+"::OnMyMobDead18";
+	end;
+	
+OnMyMobDead18:
+	setarray .@items[0],"31240","31239","31240","31240","31240";
+	set .round_item_id, .@items[rand (getarraysize(.@items)) ];
+	set .round_item_amount, 1;
+	//makeitem .round_item_id, .round_item_amount,instance_mapname("1@prison"),230,18;
+	addrid(2,0,getcharid(1));
+	getitem .round_item_id,1;
+	detachrid;
+		monster instance_mapname("1@prison"),103,144,"Grim Reaper",3029,1,instance_npcname("#inst01Monsters1")+"::OnMyMobDead19";
+		mapannounce instance_mapname("1@prison"),"Prisoner : Grim Reaper?! Please spare my life! I'm still virgin!",bc_map;
+	end;
+	
+OnMyMobDead19:
+	setarray .@items[0],"31240","31239","31240","31240","31240";
+	set .round_item_id, .@items[rand (getarraysize(.@items)) ];
+	set .round_item_amount, 1;
+	//makeitem .round_item_id, .round_item_amount,instance_mapname("1@prison"),230,18;
+	addrid(2,0,getcharid(1));
+	getitem .round_item_id,1;
+	detachrid;
+		monster instance_mapname("1@prison"),103,144,"Wandering Soul",2235,1,instance_npcname("#inst01Monsters1")+"::OnMyMobDead20";
+	end;
+	
+OnMyMobDead20:
+	setarray .@items[0],"31240","31239","31240","31240","31240";
+	set .round_item_id, .@items[rand (getarraysize(.@items)) ];
+	set .round_item_amount, 1;
+	//makeitem .round_item_id, .round_item_amount,instance_mapname("1@prison"),230,18;
+	addrid(2,0,getcharid(1));
+	getitem .round_item_id,1;
+	detachrid;
+		monster instance_mapname("1@prison"),103,144,"Wandering Soul",2240,1,instance_npcname("#inst01Monsters1")+"::OnMyMobDead21";
+	end;
+	
+OnMyMobDead21:
+	setarray .@items[0],"31240","31239","31240","31240","31240";
+	set .round_item_id, .@items[rand (getarraysize(.@items)) ];
+	set .round_item_amount, 1;
+	//makeitem .round_item_id, .round_item_amount,instance_mapname("1@prison"),230,18;
+	addrid(2,0,getcharid(1));
+	getitem .round_item_id,1;
+	detachrid;
+		monster instance_mapname("1@prison"),103,144,"Prison Guard",1251,1,instance_npcname("#inst01Monsters1")+"::OnMyMobDead22";
+		monster instance_mapname("1@prison"),103,144,"Prison Guard",2108,1,instance_npcname("#inst01Monsters1")+"::OnMyMobDead23";
+		mapannounce instance_mapname("1@prison"),"Prisoner : Grim Reaper?! Please spare my life! I'm still virgin!",bc_map;
+	end;
+	
+OnMyMobDead22:
+	setarray .@items[0],"31240","31239","31240","31240","31240";
+	set .round_item_id, .@items[rand (getarraysize(.@items)) ];
+	set .round_item_amount, 1;
+	//makeitem .round_item_id, .round_item_amount,instance_mapname("1@prison"),230,18;
+	addrid(2,0,getcharid(1));
+	getitem .round_item_id,1;
+	detachrid;
+		monster instance_mapname("1@prison"),103,144,"Prison Guard",2108,1,instance_npcname("#inst01Monsters1")+"::OnMyMobDead23";
+	end;
+	
+OnMyMobDead23:
+	setarray .@items[0],"31240","31239","31240","31240","31240";
+	set .round_item_id, .@items[rand (getarraysize(.@items)) ];
+	set .round_item_amount, 1;
+	//makeitem .round_item_id, .round_item_amount,instance_mapname("1@prison"),230,18;
+	addrid(2,0,getcharid(1));
+	getitem .round_item_id,1;
+	detachrid;
+		monster instance_mapname("1@prison"),170,179,"Wandering Soul",2098,1,instance_npcname("#inst01Monsters1")+"::OnMyMobDead24";
+		mapannounce instance_mapname("1@prison"),"Prisoner : I don't have idea what to say.. LOL",bc_map;
+	end;
+	
+OnMyMobDead24:
+	setarray .@items[0],"31240","31239","31240","31240","31240";
+	set .round_item_id, .@items[rand (getarraysize(.@items)) ];
+	set .round_item_amount, 1;
+	//makeitem .round_item_id, .round_item_amount,instance_mapname("1@prison"),230,18;
+	addrid(2,0,getcharid(1));
+	getitem .round_item_id,1;
+	detachrid;
+		monster instance_mapname("1@prison"),170,211,"Wandering Soul",1112,1,instance_npcname("#inst01Monsters1")+"::OnMyMobDead25";
+		monster instance_mapname("1@prison"),170,211,"Wandering Soul",2239,1,instance_npcname("#inst01Monsters1")+"::OnMyMobDead26";
+	end;
+	
+OnMyMobDead25:
+	setarray .@items[0],"31240","31239","31240","31240","31240";
+	set .round_item_id, .@items[rand (getarraysize(.@items)) ];
+	set .round_item_amount, 1;
+	//makeitem .round_item_id, .round_item_amount,instance_mapname("1@prison"),230,18;
+	addrid(2,0,getcharid(1));
+	getitem .round_item_id,1;
+	detachrid;
+		monster instance_mapname("1@prison"),170,211,"Wandering Soul",2239,1,instance_npcname("#inst01Monsters1")+"::OnMyMobDead26";
+	end;
+	
+OnMyMobDead26:
+	setarray .@items[0],"31240","31239","31240","31240","31240";
+	set .round_item_id, .@items[rand (getarraysize(.@items)) ];
+	set .round_item_amount, 1;
+	//makeitem .round_item_id, .round_item_amount,instance_mapname("1@prison"),230,18;
+	addrid(2,0,getcharid(1));
+	getitem .round_item_id,1;
+	detachrid;
+		monster instance_mapname("1@prison"),187,211,"Wandering Soul",2238,1,instance_npcname("#inst01Monsters1")+"::OnMyMobDead27";
+		mapannounce instance_mapname("1@prison"),"Prisoner : Dear Admin.. Can you make my script shorter?",bc_map;
+	end;
+	
+OnMyMobDead27:
+	setarray .@items[0],"31240","31239","31240","31240","31240";
+	set .round_item_id, .@items[rand (getarraysize(.@items)) ];
+	set .round_item_amount, 1;
+	//makeitem .round_item_id, .round_item_amount,instance_mapname("1@prison"),230,18;
+	addrid(2,0,getcharid(1));
+	getitem .round_item_id,1;
+	detachrid;
+		monster instance_mapname("1@prison"),187,211,"Prison Guard",2341,1,instance_npcname("#inst01Monsters1")+"::OnMyMobDead28";
+	end;
+	
+OnMyMobDead28:
+	setarray .@items[0],"31240","31239","31240","31240","31240";
+	set .round_item_id, .@items[rand (getarraysize(.@items)) ];
+	set .round_item_amount, 1;
+	//makeitem .round_item_id, .round_item_amount,instance_mapname("1@prison"),230,18;
+	addrid(2,0,getcharid(1));
+	getitem .round_item_id,1;
+	detachrid;
+		monster instance_mapname("1@prison"),187,211,"Prison Guard",2236,1,instance_npcname("#inst01Monsters1")+"::OnMyMobDead29";
+	end;
+	
+OnMyMobDead29:
+	setarray .@items[0],"31240","31239","31240","31240","31240";
+	set .round_item_id, .@items[rand (getarraysize(.@items)) ];
+	set .round_item_amount, 1;
+	//makeitem .round_item_id, .round_item_amount,instance_mapname("1@prison"),230,18;
+	addrid(2,0,getcharid(1));
+	getitem .round_item_id,1;
+	detachrid;
+		monster instance_mapname("1@prison"),169,234,"Wandering Soul",1157,1,instance_npcname("#inst01Monsters1")+"::OnMyMobDead30";
+		mapannounce instance_mapname("1@prison"),"Prisoner : Reaper again?! *Facepalm*",bc_map;
+	end;
+	
+OnMyMobDead30:
+	setarray .@items[0],"31240","31239","31240","31240","31240";
+	set .round_item_id, .@items[rand (getarraysize(.@items)) ];
+	set .round_item_amount, 1;
+	//makeitem .round_item_id, .round_item_amount,instance_mapname("1@prison"),230,18;
+	addrid(2,0,getcharid(1));
+	getitem .round_item_id,1;
+	detachrid;
+		monster instance_mapname("1@prison"),169,234,"Grim Reaper",2255,1,instance_npcname("#inst01Monsters1")+"::OnMyMobDead31";
+	end;
+	
+OnMyMobDead31:
+	setarray .@items[0],"31240","31239","31240","31240","31240";
+	set .round_item_id, .@items[rand (getarraysize(.@items)) ];
+	set .round_item_amount, 1;
+	//makeitem .round_item_id, .round_item_amount,instance_mapname("1@prison"),230,18;
+	addrid(2,0,getcharid(1));
+	getitem .round_item_id,1;
+	detachrid;
+		monster instance_mapname("1@prison"),169,234,"Prison Guard",2165,1,instance_npcname("#inst01Monsters1")+"::OnMyMobDead32";
+	end;
+	
+OnMyMobDead32:
+	setarray .@items[0],"31240","31239","31240","31240","31240";
+	set .round_item_id, .@items[rand (getarraysize(.@items)) ];
+	set .round_item_amount, 1;
+	//makeitem .round_item_id, .round_item_amount,instance_mapname("1@prison"),230,18;
+	addrid(2,0,getcharid(1));
+	getitem .round_item_id,1;
+	detachrid;
+		monster instance_mapname("1@prison"),169,234,"Prison Guard",1785,1,instance_npcname("#inst01Monsters1")+"::OnMyMobDead33";
+	end;
+	
+OnMyMobDead33:
+	setarray .@items[0],"31240","31239","31240","31240","31240";
+	set .round_item_id, .@items[rand (getarraysize(.@items)) ];
+	set .round_item_amount, 1;
+	//makeitem .round_item_id, .round_item_amount,instance_mapname("1@prison"),230,18;
+	addrid(2,0,getcharid(1));
+	getitem .round_item_id,1;
+	detachrid;
+		monster instance_mapname("1@prison"),169,234,"Prison Guard",1312,1,instance_npcname("#inst01Monsters1")+"::OnMyMobDead34";
+	end;
+	
+OnMyMobDead34:
+	setarray .@items[0],"31240","31239","31240","31240","31240";
+	set .round_item_id, .@items[rand (getarraysize(.@items)) ];
+	set .round_item_amount, 1;
+	//makeitem .round_item_id, .round_item_amount,instance_mapname("1@prison"),230,18;
+	addrid(2,0,getcharid(1));
+	getitem .round_item_id,1;
+	detachrid;
+		monster instance_mapname("1@prison"),149,267,"Wandering Soul",2112,1,instance_npcname("#inst01Monsters1")+"::OnMyMobDead35";
+		mapannounce instance_mapname("1@prison"),"Prisoner : Almost out! Since Prison Warden in here!",bc_map;
+	end;
+	
+OnMyMobDead35:
+	setarray .@items[0],"31240","31239","31240","31240","31240";
+	set .round_item_id, .@items[rand (getarraysize(.@items)) ];
+	set .round_item_amount, 1;
+	//makeitem .round_item_id, .round_item_amount,instance_mapname("1@prison"),230,18;
+	addrid(2,0,getcharid(1));
+	getitem .round_item_id,1;
+	detachrid;
+		monster instance_mapname("1@prison"),149,267,"Wandering Soul",1651,1,instance_npcname("#inst01Monsters1")+"::OnMyMobDead36";
+	end;
+	
+OnMyMobDead36:
+	setarray .@items[0],"31240","31239","31240","31240","31240";
+	set .round_item_id, .@items[rand (getarraysize(.@items)) ];
+	set .round_item_amount, 1;
+	//makeitem .round_item_id, .round_item_amount,instance_mapname("1@prison"),230,18;
+	addrid(2,0,getcharid(1));
+	getitem .round_item_id,1;
+	detachrid;
+		monster instance_mapname("1@prison"),149,267,"Prison Guard",1492,1,instance_npcname("#inst01Monsters1")+"::OnMyMobDead37";
+	end;
+	
+OnMyMobDead37:
+	setarray .@items[0],"31240","31239","31240","31240","31240";
+	set .round_item_id, .@items[rand (getarraysize(.@items)) ];
+	set .round_item_amount, 1;
+	//makeitem .round_item_id, .round_item_amount,instance_mapname("1@prison"),230,18;
+	addrid(2,0,getcharid(1));
+	getitem .round_item_id,1;
+	detachrid;
+		monster instance_mapname("1@prison"),149,267,"Prison Guard",1418,1,instance_npcname("#inst01Monsters1")+"::OnMyMobDead38";
+	end;
+	
+OnMyMobDead38:
+	setarray .@items[0],"31240","31239","31240","31240","31240";
+	set .round_item_id, .@items[rand (getarraysize(.@items)) ];
+	set .round_item_amount, 1;
+	//makeitem .round_item_id, .round_item_amount,instance_mapname("1@prison"),230,18;
+	addrid(2,0,getcharid(1));
+	getitem .round_item_id,1;
+	detachrid;
+		monster instance_mapname("1@prison"),149,267,"Prison Warden",2564,1,instance_npcname("#inst01Monsters1")+"::OnMyMobDead39";
+	end;
+	
+OnMyMobDead39:
+	setarray .@items[0],"31240","31239","31240","31240","31240";
+	set .round_item_id, .@items[rand (getarraysize(.@items)) ];
+	set .round_item_amount, 1;
+	//makeitem .round_item_id, .round_item_amount,instance_mapname("1@prison"),230,18;
+	addrid(2,0,getcharid(1));
+	getitem .round_item_id,1;
+	detachrid;
+		monster instance_mapname("1@prison"),174,266,"Wandering Soul",1649,1,instance_npcname("#inst01Monsters1")+"::OnMyMobDead40";
+	end;
+	
+OnMyMobDead40:
+	setarray .@items[0],"31240","31239","31240","31240","31240";
+	set .round_item_id, .@items[rand (getarraysize(.@items)) ];
+	set .round_item_amount, 1;
+	//makeitem .round_item_id, .round_item_amount,instance_mapname("1@prison"),230,18;
+	addrid(2,0,getcharid(1));
+	getitem .round_item_id,1;
+	detachrid;
+		monster instance_mapname("1@prison"),174,266,"Prison Guard",2156,1,instance_npcname("#inst01Monsters1")+"::OnMyMobDead41";
+	end;
+	
+OnMyMobDead41:
+	setarray .@items[0],"31240","31239","31240","31240","31240";
+	set .round_item_id, .@items[rand (getarraysize(.@items)) ];
+	set .round_item_amount, 1;
+	//makeitem .round_item_id, .round_item_amount,instance_mapname("1@prison"),230,18;
+	addrid(2,0,getcharid(1));
+	getitem .round_item_id,1;
+	detachrid;
+		monster instance_mapname("1@prison"),174,266,"Prison Guard",1980,1,instance_npcname("#inst01Monsters1")+"::OnMyMobDead42";
+		monster instance_mapname("1@prison"),174,266,"Prison Guard",1150,1,instance_npcname("#inst01Monsters1")+"::OnMyMobDead43";
+		monster instance_mapname("1@prison"),174,266,"Prison Warden",2253,1,instance_npcname("#inst01Monsters1")+"::OnMyMobDead44";
+	end;
+	
+OnMyMobDead42:
+	setarray .@items[0],"31240","31239","31240","31240","31240";
+	set .round_item_id, .@items[rand (getarraysize(.@items)) ];
+	set .round_item_amount, 1;
+	//makeitem .round_item_id, .round_item_amount,instance_mapname("1@prison"),230,18;
+	addrid(2,0,getcharid(1));
+	getitem .round_item_id,1;
+	detachrid;
+		monster instance_mapname("1@prison"),174,266,"Prison Guard",1150,1,instance_npcname("#inst01Monsters1")+"::OnMyMobDead43";
+	end;
+	
+OnMyMobDead43:
+	setarray .@items[0],"31240","31239","31240","31240","31240";
+	set .round_item_id, .@items[rand (getarraysize(.@items)) ];
+	set .round_item_amount, 1;
+	//makeitem .round_item_id, .round_item_amount,instance_mapname("1@prison"),230,18;
+	addrid(2,0,getcharid(1));
+	getitem .round_item_id,1;
+	detachrid;
+		monster instance_mapname("1@prison"),174,266,"Prison Warden",2253,1,instance_npcname("#inst01Monsters1")+"::OnMyMobDead44";
+	end;
+	
+OnMyMobDead44:
+	setarray .@items[0],"31240","31239","31240","31240","31240";
+	set .round_item_id, .@items[rand (getarraysize(.@items)) ];
+	set .round_item_amount, 1;
+	//makeitem .round_item_id, .round_item_amount,instance_mapname("1@prison"),230,18;
+	addrid(2,0,getcharid(1));
+	getitem .round_item_id,1;
+	detachrid;
+		monster instance_mapname("1@prison"),173,290,"Wandering Soul",2237,1,instance_npcname("#inst01Monsters1")+"::OnMyMobDead45";
 		mapannounce instance_mapname("1@prison"),"Prisoner : Die you bad guys!!! Eh! We're bad guys anyway since we're in jailed..",bc_map;
-	}
+	end;
+	
+OnMyMobDead45:
+	setarray .@items[0],"31240","31239","31240","31240","31240";
+	set .round_item_id, .@items[rand (getarraysize(.@items)) ];
+	set .round_item_amount, 1;
+	//makeitem .round_item_id, .round_item_amount,instance_mapname("1@prison"),230,18;
+	addrid(2,0,getcharid(1));
+	getitem .round_item_id,1;
+	detachrid;
+		monster instance_mapname("1@prison"),173,290,"Prison Guard",1630,1,instance_npcname("#inst01Monsters1")+"::OnMyMobDead46";
+	end;
+	
+OnMyMobDead46:
+	setarray .@items[0],"31240","31239","31240","31240","31240";
+	set .round_item_id, .@items[rand (getarraysize(.@items)) ];
+	set .round_item_amount, 1;
+	//makeitem .round_item_id, .round_item_amount,instance_mapname("1@prison"),230,18;
+	addrid(2,0,getcharid(1));
+	getitem .round_item_id,1;
+	detachrid;
+		monster instance_mapname("1@prison"),173,290,"Prison Guard",1708,1,instance_npcname("#inst01Monsters1")+"::OnMyMobDead47";
+	end;
+	
+OnMyMobDead47:
+	setarray .@items[0],"31240","31239","31240","31240","31240";
+	set .round_item_id, .@items[rand (getarraysize(.@items)) ];
+	set .round_item_amount, 1;
+	//makeitem .round_item_id, .round_item_amount,instance_mapname("1@prison"),230,18;
+	addrid(2,0,getcharid(1));
+	getitem .round_item_id,1;
+	detachrid;
+		monster instance_mapname("1@prison"),173,290,"Prison Guard",1623,1,instance_npcname("#inst01Monsters1")+"::OnMyMobDead48";
+		monster instance_mapname("1@prison"),173,290,"Prison Warden",1876,1,instance_npcname("#inst01Monsters1")+"::OnMyMobDeadEND";
+	end;
+	
+OnMyMobDead48:
+	setarray .@items[0],"31240","31239","31240","31240","31240";
+	set .round_item_id, .@items[rand (getarraysize(.@items)) ];
+	set .round_item_amount, 1;
+	//makeitem .round_item_id, .round_item_amount,instance_mapname("1@prison"),230,18;
+	addrid(2,0,getcharid(1));
+	getitem .round_item_id,1;
+	detachrid;
+		monster instance_mapname("1@prison"),173,290,"Prison Warden",1876,1,instance_npcname("#inst01Monsters1")+"::OnMyMobDeadEND";
 	end;
 
 OnMyMobDeadEND:
 		setarray .@items[0],"31240","31239","31240","31240","31240";
 		set .round_item_id, .@items[rand (getarraysize(.@items)) ];
 		set .round_item_amount, 1;
-		makeitem .round_item_id, .round_item_amount,instance_mapname("1@prison"),173,290;
-		set .@dead, mobcount(instance_mapname("1@prison"),instance_npcname("#inst01Monsters1")+"::OnMyMobDeadEND");
-		if (.@dead == 0) {
+		//makeitem .round_item_id, .round_item_amount,instance_mapname("1@prison"),230,18;
+		addrid(2,0,getcharid(1));
+		getitem .round_item_id,1;
+		detachrid;
 		mapannounce instance_mapname("1@prison"),"Prisoner : We're finally here!! I can smell fresh air!!",bc_map;
 		donpcevent instance_npcname("Escaped Prisoner#warper")+"::OnEnable";
-		}
 	end;
 }
 
@@ -521,6 +838,7 @@ OnMyMobDeadEND:
 	
 	mes "Thank you for your help!";
 	next;
+	getitem 31240,5;
 	warp "SavePoint",0,0;
 	cutin "", 255;
 	instance_destroy .@md_name$;

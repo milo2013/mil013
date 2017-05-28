@@ -1,0 +1,233 @@
+milenia,138,161,11	script	Betting Girl	831,{
+set j, 0; 
+
+//Set castle for each day
+Switch(gettime(DT_DAYOFWEEK)){
+	case 0:
+		set .WoECastle$, "payg_cas03";
+		break;
+	case 7:
+		set .WoECastle$, "prtg_cas01";
+		break;
+	default:
+		set .WoECastle$, "payg_cas01";
+		break;
+}
+//Get all guild names
+query_sql("SELECT name FROM `guild` ORDER BY guild_lv, exp", .guild_name$); 
+
+//Check if WoE is On-going
+if (agitcheck() || agitcheck2() || agitcheck3()){
+	mes "^0000FF["+strnpcinfo(0)+"]^000000";
+	mes "Cannot bet now. WoE is ^0000FFOn-going^000000.";
+	close;
+}
+
+
+//Betting Logic
+//Check if player is the guildmaster of winning guild
+if (.WoEJustEnded == 1 && getguildmaster(getcastledata(.WoECastle$,1)) == strcharinfo(0) && BetClaimed < 1) {
+	mes "^0000FF["+strnpcinfo(0)+"]^000000";
+	mes "Congratulations for dominating the WoE today!";
+	mes "Give me a second as I tally the total bets and give you your reward!";
+	next;
+	mes "^0000FF["+strnpcinfo(0)+"]^000000";
+	mes "^FF0000================================^000000";
+	mes "Total Zenies Bet: "+callfunc("F_InsertComma",$@TotalBet);
+	mes "Percent Share Reward: "+callfunc("F_InsertComma",$@TotalBetShare);
+	mes "Total Zenies Your Guild Won: ^FF0000"+callfunc("F_InsertComma",($@TotalBet * $@TotalBetShare / 100))+"^000000";
+	mes "^FF0000================================^000000";
+	next;
+	mes "^0000FF["+strnpcinfo(0)+"]^000000";
+	mes "Congratulations!";
+	set BetClaimed, 1;
+	set Zeny, Zeny + ($@TotalBet * $@TotalBetShare / 100);
+	set $@TotalBet, 0;
+	next;
+}
+
+
+if (AlreadyBet == 1) {
+	mes "^0000FF["+strnpcinfo(0)+"]^000000";
+	//Check if WoE has just ended
+	if(.WoEJustEnded == 1 && AlreadyBet != 2){
+		//Check player's bet
+		//When player wins
+		if (getguildname(getcastledata(.WoECastle$,1)) == GBet$){
+			mes (BetClaimed?"Here's another ":"Congratulations! You have won a total of ")+"^FF0000"+(callfunc("F_InsertComma",2*Bet))+"^000000 Zenies by betting for ^FF0000"+GBet$+"^000000!!";
+			set Zeny, Zeny + (2*Bet);
+		} else {
+			//When player loses
+			mes "I'm sorry but you have lost the Betting Challenge. Please come back and bet again next time.";
+		}
+		set Bet, 0;
+		//if AlreadyBet == 2 then it means that the player has already claimed his win
+		Set AlreadyBet, 2;
+	} else {
+		//Disallow player to bet again
+		mes "^FF0000================================^000000";
+		mes "Latest Tally of Zenies Bet: ^FF0000"+($@TotalBet<=0?"0":callfunc("F_InsertComma",$@TotalBet))+"^000000";
+		mes "^FF0000================================^000000";
+		mes "You have already made a bet. Please come back after the WoE has ended.";
+	}
+	close;
+} else if (AlreadyBet == 2) {
+	mes "^0000FF["+strnpcinfo(0)+"]^000000";
+	if (.BettingStarted){
+		mes "Please relogin to be able to participate in the WoE Betting Challenge.";
+	} else {
+		mes "WoE Betting Challenge has been concluded! Please come back again before the next WoE schedule.";
+	}
+	close;	
+}
+
+//Check player's IP if someone has already voted through it
+if (.PlayerIPCheck){
+	for (set .@k, 0; .@k < getarraysize($BetIP$); set .@k, .@k + 1) {
+		//mes $BetIP$[.@k]+"";
+		if (getcharip(getcharid(0)) == $BetIP$[.@k]) {
+			mes "^0000FF["+strnpcinfo(0)+"]^000000";
+			mes "IP Address: ^FF0000"+getcharip(getcharid(0))+"^000000";
+			mes "Sorry, someone with the same IP Address has already made a bet.";
+			close;
+		}
+	}
+}
+
+//Get Player Bet
+While (1) {
+mes "^0000FF["+strnpcinfo(0)+"]^000000";
+if (!j) {
+	mes "Hi! The WoE is about to start soon! Try your luck, bet for the winning guild! and ^0000FFDOUBLE^000000 your Zenies here!";
+	set j, 1;
+} else {
+	mes "Come on and bet now!";
+}
+Switch(Select("Show Top 10 Guilds:Make A Bet:Nothing.")){
+	case 1:
+		next;
+		mes "^0000FF["+strnpcinfo(0)+"]^000000";
+		mes "Top 10 Guild List:";
+		for (set .@i, 0; .@i < 10; set .@i, .@i + 1){
+			mes "Top #"+(.@i+1)+": "+.guild_name$[.@i];
+		}
+		break;
+	case 2:
+		//Ask guild name
+		set k, 0;
+		while (k < 1) {
+			next;
+			mes "^0000FF["+strnpcinfo(0)+"]^000000";
+			if (k == 0)
+				mes "Who do you want to bet for?";
+			else 
+				mes "Please enter an existing guild name";
+			input GBet$;
+			//Check if guild name exists
+			for(.@i = 0; .@i < getarraysize(.guild_name$); .@i++){
+				if(GBet$ == .guild_name$[.@i])
+					set k, 1;
+			}
+			if (k == 0)
+				set k, -1;
+		}
+		next;
+		mes "^0000FF["+strnpcinfo(0)+"]^000000";
+		//Ask how much to bet
+		mes "How much do you want to bet for ^0000FF"+GBet$+"^000000?";
+		Switch(Select("1,000,0000:10,000,000:100,000,000:Nah, I changed my mind.")){
+			case 1:
+				set Bet, 1000000;
+				next;
+				break;
+			case 2:
+				set Bet, 10000000;
+				next;
+				break;
+			case 3:
+				set Bet, 100000000;
+				next;
+				break;
+			case 4:
+				next;
+				mes "^0000FF["+strnpcinfo(0)+"]^000000";
+				mes "Ok, Please come by next time.";
+				close;
+				break;
+		}
+		//Confirm bet
+		mes "^0000FF["+strnpcinfo(0)+"]^000000";
+		mes "Are you sure you want to bet ^FF0000"+(callfunc("F_InsertComma",Bet))+"^000000 Zenies for ^0000FF"+GBet$+"^000000? You will not be able to change your bet after you choose ^FF0000Yes^000000.";
+		Switch(Select("Yes:No")){
+			case 1:
+				next;
+				mes "^0000FF["+strnpcinfo(0)+"]^000000";
+				mes "You have successfully, placed your bet amounting to ^FF0000"+(callfunc("F_InsertComma",Bet))+"^000000 Zenies for ^0000FF"+GBet$+"^000000!";
+				set Zeny, Zeny - Bet;
+				set $@TotalBet, $@TotalBet + Bet;
+				set AlreadyBet, 1;
+				if (.PlayerIPCheck)
+					set $BetIP$[getarraysize($BetIP$)], getcharip(getcharid(0));
+				close;
+			case 2:
+				next;
+				mes "^0000FF["+strnpcinfo(0)+"]^000000";
+				mes "Alright.";
+				Set Bet, 0;
+				next;
+				break;
+		}
+		break;
+	default:
+		next;
+		mes "^0000FF["+strnpcinfo(0)+"]^000000";
+		mes "Alright. See you around!";
+		close;
+}
+next;
+}
+close;
+
+OnAgitStart:
+set .BettingStarted, 0;
+end;
+
+OnAgitEnd:
+set .WoEJustEnded, 1;
+announce "[Betting Girl] $$$! Come get your bounty!",bc_all;
+end;
+
+//Put here all WoE Schedules in the format of: On<weekday><hour><minute>
+//where it should start before the WoE has started
+//e.g. if WoE starts on Monday @ 1pm, you should start the betting challenge on Monday @ 12nn
+//hence, it should be 
+//OnMonday1200:
+//
+OnSunday2100:
+OnSaturday2100:
+OnAtCommand:
+announce "[Betting Girl] $$$! The WoE Betting Challenge has started!! Come to "+strnpcinfo(4)+" to place your bets!",bc_all|bc_blue;
+
+OnInit:
+//type @bet in-game to test this NPC. Only GM lv 99 can execute this
+bindatcmd "bet", strnpcinfo(3)+"::OnAtCommand",99;
+//
+
+//Script Configuration
+//How much of the total bet should be given as a reward to the winning guild?
+//This is in Percent
+set $@TotalBetShare, 10;
+//Disallow players with the same IP Address to bet more than once
+set .PlayerIPCheck, 1;
+//Betting Logic - Do not touch
+set .WoEJustEnded, -1;
+set $@TotalBet, 0;
+set .BettingStarted, 1;
+set .WoECastle$, "";
+deletearray $BetIP$[0],getarraysize($BetIP$);
+query_sql("DELETE from `char_reg_num` WHERE `key`='Bet' or `key`='AlreadyBet'");
+query_sql("DELETE from `char_reg_str` WHERE `key`='GBet$'");
+query_sql("DELETE from `char_reg_num` WHERE `key`='BetClaimed'");
+end;
+
+}
