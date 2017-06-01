@@ -17,6 +17,25 @@
 
 milenia,113,138,5	script	PvP Warper	497,{
 
+	Player_Menu:	
+	query_sql("SELECT COUNT(char_id) FROM `char` LEFT JOIN `login` ON `char`.account_id=login.account_id WHERE online AND last_ip = (SELECT `last_ip` FROM `login` WHERE `account_id` = "+getcharid(3)+")",.@count);
+	if( .@count > 1 ) {
+		
+	
+	mes "[PVP Officer]";
+	mes "My.. My.. ^ff0000" + strcharinfo(0) + "^000000..";
+	next;
+	mes "[PVP Officer]";
+	mes "It's seem you have more than 1 client online!";
+	next;
+	mes "[PVP Officer]";
+	mes "Please make sure only 1 running to enter this PVP!";
+	next;
+				close2;
+				warp "milenia",0,0;
+				end;
+	}
+
 	if (pvp01) == 1 {
 	warp "milenia_pvp",82,49;
 	mapannounce "milenia_pvp", strcharinfo(0) + " has entered the PVP Arena!",0;
