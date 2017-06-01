@@ -46,7 +46,7 @@ milenia,31,147,11	script	Escaped Prisoner	10056,{
 				close;
 			case 2:
 				callsub L_Enter,0,1;
-				callsub L_Enter;
+				//callsub L_Enter;
 			case 3:
 				close;
 			}
