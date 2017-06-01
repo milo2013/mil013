@@ -18,6 +18,25 @@
 
 // Entrance
 milenia,113,156,5	script	MVP Warper	768,{
+	Player_Menu:	
+	query_sql("SELECT COUNT(char_id) FROM `char` LEFT JOIN `login` ON `char`.account_id=login.account_id WHERE online AND last_ip = (SELECT `last_ip` FROM `login` WHERE `account_id` = "+getcharid(3)+")",.@count);
+	if( .@count > 1 ) {
+		
+	
+	mes "[ ^0065DFMVP Warper^000000 ]";
+	mes "My.. My.. ^ff0000" + strcharinfo(0) + "^000000..";
+	next;
+	mes "[ ^0065DFMVP Warper^000000 ]";
+	mes "It's seem you have more than 1 client online!";
+	next;
+	mes "[ ^0065DFMVP Warper^000000 ]";
+	mes "Please make sure only 1 running to enter this arena!";
+	next;
+				close2;
+				warp "milenia",0,0;
+				end;
+	}
+	
 	mes "[ ^0065DFMVP Warper^000000 ]";
 	mes "Would you like to enter";
 	mes "the MVP Arena?";
