@@ -20,29 +20,28 @@
 milenia,113,156,5	script	MVP Warper	768,{
 	Player_Menu:	
 	query_sql("SELECT COUNT(char_id) FROM `char` LEFT JOIN `login` ON `char`.account_id=login.account_id WHERE online AND last_ip = (SELECT `last_ip` FROM `login` WHERE `account_id` = "+getcharid(3)+")",.@count);
-	if( .@count > 1 ) {
-		
+	query_sql("SELECT COUNT(char_id) FROM `char` LEFT JOIN `login` ON `char`.account_id=login.account_id WHERE online AND last_unique_id = (SELECT `last_unique_id` FROM `login` WHERE `account_id` = "+getcharid(3)+")",.@mac);
+	if( ( (.@count) > 1 ) && ((.@mac) > 1) ) {
+			
+	// IP Address 
+	query_sql("SELECT `last_ip` FROM `login` WHERE `account_id` = "+getcharid(3)+" ",.IP$);
 	
-	mes "[ ^0065DFMVP Warper^000000 ]";
+	// MAC Address
+	query_sql("SELECT `last_unique_id` FROM `login` WHERE `account_id` = "+getcharid(3)+" ",.macID$);
+	
+	mes "[MVP Warper]";
 	mes "My.. My.. ^ff0000" + strcharinfo(0) + "^000000..";
 	next;
-	mes "[ ^0065DFMVP Warper^000000 ]";
+	mes "[MVP Warper]";
 	mes "It's seem you have more than 1 client online!";
+	mes "^FF0000"+(.@count)+"^000000 of ^FF0000"+(.IP$)+"^000000 IP Address.";
+	mes "^FF0000"+(.@mac)+"^000000 of ^FF0000"+(.macID$)+"^000000 MAC Adress.";
 	next;
-	mes "[ ^0065DFMVP Warper^000000 ]";
-	mes "Please make sure only 1 running to enter this arena!";
-	next;
-				close2;
-				warp "milenia",0,0;
-				end;
-	}
-	
-	mes "[ ^0065DFMVP Warper^000000 ]";
-	mes "Would you like to enter";
-	mes "the MVP Arena?";
-	if (select("Yes!","No thanks.") == 2) close;
-	warp "quiz_00",50,24;
+	mes "[MVP Warper]";
+	mes "Please make sure only 1 running to enter this room!";
 	close;
+	end;
+	}
 }
 
 // Information

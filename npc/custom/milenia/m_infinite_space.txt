@@ -1,0 +1,482 @@
+
+
+function	script	epoch_time	{
+	.@time = getarg(0);
+	.@hour = ( .@time / 3600 );
+	.@min = ( .@time % 3600 ) / 60 ;
+	.@sec = ( ( .@time % 3600 ) % 60 ) % 60;
+	
+	return sprintf( "%02d:%02d:%02d",.@hour,.@min,.@sec );
+}
+	
+
+// instance
+1@infi	mapflag	nocommand	10
+1@infi	mapflag	nosave
+
+cmd_fild07,58,278,3	script	Infinite Space#vkro	4_F_GON,{
+	doevent "infinite_space::OnTalk";
+}
+// pay_arche,49,133,4	duplicate(Infinite Space#vkro)	Infinite Space#1	4_M_EIN_SOLDIER
+
+
+-	script	infinite_space	4_M_EIN_SOLDIER,{
+OnTalk:
+	.@party_id = getcharid(1);
+	.@is_leader = ( getcharid(0) == getpartyleader(.@party_id,2) );
+	.@has_instance = ( instance_mapname( .map$[0] ) != "" );
+	setarray .@party_member,1,12;
+	
+	mes "^0055FF[ "+.instance_name$+" ]^000000";
+	mes "That is where you will be starting your exciting adventure. Dungeon follows similar manner as ^FF0000Endless Tower^000000.";
+	mes "There are total of 50 floors to conquer. there are 9 reguler monster floors, and 1 MVP floor, with random floors with mini boss and exciting surprises. You will get all the monster drops accordingly.";
+	mes "Would you like to challenge ir?";
+	next;
+	mes "^0055FF[ "+.instance_name$+" ]^000000";
+	// if ( getgmlevel() < 99 ) {
+		// mes "It's under maintenance, not available for short time.";
+		// close;
+	// }
+	mes "If you wish to challenge ...";
+	mes "Form a party with "+.@party_member[0]+" ~ "+.@party_member[1]+" members.";
+	if ( !.@party_id ) close;
+	// mes " ^FF00EE¡ö¡ö¡ö¡ö^000000¡ö  80%]^000000";
+	mes " ";
+	mes "Are you ready for this ??";
+	next;
+	switch( select( 
+		( .@party_id && .@is_leader && !.@has_instance )?"Challenge Infinity Room":"",
+		( 0 && .@party_id && .@is_leader && .@has_instance )?"":"", // Enter Memorial Dungeon
+		( .@party_id && .@is_leader && .@has_instance )?"Give Up":"",
+		"Leave"
+	)){
+		case 1:
+			getpartymember .@party_id,1;
+			getpartymember .@party_id,2;
+		
+			.@origin = getcharid(3);
+			.@time = gettimetick(2);
+			for ( .@i = 0; .@i < $@partymembercount; .@i++ )
+				if ( isloggedin( $@partymemberaid[.@i],$@partymembercid[.@i] ) ) 
+					if ( attachrid( $@partymemberaid[.@i] ) ) {
+						.@member_count++;
+						
+						if ( .delay_timer && .@time < instance_infinity ) {
+							.@fail_type |= 1;
+							.@cooldown = ( instance_infinity - .@time );
+						}
+						if ( Zeny < .zeny_cost ) .@fail_type |= 2;
+						
+						if ( .@fail_type ) {
+							.@name$ = strcharinfo(0);
+							break;
+						}
+					}
+			attachrid( .@origin );
+			
+			if( .@name$ != "" ){
+				next;
+				mes "^0055FF[ "+.instance_name$+" ]^000000";
+				mes "^0055FF"+.@name$+"^000000";
+				if ( .@fail_type & 1 ) mes "cooldown left "+epoch_time( .@cooldown );
+				if ( .@fail_type & 2 ) mes "not enough zeny.";
+				break;
+			}
+			
+			if( .@member_count < .@party_member[0] || .@member_count > .@party_member[1] ){
+				mes "If you wish to join us...";
+				mes "Form a party with "+.@party_member[0]+" ~ "+.@party_member[1]+" members.";
+				break;
+			}
+			else {
+				.@instance = instance_create( .instance_name$ );
+				if( .@instance < 0 ) {
+					npctalk "Memorial Dungeon reservation failed.";
+					mes "^0000FF"+.instance_name$+" ^000000- Reservation Failed!";
+					close;
+				}
+				mes "^0000FF"+.instance_name$+" ^000000 - Reserved";
+				npctalk "Memorial Dungeon has been generated for Party - "+getpartyname( .@party_id );
+				getpartymember .@party_id,2;
+				for( .@i = 0; .@i < $@partymembercount; .@i++ )
+					if( attachrid( $@partymemberaid[.@i] ) ) {
+						Zeny -= .zeny_cost;
+						callsub( L_enter );
+					}
+				break;
+			}
+		case 2:
+			if( instance_mapname( .map$[0] ) == "" ){
+				npctalk "Memorial Dungeon doesnt exist for Party - "+getpartyname( .@party_id );
+			}
+			else{
+			
+				getpartymember .@party_id,1;
+				getpartymember .@party_id,2;
+				for( .@i = 0; .@i < $@partymembercount; .@i++ )
+					if ( isloggedin( $@partymemberaid[.@i],$@partymembercid[.@i] ) ) 
+						if( attachrid( $@partymemberaid[.@i] ) ) {
+							callsub( L_enter );
+						}
+				detachrid;
+			}
+			break;
+		case 3:
+			mes "Memorial Dungeon Destroyed.";
+			instance_destroy instance_id();
+			break;
+		default: 
+			// mes "This is a Memorial Dungeon.";
+			break;
+	}
+	close;
+	
+	L_enter:
+		.@ins = instance_enter( .instance_name$ );
+		switch ( .@ins ) {
+			case 0: 
+				instance_infinity = gettimetick(2) + .delay_timer;
+				break;
+			case 1:
+				mes "You can enter the dungeon after making the party.";
+				close;
+			case 2:
+				mes "The memorial dungeon Endless Tower does not exist.";
+				mes "The party leader did not generate the dungeon yet.";
+				close;
+			case 3:
+				mes "An unknown error has occurred.";
+				close;
+		}
+		return;
+
+	OnInit:
+		// delay in second
+		.delay_timer = ( 3600 * 24 * 3 );
+		// .zeny cost
+		// .zeny_cost = 1000000;
+		// name of Instance
+		.instance_name$ = "Infinite Space";
+		
+		// instance map lists
+		setarray .map$,"1@infi";
+
+		.map_size = getarraysize( .map$ );
+		end;
+}
+
+
+1@infi,1,1,4	script	infinite_space_instance	-1,{
+	function party_delay;
+	function level_start;
+	function summon_monster;
+
+	function	party_delay	{
+		.@map$ = getarg( 0 );
+		.@party_id = getarg( 1 );
+		.@time = gettimetick(2) + getvariableofnpc( .delay_timer, "infinite_space" );
+		
+		getpartymember .@party_id,2;
+		for( .@i = 0; .@i < $@partymembercount; .@i++ )
+			if( attachrid( $@partymemberaid[.@i] ) )
+				if ( strcharinfo(3) == .@map$ )
+					instance_infinity = .@time;
+		detachrid;
+	}
+	
+	function	level_start	{
+		.@level = getarg(0);
+		.@map$ = getarg(1);
+		
+		switch ( .@level ) {
+			case 1: summon_monster( .@level,.@map$,20,11,40,25 ); break;
+			case 2: summon_monster( .@level,.@map$,20,37,40,60 ); break;
+			case 3: summon_monster( .@level,.@map$,20,73,40,91 ); break;
+			case 4: summon_monster( .@level,.@map$,20,106,40,123 ); break;
+			case 5: summon_monster( .@level,.@map$,12,138,47,164 ); break;
+	
+			case 6: summon_monster( .@level,.@map$,20,222,40,242 ); break;
+			case 7: summon_monster( .@level,.@map$,20,250,40,270 ); break;
+			case 8: summon_monster( .@level,.@map$,20,284,40,300 ); break;
+			case 9: summon_monster( .@level,.@map$,20,318,40,333 ); break;
+			case 10: summon_monster( .@level,.@map$,12,350,40,373 ); break;
+			
+			case 11: summon_monster( .@level,.@map$,100,11,124,25 ); break;
+			case 12: summon_monster( .@level,.@map$,100,37,124,60 ); break;
+			case 13: summon_monster( .@level,.@map$,100,73,124,91 ); break;
+			case 14: summon_monster( .@level,.@map$,100,106,124,123 ); break;
+			case 15: summon_monster( .@level,.@map$,100,138,124,164 ); break;
+			
+			case 16: summon_monster( .@level,.@map$,100,222,124,242 ); break;
+			case 17: summon_monster( .@level,.@map$,100,250,124,270 ); break;
+			case 18: summon_monster( .@level,.@map$,100,284,124,300 ); break;
+			case 19: summon_monster( .@level,.@map$,100,318,124,333 ); break;
+			case 20: summon_monster( .@level,.@map$,92,350,131,373 ); break;
+			
+			case 21: summon_monster( .@level,.@map$,188,11,210,25 ); break;
+			case 22: summon_monster( .@level,.@map$,188,37,210,60 ); break;
+			case 23: summon_monster( .@level,.@map$,188,73,210,91 ); break;
+			case 24: summon_monster( .@level,.@map$,188,106,210,123 ); break;
+			case 25: summon_monster( .@level,.@map$,180,138,217,164 ); break;
+			
+			case 26: summon_monster( .@level,.@map$,183,222,206,235 ); break;
+			case 27: summon_monster( .@level,.@map$,183,250,206,267 ); break;
+			case 28: summon_monster( .@level,.@map$,183,284,206,299 ); break;
+			case 29: summon_monster( .@level,.@map$,183,308,206,331 ); break;
+			case 30: summon_monster( .@level,.@map$,171,345,221,390 ); break;
+			
+			case 31: summon_monster( .@level,.@map$,267,11,291,25 ); break;
+			case 32: summon_monster( .@level,.@map$,267,37,291,60 ); break;
+			case 33: summon_monster( .@level,.@map$,267,68,291,91 ); break;
+			case 34: summon_monster( .@level,.@map$,267,101,291,127 ); break;
+			case 35: summon_monster( .@level,.@map$,267,138,299,169 ); break;
+			
+			case 36: summon_monster( .@level,.@map$,267,212,292,232 ); break;
+			case 37: summon_monster( .@level,.@map$,266,243,292,265 ); break;
+			case 38: summon_monster( .@level,.@map$,266,272,292,297 ); break;
+			case 39: summon_monster( .@level,.@map$,266,308,292,330 ); break;
+			case 40: summon_monster( .@level,.@map$,254,340,306,388 ); break;
+			
+			case 41: summon_monster( .@level,.@map$,349,11,374,30 ); break;
+			case 42: summon_monster( .@level,.@map$,349,37,374,62 ); break;
+			case 43: summon_monster( .@level,.@map$,349,68,374,95 ); break;
+			case 44: summon_monster( .@level,.@map$,349,100,374,127 ); break;
+			case 45: summon_monster( .@level,.@map$,346,138,380,170 ); break;
+			
+			case 46: summon_monster( .@level,.@map$,352,214,378,235 ); break;
+			case 47: summon_monster( .@level,.@map$,352,240,378,265 ); break;
+			case 48: summon_monster( .@level,.@map$,352,275,378,299 ); break;
+			case 49: summon_monster( .@level,.@map$,352,304,378,331 ); break;
+			case 50: summon_monster( .@level,.@map$,339,341,395,395 ); break;
+			default: 
+				mapannounce .@map$,"Failed-51",bc_all;
+				break;
+		}
+		return;
+	}
+	
+	
+	function	summon_monster	{
+		.@level = getarg(0);
+		.@map$ = getarg(1);
+		
+		.@x1 = getarg(2,0);
+		.@y1 = getarg(3,0);
+		.@x2 = getarg(4,0);
+		.@y2 = getarg(5,0);
+		
+		.@map$ = strnpcinfo(4);
+		.@label$ = strnpcinfo(3)+"::OnKill";
+		
+		setarray .@mob,
+			3384, // MIN_PORING,
+			3385, // MIN_LUNATIC,
+			3386, // MIN_FABRE,
+			3387, // MIN_PICKY,
+			3388, // MIN_CONDOR,
+			3389, // MIN_WILOW,
+			3390, // MIN_SPORE,
+			3391, // MIN_POPORING,
+			3392, // MIN_SMOKIE,
+			3393, // MIN_DOKEBI,
+			3394, // MIN_BIGFOOT,
+			3395, // MIN_WORM_TAIL,
+			3396, // MIN_WOLF,
+			3397, // MIN_SNAKE,
+			3398, // MIN_ANACONDAQ,
+			3399, // MIN_MARIN,
+			3400, // MIN_MUKA,
+			3401, // MIN_PECOPECO,
+			3402, // MIN_DENIRO,
+			3403, // MIN_PIERE,
+			3404, // MIN_ANDRE,
+			3405, // MIN_GOLEM,
+			3406, // MIN_SCORPION,
+			3407, // MIN_CHONCHON,
+			3408, // MIN_METALLER,
+			3409, // MIN_SAND_MAN,
+			3410, // MIN_RAGGLER,
+			3411, // MIN_DRAGON_TAIL,
+			3412, // MIN_GREEN_IGUANA,
+			3413, // MIN_SEE_OTTER,
+			3414, // MIN_GALAPAGO,
+			3415, // MIN_FUR_SEAL,
+			3416, // MIN_ALLIGATOR,
+			3417, // MIN_MEGALODON,
+			3418, // MIN_TRI_JOINT,
+			3419, // MIN_MEGALITH,
+			3420, // MIN_DRYAD,
+			3431; // MIN_RODA_FROG;
+		.@mob_size = getarraysize( .@mob );
+		while ( .@i < 9 || .@total_mob < 50 ) {
+			if ( rand(2) ) {
+				.@mobcount = rand( 10 );
+				.@total_mob += .@mobcount;
+				areamonster .@map$,.@x1,.@y1,.@x2,.@y2,"--ja--",.@mob[rand( .@mob_size )],.@mobcount,.@label$;
+			}
+			.@i++;
+		}
+		
+		.@label$ = strnpcinfo(3)+"::OnBossKill";
+		switch( .@level ) {
+			case 10: .@boss = 3426; break;	// MIN_EDDGA
+			case 20: .@boss = 3428; break;	// MIN_PHREEONI
+			case 30: .@boss = 3427; break;	// MIN_OSIRIS
+			case 40: .@boss = 3429; break;	// MIN_ORK_HERO
+			case 50: .@boss = 3430; break;	// MIN_TAO_GUNKA
+			default:
+				if ( rand(3) )
+					.@boss = F_Rand( 
+						3421, // MIN_TOAD,
+						3422, // MIN_VAGABOND_WOLF,
+						3423, // MIN_VOCAL,
+						3424, // MIN_ECLIPSE,
+						3425 // MIN_CHIMERA
+					);
+				.@label$ = strnpcinfo(3)+"::OnKill";
+				break;
+		}
+		if ( .@boss ) {
+			areamonster .@map$,.@x1,.@y1,.@x2,.@y2,"--ja--",.@boss,1,.@label$;
+			mapannounce .@map$,"[Infinite Space] Alert!! Mini Boss spotted ...",bc_map,0xFF0000;
+		}
+		return;
+	}
+	
+	OnInstanceInit:
+		sleep 500;
+
+		.@map$ = strnpcinfo(4);
+		setmapflag .@map$,mf_nomvploot;
+		setmapflag .@map$,mf_nomobloot;
+		'infinite_level = 0;
+		
+		// warp portal
+		for ( .@i = ( 'infinite_level+1 ); .@i <= 50; .@i++ )
+			disablenpc instance_npcname( "infinity_room_warp_"+.@i );
+		killmonster .@map$,"All";
+		
+		sleep 5000;
+		
+		setarray .@msg$,
+			"This is Infinity Space memorial dungeons.",
+			"Kill all monster and advance to next level.",
+			"There might have a boss every 10 rounds.",
+			"Good luck";
+		.@msg_size = getarraysize( .@msg$ );
+		for ( .@i = 'infinite_level; .@i < .@msg_size; .@i++ ) {
+			mapannounce .@map$,"[Infinite Space] "+.@msg$[.@i],bc_map;
+			sleep 3500;
+		}
+		initnpctimer;
+		
+	OnBossKill:
+		if ( playerattached() ) {
+			getmapxy( .@map$,.@x,.@y,0 );
+			.@npc_name$ = instance_npcname( "Treasure#infinity_main" );
+			hideoffnpc .@npc_name$;
+			movenpc .@npc_name$,( .@x + rand( -3,3 ) ),( .@y + rand( -3,3 ) );
+			showscript "Yeah!! The Boss is no match to me!";
+		}
+		
+	OnKill:
+		.@map$ = strnpcinfo(4);
+		.@mobcount = mobcount( .@map$,"all" );
+		if ( 'infinite_level )
+			mapannounce .@map$,"[Infinite Space] Monster Left : "+.@mobcount,bc_map;
+		if ( !.@mobcount ) {
+			if ( 'infinite_level && 'infinite_level <= 50 )
+				enablenpc instance_npcname( "infinity_room_warp_"+'infinite_level );
+			if ( 'infinite_level < 50 ) {
+				'infinite_level++;
+				mapannounce .@map$,"[Infinite Space] Level "+'infinite_level+" starting",bc_map;
+				sleep2 3000;
+				level_start( 'infinite_level,.@map$ );
+			}
+			else {
+				mapannounce .@map$,"[Infinite Space] Congratulation, you all have completed the Challenges. [Time: "+epoch_time( getnpctimer(0) / 1000 )+" ]",bc_map;
+				stopnpctimer;
+			}
+		}
+		end;
+}
+
+
+1@infi,1,1,4	script	Treasure#infinity_main	4_TREASURE_BOX,{
+	getmapxy( .@map$,.@x,.@y,1 );
+	.@x1 = ( .@x - 3 );
+	.@y1 = ( .@y - 3 );
+	.@x2 = ( .@x + 3 );
+	.@y2 = ( .@y + 3 );
+	
+	.@random = rand( 1,5 );
+	while ( .@random ) {
+		makeitem 6905,1,.@map$,rand( .@x1,.@x2 ),rand( .@y1,.@y1 );
+		.@random--;
+	}
+	showscript "We got a Treasure Chest here!!";
+
+	OnInstanceInit:
+		sleep 100;
+		hideonnpc strnpcinfo(3);
+		end;
+}
+
+
+
+
+1@infi,30,30,0	warp	infinity_room_warp_1	1,1,1@infi,30,40
+1@infi,30,63,0	warp	infinity_room_warp_2	1,1,1@infi,30,73
+1@infi,30,95,0	warp	infinity_room_warp_3	1,1,1@infi,30,105
+1@infi,30,127,0	warp	infinity_room_warp_4	1,1,1@infi,30,137
+1@infi,30,168,0	warp	infinity_room_warp_5	1,1,1@infi,30,220
+1@infi,30,243,0	warp	infinity_room_warp_6	1,1,1@infi,30,253
+1@infi,30,274,0	warp	infinity_room_warp_7	1,1,1@infi,30,284
+1@infi,30,307,0	warp	infinity_room_warp_8	1,1,1@infi,30,317
+1@infi,30,339,0	warp	infinity_room_warp_9	1,1,1@infi,30,349
+1@infi,30,379,0	warp	infinity_room_warp_10	1,1,1@infi,112,8
+
+1@infi,112,30,0	warp	infinity_room_warp_11	1,1,1@infi,112,40
+1@infi,112,63,0	warp	infinity_room_warp_12	1,1,1@infi,112,73
+1@infi,112,95,0	warp	infinity_room_warp_13	1,1,1@infi,112,105
+1@infi,112,127,0	warp	infinity_room_warp_14	1,1,1@infi,112,137
+1@infi,112,168,0	warp	infinity_room_warp_15	1,1,1@infi,112,220
+1@infi,112,243,0	warp	infinity_room_warp_16	1,1,1@infi,112,253
+1@infi,112,274,0	warp	infinity_room_warp_17	1,1,1@infi,112,284
+1@infi,112,307,0	warp	infinity_room_warp_18	1,1,1@infi,112,317
+1@infi,112,339,0	warp	infinity_room_warp_19	1,1,1@infi,112,349
+1@infi,112,379,0	warp	infinity_room_warp_20	1,1,1@infi,198,8
+
+1@infi,198,30,0	warp	infinity_room_warp_21	1,1,1@infi,198,40
+1@infi,198,63,0	warp	infinity_room_warp_22	1,1,1@infi,198,73
+1@infi,198,95,0	warp	infinity_room_warp_23	1,1,1@infi,198,105
+1@infi,198,127,0	warp	infinity_room_warp_24	1,1,1@infi,198,137
+1@infi,198,168,0	warp	infinity_room_warp_25	1,1,1@infi,194,220
+1@infi,194,235,0	warp	infinity_room_warp_26	1,1,1@infi,194,253
+1@infi,194,267,0	warp	infinity_room_warp_27	1,1,1@infi,194,274
+1@infi,194,299,0	warp	infinity_room_warp_28	1,1,1@infi,194,309
+1@infi,194,331,0	warp	infinity_room_warp_29	1,1,1@infi,194,339
+1@infi,194,392,0	warp	infinity_room_warp_30	1,1,1@infi,280,8
+
+1@infi,280,30,0	warp	infinity_room_warp_31	1,1,1@infi,280,40
+1@infi,280,63,0	warp	infinity_room_warp_32	1,1,1@infi,280,73
+1@infi,280,95,0	warp	infinity_room_warp_33	1,1,1@infi,280,105
+1@infi,280,127,0	warp	infinity_room_warp_34	1,1,1@infi,280,137
+1@infi,280,168,0	warp	infinity_room_warp_35	1,1,1@infi,280,220
+1@infi,280,235,0	warp	infinity_room_warp_36	1,1,1@infi,280,253
+1@infi,280,267,0	warp	infinity_room_warp_37	1,1,1@infi,280,274
+1@infi,280,299,0	warp	infinity_room_warp_38	1,1,1@infi,280,309
+1@infi,280,331,0	warp	infinity_room_warp_39	1,1,1@infi,280,339
+1@infi,280,392,0	warp	infinity_room_warp_40	1,1,1@infi,362,8
+
+1@infi,362,30,0	warp	infinity_room_warp_41	1,1,1@infi,362,40
+1@infi,362,63,0	warp	infinity_room_warp_42	1,1,1@infi,362,73
+1@infi,362,95,0	warp	infinity_room_warp_43	1,1,1@infi,362,105
+1@infi,362,127,0	warp	infinity_room_warp_44	1,1,1@infi,362,137
+1@infi,362,168,0	warp	infinity_room_warp_45	1,1,1@infi,362,220
+1@infi,366,235,0	warp	infinity_room_warp_46	1,1,1@infi,366,253
+1@infi,366,267,0	warp	infinity_room_warp_47	1,1,1@infi,366,274
+1@infi,366,299,0	warp	infinity_room_warp_48	1,1,1@infi,366,309
+1@infi,366,331,0	warp	infinity_room_warp_49	1,1,1@infi,366,339
+
+1@infi,366,391,0	warp	infinity_room_warp_50	1,1,cmd_fild07,54,279

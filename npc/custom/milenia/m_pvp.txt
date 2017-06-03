@@ -41,7 +41,6 @@ milenia,113,138,5	script	PvP Warper	497,{
 	close;
 	end;
 	}
-
 	if (pvp01) == 1 {
 	warp "milenia_pvp",82,49;
 	mapannounce "milenia_pvp", strcharinfo(0) + " has entered the PVP Arena!",0;
