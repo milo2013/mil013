@@ -370,15 +370,15 @@ OnTalk:
 		//		getitem 31204,1;
 		//	}
 	
-			addrid(2,0,getcharid(1));
-			getitem 31204,1;
+		//	addrid(2,0,getcharid(1));
+		//	getitem 31204,1;
 			
-		//.@party_id = getcharid(1);
+		.@party_id = getcharid(1);
 			
-		//	getpartymember .@party_id;
-		//	for ( .@i = 0; .@i < $@partymembercount; .@i++ ) {
-		//			getitem 31204,1,$@partymemberaid[.@i];
-		//	}
+			getpartymember .@party_id;
+			for ( .@i = 0; .@i < $@partymembercount; .@i++ ) {
+					getitem 31204,1,$@partymemberaid[.@i];
+			}
 		
 			percentheal 100,100;
 			mapannounce .@map$,"[Elite MVP Ladder] The Boss has been defeated. You have some time for rest now.",bc_map;
