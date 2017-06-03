@@ -5,18 +5,22 @@ set .Time,60;		// Announce every x Minute.
 setarray .News$[0],	// Random Message to be Announced
 		"Milenia RO : RM1.00 = 1 Cashpoints~ Donate via Maybank2u now!!",
 		"Milenia RO : 4 Cashpoints just $1~ Buy in our website..",
+		"Milenia RO : Did you know? You can get free 3 Days VIP Refiner with min $10 Donation.",
 		"Milenia RO : Recommend our server to your friends to make us grow!!",
 		"Milenia RO : New in Milenia RO? use our Milenia Tour NPC to warp any NPC!",
 		"Milenia RO : Please like our FB Page. (facebook.com/MileniaRO)",
 		"Milenia RO : Please read our wiki. (mileniaro.com/wiki)",
 		"Milenia RO : Have you already redeem your Freebies at NPC Incik Rakuzas in our town?",
 		"Milenia RO : Dont forget to join Prontera WoE at Sunday!",
+		"Milenia RO : Dont forget to join Payon WoE at Saturday!",
 		"Milenia RO : Did you know you may exchange Zeny into Cashpoints?",
 		"Milenia RO : Do you know we have Pet Support System?",
 		"Milenia RO : Enjoy our server? Please support us with donating~",
 		"Milenia RO : Are you new player? Take our FREE Novice item at Novice Support~",
 		"Milenia RO : Enjoy our server? Please give review at RMS to help us grow bigger~",
-		"Milenia RO : Lack of money? Farm your money at our Dokebi Farm~",
+		"Milenia RO : Lack of money? Farm your money at our Dokebi Farm, Mining or Invaded Prontera~",
+		"Milenia RO : Please remember that our Daily Login reset on 1st day every month~",
+		"Milenia RO : Did you know we have WoE Betting System? Talk to Betting Girl NPC to start betting!",
 		"Milenia RO : Please balance your game with your work and study~";
 		//"Milenia RO : DOUBLE DONATION SALES from 24 April till 8 May 2017! Check our page for details!";
 		
