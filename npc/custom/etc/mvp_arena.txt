@@ -42,6 +42,11 @@ milenia,113,156,5	script	MVP Warper	768,{
 	close;
 	end;
 	}
+	mes "[ ^0065DFMVP Warper^000000 ]";
+	mes "Would you like to enter";
+	mes "the MVP Arena?";
+	if (select("Yes!","No thanks.") == 2) close;
+	warp "quiz_00",50,24;
 }
 
 // Information
