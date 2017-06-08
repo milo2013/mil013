@@ -1,5 +1,3 @@
-
-
 function	script	epoch_time	{
 	.@time = getarg(0);
 	.@hour = ( .@time / 3600 );
@@ -9,11 +7,6 @@ function	script	epoch_time	{
 	return sprintf( "%02d:%02d:%02d",.@hour,.@min,.@sec );
 }
 	
-
-// instance
-1@infi	mapflag	nocommand	10
-1@infi	mapflag	nosave
-
 cmd_fild07,58,278,3	script	Infinite Space#vkro	4_F_GON,{
 	doevent "infinite_space::OnTalk";
 }
@@ -167,6 +160,7 @@ OnTalk:
 
 
 1@infi,1,1,4	script	infinite_space_instance	-1,{
+	
 	function party_delay;
 	function level_start;
 	function summon_monster;
@@ -342,13 +336,21 @@ OnTalk:
 		}
 		return;
 	}
-	
+		
 	OnInstanceInit:
 		sleep 500;
 
 		.@map$ = strnpcinfo(4);
-		setmapflag .@map$,mf_nomvploot;
-		setmapflag .@map$,mf_nomobloot;
+		setmapflag .@map$,mf_nowarp;
+		setmapflag .@map$,mf_nowarpto;
+		setmapflag .@map$,mf_nosave;
+		setmapflag .@map$,mf_nomemo;
+		setmapflag .@map$,mf_noteleport;
+		setmapflag .@map$,mf_monster_noteleport;
+		setmapflag .@map$,mf_noreturn;
+		setmapflag .@map$,mf_nobranch;
+		//setmapflag .@map$,mf_nomvploot;
+		//setmapflag .@map$,mf_nomobloot;
 		'infinite_level = 0;
 		
 		// warp portal

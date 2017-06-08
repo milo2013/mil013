@@ -118,9 +118,9 @@
 6,13718,15 // Abrasive Box 10
 6,31231,10 // Token of Siegfried
 6,13610,15 //Enriched Elunium 5
-6,16393,15 //HE Oridecon 5
+6,16393,15 //HD Oridecon 5
 6,13611,15 //Enriched Oridecon 5
-6,16395,15 //HE Elunium 5
+6,16395,15 //HD Elunium 5
 6,12210,3 //Bubble Gum
 6,12214,3 //Convex Mirror
 6,12412,10 //HE Bubble Gum

@@ -65,3 +65,11 @@ milenia,154,199,3	shop	Shadow Chaser#m	481,6121:1000000,6122:1000000
 milenia,80,57,11	script	Premium Rare Costume	531,{
 		callshop "Premium Costume",0;
 }
+
+//INFINITE EQ EXCHANGE
+//=========================
+-	itemshop	Infinite EQ	-1,6905,28703:50,16038:50,28105:50,18128:50,21014:50,2024:50,1938:50,1994:50,13323:50,13126:50,19033:50,15141:50,20779:50,22075:50
+
+cmd_fild07,65,275,11	script	Relic Appraiser	456,{
+		callshop "Infinite EQ",0;
+}
