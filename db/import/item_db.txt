@@ -236,6 +236,7 @@
 31238,Book_About_True_Life,Book About True Life,2,10,,10,,,,,0xFFFFFFFF,63,2,,,,,,{},{},{}
 31239,Crystal_Of_Feardom,Crystal Of Feardom,3,6,,10,,,,,,,,,,,,,{},{},{}
 31240,Crystal_Of_Feardom_Fragment,Crystal Of Feardom Fragment,3,6,,10,,,,,,,,,,,,,{},{},{}
+31241,Infinite_Reset_Coupon,Infinite Reset Coupon,3,6,,10,,,,,,,,,,,,,{},{},{}
 
 
 

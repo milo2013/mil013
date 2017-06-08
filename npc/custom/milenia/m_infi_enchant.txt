@@ -1,0 +1,854 @@
+cmd_fild07,67,268,5	script	Relic Enforcer	407,{
+
+mes "[Relic Enforcer]";
+mes "I can ^FF0000RANDOMLY^000000 enchant Infinity Weapons and Rift Armor Set";
+next;
+mes "[Relic Enforcer]";
+mes "I also can reset the enchantment with ^FF0000Infinite Reset Coupon^000000";
+mes "which can be buy at our website with 5 Donation Credit only!";
+next;
+mes "[Relic Enforcer]";
+mes "So, what can I do for you?";
+next;
+switch(select("Enchant Infinity Weapon and Rift Set:Reset Enchantment:Cancel")) {
+	case 1:
+		next;
+		goto LinfiMenu;
+	case 2:
+		next;
+		goto LResetMenu;
+	case 3:
+		close;
+		end;
+}
+	
+LinfiMenu:
+mes "[Relic Enforcer]";
+mes "Which equipments do you want to enchant?";
+next;
+switch(select("Infinity Weapons:Rift Armor and Shoes:Rift Decoration and Manteau:Cancel")) {
+		case 1:
+			next;
+			goto Linfiweapon;
+		case 2:
+			next;
+			goto LriftArmorShoes;
+		case 3:
+			next;
+			goto LriftDecoMan;
+		case 4:
+			close;
+			end;
+	}
+	end;
+
+LriftDecoMan:
+switch(select("Maybe later..:Ancient Decoration of Rift:Manteau of Rift")) {
+				case 1:
+					mes "[Relic Enforcer]";
+					mes "Changed your mind? Very well. Hope to see you later.";
+					close;
+				case 2:
+					set .@equip_id,19033; //Ancient Decoration of Rift
+					set .@part, EQI_HEAD_TOP;
+					break;
+				case 3:
+					set .@equip_id,20779; //Manteau of Rift
+					set .@part, EQI_SHOES;
+					break;
+			}
+						
+if (getequipisequiped(.@part) == 0) {
+		mes "[Relic Enforcer]";
+		mes "You will have to equip all items before ^44B7BC" + getitemname(.@equip_id) + "^000000.";
+		close;
+	}
+	if (Zeny < 100000) {  //custom translation
+		mes "[Relic Enforcer]";
+		mes "I'm sorry, but you don't have enough Zeny!";
+		next;
+		mes "[Relic Enforcer]";
+		mes "Our charge is very low, so please bear with me.";
+		close;
+	}
+	if (countitem (6905) < 20){
+		mes "[Relic Enforcer]";
+		mes "I'm sorry, but you don't have enough Broken Magic Stone!";
+		next;
+		mes "[Relic Enforcer]";
+		mes "Please come again when you have enough Broken Magic Stone.";
+		close;
+	}
+	if (getequipid(.@part) != .@equip_id) {
+		mes "[Relic Enforcer]";
+		mes "I don't think this is the equipment you requested.";
+		next;
+		mes "[Relic Enforcer]";
+		mes "I cannot work on equipment other than those from my list.";
+		close;
+	}
+	
+	set .@equip_refine, getequiprefinerycnt(.@part);
+	setarray .@equip_card[0], getequipcardid(.@part,0),getequipcardid(.@part,1),getequipcardid(.@part,2),getequipcardid(.@part,3);
+
+	// Enchantment
+	     if (.@equip_refine <= 4)  set .@ko_type01,1;
+	else if (.@equip_refine <= 7)  set .@ko_type01,2;
+	else if (.@equip_refine <= 9)  set .@ko_type01,3;
+	else if (.@equip_refine <= 12) set .@ko_type01,4;
+	else                           set .@ko_type01,5;
+
+	//custom translations
+	if (.@equip_card[3] >= 4700) { // Armor Enchant System
+		if (.@equip_card[2] >= 4700) {
+			mes "[Relic Enforcer]";
+			mes "This equipment cannot be further enchanted.";
+			next;
+			mes "[Relic Enforcer]";
+			mes "If you are not satisfied with the enchantments, I suggest that you reset the enchanment.";
+			close;
+		} else {
+			mes "[Relic Enforcer]";
+			mes "The fourth slot has already been enchanted. Shall I enchant the third slot as well?";
+			next;
+			if(select("Do it later:Do it now") == 1) {
+				mes "[Relic Enforcer]";
+				mes "Very well. Hope to see you later.";
+				close;
+			}
+			mes "[Relic Enforcer]";
+			mes "Starting to enchant the third slot.";
+			next;
+			set .@ko_type02,2;
+		}
+	} else {
+		mes "[Relic Enforcer]";
+		mes "This equipment is not currently enchanted. Shall I enchant the fourth slot?";
+		next;
+		if(select("Do it later:Do it now") == 1) {
+			mes "[Relic Enforcer]";
+			mes "Very well. Hope to see you later.";
+			close;
+		}
+		mes "[Relic Enforcer]";
+		mes "Starting to enchant the fourth slot.";
+		next;
+		set .@ko_type02,1;
+	}
+	if (.@ko_type02 == 1) {  // slot 4
+		set .@r, rand(1,1000);
+		switch (.@ko_type01) {
+		case 1:
+				 if (.@r <= 200) set .@d_socket04,4700; //Strength1
+				 else if (.@r <= 500) set .@d_socket04,4710; //Inteligence1
+				 else					set .@d_socket04,4720; //Dexterity1
+			set .@enchant, .@e_socket04;
+			break;
+		case 2:
+			if (.@r <= 660) set .@d_socket04,4700; //Strength1
+			else if (.@r <= 720) set .@d_socket04,4710; //Inteligence1
+			else				 set .@d_socket04,4720; //Dexterity1
+			set .@enchant, .@d_socket04;
+			break;
+		case 3:
+			     if (.@r <= 90)  set .@c_socket04,4700; //Strength1
+			else if (.@r <= 180) set .@c_socket04,4710; //Inteligence1
+			else if (.@r <= 360) set .@c_socket04,4720; //Dexterity1
+			else if (.@r <= 660) set .@c_socket04,4701; //Strength2
+			else if (.@r <= 720) set .@c_socket04,4711; //Inteligence2
+			else				set .@c_socket04,4721; //Dexterity2
+			set .@enchant, .@c_socket04;
+			break;
+		case 4:
+			     if (.@r <= 70)  set .@b_socket04,4700; //Strength1
+			else if (.@r <= 140) set .@b_socket04,4710; //Inteligence1
+			else if (.@r <= 280) set .@b_socket04,4720; //Dexterity1
+			else if (.@r <= 495) set .@b_socket04,4701; //Strength2
+			else if (.@r <= 550) set .@b_socket04,4711; //Inteligence2
+			else				 set .@b_socket04,4721; //Dexterity2
+			set .@enchant, .@b_socket04;
+			break;
+		case 5:
+		         if (.@r <= 59)  set .@a_socket04,4701; //Strength2
+			else if (.@r <= 118) set .@a_socket04,4711; //Inteligence2
+			else if (.@r <= 236) set .@a_socket04,4721; //Dexterity2
+			else if (.@r <= 472) set .@a_socket04,4702; //Strength3
+			else if (.@r <= 707) set .@a_socket04,4712; //Inteligence3
+			else if (.@r <= 765) set .@a_socket04,4722; //Dexterity3
+			else if (.@r <= 883) set .@a_socket04,4703; //Strength4
+			else if (.@r <= 942) set .@a_socket04,4713; //Inteligence4
+			else                 set .@a_socket04,4723; //Dexterity4
+			set .@enchant, .@a_socket04;
+			break;
+		}
+	} else if (.@ko_type02 == 2) {  // slot 3
+		set .@r, rand(1,1000);
+		switch (.@ko_type01) {
+		case 1:
+			     if (.@r <= 125) set .@e_socket03,4861; //MHP+1%
+			else if (.@r <= 250) set .@e_socket03,4861; //MHP+1%
+			else 				 set .@e_socket03,4861; //MHP+1%
+			set .@enchant, .@e_socket03;
+			break;
+		case 2:
+			     if (.@r <= 100) set .@d_socket03,4862; //MHP+2%
+			else if (.@r <= 270) set .@d_socket03,4862; //MHP+2%
+			else 				set .@d_socket03,4862; //MHP+2%
+			set .@enchant, .@d_socket03;
+			break;
+		case 3:
+				 if (.@r <= 305) set .@c_socket03,4867; //MHP+3%
+			else if (.@r <= 400) set .@c_socket03,4867; //MHP+3%
+			else 				 set .@c_socket03,4867; //MHP+3%
+			set .@enchant, .@c_socket03;
+			break;
+		case 4:
+			     if (.@r <= 540)  set .@b_socket03,4868; //MHP+4%
+			else if (.@r <= 700) set .@b_socket03,4868; //MHP+4%
+			else				 set .@b_socket03,4868; //MHP+4%
+			set .@enchant, .@b_socket03;
+			break;
+		case 5:
+			     if (.@r <= 824)  set .@a_socket03,4900; //MHP+5%
+			else if (.@r <= 883) set .@a_socket03,4900; //MHP+5%
+			else 				 set .@a_socket03,4900; //MHP+5%
+			set .@enchant, .@a_socket03;
+			break;
+		}
+	} else {
+		mes "[Relic Enforcer]";
+		mes "An unknown error has occurred. Please contact customer service. *^_^*";
+		close;
+	}
+	if (.@ko_type02 == 1) {
+		set .@equip_card[2], .@equip_card[3];
+		set .@equip_card[3], .@enchant;
+	} else
+		set .@equip_card[2], .@enchant;
+	progressbar "ffff00",2;
+	set Zeny, Zeny - 100000;
+	delequip .@part;
+	delitem 6905,20;
+
+//	GetNonSlotItemSock2 .@equip_refine .@equip_id .@equip_card[0] .@equip_card[1] .@equip_card[2] .@equip_card[3]
+	getitem2 .@equip_id,1,1,.@equip_refine,0,.@equip_card[0],.@equip_card[1],.@equip_card[2],.@equip_card[3];
+
+	mes "[Relic Enforcer]";
+	mes "^44B7BC" + getitemname(.@equip_id) + "^000000";
+	mes "The equipment has been enchanted."; //custom translation
+	close;
+	end;	
+	
+LriftArmorShoes:
+switch(select("Maybe later..:Ancient Armor of Rift:Shoes of Rift")) {
+				case 1:
+					mes "[Relic Enforcer]";
+					mes "Changed your mind? Very well. Hope to see you later.";
+					close;
+				case 2:
+					set .@equip_id,15141; //Ancient Armor of Rift
+					set .@part, EQI_ARMOR;
+					break;
+				case 3:
+					set .@equip_id,22075; //Shoes of Rift
+					set .@part, EQI_SHOES;
+					break;
+			}
+						
+if (getequipisequiped(.@part) == 0) {
+		mes "[Relic Enforcer]";
+		mes "You will have to equip all items before ^44B7BC" + getitemname(.@equip_id) + "^000000.";
+		close;
+	}
+	if (Zeny < 100000) {  //custom translation
+		mes "[Relic Enforcer]";
+		mes "I'm sorry, but you don't have enough Zeny!";
+		next;
+		mes "[Relic Enforcer]";
+		mes "Our charge is very low, so please bear with me.";
+		close;
+	}
+	if (countitem (6905) < 20){
+		mes "[Relic Enforcer]";
+		mes "I'm sorry, but you don't have enough Broken Magic Stone!";
+		next;
+		mes "[Relic Enforcer]";
+		mes "Please come again when you have enough Broken Magic Stone.";
+		close;
+	}
+	if (getequipid(.@part) != .@equip_id) {
+		mes "[Relic Enforcer]";
+		mes "I don't think this is the equipment you requested.";
+		next;
+		mes "[Relic Enforcer]";
+		mes "I cannot work on equipment other than those from my list.";
+		close;
+	}
+	
+	set .@equip_refine, getequiprefinerycnt(.@part);
+	setarray .@equip_card[0], getequipcardid(.@part,0),getequipcardid(.@part,1),getequipcardid(.@part,2),getequipcardid(.@part,3);
+
+	// Enchantment
+	     if (.@equip_refine <= 4)  set .@ko_type01,1;
+	else if (.@equip_refine <= 7)  set .@ko_type01,2;
+	else if (.@equip_refine <= 9)  set .@ko_type01,3;
+	else if (.@equip_refine <= 12) set .@ko_type01,4;
+	else                           set .@ko_type01,5;
+
+	//custom translations
+	if (.@equip_card[3] >= 4700) { // Armor Enchant System
+		if (.@equip_card[2] >= 4700) {
+			mes "[Relic Enforcer]";
+			mes "This equipment cannot be further enchanted.";
+			next;
+			mes "[Relic Enforcer]";
+			mes "If you are not satisfied with the enchantments, I suggest that you reset the enchanment.";
+			close;
+		} else {
+			mes "[Relic Enforcer]";
+			mes "The fourth slot has already been enchanted. Shall I enchant the third slot as well?";
+			next;
+			if(select("Do it later:Do it now") == 1) {
+				mes "[Relic Enforcer]";
+				mes "Very well. Hope to see you later.";
+				close;
+			}
+			mes "[Relic Enforcer]";
+			mes "Starting to enchant the third slot.";
+			next;
+			set .@ko_type02,2;
+		}
+	} else {
+		mes "[Relic Enforcer]";
+		mes "This equipment is not currently enchanted. Shall I enchant the fourth slot?";
+		next;
+		if(select("Do it later:Do it now") == 1) {
+			mes "[Relic Enforcer]";
+			mes "Very well. Hope to see you later.";
+			close;
+		}
+		mes "[Relic Enforcer]";
+		mes "Starting to enchant the fourth slot.";
+		next;
+		set .@ko_type02,1;
+	}
+	if (.@ko_type02 == 1) {  // slot 4
+		set .@r, rand(1,1000);
+		switch (.@ko_type01) {
+		case 1:
+			if (.@r <= 200) set .@d_socket04,4700; //Strength1
+			else if (.@r <= 350) set .@d_socket04,4710; //Inteligence1
+			else					set .@d_socket04,4720; //Dexterity1
+			set .@enchant, .@e_socket04;
+			break;
+		case 2:
+			if (.@r <= 90) set .@d_socket04,4700; //Strength1
+			else if (.@r <= 170) set .@d_socket04,4710; //Inteligence1
+			else				 set .@d_socket04,4720; //Dexterity1
+			set .@enchant, .@d_socket04;
+			break;
+		case 3:
+			     if (.@r <= 90)  set .@c_socket04,4700; //Strength1
+			else if (.@r <= 180) set .@c_socket04,4710; //Inteligence1
+			else if (.@r <= 270) set .@c_socket04,4720; //Dexterity1
+			else if (.@r <= 360) set .@c_socket04,4701; //Strength2
+			else if (.@r <= 450) set .@c_socket04,4711; //Inteligence2
+			else				set .@c_socket04,4721; //Dexterity2
+			set .@enchant, .@c_socket04;
+			break;
+		case 4:
+			     if (.@r <= 70)  set .@b_socket04,4700; //Strength1
+			else if (.@r <= 140) set .@b_socket04,4710; //Inteligence1
+			else if (.@r <= 210) set .@b_socket04,4720; //Dexterity1
+			else if (.@r <= 280) set .@b_socket04,4701; //Strength2
+			else if (.@r <= 350) set .@b_socket04,4711; //Inteligence2
+			else				 set .@b_socket04,4721; //Dexterity2
+			set .@enchant, .@b_socket04;
+			break;
+		case 5:
+		         if (.@r <= 59)  set .@a_socket04,4701; //Strength2
+			else if (.@r <= 118) set .@a_socket04,4711; //Inteligence2
+			else if (.@r <= 236) set .@a_socket04,4721; //Dexterity2
+			else if (.@r <= 295) set .@a_socket04,4702; //Strength3
+			else if (.@r <= 354) set .@a_socket04,4712; //Inteligence3
+			else if (.@r <= 413) set .@a_socket04,4722; //Dexterity3
+			else if (.@r <= 472) set .@a_socket04,4703; //Strength4
+			else if (.@r <= 530) set .@a_socket04,4713; //Inteligence4
+			else                 set .@a_socket04,4723; //Dexterity4
+			set .@enchant, .@a_socket04;
+			break;
+		}
+	} else if (.@ko_type02 == 2) {  // slot 3
+		set .@r, rand(1,1000);
+		switch (.@ko_type01) {
+		case 1:
+			     if (.@r <= 125) set .@e_socket03,4795; //HP+100
+			else if (.@r <= 250) set .@e_socket03,4870; //SP+25
+			else 				 set .@e_socket03,4720; //DEX+1
+			set .@enchant, .@e_socket03;
+			break;
+		case 2:
+			      if (.@r <= 100) set .@d_socket03,4795; //HP+100
+			else if (.@r <= 190) set .@d_socket03,4870; //SP+25
+			else if (.@r <= 270) set .@d_socket03,4720; //DEX+1
+			else if (.@r <= 340) set .@d_socket03,4796; //HP+200
+			else if (.@r <= 440) set .@d_socket03,4800; //SP+50
+			else				 set .@d_socket03,4721; //DEX+2
+			set .@enchant, .@d_socket03;
+			break;
+		case 3:
+			     if (.@r <= 100) set .@c_socket03,4796; //HP+200
+			else if (.@r <= 200) set .@c_socket03,4870; //SP+25
+			else if (.@r <= 305) set .@c_socket03,4721; //DEX+2
+			else if (.@r <= 410) set .@c_socket03,4797; //HP+300
+			else if (.@r <= 500) set .@c_socket03,4800; //SP+50
+			else 				 set .@c_socket03,4722; //DEX+3
+			set .@enchant, .@c_socket03;
+			break;
+		case 4:
+			     if (.@r <= 70)  set .@b_socket03,4797; //HP+300
+			else if (.@r <= 160) set .@b_socket03,4800; //SP+50
+			else				 set .@b_socket03,4722; //DEX+3
+			set .@enchant, .@b_socket03;
+			break;
+		case 5:
+			     if (.@r <= 59)  set .@a_socket03,4798; //HP+400
+			else if (.@r <= 118) set .@a_socket03,4871; //SP+75
+			else 				 set .@a_socket03,4723; //DEX+4
+			set .@enchant, .@a_socket03;
+			break;
+		}
+	} else {
+		mes "[Relic Enforcer]";
+		mes "An unknown error has occurred. Please contact customer service. *^_^*";
+		close;
+	}
+	if (.@ko_type02 == 1) {
+		set .@equip_card[2], .@equip_card[3];
+		set .@equip_card[3], .@enchant;
+	} else
+		set .@equip_card[2], .@enchant;
+	progressbar "ffff00",2;
+	set Zeny, Zeny - 100000;
+	delequip .@part;
+	delitem 6905,20;
+
+//	GetNonSlotItemSock2 .@equip_refine .@equip_id .@equip_card[0] .@equip_card[1] .@equip_card[2] .@equip_card[3]
+	getitem2 .@equip_id,1,1,.@equip_refine,0,.@equip_card[0],.@equip_card[1],.@equip_card[2],.@equip_card[3];
+
+	mes "[Relic Enforcer]";
+	mes "^44B7BC" + getitemname(.@equip_id) + "^000000";
+	mes "The equipment has been enchanted."; //custom translation
+	close;
+	end;
+
+Linfiweapon:
+switch(select("Nahhh..:Infinity Dagger:Infinity Mace:Infinity Two Handed Axe:Infinity Bow:Infinity Two Handed Sword:Infinity Staff:Infinity Violin:Infinity Whip:Infinity Shuriken:Infinity Handgun")) {
+				case 1:
+					mes "[Relic Enforcer]";
+					mes "Changed your mind? Very well. Hope to see you later.";
+					close;
+				case 2:
+					set .@equip_id,28703; //Infinity Dagger
+					set .@part, EQI_HAND_R;
+					break;
+				case 3:
+					set .@equip_id,16038; //Infinity Mace
+					set .@part, EQI_HAND_R;
+					break;
+				case 4:
+					set .@equip_id,28105; //Infinity Two Handed Axe
+					set .@part, EQI_HAND_R;
+					break;
+				case 5:
+					set .@equip_id,18128; //Infinity Bow
+					set .@part, EQI_HAND_R;
+					break;
+				case 6:
+					set .@equip_id,21014; //Infinity Two Handed Sword
+					set .@part, EQI_HAND_R;
+					break;
+				case 7:
+					set .@equip_id,2024; //Infinity Staff
+					set .@part, EQI_HAND_R;
+					break;
+				case 8:
+					set .@equip_id,1938; //Infinity Violin
+					set .@part, EQI_HAND_R;
+					break;
+				case 9:
+					set .@equip_id,1994; //Infinity Whip
+					set .@part, EQI_HAND_R;
+					break;
+				case 10:
+					set .@equip_id,13323; //Infinity Shuriken
+					set .@part, EQI_HAND_R;
+					break;
+				case 11:
+					set .@equip_id,13126; //Infinity Handgun
+					set .@part, EQI_HAND_R;
+					break;
+			}
+						
+if (getequipisequiped(.@part) == 0) {
+		mes "[Relic Enforcer]";
+		mes "You will have to equip all items before ^44B7BC" + getitemname(.@equip_id) + "^000000.";
+		close;
+	}
+	if (Zeny < 100000) {  //custom translation
+		mes "[Relic Enforcer]";
+		mes "I'm sorry, but you don't have enough Zeny!";
+		next;
+		mes "[Relic Enforcer]";
+		mes "Our charge is very low, so please bear with me.";
+		close;
+	}
+	if (countitem (6905) < 20){
+		mes "[Relic Enforcer]";
+		mes "I'm sorry, but you don't have enough Broken Magic Stone!";
+		next;
+		mes "[Relic Enforcer]";
+		mes "Please come again when you have enough Broken Magic Stone.";
+		close;
+	}
+	if (getequipid(.@part) != .@equip_id) {
+		mes "[Relic Enforcer]";
+		mes "I don't think this is the equipment you requested.";
+		next;
+		mes "[Relic Enforcer]";
+		mes "I cannot work on equipment other than those from my list.";
+		close;
+	}
+	
+	set .@equip_refine, getequiprefinerycnt(.@part);
+	setarray .@equip_card[0], getequipcardid(.@part,0),getequipcardid(.@part,1),getequipcardid(.@part,2),getequipcardid(.@part,3);
+
+	// Enchantment
+	     if (.@equip_refine <= 4)  set .@ko_type01,1;
+	else if (.@equip_refine <= 7)  set .@ko_type01,2;
+	else if (.@equip_refine <= 9)  set .@ko_type01,3;
+	else if (.@equip_refine <= 12) set .@ko_type01,4;
+	else                           set .@ko_type01,5;
+
+	//custom translations
+	if (.@equip_card[3] >= 4700) { // Armor Enchant System
+		if (.@equip_card[2] >= 4700) {
+			mes "[Relic Enforcer]";
+			mes "This equipment cannot be further enchanted.";
+			next;
+			mes "[Relic Enforcer]";
+			mes "If you are not satisfied with the enchantments, I suggest that you reset the enchanment.";
+			close;
+		} else {
+			mes "[Relic Enforcer]";
+			mes "The fourth slot has already been enchanted. Shall I enchant the third slot as well?";
+			next;
+			if(select("Do it later:Do it now") == 1) {
+				mes "[Relic Enforcer]";
+				mes "Very well. Hope to see you later.";
+				close;
+			}
+			mes "[Relic Enforcer]";
+			mes "Starting to enchant the third slot.";
+			next;
+			set .@ko_type02,2;
+		}
+	} else {
+		mes "[Relic Enforcer]";
+		mes "This equipment is not currently enchanted. Shall I enchant the fourth slot?";
+		next;
+		if(select("Do it later:Do it now") == 1) {
+			mes "[Relic Enforcer]";
+			mes "Very well. Hope to see you later.";
+			close;
+		}
+		mes "[Relic Enforcer]";
+		mes "Starting to enchant the fourth slot.";
+		next;
+		set .@ko_type02,1;
+	}
+	if (.@ko_type02 == 1) {  // slot 4
+		set .@r, rand(1,1000);
+		switch (.@ko_type01) {
+		case 1:
+			if (.@r <= 200) 		set .@d_socket04,4700; //Strength1
+			else if (.@r <= 500) 	set .@d_socket04,4710; //Inteligence1
+			else					set .@d_socket04,4720; //Dexterity1
+			set .@enchant, .@e_socket04;
+			break;
+		case 2:
+			if (.@r <= 660) set .@d_socket04,4700; //Strength1
+			else if (.@r <= 720) set .@d_socket04,4710; //Inteligence1
+			else				 set .@d_socket04,4720; //Dexterity1
+			set .@enchant, .@d_socket04;
+			break;
+		case 3:
+			     if (.@r <= 90)  set .@c_socket04,4700; //Strength1
+			else if (.@r <= 180) set .@c_socket04,4710; //Inteligence1
+			else if (.@r <= 360) set .@c_socket04,4720; //Dexterity1
+			else if (.@r <= 660) set .@c_socket04,4701; //Strength2
+			else if (.@r <= 720) set .@c_socket04,4711; //Inteligence2
+			else				set .@c_socket04,4721; //Dexterity2
+			set .@enchant, .@c_socket04;
+			break;
+		case 4:
+			     if (.@r <= 70)  set .@b_socket04,4700; //Strength1
+			else if (.@r <= 140) set .@b_socket04,4710; //Inteligence1
+			else if (.@r <= 280) set .@b_socket04,4720; //Dexterity1
+			else if (.@r <= 495) set .@b_socket04,4701; //Strength2
+			else if (.@r <= 550) set .@b_socket04,4711; //Inteligence2
+			else				 set .@b_socket04,4721; //Dexterity2
+			set .@enchant, .@b_socket04;
+			break;
+		case 5:
+		         if (.@r <= 59)  set .@a_socket04,4701; //Strength2
+			else if (.@r <= 118) set .@a_socket04,4711; //Inteligence2
+			else if (.@r <= 236) set .@a_socket04,4721; //Dexterity2
+			else if (.@r <= 707) set .@a_socket04,4702; //Strength3
+			else if (.@r <= 765) set .@a_socket04,4712; //Inteligence3
+			else 				 set .@a_socket04,4722; //Dexterity3
+			set .@enchant, .@a_socket04;
+			break;
+		}
+	} else if (.@ko_type02 == 2) {  // slot 3
+		set .@r, rand(1,1000);
+		switch (.@ko_type01) {
+		case 1:
+			     if (.@r <= 125) set .@e_socket03,4811; //Fighting Spirit1
+			else if (.@r <= 250) set .@e_socket03,4815; //Spell1
+			else 				 set .@e_socket03,4832; //Expert Archer1
+			set .@enchant, .@e_socket03;
+			break;
+		case 2:
+			      if (.@r <= 100) set .@d_socket03,4811; //Fighting Spirit1
+			else if (.@r <= 190) set .@d_socket03,4815; //Spell1
+			else if (.@r <= 270) set .@d_socket03,4832; //Expert Archer1
+			else if (.@r <= 340) set .@d_socket03,4810; //Fighting Spirit2
+			else if (.@r <= 440) set .@d_socket03,4814; //Spell2
+			else if (.@r <= 530) set .@d_socket03,4814; //Expert Archer2
+			else if (.@r <= 610) set .@d_socket03,4809; //Fighting Spirit3
+			else if (.@r <= 680) set .@d_socket03,4813; //Spell3
+			else 				 set .@d_socket03,4834; //Expert Archer3
+			set .@enchant, .@d_socket03;
+			break;
+		case 3:
+			     if (.@r <= 100) set .@c_socket03,4810; //Fighting Spirit2
+			else if (.@r <= 200) set .@c_socket03,4814; //Spell2
+			else if (.@r <= 305) set .@c_socket03,4814; //Expert Archer2
+			else if (.@r <= 410) set .@c_socket03,4809; //Fighting Spirit3
+			else if (.@r <= 500) set .@c_socket03,4813; //Spell3
+			else if (.@r <= 700) set .@c_socket03,4834; //Expert Archer3
+			else if (.@r <= 750) set .@c_socket03,4808; //Fighting Spirit4
+			else if (.@r <= 780) set .@c_socket03,4812; //Spell4
+			else 				 set .@c_socket03,4835; //Expert Archer4
+			set .@enchant, .@c_socket03;
+			break;
+		case 4:
+			     if (.@r <= 70)  set .@b_socket03,4809; //Fighting Spirit3
+			else if (.@r <= 160) set .@b_socket03,4813; //Spell3
+			else if (.@r <= 250) set .@b_socket03,4834; //Expert Archer3
+			else if (.@r <= 340) set .@b_socket03,4808; //Fighting Spirit4
+			else if (.@r <= 400) set .@b_socket03,4812; //Spell4
+			else if (.@r <= 500) set .@b_socket03,4835; //Expert Archer4
+			else if (.@r <= 540) set .@b_socket03,4820; //Fighting Spirit5
+			else if (.@r <= 580) set .@b_socket03,4826; //Spell5
+			else 				 set .@b_socket03,4836; //Expert Archer5
+			set .@enchant, .@b_socket03;
+			break;
+		case 5:
+			     if (.@r <= 59)  set .@a_socket03,4821; //Fighting Spirit6
+			else if (.@r <= 118) set .@a_socket03,4827; //Spell6
+			else if (.@r <= 177) set .@a_socket03,4837; //Expert Archer6
+			else if (.@r <= 236) set .@a_socket03,4822; //Fighting Spirit7
+			else if (.@r <= 295) set .@a_socket03,4828; //Spell7
+			else if (.@r <= 354) set .@a_socket03,4838; //Expert Archer7
+			else if (.@r <= 413) set .@a_socket03,4823; //Fighting Spirit8
+			else if (.@r <= 472) set .@a_socket03,4829; //Spell8
+			else 				 set .@a_socket03,4839; //Expert Archer7
+			set .@enchant, .@a_socket03;
+			break;
+		}
+	} else {
+		mes "[Relic Enforcer]";
+		mes "An unknown error has occurred. Please contact customer service. *^_^*";
+		close;
+	}
+	if (.@ko_type02 == 1) {
+		set .@equip_card[2], .@equip_card[3];
+		set .@equip_card[3], .@enchant;
+	} else
+		set .@equip_card[2], .@enchant;
+	progressbar "ffff00",2;
+	set Zeny, Zeny - 100000;
+	delequip .@part;
+	delitem 6905,20;
+
+//	GetNonSlotItemSock2 .@equip_refine .@equip_id .@equip_card[0] .@equip_card[1] .@equip_card[2] .@equip_card[3]
+	getitem2 .@equip_id,1,1,.@equip_refine,0,.@equip_card[0],.@equip_card[1],.@equip_card[2],.@equip_card[3];
+
+	mes "[Relic Enforcer]";
+	mes "^44B7BC" + getitemname(.@equip_id) + "^000000";
+	mes "The equipment has been enchanted."; //custom translation
+	close;
+	end;
+	
+	LResetMenu:
+		mes "[Relic Enforcer]";
+		mes "You want to remove an Enchant from your item. You didn't like the Enchant?";
+		next;
+		mes "[Relic Enforcer]";
+		mes "Sorry but I'm not experienced enough. You've paid me for nothing.";
+		next;
+		mes "[Relic Enforcer]";
+		mes "Removing an Enchant will be ^ff0000100,000 Zeny^000000 and 1 ^FF0000Infinite Reset Coupon^000000.";
+		next;
+		mes "Which Enchant from the list of items do you want to remove?";
+		next;
+		switch(select("Nahhh..:Infinity Dagger:Infinity Mace:Infinity Two Handed Axe:Infinity Bow:Infinity Two Handed Sword:Infinity Staff:Infinity Violin:Infinity Whip:Infinity Shuriken:Infinity Handgun:Ancient Decoration of Rift:Manteau of Rift:Ancient Armor of Rift:Shoes of Rift")) {
+			case 1:
+				mes "[Relic Enforcer]";
+				mes "Changed your mind? Very well. Hope to see you later.";
+				close;
+			case 2:
+				set .@equip_id,28703; //Infinity Dagger
+				set .@part, EQI_HAND_R;
+				break;
+			case 3:
+				set .@equip_id,16038; //Infinity Mace
+				set .@part, EQI_HAND_R;
+				break;
+			case 4:
+				set .@equip_id,28105; //Infinity Two Handed Axe
+				set .@part, EQI_HAND_R;
+				break;
+			case 5:
+				set .@equip_id,18128; //Infinity Bow
+				set .@part, EQI_HAND_R;
+				break;
+			case 6:
+				set .@equip_id,21014; //Infinity Two Handed Sword
+				set .@part, EQI_HAND_R;
+				break;
+			case 7:
+				set .@equip_id,2024; //Infinity Staff
+				set .@part, EQI_HAND_R;
+				break;
+			case 8:
+				set .@equip_id,1938; //Infinity Violin
+				set .@part, EQI_HAND_R;
+				break;
+			case 9:
+				set .@equip_id,1994; //Infinity Whip
+				set .@part, EQI_HAND_R;
+				break;
+			case 10:
+				set .@equip_id,13323; //Infinity Shuriken
+				set .@part, EQI_HAND_R;
+				break;
+			case 11:
+				set .@equip_id,13126; //Infinity Handgun
+				set .@part, EQI_HAND_R;
+				break;
+			case 12:
+				set .@equip_id,19033; //Ancient Decoration of Rift
+				set .@part, EQI_HEAD_TOP;
+				break;
+			case 13:
+				set .@equip_id,20779; //Manteau of Rift
+				set .@part, EQI_SHOES;
+				break;
+			case 14:
+				set .@equip_id,15141; //Ancient Armor of Rift
+				set .@part, EQI_ARMOR;
+				break;
+			case 15:
+				set .@equip_id,22075; //Shoes of Rift
+				set .@part, EQI_SHOES;
+				break;
+		}
+		mes "[Relic Enforcer]";
+		mes "You want to reset ^44B7BC" + getitemname(.@equip_id) + "^000000?";
+		next;
+		mes "[Relic Enforcer]";
+		mes "The cost is the same but I do provide a service to remove only the Enchant on the 3rd slot and leave the 4th slot as is. Are you interested?";
+		next;
+		switch(select("Reset only the 3rd Slot.:Reset all.")) {
+		case 1:
+			mes "[Relic Enforcer]";
+			mes "Very well. I will reset only your 3rd slot.";
+			next;
+			set .@sot03_ck,1;
+			break;
+		case 2:
+			mes "[Relic Enforcer]";
+			mes "Very well. I will reset all slots.";
+			next;
+			break;
+		}
+	set .@select,2;
+
+	if (getequipisequiped(.@part) == 0) {
+		mes "[Relic Enforcer]";
+		mes "You will have to equip all items before ^44B7BC" + getitemname(.@equip_id) + "^000000.";
+		close;
+	}
+	if (Zeny < 100000) {  //custom translation
+		mes "[Relic Enforcer]";
+		mes "I'm sorry, but you don't have enough Zeny!";
+		next;
+		mes "[Relic Enforcer]";
+		mes "Our charge is very low, so please bear with me.";
+		close;
+	}
+	if (countitem (31241) < 1){
+		mes "[Relic Enforcer]";
+		mes "I'm sorry, but you don't have enough ^FF0000Infinite Reset Coupon^000000!";
+		next;
+		mes "[Relic Enforcer]";
+		mes "You may get it from our website with only 5 Donation Credit.";
+		close;
+	}
+	if (getequipid(.@part) != .@equip_id) {
+		mes "[Relic Enforcer]";
+		mes "I don't think this is the equipment you requested.";
+		next;
+		mes "[Relic Enforcer]";
+		mes "I cannot work on equipment other than those from my list.";
+		close;
+	}
+
+	set .@equip_refine, getequiprefinerycnt(.@part);
+	setarray .@equip_card[0], getequipcardid(.@part,0),getequipcardid(.@part,1),getequipcardid(.@part,2),getequipcardid(.@part,3);
+
+	// Initialization
+	if (.@select == 2) {
+		if (.@sot03_ck) {
+			if (.@equip_card[2] < 4700) { // Armor Enchant System
+				mes "[Relic Enforcer]";
+				mes "The third slot is is not enchanted. Please check again."; //custom translation
+				close;
+			}
+			set .@equip_card[2],0;
+		} else {
+			if (.@equip_card[3] < 4700) { // Armor Enchant System
+				mes "[Relic Enforcer]";
+				mes "This equipment is is not enchanted. Please check again."; //custom translation
+				close;
+			}
+			set .@equip_card[2],0;
+			set .@equip_card[3],0;
+		}
+		progressbar "ffff00",2;
+		set Zeny, Zeny - 100000;
+		delitem 31241,1;
+		delequip .@part;
+
+//		GetNonSlotItemSock2 .@equip_refine .@equip_id .@equip_card[0] .@equip_card[1] .@equip_card[2] .@equip_card[3]
+		getitem2 .@equip_id,1,1,.@equip_refine,0,.@equip_card[0],.@equip_card[1],.@equip_card[2],.@equip_card[3];
+
+		mes "[Relic Enforcer]";
+		mes "Initialization complete.";
+		close;
+	}
+	end;
+}
