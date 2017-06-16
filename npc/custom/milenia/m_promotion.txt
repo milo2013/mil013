@@ -9,8 +9,8 @@ end;
 OnInit:
 setarray .message$,
 
-	"Donate $1 Get 4 Donation Credit";
-	"Donate now at our website";
+	"Donate $1 Get 4 Donation Credit",
+	"Donate now at our website",
 	"Min $10 Donation got 1 Freegift Box";
 set .message_size,getarraysize( .message$ );
 while( .message_size ){
