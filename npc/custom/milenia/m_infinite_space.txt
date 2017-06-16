@@ -145,7 +145,8 @@ OnTalk:
 
 	OnInit:
 		// delay in second
-		.delay_timer = ( 3600 * 24 * 3 );
+		//.delay_timer = ( 3600 * 24 * 3 ); //3 days
+		.delay_timer = 82800 ; //23 hours
 		// .zeny cost
 		// .zeny_cost = 1000000;
 		// name of Instance
