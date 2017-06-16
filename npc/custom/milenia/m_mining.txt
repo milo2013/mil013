@@ -254,7 +254,7 @@ mining,107,43,11	script	Mining Corp CEO	1681,{
 															mes "[^888800 Mining Corp CEO ^000000]";
 															mes "Take this Rare Mithril";
 															delitem 7757,80;
-															getitem 31123,1;
+															getitem 41123,1;
 															close;
 															goto LwalkCEO;
 															break;
@@ -276,7 +276,7 @@ mining,107,43,11	script	Mining Corp CEO	1681,{
 															mes "[^888800 Mining Corp CEO ^000000]";
 															mes "Take this Rare Mithril";
 															delitem 7233,800;
-															getitem 31123,1;
+															getitem 41123,1;
 															close;
 															goto LwalkCEO;
 															break;

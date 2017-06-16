@@ -1,0 +1,428 @@
+/*
+_________________________________________________________
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+		Tic... Tac... ¡TOE!	[+] Version: 1.2.2
+_________________________________________________________
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+[+] Author: Leeg (rAthena User)
+( http://rathena.org/board/user/310-leeg/ )
+
+[+] Description:
+Tic tac toe / Noughts and crosses / Xs and Os - minigame.
+2 player based game. Tokens are Porings for player 1 and
+Poporings for player 2.
+
+[+] Special features:
+- 1st turn selection is randomised.
+- Detects tied game.
+- Anti-AFK. Game ends within 80 seconds.
+- Specific custom map for playing. (tictactoe.rsw)
+
+[+] Changelog:
+	|10 - 07 - 2012| - Coded.
+	|05 - 01 - 2013| - BugFix: Not all variables being
+						deleted when game ends AFK.
+	|06 - 01 - 2013| - Released to public.
+	|06 - 04 - 2017| - Released to public again.
+	|07 - 04 - 2017| - Version 1.1 - Optimized script.
+	|13 - 04 - 2017| - Version 1.2 - Betting system.
+	|14 - 04 - 2017| - Version 1.2.1 - Fixed scripting typos.
+		Added minimap. Changed coordinates to new map.
+	|15 - 04 - 2017| - Version 1.2.2 - Bug fixing.
+	
+       > Please report any bugs and give feedback! <
+________________________________________________________
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+*/
+
+-	script	atcmd_tictactoe	-1,{
+OnInit:
+	bindatcmd "tictactoe",strnpcinfo(3)+"::OnAtcommand";
+	end;
+OnAtcommand:
+	if(getmapflag(strcharinfo(3), nosave) == 1){
+		dispbottom "This command is not allowed in this map.";
+		end;
+	}
+	if(!$@gamestarted){
+		mes "[Tic Tac Toe betting system]";
+		mes "How much Zeny do you want to bet?";
+		mes "^A0A0A0(You will recover your zeny if nobody accepts your challenge or if you logout before someone accepts your challenge).^000000";
+		input $@mybet;
+		if($@mybet <= 0)
+			close;
+		if(Zeny >= $@mybet){
+			if(!$@gamestarted){
+				$@gamestarted = 1;
+				donpcevent "Game Agent#a::OnWait";
+				donpcevent "Game Agent#b::OnWait";
+				Zeny -= $@mybet;
+				safebet = $@mybet;
+				announce strcharinfo(0) + " wants to play a game of Tic Tac Toe with a bet of "+ F_InsertComma($@mybet) +" zeny!    <Use @tictactoeaccept to accept the challenge>", 0;
+				$charbet = getcharid((3), strcharinfo(0));
+				initnpctimer;
+			}
+			else{
+				next;
+				mes "[Tic Tac Toe betting system]";
+				mes "I'm sorry but a challenge is already running. Use @tictactoeaccept to accept the challenge or wait a few minutes to create your own.";
+			}
+		}
+		else{
+			next;
+			mes "[Tic Tac Toe betting system]";
+			mes "You don't have enough Zeny!";
+		}
+	}
+	else{
+		mes "[Tic Tac Toe betting system]";
+		mes "I'm sorry, someone is already playing or a challenge is waiting. Please, wait a minute and try again.";
+	}
+	end;
+
+OnTimer80000:	
+	attachrid($charbet);
+OnPCLogoutEvent:
+if($charbet == getcharid((3), strcharinfo(0))){	
+	donpcevent "Game Agent#a::OnEnable";
+	donpcevent "Game Agent#b::OnEnable";
+	dispbottom "[Tic Tac Toe]: Nobody accepted your challenge.", 0xe0ff00;
+	Zeny += safebet;
+	safebet = 0;
+	detachrid;
+	$charbet = 0;
+	$@mybet = 0;
+	$@gamestarted = 0;
+	stopnpctimer;
+}
+end;
+
+OnPCLoginEvent:
+	if(safebet){
+		Zeny += safebet;
+		safebet = 0;
+	}
+end;
+
+OnGame:
+	$@gamestarted = 2;
+	attachrid($charbet);
+	$p1charid = getcharid(0);
+	$p1map$ = strcharinfo(3);
+	getmapxy($p1map$, $p1xy[0], $p1xy[1], UNITTYPE_PC);
+	safebet = 0;
+	stopnpctimer;
+	warp "tictactoe",36,29;
+	$@players$[1] = strcharinfo(0);
+	$@player1  = getcharid(3);
+	donpcevent "System#main::OnStarttimer";
+end;
+}
+
+-	script	atcmd_tictactoe2	-1,{
+OnInit:
+	bindatcmd "tictactoeaccept",strnpcinfo(3)+"::OnAtcommand";
+	end;
+OnAtcommand:
+	if(getmapflag(strcharinfo(3), nosave) == 1){
+		dispbottom "This command is not allowed in this map.";
+		end;
+	}
+	if ($charbet == 0){
+		dispbottom "There is no challenge to accept.";
+		end;
+	}
+	if($charbet == getcharid((3), strcharinfo(0))){
+		dispbottom "You can't accept your own challenge!";
+		end;
+	}
+	if (Zeny >= $@mybet){
+		if($@gamestarted < 2){
+			announce strcharinfo(0) + " accepts the Tic Tac Toe challenge!", 0;
+			$charbet2 = getcharid((3), strcharinfo(0));
+			Zeny -= $@mybet;
+			$@players$[2] = strcharinfo(0);
+			$@player2 = getcharid(3);
+			$p2charid = getcharid(0);
+			$p2map$ = strcharinfo(3);
+			getmapxy($p2map$, $p2xy[0], $p2xy[1], UNITTYPE_PC);
+			warp "tictactoe",36,42;
+			donpcevent "atcmd_tictactoe::OnGame";
+		}
+		else{
+			dispbottom "Another player has already accepted this challenge.";
+		}
+		
+	}
+	else{
+		dispbottom "You don't have enough money to accept this challenge.";
+	}
+end;
+}
+
+
+function	script	reset	{
+	sleep 1500;
+	donpcevent "System#main::OnHideall";
+	$@victory1$ = "";
+	$@victory2$ = "";
+	$@turn = 0;
+	$@player1 = 0;
+	$@player2 = 0;
+	deletearray $@players$;
+	donpcevent "Game Agent#a::OnEnable";
+	donpcevent "Game Agent#b::OnEnable";
+	$@gamestarted = 0;
+	if ($@mybet){
+		warp $p1map$, $p1xy[0], $p1xy[1], $p1charid;
+		warp $p2map$, $p2xy[0], $p2xy[1], $p2charid;
+		$@mybet = 0;
+		$p1map$ = "";
+		$p2map$ = "";
+		deletearray $p1xy;
+		deletearray $p2xy;
+		$charbet = 0;
+		$charbet2 = 0;
+		$p1charid = 0;
+		$p2charid = 0;
+	}
+	else{
+		mapwarp "tictactoe","milenia",120,150;	
+	}
+	return;
+}
+	
+function	script	prepare	{
+	$@gamestarted = 1;
+	warpwaitingpc "tictactoe",36,getarg(0);
+	attachrid($@warpwaitingpc[0]);
+	$@players$[getarg(2)] = strcharinfo(0);
+	if (!getarg(1)) set getarg(1), $@warpwaitingpc[0];
+	donpcevent "Game Agent#"+((getarg(2)-1)?"b":"a")+"::OnWait";
+	return;
+}
+
+function	script	manageTurn	{
+			if (getd ("$@player" + getarg(0)) == getcharid(3))	
+				{
+					setnpctimer 10000, "System#main";
+					donpcevent strnpcinfo(3) + getarg(1);
+					setd "$@victory" + getarg(0) + "$", getd ("$@victory" + getarg(0) + "$") + getarg(2) + strnpcinfo(2);
+					if (
+					(compare(getd ("$@victory" + getarg(0) + "$"), getarg(2) + "1") && compare(getd ("$@victory" + getarg(0) + "$"), getarg(2) + "2") && compare(getd ("$@victory" + getarg(0) + "$"), getarg(2) + "3")) ||
+					(compare(getd ("$@victory" + getarg(0) + "$"), getarg(2) + "4") && compare(getd ("$@victory" + getarg(0) + "$"), getarg(2) + "5") && compare(getd ("$@victory" + getarg(0) + "$"), getarg(2) + "6")) ||
+					(compare(getd ("$@victory" + getarg(0) + "$"), getarg(2) + "7") && compare(getd ("$@victory" + getarg(0) + "$"), getarg(2) + "8") && compare(getd ("$@victory" + getarg(0) + "$"), getarg(2) + "9")) ||
+					(compare(getd ("$@victory" + getarg(0) + "$"), getarg(2) + "1") && compare(getd ("$@victory" + getarg(0) + "$"), getarg(2) + "4") && compare(getd ("$@victory" + getarg(0) + "$"), getarg(2) + "7")) ||
+					(compare(getd ("$@victory" + getarg(0) + "$"), getarg(2) + "2") && compare(getd ("$@victory" + getarg(0) + "$"), getarg(2) + "5") && compare(getd ("$@victory" + getarg(0) + "$"), getarg(2) + "8")) ||
+					(compare(getd ("$@victory" + getarg(0) + "$"), getarg(2) + "3") && compare(getd ("$@victory" + getarg(0) + "$"), getarg(2) + "6") && compare(getd ("$@victory" + getarg(0) + "$"), getarg(2) + "9")) ||
+					(compare(getd ("$@victory" + getarg(0) + "$"), getarg(2) + "1") && compare(getd ("$@victory" + getarg(0) + "$"), getarg(2) + "5") && compare(getd ("$@victory" + getarg(0) + "$"), getarg(2) + "9")) ||
+					(compare(getd ("$@victory" + getarg(0) + "$"), getarg(2) + "7") && compare(getd ("$@victory" + getarg(0) + "$"), getarg(2) + "5") && compare(getd ("$@victory" + getarg(0) + "$"), getarg(2) + "3"))	
+					)
+						{
+							mapannounce "tictactoe", "Player "+ getarg(0) + " ("+$@players$[$@turn]+ ") WINS!",bc_blue|bc_all;
+							if($@mybet){
+								Zeny += $@mybet*2;
+							}
+							reset;
+							return;
+						}
+				if (getstrlen(getd ("$@victory" + getarg(0) + "$")) >= 10)
+						{
+							mapannounce "tictactoe", "DRAW!",bc_blue|bc_all;
+							if($@mybet){
+								attachrid($charbet);
+								Zeny += $@mybet;
+								dispbottom "You recovered your "+ F_InsertComma($@mybet) +"z";
+								detachrid;
+								attachrid($charbet2);
+								dispbottom "You recovered your "+ F_InsertComma($@mybet) +"z";
+								Zeny += $@mybet;
+								detachrid;
+							}
+							reset;
+							return;
+						}
+				$@turn = (getarg(0)-1)?1:2;
+				return;
+				}
+			else
+				{
+					mes "Wait for your turn...";
+					close;
+					return;
+				}
+}				
+
+
+//NPC main game system.
+-	script	System#main	-1,{
+end;
+OnStarttimer: 
+	initnpctimer;
+	end;
+OnTimer5000:	
+	mapannounce "tictactoe", "Game is ready!",bc_blue|bc_all;
+	mapannounce "tictactoe", "1st turn has been decided.",bc_blue|bc_all;
+	if(!$@turn) $@turn = rand(1,2);
+	mapannounce "tictactoe", "Player "+$@turn+" ("+$@players$[$@turn]+") starts!",bc_blue|bc_all;
+	end;
+OnTimer50000:
+	mapannounce "tictactoe", "Maximum time has been exceeded, game is over. Thanks for playing... See ya!",bc_blue|bc_all;
+	if($@mybet){
+		attachrid(($@turn-1)?$charbet:$charbet2);
+		dispbottom "You won "+ F_InsertComma($@mybet) +"z";
+		Zeny += $@mybet * 2;
+		detachrid;
+	}
+	reset;
+	end;
+OnHideall:
+	stopnpctimer;
+	.@format$ = "%s%d";
+	for (.@i = 1; .@i <= 9; .@i++){
+		hideonnpc sprintf(.@format$,"ticO",.@i);
+		hideonnpc sprintf(.@format$,"ticX",.@i);
+		hideoffnpc sprintf(.@format$,"tic",.@i);
+	}
+	end;
+	}
+	
+//NPCs Waiting Room and Warper
+
+	//Player [1]
+milenia,161,55,5	script	Tictactoe#a	10157,{
+end;
+OnEnable:
+	delwaitingroom;
+OnInit:
+	waitingroom "Player 1",2,"Game Agent#a::OnStartArena",1;
+	enablewaitingroomevent;
+	end;
+OnStartArena:
+	if(getwaitingroomstate(0,"Game Agent#b") < 1){
+		chatmes "Please wait until another player joins...";
+		end;
+	}
+	else
+	donpcevent "Game Agent#b::OnCheck";
+OnCheck:
+	prepare 29, $@player1, 1;
+	donpcevent "System#main::OnStarttimer";
+	end;
+OnDisable:
+	disablewaitingroomevent;
+	end;
+OnWait:
+	disablewaitingroomevent;
+	delwaitingroom;
+	waitingroom "Please wait",1;
+end;
+}
+
+	//Player [2]
+milenia,170,55,11	script	Tictactoe#b	10156,{
+end;
+OnEnable:
+	delwaitingroom;
+OnInit:
+	waitingroom "Player 2",2,"Game Agent#b::OnStartArena",1;
+	enablewaitingroomevent;
+	end;
+OnStartArena:
+	if(getwaitingroomstate(0,"Game Agent#a") < 1){
+		chatmes "Please wait until another player joins...";
+		end;
+	}
+	else
+	donpcevent "Game Agent#a::OnCheck";
+OnCheck:
+	prepare 42, $@player2, 2;
+	end;
+OnDisable:
+	disablewaitingroomevent;
+	end;
+OnWait:
+	disablewaitingroomevent;
+	delwaitingroom;
+	waitingroom "Please wait",1;
+end;	
+}
+	
+//Shift system
+tictactoe,34,38,5	script	Square nº1#1::tic1	723,{
+	if	($@turn ==	1)	
+		{
+			manageTurn 1, "::OnNought", "O";
+		}
+	else if ($@turn == 2)
+		{
+			manageTurn 2, "::OnCross", "X";	
+		}
+end;		
+	
+OnNought: 
+	hideonnpc "tic"+strnpcinfo(2);
+	hideoffnpc "ticO"+strnpcinfo(2);
+	end;
+OnCross:
+	hideonnpc "tic"+strnpcinfo(2);
+	hideoffnpc "ticX"+strnpcinfo(2);
+	end;
+OnInit:
+	hideonnpc "ticO"+strnpcinfo(2);
+	hideonnpc "ticX"+strnpcinfo(2);
+	end;
+	}
+	
+//NPCr1	
+tictactoe,34,38,5	script	Poring::ticO1	1002,{
+	end;
+	}
+	
+//NPCa1
+tictactoe,34,38,5	script	Poporing::ticX1	1031,{
+	end;
+	}
+	
+//Duplicates
+//Empty
+tictactoe,36,38,5	duplicate(tic1)	Square nº2#2::tic2	723
+tictactoe,38,38,5	duplicate(tic1)	Square nº3#3::tic3	723
+tictactoe,34,36,5	duplicate(tic1)	Square nº4#4::tic4	723
+tictactoe,36,36,5	duplicate(tic1)	Square nº5#5::tic5	723
+tictactoe,38,36,5	duplicate(tic1)	Square nº6#6::tic6	723
+tictactoe,34,34,5	duplicate(tic1)	Square nº7#7::tic7	723
+tictactoe,36,34,5	duplicate(tic1)	Square nº8#8::tic8	723
+tictactoe,38,34,5	duplicate(tic1)	Square nº9#9::tic9	723
+
+//Poring
+tictactoe,36,38,5	duplicate(ticO1)	Poring::ticO2	1002
+tictactoe,38,38,5	duplicate(ticO1)	Poring::ticO3	1002
+tictactoe,34,36,5	duplicate(ticO1)	Poring::ticO4	1002
+tictactoe,36,36,5	duplicate(ticO1)	Poring::ticO5	1002
+tictactoe,38,36,5	duplicate(ticO1)	Poring::ticO6	1002
+tictactoe,34,34,5	duplicate(ticO1)	Poring::ticO7	1002
+tictactoe,36,34,5	duplicate(ticO1)	Poring::ticO8	1002
+tictactoe,38,34,5	duplicate(ticO1)	Poring::ticO9	1002
+
+//Poporing
+tictactoe,36,38,5	duplicate(ticX1)	Poporing::ticX2	1031
+tictactoe,38,38,5	duplicate(ticX1)	Poporing::ticX3	1031
+tictactoe,34,36,5	duplicate(ticX1)	Poporing::ticX4	1031
+tictactoe,36,36,5	duplicate(ticX1)	Poporing::ticX5	1031
+tictactoe,38,36,5	duplicate(ticX1)	Poporing::ticX6	1031
+tictactoe,34,34,5	duplicate(ticX1)	Poporing::ticX7	1031
+tictactoe,36,34,5	duplicate(ticX1)	Poporing::ticX8	1031
+tictactoe,38,34,5	duplicate(ticX1)	Poporing::ticX9	1031
+
+//Mapflags
+tictactoe	mapflag	nomemo
+tictactoe	mapflag	noskill
+tictactoe	mapflag	nochat
+tictactoe	mapflag	nobranch
+tictactoe	mapflag	nowarp
+tictactoe	mapflag	noteleport
+tictactoe	mapflag	nodrop
+tictactoe	mapflag	noreturn
+tictactoe	mapflag	nosave	SavePoint

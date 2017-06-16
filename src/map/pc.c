@@ -4751,18 +4751,14 @@ bool pc_isUseitem(struct map_session_data *sd,int n)
 		return false; // You cannot use this item while storage is open.
 	}
 
-	if (item->flag.dead_branch && (map[sd->bl.m].flag.nobranch || map_flag_gvg(sd->bl.m)))
+	if (item->flag.dead_branch && (map[sd->bl.m].flag.nobranch || map_flag_gvg2(sd->bl.m)))
 		return false;
 
 	switch( nameid ) {
-		case ITEMID_ANODYNE:
-			if( map_flag_gvg(sd->bl.m) )
-				return false;
-			break;
 		case ITEMID_WING_OF_FLY:
 		case ITEMID_GIANT_FLY_WING:
 		case ITEMID_N_FLY_WING:
-			if( map[sd->bl.m].flag.noteleport || map_flag_gvg(sd->bl.m) ) {
+			if( map[sd->bl.m].flag.noteleport || map_flag_gvg2(sd->bl.m) ) {
 				clif_skill_teleportmessage(sd,0);
 				return false;
 			}
@@ -7602,7 +7598,7 @@ int pc_dead(struct map_session_data *sd,struct block_list *src)
 			if(battle_config.pc_invincible_time)
 				pc_setinvincibletimer(sd, battle_config.pc_invincible_time);
 			sc_start(&sd->bl,&sd->bl,status_skill2sc(MO_STEELBODY),100,5,skill_get_time(MO_STEELBODY,5));
-			if(map_flag_gvg(sd->bl.m))
+			if(map_flag_gvg2(sd->bl.m))
 				pc_respawn_timer(INVALID_TIMER, gettick(), sd->bl.id, 0);
 			return 0;
 		}
@@ -7762,7 +7758,7 @@ int pc_dead(struct map_session_data *sd,struct block_list *src)
 	// changed penalty options, added death by player if pk_mode [Valaris]
 	if(battle_config.death_penalty_type
 		&& (sd->class_&MAPID_UPPERMASK) != MAPID_NOVICE	// only novices will receive no penalty
-		&& !map[sd->bl.m].flag.noexppenalty && !map_flag_gvg(sd->bl.m)
+		&& !map[sd->bl.m].flag.noexppenalty && !map_flag_gvg2(sd->bl.m)
 		&& !sd->sc.data[SC_BABY] && !sd->sc.data[SC_LIFEINSURANCE])
 	{
 		uint32 base_penalty = 0;
@@ -7882,7 +7878,7 @@ int pc_dead(struct map_session_data *sd,struct block_list *src)
 		}
 	}
 	//GvG
-	if( map_flag_gvg(sd->bl.m) ) {
+	if( map_flag_gvg2(sd->bl.m) ) {
 		add_timer(tick+1000, pc_respawn_timer, sd->bl.id, 0);
 		return 1|8;
 	}
@@ -8611,6 +8607,18 @@ bool pc_jobchange(struct map_session_data *sd,int job, char upper)
 	pc_checkallowskill(sd);
 	pc_equiplookall(sd);
 	pc_show_questinfo(sd);
+	if( sd->status.party_id ){
+		struct party_data* p;
+		
+		if( ( p = party_search( sd->status.party_id ) ) != NULL ){
+			ARR_FIND(0, MAX_PARTY, i, p->party.member[i].char_id == sd->status.char_id);
+
+			if( i < MAX_PARTY ){
+				p->party.member[i].class_ = sd->status.class_;
+				clif_party_job_and_level(sd);
+			}
+		}
+	}
 
 	chrif_save(sd, CSAVE_NORMAL);
 	//if you were previously famous, not anymore.
@@ -12301,6 +12309,13 @@ void pc_set_costume_view(struct map_session_data *sd) {
 		sd->status.head_top = id->look;
 	if ((i = sd->equip_index[EQI_GARMENT]) != -1 && (id = sd->inventory_data[i]))
 		sd->status.robe = id->look;
+
+	// No Consume 
+	if( map[sd->bl.m].flag.noconsume && pc_get_group_id(sd) < battle_config.noconsume_belowgroupid)	//mf_noconsume
+	{
+		clif_displaymessage (sd->fd, "You can't consume any usable items in this map.");
+		return 0;
+	}
 
 	// Costumes check
 	if (!map[sd->bl.m].flag.nocostume) {

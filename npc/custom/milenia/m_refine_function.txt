@@ -139,7 +139,7 @@ if( !.@equipment_count ){
 	message strcharinfo(0),"Sorry, but you didnt have equipment that refined between "+.@arg[1]+" ~ "+.@arg[2]+" for refine.";
 	end;
 }
-else if  (countitem (31121)) < 1 {
+else if  (countitem (41121)) < 1 {
 	message strcharinfo(0),"Sorry, but you didnt have Refine Certificate to use our service! Please buy from our Donation Shop!";
 	end;
 }else{

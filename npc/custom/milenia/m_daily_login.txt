@@ -101,7 +101,7 @@ milenia,112,163,5	script	Daily Login Rewards	953,{
 					case 5: reward_list( .@give_reward, 14232,10 ); 		break;		// Yggberrybox(10) 10x
 					case 6: reward_list( .@give_reward, 12350,10 ); 		break;		// Angeling Potion 10x
 					case 7: reward_list( .@give_reward, 13582,1 ); 			break;		// Convex Mirror 5 Box 1x
-					case 8: reward_list( .@give_reward, 31126,1 ); 			break;		// Cashpoints Voucher 10's 1x
+					case 8: reward_list( .@give_reward, 41126,1 ); 			break;		// Cashpoints Voucher 10's 1x
 					case 9: reward_list( .@give_reward, 17229,1 ); 			break;		// Infinite Flywing Box (7 Days) 1x
 					case 10: reward_list( .@give_reward, 6457,1,6235,1); 	break;		// +5&6 Armor Refine Ticket 1x
 					case 11: reward_list( .@give_reward, 16268,1 ); 		break;		// HE Bubblezgum Box 10 1x
@@ -120,11 +120,11 @@ milenia,112,163,5	script	Daily Login Rewards	953,{
 					case 24: reward_list( .@give_reward, 6228,1,6232,1 ); 	break;		// +9 Armor&Weapon Refine 1x
 					case 25: reward_list( .@give_reward, 7539,20 ); 		break;		// Poring Coin 20x
 					case 26: reward_list( .@give_reward, 12103,2 ); 		break;		// Bloody Branch 2x
-					case 27: reward_list( .@give_reward, 31120,50 ); 		break;		// 50 Condense Yggberry Potion 
-					case 28: reward_list( .@give_reward, 31124,1 ); 		break;		// 3 Days Milenia Certificate 
+					case 27: reward_list( .@give_reward, 41120,50 ); 		break;		// 50 Condense Yggberry Potion 
+					case 28: reward_list( .@give_reward, 41124,1 ); 		break;		// 3 Days Milenia Certificate 
 					//case 29: reward_list( .@give_reward, 12314,1 ); 		break;		// Gympass Box(10) 1x
-					//case 30: reward_list( .@give_reward, 31120,50 ); 		break;		// 50 Condense Yggberry Potion 
-					//case 31: reward_list( .@give_reward, 31124,1 ); 		break;		// 3 Days Milenia Certificate
+					//case 30: reward_list( .@give_reward, 41120,50 ); 		break;		// 50 Condense Yggberry Potion 
+					//case 31: reward_list( .@give_reward, 41124,1 ); 		break;		// 3 Days Milenia Certificate
 						mes "No rewards available for this day.";
 						close;
 				}

@@ -18,24 +18,30 @@
   
 milenia,120,143,5	script	Devil Square Guardian#1	406,{
 	
-		query_sql("SELECT COUNT(char_id) FROM `char` LEFT JOIN `login` ON `char`.account_id=login.account_id WHERE online AND last_ip = (SELECT `last_ip` FROM `login` WHERE `account_id` = "+getcharid(3)+")",.@count);
-		if( .@count > 1 ) {
-		
-        mes "[Devil Square Guardian]";
-		mes "Hello ^ff0000" + strcharinfo(0) + "^000000!";
-		next;
-		mes "[Duke Bradley]";
-		mes "I't's seem you trying to cheat!!";
-		next;
-		mes "[Duke Bradley]";
-		mes "Only 1 IP can enter this event!!";
-		mes "[Duke Bradley]";
-		mes "Please logout other account to enter!";
-		next;
-		close2;
-		warp "pvp_n_8-5",96,103;
-		end;
-		}
+	Player_Menu:	
+	query_sql("SELECT COUNT(char_id) FROM `char` LEFT JOIN `login` ON `char`.account_id=login.account_id WHERE online AND last_ip = (SELECT `last_ip` FROM `login` WHERE `account_id` = "+getcharid(3)+")",.@count);
+	query_sql("SELECT COUNT(char_id) FROM `char` LEFT JOIN `login` ON `char`.account_id=login.account_id WHERE online AND last_unique_id = (SELECT `last_unique_id` FROM `login` WHERE `account_id` = "+getcharid(3)+")",.@mac);
+	if( ( (.@count) > 1 ) && ((.@mac) > 1) ) {
+			
+	// IP Address 
+	query_sql("SELECT `last_ip` FROM `login` WHERE `account_id` = "+getcharid(3)+" ",.IP$);
+	
+	// MAC Address
+	query_sql("SELECT `last_unique_id` FROM `login` WHERE `account_id` = "+getcharid(3)+" ",.macID$);
+	
+	mes "[Devil Square Guardian]";
+	mes "My.. My.. ^ff0000" + strcharinfo(0) + "^000000..";
+	next;
+	mes "[Devil Square Guardian]";
+	mes "It's seem you have more than 1 client online!";
+	mes "^FF0000"+(.@count)+"^000000 of ^FF0000"+(.IP$)+"^000000 IP Address.";
+	mes "^FF0000"+(.@mac)+"^000000 of ^FF0000"+(.macID$)+"^000000 MAC Adress.";
+	next;
+	mes "[Devil Square Guardian]";
+	mes "Please make sure only 1 running to enter this PVP!";
+	close;
+	end;
+	}
 		
 		if (countitem (7621) >= 1){ // Token Check
         mes "[Devil Square Guardian]";
@@ -167,6 +173,8 @@ OnThu2000:
 OnFri2000:
 OnSat2000:
 OnSun2000:
+
+OnWed1239:
 		hideoffnpc "Devil Square Guardian#1";
 		hideoffnpc "Devil Square Guardian#2";
 		sleep 1000;
@@ -224,8 +232,7 @@ OnSun2000:
         set .mob, 0;
 		delwaitingroom;
 		hideonnpc "Devil Square Guardian#1";
-        //set .monsterset, query_sql("SELECT id, iname, hp FROM `mob_db_re` where LV <= 70 and LV >= 60 and hp < 99999999 and MEXP = 0 and not iName='Treasure Chest' ORDER BY RAND() LIMIT 100", .monsterid, .monstername$, .monsterhp);
-        set .monsterset, query_sql("SELECT id, iname, hp FROM `mob_db_re` where LV <= 120 and LV >= 99 and hp < 99999999 and MEXP = 0 and not iName='Treasure Chest' ORDER BY RAND() LIMIT 100", .monsterid, .monstername$, .monsterhp);
+        set .monsterset, query_sql("SELECT id, iname, hp FROM `mob_db_re_DS` where LV <= 120 and LV >= 99 and hp < 99999999 and MEXP = 0 and not iName='Treasure Chest' ORDER BY RAND() LIMIT 100", .monsterid, .monstername$, .monsterhp);
 		for (set .@x,0; .@x<getmapusers("ds"); set .@x, .@x+1){
 				set .monstercount,3;
                 for (set .@y,0; .@y<.monstercount; set .@y, .@y+1 ) {
@@ -255,7 +262,7 @@ OnDevil2:
         set .round,2;
         set .mob, 0;
         //set .monsterset, query_sql("SELECT id, iname, hp FROM `mob_db_re` where LV <= 75 and LV >= 70 and hp < 99999999 and MEXP = 0 and not iName='Treasure Chest' ORDER BY RAND() LIMIT 100", .monsterid, .monstername$, .monsterhp);
-        set .monsterset, query_sql("SELECT id, iname, hp FROM `mob_db_re` where LV <= 140 and LV >= 120 and hp < 99999999 and MEXP = 0 and not iName='Treasure Chest' ORDER BY RAND() LIMIT 100", .monsterid, .monstername$, .monsterhp);
+        set .monsterset, query_sql("SELECT id, iname, hp FROM `mob_db_re_DS` where LV <= 140 and LV >= 120 and hp < 99999999 and MEXP = 0 and not iName='Treasure Chest' ORDER BY RAND() LIMIT 100", .monsterid, .monstername$, .monsterhp);
 		for (set .@x,0; .@x<getmapusers("ds"); set .@x, .@x+1){
 				set .monstercount,3;
                 for (set .@y,0; .@y<.monstercount; set .@y, .@y+1 ) {
@@ -285,7 +292,7 @@ OnDevil3:
         set .round, 3;
         set .mob, 0;
         //set .monsterset, query_sql("SELECT id, iname, hp FROM `mob_db_re` where LV <= 80 and LV >= 75 and hp < 99999999 and MEXP = 0 and not iName='Treasure Chest' ORDER BY RAND() LIMIT 100", .monsterid, .monstername$, .monsterhp);
-        set .monsterset, query_sql("SELECT id, iname, hp FROM `mob_db_re` where LV <= 160 and LV >= 140 and hp < 99999999 and MEXP = 0 and not iName='Treasure Chest' ORDER BY RAND() LIMIT 100", .monsterid, .monstername$, .monsterhp);
+        set .monsterset, query_sql("SELECT id, iname, hp FROM `mob_db_re_DS` where LV <= 160 and LV >= 140 and hp < 99999999 and MEXP = 0 and not iName='Treasure Chest' ORDER BY RAND() LIMIT 100", .monsterid, .monstername$, .monsterhp);
 		for (set .@x,0; .@x<getmapusers("ds"); set .@x, .@x+1){
 				//set .monster, rand(0,.monsterset-1);
                 //if (.monsterhp[.monster] > 15000) set .monstercount, 1;

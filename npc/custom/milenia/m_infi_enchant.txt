@@ -800,7 +800,7 @@ if (getequipisequiped(.@part) == 0) {
 		mes "Our charge is very low, so please bear with me.";
 		close;
 	}
-	if (countitem (31241) < 1){
+	if (countitem (41241) < 1){
 		mes "[Relic Enforcer]";
 		mes "I'm sorry, but you don't have enough ^FF0000Infinite Reset Coupon^000000!";
 		next;
@@ -840,7 +840,7 @@ if (getequipisequiped(.@part) == 0) {
 		}
 		progressbar "ffff00",2;
 		set Zeny, Zeny - 100000;
-		delitem 31241,1;
+		delitem 41241,1;
 		delequip .@part;
 
 //		GetNonSlotItemSock2 .@equip_refine .@equip_id .@equip_card[0] .@equip_card[1] .@equip_card[2] .@equip_card[3]

@@ -67,6 +67,7 @@ moro_cav,46,59,4	script	Wandering Old Woman	846,{
 	
 
 moro_cav,45,60,4	script	Wandering Old Man	847,{
+
 	set .@party_id,getcharid(1);
 	set .@md_name$,"Bios Island";
 
@@ -164,6 +165,76 @@ L_Enter:
 1@dth1,67,97,6	script	Vrid#ep14bs_st	468,{
 	end;
 OnInstanceInit:
+
+// mapflag configuration
+	setarray .@mapflag,
+
+		mf_nowarp,
+		mf_nowarpto,
+		mf_nosave,
+		mf_nomemo,
+		mf_noteleport,
+		mf_monster_noteleport, // disable teleporting for monsters
+	  //mf_nopenalty, // disable exp loss
+		mf_noreturn,
+		mf_nobranch,
+		//mf_nomobloot, // disable monster drop loots,
+		//mf_nomvploot, // 2 of these
+		//mf_partylock,
+		//mf_hidemobhpbar;
+		
+		.@size = getarraysize( .@mapflag );
+	for ( .@i = 0; .@i < .@size; .@i++ )
+		setmapflag instance_mapname("1@dth1"), .@mapflag[.@i];
+	
+	end;
+	
+// mapflag configuration
+	setarray .@mapflag,
+
+		mf_nowarp,
+		mf_nowarpto,
+		mf_nosave,
+		mf_nomemo,
+		mf_noteleport,
+		mf_monster_noteleport, // disable teleporting for monsters
+	  //mf_nopenalty, // disable exp loss
+		mf_noreturn,
+		mf_nobranch,
+		//mf_nomobloot, // disable monster drop loots,
+		//mf_nomvploot, // 2 of these
+		//mf_partylock,
+		//mf_hidemobhpbar;
+		
+		.@size = getarraysize( .@mapflag );
+	for ( .@i = 0; .@i < .@size; .@i++ )
+		setmapflag instance_mapname("1@dth2"), .@mapflag[.@i];
+	
+	end;
+	
+// mapflag configuration
+	setarray .@mapflag,
+
+		mf_nowarp,
+		mf_nowarpto,
+		mf_nosave,
+		mf_nomemo,
+		mf_noteleport,
+		mf_monster_noteleport, // disable teleporting for monsters
+	  //mf_nopenalty, // disable exp loss
+		mf_noreturn,
+		mf_nobranch,
+		//mf_nomobloot, // disable monster drop loots,
+		//mf_nomvploot, // 2 of these
+		//mf_partylock,
+		//mf_hidemobhpbar;
+		
+		.@size = getarraysize( .@mapflag );
+	for ( .@i = 0; .@i < .@size; .@i++ )
+		setmapflag instance_mapname("1@dth3"), .@mapflag[.@i];
+	
+	end;
+	
 	donpcevent instance_npcname("Vrid#ep14bs_st")+"::OnEnable";
 	end;
 OnEnable:

@@ -18,7 +18,7 @@ OnInit:
 	.minplayer2start = 2;      // minimum players to start (ex. if 3vs3, set to 3)
 	.eventlasting    = 20*60;  // event duration before auto-reset (20 minutes * seconds)
 	setarray .rewarditem[0],   // rewards for the winning team: <item>,<amount>,...
-		31162, rand (5,30);
+		41162, rand (5,30);
 	end;
 OnStart:
 	if ( getwaitingroomstate( 0, .rednpcname$ ) < .minplayer2start || getwaitingroomstate( 0, .bluenpcname$ ) < .minplayer2start )
@@ -126,6 +126,7 @@ endless_war	mapflag	nopenalty
 endless_war	mapflag	nobranch
 endless_war	mapflag	noicewall
 endless_war	mapflag	hidemobhpbar
+endless_war	mapflag	noitemconsumption
 
 endless_war,166,86,0	warp	ew#1	1,1,endless_war,156,86
 endless_war,89,86,0	warp	ew#2	1,1,endless_war,98,86

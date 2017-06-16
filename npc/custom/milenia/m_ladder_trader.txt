@@ -32,7 +32,53 @@ milenia,100,161,5	script	MVP Ladder Exchanger	10183,{
 				next;
 				switch(select("Got it!:Close")) {
 				case 1:
-					goto Ltrade;
+				// start here
+						mes "[Ladder Exchanger]";
+						mes "How many " + getitemname(.IDP) + " do you want to exchange?";
+						next;
+						input .@amountP;
+					if (.@amountP == 0) {
+						mes "[Ladder Exchanger]";
+						mes "Umm, please enter your amount!";
+						close;
+						}
+						
+						.@totalP = (countitem (.IDP));
+					if (.@amountP > .@totalP){
+						mes "[Ladder Exchanger]";
+						mes "You don't have enough Permit!!!";
+						next;
+						mes "[Ladder Exchanger]";
+						mes "Please take this matter seriously!!";
+						next;
+						mes "[Ladder Exchanger]";
+						mes "You #$%$@$!!";
+						close;
+						}
+					if (.@totalP == 0){
+	
+						mes "[Ladder Exchanger]";
+						mes "You don't have "+.IDP+"!!";
+						next;
+						mes "[Ladder Exchanger]";
+						mes "Please go away!!";
+						next;
+						mes "[Ladder Exchanger]";
+						mes "I don't have time for you!!";
+						close;
+						}
+						
+						mes "[Ladder Exchanger]";
+						mes "Are you sure want to exchange "+ .@amountP +" "+ (getitemname (41204)) +"?";
+						next;
+						switch(select("Bring it on!:Maybe later")) {
+							case 1 : 
+								goto Ltrade;
+							case 2 : 
+								close;
+						}
+				//end here
+					
 				case 2:
 					close;
 					break;
@@ -86,9 +132,11 @@ milenia,100,161,5	script	MVP Ladder Exchanger	10183,{
 	set .round_item_amount, rand(1,3);
 	set .Exchange, .Exchange + 1;
 	
+	
 	mes "[Ladder Exchanger]";
     mes "Exchanging your permit....";
-	message strcharinfo(0),"Exchanging permit "+(.Exchange)+"/"+(.Total)+".";
+	//message strcharinfo(0),"Exchanging permit "+(.Exchange)+"/"+(.Total)+".";
+	message strcharinfo(0),"Exchanging permit "+(.Exchange)+"/"+(.@amountP)+".";
 	getitem .round_item_id, .round_item_amount;
 	delitem .IDP,1;
 		if (.Exchange) == (.Total){
@@ -97,6 +145,14 @@ milenia,100,161,5	script	MVP Ladder Exchanger	10183,{
 		mes "Sorry! You have reach the limit for exchange!!";
 		close;
 		}
+		
+		if (.Exchange) == (.@amountP){
+		next;
+		mes "[Ladder Exchanger]";
+		mes "Sorry! You have reach the limit for exchange!!";
+		close;
+		}
+			
 	next;
 	goto Ltrade;
 	
@@ -146,7 +202,7 @@ milenia,100,161,5	script	MVP Ladder Exchanger	10183,{
 	
 
 	OnInit:
-    set .IDP,31204; // Ladder Permit
-	set .IDP2,31205; // Ladder Permit 2
+    set .IDP,41204; // Ladder Permit
+	set .IDP2,41205; // Ladder Permit 2
     end;
 }

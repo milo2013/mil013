@@ -95,20 +95,23 @@ Player_Menu:
 			mes "[Milenia]";
 			mes "Please select which NPC you would like to be teleported to.";
 			next;
-			switch(select("Disguise Game:Zombie PVP Game:Black Jack Game:Stock Market:Lottery")) {
+			switch(select("TicTacToe:Disguise Game:Zombie PVP Game:Black Jack Game:Stock Market:Lottery")) {
 				case 1:
-					warp "milenia",75,109;
+					warp "milenia",166,52;
 					break;
 				case 2:
-					warp "milenia",52,102;
+					warp "milenia",75,109;
 					break;
 				case 3:
-					warp "milenia",55,94;
+					warp "milenia",52,102;
 					break;
 				case 4:
-					warp "milenia",52,89;
+					warp "milenia",55,94;
 					break;
 				case 5:
+					warp "milenia",52,89;
+					break;
+				case 6:
 					warp "milenia",55,84;
 					break;
 			}
@@ -243,3 +246,4 @@ milenia,43,147,11	duplicate(Milenia Tour)	Milenia Tour#mine	721
 milenia,69,68,5	duplicate(Milenia Tour)	Milenia Tour#novice	721
 milenia,130,82,11	duplicate(Milenia Tour)	Milenia Tour#fish	721
 milenia,218,118,11	duplicate(Milenia Tour)	Milenia Tour#cedi	721
+milenia,169,45,11	duplicate(Milenia Tour)	Milenia Tour#tictac	721

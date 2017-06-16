@@ -1051,6 +1051,10 @@ lasa_dun_q
 // CUSTOM Map
 milenia
 farm
+1@farm
+2@farm
+3@farm
+4@farm
 milenia_pvp
 1@new
 2@new
@@ -1078,3 +1082,4 @@ cedi_3
 ds
 mining
 1@prison
+tictactoe

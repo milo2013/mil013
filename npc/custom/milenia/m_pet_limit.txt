@@ -55,7 +55,7 @@ setarray .map$,"ds";
 		mes "Hello ^ff0000" + strcharinfo(0) + "^000000,";
 		mes "You cannot use this in here!";
 		mes "Thank you!!";
-		getitem 31231,1;
+		getitem 41231,1;
                 close;
         }
 		else{
@@ -71,13 +71,13 @@ function	script	WoeRewadsFunc	{
 	set .item_amount, 5;
 
 	getitem .item_id, .item_amount;
-	getitem 31126,10; 
+	getitem 41126,10; 
 	getitem 671,50; 
 	getitem 14232,10; 
 	getitem 12246,5; 
 	getitem 6234 ,5; 
 	getitem 6230,5;
-	getitem 31206,10;
+	getitem 41206,10;
 	}
 	
 function	script	PrizeHeroFunc	{

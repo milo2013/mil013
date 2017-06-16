@@ -1,110 +1,525 @@
-milenia,50,126,5	script	Dokebi Farm	940,{
+-	script	Dokebi#Gold	-1,{
+	
+	OnNormalKill:
+		monster .Map$,0,0,"--ja--",.normal_mob[rand(.normal_mob_size)],1,strnpcinfo(0)+"::OnNormalKill";
+		getitem .farm_normal[rand(.farm_normal_size)], 1;
+		goto L_kill;
+	OnBossKill:
+		monster .Map$,0,0,"--ja--",.boss_mob[rand(.boss_mob_size)],1,strnpcinfo(0)+"::OnBossKill";
+		getitem .farm_boss[rand(.farm_boss_size)], 4;
+	L_kill:
+		#FarmHunt++;
+		dispbottom "[ Farm Zone ] : Farmed "+ #FarmHunt +" / "+.MaxItemLimit+" Items";
+		if ( #FarmHunt >= .MaxItemLimit ) {
+		message strcharinfo(0),"Limit Reach , you may join again later.";
+		sleep2 2000;
+		warp "milenia",51,127;
+	}
+	end;
+	OnInit:
+		// Maximum Player can join per X Minutes.
+		set .MaxPlayers,5;
+		// Adding X Minutes of Delay before can go in again.
+		set .DelayMin,30;
+		// Maximum Hunt Limit per round inside the Zone.
+		set .MaxItemLimit,1000;
+		// Map that will be used in thos Zone.
+		set .Map$,"1@farm";
+		// Clear Map Every X Minutes.
+		set .RoomCleanMin,15;
+		// Mapflag Initialization
+		setmapflag .Map$, mf_nomobloot;
+		setmapflag .Map$, mf_nomvploot;
+		setmapflag .Map$, mf_nowarpto;
+		setmapflag .Map$, mf_nochat;
+		setmapflag .Map$, mf_novending;
+		//setmapflag .Map$, mf_nocommand,60;
+		setmapflag .Map$, mf_noskill;
+		//setmapflag .Map$, mf_nopet;
+		setmapflag .Map$, mf_noteleport;
+		//setmapflag .Map$, mf_nojobexp;
+		//setmapflag .Map$, mf_nobaseexp;
+		setmapflag .Map$, mf_nosave;
+		setmapflag .Map$, mf_nomemo;
+	
+		setarray .farm_normal, 13517,13516,969; // farm 1 of these items when kill normal mobs
+		setarray .farm_boss, 969; // farm 1 of these items when kill boss monsters
+
+		setarray .normal_mob,1110,1491,1110;
+		setarray .boss_mob,3998;
+	
+		.farm_normal_size = getarraysize(.farm_normal);
+		.farm_boss_size = getarraysize(.farm_boss);
+		.boss_mob_size = getarraysize(.boss_mob);
+		.normal_mob_size = getarraysize(.normal_mob);
+		while ( true ) {
+		killmonster .Map$, "All";
+		cleanmap .Map$; 
+		mapwarp .Map$,"milenia",119,152;
+		for ( .@i = 0; .@i < 80; .@i++ )
+			monster .Map$,0,0, "Dokebi", .normal_mob[ rand( .normal_mob_size ) ], 1, strnpcinfo(0)+"::OnNormalKill";
+		for ( .@i = 0; .@i < 30; .@i++ )
+			monster .Map$,0,0, "Red Dokebi", .boss_mob[ rand( .boss_mob_size ) ], 1, strnpcinfo(0)+"::OnBossKill";
+		deletearray .Hunter;
+		sleep 300000;
+		mapannounce .Map$,"[ Dokebi Farm ] : You have 10 minutes remaining..", bc_map;
+		sleep 600000;
+		mapannounce .Map$,"[ Dokebi Farm ] : You have 5 minutes remaining..", bc_map;
+		sleep 780000;
+		mapannounce .Map$,"[ Dokebi Farm ] : You have 2 minutes remaining..", bc_map;
+		sleep 840000;
+		mapannounce .Map$,"[ Dokebi Farm ] : You have 60 seconds remaining..", bc_map;
+		sleep ( .RoomCleanMin * 60000 );
+		mapannounce .Map$,"[ Dokebi Farm ] : Room Clean Up now...All Users will be warped Out.", bc_map;
+		killmonster .Map$, "All";
+		sleep 3000;
+		}
+	end;
+	}
+	
+-	script	Dokebi#Silver	-1,{
+	
+	OnNormalKill:
+		monster .Map$,0,0,"--ja--",.normal_mob[rand(.normal_mob_size)],1,strnpcinfo(0)+"::OnNormalKill";
+		getitem .farm_normal[rand(.farm_normal_size)], 1;
+		goto L_kill;
+	OnBossKill:
+		monster .Map$,0,0,"--ja--",.boss_mob[rand(.boss_mob_size)],1,strnpcinfo(0)+"::OnBossKill";
+		getitem .farm_boss[rand(.farm_boss_size)], 4;
+	L_kill:
+		#FarmHunt++;
+		dispbottom "[ Farm Zone ] : Farmed "+ #FarmHunt +" / "+.MaxItemLimit+" Items";
+		if ( #FarmHunt >= .MaxItemLimit ) {
+		message strcharinfo(0),"Limit Reach , you may join again later.";
+		sleep2 2000;
+		warp "milenia",51,127;
+	}
+	end;
+	OnInit:
+		// Maximum Player can join per X Minutes.
+		set .MaxPlayers,5;
+		// Adding X Minutes of Delay before can go in again.
+		set .DelayMin,30;
+		// Maximum Hunt Limit per round inside the Zone.
+		set .MaxItemLimit,1000;
+		// Map that will be used in thos Zone.
+		set .Map$,"2@farm";
+		// Clear Map Every X Minutes.
+		set .RoomCleanMin,15;
+		// Mapflag Initialization
+		setmapflag .Map$, mf_nomobloot;
+		setmapflag .Map$, mf_nomvploot;
+		setmapflag .Map$, mf_nowarpto;
+		setmapflag .Map$, mf_nochat;
+		setmapflag .Map$, mf_novending;
+		//setmapflag .Map$, mf_nocommand,60;
+		setmapflag .Map$, mf_noskill;
+		//setmapflag .Map$, mf_nopet;
+		setmapflag .Map$, mf_noteleport;
+		//setmapflag .Map$, mf_nojobexp;
+		//setmapflag .Map$, mf_nobaseexp;
+		setmapflag .Map$, mf_nosave;
+		setmapflag .Map$, mf_nomemo;
+	
+		setarray .farm_normal, 13517,13516,969; // farm 1 of these items when kill normal mobs
+		setarray .farm_boss, 969; // farm 1 of these items when kill boss monsters
+
+		setarray .normal_mob,1110,1491,1110;
+		setarray .boss_mob,3998;
+	
+		.farm_normal_size = getarraysize(.farm_normal);
+		.farm_boss_size = getarraysize(.farm_boss);
+		.boss_mob_size = getarraysize(.boss_mob);
+		.normal_mob_size = getarraysize(.normal_mob);
+		while ( true ) {
+		killmonster .Map$, "All";
+		cleanmap .Map$; 
+		mapwarp .Map$,"milenia",119,152;
+		for ( .@i = 0; .@i < 80; .@i++ )
+			monster .Map$,0,0, "Dokebi", .normal_mob[ rand( .normal_mob_size ) ], 1, strnpcinfo(0)+"::OnNormalKill";
+		for ( .@i = 0; .@i < 20; .@i++ )
+			monster .Map$,0,0, "Red Dokebi", .boss_mob[ rand( .boss_mob_size ) ], 1, strnpcinfo(0)+"::OnBossKill";
+		deletearray .Hunter;
+		sleep 300000;
+		mapannounce .Map$,"[ Dokebi Farm ] : You have 10 minutes remaining..", bc_map;
+		sleep 600000;
+		mapannounce .Map$,"[ Dokebi Farm ] : You have 5 minutes remaining..", bc_map;
+		sleep 780000;
+		mapannounce .Map$,"[ Dokebi Farm ] : You have 2 minutes remaining..", bc_map;
+		sleep 840000;
+		mapannounce .Map$,"[ Dokebi Farm ] : You have 60 seconds remaining..", bc_map;
+		sleep ( .RoomCleanMin * 60000 );
+		mapannounce .Map$,"[ Dokebi Farm ] : Room Clean Up now...All Users will be warped Out.", bc_map;
+		killmonster .Map$, "All";
+		sleep 3000;
+		}
+	end;
+	}
+	
+-	script	Dokebi#Bronze	-1,{
+	
+	OnNormalKill:
+		monster .Map$,0,0,"--ja--",.normal_mob[rand(.normal_mob_size)],1,strnpcinfo(0)+"::OnNormalKill";
+		getitem .farm_normal[rand(.farm_normal_size)], 1;
+		goto L_kill;
+	OnBossKill:
+		monster .Map$,0,0,"--ja--",.boss_mob[rand(.boss_mob_size)],1,strnpcinfo(0)+"::OnBossKill";
+		getitem .farm_boss[rand(.farm_boss_size)], 4;
+	L_kill:
+		#FarmHunt++;
+		dispbottom "[ Farm Zone ] : Farmed "+ #FarmHunt +" / "+.MaxItemLimit+" Items";
+		if ( #FarmHunt >= .MaxItemLimit ) {
+		message strcharinfo(0),"Limit Reach , you may join again later.";
+		sleep2 2000;
+		warp "milenia",51,127;
+	}
+	end;
+	OnInit:
+		// Maximum Player can join per X Minutes.
+		set .MaxPlayers,5;
+		// Adding X Minutes of Delay before can go in again.
+		set .DelayMin,30;
+		// Maximum Hunt Limit per round inside the Zone.
+		set .MaxItemLimit,1000;
+		// Map that will be used in thos Zone.
+		set .Map$,"3@farm";
+		// Clear Map Every X Minutes.
+		set .RoomCleanMin,15;
+		// Mapflag Initialization
+		setmapflag .Map$, mf_nomobloot;
+		setmapflag .Map$, mf_nomvploot;
+		setmapflag .Map$, mf_nowarpto;
+		setmapflag .Map$, mf_nochat;
+		setmapflag .Map$, mf_novending;
+		//setmapflag .Map$, mf_nocommand,60;
+		setmapflag .Map$, mf_noskill;
+		//setmapflag .Map$, mf_nopet;
+		setmapflag .Map$, mf_noteleport;
+		//setmapflag .Map$, mf_nojobexp;
+		//setmapflag .Map$, mf_nobaseexp;
+		setmapflag .Map$, mf_nosave;
+		setmapflag .Map$, mf_nomemo;
+	
+		setarray .farm_normal, 13517,13516,969; // farm 1 of these items when kill normal mobs
+		setarray .farm_boss, 969; // farm 1 of these items when kill boss monsters
+
+		setarray .normal_mob,1110,1491,1110;
+		setarray .boss_mob,3998;
+	
+		.farm_normal_size = getarraysize(.farm_normal);
+		.farm_boss_size = getarraysize(.farm_boss);
+		.boss_mob_size = getarraysize(.boss_mob);
+		.normal_mob_size = getarraysize(.normal_mob);
+		while ( true ) {
+		killmonster .Map$, "All";
+		cleanmap .Map$; 
+		mapwarp .Map$,"milenia",119,152;
+		for ( .@i = 0; .@i < 80; .@i++ )
+			monster .Map$,0,0, "Dokebi", .normal_mob[ rand( .normal_mob_size ) ], 1, strnpcinfo(0)+"::OnNormalKill";
+		for ( .@i = 0; .@i < 10; .@i++ )
+			monster .Map$,0,0, "Red Dokebi", .boss_mob[ rand( .boss_mob_size ) ], 1, strnpcinfo(0)+"::OnBossKill";
+		deletearray .Hunter;
+		sleep 300000;
+		mapannounce .Map$,"[ Dokebi Farm ] : You have 10 minutes remaining..", bc_map;
+		sleep 600000;
+		mapannounce .Map$,"[ Dokebi Farm ] : You have 5 minutes remaining..", bc_map;
+		sleep 780000;
+		mapannounce .Map$,"[ Dokebi Farm ] : You have 2 minutes remaining..", bc_map;
+		sleep 840000;
+		mapannounce .Map$,"[ Dokebi Farm ] : You have 60 seconds remaining..", bc_map;
+		sleep ( .RoomCleanMin * 60000 );
+		mapannounce .Map$,"[ Dokebi Farm ] : Room Clean Up now...All Users will be warped Out.", bc_map;
+		killmonster .Map$, "All";
+		sleep 3000;
+		}
+	end;
+	}
+	
+-	script	Dokebi#Metal	-1,{
+	
+	OnNormalKill:
+		monster .Map$,0,0,"--ja--",.normal_mob[rand(.normal_mob_size)],1,strnpcinfo(0)+"::OnNormalKill";
+		getitem .farm_normal[rand(.farm_normal_size)], 1;
+		goto L_kill;
+	OnBossKill:
+		monster .Map$,0,0,"--ja--",.boss_mob[rand(.boss_mob_size)],1,strnpcinfo(0)+"::OnBossKill";
+		getitem .farm_boss[rand(.farm_boss_size)], 4;
+	L_kill:
+		#FarmHunt++;
+		dispbottom "[ Farm Zone ] : Farmed "+ #FarmHunt +" / "+.MaxItemLimit+" Items";
+		if ( #FarmHunt >= .MaxItemLimit ) {
+		message strcharinfo(0),"Limit Reach , you may join again later.";
+		sleep2 2000;
+		warp "milenia",51,127;
+	}
+	end;
+	OnInit:
+		// Maximum Player can join per X Minutes.
+		set .MaxPlayers,5;
+		// Adding X Minutes of Delay before can go in again.
+		set .DelayMin,30;
+		// Maximum Hunt Limit per round inside the Zone.
+		set .MaxItemLimit,1000;
+		// Map that will be used in thos Zone.
+		set .Map$,"4@farm";
+		// Clear Map Every X Minutes.
+		set .RoomCleanMin,15;
+		// Mapflag Initialization
+		setmapflag .Map$, mf_nomobloot;
+		setmapflag .Map$, mf_nomvploot;
+		setmapflag .Map$, mf_nowarpto;
+		setmapflag .Map$, mf_nochat;
+		setmapflag .Map$, mf_novending;
+		//setmapflag .Map$, mf_nocommand,60;
+		setmapflag .Map$, mf_noskill;
+		//setmapflag .Map$, mf_nopet;
+		setmapflag .Map$, mf_noteleport;
+		//setmapflag .Map$, mf_nojobexp;
+		//setmapflag .Map$, mf_nobaseexp;
+		setmapflag .Map$, mf_nosave;
+		setmapflag .Map$, mf_nomemo;
+	
+		setarray .farm_normal, 13517,13516,969; // farm 1 of these items when kill normal mobs
+		setarray .farm_boss, 969; // farm 1 of these items when kill boss monsters
+
+		setarray .normal_mob,1110,1491,1110;
+		setarray .boss_mob,3998;
+	
+		.farm_normal_size = getarraysize(.farm_normal);
+		.farm_boss_size = getarraysize(.farm_boss);
+		.boss_mob_size = getarraysize(.boss_mob);
+		.normal_mob_size = getarraysize(.normal_mob);
+		while ( true ) {
+		killmonster .Map$, "All";
+		cleanmap .Map$; 
+		mapwarp .Map$,"milenia",119,152;
+		for ( .@i = 0; .@i < 80; .@i++ )
+			monster .Map$,0,0, "Dokebi", .normal_mob[ rand( .normal_mob_size ) ], 1, strnpcinfo(0)+"::OnNormalKill";
+		for ( .@i = 0; .@i < 10; .@i++ )
+			monster .Map$,0,0, "Red Dokebi", .boss_mob[ rand( .boss_mob_size ) ], 1, strnpcinfo(0)+"::OnBossKill";
+		deletearray .Hunter;
+		announce "[ Dokebi Farm ] : Dokebi Farm has been Cleaned up, another 5 Players may go in now.", bc_blue;
+		sleep 300000;
+		mapannounce .Map$,"[ Dokebi Farm ] : You have 10 minutes remaining..", bc_map;
+		sleep 600000;
+		mapannounce .Map$,"[ Dokebi Farm ] : You have 5 minutes remaining..", bc_map;
+		sleep 780000;
+		mapannounce .Map$,"[ Dokebi Farm ] : You have 2 minutes remaining..", bc_map;
+		sleep 840000;
+		mapannounce .Map$,"[ Dokebi Farm ] : You have 60 seconds remaining..", bc_map;
+		sleep ( .RoomCleanMin * 60000 );
+		mapannounce .Map$,"[ Dokebi Farm ] : Room Clean Up now...All Users will be warped Out.", bc_map;
+		killmonster .Map$, "All";
+		sleep 3000;
+		}
+	end;
+	}
+	
+milenia,50,126,5	script	Dokebi Farm	478,{
 while ( true ) {
+		mes "[Dokebi Farmer]";
 		mes "How can i help you ?";
-		switch( select( "Information:Farm Items" )) {
+		next;
+		switch( select( "Information:Enter Dokebi" )) {
 		case 1:
+			mes "[Dokebi Farmer]";
 			mes "This is a Dokebi Farm.";
 			mes "You are able to Hunt Monster inside this Room.";
 			mes "Every Monster will award you random items.";
 			next;
+			mes "[Dokebi Farmer]";
 			mes "But there is some Condition..";
 			mes "You can only go in ^FF0000once every "+.RoomCleanMin+" minutes for 1 times.^000000";
 			mes "And Maximum of ^FF0000"+.MaxPlayers+" Players per "+.RoomCleanMin+" Minutes.^000000";
 			mes "Maximum Hunting Limit ^FF0000"+.MaxItemLimit+"^000000";
 			next;
+			mes "[Dokebi Farmer]";
 			mes "There will be a ^FF0000Room Cleaning^000000 from time to time...";
 			mes "All players will be kicked out, it is your bad luck if you meet this.";
 			mes "Delay will still apply even though you just go in for 1 Seconds..";
 			next;
 			break;
 		case 2:
-			if (getpetinfo(1)){
-			mes "You cannot enter with your pet.";
-			close;
-			}
-			else{
-//			#HuntRoomDelay = 0;
-			if ( #HuntRoomDelay + .DelayMin * 60 > gettimetick(2) ) {
-				mes "Wait for ^FF0000"+( ( ( #HuntRoomDelay + .DelayMin * 60 ) - gettimetick(2) )/60 )+" Minutes^000000.";
+			mes "[Dokebi Farmer]";
+			mes "Gold Grade : ^FF0000TRIPLE Red Dokebi^000000";
+			mes "Silver Grade : ^FF0000DOUBLE Red Dokebi^000000";
+			mes "Bronze Grade : ^FF0000Red & Normal Dokebi^000000";
+			next;
+			
+			.@room = select(
+			"Dokebi Farm (Gold Grade) ["+ getmapusers("1@farm") +"/5 Players]",
+			"Dokebi Farm (Silver Grade) ["+ getmapusers("2@farm") +"/5 Players]",
+			"Dokebi Farm (Bronze Grade) ["+ getmapusers("3@farm") +"/5 Players]",
+			"Dokebi Farm (Bronze Grade) ["+ getmapusers("4@farm") +"/5 Players]");
+					
+			if ( .@room == 1 ) {
+
+				if (countitem (41242)) >= 1{
+				
+				if (getpetinfo(1)){
+				mes "[Dokebi Farmer]";
+				mes "You cannot enter with your pet.";
 				close;
-			} else if ( getarraysize( .Hunter ) >= .MaxPlayers ) {
+				}
+								
+				if ( getarraysize( .HunterGOLD ) && getmapusers("1@farm") >= .MaxPlayers ) {
+				mes "[Dokebi Farmer]";
 				mes "Currently the Room is Full. Please try again later.";
 				close;
-			} else {
-				warp .Map$,0,0;
-				set .Hunter[getarraysize( .Hunter )], getcharid(3);
-				set #HuntRoomDelay, gettimetick(2); // please don't set the deny variable into the future, if admin adjust the setting to decrease the value, player will experience long deny
-				set #FarmHunt,0;
-				end;
+				}
+
+				//#HuntRoomDelay = 0;
+				if ( #HuntRoomDelay + .DelayMin * 60 > gettimetick(2) ) {
+				next;
+				mes "[Dokebi Farmer]";
+				mes "Wait for ^FF0000"+( ( ( #HuntRoomDelay + .DelayMin * 60 ) - gettimetick(2) )/60 )+" Minutes^000000";
+				mes "before you can enter again. ^_^";
+				close;
+				}
+			
+			warp "1@farm", 0,0;
+			set .HunterGOLD[getarraysize( .HunterGOLD )], getcharid(3);
+			set #HuntRoomDelay, gettimetick(2); // please don't set the deny variable into the future, if admin adjust the setting to decrease the value, player will experience long deny
+			set #FarmHunt,0;
+			end;
 			}
+			
+					if ((countitem (41243)) >= 1) && ((countitem (41242) <= 1)){
+						mes "[Dokebi Farmer]";
+						mes "You only have ^FF0000"+ (getitemname (41243)) +"^000000..";
+						next;
+						mes "[Dokebi Farmer]";
+						mes "This Farm Required ^FF0000"+ (getitemname (41242)) +"^000000 ONLY to enter.";
+						next;
+						mes "[Dokebi Farmer]";
+						mes "I'm sorry.. Please buy it from our ^FF0000Donation Shop^000000 on website.";
+						close;
+					}
+					
+					if ((countitem (41242)) == 0) && ((countitem (41243)) == 0){
+						mes "[Dokebi Farmer]";
+						mes "This Farm Required ^FF0000"+ (getitemname (41242)) +"^000000 ONLY to enter.";
+						next;
+						mes "[Dokebi Farmer]";
+						mes "I'm sorry.. Please buy it from our ^FF0000Donation Shop^000000 on website.";
+						close;
+					}
+			}
+			
+			if ( .@room == 2 ) {	
+			
+			if ((countitem (41243)) >= 1) || ((countitem (41242)) >= 1){
+			
+				if ( getarraysize( .HunterSILVER ) && getmapusers("2@farm") >= .MaxPlayers ) {
+				mes "[Dokebi Farmer]";
+				mes "Currently the Room is Full. Please try again later.";
+				close;
+				}
+				
+				if (getpetinfo(1)){
+				mes "[Dokebi Farmer]";
+				mes "You cannot enter with your pet.";
+				close;
+				}
+
+				//#HuntRoomDelay = 0;
+				if ( #HuntRoomDelay + .DelayMin * 60 > gettimetick(2) ) {
+				next;
+				mes "[Dokebi Farmer]";
+				mes "Wait for ^FF0000"+( ( ( #HuntRoomDelay + .DelayMin * 60 ) - gettimetick(2) )/60 )+" Minutes^000000";
+				mes "before you can enter again. ^_^";
+				close;
+				}
+			
+			warp "2@farm", 0,0;
+			set .HunterSILVER[getarraysize( .HunterSILVER )], getcharid(3);
+			set #HuntRoomDelay, gettimetick(2); // please don't set the deny variable into the future, if admin adjust the setting to decrease the value, player will experience long deny
+			set #FarmHunt,0;
+			end;
+			}
+			
+			if ((countitem (41243)) == 0) {
+						mes "[Dokebi Farmer]";
+						mes "This Farm Required ^FF0000"+ (getitemname (41243)) +"^000000 ONLY to enter.";
+						next;
+						mes "[Dokebi Farmer]";
+						mes "But you also can enter if you have ^FF0000"+ (getitemname (41242)) +"^000000..";
+						next;
+						mes "[Dokebi Farmer]";
+						mes "I'm sorry.. Please buy it from our ^FF0000Donation Shop^000000 on website.";
+						close;
+					}
+					
+			}
+						
+			if ( .@room == 3 ) {	
+			
+				if ( getarraysize( .HunterBRONZE ) && getmapusers("3@farm") >= .MaxPlayers ) {
+				mes "[Dokebi Farmer]";
+				mes "Currently the Room is Full. Please try again later.";
+				close;
+				}
+				
+				if (getpetinfo(1)){
+				mes "[Dokebi Farmer]";
+				mes "You cannot enter with your pet.";
+				close;
+				}
+
+				//#HuntRoomDelay = 0;
+				if ( #HuntRoomDelay + .DelayMin * 60 > gettimetick(2) ) {
+				next;
+				mes "Wait for ^FF0000"+( ( ( #HuntRoomDelay + .DelayMin * 60 ) - gettimetick(2) )/60 )+" Minutes^000000";
+				mes "before you can enter again. ^_^";
+				close;
+				}
+				
+			warp "3@farm", 0,0;
+			set .HunterBRONZE[getarraysize( .HunterBRONZE )], getcharid(3);
+			set #HuntRoomDelay, gettimetick(2); // please don't set the deny variable into the future, if admin adjust the setting to decrease the value, player will experience long deny
+			set #FarmHunt,0;
+			end;
+			}
+			
+			if ( .@room == 4 ) {	
+			
+				if ( getarraysize( .HunterMETAL ) && getmapusers("4@farm") >= .MaxPlayers ) {
+				mes "[Dokebi Farmer]";
+				mes "Currently the Room is Full. Please try again later.";
+				close;
+				}
+				
+				if (getpetinfo(1)){
+				mes "[Dokebi Farmer]";
+				mes "You cannot enter with your pet.";
+				close;
+				}
+
+				//#HuntRoomDelay = 0;
+				if ( #HuntRoomDelay + .DelayMin * 60 > gettimetick(2) ) {
+				next;
+				mes "[Dokebi Farmer]";
+				mes "Wait for ^FF0000"+( ( ( #HuntRoomDelay + .DelayMin * 60 ) - gettimetick(2) )/60 )+" Minutes^000000";
+				mes "before you can enter again. ^_^";
+				close;
+				}
+			
+			warp "4@farm", 0,0;
+			set .HunterMETAL[getarraysize( .HunterMETAL )], getcharid(3);
+			set #HuntRoomDelay, gettimetick(2); // please don't set the deny variable into the future, if admin adjust the setting to decrease the value, player will experience long deny
+			set #FarmHunt,0;
+			end;
+			}
+		
 		}
 	}
-	close;
-OnNormalKill:
-	monster .Map$,0,0,"--ja--",.normal_mob[rand(.normal_mob_size)],1,strnpcinfo(0)+"::OnNormalKill";
-	getitem .farm_normal[rand(.farm_normal_size)], 1;
-	goto L_kill;
-OnBossKill:
-	monster .Map$,0,0,"--ja--",.boss_mob[rand(.boss_mob_size)],1,strnpcinfo(0)+"::OnBossKill";
-	getitem .farm_boss[rand(.farm_boss_size)], 4;
-L_kill:
-	#FarmHunt++;
-	dispbottom "[ Farm Zone ] : Farmed "+ #FarmHunt +" / "+.MaxItemLimit+" Items";
-	if ( #FarmHunt >= .MaxItemLimit ) {
-		message strcharinfo(0),"Limit Reach , you may join again later.";
-		sleep2 2000;
-		warp "milenia",51,127;
-	}
-	end;
-OnInit:
-	// Maximum Player can join per X Minutes.
-	set .MaxPlayers,5;
-	// Adding X Minutes of Delay before can go in again.
-	set .DelayMin,30;
-	// Maximum Hunt Limit per round inside the Zone.
-	set .MaxItemLimit,1000;
-	// Map that will be used in thos Zone.
-	set .Map$,"farm";
-	// Clear Map Every X Minutes.
-	set .RoomCleanMin,15;
-	// Mapflag Initialization
-	setmapflag .Map$, mf_nomobloot;
-	setmapflag .Map$, mf_nomvploot;
-	setmapflag .Map$, mf_nowarpto;
-	setmapflag .Map$, mf_nochat;
-	setmapflag .Map$, mf_novending;
-	//setmapflag .Map$, mf_nocommand,60;
-	setmapflag .Map$, mf_noskill;
-	//setmapflag .Map$, mf_nopet;
-	setmapflag .Map$, mf_noteleport;
-	//setmapflag .Map$, mf_nojobexp;
-	//setmapflag .Map$, mf_nobaseexp;
-	
-	setarray .farm_normal, 13517,13516,969; // farm 1 of these items when kill normal mobs
-	setarray .farm_boss, 969; // farm 1 of these items when kill boss monsters
-
-	setarray .normal_mob,1110,1491,1110;
-	setarray .boss_mob,3998;
-	
-	.farm_normal_size = getarraysize(.farm_normal);
-	.farm_boss_size = getarraysize(.farm_boss);
-	.boss_mob_size = getarraysize(.boss_mob);
-	.normal_mob_size = getarraysize(.normal_mob);
-	while ( true ) {
-		killmonster .Map$, "All";
-		cleanmap .Map$; // you also forgot about this command
-		mapwarp .Map$,"milenia",119,152;
-		for ( .@i = 0; .@i < 80; .@i++ )
-			monster .Map$,0,0, "Dokebi", .normal_mob[ rand( .normal_mob_size ) ], 1, strnpcinfo(0)+"::OnNormalKill";
-		for ( .@i = 0; .@i < 5; .@i++ )
-			monster .Map$,0,0, "Red Dokebi", .boss_mob[ rand( .boss_mob_size ) ], 1, strnpcinfo(0)+"::OnBossKill";
-		deletearray .Hunter;
-		announce "[ Dokebi Farm ] : Dokebi Farm has been Cleaned up, another 5 Players may go in now.", bc_blue;
-		sleep ( .RoomCleanMin * 60000 );
-		mapannounce .Map$,"[ Dokebi Farm ] : Room Clean Up now...All Users will be warped Out.", bc_map;
-		killmonster .Map$, "All";
-		sleep 3000;
-	}
-	end;
-	}
+	OnInit:
+		// Maximum Player can join per X Minutes.
+		set .MaxPlayers,5;
+		// Adding X Minutes of Delay before can go in again.
+		set .DelayMin,30;
+		// Maximum Hunt Limit per round inside the Zone.
+		set .MaxItemLimit,1000;
+		// Clear Map Every X Minutes.
+		set .RoomCleanMin,15;
 }

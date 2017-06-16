@@ -94,20 +94,20 @@ set $@Cuttins,1;		// Set to "1" if you would like to use cuttins over progressba
 // ======== NPC =======================================================//
 set $@NPC_Fishing$,"^00007f[Lil Troll]^000000";	// Fishing Guru Name - If you dont mind use my name. XD
 set $@Fisher_Name$,"+strcharinfo(0)+";
-setarray $@FishingQuestRewards[0],31134,31135,31136,31138,31139,31141,6903 ;// Must be the Fishing Manual,Box,and 2Main Equips(Rod,FishingHat)
+setarray $@FishingQuestRewards[0],41134,41135,41136,41138,41139,41141,6903 ;// Must be the Fishing Manual,Box,and 2Main Equips(Rod,FishingHat)
 setarray $@QuestAmounts[0],1,5,5,1,1,1,5;			// Amount of Reward above.	  
 // ======== Fish Hiding Time ============================================ 
 set $@FishHidingTime,30000;      				// Fish Hiding Time Milliseconds, 10000 = 10secs.          
 // ======== Fishing Success Reward Setup ================================
-setarray $@SuccessReward1[0],31156,31157,31157,31203;  		// Successful Fishing Reward Level 1         
-setarray $@SuccessReward2[0],31157,31157,31157,31203;		// Successful Fishing Reward Level 2    
-setarray $@SuccessReward3[0],31157,31151,31151,31203;		// Successful Fishing Reward Level 3   
+setarray $@SuccessReward1[0],41156,41157,41157,41203;  		// Successful Fishing Reward Level 1         
+setarray $@SuccessReward2[0],41157,41157,41157,41203;		// Successful Fishing Reward Level 2    
+setarray $@SuccessReward3[0],41157,41151,41151,41203;		// Successful Fishing Reward Level 3   
 // ======== Fishing Moments Rewards  =====================================
-setarray $@JackpotPrize[0],31156,31156,31157,31157,31151,31203,31203,31203;    	// Jackpot Prize(Beware Fish Items only.)  
-setarray $@LuckyTreasureBox[0],969,7228,2636,13106,988,31203,31203,31203;  	// Lucky Treasure Box Prize(Rare Items should be putted here.)
+setarray $@JackpotPrize[0],41156,41156,41157,41157,41151,41203,41203,41203;    	// Jackpot Prize(Beware Fish Items only.)  
+setarray $@LuckyTreasureBox[0],969,7228,2636,13106,988,41203,41203,41203;  	// Lucky Treasure Box Prize(Rare Items should be putted here.)
 setarray $@Scatter[0],1,2,3;     					// Jackpot Prize Scatter                    
 // ======== Fishing Failure Reward ======================================
-setarray $@FishingFailure[0],31137,713,31140;  	// Failure Fishing Items. (Recommended RottenFish/loots)   
+setarray $@FishingFailure[0],41137,713,41140;  	// Failure Fishing Items. (Recommended RottenFish/loots)   
 // ======== Fishing Rate Setup ==========================================
 set $@FishingItemRate,100;    				// Fishing Base Success Rate (Do not change)                    
 set $@FishingItemSP1Rate,50; 					// Level 1 Reward Rate                        
@@ -115,15 +115,15 @@ set $@FishingItemSP2Rate,20;  				// Level 2 Reward Rate
 set $@FishingItemSP3Rate,5;    				// Level 3 Reward Rate       
 // ======== Fishing Required Items Setup ================================
 set $@FishingLure,6903;						// Automatic Fishing(Grass Version) one Requirement Only. Pick lure!
-setarray $@FishingMaterials[0],6903,31135,31136;  	// Lure & Hook & Line.     
+setarray $@FishingMaterials[0],6903,41135,41136;  	// Lure & Hook & Line.     
 setarray $@AmountPerMaterials[0],1,1,1;	      	// Amount Per Requirements. 
 // ======== Fishing Equipments Setup ====================================
 /* Change this to Fishing Items: Rod,Boots,UpperHead,LowerHead,Armor,Garment,Acc1,and Acc2 or LowerHead. */
-setarray $@FishingEquips[0],31138,31141,31142,31143,31144,31145,31146,31147,31149,31150; 
+setarray $@FishingEquips[0],41138,41141,41142,41143,41144,41145,41146,41147,41149,41150; 
 /*   If you choose two accessories they must have different ID's for the variables to work! */          
 setarray $@FishingEquipsRate[0],2,2,2,2,2,2,2,2,2,2;  // Successful fishing rates per equips.    
 setarray $@FishingEquipsExp[0],1,1,1,1,1,1,1,1,1,1;   // Bonus exp per equips.      
-setarray $@FishingEquipsNeed[0],31138,31141;       	// Main equips need for fishing.    
+setarray $@FishingEquipsNeed[0],41138,41141;       	// Main equips need for fishing.    
 setarray $@FishingEquipsPts[0],1,1,1,1,1,1,1,1;   // Per equip bonus fishing points.
 // ======== Exp/Level/Points/Title Setup ================================
 setarray $@LevelItemRate[0],					// Fishing item rates per level.
@@ -153,7 +153,7 @@ set $@Y,89;
 setarray $FishingMonster[0],2070,2709; 	// Fishing Monsters. MUST BE AGGRESSIVE!
 // ========= Fishing Box Setup ==========================================
 set $@FishingBoxLimit,10;                         // Fishing box item limit.
-set $@FishingBoxItemCountNeed,31148;  			// Fishing box Level up item.	                   
+set $@FishingBoxItemCountNeed,41148;  			// Fishing box Level up item.	                   
 setarray $@FishingBoxLevel,					// Fishing box Level.
 1,2,3,4,5,6,7,8,9,10;
 setarray $@FishingBoxItemCount,				// Item count to level the fishing box.
@@ -1184,21 +1184,21 @@ function	ShopSettings	{
 		Case 1:
 			set @Currency$,"#FishingPoints";        // #SETUP FISHING SHOP HERE#
 			// Item ID Lists
-			setarray @ItemLists[0],31150,31142,31147,31146,31143,31144,31145,31149; // [ Fishing Gears ]
+			setarray @ItemLists[0],41150,41142,41147,41146,41143,41144,41145,41149; // [ Fishing Gears ]
 			// Item Price
 			setarray @ItemCost[0],2000,500,1000,1500,250,200,150,900;
 			break;
 		Case 2:
 			set @Currency$,"#FishingPoints";  
 			// Item ID Lists
-			setarray @ItemLists[0],31148,25142,6380,7539,31120,15138,20756,19026,22059;             // [ Fish Etc... ]
+			setarray @ItemLists[0],41148,25142,6380,7539,41120,15138,20756,19026,22059;             // [ Fish Etc... ]
 			// Item Price
 			setarray @ItemCost[0],50,100,100,100,10,1000,1000,1000,1000;
 			break;
 		Case 3:
 			set @Currency$,"#FishingPoints";
 						// Item ID Lists
-			setarray @ItemLists[0],6903,31135,31136;                     // [ Fishing Materials : Lure, Hook, Line ] - Can be Zeny or item just change the currency.
+			setarray @ItemLists[0],6903,41135,41136;                     // [ Fishing Materials : Lure, Hook, Line ] - Can be Zeny or item just change the currency.
 						// Item Price
 			setarray @ItemCost[0],1,2,2;
 			break;
@@ -1670,4 +1670,4 @@ Player_Menu:
 	end;
 	}
 	
-milenia,129,74,11	shop	Fishing Gears	828,6903:150,31135:250,31136:100,31141:10000,31138:10000,31139:10000,31134:10000
+milenia,129,74,11	shop	Fishing Gears	828,6903:150,41135:250,41136:100,41141:10000,41138:10000,41139:10000,41134:10000

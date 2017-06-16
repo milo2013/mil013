@@ -46,3 +46,7 @@
 
 
 farm,100,72,6	duplicate(Dokebi Farm Nurse)	Dokebi Farm Nurse#df	76
+1@farm,100,72,6	duplicate(Dokebi Farm Nurse)	Dokebi Farm Nurse#df1	76
+2@farm,100,72,6	duplicate(Dokebi Farm Nurse)	Dokebi Farm Nurse#df2	76
+3@farm,100,72,6	duplicate(Dokebi Farm Nurse)	Dokebi Farm Nurse#df3	76
+4@farm,100,72,6	duplicate(Dokebi Farm Nurse)	Dokebi Farm Nurse#df4	76

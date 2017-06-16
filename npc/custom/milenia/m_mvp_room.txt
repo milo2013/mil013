@@ -320,7 +320,7 @@ OnInit:
 		1093,// Eclipse
 		1205,// Executioner
 		1783,// Galion
-		1592,// Gangster
+		1313,// Mobster
 		1120,// Ghostring
 		1259,// Gryphon
 		1990,// Hard Rock Mammoth - NEW

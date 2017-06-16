@@ -2083,9 +2083,9 @@ static int battle_skill_damage_skill(struct block_list *src, struct block_list *
 	if (!battle_skill_damage_iscaster(damage->caster, src->type))
 		return 0;
 
-	if ((damage->map&1 && (!mapd->flag.pvp && !map_flag_gvg(m) && !mapd->flag.battleground && !mapd->flag.skill_damage && !mapd->flag.restricted)) ||
+	if ((damage->map&1 && (!mapd->flag.pvp && !map_flag_gvg2(m) && !mapd->flag.battleground && !mapd->flag.skill_damage && !mapd->flag.restricted)) ||
 		(damage->map&2 && mapd->flag.pvp) ||
-		(damage->map&4 && map_flag_gvg(m)) ||
+		(damage->map&4 && map_flag_gvg2(m)) ||
 		(damage->map&8 && mapd->flag.battleground) ||
 		(damage->map&16 && mapd->flag.skill_damage) ||
 		(mapd->flag.restricted && damage->map&(8*mapd->zone)))
@@ -3768,7 +3768,7 @@ static int battle_calc_attack_skill_ratio(struct Damage wd, struct block_list *s
 				skillratio += 100 * skill_lv;
 			break;
 		case RK_STORMBLAST:
-			skillratio += -100 + (((sd) ? pc_checkskill(sd,RK_RUNEMASTERY) : 0) + (status_get_int(src) / 8)) * 100; // ATK = [{Rune Mastery Skill Level + (Caster's INT / 8)} x 100] %
+			skillratio += -100 + (((sd) ? pc_checkskill(sd,RK_RUNEMASTERY) : 0) + (status_get_str(src) / 8)) * 100; // ATK = [{Rune Mastery Skill Level + (Caster's STR / 8)} x 100] %
 			break;
 		case RK_PHANTOMTHRUST: // ATK = [{(Skill Level x 50) + (Spear Master Level x 10)} x Caster's Base Level / 150] %
 			skillratio += -100 + 50 * skill_lv + 10 * (sd ? pc_checkskill(sd,KN_SPEARMASTERY) : 5);
@@ -4405,8 +4405,8 @@ struct Damage battle_attack_sc_bonus(struct Damage wd, struct block_list *src, s
 #endif
 		if (sc->data[SC_SPIRIT]) {
 			if (skill_id == AS_SONICBLOW && sc->data[SC_SPIRIT]->val2 == SL_ASSASIN) {
-				ATK_ADDRATE(wd.damage, wd.damage2, map_flag_gvg(src->m) ? 25 : 100); //+25% dmg on woe/+100% dmg on nonwoe
-				RE_ALLATK_ADDRATE(wd, map_flag_gvg(src->m) ? 25 : 100); //+25% dmg on woe/+100% dmg on nonwoe
+				ATK_ADDRATE(wd.damage, wd.damage2, map_flag_gvg2(src->m) ? 25 : 100); //+25% dmg on woe/+100% dmg on nonwoe
+				RE_ALLATK_ADDRATE(wd, map_flag_gvg2(src->m) ? 25 : 100); //+25% dmg on woe/+100% dmg on nonwoe
 			} else if (skill_id == CR_SHIELDBOOMERANG && sc->data[SC_SPIRIT]->val2 == SL_CRUSADER) {
 				ATK_ADDRATE(wd.damage, wd.damage2, 100);
 				RE_ALLATK_ADDRATE(wd, 100);
@@ -7237,8 +7237,15 @@ enum damage_lv battle_weapon_attack(struct block_list* src, struct block_list* t
 			} else
 				status_change_end(src,SC_SPELLFIST,INVALID_TIMER);
 		}
-		if( sc->data[SC_GIANTGROWTH] && (wd.flag&BF_SHORT) && rnd()%100 < sc->data[SC_GIANTGROWTH]->val2 && !is_infinite_defense(target, wd.flag) && !vanish_damage )
-			wd.damage *= 3; // Triple Damage
+		if (sc->data[SC_GIANTGROWTH] && (wd.flag&BF_SHORT) && rnd()%100 < sc->data[SC_GIANTGROWTH]->val2 && !is_infinite_defense(target, wd.flag) && !vanish_damage) {
+			wd.damage <<= 1; // Double Damage
+			if (!sc->data[SC_CRUSHSTRIKE]) { // Increase damage again if Crush Strike is not active
+				if (map_flag_vs(src->m)) // Only half of the 2.5x increase on versus-type maps
+					wd.damage += wd.damage * 125 / 100;
+				else
+					wd.damage += wd.damage * 250 / 100;
+			}
+		}
 
 		if( sd && battle_config.arrow_decrement && sc->data[SC_FEARBREEZE] && sc->data[SC_FEARBREEZE]->val4 > 0) {
 			short idx = sd->equip_index[EQI_AMMO];
@@ -8303,6 +8310,7 @@ static const struct _battle_data {
 	{ "homunculus_max_level",               &battle_config.hom_max_level,                   99,     0,      MAX_LEVEL,      },
 	{ "homunculus_S_max_level",             &battle_config.hom_S_max_level,                 150,    0,      MAX_LEVEL,      },
 	{ "mob_size_influence",                 &battle_config.mob_size_influence,              0,      0,      1,              },
+	{ "noconsume_belowgroupid",             &battle_config.noconsume_belowgroupid,          1,      0,    MAX_LEVEL,        },	//mf_noconsume
 	{ "skill_trap_type",                    &battle_config.skill_trap_type,                 0,      0,      3,              },
 	{ "allow_consume_restricted_item",      &battle_config.allow_consume_restricted_item,   1,      0,      1,              },
 	{ "allow_equip_restricted_item",        &battle_config.allow_equip_restricted_item,     1,      0,      1,              },

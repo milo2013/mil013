@@ -37,12 +37,40 @@ milenia,150,153,11	script	Milenia Item Stacker	985,{
         end;
 }
 
-farm,126,37,11	duplicate(Milenia Item Stacker)	Checkpoint#01	721
-farm,56,78,11	duplicate(Milenia Item Stacker)	Checkpoint#02	721
-farm,139,65,11	duplicate(Milenia Item Stacker)	Checkpoint#03	721
-farm,96,176,11	duplicate(Milenia Item Stacker)	Checkpoint#04	721
-farm,131,134,11	duplicate(Milenia Item Stacker)	Checkpoint#05	721
-farm,53,153,11	duplicate(Milenia Item Stacker)	Checkpoint#06	721
+farm,126,37,11	duplicate(Milenia Item Stacker)	Checkpoint#01	532
+farm,56,78,11	duplicate(Milenia Item Stacker)	Checkpoint#02	532
+farm,139,65,11	duplicate(Milenia Item Stacker)	Checkpoint#03	532
+farm,96,176,11	duplicate(Milenia Item Stacker)	Checkpoint#04	532
+farm,131,134,11	duplicate(Milenia Item Stacker)	Checkpoint#05	532
+farm,53,153,11	duplicate(Milenia Item Stacker)	Checkpoint#06	532
+
+1@farm,126,37,11	duplicate(Milenia Item Stacker)	Checkpoint#011	532
+1@farm,56,78,11	duplicate(Milenia Item Stacker)	Checkpoint#021	532
+1@farm,139,65,11	duplicate(Milenia Item Stacker)	Checkpoint#031	532
+1@farm,96,176,11	duplicate(Milenia Item Stacker)	Checkpoint#041	532
+1@farm,131,134,11	duplicate(Milenia Item Stacker)	Checkpoint#051	532
+1@farm,53,153,11	duplicate(Milenia Item Stacker)	Checkpoint#061	532
+
+2@farm,126,37,11	duplicate(Milenia Item Stacker)	Checkpoint#012	532
+2@farm,56,78,11	duplicate(Milenia Item Stacker)	Checkpoint#022	532
+2@farm,139,65,11	duplicate(Milenia Item Stacker)	Checkpoint#032	532
+2@farm,96,176,11	duplicate(Milenia Item Stacker)	Checkpoint#042	532
+2@farm,131,134,11	duplicate(Milenia Item Stacker)	Checkpoint#052	532
+2@farm,53,153,11	duplicate(Milenia Item Stacker)	Checkpoint#062	532
+
+3@farm,126,37,11	duplicate(Milenia Item Stacker)	Checkpoint#013	532
+3@farm,56,78,11	duplicate(Milenia Item Stacker)	Checkpoint#023	532
+3@farm,139,65,11	duplicate(Milenia Item Stacker)	Checkpoint#033	532
+3@farm,96,176,11	duplicate(Milenia Item Stacker)	Checkpoint#043	532
+3@farm,131,134,11	duplicate(Milenia Item Stacker)	Checkpoint#053	532
+3@farm,53,153,11	duplicate(Milenia Item Stacker)	Checkpoint#063	532
+
+4@farm,126,37,11	duplicate(Milenia Item Stacker)	Checkpoint#014	532
+4@farm,56,78,11	duplicate(Milenia Item Stacker)	Checkpoint#024	532
+4@farm,139,65,11	duplicate(Milenia Item Stacker)	Checkpoint#034	532
+4@farm,96,176,11	duplicate(Milenia Item Stacker)	Checkpoint#044	532
+4@farm,131,134,11	duplicate(Milenia Item Stacker)	Checkpoint#054	532
+4@farm,53,153,11	duplicate(Milenia Item Stacker)	Checkpoint#064	532
 
 prt_q,219,119,11	duplicate(Milenia Item Stacker)	Prontera Guard#07	10134
 prt_q,88,166,5	duplicate(Milenia Item Stacker)	Prontera Guard#08	10134

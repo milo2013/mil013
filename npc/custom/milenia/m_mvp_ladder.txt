@@ -30,19 +30,19 @@ function	script	F_getitemname	{
 }
 
 // instance
-1@ldr	mapflag	nocommand	10
+//1@ldr	mapflag	nocommand	10
 1@ldr	mapflag	nosave
 1@ldr	mapflag	noteleport
 
-2@ldr	mapflag	nocommand	10
+//2@ldr	mapflag	nocommand	10
 2@ldr	mapflag	nosave
 2@ldr	mapflag	noteleport
 
-3@ldr	mapflag	nocommand	10
+//3@ldr	mapflag	nocommand	10
 3@ldr	mapflag	nosave
 3@ldr	mapflag	noteleport
 
-4@ldr	mapflag	nocommand	10
+//4@ldr	mapflag	nocommand	10
 4@ldr	mapflag	nosave
 4@ldr	mapflag	noteleport
 
@@ -367,11 +367,11 @@ OnTalk:
 		if ( playerattached() ) {
 		//	.@rate = ( 95 + 'ladder_level );
 		//	if ( rand( 100 ) < .@rate ) {
-		//		getitem 31204,1;
+		//		getitem 41204,1;
 		//	}
 	
 		//	addrid(2,0,getcharid(1));
-		//	getitem 31204,1;
+		//	getitem 41204,1;
 			
 		//.@party_id = getcharid(1);
 			
@@ -384,7 +384,7 @@ OnTalk:
 			
 			getpartymember .@party_id;
 			for ( .@i = 0; .@i < $@partymembercount; .@i++ ) {
-					getitem 31204,1,$@partymemberaid[.@i];
+					getitem 41204,1,$@partymemberaid[.@i];
 			}
 			
 			detachrid;
@@ -718,7 +718,7 @@ OnTalk:
 	}
 		
 	setarray .@item,
-		31204,75,
+		41204,75,
 		// F_Rand( 18600,5564,5603,5604,5605,5453,5451,5452,5773,5580,5512,5545,5581,5745,5313,5569,5589,5663,5514,5689,5740,5677,5549,5599 ),15,
 		F_Rand( HD_Elunium,HD_Oridecon,HD_Bradium,HD_Carnium ),10,	// refine ore
 		F_Rand( 6457,6456,6235,6231,6234,6230,6233,6299 ),5,	// refine ticket

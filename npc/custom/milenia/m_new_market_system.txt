@@ -148,9 +148,9 @@ CREATE TABLE IF NOT EXISTS `e_market` (
 					} while ( 1 );
 					break;
 				case 2:
-					if (countitem (31233) < 1) {
+					if (countitem (41233) < 1) {
 					mes "[ ^FF0000WARNING^000000 ]";
-					mes "You dont have ^FF0000"+(getitemname (31233))+"^000000!!";
+					mes "You dont have ^FF0000"+(getitemname (41233))+"^000000!!";
 					next;
 					mes "[ Universal Shop ]";
 					mes "Please get it from ^FF0000Cash Shop^000000 or buy from our ^FF0000Donation Shop (Website)^000000.";
@@ -305,7 +305,7 @@ CREATE TABLE IF NOT EXISTS `e_market` (
 					} while ( .@option < 4 );
 					mes "[Milenia Universal Shop]";
 					mes "Shop created.";
-					delitem 31233,1;
+					delitem 41233,1;
 					dispbottom "Universal Shop Currency : "+func_Currency_Show( .@currency );
 					.@gettimetick = gettimetick(2);
 					for ( .@i = 0; .@i < .@setup_inventory_count; .@i++ ) {
@@ -320,11 +320,11 @@ CREATE TABLE IF NOT EXISTS `e_market` (
 						}
 					}
 					dispbottom "#Reminder : Your shop will auto closed in 5 days from now.";
-					if (countitem (31233) >= 1){
-					dispbottom "1 "+(getitemname (31233))+" deducted as Service Fee. Your balance is "+(countitem (31233))+" "+(getitemname (31233))+". ";
+					if (countitem (41233) >= 1){
+					dispbottom "1 "+(getitemname (41233))+" deducted as Service Fee. Your balance is "+(countitem (31233))+" "+(getitemname (31233))+". ";
 					}
-					if (countitem (31233) < 1){
-					dispbottom "1 "+(getitemname (31233))+" deducted as Service Fee. Your balance is "+(countitem (31233))+" "+(getitemname (31233))+". ";
+					if (countitem (41233) < 1){
+					dispbottom "1 "+(getitemname (41233))+" deducted as Service Fee. Your balance is "+(countitem (31233))+" "+(getitemname (31233))+". ";
 					dispbottom "Please buy Shop Permit in Cash Shop or Donation Shop to sell item in the future.";
 					}
 					

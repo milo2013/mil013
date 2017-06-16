@@ -55,9 +55,9 @@ milenia,87,153,5	script	Cashpoints Forgery	494,{
 	
 	OnInit:
 	
-	set .IDCP10,31126; //	Cashpoints Voucher 10
-	set .IDCP50,31127; // Cashpoints Voucher 50
-	set .IDCP99,31128; // Cashpoints Voucher 99
+	set .IDCP10,41126; //	Cashpoints Voucher 10
+	set .IDCP50,41127; // Cashpoints Voucher 50
+	set .IDCP99,41128; // Cashpoints Voucher 99
 	
 	set .CV10,2; // Cashpoints Voucher 10
 	set .CV50,2; // Cashpoints Voucher 50

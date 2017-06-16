@@ -21,9 +21,9 @@ OnInit:
 	.minplayer2start = 2;      // minimum players to start (ex. if 3vs3, set to 3)
 	.eventlasting    = 20*60;  // event duration before auto-reset (20 minutes * seconds)
 	setarray .rewarditem[0],   // rewards for the winning team: <item>,<amount>,...
-		31159, 5;
+		41159, 5;
 	setarray .rewardloser[0],	// rewards for the losing team: <item>,<amount>,...
-		31159, 1;
+		41159, 1;
 	.team1name$ = "Gold";
 	.team2name$ = "Diamond";
 	end;
@@ -328,6 +328,7 @@ bat_a01	mapflag	nomemo
 bat_a01	mapflag	nopenalty
 bat_a01	mapflag	nobranch
 bat_a01	mapflag	noicewall
+bat_a01	mapflag	noitemconsumption
 //bat_a01	mapflag	hidemobhpbar
 
 prt_cas	mapflag	nosave	SavePoint
@@ -359,7 +360,7 @@ mes "Please take this rewards and hope you can win again next time!";
 next;
 mes "[King William]";
 mes "Have a safe journey!";
-getitem 31177,1;
+getitem 41177,1;
 warp "milenia",119,152;
 mapannounce "prt_cas",strcharinfo(0) +  " from Guild "+GetGuildName(.@GID_PR)+" has claimed his Champion Box!",0;
 mapannounce "milenia",strcharinfo(0) +  " from Guild "+GetGuildName(.@GID_PR)+" has claimed his Champion Box!",0;
@@ -377,7 +378,7 @@ mes "Please take this rewards and hope you can win again next time!";
 next;
 mes "[King William]";
 mes "Have a safe journey!";
-getitem 31177,1;
+getitem 41177,1;
 warp "milenia",119,152;
 mapannounce "prt_cas",strcharinfo(0) +  " from Guild "+GetGuildName(.@GID_PA)+" has claimed his Champion Box!",0;
 mapannounce "milenia",strcharinfo(0) +  " from Guild "+GetGuildName(.@GID_PA)+" has claimed his Champion Box!",0;

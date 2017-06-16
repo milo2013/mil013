@@ -107,15 +107,15 @@ OnInit:
 
 // required nectar for each tier
 setarray .nectar,
-	31207,	// item id for clear nectar
-	31208,	// item id for yellow nectar
-	31209,	// item id for red nectar
-	31210;	// item id for blue nectar
+	41207,	// item id for clear nectar
+	41208,	// item id for yellow nectar
+	41209,	// item id for red nectar
+	41210;	// item id for blue nectar
 
 // tier reward
-setarray .tier_reward_0,31228;
-setarray .tier_reward_1,31228;
-setarray .tier_reward_2,31228;
+setarray .tier_reward_0,41228;
+setarray .tier_reward_1,41228;
+setarray .tier_reward_2,41228;
 
 // .tier monster
 setarray .tier_0_mob,3954,3955,3956,3957,3958,3959,3960,3961;
@@ -124,9 +124,9 @@ setarray .tier_2_mob,3966,3967;
 
 // bio sample
 setarray .bio_sample,
-	31214,	// item id for bio sample
-	31215,	// item id for quality bio sample
-	31216;	// item id for pristine bio sample
+	41214,	// item id for bio sample
+	41215,	// item id for quality bio sample
+	41216;	// item id for pristine bio sample
 
 	
 .nectar_size = getarraysize( .nectar );
@@ -201,17 +201,17 @@ OnInit:
 
 // required nectar for each tier
 setarray .nectar,
-	31210;  // item id for blue nectar
+	41210;  // item id for blue nectar
 
 // tier reward
-setarray .tier_reward_0,31229;
+setarray .tier_reward_0,41229;
 
 // .tier monster
 setarray .tier_0_mob,3968;
 
 // bio sample
 setarray .bio_sample,
-	31217;	// item id for consummate bio sample
+	41217;	// item id for consummate bio sample
 	
 .nectar_size = getarraysize( .nectar );
 .tier_reward_0_size = getarraysize( .tier_reward_0 );
@@ -279,14 +279,14 @@ OnInit:
 
 // ambrosia item id
 setarray .ambrosia,
-	31211,	// item id for clear ambrosia
-	31212,	// item id for yellow ambrosia
-	31213;	// item id for red ambrosia
+	41211,	// item id for clear ambrosia
+	41212,	// item id for yellow ambrosia
+	41213;	// item id for red ambrosia
 	
 // tier reward
-setarray .tier_reward_0,31230;
-setarray .tier_reward_1,31230;
-setarray .tier_reward_2,31230;
+setarray .tier_reward_0,41230;
+setarray .tier_reward_1,41230;
+setarray .tier_reward_2,41230;
 
 // .tier monster
 setarray .tier_0_mob,3969,3970,3971;

@@ -122,25 +122,25 @@ close;
 OnInit:
 // Consummate to Bloody Card Album
 setarray .bca_exchange,
-	31217,	// item id for Consummate Bio Sample
+	41217,	// item id for Consummate Bio Sample
 	616;	// item id for Bloody Card Album
 	
 // tiers name
 setarray .tier$,"Tier D","Tier C","Tier B","Tier A";
 // nectar item id
 setarray .nectar,
-	31207,	// item id for clear nectar
-	31208,	// item id for yellow nectar
-	31209,	// item id for red nectar
-	31210;	// item id for blue nectar
+	41207,	// item id for clear nectar
+	41208,	// item id for yellow nectar
+	41209,	// item id for red nectar
+	41210;	// item id for blue nectar
 
 // Requirements for each tier ( if 0 = none )
 setarray .bio_sample,
 	0,		// no need bio sample
-	31214,	// item id for bio sample
-	31215,	// item id for quality bio sample
-	31216,	// item id for pristine bio sample
-	31217;	// item id for consummate bio sample ( reward for tier A )
+	41214,	// item id for bio sample
+	41215,	// item id for quality bio sample
+	41216,	// item id for pristine bio sample
+	41217;	// item id for consummate bio sample ( reward for tier A )
 	
 // required bio sample amount 
 setarray .bio_amount,0,2,2,2;
@@ -186,22 +186,22 @@ setarray .tier$,"Tier C","Tier B","Tier A";
 
 // ambrosia item id
 setarray .ambrosia,
-	31211,	// item id for clear ambrosia
-	31212,	// item id for yellow ambrosia
-	31213;	// item id for red ambrosia
+	41211,	// item id for clear ambrosia
+	41212,	// item id for yellow ambrosia
+	41213;	// item id for red ambrosia
 
 // nectar item id
 setarray .nectar,
-	31208,	// item id for yellow nectar
-	31209,	// item id for red nectar
-	31210;	// item id for blue nectar
+	41208,	// item id for yellow nectar
+	41209,	// item id for red nectar
+	41210;	// item id for blue nectar
 
 // Requirements for each tier ( if 0 = none )
 setarray .bio_sample,
-	31214,	// item id for bio sample
-	31215,	// item id for quality bio sample
-	31216,	// item id for pristine bio sample
-	31217;	// item id for consummate bio sample ( reward for tier A )
+	41214,	// item id for bio sample
+	41215,	// item id for quality bio sample
+	41216,	// item id for pristine bio sample
+	41217;	// item id for consummate bio sample ( reward for tier A )
 	
 // required bio sample amount 
 setarray .bio_amount,2,2,2;
