@@ -116,7 +116,7 @@
 5,14605,5 //OL S
 5,12279,5 // Undead E S
 6,13718,15 // Abrasive Box 10
-6,31231,10 // Token of Siegfried
+6,41231,10 // Token of Siegfried
 6,13610,15 //Enriched Elunium 5
 6,16393,15 //HD Oridecon 5
 6,13611,15 //Enriched Oridecon 5
@@ -135,15 +135,15 @@
 6,13997,80 //Big Bun 500
 6,12314,4 //Adventurer Returns Support Box 
 7,6000 ,20 // Ashes of Darknesss - Cellar
-7,31123,10 // Rare Mithril
+7,41123,10 // Rare Mithril
 7,6380,3 //Mora Coins
-7,31115,20 //Mora Coins Bag
+7,41115,20 //Mora Coins Bag
 7,6417,3 //Silvervine Fruit
-7,31116,20 //Silvervine Fruit Bag
-7,31233,5 // Shop Permit @ Universal Shop
+7,41116,20 //Silvervine Fruit Bag
+7,41233,5 // Shop Permit @ Universal Shop
 7,13973,10 // Poison Bottle 100
-7,31117,2 // Acid Demonstration Box 50
-7,31118,3 // Acid Demonstration Box 100
+7,41117,2 // Acid Demonstration Box 50
+7,41118,3 // Acid Demonstration Box 100
 7,14103,3 //Gympass Box 1
 7,17475,20 //Gympass Box 10
 
