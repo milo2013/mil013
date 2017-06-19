@@ -2863,9 +2863,9 @@
 4694,V_Gertie_Card,True Gertie Card,6,20,,10,,,,,,,,2,,,,,{ if(getrefine() > 9) .@b+=20; if(getequipweaponlv(-1) == 4) .@b += 20; bonus2 bSkillAtk,"SC_FEINTBOMB",20+.@b; },{},{}
 4695,V_Trentini_Card,True Trentini Card,6,20,,10,,,,,,,,2,,,,,{ if(getrefine() > 9) .@b+=20; if(getequipweaponlv(-1) == 4) .@b += 20; bonus2 bSkillAtk,"WM_SEVERE_RAINSTORM",20+.@b; },{},{}
 4696,V_Alphoccio_Card,True Alphoccio Card,6,20,,10,,,,,,,,2,,,,,{ if(getrefine() > 9) .@b+=20; if(getequipweaponlv(-1) == 4) .@b += 20; bonus2 bSkillAtk,"WM_REVERBERATION",20+.@b; },{},{}
-4697,Charleston3_Card,Charleston3 Card,6,20,,10,,,,,0xFFFFFFFF,63,2,2,,,,,{ bonus bMaxSP,-300; bonus bBreakArmorRate,1500; /* Custom rate [Secret] */ },{},{}
-4698,Step_Card,Step Card,6,20,,10,,,,,0xFFFFFFFF,63,2,2,,,,,{ bonus2 bSkillAtk,"NC_AXEBOOMERANG",30+((getrefine() >= 10)*30); },{},{}
-4699,Rock_Step_Card,Rock Step Card,6,20,,10,,,,,0xFFFFFFFF,63,2,2,,,,,{ bonus2 bSkillAtk,"NC_ARMSCANNON",20+((getrefine()>=10)*20); },{},{}
+//4697,Charleston3_Card,Charleston3 Card,6,20,,10,,,,,0xFFFFFFFF,63,2,2,,,,,{ bonus bMaxSP,-300; bonus bBreakArmorRate,1500; /* Custom rate [Secret] */ },{},{}
+//4698,Step_Card,Step Card,6,20,,10,,,,,0xFFFFFFFF,63,2,2,,,,,{ bonus2 bSkillAtk,"NC_AXEBOOMERANG",30+((getrefine() >= 10)*30); },{},{}
+//4699,Rock_Step_Card,Rock Step Card,6,20,,10,,,,,0xFFFFFFFF,63,2,2,,,,,{ bonus2 bSkillAtk,"NC_ARMSCANNON",20+((getrefine()>=10)*20); },{},{}
 //===================================================================
 // Armor Enchant System
 //===================================================================
@@ -11384,8 +11384,8 @@
 //===================================================================
 // More Cards
 //===================================================================
-27012,Kick_Step_Card,Kick Step Card,6,20,,10,,,,,0xFFFFFFFF,63,2,2,,,,,{ bonus bMaxHPrate,8; if((eaclass()&EAJ_THIRDMASK) == EAJ_MECHANIC){ bonus bLongAtkDef,30; } },{},{}
-27013,Kick_&_Kick_Card,Kick & Kick Card,6,20,,10,,,,,0xFFFFFFFF,63,2,2,,,,,{ bonus2 bSkillAtk,"NC_VULCANARM",10+((getrefine()>=10)*20); },{},{}
+//27012,Kick_Step_Card,Kick Step Card,6,20,,10,,,,,0xFFFFFFFF,63,2,2,,,,,{ bonus bMaxHPrate,8; if((eaclass()&EAJ_THIRDMASK) == EAJ_MECHANIC){ bonus bLongAtkDef,30; } },{},{}
+//27013,Kick_&_Kick_Card,Kick & Kick Card,6,20,,10,,,,,0xFFFFFFFF,63,2,2,,,,,{ bonus2 bSkillAtk,"NC_VULCANARM",10+((getrefine()>=10)*20); },{},{}
 27014,Green_Cenere_Card,Green Cenere Card,6,20,,10,,,,,0xFFFFFFFF,63,2,64,,,,,{ bonus bMaxHPrate,2; autobonus2 "{ bonus2 bHPRegenRate,1000,1000; }",30,5000; },{},{}
 27015,Repair_Robot_Turbo_Card,Repair Robot Turbo Card,6,20,,10,,,,,0xFFFFFFFF,63,2,769,,,,,{ bonus bHPrecovRate,25; bonus bSPrecovRate,25; .@r = getrefine(); bonus bHPGainValue,30+((.@r>=7)*10); bonus bSPGainValue,3+((.@r>=7)*3); },{},{}
 27016,Exploration_Rover_Turbo_Card,Exploration Rover Turbo Card,6,20,,10,,,,,0xFFFFFFFF,63,2,2,,,,,{ bonus2 bCriticalAddRace,RC_Formless,30; },{},{}
