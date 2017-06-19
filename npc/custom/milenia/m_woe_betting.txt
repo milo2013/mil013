@@ -4,10 +4,10 @@ set j, 0;
 //Set castle for each day
 Switch(gettime(DT_DAYOFWEEK)){
 	case 0:
-		set .WoECastle$, "payg_cas03";
+		set .WoECastle$, "prtg_cas01";
 		break;
 	case 7:
-		set .WoECastle$, "prtg_cas01";
+		set .WoECastle$, "payg_cas03";
 		break;
 	default:
 		set .WoECastle$, "payg_cas01";

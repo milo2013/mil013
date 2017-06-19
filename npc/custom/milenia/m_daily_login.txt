@@ -54,7 +54,7 @@ milenia,112,163,5	script	Daily Login Rewards	953,{
 	
 	OnInit:
 		// duration to count as completed daily login.
-		.minute = 60;
+		.minute = 1;
 		// check interval
 		.interval_check_sec = 60;
 		// idle stop reward
@@ -144,6 +144,7 @@ milenia,112,163,5	script	Daily Login Rewards	953,{
 			if ( #online_minute >= .minute && #online_reward_dayofyear != .today ) {
 				query_sql( "INSERT INTO `ero_daily_rewards` ( `aid`,`time` ) VALUES ( "+getcharid(3)+",NOW() )" );
 				dispbottom "You have completed daily login for today.";
+				doevent strnpcinfo(3)+"::OnTalk";
 			}
 			else {
 				dispbottom "Daily Reward start counting # currently "+#online_minute+"/"+.minute+" minutes.";
@@ -180,7 +181,3 @@ milenia,112,163,5	script	Daily Login Rewards	953,{
 			}
 		end;
 }
-
-
-
-
