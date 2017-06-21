@@ -133,34 +133,37 @@ Player_Menu:
 			mes "[Milenia]";
 			mes "Please select which NPC you would like to be teleported to.";
 			next;
-			switch(select("New Acccount Freebies:Novice Support:GM Online List:Vote For Points:Coins Exchanger:Build Manager (Premium Resetter):Stylist:Mercenary Manager:Poring Vending Machine:Card Remover")) {
+			switch(select("Crimson Elementalist:New Acccount Freebies:Novice Support:GM Online List:Vote For Points:Coins Exchanger:Build Manager (Premium Resetter):Stylist:Mercenary Manager:Poring Vending Machine:Card Remover")) {
 				case 1:
-					warp "milenia",125,154;
+					warp "milenia",27,113;
 					break;
 				case 2:
-					warp "milenia",105,157;
+					warp "milenia",125,154;
 					break;
 				case 3:
-					warp "milenia",111,157;
+					warp "milenia",105,157;
 					break;
 				case 4:
-					warp "milenia",130,157;
+					warp "milenia",111,157;
 					break;
 				case 5:
-					warp "milenia",109,156;
+					warp "milenia",130,157;
 					break;
 				case 6:
-					warp "milenia",122,112;
+					warp "milenia",109,156;
 					break;
 				case 7:
-					warp "milenia",64,147;
+					warp "milenia",122,112;
 					break;
 				case 8:
-					warp "milenia",217,143;
+					warp "milenia",64,147;
 					break;
 				case 9:
-					warp "milenia",176,147;
+					warp "milenia",217,143;
+					break;
 				case 10:
+					warp "milenia",176,147;
+				case 11:
 					warp "milenia",191,147;
 					break;
 			}
@@ -247,3 +250,4 @@ milenia,69,68,5	duplicate(Milenia Tour)	Milenia Tour#novice	721
 milenia,130,82,11	duplicate(Milenia Tour)	Milenia Tour#fish	721
 milenia,218,118,11	duplicate(Milenia Tour)	Milenia Tour#cedi	721
 milenia,169,45,11	duplicate(Milenia Tour)	Milenia Tour#tictac	721
+milenia,22,115,5	duplicate(Milenia Tour)	Milenia Tour#crimele	721

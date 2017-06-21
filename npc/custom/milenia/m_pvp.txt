@@ -576,6 +576,6 @@ milenia,126,138,11	script	PVP Officer	498,{
 milenia_pvp	mapflag	nosave	SavePoint
 milenia_pvp	mapflag	pvp
 milenia_pvp	mapflag	pvp_noguild
-milenia_pvp	mapflag	pvp_noparty
+//milenia_pvp	mapflag	pvp_noparty
 milenia_pvp	mapflag	noteleport
 milenia_pvp	mapflag	nomemo

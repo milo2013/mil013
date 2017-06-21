@@ -37,7 +37,7 @@ OnInit:
 
 	// Min & Max buyable //
 	set $S_BuyMin,1;
-	set $S_BuyMax,1000000;
+	set $S_BuyMax,100000000;
 	end;
 
 	// Average Price (Your start prices) //

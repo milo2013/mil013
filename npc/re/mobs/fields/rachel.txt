@@ -108,6 +108,16 @@ milenia,119,49,0,0	monster	Hit Me!	1905,1,1,0,0
 milenia,119,46,0,0	monster	Hit Me!	1905,1,1,0,0
 milenia,127,49,0,0	monster	Hit Me!	1905,1,1,0,0
 milenia,127,46,0,0	monster	Hit Me!	1905,1,1,0,0
-milenia,0,0,0,0	monster	Milenia	3997,5,1,0,0
+//milenia,0,0,0,0	monster	Milenia	3997,5,1,0,0
 //milenia,0,0,0,0	monster	Santa Poring	1062,50,1,0,0
+
+// Raya Event 2017
+milenia,0,0	monster	Langsuyo	2570,5,60000
+milenia,0,0	monster	Jembalang	2571,5,60000
+milenia,0,0	monster	Hantu Cina	2572,5,60000
+milenia,0,0	monster	Hantu Jepun	2573,5,60000
+milenia,0,0	monster	Toyol	2574,5,60000
+milenia,0,0	monster	Raya Poring	2575,5,60000
+
+
 

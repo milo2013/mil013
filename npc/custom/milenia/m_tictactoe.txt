@@ -39,6 +39,7 @@ ________________________________________________________
 -	script	atcmd_tictactoe	-1,{
 OnInit:
 	bindatcmd "tictactoe",strnpcinfo(3)+"::OnAtcommand";
+	bindatcmd "tt",strnpcinfo(3)+"::OnAtcommand";
 	end;
 OnAtcommand:
 	if(getmapflag(strcharinfo(3), nosave) == 1){
@@ -59,7 +60,7 @@ OnAtcommand:
 				donpcevent "Game Agent#b::OnWait";
 				Zeny -= $@mybet;
 				safebet = $@mybet;
-				announce strcharinfo(0) + " wants to play a game of Tic Tac Toe with a bet of "+ F_InsertComma($@mybet) +" zeny!    <Use @tictactoeaccept to accept the challenge>", 0;
+				announce strcharinfo(0) + " wants to play a game of Tic Tac Toe with a bet of "+ F_InsertComma($@mybet) +" zeny!    <Use @tictactoeaccept or @ttx to accept the challenge>", 0;
 				$charbet = getcharid((3), strcharinfo(0));
 				initnpctimer;
 			}
@@ -123,6 +124,7 @@ end;
 -	script	atcmd_tictactoe2	-1,{
 OnInit:
 	bindatcmd "tictactoeaccept",strnpcinfo(3)+"::OnAtcommand";
+	bindatcmd "ttx",strnpcinfo(3)+"::OnAtcommand";
 	end;
 OnAtcommand:
 	if(getmapflag(strcharinfo(3), nosave) == 1){

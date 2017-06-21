@@ -1,7 +1,7 @@
 function	script	PetLimitFunc	{
 
 OnPCLoadMapEvent:
-setarray .map$,"farm","prt_q";
+setarray .map$,"farm","1@farm","2@farm","3@farm","4@farm","prt_q";
     getmapxy(@map$, @xb, @yb, 0 );
         if (@map$ == .map$) {
                 dispbottom "You cannot hatch pet in here!!";
@@ -47,7 +47,7 @@ warp "milenia",71,185;
 function	script	TokenLimitFunc	{
 
 OnPCLoadMapEvent:
-setarray .map$,"ds";
+setarray .map$,"ds","1@farm","2@farm","3@farm","4@farm";
     getmapxy(@map$, @xb, @yb, 0 );
         if (@map$ == .map$) {
                 dispbottom "You cannot use this in here!!";

@@ -54,3 +54,11 @@
 // Tier B-2
 3974,1766
 
+
+//Raya Event 2017
+2570,2651
+2571,2155
+2572,1188	//Hantu Cina - Bongun
+2573,1403
+2574,2631	//Toyol - Elusive Tiyanak
+2575,2248
