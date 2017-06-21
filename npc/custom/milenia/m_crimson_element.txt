@@ -1,0 +1,211 @@
+milenia,27,115,5	script	Crimson Elementalist	10155,{
+
+mes "[Crimson Elementalist]";
+mes "I can ^FF0000RANDOMLY^000000 give element to your Crimson Weapons.";
+next;
+mes "[Crimson Elementalist]";
+mes "My service require ^FF0000 10,000,000z ^000000";
+mes "and 10 piece of ^FF0000 "+ (getitemname (41250))+"^000000.";
+next;
+switch(select("Give Crimson Element:Cancel")) {
+	
+	case 1:
+		next;
+		if (getequipid(EQI_HAND_R) == 13454) {
+			set .@equip_id,13454; //CRIMSON SABER
+			set .@part, EQI_HAND_R;
+			break;
+		}
+	
+		if (getequipid(EQI_HAND_R) == 21015) {
+			set .@equip_id,21015; //CRIMSON SWORD
+			set .@part, EQI_HAND_R;
+			break;
+		}
+	
+		if (getequipid(EQI_HAND_R) == 1498) {
+			set .@equip_id,1498; //CRIMSON LANCE
+			set .@part, EQI_HAND_R;
+			break;
+		}
+	
+		if (getequipid(EQI_HAND_R) == 1443) { 
+			set .@equip_id,1443; //CRIMSON SPEAR
+			set .@part, EQI_HAND_R;
+			break;
+		}
+
+		if (getequipid(EQI_HAND_R) == 18130) {
+			set .@equip_id,18130; //CRIMSON BOW
+			set .@part, EQI_HAND_R;
+			break;
+		}
+	
+		if (getequipid(EQI_HAND_R) == 28007) {
+			set .@equip_id,28007; //CRIMSON KATAR
+			set .@part, EQI_HAND_R;
+			break;
+		}
+	
+		if (getequipid(EQI_HAND_R) == 28705) { 
+			set .@equip_id,28705; //CRIMSON DAGGER
+			set .@part, EQI_HAND_R;
+			break;
+		}
+	
+		if (getequipid(EQI_HAND_R) == 1839) {
+			set .@equip_id,1839; //CRIMSON KNUCKLE
+			set .@part, EQI_HAND_R;
+			break;
+		}
+	
+		if (getequipid(EQI_HAND_R) == 16040) {
+			set .@equip_id,16040; //CRIMSON MACE
+			set .@part, EQI_HAND_R;
+			break;
+		}
+	
+		if (getequipid(EQI_HAND_R) == 1680) { 
+			set .@equip_id,1680; //CRIMSON WAND
+			set .@part, EQI_HAND_R;
+			break;
+		}
+	
+		if (getequipid(EQI_HAND_R) == 2025) { 
+			set .@equip_id,2025; //CRIMSON STAFF
+			set .@part, EQI_HAND_R;
+			break;
+		}
+	
+		if (getequipid(EQI_HAND_R) == 28106) {
+			set .@equip_id,28106; //CRIMSON AXE
+			set .@part, EQI_HAND_R;
+			break;
+		}
+
+		if (getequipid(EQI_HAND_R) == 1939) { 
+			set .@equip_id,1939; //CRIMSON VIOLIN
+			set .@part, EQI_HAND_R;
+			break;
+		}
+	
+		if (getequipid(EQI_HAND_R) == 1995) { 
+			set .@equip_id,1995; //CRIMSON WHIP
+			set .@part, EQI_HAND_R;
+			break;
+		}
+	
+		if (getequipid(EQI_HAND_R) == 13127) {
+			set .@equip_id,13127; //CRIMSON REVOLVER
+			set .@part, EQI_HAND_R;
+			break;
+		}
+	
+		if  (getequipid(EQI_HAND_R) == 13127) {
+			set .@equip_id,13327; //CRIMSON HUUMA
+			set .@part, EQI_HAND_R;
+			break;
+		}
+	//}
+	else {
+			mes "[Crimson Elementalist]";
+			mes "Sorry! There is no Crimson Weapon with you!";
+			next;
+			mes "[Crimson Elementalist]";
+			mes "Please equip it if you're forgot!";
+			close;
+			}
+			end;
+		//goto Linfiweapon;
+	case 2:
+		close;
+		end;
+}
+
+
+			
+	if (getequipisequiped(.@part) == 0) {
+		mes "[Crimson Elementalist]";
+		mes "You will have to equip all items before ^44B7BC" + getitemname(.@equip_id) + "^000000.";
+		close;
+	}
+	
+	if (Zeny < 100000) {  
+		mes "[Crimson Elementalist]";
+		mes "I'm sorry, but you don't have enough Zeny!";
+		next;
+		mes "[Crimson Elementalist]";
+		mes "Our charge is very low, so please bear with me.";
+		close;
+	}
+	
+	if (countitem (41250) < 10){ // Custom ITEM
+		mes "[Crimson Elementalist]";
+		mes "I'm sorry, but you don't have enough ^FF0000 "+ (getitemname (41250))+"^000000!";
+		next;
+		mes "[Crimson Elementalist]";
+		mes "Please come again when you have enough ^FF0000 "+ (getitemname (41250))+"^000000.";
+		close;
+	}
+	
+	if (getequipid(.@part) != .@equip_id) {
+		mes "[Crimson Elementalist]";
+		mes "I don't think this is the equipment you requested.";
+		next;
+		mes "[Crimson Elementalist]";
+		mes "I cannot work on equipment other than those from my list.";
+		close;
+	}
+	
+	set .@equip_refine, getequiprefinerycnt(.@part);
+	setarray .@equip_card[0], getequipcardid(.@part,0),getequipcardid(.@part,1),getequipcardid(.@part,2),getequipcardid(.@part,3);
+	
+	set random, rand (1,7);
+	
+	if (random == 1 ){
+	set .@ID, RDMOPT_WEAPON_ATTR_NOTHING;
+	}
+	if (random == 2 ){
+	set .@ID, RDMOPT_WEAPON_ATTR_WATER;
+	}
+	if (random == 3 ){
+	set .@ID, RDMOPT_WEAPON_ATTR_GROUND;
+	}
+	if (random == 4 ){
+	set .@ID, RDMOPT_WEAPON_ATTR_FIRE;
+	}
+	if (random == 5 ){
+	set .@ID, RDMOPT_WEAPON_ATTR_WIND;
+	}
+	if (random == 6 ){
+	set .@ID, RDMOPT_WEAPON_ATTR_SAINT;
+	}
+	if (random == 7 ){
+	set .@ID, RDMOPT_WEAPON_ATTR_DARKNESS;
+	}
+		
+	setarray .@OptID[0],.@ID;
+	setarray .@OptVal[0],0,1;
+	setarray .@OptParam[0],0,1;
+	
+	if (countitem (41250) < 10){ // Custom ITEM
+		mes "[Crimson Elementalist]";
+		mes "I'm sorry, but you don't have enough ^FF0000 "+ (getitemname (41250))+"^000000!";
+		next;
+		mes "[Crimson Elementalist]";
+		mes "Please come again when you have enough ^FF0000 "+ (getitemname (41250))+"^000000.";
+		close;
+	}
+	
+	mes "[Crimson Elementalist]";
+	mes "Here you go~";
+	set ZENY, ZENY - 10000000;
+	dispbottom "You paid 10m Zeny as Elemental Charge and give 20pcs "+ (getitemname (41250))+" .";
+	delitem 41250,10; // custom item
+	delitem  .@equip_id,1;
+	getitem3 .@equip_id,1,1,.@equip_refine,0,.@equip_card[0],.@equip_card[1],.@equip_card[2],.@equip_card[3],.@OptID,.@OptVal,.@OptParam;
+	close;
+	end;
+	
+		
+}
