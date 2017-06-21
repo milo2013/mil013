@@ -5334,7 +5334,7 @@
 7456,Red_Spice,Red Spice,3,1000,,10,,,,,,,,,,,,,{},{},{}
 7457,Cooking_Oil,Cooking Oil,3,500,,10,,,,,,,,,,,,,{},{},{}
 7458,Baphomet's_Horn,Fortune Horn,3,2,,10,,,,,,,,,,,,,{},{},{}
-7459,RAMADAN_,Idul Fitri Card,3,2,,10,,,,,,,,,,,,,{},{},{}
+7459,RAMADAN_,Idul Fitri Card,2,0,,20,,,,,0xFFFFFFFF,63,2,,,,,,{ set .@randomZENY, rand (1,500000); set ZENY, ZENY + .@randomZENY; Dispbottom "You got "+(.@randomZENY)+" Zeny.";},{},{}
 7460,Niflheim_Ticket,Niflheim Express Ticket,3,2,,10,,,,,,,,,,,,,{},{},{}
 7461,BlueCard_A,Blue A Card,3,0,,10,,,,,,,,,,,,,{},{},{}
 7462,BlueCard_E,Blue E Card,3,0,,10,,,,,,,,,,,,,{},{},{}
