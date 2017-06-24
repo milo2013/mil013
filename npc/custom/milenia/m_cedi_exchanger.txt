@@ -67,7 +67,7 @@ if( gettime(3) % 2 == 0 && .target_card ) end;
 do{
 	.target_card = rand( 4001,4555 );
 }while( getiteminfo( .target_card,2 ) != IT_CARD );
-announce "[ Cedi MVP ] : Card already changed, current card now is "+(.target_card)+".", bc_blue;
+announce "[ Cedi MVP ] : Card already changed, current card now is "+(getitemname (.target_card))+".", bc_blue;
 end;
 
 function	CardValue	{

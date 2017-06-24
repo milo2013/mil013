@@ -23167,6 +23167,43 @@ BUILDIN_FUNC(preg_match) {
 #endif
 }
 
+// Joins Team of x, specified in the script
+BUILDIN_FUNC(jointeam) {
+	TBL_PC* sd;
+	if (!script_rid2sd(sd))
+		return SCRIPT_CMD_SUCCESS;
+	int teamId = script_getnum(st, 2);
+	sd->Team = teamId;
+	return SCRIPT_CMD_SUCCESS;
+}
+
+// Leaves team
+BUILDIN_FUNC(leaveteam) {
+	TBL_PC* sd;
+	if (!script_rid2sd(sd))
+		return SCRIPT_CMD_SUCCESS;
+	sd->Team = 0;
+	return SCRIPT_CMD_SUCCESS;
+}
+
+// Setoption2 status effects!
+BUILDIN_FUNC(setoption2) {
+	int option;
+	int flag = 1;
+	TBL_PC* sd;
+	if (!script_rid2sd(sd))
+		return SCRIPT_CMD_SUCCESS;
+	option = script_getnum(st, 2);
+	if (script_hasdata(st, 3))
+		flag = script_getnum(st, 3);
+	if (flag)
+		sd->sc.opt1 = option; // op1 is not a bitmask, so we override the previous status.
+	else // Remove option
+		sd->sc.opt1 = 0; // op1 is not a bitmask, so we just remove the status effect
+	return SCRIPT_CMD_SUCCESS;
+}
+
+
 /// script command definitions
 /// for an explanation on args, see add_buildin_func
 struct script_function buildin_func[] = {
@@ -23749,6 +23786,11 @@ struct script_function buildin_func[] = {
 	BUILDIN_DEF2(makeitem2,"makeitem3","visiiiiiiiiirrr"),
 	BUILDIN_DEF2(delitem2,"delitem3","viiiiiiiirrr?"),
 	BUILDIN_DEF2(countitem,"countitem3","viiiiiiirrr?"),
+
+	// Team
+	BUILDIN_DEF(jointeam, "i"),
+	BUILDIN_DEF(leaveteam, ""),
+	BUILDIN_DEF(setoption2, "i?"),
 
 #include "../custom/script_def.inc"
 
