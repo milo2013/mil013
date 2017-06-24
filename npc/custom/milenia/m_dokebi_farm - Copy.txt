@@ -17,7 +17,6 @@
 		warp "milenia",51,127;
 		
 	}
-	
 	end;
 	OnInit:
 		// Maximum Player can join per X Minutes.
@@ -55,48 +54,31 @@
 		.farm_boss_size = getarraysize(.farm_boss);
 		.boss_mob_size = getarraysize(.boss_mob);
 		.normal_mob_size = getarraysize(.normal_mob);
-		
 		while ( true ) {
 		killmonster "1@farm", "All";
 		cleanmap "1@farm"; 
 		//set #HuntRoomDelay, gettimetick(2); 
 		mapwarp "1@farm","milenia",119,152;
-		deletearray .HunterGOLD;
 		for ( .@i = 0; .@i < 80; .@i++ )
 			monster "1@farm",0,0, "Dokebi", .normal_mob[ rand( .normal_mob_size ) ], 1, strnpcinfo(0)+"::OnNormalKill";
 		for ( .@i = 0; .@i < 30; .@i++ )
 			monster "1@farm",0,0, "Red Dokebi", .boss_mob[ rand( .boss_mob_size ) ], 1, strnpcinfo(0)+"::OnBossKill";
-		
-			
-		sleep 300000; // dah run 5 minit
+		deletearray .HunterGOLD;
+		sleep 300000;
 		mapannounce "1@farm","[ Dokebi Farm ] : You have 10 minutes remaining..", bc_map;
-		mapannounce "2@farm","[ Dokebi Farm ] : You have 10 minutes remaining..", bc_map;
-		mapannounce "3@farm","[ Dokebi Farm ] : You have 10 minutes remaining..", bc_map;
-		mapannounce "4@farm","[ Dokebi Farm ] : You have 10 minutes remaining..", bc_map;
-		sleep 300000; // dah run 10 minit
+		sleep 600000;
 		mapannounce "1@farm","[ Dokebi Farm ] : You have 5 minutes remaining..", bc_map;
-		mapannounce "2@farm","[ Dokebi Farm ] : You have 5 minutes remaining..", bc_map;
-		mapannounce "3@farm","[ Dokebi Farm ] : You have 5 minutes remaining..", bc_map;
-		mapannounce "4@farm","[ Dokebi Farm ] : You have 5 minutes remaining..", bc_map;
-		sleep 180000; // dah run 3 minit
+		sleep 780000;
 		mapannounce "1@farm","[ Dokebi Farm ] : You have 2 minutes remaining..", bc_map;
-		mapannounce "2@farm","[ Dokebi Farm ] : You have 2 minutes remaining..", bc_map;
-		mapannounce "3@farm","[ Dokebi Farm ] : You have 2 minutes remaining..", bc_map;
-		mapannounce "4@farm","[ Dokebi Farm ] : You have 2 minutes remaining..", bc_map;
-		sleep 60000; // lagi 1 minit
+		sleep 840000;
 		mapannounce "1@farm","[ Dokebi Farm ] : You have 60 seconds remaining..", bc_map;
-		mapannounce "2@farm","[ Dokebi Farm ] : You have 60 seconds remaining..", bc_map;
-		mapannounce "3@farm","[ Dokebi Farm ] : You have 60 seconds remaining..", bc_map;
-		mapannounce "4@farm","[ Dokebi Farm ] : You have 60 seconds remaining..", bc_map;
-		sleep 60000; // clear
+		sleep ( .RoomCleanMin * 60000 );
 		mapannounce "1@farm","[ Dokebi Farm ] : Room Clean Up now...All Users will be warped Out.", bc_map;
 		killmonster "1@farm", "All";
-		announce "[ Dokebi Farm ] : Dokebi Farm has been Cleaned up, another 5 Players may go in now.", bc_blue;
 		sleep 3000;
-		
-	}
+		}
 	end;
-}
+	}
 	
 -	script	Dokebi#Silver	-1,{
 	
@@ -153,26 +135,31 @@
 		.farm_boss_size = getarraysize(.farm_boss);
 		.boss_mob_size = getarraysize(.boss_mob);
 		.normal_mob_size = getarraysize(.normal_mob);
-		
 		while ( true ) {
-		killmonster "2@farm", "All";
-		cleanmap "2@farm"; 
+		killmonster .Map$, "All";
+		cleanmap .Map$; 
 		//set #HuntRoomDelay, gettimetick(2); 
-		mapwarp "1@farm","milenia",119,152;
-		deletearray .HunterSILVER;
-		
+		mapwarp "2@farm","milenia",119,152;
 		for ( .@i = 0; .@i < 80; .@i++ )
 			monster "2@farm",0,0, "Dokebi", .normal_mob[ rand( .normal_mob_size ) ], 1, strnpcinfo(0)+"::OnNormalKill";
 		for ( .@i = 0; .@i < 20; .@i++ )
 			monster "2@farm",0,0, "Red Dokebi", .boss_mob[ rand( .boss_mob_size ) ], 1, strnpcinfo(0)+"::OnBossKill";
-		
-		sleep 900000;
+		deletearray .HunterSILVER;
+		sleep 300000;
+		mapannounce "2@farm","[ Dokebi Farm ] : You have 10 minutes remaining..", bc_map;
+		sleep 600000;
+		mapannounce "2@farm","[ Dokebi Farm ] : You have 5 minutes remaining..", bc_map;
+		sleep 780000;
+		mapannounce "2@farm","[ Dokebi Farm ] : You have 2 minutes remaining..", bc_map;
+		sleep 840000;
+		mapannounce "2@farm","[ Dokebi Farm ] : You have 60 seconds remaining..", bc_map;
+		sleep ( .RoomCleanMin * 60000 );
 		mapannounce "2@farm","[ Dokebi Farm ] : Room Clean Up now...All Users will be warped Out.", bc_map;
 		killmonster "2@farm", "All";
 		sleep 3000;
-	}
+		}
 	end;
-}
+	}
 	
 -	script	Dokebi#Bronze	-1,{
 	
@@ -229,27 +216,31 @@
 		.farm_boss_size = getarraysize(.farm_boss);
 		.boss_mob_size = getarraysize(.boss_mob);
 		.normal_mob_size = getarraysize(.normal_mob);
-		
 		while ( true ) {
 		killmonster "3@farm", "All";
 		cleanmap "3@farm"; 
 		//set #HuntRoomDelay, gettimetick(2); 
-		mapwarp "3@farm","milenia",119,152;
-		deletearray .HunterBRONZE;
-		
+		mapwarp .Map$,"milenia",119,152;
 		for ( .@i = 0; .@i < 80; .@i++ )
 			monster "3@farm",0,0, "Dokebi", .normal_mob[ rand( .normal_mob_size ) ], 1, strnpcinfo(0)+"::OnNormalKill";
 		for ( .@i = 0; .@i < 10; .@i++ )
 			monster "3@farm",0,0, "Red Dokebi", .boss_mob[ rand( .boss_mob_size ) ], 1, strnpcinfo(0)+"::OnBossKill";
-		
+		deletearray .HunterBRONZE;
+		sleep 300000;
+		mapannounce "3@farm","[ Dokebi Farm ] : You have 10 minutes remaining..", bc_map;
+		sleep 600000;
+		mapannounce "3@farm","[ Dokebi Farm ] : You have 5 minutes remaining..", bc_map;
+		sleep 780000;
+		mapannounce "3@farm","[ Dokebi Farm ] : You have 2 minutes remaining..", bc_map;
+		sleep 840000;
+		mapannounce "3@farm","[ Dokebi Farm ] : You have 60 seconds remaining..", bc_map;
 		sleep ( .RoomCleanMin * 60000 );
 		mapannounce "3@farm","[ Dokebi Farm ] : Room Clean Up now...All Users will be warped Out.", bc_map;
 		killmonster "3@farm", "All";
 		sleep 3000;
-		
 		}
-		end;
-}
+	end;
+	}
 	
 -	script	Dokebi#Metal	-1,{
 	
@@ -269,7 +260,6 @@
 		//set #HuntRoomDelay, gettimetick(2); 
 		warp "milenia",51,127;
 	}
-	
 	end;
 	OnInit:
 		// Maximum Player can join per X Minutes.
@@ -307,27 +297,32 @@
 		.farm_boss_size = getarraysize(.farm_boss);
 		.boss_mob_size = getarraysize(.boss_mob);
 		.normal_mob_size = getarraysize(.normal_mob);
-		
 		while ( true ) {
 		killmonster "4@farm", "All";
 		cleanmap "4@farm"; 
 		//set #HuntRoomDelay, gettimetick(2); 
 		mapwarp "4@farm","milenia",119,152;
-		deletearray .HunterBRONZE;
-		
 		for ( .@i = 0; .@i < 80; .@i++ )
 			monster "4@farm",0,0, "Dokebi", .normal_mob[ rand( .normal_mob_size ) ], 1, strnpcinfo(0)+"::OnNormalKill";
 		for ( .@i = 0; .@i < 10; .@i++ )
 			monster "4@farm",0,0, "Red Dokebi", .boss_mob[ rand( .boss_mob_size ) ], 1, strnpcinfo(0)+"::OnBossKill";
-		
-		sleep 900000;
+		deletearray .HunterMETAL;
+		announce "[ Dokebi Farm ] : Dokebi Farm has been Cleaned up, another 5 Players may go in now.", bc_blue;
+		sleep 300000;
+		mapannounce "4@farm","[ Dokebi Farm ] : You have 10 minutes remaining..", bc_map;
+		sleep 600000;
+		mapannounce "4@farm","[ Dokebi Farm ] : You have 5 minutes remaining..", bc_map;
+		sleep 780000;
+		mapannounce "4@farm","[ Dokebi Farm ] : You have 2 minutes remaining..", bc_map;
+		sleep 840000;
+		mapannounce "4@farm","[ Dokebi Farm ] : You have 60 seconds remaining..", bc_map;
+		sleep ( .RoomCleanMin * 60000 );
 		mapannounce "4@farm","[ Dokebi Farm ] : Room Clean Up now...All Users will be warped Out.", bc_map;
 		killmonster "4@farm", "All";
 		sleep 3000;
-		
 		}
-		end;
-}
+	end;
+	}
 	
 milenia,50,126,5	script	Dokebi Farm	478,{
 while ( true ) {
@@ -525,7 +520,7 @@ while ( true ) {
 			end;
 			}
 		
-		}		
+		}
 	}
 	OnInit:
 		// Maximum Player can join per X Minutes.

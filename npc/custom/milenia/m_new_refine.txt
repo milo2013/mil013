@@ -2,9 +2,18 @@ milenia,157,107,5	script	VIP Refiner	533,{
 	callfunc( "RefineFunc",8191,0,15,1,0,60,-1,50,30,41123);
 }
 
+payon,141,181,5	script	VIP Refiner#py	533,{
+	callfunc( "RefineFunc",8191,0,15,1,0,60,-1,50,30,41123);
+}
+
 milenia,155,106,5	script	VIP Refiner 2.0	10184,{
 	callfunc( "RefineFunc",8191,15,20,1,0,1,-1,50,49,41123);
 }
+
+payon,147,181,11	script	VIP Refiner 2.0#py	10184,{
+	callfunc( "RefineFunc",8191,15,20,1,0,1,-1,50,49,41123);
+}
+
 
 //			-	arg1	=	bitmask ( refer table above )
 //			-	arg2	=	Minimum refine rate

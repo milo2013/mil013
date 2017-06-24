@@ -1519,7 +1519,7 @@
 12873,475,100	// TE_Potion_Box
 12883,475,100	// Almighty
 12884,507,100	// Infinite_Concentration_Potion
-12885,507,100	// Infinite_Awakening_Potion
+12885,475,100	// Infinite_Awakening_Potion
 12886,507,100	// Infinite_Berserk_Potion
 12887,507,100	// C_Wing_Of_Fly
 12888,507,100	// Siege_Kit_Box
