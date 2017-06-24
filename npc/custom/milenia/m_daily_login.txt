@@ -109,7 +109,7 @@ milenia,112,163,5	script	Daily Login Rewards	953,{
 					case 13: reward_list( .@give_reward, 616,5 ); 			break;		// Old Card Album 2x
 					case 14: reward_list( .@give_reward, 12214,5 ); 		break;		// Convex Mirror 5x
 					case 15: reward_list( .@give_reward, 7621,2 ); 			break;		// Token of Siegfried 2x
-					case 16: reward_list( .@give_reward, 12885,1 ); 		break;		// Infinite Awakening Potion 1x
+					case 16: reward_list( .@give_reward, 17227,1 ); 		break;		// Infinite Awakening Potion 1x
 					case 17: reward_list( .@give_reward, 17228,1 ); 		break;		// Infinite Berserk Potion 1x
 					case 18: reward_list( .@give_reward, 12210,5 ); 		break;		// Bubble Gum 5x
 					case 19: reward_list( .@give_reward, 13582,2 ); 		break;		// Convex Mirror 5 Box 2x

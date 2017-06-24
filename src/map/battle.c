@@ -7738,8 +7738,13 @@ int battle_check_target( struct block_list *src, struct block_list *target,int f
 		case BL_PC:
 		{
 			struct map_session_data *sd = BL_CAST(BL_PC, s_bl);
-			if( s_bl != t_bl )
-			{
+			if( s_bl != t_bl)
+			{	
+				if(t_bl->type == BL_PC) {
+					if (sd->Team == ((TBL_PC*)t_bl)->Team && (sd->Team != 0 || ((TBL_PC*)t_bl)->Team != 0)) {
+						return 0;
+					}
+				}
 				if( sd->state.killer )
 				{
 					state |= BCT_ENEMY; // Can kill anything

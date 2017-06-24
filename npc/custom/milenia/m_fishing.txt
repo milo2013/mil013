@@ -342,6 +342,34 @@ milenia,125,102,0	duplicate(Swarm of Fish)	Swarm of Fish#13	723
 milenia,125,98,0	duplicate(Swarm of Fish)	Swarm of Fish#14	723
 milenia,120,98,0	duplicate(Swarm of Fish)	Swarm of Fish#15	723
 milenia,115,98,0	duplicate(Swarm of Fish)	Swarm of Fish#16	723
+
+//raya event fishing
+comodo,48,321,0	duplicate(Swarm of Fish)	Swarm of Fish#17	723
+comodo,53,232,0	duplicate(Swarm of Fish)	Swarm of Fish#18	723
+comodo,58,233,0	duplicate(Swarm of Fish)	Swarm of Fish#19	723
+comodo,64,233,0	duplicate(Swarm of Fish)	Swarm of Fish#20	723
+comodo,71,236,0	duplicate(Swarm of Fish)	Swarm of Fish#21	723
+comodo,74,242,0	duplicate(Swarm of Fish)	Swarm of Fish#22	723
+comodo,80,246,0	duplicate(Swarm of Fish)	Swarm of Fish#23	723
+comodo,86,249,0	duplicate(Swarm of Fish)	Swarm of Fish#24	723
+comodo,91,252,0	duplicate(Swarm of Fish)	Swarm of Fish#25	723
+comodo,97,253,0	duplicate(Swarm of Fish)	Swarm of Fish#26	723
+comodo,103,254,0	duplicate(Swarm of Fish)	Swarm of Fish#27	723
+comodo,106,250,0	duplicate(Swarm of Fish)	Swarm of Fish#28	723
+comodo,102,243,0	duplicate(Swarm of Fish)	Swarm of Fish#29	723
+comodo,97,237,0	duplicate(Swarm of Fish)	Swarm of Fish#30	723
+comodo,90,235,0	duplicate(Swarm of Fish)	Swarm of Fish#31	723
+comodo,85,234,0	duplicate(Swarm of Fish)	Swarm of Fish#32	723
+comodo,81,230,0	duplicate(Swarm of Fish)	Swarm of Fish#33	723
+comodo,74,227,0	duplicate(Swarm of Fish)	Swarm of Fish#34	723
+comodo,70,225,0	duplicate(Swarm of Fish)	Swarm of Fish#35	723
+comodo,65,225,0	duplicate(Swarm of Fish)	Swarm of Fish#36	723
+comodo,58,226,0	duplicate(Swarm of Fish)	Swarm of Fish#37	723
+comodo,52,226,0	duplicate(Swarm of Fish)	Swarm of Fish#38	723
+comodo,48,229,0	duplicate(Swarm of Fish)	Swarm of Fish#39	723
+
+
+
 //=======================================================================
 //                       FISHING QUEST SETUP                           //  
 /////////////////////////////////////////////////////////////////////////	

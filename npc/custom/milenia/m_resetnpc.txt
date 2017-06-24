@@ -46,6 +46,14 @@ milenia,125,114,11	script	Reset Girl	920,{
 	if(.@i&1){
 		sc_end SC_ALL;// TODO make a sc_end current classes sc only
 		ResetSkill;
+
+		
+		if(Class == 4079){ // Fix Shadow Chaser missing skill points bug
+			.@skillPoints = skillpointcount();
+			.@skillDeduct = 177 - (.@skillPoints);
+			set SkillPoint,SkillPoint + .@skillDeduct;
+		}
+		
 	}
 	if(.@i&2) ResetStatus;
 	mes "There you go!";

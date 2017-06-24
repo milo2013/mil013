@@ -1,0 +1,51 @@
+milenia,76,101,11	script	Disguise Stacker	985,{
+
+set .@battle_manual, countitem (12208);
+set .@int_dish, countitem (12204);
+set .@vit_dish, countitem (12207);
+set .@agi_scroll, countitem (12216);
+set .@blessing_scroll, countitem (12215);
+set .@kafra_card, countitem (12211);
+set .@token_sig, countitem (7621);
+
+if (countitem (12208)) < 1 {}
+delitem 12208, .@battle_manual;
+getitem 12208, .@battle_manual;
+//dispbottom "You stacked "+(.@battle_manual)+" of "+getitemname (12208)+"."; 		// 4x Battle_Manual
+
+
+if (countitem (12204)) < 1 {}
+delitem 12204, .@int_dish;
+getitem 12204, .@int_dish;
+//dispbottom "You stacked "+(.@int_dish)+" of "+getitemname (12204)+"."; 			// 4x Int_Dish10_
+
+
+if (countitem (12207)) < 1 {}
+delitem 12207, .@vit_dish;
+getitem 12207, .@vit_dish;
+//dispbottom "You stacked "+(.@vit_dish)+" of "+getitemname (12207)+"."; 			// 4x Vit_Dish10_
+
+
+if (countitem (12216)) < 1 {}
+delitem 12216, .@agi_scroll;
+getitem 12216, .@agi_scroll;
+//dispbottom "You stacked "+(.@agi_scroll)+" of "+getitemname (12216)+"."; 			// 30x Inc_Agi_10_Scroll
+
+
+if (countitem (12215)) < 1 {}
+delitem 12215, .@blessing_scroll;
+getitem 12215, .@blessing_scroll;
+//dispbottom "You stacked "+(.@blessing_scroll)+" of "+getitemname (12215)+"."; 		// 30x Blessing_10_Scroll
+
+
+if (countitem (12211)) < 1 {}
+delitem 12211, .@kafra_card;
+getitem 12211, .@kafra_card;
+//dispbottom "You stacked "+(.@kafra_card)+" of "+getitemname (12211)+"."; 			// 2x Kafra_Card
+
+if (countitem (7621)) < 1 {}
+delitem 7621, .@token_sig;
+getitem 7621, .@token_sig;
+//dispbottom "You stacked "+(.@token_sig)+" of "+getitemname (7621)+"."; 
+
+}

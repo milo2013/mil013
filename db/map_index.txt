@@ -1083,3 +1083,5 @@ ds
 mining
 1@prison
 tictactoe
+1@milenia_pvp
+prt_pvp
