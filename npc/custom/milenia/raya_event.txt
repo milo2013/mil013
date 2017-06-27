@@ -138,8 +138,14 @@ end;
 //==================================================================================
 OnAntonioKill:
 set $Antonio_Alive,$Antonio_Alive-1;
-if(playerattached()!=0) { if(rand(1,100)<=10) { dispbottom "You got the Antonio's christmas gift!"; getitem groupranditem(IG_GiftBox),1; } atcommand "@showmobs Hantu Mak Limah"; }
-if($Antonio_Alive<=0) { set $AntonioLeaderSpawn,1; announce "The Antonio Leader has spawned in "+$AntonioMapName$+"!",bc_all; monster $AntonioMapAdd$,0,0,"Hantu Makcik Limah",2576,1,"AntonioInvasion::OnAntonioLeaderKill"; } else { announce "There "+($Antonio_Alive!=1?"are":"is")+" still "+$Antonio_Alive+" Hantu Mak Limah"+($Antonio_Alive!=1?"s":"")+" alive!",bc_map; }
+if(playerattached()!=0) { if(rand(1,100)<=10) { 
+dispbottom "You got the Hantu Mak Limah Raya gift!"; 
+//getitem groupranditem(IG_GiftBox),1; 
+getitem 552,25;
+} 
+
+atcommand "@showmobs Hantu Mak Limah"; }
+if($Antonio_Alive<=0) { set $AntonioLeaderSpawn,1; announce "The Hantu Makcik Limah has spawned in "+$AntonioMapName$+"!",bc_all; monster $AntonioMapAdd$,0,0,"Hantu Makcik Limah",2576,1,"AntonioInvasion::OnAntonioLeaderKill"; } else { announce "There "+($Antonio_Alive!=1?"are":"is")+" still "+$Antonio_Alive+" Hantu Mak Limah"+($Antonio_Alive!=1?"s":"")+" alive!",bc_map; }
 end;
 
 OnAntonioLeaderKill:
@@ -147,14 +153,15 @@ set $AntonioEventStart,0;
 set $AntonioLeaderSpawn,0;
 killmonster $AntonioMapAdd$,"AntonioInvasion::OnAntonioKill";
 killmonster $AntonioMapAdd$,"AntonioInvasion::OnAntonioLeaderKill";
-announce "It seems the Antonio invasion is over!",bc_all;
+announce "It seems the Hantu Mak Limah invasion is over!",bc_all;
 if(playerattached()!=0) {
 	sleep2 1000;
-	dispbottom "You got the Antonio Leader's christmas gift!";	
+	dispbottom "You got the Hantu Mak Limah  Raya gift!";	
 	getitem $AIItemPrize,$AIItemAmount;
-	announce strcharinfo(0)+" has killed the Antonio Leader and was awarded a worthy prize!",bc_all;
+	announce strcharinfo(0)+" has killed Hantu Mak Limah and was awarded a worthy prize!",bc_all;
 
-	getitem groupranditem(IG_VioletBox),1;
+	//getitem groupranditem(IG_VioletBox),1;
+	getitem 552,50;
 }
 end;
 
