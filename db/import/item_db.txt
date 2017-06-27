@@ -248,6 +248,14 @@
 41250,Crimson_Elemental_Guide,Crimson Elemental Guide,3,6,,10,,,,,,,,,,,,,{},{},{}
 41251,Dark_Treasure_Box,Dark Treasure Box,2,10,,10,,,,,0xFFFFFFFF,63,2,,,,,,{mes "This item will be updated soon!"; mes " - ADMIN"; close;},{},{}
 
+// Gacha Item 
+41252,Common_Gashapon_Capsule,Common Gashapon Capsule,2,10,,1,,,,,0xFFFFFFFF,63,2,,,,,,{callfunc "Gasha01Func"; },{},{}
+41253,Uncommon_Gashapon_Capsule,Uncommon Gashapon Capsule,2,10,,1,,,,,0xFFFFFFFF,63,2,,,,,,{callfunc "Gasha02Func"; },{},{}
+41254,Rare_Gashapon_Capsule,Rare Gashapon Capsule,2,10,,1,,,,,0xFFFFFFFF,63,2,,,,,,{callfunc "Gasha03Func"; },{},{}
+41255,Epic_Gashapon_Capsule,Epic Gashapon Capsule,2,10,,1,,,,,0xFFFFFFFF,63,2,,,,,,{callfunc "Gasha04Func"; },{},{}
+41256,Legendary_Gashapon_Capsule,Legendary Gashapon Capsule,2,10,,1,,,,,0xFFFFFFFF,63,2,,,,,,{callfunc "Gasha05Func"; },{},{}
+41257,Empty_Gashapon_Capsule,Empty Gashapon Capsule,2,10,,1,,,,,0xFFFFFFFF,63,2,,,,,,{callfunc "Gasha06Func"; },{},{}
+41258,Gashapon_Coupon,Gashapon Coupon,2,10,,1,,,,,0xFFFFFFFF,63,2,,,,,,{},{},{}
 
 // BIOS ISLAND
 22537,Prize_Of_Hero,Prize of Hero,2,10,,10,,,,,0xFFFFFFFF,63,2,,,,,,{ callfunc "PrizeHeroFunc"; },{},{}

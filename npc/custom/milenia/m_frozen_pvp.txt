@@ -70,6 +70,9 @@ OnEventEnd:
 
 // On Load, you get assigned to a team.
 OnPCLoadMapEvent:
+	if ( strcharinfo(3) != .map$ ) //check if map is not the same as event map
+     end;
+	 
 	if((@team && @FreezeSessionId == .sessionId) || .disabled)
 		end;
 	if(getgmlevel() && .gmAccess)
@@ -86,7 +89,7 @@ OnPCLoadMapEvent:
 		dispbottom "Something appears to have gone wrong, sorry! please come back later";
 		warp "milenia",119,150; 
 	}
-	
+ 
 	warp .map$,getd(".team"+@team+"Spawnx"),getd(".team"+@team+"Spawny"); 
 	dispbottom "You're on team " + @team + " Goodluck!";
 	end;
