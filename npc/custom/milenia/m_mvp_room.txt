@@ -308,7 +308,7 @@ OnInit:
 	setarray .bossid[0],
 		1096,// Angeling
 		1388,// Archangeling
-		1795,// Bloody Knight
+		1268,// Bloody Knight
 		1830,// Bow Guardian
 		1839,// Byorgue
 		1309,// Cat O' Nine Tail
