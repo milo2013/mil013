@@ -3,7 +3,8 @@
 
 milenia,119,166,11	script	Gashapon Machine	506,{
 		
-if (countitem(41258) < 1) {
+//if (countitem(41258) < 1) {
+if (countitem(6697) < 1) {
 mes "[Gashapon Machine]";
 mes "You need 1 Costume Exchange Coupon to spin!";
 close;
@@ -44,7 +45,8 @@ else {
 	}
 	
 	getitem (RandItem[rand(RandCount)],1);
-	delitem 41258,1;
+	//delitem 41258,1;
+	delitem 6697,1;
 }
 
 
