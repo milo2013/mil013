@@ -60,11 +60,13 @@ milenia,154,199,3	shop	Shadow Chaser#m	481,6121:1000000,6122:1000000
 
 //CUSTOM EQ EXCHANGE
 //=========================
--	itemshop	Premium Costume	-1,41218,20234:30,20135:20,20136:20,18740:15,20132:15,5914:15,19584:15,20201:15,20798:15,20285:15,20404:15,19566:15,20459:15
+-	itemshop	Premium Costume	-1,41218,20234:30,20135:20,20136:20,18740:15
 
-//milenia,80,57,11	script	Premium Rare Costume	531,{
-//		callshop "Premium Costume",0;
-//}
+// Costume backup ,20132:15,5914:15,19584:15,20201:15,20798:15,20285:15,20404:15,19566:15,20459:15
+
+milenia,80,57,11	script	Premium Rare Costume	531,{
+		callshop "Premium Costume",0;
+}
 
 //INFINITE EQ EXCHANGE
 //=========================

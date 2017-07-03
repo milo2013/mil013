@@ -579,3 +579,4 @@ milenia_pvp	mapflag	pvp_noguild
 //milenia_pvp	mapflag	pvp_noparty
 milenia_pvp	mapflag	noteleport
 milenia_pvp	mapflag	nomemo
+milenia_pvp	mapflag	restricted	3

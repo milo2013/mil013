@@ -21,6 +21,11 @@ setarray .News$[0],	// Random Message to be Announced
 		"Milenia RO : Lack of money? Farm your money at our Dokebi Farm, Mining or Invaded Prontera~",
 		"Milenia RO : Please remember that our Daily Login reset on 1st day every month~",
 		"Milenia RO : Did you know we have WoE Betting System? Talk to Betting Girl NPC to start betting!",
+		"Milenia RO : Love TicTacToe? Try typing @tt to play!",
+		"Milenia RO : Bored with normal PVP? Try out our new Frozen PVP! @frozen to start!",
+		"Milenia RO : Join War of Emperium on Every Saturday and Sunday starting from 10pm till 11pm GMT+8!!",
+		"Milenia RO : Guild Masters! Prepare your guildie to join upcoming War of Emperium!!",
+		"Milenia RO : War Of Emperium winner will have access to Abyss Dungeon!! Also will get WoE Champion Box!!",
 		"Milenia RO : Please balance your game with your work and study~";
 		//"Milenia RO : DOUBLE DONATION SALES from 24 April till 8 May 2017! Check our page for details!";
 		

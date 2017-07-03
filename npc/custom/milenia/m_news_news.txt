@@ -242,7 +242,7 @@ set .@len, getarraysize(.@post_id);
 copyarray .@og_stat[0],.@status,128;
 set @menu, -1;
 
-	if(getgmlevel()>10) {
+	if(getgmlevel()>5) {
 		mes .npc$;
 		mes "Would you like to view the normal player menu?"; next;
 		if(select("No:Yes")&2) goto L_Menu;

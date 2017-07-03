@@ -84,7 +84,7 @@
 41117,Acid_Demonstration_Box_50,Acid Demonstration Box 50,2,20,,10,,,,,0xFFFFFFFF,63,2,,,,,,{ getitem 7136,50; getitem 7135,50; },{},{}
 41118,Acid_Demonstration_Box_100,Acid Demonstration Box 100,2,20,,10,,,,,0xFFFFFFFF,63,2,,,,,,{ getitem 7136,100; getitem 7135,100; },{},{}
 41119,Margaretha_Scroll,Margaretha Contract,2,0,,10,,,,,0xFFFFFFFF,63,2,,,,,,{ mercenary_create 2001,1800000; },{},{}
-41120,Yggdrasilberry_Slim_Potion,Condensed Yggdrasilberry Potion,0,600,,2,,,,,0xFFFFFFFF,63,2,,,,,,{ percentheal 100,100; },{},{}
+41120,Super_Potion,Super Potion,0,600,,2,,,,,0xFFFFFFFF,63,2,,,,,,{ percentheal 100,100; },{},{}
 41121,Milenia_Certificate,Milenia Refine Certificate,0,10000000,10000000,0,,,,,,,,,,,,,{},{},{}
 41122,Milenia_Certificate_Box,Milenia Refine Certificate Box,18,10,,10,,,,0,0xFFFFFFFF,63,2,,,,,,{ rentitem 41121,2592000; },{},{}
 41123,Free_Gift_Box,Free Gift Box,2,0,,10,,,,,0xFFFFFFFF,7,2,,,,,,{ getitem 5554,1; getitem 16395,1; getitem 14219,1; getitem 16393,1; getitem 14220,1; getitem 13996,1; getitem 41122,1;},{},{}
@@ -264,7 +264,7 @@
 4697,Charleston3_Card,Charleston3 Card,6,20,,10,,,,,,,,2,,,,,{ bonus bMaxSP,-300; bonus bBreakArmorRate,1500; /* Custom rate [Secret] */ },{},{}
 4698,Step_Card,Step Card,6,20,,10,,,,,,,,2,,,,,{ bonus2 bSkillAtk,"NC_ARMSCANNON",20+((getrefine()>=10)*20); },{},{}
 4699,Rock_Step_Card,Rock Step Card,6,20,,10,,,,,,,,2,,,,,{ bonus2 bSkillAtk,"NC_ARMSCANNON",20+((getrefine()>=10)*20); },{},{}
-27012,Kick_Step_Card,Kick Step Card,6,20,,10,,,,,,,,2,,,,,{ bonus bMaxHPrate,8; if((eaclass()&EAJ_THIRDMASK) == EAJ_MECHANIC){ bonus bLongAtkDef,30; } },{},{}
+27012,Kick_Step_Card,Kick Step Card,6,20,,10,,,,,,,,16,,,,,{ bonus bMaxHPrate,8; if((eaclass()&EAJ_THIRDMASK) == EAJ_MECHANIC){ bonus bLongAtkDef,30; } },{},{}
 27013,Kick_&_Kick_Card,Kick & Kick Card,6,20,,10,,,,,,,,2,,,,,{ bonus2 bSkillAtk,"NC_VULCANARM",10+((getrefine()>=10)*20); },{},{}
 
 

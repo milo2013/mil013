@@ -3,60 +3,59 @@
 
 milenia,119,166,11	script	Gashapon Machine	506,{
 		
-if (countitem(6697) < 1) {
-mes "[Gashapon Machine]";
-mes "You need 1 Costume Exchange Coupon to spin!";
-close;
-}
+if (countitem (6697) >= 1) || (countitem (41258) >= 1) {
 
-
-
-else {
-
+	set .@couponFREE,6697;
+	set .@couponDONATION,41258;
 	set .@rate, rand(1,100);
 	
 	//41257,Taurus_Stone/Empty
 	if (.@rate >= 1) && (.@rate <= 5){
-	//setarray RandItem[0],41257; // Items with 10% Chance
+	//setarray RandItem[0],41257; // Items with 5% Chance
 	getitem 41257,1;
 	set .@mesEMPTY,1;
 	}
 	
 	//41256,Scorpio_Stone/Legendary
 	if (.@rate >= 6) && (.@rate <= 7){
-	//setarray RandItem[0],41256; // Items with 25% Chance
+	//setarray RandItem[0],41256; // Items with 2% Chance
 	getitem 41256,1;
 	set .@mesLEGEND,1;
 	
 	}
 	//41255,Aquarius_Stone/Epic
-	if (.@rate >= 8) && (.@rate <= 16) {
-	//setarray RandItem[0],41255; // Items with 8% Chance
+	if (.@rate >= 8) && (.@rate <= 14) {
+	//setarray RandItem[0],41255; // Items with 7% Chance
 	getitem 41255,1;
 	set .@mesEPIC,1;
 	}
 	
 	//41254,Capricorn_Stone/Rare
-	if (.@rate >= 17) && (.@rate <= 24){
+	if (.@rate >= 15) && (.@rate <= 24){
 	//setarray RandItem[0],41254; // Items with 10% Chance
 	getitem 41254,1;
 	}
-	
+		
 	//41253,Pisces_Stone/Uncommon
-	if (.@rate >= 25) && (.@rate <= 39){
+	if (.@rate >= 25) && (.@rate <= 44){
 	//setarray RandItem[0],41253; // Items with 20% Chance
 	getitem 41253,1;
 	}
 	
 	//41252,Leo_Stone/Common
-	if (.@rate >= 40) && (.@rate <= 100){
-	//setarray RandItem[0],41252; // Items with 40% Chance
+	if (.@rate >= 45) && (.@rate <= 100){
+	//setarray RandItem[0],41252; // Items with 56% Chance
 	getitem 41252,1;
 	}
 	
-	
-	//delitem 41258,1;
+	if (countitem (.@couponFREE) >= 1){
 	delitem 6697,1;
+	}
+	
+	if (countitem (.@couponDONATION) >= 1){
+	delitem 41258,1;
+	}
+	
 	set .@rate,0;
 	
 	if (.@mesEMPTY == 1){
@@ -75,8 +74,13 @@ else {
 	}
 	
 	end;
-}
-
+	}
+	
+	if (countitem(6697) < 1) || (countitem (41258) < 1) { 
+		mes "[Gashapon Machine]";
+		mes "You need 1 Costume Exchange Coupon to spin!";
+		close;
+	}
 
 }
 

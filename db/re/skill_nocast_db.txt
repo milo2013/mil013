@@ -171,6 +171,8 @@
 26,128	//AL_TELEPORT
 2284,128	//SC_FATALMENACE
 2300,128	//SC_DIMENSIONDOOR
+// Milenia PVP
+27,128	//AL_WARP
 
 //----------------------------------------------------------------------------
 // Zone 4 - WoE:SE
@@ -220,3 +222,5 @@
 336,4096 // WE_CALLPARTNER
 409,4096 // WE_CALLPARENT
 410,4096 // WE_CALLBABY
+
+

@@ -550,7 +550,7 @@
 6077,507,100	// Rough_Mineral
 6078,507,100	// Stone_Fragments
 6079,507,100	// Flower_Of_Alfheim
-6080,507,100	// Manuk_Coin
+6080,475,100	// Manuk_Coin
 //6081,507,100	// Splendide_Coin
 6082,507,100	// Spirit_Of_Alfheim
 6084,507,100	// Bradium_Fragments
@@ -3683,25 +3683,25 @@
 19765,475,100	// C_Wing_Angels_Ears
 19853,507,100	// C_Filir Wings
 19996,467,100	// Horse_King
-19999,467,100	// C_Mouse_Hat1
-20000,467,100	// C_Mouse_Hat2
-20001,467,100	// C_Mouse_Hat3
-20002,467,100	// C_Mouse_Hat4
-20003,467,100	// C_Mouse_Hat5
-20025,467,100	// C_Cow_Hat1
-20026,467,100	// C_Cow_Hat2
-20027,467,100	// C_Cow_Hat3
-20028,467,100	// C_Cow_Hat4
-20053,467,100	// C_W_King_Tiger_Doll_Hat
+19999,464,100	// C_Mouse_Hat1
+20000,464,100	// C_Mouse_Hat2
+20001,464,100	// C_Mouse_Hat3
+20002,464,100	// C_Mouse_Hat4
+20003,464,100	// C_Mouse_Hat5
+20025,464,100	// C_Cow_Hat1
+20026,464,100	// C_Cow_Hat2
+20027,464,100	// C_Cow_Hat3
+20028,464,100	// C_Cow_Hat4
+20053,464,100	// C_W_King_Tiger_Doll_Hat
 20063,475,100	// C_Yellow_Brain_Hat
 20064,475,100	// C_Blue_Brain_Hat
-20067,467,100	// C_White_Rabbit_Headband
-20068,467,100	// C_Black_Rabbit_Headband
-20086,467,100	// C_Dragon_Cintamani_Hat1
-20087,467,100	// C_Dragon_Cintamani_Hat2
-20088,467,100	// C_Dragon_Cintamani_Hat3
-20089,467,100	// C_Dragon_Cintamani_Hat4
-20110,467,100	// C_Coiledup_Snake
+20067,464,100	// C_White_Rabbit_Headband
+20068,464,100	// C_Black_Rabbit_Headband
+20086,464,100	// C_Dragon_Cintamani_Hat1
+20087,464,100	// C_Dragon_Cintamani_Hat2
+20088,464,100	// C_Dragon_Cintamani_Hat3
+20089,464,100	// C_Dragon_Cintamani_Hat4
+20110,464,100	// C_Coiledup_Snake
 //20111,467,100	//
 20135,475,100	// C_12_Anniversary_Crown_Of_Saint
 20136,475,100	// C_12_Anniversary_Elf_Ears
@@ -3713,7 +3713,7 @@
 20206,467,100	// C_Chicken_Hat
 20210,467,100	// C_Chicken_Hat
 20211,467,100	// C_Chicken_Hat
-20227,467,100	// C_Puppy_Hat
+20227,464,100	// C_Husky_Hat
 20228,467,100	// C_Pig_MoneyBox
 //20702,499,100	//
 //20703,499,100	//

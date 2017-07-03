@@ -24,17 +24,17 @@
 //4,26003,200 //
 //4,26010,100 //
 //start here
-0,19823,30 //White Cat Hood 
-0,20036,30 //Crown Of Victory
-0,20147,20 //Pigoen On Shoulder
-0,20398,30 //Niflheim Bunny Hat
-0,20266,30 //Secret Zipper
-0,20318,20 //Charleston Antenna
-0,20315,20 //Analyze Eye
-0,20430,30 //Loyal Servant Of Evil Morroc
-0,20314,30 //New Wave Sunglasses
-0,19727,30 //Develing Hat
-0,20034,30 //Jack Battle Bat
+//0,19823,30 //White Cat Hood 
+//0,20036,30 //Crown Of Victory
+//0,20147,20 //Pigoen On Shoulder
+//0,20398,30 //Niflheim Bunny Hat
+//0,20266,30 //Secret Zipper
+//0,20318,20 //Charleston Antenna
+//0,20315,20 //Analyze Eye
+//0,20430,30 //Loyal Servant Of Evil Morroc
+//0,20314,30 //New Wave Sunglasses
+//0,19727,30 //Develing Hat
+//0,20034,30 //Jack Battle Bat
 //0,15093,120 // Brave Plate
 //0,15094,120 // Brave Magic Coat
 //0,15096,120 // Heroic Trade-Mail

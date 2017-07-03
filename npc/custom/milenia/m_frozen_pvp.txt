@@ -24,7 +24,7 @@
 									/// If you find any bugs or do if you have suggestions either e-mail me at garet999@gmail.com or send me a PM on////
 									///	rAthena. I'll try to respond within 24 hours.																//// 
 									////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-guild_vs2-2,49,28,7	script	TheUnFreezer	4_M_FROZEN1,{
+prt_pvp,49,28,7	script	TheUnFreezer	4_M_FROZEN1,{
 	dispbottom "You're attempting to free your team...";
 	callsub FreeTeam;
 	end;
@@ -62,7 +62,7 @@ OnEventEnd:
 	mapannounce .map$,"You will be warped out shortly",0;
 	sleep(10000);
 	if(!.locations){
-		mapwarp .map$,"prontera",150,150;
+		mapwarp .map$,"milenia",120,150;
 	} else{
 		callsub WarpPlayers;
 	}
@@ -599,25 +599,25 @@ QueueDelete:
 //----------- Configuration -----------------------
 OnInit:
 	//Maximum amount of players per team.
-	.MaxTeamMembers = 6;
+	.MaxTeamMembers = 2;
 	
 	// Time it takes to free your team in seconds.
 	.timeToFree = 7;
 	
 	// Reward for winning
-	.reward = 501; // Red potion!
+	.reward = 41251; // Dark Treasure Box
 	
 	// How many items do the players get?
-	.rewardAmount = 5; // 5 Apples!
+	.rewardAmount = 1; // 5 Apples!
 	
 	// Can Gm's spectate?
-	.gmAccess = 0; // 0 = no, 1 = yes
+	.gmAccess = 1; // 0 = no, 1 = yes
 	
 	// Are the queue's open by default?
 	.open = 1;
 	
 	// Restrict double logging via IP
-	.ip = 0; // 0 = no, 1 = yes
+	.ip = 1; // 0 = no, 1 = yes
 	
 	// Remember Locations (Warp back to the place the players were warped from?)
 	.locations = 1; // 0 = no, 1 = yes
@@ -633,7 +633,7 @@ OnInit:
 	.team2Spawny = 50;
 	
 	// Map of Event
-	.map$ = "guild_vs2-2"; 
+	.map$ = "prt_pvp"; 
 	
 	// Area separating players from the frozen players.
 	.@wallx = 42;
@@ -653,7 +653,9 @@ OnInit:
 
 	// Bind at commands
 	bindatcmd("joinqueue", strnpcinfo(0)+"::OnJoinQueue");
+	bindatcmd("frozen", strnpcinfo(0)+"::OnJoinQueue");
 	bindatcmd("leavequeue", strnpcinfo(0)+"::OnLeaveQueue");
+	bindatcmd("frozenquit", strnpcinfo(0)+"::OnLeaveQueue");
 	bindatcmd("claimreward",strnpcinfo(0)+"::OnClaim"); 
 	bindatcmd("freezeconfig",strnpcinfo(0)+"::OnConfig",1); 
 	

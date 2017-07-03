@@ -174,7 +174,7 @@ OnFri2000:
 OnSat2000:
 OnSun2000:
 
-OnThu1230:
+//OnMon1746:
 		hideoffnpc "Devil Square Guardian#1";
 		hideoffnpc "Devil Square Guardian#2";
 		sleep 1000;
@@ -237,15 +237,19 @@ OnThu1230:
 		set .monsterid,1873;
 		set .monstername$,"Beelzebub";
 		set .monsterhp,8000000;
+		
+		set .monstercount,5;
+		areamonster "ds",27,51,51,27,"[DS] "+.monstername$[.monster],.monsterid[.monster],.monstercount,strnpcinfo(0)+"::OnDevilDead";         
+        set .mob, .mob+.monstercount;
 	
-		for (set .@x,0; .@x<getmapusers("ds"); set .@x, .@x+1){
-				set .monstercount,3;
-                for (set .@y,0; .@y<.monstercount; set .@y, .@y+1 ) {
-						//set .monster, rand(0,.monsterset-1);
-                        areamonster "ds",27,51,51,27,"[DS] "+.monstername$[.monster],.monsterid[.monster],.monstercount,strnpcinfo(0)+"::OnDevilDead";         
-                        set .mob, .mob+.monstercount;
-                }
-        }
+		//for (set .@x,0; .@x<getmapusers("ds"); set .@x, .@x+1){
+		//		set .monstercount,3;
+        //        for (set .@y,0; .@y<.monstercount; set .@y, .@y+1 ) {
+		//				//set .monster, rand(0,.monsterset-1);
+        //                areamonster "ds",27,51,51,27,"[DS] "+.monstername$[.monster],.monsterid[.monster],.monstercount,strnpcinfo(0)+"::OnDevilDead";         
+        //                set .mob, .mob+.monstercount;
+        //        }
+        //}
         end;
  
 OnDevilDead:
@@ -273,14 +277,18 @@ OnDevil2:
 		set .monstername$,"Mutant Coelacanth";
 		set .monsterhp,8000000;
 		
-		for (set .@x,0; .@x<getmapusers("ds"); set .@x, .@x+1){
-				set .monstercount,3;
-                for (set .@y,0; .@y<.monstercount; set .@y, .@y+1 ) {
-						//set .monster, rand(0,.monsterset-1);
-                        areamonster "ds",27,51,51,27,"[DS] "+.monstername$[.monster],.monsterid[.monster],.monstercount,strnpcinfo(0)+"::OnDevilDead2";         
-                        set .mob, .mob+.monstercount;
-                }
-        }
+		set .monstercount,3;
+		areamonster "ds",27,51,51,27,"[DS] "+.monstername$[.monster],.monsterid[.monster],.monstercount,strnpcinfo(0)+"::OnDevilDead2";         
+        set .mob, .mob+.monstercount;
+		
+		//for (set .@x,0; .@x<getmapusers("ds"); set .@x, .@x+1){
+		//		set .monstercount,3;
+        //        for (set .@y,0; .@y<.monstercount; set .@y, .@y+1 ) {
+		//				//set .monster, rand(0,.monsterset-1);
+        //                areamonster "ds",27,51,51,27,"[DS] "+.monstername$[.monster],.monsterid[.monster],.monstercount,strnpcinfo(0)+"::OnDevilDead2";         
+        //                set .mob, .mob+.monstercount;
+        //        }
+        //}
         end;
  
 OnDevilDead2:
@@ -308,17 +316,21 @@ OnDevil3:
 		set .monstername$,"Thanatos Dolor";
 		set .monsterhp,8000000;
 		
-		for (set .@x,0; .@x<getmapusers("ds"); set .@x, .@x+1){
+		set .monstercount,5;
+		areamonster "ds",27,51,51,27,"[DS] "+.monstername$[.monster],.monsterid[.monster],.monstercount,strnpcinfo(0)+"::OnDevilDead3";         
+        set .mob, .mob+.monstercount;
+						
+		//for (set .@x,0; .@x<getmapusers("ds"); set .@x, .@x+1){
 				//set .monster, rand(0,.monsterset-1);
                 //if (.monsterhp[.monster] > 15000) set .monstercount, 1;
                 //else 
-				set .monstercount,5;
-                for (set .@y,0; .@y<.monstercount; set .@y, .@y+1 ) {
+		//		set .monstercount,5;
+        //        for (set .@y,0; .@y<.monstercount; set .@y, .@y+1 ) {
 						//set .monster, rand(0,.monsterset-1);
-                        areamonster "ds",27,51,51,27,"[DS] "+.monstername$[.monster],.monsterid[.monster],.monstercount,strnpcinfo(0)+"::OnDevilDead3";         
-                        set .mob, .mob+.monstercount;
-                }
-        }
+        //                areamonster "ds",27,51,51,27,"[DS] "+.monstername$[.monster],.monsterid[.monster],.monstercount,strnpcinfo(0)+"::OnDevilDead3";         
+        //               set .mob, .mob+.monstercount;
+        //       }
+        //}
         end;
  
 OnDevilDead3:

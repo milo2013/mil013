@@ -246,7 +246,7 @@ milenia,221,139,11	duplicate(Milenia Tour)	Milenia Tour#mercenary	721
 milenia,202,85,11	duplicate(Milenia Tour)	Milenia Tour#quest	721
 milenia,169,100,11	duplicate(Milenia Tour)	Milenia Tour#refine	721
 milenia,43,147,11	duplicate(Milenia Tour)	Milenia Tour#mine	721
-milenia,69,68,5	duplicate(Milenia Tour)	Milenia Tour#novice	721
+milenia,67,57,5	duplicate(Milenia Tour)	Milenia Tour#novice	721
 milenia,130,82,11	duplicate(Milenia Tour)	Milenia Tour#fish	721
 milenia,218,118,11	duplicate(Milenia Tour)	Milenia Tour#cedi	721
 milenia,169,45,11	duplicate(Milenia Tour)	Milenia Tour#tictac	721

@@ -30,7 +30,7 @@ milenia,129,138,11	script	Card Trader	4_F_01,{
 				4152,4186,4187,4181,4173,4167,4162,4176,4195,4193,
 				4200,4223,4194,4190,4189,4192,4224,4244,4248,4261,
 				4260,4259,4274,4275,4313,4299,4304,4294,4076,4127,
-				4154,4157,4156,4213,4214,4225,4235,4585 ;
+				4154,4157,4156,4213,4214,4225,4235,4585,4470,4531;
 	setarray .@card2[0], 4293,4297,4288,4283,4295,4307,4308,4309,4132,4326,
 				4341,4335,4337,4345,4344,4331,4333,4332,4089,4161,
 				4177,4178,4180,4184,4191,4206,4199,4273,4282,4268,
@@ -75,12 +75,12 @@ milenia,129,138,11	script	Card Trader	4_F_01,{
 			mes "The points can be used to exchange for items that I have.";
 			next;
 			mes "[Card Trader]";
-			mes "For ^CC0000100 points^000000: ^0000CC1 Old Card Album^000000.";
-			mes "For ^CC000050 points^000000: ^0000CC20 Yggdrasil Berry^000000.";
-			mes "For ^CC000020 points^000000: ^0000CC10 Blue Potion^000000.";
-			mes "For ^CC00001 point^000000: ^0000CC4 Honey^000000.";
+			mes "For ^CC00002000 points^000000: ^0000CC1 Mystical Card Album^000000.";
+			mes "For ^CC0000500 points^000000: ^0000CC20 Super Potion^000000.";
+			mes "For ^CC0000200 points^000000: ^0000CC10 Big Bun^000000.";
 			next;
 			break;
+			
 		case 2:
 			mes "[Card Trader]";
 			mes "Well, remember this offer!";
@@ -146,42 +146,33 @@ milenia,129,138,11	script	Card Trader	4_F_01,{
 			mes "[Card Trader]";
 			mes "These are the items that I have.";
 			next;
-			switch(select("1 Old Card Album - 50 Points","20 Yggdrasil Berry - 50 Points","10 Blue Potion - 20 Points","4 Honey - 1 Point","^777777Nerver mind.^000000")) {
+			switch(select("1 Mystical Card Album - 2000 Points","20 Super Potion - 500 Points","10 Big Bun - 200 Points","^777777Nerver mind.^000000")) {
 				case 1:
-					if (.@points < 100) break;
+					if (.@points < 2000) break;
 					mes "[Card Trader]";
 					mes "Great, I wish you the best";
 					mes "of luck with this album. I have a";
 					mes "very good feeling about this one!";
-					oversea_event9 = .@points - 100;
-					getitem 616,1;
+					oversea_event9 = .@points - 2000;
+					getitem 12246,1;
 					close;
 				case 2:
-					if (.@points < 50) break;
+					if (.@points < 500) break;
 					mes "[Card Trader]";
 					mes "Oh, you must like adventures.";
 					mes "Here you go, just what you need!";
-					oversea_event9 = .@points - 50;
-					getitem 607,20;
+					oversea_event9 = .@points - 500;
+					getitem 41120,20;
 					close;
 				case 3:
-					if (.@points < 20) break;
+					if (.@points < 200) break;
 					mes "[Card Trader]";
 					mes "Blue Potions? Are you sure?";
 					mes "If that's what you want, here they are!";
-					oversea_event9 = .@points - 20;
-					getitem 505,10;
+					oversea_event9 = .@points - 200;
+					getitem 14522,10;
 					close;
 				case 4:
-					if (.@points < 1) break;
-					mes "[Card Trader]";
-					mes "It took many bees";
-					mes "to make all of this.";
-					mes "Make good use of it.";
-					oversea_event9 = .@points - 1;
-					getitem 518,4;
-					close;
-				case 5:
 					mes "[Card Trader]";
 					mes "Alright, come back when you have more points.";
 					close;

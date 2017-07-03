@@ -55,6 +55,7 @@ milenia,116,114,6	script	Platinum Skill NPC	415,{
 		skill "MC_CARTREVOLUTION",1,SKILL_PERM;
 		skill "MC_CHANGECART",1,SKILL_PERM;
 		skill "MC_LOUD",1,SKILL_PERM;
+		skill "MC_CARTDECORATE",1,SKILL_PERM;
 		break;
 	case Job_Thief:
 		skill "TF_SPRINKLESAND",1,SKILL_PERM;
