@@ -1,0 +1,88 @@
+milenia,161,148,11	script	Delete Master	853,{
+
+mes "[ Delete Master ]";	
+mes "Hello ^FF0000"+strcharinfo(0)+"^000000!!";
+mes "I can help you remove unwanted item from your iventory!";
+next;
+mes "[ Delete Master ]";
+mes "^FF0000Please be careful!";
+mes "Deleted item ARE NOT REFUNDABLE!^000000";
+next;
+mes "[ Delete Master ]";	
+mes "So.. What you want me to do?!";
+next;
+switch(select("[ Show my iventory list ]:[ Delete item ]:[ Cancel ]")) {
+
+case 1:
+	atcommand "@itemlist";
+	mes "[ Delete Master ]";	
+	mes "Done! Please check your chat box for list!";
+	close;
+	
+case 2:	
+	mes "[ Delete Master ]";	
+	mes "Plese input the item ID..";
+	next;
+	input .@ID;
+    if (.@ID == 0) {
+        mes "[ Delete Master ]";	
+        mes "Umm, please enter the item ID!";
+        close;
+    }
+	
+	if (countitem (.@ID) < 1){
+		mes "[ Delete Master ]";	
+        mes "Umm, there is no";
+		mes "^FF0000"+(getitemname (.@ID))+"^000000 in your iventory!";
+        next;
+		mes "[ Delete Master ]";
+		mes "Please input the CORRECT item ID!";
+		set .@ID,0;
+		input .@ID;
+	}
+		
+	next;
+	mes "[ Delete Master ]";	
+	mes "Plese input the amount to be deleted!";
+	next;
+	
+	input .@AMOUNT;
+	if (.@AMOUNT == 0) {
+        mes "[ Delete Master ]";	
+        mes "Umm, please enter your amount!";
+        close;
+    }
+	
+	if (countitem (.@ID) < (.@AMOUNT)){
+		mes "[ Delete Master ]";	
+        mes "Are sure you're count it right?";
+        next;
+		mes "[ Delete Master ]";	
+		mes "Please enter the REAL amount of the item!";
+		set .@AMOUNT,0;
+		input .@AMOUNT;
+	}
+	
+	next;
+	mes "[ Delete Master ]";	
+	mes "Are you sure to delete this?";
+	mes "                                   ";
+	mes "Name :  ^FF0000"+ (getitemname (.@ID))+"^000000.";
+	mes "Quantity : ^FF0000"+(.@AMOUNT)+"^000000 unit.";
+	next;
+		switch(select("[ ^FF0000Confirm and delete item!^000000]:[ Maybe later.. ]")) {
+			case 1:
+				atcommand "@delitem "+(.@ID)+" "+(.@AMOUNT)+"";
+				mes "[ Delete Master ]";	
+				mes "Done! Please come again!";
+				close;
+	
+			case 2:
+				close;
+				end;
+			}
+case 3:
+	close;
+	end;
+	}
+}
