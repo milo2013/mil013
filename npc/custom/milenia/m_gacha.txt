@@ -3,50 +3,78 @@
 
 milenia,119,166,11	script	Gashapon Machine	506,{
 		
-//if (countitem(41258) < 1) {
 if (countitem(6697) < 1) {
 mes "[Gashapon Machine]";
 mes "You need 1 Costume Exchange Coupon to spin!";
 close;
 }
 
+
+
 else {
+
+	set .@rate, rand(1,100);
 	
 	//41257,Taurus_Stone/Empty
-	if (rand(100) < 4) {
-	setarray RandItem[0],41257; // Items with 10% Chance
-	announce " "+ strcharinfo(0) +" has drawn the short straw and obtained an Empty Gashapon capsule. Better luck next time! ",0;
+	if (.@rate >= 1) && (.@rate <= 5){
+	//setarray RandItem[0],41257; // Items with 10% Chance
+	getitem 41257,1;
+	set .@mesEMPTY,1;
 	}
+	
 	//41256,Scorpio_Stone/Legendary
-	if (rand(100) < 9) {
-	setarray RandItem[0],41256; // Items with 25% Chance
-	announce "Congratulations "+ strcharinfo(0) +" for obtaining Legendary Gashapon capsule from the Gashapon Machine!!",0;
+	if (.@rate >= 6) && (.@rate <= 7){
+	//setarray RandItem[0],41256; // Items with 25% Chance
+	getitem 41256,1;
+	set .@mesLEGEND,1;
 	
 	}
 	//41255,Aquarius_Stone/Epic
-	if (rand(100) < 12) {
-	setarray RandItem[0],41255; // Items with 8% Chance
-	announce "Congratulations "+ strcharinfo(0) +" for obtaining Epic Gashapon capsule from the Gashapon Machine!!",0;
-	}
-	//41254,Capricorn_Stone/Rare
-	if (rand(100) < 15) {
-	setarray RandItem[0],41254; // Items with 10% Chance
-	//announce "Congratulations "+ strcharinfo(0) +" for obtaining Rare Gashapon capsule from the Gashapon Machine!!",0;
-	}
-	//41253,Pisces_Stone/Uncommon
-	if (rand(100) < 20) {
-	setarray RandItem[0],41253; // Items with 20% Chance
-	//announce "Congratulations "+ strcharinfo(0) +" for obtaining Uncommon Gashapon capsule from the Gashapon Machine!!",0;
-	}
-	//41252,Leo_Stone/Common
-	if (rand(100) < 40) {
-	setarray RandItem[0],41252; // Items with 40% Chance
-	//announce "Congratulations "+ strcharinfo(0) +" for obtaining Common Gashapon capsule from the Gashapon Machine!!",0;
+	if (.@rate >= 8) && (.@rate <= 16) {
+	//setarray RandItem[0],41255; // Items with 8% Chance
+	getitem 41255,1;
+	set .@mesEPIC,1;
 	}
 	
-	getitem (RandItem[rand(RandCount)],1);
+	//41254,Capricorn_Stone/Rare
+	if (.@rate >= 17) && (.@rate <= 24){
+	//setarray RandItem[0],41254; // Items with 10% Chance
+	getitem 41254,1;
+	}
+	
+	//41253,Pisces_Stone/Uncommon
+	if (.@rate >= 25) && (.@rate <= 39){
+	//setarray RandItem[0],41253; // Items with 20% Chance
+	getitem 41253,1;
+	}
+	
+	//41252,Leo_Stone/Common
+	if (.@rate >= 40) && (.@rate <= 100){
+	//setarray RandItem[0],41252; // Items with 40% Chance
+	getitem 41252,1;
+	}
+	
+	
 	//delitem 41258,1;
 	delitem 6697,1;
+	set .@rate,0;
+	
+	if (.@mesEMPTY == 1){
+	announce " "+ strcharinfo(0) +" has drawn the short straw and obtained an Empty Gashapon capsule. Better luck next time! ",0;
+	set .@mesEMPTY,0;
+	}
+	
+	if (.@mesLEGEND == 1){
+	announce "Congratulations "+ strcharinfo(0) +" for obtaining Legendary Gashapon capsule from the Gashapon Machine!!",0;
+	set .@mesLEGEND,0;
+	}
+	
+	if (.@mesEPIC == 1){
+	announce "Congratulations "+ strcharinfo(0) +" for obtaining Epic Gashapon capsule from the Gashapon Machine!!",0;
+	set .@mesEPIC,0;
+	}
+	
+	end;
 }
 
 

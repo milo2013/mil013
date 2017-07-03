@@ -1,29 +1,68 @@
-milenia,138,161,11	script	Betting Girl	831,{
-set j, 0; 
+/*
+  .-----------------. .----------------.  .-----------------. .----------------.  .----------------. 
+ | .--------------. || .--------------. || .--------------. || .--------------. || .--------------. |
+ | | ____  _____  | || |     _____    | || | ____  _____  | || |     _____    | || |      __      | |
+ | ||_   \|_   _| | || |    |_   _|   | || ||_   \|_   _| | || |    |_   _|   | || |     /  \     | |
+ | |  |   \ | |   | || |      | |     | || |  |   \ | |   | || |      | |     | || |    / /\ \    | |
+ | |  | |\ \| |   | || |      | |     | || |  | |\ \| |   | || |   _  | |     | || |   / ____ \   | |
+ | | _| |_\   |_  | || |     _| |_    | || | _| |_\   |_  | || |  | |_' |     | || | _/ /    \ \_ | |
+ | ||_____|\____| | || |    |_____|   | || ||_____|\____| | || |  `.___.'     | || ||____|  |____|| |
+ | |              | || |              | || |              | || |              | || |              | |
+ | '--------------' || '--------------' || '--------------' || '--------------' || '--------------' |
+  '----------------'  '----------------'  '----------------'  '----------------'  '----------------' 
+======================     rAthena SCRIPTING SERVICES AND SERVER SETUP     ==========================
+End User Agreement:
+By using this script, you may not redistribute it in the following terms
+1. Without the consent of the script author
+2. Without the consent of the script owner
+Where the script author is Ninja (https://rathena.org/board/profile/7005-ninja/) and the script owner
+is the one who availed and paid for the script.
+======================================================================================================
+Exclusively for Rakusazs - MileniaRO
 
+Changelog.
+
+v 1.1.1
+	Added zeny check before confirmation
+	
+v 1.1.0
+	Top 10 guild is now based on how many castles they own instead of just guild EXP
+	== 
+	SELECT guild.name as "Guild Name", count(castle_id) as "Castles Owned" 
+	FROM guild_castle 
+	INNER JOIN guild 
+	ON guild.guild_id = guild_castle.guild_id 
+	GROUP BY guild_castle.guild_id 
+	ORDER BY count(castle_id) DESC, guild.exp DESC, guild.average_lv DESC
+	==
+
+v 1.0.0 - Initial Version
+
+*/
+
+
+quiz_00,57,28,3	script	Betting Girl	831,{
+set j, 0; 
 //Set castle for each day
 Switch(gettime(DT_DAYOFWEEK)){
 	case 0:
-		set .WoECastle$, "prtg_cas01";
+		set .WoECastle$, "payg_cas03";
 		break;
 	case 7:
-		set .WoECastle$, "payg_cas03";
+		set .WoECastle$, "prtg_cas01";
 		break;
 	default:
 		set .WoECastle$, "payg_cas01";
 		break;
 }
 //Get all guild names
-query_sql("SELECT name FROM `guild` ORDER BY guild_lv, exp", .guild_name$); 
-
+query_sql("select guild.name, count(castle_id) from guild_castle inner join guild on guild.guild_id = guild_castle.guild_id group by guild_castle.guild_id ORDER BY count(castle_id) DESC, guild.exp DESC, guild.average_lv DESC", .guild_name$, .guild_castles); 
 //Check if WoE is On-going
 if (agitcheck() || agitcheck2() || agitcheck3()){
 	mes "^0000FF["+strnpcinfo(0)+"]^000000";
 	mes "Cannot bet now. WoE is ^0000FFOn-going^000000.";
 	close;
 }
-
-
 //Betting Logic
 //Check if player is the guildmaster of winning guild
 if (.WoEJustEnded == 1 && getguildmaster(getcastledata(.WoECastle$,1)) == strcharinfo(0) && BetClaimed < 1) {
@@ -109,7 +148,7 @@ Switch(Select("Show Top 10 Guilds:Make A Bet:Nothing.")){
 		mes "^0000FF["+strnpcinfo(0)+"]^000000";
 		mes "Top 10 Guild List:";
 		for (set .@i, 0; .@i < 10; set .@i, .@i + 1){
-			mes "Top #"+(.@i+1)+": "+.guild_name$[.@i];
+			mes "Top #"+(.@i+1)+": "+(.@i==1?"^FF0000":"^000000")+.guild_name$[.@i]+"^000000 : ^00FF00"+.guild_castles[.@i]+"^000000 Castles";
 		}
 		break;
 	case 2:
@@ -155,6 +194,11 @@ Switch(Select("Show Top 10 Guilds:Make A Bet:Nothing.")){
 				close;
 				break;
 		}
+		//Check Zeny
+		if (Zeny < Bet){
+			mes "Sorry, you don't have enough Zenies to do this transaction.";
+			close;
+		}
 		//Confirm bet
 		mes "^0000FF["+strnpcinfo(0)+"]^000000";
 		mes "Are you sure you want to bet ^FF0000"+(callfunc("F_InsertComma",Bet))+"^000000 Zenies for ^0000FF"+GBet$+"^000000? You will not be able to change your bet after you choose ^FF0000Yes^000000.";
@@ -193,6 +237,9 @@ set .BettingStarted, 0;
 end;
 
 OnAgitEnd:
+//Test Data
+setcastledata("payg_cas01",1,1);
+//
 set .WoEJustEnded, 1;
 announce "[Betting Girl] $$$! Come get your bounty!",bc_all;
 end;
@@ -203,8 +250,8 @@ end;
 //hence, it should be 
 //OnMonday1200:
 //
-OnSunday2100:
-OnSaturday2100:
+OnSunday1200:
+OnSaturday1200:
 OnAtCommand:
 announce "[Betting Girl] $$$! The WoE Betting Challenge has started!! Come to "+strnpcinfo(4)+" to place your bets!",bc_all|bc_blue;
 

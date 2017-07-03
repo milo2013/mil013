@@ -174,7 +174,7 @@ OnFri2000:
 OnSat2000:
 OnSun2000:
 
-OnWed1239:
+OnThu1230:
 		hideoffnpc "Devil Square Guardian#1";
 		hideoffnpc "Devil Square Guardian#2";
 		sleep 1000;
@@ -232,11 +232,16 @@ OnWed1239:
         set .mob, 0;
 		delwaitingroom;
 		hideonnpc "Devil Square Guardian#1";
-        set .monsterset, query_sql("SELECT id, iname, hp FROM `mob_db_re_DS` where LV <= 120 and LV >= 99 and hp < 99999999 and MEXP = 0 and not iName='Treasure Chest' ORDER BY RAND() LIMIT 100", .monsterid, .monstername$, .monsterhp);
+        //set .monsterset, query_sql("SELECT id, iname, hp FROM `mob_db_re_DS` where LV <= 120 and LV >= 99 and hp < 99999999 and MEXP = 0 and not iName='Treasure Chest' ORDER BY RAND() LIMIT 100", .monsterid, .monstername$, .monsterhp);
+		
+		set .monsterid,1873;
+		set .monstername$,"Beelzebub";
+		set .monsterhp,8000000;
+	
 		for (set .@x,0; .@x<getmapusers("ds"); set .@x, .@x+1){
 				set .monstercount,3;
                 for (set .@y,0; .@y<.monstercount; set .@y, .@y+1 ) {
-						set .monster, rand(0,.monsterset-1);
+						//set .monster, rand(0,.monsterset-1);
                         areamonster "ds",27,51,51,27,"[DS] "+.monstername$[.monster],.monsterid[.monster],.monstercount,strnpcinfo(0)+"::OnDevilDead";         
                         set .mob, .mob+.monstercount;
                 }
@@ -262,11 +267,16 @@ OnDevil2:
         set .round,2;
         set .mob, 0;
         //set .monsterset, query_sql("SELECT id, iname, hp FROM `mob_db_re` where LV <= 75 and LV >= 70 and hp < 99999999 and MEXP = 0 and not iName='Treasure Chest' ORDER BY RAND() LIMIT 100", .monsterid, .monstername$, .monsterhp);
-        set .monsterset, query_sql("SELECT id, iname, hp FROM `mob_db_re_DS` where LV <= 140 and LV >= 120 and hp < 99999999 and MEXP = 0 and not iName='Treasure Chest' ORDER BY RAND() LIMIT 100", .monsterid, .monstername$, .monsterhp);
+       // set .monsterset, query_sql("SELECT id, iname, hp FROM `mob_db_re_DS` where LV <= 140 and LV >= 120 and hp < 99999999 and MEXP = 0 and not iName='Treasure Chest' ORDER BY RAND() LIMIT 100", .monsterid, .monstername$, .monsterhp);
+		
+		set .monsterid,2189;
+		set .monstername$,"Mutant Coelacanth";
+		set .monsterhp,8000000;
+		
 		for (set .@x,0; .@x<getmapusers("ds"); set .@x, .@x+1){
 				set .monstercount,3;
                 for (set .@y,0; .@y<.monstercount; set .@y, .@y+1 ) {
-						set .monster, rand(0,.monsterset-1);
+						//set .monster, rand(0,.monsterset-1);
                         areamonster "ds",27,51,51,27,"[DS] "+.monstername$[.monster],.monsterid[.monster],.monstercount,strnpcinfo(0)+"::OnDevilDead2";         
                         set .mob, .mob+.monstercount;
                 }
@@ -292,14 +302,19 @@ OnDevil3:
         set .round, 3;
         set .mob, 0;
         //set .monsterset, query_sql("SELECT id, iname, hp FROM `mob_db_re` where LV <= 80 and LV >= 75 and hp < 99999999 and MEXP = 0 and not iName='Treasure Chest' ORDER BY RAND() LIMIT 100", .monsterid, .monstername$, .monsterhp);
-        set .monsterset, query_sql("SELECT id, iname, hp FROM `mob_db_re_DS` where LV <= 160 and LV >= 140 and hp < 99999999 and MEXP = 0 and not iName='Treasure Chest' ORDER BY RAND() LIMIT 100", .monsterid, .monstername$, .monsterhp);
+        //set .monsterset, query_sql("SELECT id, iname, hp FROM `mob_db_re_DS` where LV <= 160 and LV >= 140 and hp < 99999999 and MEXP = 0 and not iName='Treasure Chest' ORDER BY RAND() LIMIT 100", .monsterid, .monstername$, .monsterhp);
+		
+		set .monsterid,1707;
+		set .monstername$,"Thanatos Dolor";
+		set .monsterhp,8000000;
+		
 		for (set .@x,0; .@x<getmapusers("ds"); set .@x, .@x+1){
 				//set .monster, rand(0,.monsterset-1);
                 //if (.monsterhp[.monster] > 15000) set .monstercount, 1;
                 //else 
-				set .monstercount,3;
+				set .monstercount,5;
                 for (set .@y,0; .@y<.monstercount; set .@y, .@y+1 ) {
-						set .monster, rand(0,.monsterset-1);
+						//set .monster, rand(0,.monsterset-1);
                         areamonster "ds",27,51,51,27,"[DS] "+.monstername$[.monster],.monsterid[.monster],.monstercount,strnpcinfo(0)+"::OnDevilDead3";         
                         set .mob, .mob+.monstercount;
                 }
@@ -321,13 +336,23 @@ OnDevilMVP:
         set.mob, 0;
 		if (getmapusers("ds") <= 5){
 			//set .monsterset, query_sql("SELECT id, iname FROM `mob_db_re` where LV <= 120 and LV >= 1 and MEXP>1", .monsterid, .monstername$);
-			set .monsterset, query_sql("SELECT id, iname FROM `mob_db_re` where LV <= 120 and LV >= 1 and MEXP>1", .monsterid, .monstername$);
+			//set .monsterset, query_sql("SELECT id, iname FROM `mob_db_re` where LV <= 120 and LV >= 1 and MEXP>1", .monsterid, .monstername$);
+			
+		set .monsterid,1991;
+		set .monstername$,"Tendrillion";
+		set .monsterhp,8000000;
+		
 		} else {
 			//set .monsterset, query_sql("SELECT id, iname FROM `mob_db_re` where LV <= 120 and LV >= 100 and MEXP>1", .monsterid, .monstername$);
-			set .monsterset, query_sql("SELECT id, iname FROM `mob_db_re` where LV <= 170 and LV >= 160 and MEXP>1", .monsterid, .monstername$);
+			//set .monsterset, query_sql("SELECT id, iname FROM `mob_db_re` where LV <= 170 and LV >= 160 and MEXP>1", .monsterid, .monstername$);
+		
+		set .monsterid,1709;
+		set .monstername$,"Thanatos Odium";
+		set .monsterhp,8000000;		
+			
 		}
         set .monstercount, 1;
-        set .monster, rand(0,.monsterset-1);
+        //set .monster, rand(0,.monsterset-1);
         areamonster "ds",27,51,51,27,"[DS] "+.monstername$[.monster],.monsterid[.monster],1,strnpcinfo(0)+"::OnDevilMVPDead";              
         end;
  

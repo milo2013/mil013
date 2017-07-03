@@ -9938,7 +9938,7 @@
 19537,C_Gryphon_Hat,Costume Gryphon Hat,4,0,,0,,0,,0,0xFFFFFFFF,63,2,1024,,1,0,591,{ bonus bUnbreakableHelm,1; },{},{}
 19538,Full_Moon,Full Moon,4,0,,0,,0,,0,0xFFFFFFFF,63,2,1024,,1,0,780,{ autobonus "{ bonus bBaseAtk,50; }",10,5000,BF_WEAPON,"{ specialeffect2 EF_POTION_BERSERK; /* showscript */ }"; autobonus "{ bonus bMatk,50; }",5,5000,BF_MAGIC,"{ specialeffect2 EF_ENERGYCOAT; /* showscript */ }"; },{},{}
 19539,C_Reginleif_Hairband,Costume Hairband Of Reginleif,4,20,,0,,0,,0,0xFFFFFFFF,63,2,1024,,1,0,468,{ bonus bAllStats,1; },{},{}
-19540,C_Rabbit_Earplug,Costume Rabbit Earplugs,4,20,,0,,0,,0,0xFFFFFFFF,63,2,7168,,1,0,515,{ bonus bAgi,1; bonus bFlee,2; },{},{}
+19540,C_Rabbit_Earplug,Costume Rabbit Earplugs,4,20,,0,,0,,0,0xFFFFFFFF,63,2,3072,,1,0,515,{ bonus bAgi,1; bonus bFlee,2; },{},{}
 19541,C_Romantic_White_Flower,Costume Romantic White Flower,4,20,,0,,0,,0,0xFFFFFFFF,63,2,4096,,1,0,259,{ bonus bUnbreakableHelm,1; },{},{}
 19542,C_Devil_Whisper,Costume Devil Whisper,4,20,,0,,0,,0,0xFFFFFFFF,63,2,2048,,1,0,712,{ bonus bUnbreakableHelm,1; bonus2 bSubRace,RC_Angel,1; bonus2 bSubRace,RC_Demon,1; bonus3 bAddMonsterDropItem,12020,RC_Angel,400; bonus3 bAddMonsterDropItem,523,RC_Demon,400; },{},{}
 19543,Oliver_Wolf_Hood,Oliver Wolf Hood,4,20,,300,,0,,0,0xFFFFFFFF,63,2,1024,,70,0,849,{ bonus bUnbreakableHelm,1; },{},{}
@@ -10108,9 +10108,9 @@
 19729,C_Neko_Mimi_Kafra,Costume Neko Mimi Kafra,4,10,,0,,,,0,0xFFFFFFFF,63,2,1024,,1,0,392,{},{},{}
 19730,C_Snake_Hat,Costume Snake Hat,4,20,,10,,0,,0,0xFFFFFFFF,63,2,1024,,0,0,986,{},{},{}
 19731,C_Evolved_Evil_Wing,Costume Evolved Evil Wing,4,10,,0,,,,0,0xFFFFFFFF,63,2,1024,,1,1,39,{ bonus bStr,1; bonus bAgi,1; bonus bFlee,3; bonus2 bSubRace,RC_Angel,3; },{},{}
-19732,C_Goblin_Leader_Mask,Costume Goblin Leader Mask,4,10,,0,,,,0,0xFFFFFFFF,63,2,2048,,1,1,174,{},{},{}
+19732,C_Goblin_Leader_Mask,Costume Goblin Leader Mask,4,10,,0,,,,0,0xFFFFFFFF,63,2,6144,,1,1,174,{},{},{}
 19733,C_Panda_Cap,Costume Panda Cap,4,0,,0,,0,,0,0xFFFFFFFF,63,2,1024,,1,0,115,{ bonus bAllStats,1; bonus2 bExpAddClass,Class_All,10; },{},{}
-19734,C_Binoculars,Costume Binoculars,4,10,,0,,,,0,0xFFFFFFFF,63,2,1024,,1,1,83,{ bonus bDex,1; },{},{}
+19734,C_Binoculars,Costume Binoculars,4,10,,0,,,,0,0xFFFFFFFF,63,2,2048,,1,1,83,{ bonus bDex,1; },{},{}
 19735,C_Fin_Helm,Costume Fin Helm,4,10,,0,,,,0,0xFFFFFFFF,63,2,1024,,1,1,100,{},{},{}
 19736,C_Gas_Mask,Costume Gas Mask,4,10,,0,,,,0,0xFFFFFFFF,63,2,2048,,1,1,91,{ bonus2 bResEff,Eff_Poison,3000; },{},{}
 19737,C_Refined_Corsair,Costume Refined Corsair,4,10,,0,,,,0,0xFFFFFFFF,63,2,1024,,1,1,105,{ bonus bVit,3; bonus bInt,3; },{},{}
@@ -10159,7 +10159,7 @@
 19790,C_Wedding_Veil,Costume Wedding Veil,4,10,,0,,,,0,0xFFFFFFFF,63,2,1024,,1,1,44,{},{},{}
 19791,C_Alarm_Mask,Costume Alarm Mask,4,10,,0,,,,0,0xFFFFFFFF,63,2,2048,,1,1,170,{},{},{}
 19792,C_Goblin_Mask_01,Costume Poker Face,4,10,,0,,,,0,0xFFFFFFFF,63,2,1024,,1,1,171,{},{},{}
-19793,C_Goblin_Mask_02,Costume Surprised Mask,4,10,,0,,,,0,0xFFFFFFFF,63,2,1024,,1,1,172,{},{},{}
+19793,C_Goblin_Mask_02,Costume Surprised Mask,4,10,,0,,,,0,0xFFFFFFFF,63,2,6144,,1,1,172,{},{},{}
 19794,C_Goblin_Mask_03,Costume Annoyed Mask,4,10,,0,,,,0,0xFFFFFFFF,63,2,1024,,1,1,173,{},{},{}
 19795,C_Grand_Circlet,Costume Grand Circlet,4,10,,0,,,,0,0xFFFFFFFF,63,2,1024,,1,1,93,{},{},{}
 19796,C_Bone_Helm,Costume Bone Helm,4,10,,0,,,,0,0xFFFFFFFF,63,2,1024,,1,1,103,{},{},{}
@@ -10808,7 +10808,7 @@
 21014,Infinity_Two-Handed_Sword,Infinity Two-Handed Sword,5,20,,500,230,,1,1,0x00004082,56,2,34,4,100,1,3,{},{},{}
 21015,Crimson_Two-Handed_Sword,Crimson Two-Handed Sword,5,20,,1700,170,,1,2,0x00004082,63,2,34,3,70,1,3,{ .@r = getrefine(); bonus bBaseAtk,((BaseLevel/10)*5)+(.@r<=15?pow(.@r,2):225); bonus bMatk,(.@r<=15?(pow(.@r,2)/2):225); },{},{}
 21016,Two_Handed_Sword_of_Vicious_Mind,Two-Handed Sword of Vicious Mind,5,20,,2200,220,,1,1,0x00004082,63,2,34,4,160,1,3,{ bonus bAtk,pow(min(getrefine(),15),2); },{},{}
-21018,Lindy_Hop,Lindy Hop,5,20,,3400,340,,1,2,0x00000002,40,2,34,4,170,1,3,{ .@r = getrefine(); bonus bAtkRate,(.@r/2); bonus bAspdRate,.@r; },{},{}
+21018,Lindy_Hop,Lindy Hop,5,20,,3400,340,,1,2,0x00004080,40,2,34,4,170,1,3,{ .@r = getrefine(); bonus bAtkRate,(.@r/2); bonus bAspdRate,.@r; },{},{}
 21019,Onimaru,Onimaru,5,0,,4200,75,,1,2,0x00000080,56,2,34,4,130,1,3,{ .@bStr = readparam(bStr); .@r = getrefine(); bonus bBaseAtk,(min(120,.@bStr)); if (.@bStr > 119) bonus bBaseAtk,160; else if (.@bStr > 107) bonus bBaseAtk,80; else if (.@bStr > 94) bonus bBaseAtk,40; if (.@r > 6) bonus bUnbreakableWeapon,1; bonus4 bAutoSpell,"NPC_WIDECURSE",4,100,0; if (.@r > 8) bonus4 bAutoSpellOnSkill,"LK_BERSERK","BS_OVERTHRUST",5,100; },{},{}
 //===================================================================
 // New Shoes

@@ -264,7 +264,7 @@
 4697,Charleston3_Card,Charleston3 Card,6,20,,10,,,,,,,,2,,,,,{ bonus bMaxSP,-300; bonus bBreakArmorRate,1500; /* Custom rate [Secret] */ },{},{}
 4698,Step_Card,Step Card,6,20,,10,,,,,,,,2,,,,,{ bonus2 bSkillAtk,"NC_ARMSCANNON",20+((getrefine()>=10)*20); },{},{}
 4699,Rock_Step_Card,Rock Step Card,6,20,,10,,,,,,,,2,,,,,{ bonus2 bSkillAtk,"NC_ARMSCANNON",20+((getrefine()>=10)*20); },{},{}
-27012,Kick_Step_Card,Kick Step Card,6,20,,10,,,,,,,,2,,,,,{ bonus bMaxHPrate,8; if((eaclass()&EAJ_THIRDMASK) == EAJ_MECHANIC){ bonus bLongAtkDef,30; } },{},{}
+27012,Kick_Step_Card,Kick Step Card,6,20,,10,,,,,,,,16,,,,,{ bonus bMaxHPrate,8; if((eaclass()&EAJ_THIRDMASK) == EAJ_MECHANIC){ bonus bLongAtkDef,30; } },{},{}
 27013,Kick_&_Kick_Card,Kick & Kick Card,6,20,,10,,,,,,,,2,,,,,{ bonus2 bSkillAtk,"NC_VULCANARM",10+((getrefine()>=10)*20); },{},{}
 
 
