@@ -1,0 +1,56 @@
+milenia,48,146,5	script	SG Resetter	644,{
+	cutin "arang01",2;
+	mes "[Star Gladiator Resetter]";
+	mes "Hi.. Every reset is 10m Zeny..";
+	mes "           ";
+	mes "What do you wish to reset?";
+	next;
+	menu "Reset Feeling",feeling,"Reset Hatred",hatred;
+
+feeling:
+	if (ZENY < 10000000){
+		mes "[Star Gladiator Resetter]";
+		mes "Sorry! You don't have enough Zeny!";
+		close;
+	}
+	atcommand "@feelreset";
+	mes "[Star Gladiator Resetter]";
+	mes "Done.";
+	close2;
+	set ZENY, ZENY - 10000000;
+	dispbottom "You've paid 10m Zeny as Service Fee!";
+	cutin "",255;
+	end;
+
+hatred:
+	if (ZENY < 10000000){
+		mes "[Star Gladiator Resetter]";
+		mes "Sorry! You don't have enough Zeny!";
+		close;
+	}
+	set PC_HATE_MOB_MOON, 0;
+	set PC_HATE_MOB_STAR, 0;
+	set PC_HATE_MOB_SUN, 0;
+	mes "[Star Gladiator Resetter]";
+	mes "Done.";
+	set ZENY, ZENY - 10000000;
+	dispbottom "You've paid 10m Zeny as Service Fee!";
+	next;
+	mes "[Star Gladiator Resetter]";
+	mes "Hatred will be reset upon relogging.";
+	mes "Do you wish to relog now?";
+    next;
+	menu "Relog now",relog,"Later",later;
+
+relog:
+	atcommand "@kick "+strcharinfo(0);
+	end;
+
+later:
+	mes "[Star Gladiator Resetter]";
+	mes "Ok then, but don't forget changes won't take effect until you relog.";
+	close2;
+	cutin "",255;
+	end;
+
+}

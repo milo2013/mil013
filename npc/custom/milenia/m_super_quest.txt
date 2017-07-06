@@ -1,0 +1,567 @@
+/*
+  .-----------------. .----------------.  .-----------------. .----------------.  .----------------. 
+ | .--------------. || .--------------. || .--------------. || .--------------. || .--------------. |
+ | | ____  _____  | || |     _____    | || | ____  _____  | || |     _____    | || |      __      | |
+ | ||_   \|_   _| | || |    |_   _|   | || ||_   \|_   _| | || |    |_   _|   | || |     /  \     | |
+ | |  |   \ | |   | || |      | |     | || |  |   \ | |   | || |      | |     | || |    / /\ \    | |
+ | |  | |\ \| |   | || |      | |     | || |  | |\ \| |   | || |   _  | |     | || |   / ____ \   | |
+ | | _| |_\   |_  | || |     _| |_    | || | _| |_\   |_  | || |  | |_' |     | || | _/ /    \ \_ | |
+ | ||_____|\____| | || |    |_____|   | || ||_____|\____| | || |  `.___.'     | || ||____|  |____|| |
+ | |              | || |              | || |              | || |              | || |              | |
+ | '--------------' || '--------------' || '--------------' || '--------------' || '--------------' |
+  '----------------'  '----------------'  '----------------'  '----------------'  '----------------' 
+======================     rAthena SCRIPTING SERVICES AND SERVER SETUP     ==========================
+Terms of Services
+1. I will retain all the rights in all the scripts that I create
+2. Client cannot redistribute nor resell the scripts that I provide
+3. No refunds
+4. Maintenance of scripts does not include modification of the original intended behavior. If the script has been broken due to prior modification of the original behavior then it would mean a new service request
+5. Modification of the original intended behavior would mean a new service request and would go through the process mentioned above
+6. I have the right to post all my free services to the release section and make it available for everybody to use
+7. Maintenance of scripts will be provide free of charge
+8. I will not keep any sensitive information from your server nor any credentials that you lend me
+9. I assume that the client will accept all the terms of services
+
+Where the script author is Ninja (https://rathena.org/board/profile/7005-ninja/) and the script owner
+is the one who availed and paid for the script.
+======================================================================================================
+Super Quest Board
+Requested By: Rakuzas
+
+Instructions:
+	1. Find "Configuration Part 1" and change it as you like
+	2. Find "Configuration Part 2" and change it as you like but do not touch the "random" stuff
+
+Changelog:
+
+V 1.2.0
+	Fixed ";" errors
+	
+V 1.2.0
+	Randomized monster hunting/item collection
+	Fixed exploit where player can use the board again when logging out
+	Added MobID and ItemID when displaying quests and checking quests
+	
+V 1.1.2
+	Improved Quest Info display when getting a quest and using @checkquest
+	.. Hunting Progress:
+	..     	Monster1: x out of y killed
+	..		MonxterZ: x out of y killed
+	.. 
+	.. Collection Progress:
+	..		Item1: x out of y collected
+	..		ItemZ: x out of y collected
+	
+V 1.1.1
+	Fixed bug: Zeny rewards is not displaying correctly.
+
+V 1.1.0
+	Added new feature: Time delay (in seconds)
+	.. TimeDelay type 1: Whole Quest Board Usage
+	.. TimeDelay type 0: Per Quest Usage.
+	.. Defaults to 0 when not set.
+
+V 1.0.2
+	Fixed bug: errors coming out when initiating a talk with the Quest Board
+	
+V 1.0.1
+	Fixed bug: 1 actuall kill = 3 recorded kills
+	
+V 1.0.0
+	Multiple monster hunt in a single quest
+	Multiple item collection in a single quest
+	Multiple item rewards in a single quest
+	Zeny and Cash rewards
+	GM-only atcommand: @erasequest
+	Everyone atcommand: @checkquest
+*/
+
+milenia,212,80,11	script	Daily Quest Board	857,{
+
+//Main script execution
+function AddQuest; function DisplayQuest; function ShowQuestList; function AcceptQuest; function CheckOngoing;
+function CheckQuestProgress;
+
+mes "["+strnpcinfo(0)+"]";
+if (.DelayType == 1){
+	set @thisdelay, QuestBoardDelay - gettimetick(2);
+	if(@thisdelay > 0){
+		mes "Sorry, you have to wait ^800008"+(callfunc("Time2Str",QuestBoardDelay))+"^000000 before you can do any quest.";
+		close;
+	}
+}
+if(CheckOngoing()) {
+	mes "^000FF0=============================^000000";
+	mes "Player Name: ^0000FF"+strcharinfo(0)+"^000000";
+	mes "^FF0000Quest In Progress:^000000", "^0000FF"+quest$+"^000000";
+	mes "^000FF0=============================^000000";
+	if(CheckQuestProgress()){
+		//Quest has been finished
+		//GIVE REWARDS HERE
+		getexp getd(".QuestNum"+quest+"[2]"), getd(".QuestNum"+quest+"[3]");
+		set Zeny, Zeny + getd(".QuestNum"+quest+"Zeny");
+		set #CASHPOINTS, #CASHPOINTS + getd(".QuestNum"+quest+"Cash");
+		for(set .@j, 0; .@j < getarraysize(getd(".QuestNum"+quest+"Item")); set .@j, .@j + 2){
+			getitem getd(".QuestNum"+quest+"Item["+.@j+"]"), getd(".QuestNum"+quest+"Item["+(.@j+1)+"]");
+		} 
+		
+		mes "Congratulations! You have finished the quest!";
+		freeloop(1);
+		
+		//delete all items related to the quest
+		for(set .@i, 0; .@i < questcollect; set .@i, .@i + 2){
+			for (set .@j, 0; .@j < getarraysize(getd(".QuestNum"+quest+"Collecting")); set .@j, .@j + 2){
+				if (questcollect[.@i] == getd(".QuestNum"+quest+"Collecting["+.@j+"]")){
+					delitem questcollect[.@i], getd(".QuestNum"+quest+"Collecting["+(.@j+1)+"]");
+				}
+			}
+		}
+		
+		freeloop(0);
+		
+		if(.DelayType == 1)
+			set QuestBoardDelay, gettimetick(2) + .QuestRestTime;
+		else {
+			set questf[getarraysize(questf)], quest;
+			set questf[getarraysize(questf)], gettimetick(2) + getd(".QuestNum"+quest+"Delay");
+		}
+			
+		set quest$, "";
+		deletearray questhunt[0], getarraysize(questhunt);
+		set quest, 0;
+		deletearray questcollect[0], getarraysize(questcollect);
+	} else {
+		mes "Do you want to drop the quest?";
+		Switch(Select("No:Yes")){
+			case 2:
+				next;
+				mes "["+strnpcinfo(0)+"]";
+				doevent strnpcinfo(0)+"::OnEraseProgress";
+				mes "Quest Progress erased. Please come back again. Thanks.";
+				break;
+			default:
+				next;
+				mes "["+strnpcinfo(0)+"]";
+				mes "Okay. Please come back again. Thanks";
+				break;
+		}
+	}
+	close;
+}
+
+
+mes "^000FF0=============================^000000";
+mes "Player Name: ^0000FF"+strcharinfo(0)+"^000000";
+mes "Player Level: ^0000FF"+BaseLevel+"^000000";
+mes "^000FF0=============================^000000";
+mes "We have selected Quests for you level. Please select a Quest. ";
+mes (.DelayType==1?"^00FF00You can only do 1 quest per day^000000":"^00FF00You can only do each quest per day^000000");
+next;
+
+ShowQuestList();
+DisplayQuest(@selection);
+
+Switch(Select("Accept:Decline")){
+	default:
+		AcceptQuest();
+		break;
+	case 2:
+		next;
+		mes "["+strnpcinfo(0)+"]";
+		mes "Alright. Come back again later.";
+		close;
+		break;
+}	
+next;
+mes "["+strnpcinfo(0)+"]";
+mes "Good luck on your quest!";
+close;
+end;
+
+OnInit:
+	
+	// Configuration Part 1
+	// This part is the general configurations
+	set .DelayType, 0; // 0: Per quest. 1: Whole quest board use.
+	set .QuestRestTime, 12 * 3600; // uses this if DelayType is set to 1. 12 hours * 60 minutes * 60 seconds
+								   // else, will use a per quest basis
+								   	
+	// Blacklisted mob IDs for hunting. custom mobs maybe?
+	.Blacklist$ =           
+		"1062,1088,1183,1186,1200,1212,1220,1221,1234,1235,"+
+		"1244,1245,1250,1268,1290,1293,1294,1296,1298,1299,"+
+		"1300,1301,1303,1304,1305,1306,1308,1309,1311,1313,"+
+		"1515,1588,1618,1676,1677,1678,1679,1796,1797,1974,"+
+		"1975,1976,1977,1978,1979";
+	
+	// No need to touch these
+	// Table name of SQL mob database
+	.mob_db$ =              
+		(checkre(0))?"mob_db_re":"mob_db";
+	.item_db$ =              
+		(checkre(0))?"item_db_re":"item_db";
+		
+	//atcommands
+	bindatcmd "erasequest", strnpcinfo(0)+"::OnEraseProgress", 99;
+	bindatcmd "checkquest", strnpcinfo(0)+"::OnCheckProgress";
+	
+//Daily Reset at 12 midnight, feel free to change this
+OnHour00:
+	// ===================================== STRICTLY: DO NOT TOUCH ===============================================
+	freeloop(1);	
+	//random monster list
+	query_sql("SELECT ID FROM `" + .mob_db$ + "` WHERE left(Sprite, 4) != 'meta' AND left(Sprite, 2) != 'E_' AND ~Mode & 32 AND EXP > 0 AND MVP1id = 0 AND DropCardid > 4000 AND DropCardid < 5000 AND ID < 2000 AND instr('"+.Blacklist$+"',ID) = 0 ORDER BY rand() LIMIT 50", .monsterlist);
+	
+	//randomize quest monsters
+	while(getarraysize(.questmonsters) < 9){
+		set .@thismonster, .monsterlist[rand(1,getarraysize(.monsterlist)) - 1];
+		set .@flag, 0;
+		for(set .@i, 0; .@i < getarraysize(.questmonsters); set .@i, .@i + 1)
+			if(.questmonsters == .@thismonster)
+				set .@flag, 1;
+		if (.@flag == 0)		
+			set .questmonsters[getarraysize(.questmonsters)], .@thismonster;	
+	}	
+	
+	//Check quest monsters (For debugging only)
+	//for(set .@i, 0; .@i < getarraysize(.questmonsters); set .@i, .@i + 1)
+	//	debugmes .@i+": "+getmonsterinfo(.questmonsters[.@i],MOB_NAME);
+		
+	//random item list
+	query_sql("SELECT Drop1id FROM "+.mob_db$+" INNER JOIN "+.item_db$+" ON "+.mob_db$+".Drop1id = "+.item_db$+".id where type != 5 ORDER BY RAND() LIMIT 50", .itemlist);
+	
+	//randomize quest items
+	while(getarraysize(.questitems) < 9){
+		set .@thisitem, .itemlist[rand(1,getarraysize(.itemlist)) - 1];
+		set .@flag, 0;
+		for(set .@i, 0; .@i < getarraysize(.questitems); set .@i, .@i + 1)
+			if(.questitems == .@thisitem)
+				set .@flag, 1;
+		if (.@flag == 0)		
+			set .questitems[getarraysize(.questitems)], .@thisitem;	
+	}	
+	
+	//Check quest items (For debugging only)
+	//for(set .@i, 0; .@i < getarraysize(.questitems); set .@i, .@i + 1)
+	//	debugmes .@i+": "+getitemname(.questitems[.@i]);	
+	
+	// =======================================================================================================
+
+	// Configuration Part 2
+	// This part is the quest configurations
+	
+	//Add Quests here
+	//AddQuest("<Quest Name>",<Min Lvl>,<Max Lvl>,<Base EXP>,<Job EXP>,[<"RewardZeny"|"RewardCash"|"RewardItem"|"Hunting"|"Collecting"|"Delay">,<MobID|ItemID|DelayInSeconds>,<ItemAmount|MobAmount>,...])	
+	
+	/*
+	// Example of Monster Randomization
+	AddQuest("Hunting Only",1,175,rand(1000000,5000000),rand(1000000,5000000),
+		"RewardZeny",rand(500000,3000000),
+		"RewardCash",rand(1,5),
+		"RewardItem",909,1,
+		"RewardItem",914,10,
+		"RewardItem",2264,10,
+		"Hunting",.questmonsters[rand(1,3)-1],rand(150,300),
+		"Hunting",.questmonsters[rand(4,6)-1],rand(150,300),
+		"Hunting",.questmonsters[rand(7,9)-1],rand(150,300),
+		"Delay", 12 * 60 * 60); // 12 hours * 60 mins/hours * 60 secs /min
+		
+	// Example of Item Randomization	
+	AddQuest("Collecting Only",1,175,rand(1000000,5000000),rand(1000000,5000000),
+		"RewardZeny",rand(500000,3000000),
+		"RewardCash",rand(1,5),
+		"RewardItem",909,1,
+		"RewardItem",914,10,
+		"RewardItem",2264,10,
+		"Collecting",.questitems[rand(1,3)-1],rand(150,300),
+		"Collecting",.questitems[rand(4,6)-1],rand(150,300),
+		"Collecting",.questitems[rand(7,9)-1],rand(150,300),
+		"Delay",12 * 60 * 60); // 12 hours * 60 mins/hours * 60 secs /min
+		
+	*/
+	
+	AddQuest("Hunting Only ^FF0000[ Zeny ]^000000",1,175,rand(1000000,5000000),rand(1000000,5000000),
+		"RewardZeny",rand(500000,3000000),
+		"Hunting",.questmonsters[rand(1,3)-1],rand(150,300),
+		"Hunting",.questmonsters[rand(4,6)-1],rand(150,300),
+		"Delay", 12 * 60 * 60); // 12 hours * 60 mins/hours * 60 secs /min
+		
+	AddQuest("Collecting Only ^FF0000[ Zeny ]^000000",1,175,rand(1000000,5000000),rand(1000000,5000000),
+		"RewardZeny",rand(500000,3000000),
+
+		"Collecting",.questitems[rand(4,6)-1],rand(150,300),
+		"Collecting",.questitems[rand(7,9)-1],rand(150,300),
+		"Delay", 12 * 60 * 60); // 12 hours * 60 mins/hours * 60 secs /min
+		
+	AddQuest("Hunting Only ^FF0000[ CP ]^000000",1,175,rand(1000000,5000000),rand(1000000,5000000),
+		"RewardCash",rand(1,30),
+		"Hunting",.questmonsters[rand(4,6)-1],rand(150,300),
+		"Hunting",.questmonsters[rand(7,9)-1],rand(150,300),
+		"Delay", 12 * 60 * 60); // 12 hours * 60 mins/hours * 60 secs /min
+		
+	AddQuest("Collecting Only ^FF0000[ CP ]^000000",1,175,rand(1000000,5000000),rand(1000000,5000000),
+		"RewardCash",rand(1,30),
+		"Collecting",.questitems[rand(4,6)-1],rand(150,300),
+		"Collecting",.questitems[rand(7,9)-1],rand(150,300),
+		"Delay", 12 * 60 * 60); // 12 hours * 60 mins/hours * 60 secs /min
+		
+	AddQuest("Hybrid ^FF0000[ Gashapon ]^000000",1,175,rand(1000000,5000000),rand(1000000,5000000),
+		"RewardItem",41258,rand(1,3),
+		"Hunting",.questmonsters[rand(7,9)-1],rand(150,300),
+		"Hunting",.questmonsters[rand(4,6)-1],rand(150,300),
+		"Collecting",.questitems[rand(7,9)-1],rand(150,300),
+		"Collecting",.questitems[rand(4,6)-1],rand(150,300),
+		"Delay", 12 * 60 * 60); // 12 hours * 60 mins/hours * 60 secs /min
+		
+	AddQuest("Hybrid ^FF0000[ Dokebi ]^000000",1,175,rand(1000000,5000000),rand(1000000,5000000),
+		"RewardItem",41244,rand(1,2),
+		"Hunting",.questmonsters[rand(7,9)-1],rand(150,300),
+		"Hunting",.questmonsters[rand(4,6)-1],rand(150,300),
+		"Collecting",.questitems[rand(7,9)-1],rand(150,300),
+		"Collecting",.questitems[rand(4,6)-1],rand(150,300),
+		"Delay", 12 * 60 * 60); // 12 hours * 60 mins/hours * 60 secs /min
+		
+	freeloop(0);
+
+end;
+//==================================================================
+//NPC Functions. Do not touch unless you know what you're doing
+//==================================================================
+
+OnEraseProgress:
+	set quest$, "";
+	set quest, 0;
+	deletearray questhunt[0], getarraysize(questhunt);
+	deletearray questcollect[0], getarraysize(questcollect);
+	deletearray questf[0], getarraysize(questf);
+	set QuestBoardDelay, 0;
+end;
+
+OnNPCKillEvent:
+	if(quest)
+		for(set .@i, 0; .@i < getarraysize(questhunt); set .@i, .@i + 2){	
+			if(questhunt[.@i] == killedrid){
+				for(set .@j, 0; .@j < getarraysize(getd(".QuestNum"+quest+"Hunting")); set .@j, .@j + 2)
+					if(questhunt[.@i] == getd(".QuestNum"+quest+"Hunting["+.@j+"]"))
+						if(questhunt[.@i+1] < getd(".QuestNum"+quest+"Hunting["+(.@j+1)+"]")){
+							set questhunt[.@i+1], questhunt[.@i+1] + 1;
+						}
+			}
+		}
+	
+end;
+
+OnCheckProgress:
+	if(quest$ == "")
+		end;
+	dispbottom "===================================",0xFFFF00;
+	if(questhunt[0]){
+		dispbottom "Hunting Progress:", 0xFFFF00;
+		for(set .@j, 0; .@j < getarraysize(questhunt); set .@j, .@j + 2){
+			for(set .@k, 0; .@k < getarraysize(getd(".QuestNum"+quest+"Hunting")); set .@k, .@k + 2){
+				if(questhunt[.@j] == getd(".QuestNum"+quest+"Hunting["+.@k+"]"))
+					dispbottom "..     "+getmonsterinfo(questhunt[.@j],MOB_NAME)+": "+questhunt[.@j+1]+" out of "+getd(".QuestNum"+quest+"Hunting["+(.@k+1)+"]")+" killed", 0xFFFF00;
+			}
+			
+		}
+	}
+	dispbottom " ";
+	if(questcollect[0]){
+		dispbottom "Collection Progress:", 0xFFFF00;
+		for(set .@j, 0; .@j < getarraysize(questcollect); set .@j, .@j + 2){
+			for(set .@k, 0; .@k < getarraysize(getd(".QuestNum"+quest+"Collecting")); set .@k, .@k + 2){
+				if(questcollect[.@j] == getd(".QuestNum"+quest+"Collecting["+.@k+"]"))
+					dispbottom "..     "+getitemname(questcollect[.@j])+": "+questcollect[.@j+1]+" out of "+(getd(".QuestNum"+quest+"Collecting["+(.@k+1)+"]"))+" collected", 0xFFFF00;
+			}
+		}
+	}
+end;
+
+function CheckQuestProgress {
+	setarray @result[0], 1, 1;
+	freeloop(1);
+	if(questhunt[0])
+		for(set .@i, 0; .@i < getarraysize(questhunt); set .@i, .@i + 2){
+			for(set .@j, 0; .@j < getarraysize(getd(".QuestNum"+quest+"Hunting")); set .@j, .@j + 2)
+				if (questhunt[.@i] == getd(".QuestNum"+quest+"Hunting["+.@j+"]"))
+					if(questhunt[.@i+1] < getd(".QuestNum"+quest+"Hunting["+(.@j+1)+"]")){
+						set @result[0], 0;
+						break;
+					}
+		}
+		
+	if(questcollect[0])
+		for(set .@i, 0; .@i < getarraysize(questcollect); set .@i, .@i + 2){
+			for (set .@j, 0; .@j < getarraysize(getd(".QuestNum"+quest+"Collecting")); set .@j, .@j + 2){
+				if (questcollect[.@i] == getd(".QuestNum"+quest+"Collecting["+.@j+"]")){
+					set questcollect[.@i+1], countitem(getd(".QuestNum"+quest+"collecting["+.@j+"]"));
+					if(questcollect[.@i+1] < getd(".QuestNum"+quest+"Collecting["+(.@j+1)+"]")){
+						set @result[1], 0;
+						break;
+					}
+				}
+			}
+		}
+	freeloop(0);	
+	if (@result[0] && @result[1])
+		return 1;
+	else	
+		return 0;
+}
+function CheckOngoing{
+	showscript "Checking Player Data..";
+	progressbar "0x800008", 1;
+	if (questhunt[0] || questcollect[0])
+		return 1;
+	else
+		return 0;
+}
+
+function AcceptQuest{
+	deletearray questhunt[0], getarraysize(questhunt);
+	deletearray questcollect[0], getarraysize(questcollect);
+	set quest$, getd(".QuestNum"+@selection+"$");
+	set quest, @selection;
+	for(set .@j, 0; .@j < getarraysize(getd(".QuestNum"+@selection+"Hunting")); set .@j, .@j + 2){
+		set questhunt[.@j],getd(".QuestNum"+@selection+"Hunting["+(.@j)+"]");
+		set questhunt[.@j+1], 0;
+	}
+
+	for(set .@j, 0; .@j < getarraysize(getd(".QuestNum"+@selection+"Collecting")); set .@j, .@j + 2){
+		set questcollect[.@j], getd(".QuestNum"+@selection+"Collecting["+(.@j)+"]");
+		set questcollect[.@j+1], countitem(getd(".QuestNum"+@selection+"Collecting["+(.@j)+"]"));
+	}	
+	
+	dispbottom "Please use @checkquest to check your progress.";
+	doevent strnpcinfo(0)+"::OnCheckProgress";
+	return;
+}
+
+function ShowQuestList {
+	set @selection, 0;
+	set @questmenu$, "";
+	
+	deletearray @questmenu[0], getarraysize(@questmenu);
+	set @questmenu[0],1;
+	
+	//Show Only quests appropriate for the player's level
+	for(set .@i, 1; .@i <= .QuestCount; set .@i, .@i + 1){
+		set .@qlvlmin, getd(".QuestNum"+.@i+"[0]");
+		set .@qlvlmax, getd(".QuestNum"+.@i+"[1]");
+		set @thisdelay, 0;
+		for(set .@j, 0; .@j < getarraysize(questf); set .@j, .@j + 2){
+			if(questf[.@j] == .@i)
+				if(.DelayType == 0){
+					set @thisdelay, questf[.@j+1] - gettimetick(2);
+					if(@thisdelay <= 0)
+						deletearray questf[.@j], 2;
+					else
+						set .@cooldown$, "^800008[Cooldown]^000000";
+				}	
+		}
+		if(BaseLevel >= .@qlvlmin && BaseLevel <= .@qlvlmax){
+			set @questmenu$, @questmenu$+"[Lv "+getd(".QuestNum"+.@i+"[0]")+"~"+getd(".QuestNum"+.@i+"[1]")+"] "+getd(".QuestNum"+.@i+"$")+(!.DelayType?(@thisdelay>0?.@cooldown$:""):"");
+			set @questmenu[getarraysize(@questmenu)], .@i;
+			if (.@i != .QuestCount)
+				set @questmenu$, @questmenu$ + ":";
+		}
+	}
+	if (@questmenu$ == ""){
+		mes "Sorry, no quests found for your level.";
+		close;
+	}
+	else
+		set @selection, @questmenu[select(@questmenu$)];
+	for(set .@j, 0; .@j < getarraysize(questf); set .@j, .@j + 2)
+		if(questf[.@j] == @selection){
+			next;
+			mes "["+strnpcinfo(0)+"]";
+			mes "Sorry, you have to wait ^800008"+(callfunc("Time2Str", questf[.@j+1]))+"^000000 before you can do this quest again.";
+			close;		
+		}
+	return;
+}
+
+function DisplayQuest {
+	set .@i, getarg(0);
+	
+	mes "Quest Name: ^0000FF"+getd(".QuestNum"+.@i+"$")+"^000000";
+	set @thiscount, 1;
+	for(set .@j, 0; .@j < getarraysize(getd(".QuestNum"+.@i+"Hunting")); set .@j, .@j + 2){
+		if(.@j == 0){
+			mes "^0000FF=============================^000000";
+			mes "^0000FFHunt Monster(s):^000000";
+		}
+		mes "#"+@thiscount+": "+getd(".QuestNum"+.@i+"Hunting["+(.@j+1)+"]")+"x ^FF0000[MobID: "+getd(".QuestNum"+.@i+"Hunting["+(.@j)+"]")+"]^800080 "+getmonsterinfo(getd(".QuestNum"+.@i+"Hunting["+(.@j)+"]"),MOB_NAME)+"^000000";
+		set @thiscount, @thiscount + 1;
+	}
+	set @thiscount, 1;
+	for(set .@j, 0; .@j < getarraysize(getd(".QuestNum"+.@i+"Collecting")); set .@j, .@j + 2){
+		if(.@j == 0){
+			mes "^0000FF=============================^000000";
+			mes "^0000FFCollect Item(s):^000000";
+		}
+		mes "#"+@thiscount+": "+getd(".QuestNum"+.@i+"Collecting["+(.@j+1)+"]")+"x ^FF0000[ItemID: "+getd(".QuestNum"+.@i+"Collecting["+(.@j)+"]")+"]^800080 "+getitemname(getd(".QuestNum"+.@i+"Collecting["+(.@j)+"]"))+"^000000";
+		set @thiscount, @thiscount + 1;
+	}
+	mes "^0000FF=============================^000000";
+	next;
+	mes "["+strnpcinfo(0)+"]";
+	mes "^0000FFRewards^000000";
+	mes "^0000FF=============================^000000";
+	set @thiscount, 1;
+	for(set .@j, 0; .@j < getarraysize(getd(".QuestNum"+.@i+"Item")); set .@j, .@j + 2){
+		if(.@j == 0)
+			mes "Item(s):";
+		mes "#"+@thiscount+": "+getd(".QuestNum"+.@i+"Item["+(.@j+1)+"]")+"x ^800080"+getitemname(getd(".QuestNum"+.@i+"Item["+.@j+"]"))+"^000000";
+		set @thiscount, @thiscount + 1;
+	} 
+	mes "^0000FF=============================^000000";
+	mes "Miscellaneous:";
+	mes "Base EXP: "+getd(".QuestNum"+.@i+"[2]");
+	mes "Job EXP: "+getd(".QuestNum"+.@i+"[3]");
+	mes "Zeny Reward: "+getd(".QuestNum"+.@i+"Zeny")+" Zenies";
+	mes "Cash Reward: "+getd(".QuestNum"+.@i+"Cash")+" Cash";
+	mes "^0000FF=============================^000000";
+	return;
+}
+
+function AddQuest {
+	set .QuestCount, .QuestCount + 1;
+	setd ".QuestNum"+.QuestCount+"$", getarg(0); //Quest Name
+	setd ".QuestNum"+.QuestCount+"[0]", getarg(1); //Min Lvl
+	setd ".QuestNum"+.QuestCount+"[1]", getarg(2); //Max Lvl
+	setd ".QuestNum"+.QuestCount+"[2]", getarg(3); //Base EXP 
+	setd ".QuestNum"+.QuestCount+"[3]", getarg(4); //Job EXP
+	
+	setd ".QuestNum"+.QuestCount+"Zeny", 0;
+	setd ".QuestNum"+.QuestCount+"Cash", 0;
+	for(set .@i, 5; .@i < getargcount(); set .@i, .@i + 3){
+		if (getarg(.@i) == "RewardZeny"){
+			setd ".QuestNum"+.QuestCount+"Zeny",  getd(".QuestNum"+.QuestCount+"Zeny") + getarg(.@i + 1);
+			set .@i, .@i - 1; //for loop increment adjustment
+		} else if (getarg(.@i) == "RewardCash"){
+			setd ".QuestNum"+.QuestCount+"Cash", getd(".QuestNum"+.QuestCount+"Cash") + getarg(.@i + 1);
+			set .@i, .@i - 1;//for loop increment adjustment
+		} else if (getarg(.@i) == "RewardItem"){
+			setd ".QuestNum"+.QuestCount+"Item"+"["+getarraysize(getd(".QuestNum"+.QuestCount+"Item"))+"]", getarg(.@i + 1);
+			setd ".QuestNum"+.QuestCount+"Item"+"["+getarraysize(getd(".QuestNum"+.QuestCount+"Item"))+"]", getarg(.@i + 2);
+		} else if (getarg(.@i) == "Hunting"){
+			setd ".QuestNum"+.QuestCount+"Hunting"+"["+getarraysize(getd(".QuestNum"+.QuestCount+"Hunting"))+"]", getarg(.@i + 1);
+			setd ".QuestNum"+.QuestCount+"Hunting"+"["+getarraysize(getd(".QuestNum"+.QuestCount+"Hunting"))+"]", getarg(.@i + 2);
+		} else if (getarg(.@i) == "Collecting"){
+			setd ".QuestNum"+.QuestCount+"Collecting"+"["+getarraysize(getd(".QuestNum"+.QuestCount+"Collecting"))+"]", getarg(.@i + 1);
+			setd ".QuestNum"+.QuestCount+"Collecting"+"["+getarraysize(getd(".QuestNum"+.QuestCount+"Collecting"))+"]", getarg(.@i + 2);		
+		} else if (getarg(.@i) == "Delay" && .DelayType == 0){
+			setd ".QuestNum"+.QuestCount+"Delay", getarg(.@i + 1);
+			set .@i, .@i - 1;//for loop increment adjustment
+		}
+	}
+	if(!(getd(".QuestNum"+.QuestCount+"Delay")) && .DelayType == 0){
+		setd ".QuestNum"+.QuestCount+"Delay", 0;
+		debugmes getd(".QuestNum"+.QuestCount+"$")+"'s QUEST DELAY was not set. Defaulting to 0.";
+	}
+	return;
+}
+	
+}

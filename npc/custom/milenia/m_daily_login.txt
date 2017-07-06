@@ -98,28 +98,28 @@ milenia,112,163,5	script	Daily Login Rewards	953,{
 					case 2: reward_list( .@give_reward, 12016,25 ); 		break;		// Speed Potion 25x
 					case 3: reward_list( .@give_reward, 12900,1 ); 			break;		// Battle Manual Box 1x
 					case 4: reward_list( .@give_reward, 12211,10); 			break;		// Kafra Card 10x
-					case 5: reward_list( .@give_reward, 14232,10 ); 		break;		// Yggberrybox(10) 10x
+					case 5:	reward_list( .@give_reward, 12103,rand (5,10));	break;		// Bloody Branch 1x
 					case 6: reward_list( .@give_reward, 12350,10 ); 		break;		// Angeling Potion 10x
 					case 7: reward_list( .@give_reward, 13582,1 ); 			break;		// Convex Mirror 5 Box 1x
 					case 8: reward_list( .@give_reward, 41126,1 ); 			break;		// Cashpoints Voucher 10's 1x
 					case 9: reward_list( .@give_reward, 17229,1 ); 			break;		// Infinite Flywing Box (7 Days) 1x
-					case 10: reward_list( .@give_reward, 6457,1,6235,1); 	break;		// +5&6 Armor Refine Ticket 1x
+					case 10: reward_list( .@give_reward, 6234,1,6230,1); 	break;		// +7 Weapon and Armor Refine Ticket 1x
 					case 11: reward_list( .@give_reward, 16268,1 ); 		break;		// HE Bubblezgum Box 10 1x
 					case 12: reward_list( .@give_reward, 12992,1 ); 		break;		// Adventurer Returns Support Box 1x
 					case 13: reward_list( .@give_reward, 616,5 ); 			break;		// Old Card Album 2x
-					case 14: reward_list( .@give_reward, 12214,5 ); 		break;		// Convex Mirror 5x
+					case 14: reward_list( .@give_reward, 12211,50 ); 		break;		// Kafra Card x50
 					case 15: reward_list( .@give_reward, 7621,2 ); 			break;		// Token of Siegfried 2x
 					case 16: reward_list( .@give_reward, 17227,1 ); 		break;		// Infinite Awakening Potion 1x
 					case 17: reward_list( .@give_reward, 17228,1 ); 		break;		// Infinite Berserk Potion 1x
 					case 18: reward_list( .@give_reward, 12210,5 ); 		break;		// Bubble Gum 5x
-					case 19: reward_list( .@give_reward, 13582,2 ); 		break;		// Convex Mirror 5 Box 2x
+					case 19: reward_list( .@give_reward, 41244,1 ); 		break;		// 1 Day Premium Dokebi Pass 1x
 					case 20: reward_list( .@give_reward, 6456,1,6231,1 ); 	break;		// +5&6 Weapon Refine 1x
 					case 21: reward_list( .@give_reward, 7621,5 ); 			break;		// Token of Siegfried 5x
-					case 22: reward_list( .@give_reward, 12103,1 ); 		break;		// Bloody Branch 1x
+					case 22: reward_list( .@give_reward, 41258,1 ); 		break;		// Gashapon Coupon
 					case 23: reward_list( .@give_reward, 7539,10 ); 		break;		// Poring Coin 10x
 					case 24: reward_list( .@give_reward, 6228,1,6232,1 ); 	break;		// +9 Armor&Weapon Refine 1x
 					case 25: reward_list( .@give_reward, 7539,20 ); 		break;		// Poring Coin 20x
-					case 26: reward_list( .@give_reward, 12103,2 ); 		break;		// Bloody Branch 2x
+					case 26: reward_list( .@give_reward, 6380,10 ); 		break;		// Mora Coin 10x
 					case 27: reward_list( .@give_reward, 41120,50 ); 		break;		// 50 Condense Yggberry Potion 
 					case 28: reward_list( .@give_reward, 41124,1 ); 		break;		// 3 Days Milenia Certificate 
 					//case 29: reward_list( .@give_reward, 12314,1 ); 		break;		// Gympass Box(10) 1x

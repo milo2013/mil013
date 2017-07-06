@@ -41,7 +41,7 @@ v 1.0.0 - Initial Version
 */
 
 
-quiz_00,57,28,3	script	Betting Girl	831,{
+milenia,138,161,11	script	Betting Girl	831,{
 set j, 0; 
 //Set castle for each day
 Switch(gettime(DT_DAYOFWEEK)){
@@ -159,13 +159,17 @@ Switch(Select("Show Top 10 Guilds:Make A Bet:Nothing.")){
 			mes "^0000FF["+strnpcinfo(0)+"]^000000";
 			if (k == 0)
 				mes "Who do you want to bet for?";
+
 			else 
 				mes "Please enter an existing guild name";
+				mes "  ";
+				mes "^FF0000Note : input C for cancel.^000000";
 			input GBet$;
 			//Check if guild name exists
 			for(.@i = 0; .@i < getarraysize(.guild_name$); .@i++){
 				if(GBet$ == .guild_name$[.@i])
 					set k, 1;
+				if (GBet$ == "c")||(GBet$ == "C"){close;}
 			}
 			if (k == 0)
 				set k, -1;
@@ -250,8 +254,8 @@ end;
 //hence, it should be 
 //OnMonday1200:
 //
-OnSunday1200:
-OnSaturday1200:
+OnSunday1900:
+OnSaturday1900:
 OnAtCommand:
 announce "[Betting Girl] $$$! The WoE Betting Challenge has started!! Come to "+strnpcinfo(4)+" to place your bets!",bc_all|bc_blue;
 

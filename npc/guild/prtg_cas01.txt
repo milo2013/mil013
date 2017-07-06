@@ -105,7 +105,7 @@ prtg_cas01,96,173,0	duplicate(guildkafra)	Kafra Staff#prtg_cas01	117
 
 // Steward
 //============================================================
-prtg_cas01,112,181,0	duplicate(cm)	Ahvray#prtg_cas01	55
+prtg_cas01,112,181,0	duplicate(cmPR)	Ahvray#prtg_cas01	55
 
 // Treasure Room Exit
 //============================================================

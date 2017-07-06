@@ -181,13 +181,13 @@ OnInit:
 	.farm_commander_size = getarraysize(.farm_commander);
 	.commander_mob_size = getarraysize(.commander_mob);
 
-		for ( .@i = 0; .@i < 200; .@i++ )
+		for ( .@i = 0; .@i < 220; .@i++ )
 			monster .Map$,0,0, "Invader Soldier", .normal_mob[ rand( .normal_mob_size ) ], 1, strnpcinfo(0)+"::OnNormalKill";
-		for ( .@i = 0; .@i < 100; .@i++ )
+		for ( .@i = 0; .@i < 120; .@i++ )
 			monster .Map$,0,0, "Invader Captain", .captain_mob[ rand( .captain_mob_size ) ], 1, strnpcinfo(0)+"::OnCaptainKill";
-		for ( .@i = 0; .@i < 50; .@i++ )
+		for ( .@i = 0; .@i < 70; .@i++ )
 			monster .Map$,0,0, "Invader Commander", .commander_mob[ rand( .commander_mob_size ) ], 1, strnpcinfo(0)+"::OnCommanderKill";
-		for ( .@i = 0; .@i < 25; .@i++ )
+		for ( .@i = 0; .@i < 45; .@i++ )
 			monster .Map$,0,0, "Invader General", .boss_mob[ rand( .boss_mob_size ) ], 1, strnpcinfo(0)+"::OnBossKill";
 
 	}

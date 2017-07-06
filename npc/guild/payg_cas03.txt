@@ -102,7 +102,7 @@ payg_cas03,9,263,5	duplicate(guildkafra)	Kafra Staff#payg_cas03	117
 
 // Steward
 //============================================================
-payg_cas03,50,261,3	duplicate(cm)	Gheriot#payg_cas03	55
+payg_cas03,50,261,3	duplicate(cmPA)	Gheriot#payg_cas03	55
 
 // Treasure Room Exit
 //============================================================

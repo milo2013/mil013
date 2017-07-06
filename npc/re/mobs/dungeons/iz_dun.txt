@@ -88,7 +88,7 @@ iz_dun03,197,144	monster	Hydra	1068,1,2960000,150000
 //==================================================
 iz_dun04,0,0	monster	Merman	1264,52,5000
 iz_dun04,0,0	monster	Strouf	1065,50,5000
-iz_dun04,0,0	monster	Marine Sphere	1142,10,5000
+iz_dun04,0,0	monster	Marine Sphere	1142,40,5000
 iz_dun04,0,0	monster	Swordfish	1069,10,5000
 iz_dun04,0,0	monster	Deviace	1108,3,5000
 iz_dun04,80,246	monster	Hydra	1068,1,294000,150000

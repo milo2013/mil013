@@ -7045,7 +7045,7 @@
 12925,Pet_Egg_Scroll1,Kafra Item Mall Prize Package,18,20,,10,,,,,0xFFFFFFFF,63,2,,,,,,{ getgroupitem(IG_Pet_Egg_Scroll1); },{},{}
 12926,Pet_Egg_Scroll2,December Lucky Box,18,20,,10,,,,,0xFFFFFFFF,63,2,,,,,,{ getgroupitem(IG_Pet_Egg_Scroll2); },{},{}
 12927,J_Aspersio_5_Scroll_Box,Aspersio Scroll Box,18,20,,10,,,,,0xFFFFFFFF,63,2,,,,,,{ getitem 12928,10; },{},{}
-12928,J_Aspersio_5_Scroll,Sacred Scroll,11,2,,10,,,,,0xFFFFFFFF,63,2,,,,,,{ itemskill "PR_ASPERSIO",5; },{},{}
+12928,J_Aspersio_5_Scroll,Sacred Scroll,11,2,,10,,,,,0xFFFFFFFF,63,2,,,,,,{ if(countitem(523)>0) { skilleffect "PR_ASPERSIO",0; sc_start SC_ASPERSIO,180000,5; delitem 523,1; } },{},{}
 12929,Pet_Egg_Scroll_Box3,Pet Egg Box 3,18,20,,10,,,,,0xFFFFFFFF,63,2,,,,,,{ getgroupitem(IG_Pet_Egg_Scroll_Box3); },{},{}
 12930,Pet_Egg_Scroll_Box4,Pet Egg Box 4,18,20,,10,,,,,0xFFFFFFFF,63,2,,,,,,{ getgroupitem(IG_Pet_Egg_Scroll_Box4); },{},{}
 12931,Pet_Egg_Scroll_Box5,Pet Egg Box 5,18,20,,10,,,,,0xFFFFFFFF,63,2,,,,,,{ getgroupitem(IG_Pet_Egg_Scroll_Box5); },{},{}
@@ -7456,7 +7456,7 @@
 13450,Saber__,Saber,5,10,,1000,115,,,2,0x000654E2,63,2,2,3,27,1,0,{},{},{}
 13451,Blue_Sword,Blue Sword,5,10,,1200,190,,1,1,0x00000080,56,2,2,3,100,1,2,{ bonus bStr,5; bonus bAgi,5; },{},{}
 13452,Ru_Gold_Sword,Ru Gold Sword,5,0,,1200,190,,1,2,0x00000080,56,2,2,3,120,1,2,{ bonus bStr,8; bonus bAgi,8; },{},{}
-13454,Crimson_Saber,Crimson Saber,5,20,,850,85,,1,2,0x000654E3,56,2,2,3,70,1,2,{ .@r = getrefine(); bonus bBaseAtk,((BaseLevel/10)*5)+(.@r<=15?pow(.@r,2):225); },{},{}
+13454,Crimson_Saber,Crimson Saber,5,20,,850,85,,1,2,0x000654E3,57,2,2,3,70,1,2,{ .@r = getrefine(); bonus bBaseAtk,((BaseLevel/10)*5)+(.@r<=15?pow(.@r,2):225); },{},{}
 13455,Saber_of_Vicious_Mind,Saber of Vicious Mind,5,20,,1350,135,,1,1,0x000654E3,63,2,2,4,160,1,2,{ bonus bAtk,pow(min(getrefine(),15),2); },{},{}
 13456,Unity_Sword,Unity Sword,5,20,,420,80,,1,1,0x000654E3,56,2,2,3,1,1,2,{ bonus bBaseAtk,pow(getrefine(),2)*125/100; },{},{}
 13457,Unity_Dagger,Unity Dagger,5,20,,270,52,,1,1,0x028F5EEF,63,2,2,3,1,1,1,{ bonus bBaseAtk,pow(getrefine(),2)*125/100; },{},{}

@@ -1,0 +1,236 @@
+milenia,119,22,0	script	Mysterious Portal	10007,2,2,{
+OnTouch:
+mes "[ Mysterious Portal]";
+mes "Which Guild Castle suits you?";
+next;
+	menu "Prontera",prontera,"Payon",Payon;
+	
+	prontera:
+	goto Lprontera;
+	
+	payon:
+	goto Lpayon;
+
+Lpayon:
+
+	set .@GID, GetCastleData("payg_cas03",1); //Guild that occupies Holy Shadow
+	
+	if (.@GID == 0) {
+		mes "[Ringing Voice]";
+		mes "'Those who overcome an ordeal shows a great deal of bravery... and will find their way to another ordeal.'";
+		close;
+	}
+	
+	mes "[Ringing Voice]";
+	mes "'Only the truly brave can take the test.'";
+	next;
+	mes " ";
+	mes "Would you confim to enter this portal?";
+	next;
+	if(select("Yes!:Step back..") == 1) {
+		//Check if player is part of the guild
+		if (getcharid(2) != .@GID) {
+			mes "[Ringing Voice]";
+			mes "It seems that you are not a member of ^0000FF["+getguildname(.@GID)+"]^000000 Guild!";
+			next;
+			mes "[Ringing Voice]";
+			mes "You have to pay a fee of ^0000FF10,000,000 Zenies^000000 to enter!";
+			next;
+			if(select("Agree!:No, Thank you")==2) {
+				mes "[Ringing Voice]";
+				mes "Okay, please come back anytime.";
+				close;
+			}
+			//Check player's ZENY
+			if(ZENY < 10000000) {
+				mes "[Ringing Voice]";
+				mes "Sorry, You don't have enough zenies.";
+				close;				
+			}		
+		}	
+			mes "[Ringing Voice]";
+			mes "Please select your Dungeon";
+			next;
+			switch(select("Payon:Geffen:Rachel")) {
+		case 1:
+			next;
+			switch(select("Level 1:Level 2:Hall Of Abyss")) {
+				case 1:
+					warp "gld_dun01",0,0;
+					Set ZENY, ZENY - 10000000;
+					dispbottom "You've paid 10,000,000z to the ["+getguildname(.@GID)+"] Guild's Dungeon Fee.";
+					set $PayGDungeonFunds, $PayGDungeonFunds + 10000000;
+					close2;
+					break;
+				case 2:
+					warp "gld_dun01_2",0,0;
+					Set ZENY, ZENY - 10000000;
+					dispbottom "You've paid 10,000,000z to the ["+getguildname(.@GID)+"] Guild's Dungeon Fee.";
+					set $PayGDungeonFunds, $PayGDungeonFunds + 10000000;
+					close2;
+					break;
+				case 3:
+					warp "gld2_pay",0,0;
+					Set ZENY, ZENY - 10000000;
+					dispbottom "You've paid 10,000,000z to the ["+getguildname(.@GID)+"] Guild's Dungeon Fee.";
+					set $PayGDungeonFunds, $PayGDungeonFunds + 10000000;
+					close2;
+					break;
+			}
+		case 2:
+			next;
+			switch(select("Level 1:Level 2:Hall Of Abyss")) {
+				case 1:
+					warp "gld_dun04",0,0;
+					Set ZENY, ZENY - 10000000;
+					dispbottom "You've paid 10,000,000z to the ["+getguildname(.@GID)+"] Guild's Dungeon Fee.";
+					set $PayGDungeonFunds, $PayGDungeonFunds + 10000000;
+					close2;
+					break;
+				case 2:
+					warp "gld_dun04_2",0,0;
+					Set ZENY, ZENY - 10000000;
+					dispbottom "You've paid 10,000,000z to the ["+getguildname(.@GID)+"] Guild's Dungeon Fee.";
+					set $PayGDungeonFunds, $PayGDungeonFunds + 10000000;
+					close2;
+					break;
+				case 3:
+					warp "gld2_gef",0,0;
+					Set ZENY, ZENY - 10000000;
+					dispbottom "You've paid 10,000,000z to the ["+getguildname(.@GID)+"] Guild's Dungeon Fee.";
+					set $PayGDungeonFunds, $PayGDungeonFunds + 10000000;
+					close2;
+					break;
+			}
+		case 3:
+			warp "arug_dun01",0,0;
+			Set ZENY, ZENY - 10000000;
+			dispbottom "You've paid 10,000,000z to the ["+getguildname(.@GID)+"] Guild's Dungeon Fee.";
+			set $PayGDungeonFunds, $PayGDungeonFunds + 10000000;
+			close2;
+			break;
+		}
+		mes "[Ringing Voice]";
+		mes " ";
+		mes "Nothing happened.";
+		close;
+	}
+	close;
+end;
+
+Lprontera:
+
+	set .@GID, GetCastleData("prtg_cas01",1); //Guild that occupies Holy Shadow
+	
+	if (.@GID == 0) {
+		mes "[Ringing Voice]";
+		mes "'Those who overcome an ordeal shows a great deal of bravery... and will find their way to another ordeal.'";
+		close;
+	}
+
+
+	if (.@GID == 0) {
+		mes "[Ringing Voice]";
+		mes "'Those who overcome an ordeal shows a great deal of bravery... and will find their way to another ordeal.'";
+		close;
+	}
+
+	mes "[Ringing Voice]";
+	mes "'Only the truly brave can take the test.'";
+	next;
+	mes "[Ringing Voice]";
+	mes " ";
+	mes "Would you confim to enter this portal?";
+	next;
+	if(select("Yes!:Step back..") == 1) {
+		//Check if player is part of the guild
+		if (getcharid(2) != .@GID) {
+			mes "[Ringing Voice]";
+			mes "It seems that you are not a member of ^0000FF["+getguildname(.@GID)+"]^000000 Guild!";
+			next;
+			mes "[Ringing Voice]";
+			mes "You have to pay a fee of ^0000FF10,000,000 Zenies^000000 to enter!";
+			next;
+			if(select("Agree!:No, Thank you")==2) {
+				mes "[Ringing Voice]";
+				mes "Okay, please come back anytime.";
+				close;
+			}
+			//Check player's ZENY
+			if(ZENY < 10000000) {
+				mes "[Ringing Voice]";
+				mes "Sorry, You don't have enough zenies.";
+				close;				
+			}		
+		}	
+			mes "[Ringing Voice]";
+			mes "Please select your Dungeon";
+			next;
+			switch(select("Prontera:Aldebaran:Yuno")) {
+		case 1:
+			next;
+			switch(select("Level 1:Level 2:Hall Of Abyss")) {
+				case 1:
+					warp "gld_dun03",0,0;
+					Set ZENY, ZENY - 10000000;
+					dispbottom "You've paid 10,000,000z to the ["+getguildname(.@GID)+"] Guild's Dungeon Fee.";
+					set $PrtGDungeonFunds, $PrtGDungeonFunds + 10000000;					
+					close2;
+					break;
+				case 2: 
+					warp "gld_dun03_2",0,0;
+					Set ZENY, ZENY - 10000000;
+					dispbottom "You've paid 10,000,000z to the ["+getguildname(.@GID)+"] Guild's Dungeon Fee.";
+					set $PrtGDungeonFunds, $PrtGDungeonFunds + 10000000;					
+					close2;
+					break;
+				case 3:
+					warp "gld2_prt",0,0;
+					Set ZENY, ZENY - 10000000;
+					dispbottom "You've paid 10,000,000z to the ["+getguildname(.@GID)+"] Guild's Dungeon Fee.";
+					set $PrtGDungeonFunds, $PrtGDungeonFunds + 10000000;						
+					close2;
+					break;
+			}
+		case 2:
+			next;
+			switch(select("Level 1:Level 2:Hall Of Abyss")) {
+				case 1:
+					warp "gld_dun02",0,0;
+					Set ZENY, ZENY - 10000000;
+					dispbottom "You've paid 10,000,000z to the ["+getguildname(.@GID)+"] Guild's Dungeon Fee.";
+					set $PrtGDungeonFunds, $PrtGDungeonFunds + 10000000;						
+					close2;
+					break;
+				case 2:
+					warp "gld_dun02_2",0,0;
+					Set ZENY, ZENY - 10000000;
+					dispbottom "You've paid 10,000,000z to the ["+getguildname(.@GID)+"] Guild's Dungeon Fee.";
+					set $PrtGDungeonFunds, $PrtGDungeonFunds + 10000000;						
+					close2;
+					break;
+				case 3: 
+					warp "gld2_ald",0,0;
+					Set ZENY, ZENY - 10000000;
+					dispbottom "You've paid 10,000,000z to the ["+getguildname(.@GID)+"] Guild's Dungeon Fee.";
+					set $PrtGDungeonFunds, $PrtGDungeonFunds + 10000000;						
+					close2;
+					break;
+			}
+		case 3:
+			warp "schg_dun01",0,0;
+			Set ZENY, ZENY - 10000000;
+			dispbottom "You've paid 10,000,000z to the ["+getguildname(.@GID)+"] Guild's Dungeon Fee.";
+			set $PrtGDungeonFunds, $PrtGDungeonFunds + 10000000;
+			close2;
+			break;
+		
+		}
+		mes "[Ringing Voice]";
+		mes " ";
+		mes "Nothing happened.";
+		close;
+	}
+	close;
+end;
+}

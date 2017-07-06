@@ -255,7 +255,7 @@
 41255,Epic_Gashapon_Capsule,Epic Gashapon Capsule,2,10,,1,,,,,0xFFFFFFFF,63,2,,,,,,{callfunc "Gasha04Func"; },{},{}
 41256,Legendary_Gashapon_Capsule,Legendary Gashapon Capsule,2,10,,1,,,,,0xFFFFFFFF,63,2,,,,,,{callfunc "Gasha05Func"; },{},{}
 41257,Empty_Gashapon_Capsule,Empty Gashapon Capsule,2,10,,1,,,,,0xFFFFFFFF,63,2,,,,,,{callfunc "Gasha06Func"; },{},{}
-41258,Gashapon_Coupon,Gashapon Coupon,2,10,,1,,,,,0xFFFFFFFF,63,2,,,,,,{},{},{}
+41258,Gashapon_Coupon,Gashapon Coupon,3,10,,1,,,,,0xFFFFFFFF,63,2,,,,,,{},{},{}
 
 // BIOS ISLAND
 22537,Prize_Of_Hero,Prize of Hero,2,10,,10,,,,,0xFFFFFFFF,63,2,,,,,,{ callfunc "PrizeHeroFunc"; },{},{}

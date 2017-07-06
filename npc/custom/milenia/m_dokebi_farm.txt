@@ -64,7 +64,7 @@
 		deletearray .HunterGOLD;
 		for ( .@i = 0; .@i < 80; .@i++ )
 			monster "1@farm",0,0, "Dokebi", .normal_mob[ rand( .normal_mob_size ) ], 1, strnpcinfo(0)+"::OnNormalKill";
-		for ( .@i = 0; .@i < 30; .@i++ )
+		for ( .@i = 0; .@i < 40; .@i++ )
 			monster "1@farm",0,0, "Red Dokebi", .boss_mob[ rand( .boss_mob_size ) ], 1, strnpcinfo(0)+"::OnBossKill";
 		
 			
@@ -163,7 +163,7 @@
 		
 		for ( .@i = 0; .@i < 80; .@i++ )
 			monster "2@farm",0,0, "Dokebi", .normal_mob[ rand( .normal_mob_size ) ], 1, strnpcinfo(0)+"::OnNormalKill";
-		for ( .@i = 0; .@i < 20; .@i++ )
+		for ( .@i = 0; .@i < 30; .@i++ )
 			monster "2@farm",0,0, "Red Dokebi", .boss_mob[ rand( .boss_mob_size ) ], 1, strnpcinfo(0)+"::OnBossKill";
 		
 		sleep 900000;
@@ -239,7 +239,7 @@
 		
 		for ( .@i = 0; .@i < 80; .@i++ )
 			monster "3@farm",0,0, "Dokebi", .normal_mob[ rand( .normal_mob_size ) ], 1, strnpcinfo(0)+"::OnNormalKill";
-		for ( .@i = 0; .@i < 10; .@i++ )
+		for ( .@i = 0; .@i < 20; .@i++ )
 			monster "3@farm",0,0, "Red Dokebi", .boss_mob[ rand( .boss_mob_size ) ], 1, strnpcinfo(0)+"::OnBossKill";
 		
 		sleep ( .RoomCleanMin * 60000 );
@@ -317,7 +317,7 @@
 		
 		for ( .@i = 0; .@i < 80; .@i++ )
 			monster "4@farm",0,0, "Dokebi", .normal_mob[ rand( .normal_mob_size ) ], 1, strnpcinfo(0)+"::OnNormalKill";
-		for ( .@i = 0; .@i < 10; .@i++ )
+		for ( .@i = 0; .@i < 20; .@i++ )
 			monster "4@farm",0,0, "Red Dokebi", .boss_mob[ rand( .boss_mob_size ) ], 1, strnpcinfo(0)+"::OnBossKill";
 		
 		sleep 900000;
