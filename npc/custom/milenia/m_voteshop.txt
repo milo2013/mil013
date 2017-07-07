@@ -27,6 +27,7 @@ set .npcname$,"[Points Exchanger]";
 //Initialization of the Rewards
 add_item(41124,1,200,"New Items");//3 Days VIP Refiner
 add_item(41244,1,65,"New Items");// 1 Days Premium Dokebi Pass
+add_item(41258,1,5,"New Items");// 1 Gashapon Coupon
 add_item(19602,1,60,"New Items");//Invisible Costume
 add_item(19603,1,60,"New Items");//Invisible Costume
 add_item(19604,1,60,"New Items");//Invisible Costume
