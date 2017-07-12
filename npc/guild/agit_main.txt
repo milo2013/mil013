@@ -943,7 +943,7 @@ OnRecvCastle:
 			mes "It seems that you are not a member of ^0000FF["+getguildname(.@GID)+"]^000000";
 			next;
 			mes "[Ringing Voice]";
-			mes "You have to pay a fee of ^0000FF10,000,000 Zenies^000000 before you can enter";
+			mes "You have to pay a fee of ^0000FF100,000,000 Zenies^000000 before you can enter";
 			next;
 			if(select("Pay fee:No, Thank you")==2) {
 				mes "Okay, please come back anytime.";
@@ -961,20 +961,20 @@ OnRecvCastle:
 			switch(select("Level 1:Level 2:Hall Of Abyss")) {
 				case 1:
 					warp "gld_dun01",0,0;
-					Set ZENY, ZENY - 10000000;
-					set $PayGDungeonFunds, $PayGDungeonFunds + 10000000;
+					Set ZENY, ZENY - 100000000;
+					set $PayGDungeonFunds, $PayGDungeonFunds + 100000000;
 					close2;
 					break;
 				case 2:
 					warp "gld_dun01_2",0,0;
-					Set ZENY, ZENY - 10000000;
-					set $PayGDungeonFunds, $PayGDungeonFunds + 10000000;
+					Set ZENY, ZENY - 100000000;
+					set $PayGDungeonFunds, $PayGDungeonFunds + 100000000;
 					close2;
 					break;
 				case 3:
 					warp "gld2_pay",0,0;
-					Set ZENY, ZENY - 10000000;
-					set $PayGDungeonFunds, $PayGDungeonFunds + 10000000;
+					Set ZENY, ZENY - 100000000;
+					set $PayGDungeonFunds, $PayGDungeonFunds + 100000000;
 					close2;
 					break;
 			}
@@ -982,27 +982,27 @@ OnRecvCastle:
 			switch(select("Level 1:Level 2:Hall Of Abyss")) {
 				case 1:
 					warp "gld_dun04",0,0;
-					Set ZENY, ZENY - 10000000;
-					set $PayGDungeonFunds, $PayGDungeonFunds + 10000000;
+					Set ZENY, ZENY - 100000000;
+					set $PayGDungeonFunds, $PayGDungeonFunds + 100000000;
 					close2;
 					break;
 				case 2:
 					warp "gld_dun04_2",0,0;
-					Set ZENY, ZENY - 10000000;
-					set $PayGDungeonFunds, $PayGDungeonFunds + 10000000;
+					Set ZENY, ZENY - 100000000;
+					set $PayGDungeonFunds, $PayGDungeonFunds + 100000000;
 					close2;
 					break;
 				case 3:
 					warp "gld2_gef",0,0;
-					Set ZENY, ZENY - 10000000;
-					set $PayGDungeonFunds, $PayGDungeonFunds + 10000000;
+					Set ZENY, ZENY - 100000000;
+					set $PayGDungeonFunds, $PayGDungeonFunds + 100000000;
 					close2;
 					break;
 			}
 		case 3:
 			warp "arug_dun01",0,0;
-			Set ZENY, ZENY - 10000000;
-			set $PayGDungeonFunds, $PayGDungeonFunds + 10000000;
+			Set ZENY, ZENY - 100000000;
+			set $PayGDungeonFunds, $PayGDungeonFunds + 100000000;
 			close2;
 			break;
 		}
@@ -1042,7 +1042,7 @@ OnRecvCastle:
 			mes "It seems that you are not a member of ^0000FF["+getguildname(.@GID)+"]^000000";
 			next;
 			mes "[Ringing Voice]";
-			mes "You have to pay a fee of ^0000FF10,000,000 Zenies^000000 before you can enter";
+			mes "You have to pay a fee of ^0000FF100,000,000 Zenies^000000 before you can enter";
 			if(select("Pay fee:No, Thank you")==2) {
 				mes "Okay, please come back anytime.";
 				close;
@@ -1059,20 +1059,20 @@ OnRecvCastle:
 			switch(select("Level 1:Level 2:Hall Of Abyss")) {
 				case 1:
 					warp "gld_dun03",0,0;
-					Set ZENY, ZENY - 10000000;
-					set $PrtGDungeonFunds, $PrtGDungeonFunds + 10000000;					
+					Set ZENY, ZENY - 100000000;
+					set $PrtGDungeonFunds, $PrtGDungeonFunds + 100000000;					
 					close2;
 					break;
 				case 2: 
 					warp "gld_dun03_2",0,0;
-					Set ZENY, ZENY - 10000000;
-					set $PrtGDungeonFunds, $PrtGDungeonFunds + 10000000;					
+					Set ZENY, ZENY - 100000000;
+					set $PrtGDungeonFunds, $PrtGDungeonFunds + 100000000;					
 					close2;
 					break;
 				case 3:
 					warp "gld2_prt",0,0;
-					Set ZENY, ZENY - 10000000;
-					set $PrtGDungeonFunds, $PrtGDungeonFunds + 10000000;						
+					Set ZENY, ZENY - 100000000;
+					set $PrtGDungeonFunds, $PrtGDungeonFunds + 100000000;						
 					close2;
 					break;
 			}
@@ -1080,27 +1080,27 @@ OnRecvCastle:
 			switch(select("Level 1:Level 2:Hall Of Abyss")) {
 				case 1:
 					warp "gld_dun02",0,0;
-					Set ZENY, ZENY - 10000000;
-					set $PrtGDungeonFunds, $PrtGDungeonFunds + 10000000;						
+					Set ZENY, ZENY - 100000000;
+					set $PrtGDungeonFunds, $PrtGDungeonFunds + 100000000;						
 					close2;
 					break;
 				case 2:
 					warp "gld_dun02_2",0,0;
-					Set ZENY, ZENY - 10000000;
-					set $PrtGDungeonFunds, $PrtGDungeonFunds + 10000000;						
+					Set ZENY, ZENY - 100000000;
+					set $PrtGDungeonFunds, $PrtGDungeonFunds + 100000000;						
 					close2;
 					break;
 				case 3: 
 					warp "gld2_ald",0,0;
-					Set ZENY, ZENY - 10000000;
-					set $PrtGDungeonFunds, $PrtGDungeonFunds + 10000000;						
+					Set ZENY, ZENY - 100000000;
+					set $PrtGDungeonFunds, $PrtGDungeonFunds + 100000000;						
 					close2;
 					break;
 			}
 		case 3:
 			warp "schg_dun01",0,0;
-			Set ZENY, ZENY - 10000000;
-			set $PrtGDungeonFunds, $PrtGDungeonFunds + 10000000;
+			Set ZENY, ZENY - 100000000;
+			set $PrtGDungeonFunds, $PrtGDungeonFunds + 100000000;
 			close2;
 			break;
 		
