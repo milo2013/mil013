@@ -5,7 +5,7 @@
 //===== Current Version: =====================================
 //= 1.0
 //===== Compatible With: =====================================
-//= rAthena SVN
+//= rAthena Project
 //===== Additional Comments: =================================
 //= 1.0 Merged to template file.
 //============================================================
@@ -80,4 +80,3 @@ OnRecvCastleAr02:
 	FlagEmblem GetCastleData("arug_cas02",1);
 	end;
 }
-

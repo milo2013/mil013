@@ -88,7 +88,7 @@ OnPCLoadMapEvent:
 	
 	if(!@team){ //Should NEVER trigger on it's own. It's a safeguard for GM's warping players in. Which is a posibility if a player leaves.
 		dispbottom "Something appears to have gone wrong, sorry! please come back later";
-		warp "prontera",155,191; 
+		warp "milenia",120,150;
 		end;
 	}
 	
@@ -572,7 +572,7 @@ QueueWarpPlayers:
 			percentheal 100,100;
 			if(.locations)
 				getmapxy(@freezemap$,@freezex,@freezey,0);
-			warp .map$,49,49;
+			warp .map$,49,83;
 			detachrid;
 		}
 	}
@@ -599,7 +599,7 @@ QueueDelete:
 //----------- Configuration -----------------------
 OnInit:
 	//Maximum amount of players per team.
-	.MaxTeamMembers = 2;
+	.MaxTeamMembers = 3;
 	
 	// Time it takes to free your team in seconds.
 	.timeToFree = 7;
@@ -627,9 +627,9 @@ OnInit:
 	// Mapflags
 	setarray .mapf[0],0,1,2,3,4,11,13,22,42; //in order "No memo, No teleport, no save, no branch, No Penalty,No trade, No Warp, No go, No return, load event"
 	
-	.team1Spawnx = 6;
-	.team1Spawny = 50;
-	.team2Spawnx = 93;
+	.team1Spawnx = 16;
+	.team1Spawny = 49;
+	.team2Spawnx = 83;
 	.team2Spawny = 50;
 	
 	// Map of Event

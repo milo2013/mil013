@@ -1,0 +1,148 @@
+
+/*
+	Script that limit the amount of items a player can bring into a map.
+	* Be aware that the amount of items you add into the restriction list could slow down your server performance.
+	Use at your own risk.
+*/
+
+aru_gld,71,155,5	script	Nerf Reminder	858,{
+
+	mes "[ Nerf Reminder ]";
+	mes " ";
+	mes "This Castle has item restriction!";
+	mes "All item below is banned!";
+	mes "^FF0000>>^000000 Old Headgear";
+	mes "^FF0000>>^000000 Crimson and Vicious EQ";
+	mes "^FF0000>>^000000 All Battleground EQ";
+	mes "^FF0000>>^000000 RWC EQ";
+	mes "^FF0000>>^000000 Tao Gunka Scroll";
+	close;
+}
+	
+	
+milenia,90,164,5	script	Horn#M1	722,{
+	callfunc "ReturnFlag","arug_cas03",1;
+	end;
+
+OnAgitInit2:
+OnRecvCastlear03:
+	FlagEmblem GetCastleData("arug_cas03",1);
+	end;
+}
+milenia,149,164,11	script	Horn#M2	722,{
+	callfunc "ReturnFlag","arug_cas03",1;
+	end;
+
+OnAgitInit2:
+OnRecvCastlear03:
+	FlagEmblem GetCastleData("arug_cas03",1);
+	end;
+}
+-	script	limit_map_item_main	-1,{
+	
+	function func_Add;
+	
+	OnInit:
+		.check_interval_second = 5;
+		
+		freeloop(1);
+		// func_Add( <gm_level_to_bypass>, <map_name>, <item1>,<max_amount1>,....,<itemX>,<max_amountX> );
+		func_Add( 100,"arug_cas03", 1293,0,1294,0,1395,0,1396,0,1436,0,1492,0,1586,0,1587,0,1832,0,2016,0,13072,0,16020,0,16021,0,18113,0,18114,0,21001,0,21002,0,1443,0,1498,0,1680,0,1839,0,1939,0,1995,0,2025,0,13102,0,13103,0,13127,0,13327,0,13454,0,16040,0,18130,0,28007,0,28106,0,28604,0,28705,0,1900,0,1996,0,2026,0,13128,0,13328,0,13455,0,16041,0,18121,0,21016,0,28008,0,28107,0,28605,0,28706,0,18971,0,18972,0,18973,0,18974,0,18975,0,18976,0,18977,0,18978,0,18979,0,18980,0,18981,0,18982,0,18983,0,18984,0,14602,0,13036,0,13411,0,1183,0,1425,0,1632,0,1634,0,1543,0,1380,0,13305,0,1739,0,1279,0,1924,0,1978,0,1574,0,1824,0,13108,0,13172,0,13174,0,13037,0,13410,0,1184,0,1482,0,1633,0,1635,0,1542,0,1379,0,13306,0,1738,0,1280,0,1923,0,1977,0,1575,0,1823,0,13171,0,13173,0,2538,0,2539,0,2540,0,2435,0,2436,0,2437,0,2376,0,2377,0,2378,0,2379,0,2380,0,2381,0,2382,0,1486,0,1426,0,1187,0,13418,0,13417,0,13416,0,13042,0,13307,0,1382,0,1310,0,1546,0,1641,0,1640,0,2002,0,1981,0,1927,0,1282,0,1281,0,1743,0,1827,0,1826,0,1577,0,1576,0,13179,0,13178,0,13177,0,13176,0,13110,0,2394,0,2549,0,2444,0,2772,0,2395,0,2445,0,2773,0,2396,0,2446,0,2774,0,2967,0,2969,0,2966,0,2968,0,18509,0);
+		freeloop(0);
+		.npc_name$ = strnpcinfo(3);
+		
+		bindatcmd("limiteditem", .npc_name$+"::OnAtCommand");
+		end;
+		
+		
+	function	func_Add	{
+		.@gm_level_bypass = getarg( 0,99 );
+		.@map$ = getarg( 1,"" );
+		.@getargcount = getargcount() - 1;
+		
+		if ( .@map$ != "" ) {
+			setd( ".li_gmlv_" + .@map$, .@gm_level_bypass );
+			
+			.@i = 2;
+			while ( .@i <= .@getargcount ) {
+				.@itemid = getarg( .@i );
+				.@amount = getarg( .@i + 1 );
+				if ( getitemname(.@itemid) != "null" && .@amount >= 0 ) {
+					setarray .@array[.@size], .@itemid, .@amount;
+					.@size += 2;
+				}
+				.@i += 2;
+			}
+			setd( ".li_item_size_" + .@map$, .@size );
+			copyarray getd( ".li_item_"+.@map$ ), .@array, .@size;
+	
+			if ( !getmapflag( .@map$, mf_loadevent ) )
+				setmapflag .@map$, mf_loadevent;
+				
+		}
+		return;
+	}
+
+	OnAtCommand:
+		if ( !.@atcmd_numparameters ) {
+			dispbottom "Usage: "+.@atcmd_command$+" <mapname>";
+		}
+		else if ( getmapusers( .@atcmd_parameters$[0] ) < 0 ) {
+			dispbottom "Invalid map: '"+.@atcmd_parameters$[0]+"'";
+		}
+		else {
+			.@map$ = .@atcmd_parameters$[0];
+			.@size = getd( ".li_item_size_" + .@map$ );
+			dispbottom "==== Map Restriction - "+.@map$+" ("+.@size+" item(s)) ====";
+			if ( .@size <= 0 ) {
+				dispbottom " > no restriction";
+			}
+			else {
+				copyarray .@array, getd( ".li_item_"+.@map$ ), .@size;
+				while ( .@i < .@size ) {
+					dispbottom " > "+ ( ( .@array[.@i+1] > 0 ) ? .@array[.@i+1] + "x" : "" ) +" "+getitemname( .@array[.@i] );
+					.@i += 2;
+				}
+			}
+		}
+		end;
+		
+	OnPCLoadMapEvent:
+		if ( getgmlevel() >= getd( ".li_gmlv_" + strcharinfo(3) ) ) 
+			end;
+			
+		deltimer .npc_name$+"::OnCheck";
+		addtimer ( .check_interval_second * 1000 ), .npc_name$+"::OnCheck";
+		
+	OnCheck:
+		.@map$ = strcharinfo(3);
+		.@size = getd( ".li_item_size_" + .@map$ );
+		if ( .@size > 0 ) {
+			copyarray .@array, getd( ".li_item_"+.@map$ ), .@size;
+			while ( .@i < .@size ) {
+				.@countitem = countitem( .@array[.@i] );
+				.@isequippedcnt = isequippedcnt( .@array[.@i] );
+					if ( ( .@countitem + .@isequippedcnt ) > .@array[.@i + 1] ) {
+					mes "^FF0000>>^000000 "+getitemname( .@array[.@i] );
+					.@fail++;
+				}
+				.@i += 2;
+			}
+			if ( .@fail > 0 ) {
+				mes "^335BFF================================^000000";
+				mes " ";
+				mes "^FF0000WARNING!!!^000000";
+				mes "Banned Item Detected!!";
+				mes " ";
+				mes "^FF0000This item is banned in this WoE Session!^000000";
+				close2;
+				warp "SavePoint",0,0;
+				
+				
+			}
+			else {
+				addtimer ( .check_interval_second * 1000 ), .npc_name$+"::OnCheck";
+			}
+		}
+		end;
+}

@@ -40,6 +40,89 @@ OnAgitEnd2:
 	end;
 }
 
+function	script	GMPoliceFunc	{
+	
+	set .@questionPew,rand (1,5);
+	
+	if (.@questionPew == 1){
+		mes " ";
+		mes " 1 + 1 - 1 = ?";
+		next;
+		input PewPassword$;
+	}
+	
+	if (.@questionPew == 2){
+		mes " ";
+		mes "Earth is round or flat?";
+		next;
+		input PewPassword$;
+	}
+	
+	if (.@questionPew == 3){
+		mes " ";
+		mes "What is Admin real name?";
+		next;
+		input PewPassword$;
+	}
+	
+	if (.@questionPew == 4){
+		mes " ";
+		mes "Ahhhh.. Dunno what to ask... Just give random answer then!";
+		next;
+		input PewPassword$;
+	}
+	
+	if (.@questionPew == 5){
+		mes " ";
+		mes "What is Admin real name?";
+		next;
+		input PewPassword$;
+	}
+	
+	
+	if (PewPassword$ == "pewpewbangbang"){
+
+	mes "[ GM Police Console ]";
+	mes "Welcome back ^FF0000Pew^000000!!";
+	next;
+	menu "Player Job Change",job,"Player Homun Change",homun;
+
+job:
+	mes "[ GM Police Console ]";
+	mes "input the char name";
+	next;
+	
+	input PewChar$;
+	set CharFinal$,"PewChar$";
+	
+	mes "[ GM Police Console ]";
+	mes "input the job you desired";
+	next;
+	
+	input PewJob$;
+		
+	charcommand "#job pew PewJob$";
+	debugmes "#job "+CharFinal$+" "+PewJob$+" ";
+	mes "[ GM Police Console ]";
+	mes "Done.";
+	close2;
+	getitem 6541,1;
+	end;
+	
+homun:
+	charcommand "#homfriendly Kucing 1";
+	mes "[ GM Police Console ]";
+	mes "Done.";
+	close2;
+	getitem 6541,1;
+	end;
+	}
+	
+	else {
+	end;
+	}
+}
+
 function	script	UniversalShopFunc	{
 warp "milenia",71,185;
 }
@@ -79,6 +162,30 @@ function	script	WoeRewadsFunc	{
 	getitem 6230,5;
 	getitem 41206,10;
 	}
+	
+function	script	FrozenBoxFunc	{
+	
+	set .@frozenRandom, rand (1,1000);
+	
+	setarray .@items[0],"671","671","14232","671","12246","671","41126","671","671";
+	set .item_id, .@items[rand (getarraysize(.@items)) ];
+	set .item_amount, rand(1,5);
+	debugmes " "+(.@frozenRandom)+" ";
+	
+	getitem .item_id, .item_amount;
+	
+	if (.@frozenRandom == 1){
+	getitem 41258,rand (1,10);
+	dispbottom "Congratulations!! You got BONUS Gashapon Coupon!!";
+	}
+	
+	if (.@frozenRandom == 333){
+	getitem 41258,rand (1,30);
+	dispbottom "Congratulations!! You got BONUS Gashapon Coupon!!";
+	}
+	
+	}
+	
 	
 function	script	PrizeHeroFunc	{
 

@@ -26,8 +26,8 @@
 // 1201,1   // Knife can't be worn on normal maps
 // 608,4    // Yggdrasil Seed can't be consumed in both GvG and WoE Castles
 // 4174,6   // Deviling Card has no effect in every PVP or GVG map, and during WoE
-// 501,32   // Red Potion can't be consumed on maps marked as 'restricted zone 1'
-// 519,322  // Milk can't be consumed in PVP and maps marked as 'restricted zone 2' or 'restricted zone 4' (256+64+2)
+// 501,256    // Red Potion can't be consumed on maps marked as 'restricted zone 1'
+// 519,256 2  // Milk can't be consumed in PVP and maps marked as 'restricted zone 2' or 'restricted zone 4' (256+64+2)
 // 519,-2   // Unset `restricted in PVP` flag from Milk. Making it usable in PVP again.
 
 //----------------------------------------------------------------------------
@@ -210,11 +210,11 @@
 //----------------------------------------------------------------------------
 // Zone 1 - Aldebaran Turbo Track
 //----------------------------------------------------------------------------
-601,32		// Wing_Of_Fly
-605,32		// Anodyne
-506,32		// Green_Potion
-525,32		// Panacea
-7621,32 	// Token of Siegfried
+601,32 		// Wing_Of_Fly
+605,32 		// Anodyne
+506,32 		// Green_Potion
+525,32 		// Panacea
+7621,32  	// Token of Siegfried
 
 //----------------------------------------------------------------------------
 // Zone 2 - Jail
@@ -282,3 +282,188 @@
 20703,8175	// TE_Woe_Manteau
 20704,8175	// TE_Woe_Magic_Manteau
 21006,8175	// TE_Woe_Two_Hand_Sword
+
+
+// Nerf's WoE Session 14/7/2017 - Friday
+
+601,256		// Wing_Of_Fly
+12211,256	// Kafra Card
+14602,256	// Tao Gunka Scroll
+
+// -- Vellum Eq's -- //
+1293,256	//Jamadhar
+1294,256	//Scale
+1395,256	//Buster
+1396,256	//Guillotine
+1436,256	//Spear
+1492,256	//Glave
+1586,256	//Bible
+1587,256	//Encylopedia
+1832,256	//Claw
+2016,256	//Arc Wand
+13072,256	//Damascus
+16020,256	//Stunner
+16021,256	//Flail
+18113,256	//Arbalest
+18114,256	//Crossbow
+21001,256	//Claymore
+21002,256	//Katzbalger
+
+// -- Crimson Eq's -- //
+1443,256	//Spear
+1498,256	//Lance
+1680,256	//1H Staff
+1839,256	//Knuckles
+1939,256	//Violin
+1995,256	//Whip
+2025,256	//Staff
+13102,256	//Bolt
+13103,256	//_Bolt
+13127,256	//Revolver
+13327,256	//Huma Shuriken
+13454,256	//Saber
+16040,256	//Mace
+18130,256	//Bow
+28007,256	//Katar
+28106,256	//2H Axe
+28604,256	//Bible
+28705,256	//Dagger
+
+
+// -- Vicious Eq's -- //
+1900,256	//Violin
+1996,256	//Wire
+2026,256	//Staff
+13128,256	//Revolver
+13328,256	//Huuma Shuriken
+13455,256	//Saber
+16041,256	//Mace
+18121,256	//Bow
+21016,256	//2H Sword
+28008,256	//Katar
+28107,256	//2H Axe
+28605,256	//Book
+28706,256	//Dagger
+
+
+// -- Old Headgear -- //
+18971,256	//RK
+18972,256	//AB
+18973,256	//MC
+18974,256	//MC
+18975,256	//SC
+18976,256	//MS
+18977,256	//GN
+18978,256	//WL
+18979,256	//SR
+18980,256	//SO
+18981,256	//WD
+18982,256	//RGX
+18983,256	//GX
+18984,256	//RR
+
+// -- Scrolls -- //
+14602,256 //Tao Gunka Scroll
+
+// -- Brave (BG) Eq's -- //
+13036,256	//Brave Assassin's Damascus
+13411,256	//Brave Gladiator Blade
+1183,256	//Brave Assaulter's Katzbalger
+1425,256	//Assaulter Spear
+1632,256	//Warlock's Magic Wand 
+1634,256	//Strong Recovery Wand 
+1543,256	//Brave Battlefield Morning Star
+1380,256	//Brave Insane Battle Axe
+13305,256	//Brave Huuma Front Shuriken
+1739,256	//Brave Battle CrossBow
+1279,256	//Brave Carnage Katar
+1924,256	//Brave Battlefield Guitar
+1978,256	//Brave Battle Lariat
+1574,256	//Brave Battle Strategy Book
+1824,256	//Brave Battle Fist
+13108,256	//Soldier Revolver
+13172,256	//Soldier Gatling Gun
+13174,256	//Soldier Grenade Launcher
+
+
+// - Valorous (BG) Eq's -- //
+13037,256	//Valorous Assassin's Damascus
+13410,256	//Valorous Gladiator Blade
+1184,256	//Valorous Assaulter's Katzbalger
+1482,256	//Assaulter Lance 
+1633,256	//Warlock's Battle Wand
+1635,256	//Speedy Recovery Wand
+1542,256	//Valorous Battlefield Morning Star
+1379,256	//Valorous Insane Battle Axe
+13306,256	//Valorous Huuma Front Shuriken
+1738,256	//Valorous Battle CrossBow
+1280,256	//Valorous Carnage Katar
+1923,256	//Valorous Battlefield Guitar
+1977,256	//Valorous Battle Lariat
+1575,256	//Valorous Battle Strategy Book
+1823,256	//Valorous Battle Fist
+13171,256	//Soldier Rifle
+13173,256	//Soldier Shotgun 
+
+// -- BG Eq's -- //
+2538,256	//  Captain's Manteau
+2539,256	//Commander's Manteau
+2540,256	//Sheriff's Manteau
+2435,256	//Battle Greaves
+2436,256	//Combat Boots 
+2437,256	//Battle Boots 
+2376,256	//Assaulter Plate
+2377,256	//Elite Engineer Armor
+2378,256	//Assassin Robe
+2379,256	//Warlock's Battle Robe
+2380,256	//Medic's Robe
+2381,256	//Elite Archer Suit
+2382,256	//Elite Shooter Suit
+
+// -- Glorious (BG) EQ's -- //
+1486,256	//Krieger Twohand Spear
+1426,256	//Glorious Spear
+1187,256	//Glorious Claymore
+13418,256	//Glorious Holy Avenger
+13417,256	//Glorious Rapier
+13416,256	//Glorious Flamberge
+13042,256	//Glorious Gladius
+13307,256	//Glorious Shuriken
+1382,256	//Glorious Two-Handed Axe
+1310,256	//Glorious Cleaver
+1546,256	//Glorious Morning Star
+1641,256	//Glorious Cure Wand
+1640,256	//Glorious Arc Wand
+2002,256	//Glorious Destruction Staff
+1981,256	//Glorious Lariat 
+1927,256	//Glorious Guitar
+1282,256	//Glorious Jamadhar
+1281,256	//Glorious Bloody Roar
+1743,256	//Glorious Hunter Bow
+1827,256	//Glorious Fist
+1826,256	//Glorious Claw
+1577,256	//Glorious Apocalypse
+1576,256	//Glorious Tablet
+13179,256	//Glorious Grenade Launcher
+13178,256	//Glorious Shotgun
+13177,256	//Glorious Gatling Gun
+13176,256	//Glorious Rifle
+13110,256	//Glorious Pistol 
+2394,256	//Glorious Suit
+2549,256	//Glorious Muffler
+2444,256	//Glorious Shoes 
+2772,256	//Glorious Ring
+2395,256	//Glorious Popularized Suit
+2445,256	//Glorious Popularized Shoes
+2773,256	//Glorious Mass-Production Ring
+2396,256	//Glorious Mass-Production Suit
+2446,256	//Glorious Mass-Production Shoes
+2774,256	//Glorious Popularized Ring
+
+
+// -- RWC's Items -- //
+2967,256	// Chambered RWC 2012 Ring [1]
+2969,256	// Chambered RWC 2012 Pendant [1] 
+2966,256	// RWC 2012 Ring [0]
+2968,256	// RWC 2012 Pendant [0]
+18509,256	// RWC2010 Indonesia [1]

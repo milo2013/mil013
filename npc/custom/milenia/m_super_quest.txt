@@ -33,7 +33,13 @@ Instructions:
 	2. Find "Configuration Part 2" and change it as you like but do not touch the "random" stuff
 
 Changelog:
+V 1.2.2
+	Fixed questboard item counter function
+	Tweaked questboard hunting counter function
 
+V 1.2.1
+	Fixed @checkquest command
+	
 V 1.2.0
 	Fixed ";" errors
 	
@@ -77,6 +83,7 @@ V 1.0.0
 */
 
 milenia,212,80,11	script	Daily Quest Board	857,{
+
 
 //Main script execution
 function AddQuest; function DisplayQuest; function ShowQuestList; function AcceptQuest; function CheckOngoing;
@@ -210,7 +217,7 @@ OnHour00:
 	// ===================================== STRICTLY: DO NOT TOUCH ===============================================
 	freeloop(1);	
 	//random monster list
-	query_sql("SELECT ID FROM `" + .mob_db$ + "` WHERE left(Sprite, 4) != 'meta' AND left(Sprite, 2) != 'E_' AND ~Mode & 32 AND EXP > 0 AND MVP1id = 0 AND DropCardid > 4000 AND DropCardid < 5000 AND ID < 2000 AND instr('"+.Blacklist$+"',ID) = 0 ORDER BY rand() LIMIT 50", .monsterlist);
+	query_sql("SELECT ID FROM `" + .mob_db$ + "` WHERE left(Sprite, 4) != 'meta' AND right(Sprite, 2) != '_1' AND right(Sprite, 2) != '_2' AND right(Sprite, 2) != '_3' AND left(Sprite, 2) != 'E_' AND ~Mode & 32 AND EXP > 0 AND MVP1id = 0 AND DropCardid > 4000 AND DropCardid < 5000 AND ID < 2000 AND instr('"+.Blacklist$+"',ID) = 0 ORDER BY rand() LIMIT 50", .monsterlist);
 	
 	//randomize quest monsters
 	while(getarraysize(.questmonsters) < 9){
@@ -357,21 +364,21 @@ OnCheckProgress:
 	dispbottom "===================================",0xFFFF00;
 	if(questhunt[0]){
 		dispbottom "Hunting Progress:", 0xFFFF00;
-		for(set .@j, 0; .@j < getarraysize(questhunt); set .@j, .@j + 2){
-			for(set .@k, 0; .@k < getarraysize(getd(".QuestNum"+quest+"Hunting")); set .@k, .@k + 2){
-				if(questhunt[.@j] == getd(".QuestNum"+quest+"Hunting["+.@k+"]"))
+		for(set .@i, 0; .@i < getarraysize(questhunt); set .@i, .@i + 2){
+			for(set .@j, 0; .@j < getarraysize(getd(".QuestNum"+quest+"Hunting")); set .@j, .@j + 2)
+				if (questhunt[.@i] == getd(".QuestNum"+quest+"Hunting["+.@j+"]"))
 					dispbottom "..     "+getmonsterinfo(questhunt[.@j],MOB_NAME)+": "+questhunt[.@j+1]+" out of "+getd(".QuestNum"+quest+"Hunting["+(.@k+1)+"]")+" killed", 0xFFFF00;
-			}
-			
 		}
 	}
 	dispbottom " ";
 	if(questcollect[0]){
 		dispbottom "Collection Progress:", 0xFFFF00;
-		for(set .@j, 0; .@j < getarraysize(questcollect); set .@j, .@j + 2){
-			for(set .@k, 0; .@k < getarraysize(getd(".QuestNum"+quest+"Collecting")); set .@k, .@k + 2){
-				if(questcollect[.@j] == getd(".QuestNum"+quest+"Collecting["+.@k+"]"))
-					dispbottom "..     "+getitemname(questcollect[.@j])+": "+questcollect[.@j+1]+" out of "+(getd(".QuestNum"+quest+"Collecting["+(.@k+1)+"]"))+" collected", 0xFFFF00;
+		for(set .@i, 0; .@i < getarraysize(questcollect); set .@i, .@i + 2){
+			for (set .@j, 0; .@j < getarraysize(getd(".QuestNum"+quest+"Collecting")); set .@j, .@j + 2){
+				if (questcollect[.@i] == getd(".QuestNum"+quest+"Collecting["+.@j+"]")){
+					set questcollect[.@i+1], countitem(getd(".QuestNum"+quest+"collecting["+.@j+"]"));
+					dispbottom "..     "+getitemname(questcollect[.@i])+": "+questcollect[.@i+1]+" out of "+(getd(".QuestNum"+quest+"Collecting["+(.@j+1)+"]"))+" collected", 0xFFFF00;
+				}
 			}
 		}
 	}

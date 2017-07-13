@@ -246,7 +246,7 @@
 41248,Dokebi_Membership_Pass_5,Dokebi Membership Pass 5,2,10,,10,,,,,0xFFFFFFFF,63,2,,,,,,{ rentitem 41243,432000; },{},{}
 41249,Dokebi_Membership_Passs_14,Dokebi Membership Pass 14,2,10,,10,,,,,0xFFFFFFFF,63,2,,,,,,{ rentitem 41243,1209600; },{},{}
 41250,Crimson_Elemental_Guide,Crimson Elemental Guide,3,6,,10,,,,,,,,,,,,,{},{},{}
-41251,Dark_Treasure_Box,Dark Treasure Box,2,10,,10,,,,,0xFFFFFFFF,63,2,,,,,,{mes "This item will be updated soon!"; mes " - ADMIN"; close;},{},{}
+41251,Dark_Treasure_Box,Dark Treasure Box,2,10,,10,,,,,0xFFFFFFFF,63,2,,,,,,{callfunc "FrozenBoxFunc";},{},{}
 
 // Gacha Item 
 41252,Common_Gashapon_Capsule,Common Gashapon Capsule,2,10,,1,,,,,0xFFFFFFFF,63,2,,,,,,{callfunc "Gasha01Func"; },{},{}

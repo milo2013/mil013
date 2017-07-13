@@ -58,21 +58,21 @@ Lpayon:
 				case 1:
 					warp "gld_dun01",0,0;
 					Set ZENY, ZENY - 100000000;
-					dispbottom "You've paid 10,000,000z to the ["+getguildname(.@GID)+"] Guild's Dungeon Fee.";
+					dispbottom "You've paid 100,000,000z to the ["+getguildname(.@GID)+"] Guild's Dungeon Fee.";
 					set $PayGDungeonFunds, $PayGDungeonFunds + 100000000;
 					close2;
 					break;
 				case 2:
 					warp "gld_dun01_2",0,0;
 					Set ZENY, ZENY - 100000000;
-					dispbottom "You've paid 10,000,000z to the ["+getguildname(.@GID)+"] Guild's Dungeon Fee.";
+					dispbottom "You've paid 100,000,000z to the ["+getguildname(.@GID)+"] Guild's Dungeon Fee.";
 					set $PayGDungeonFunds, $PayGDungeonFunds + 100000000;
 					close2;
 					break;
 				case 3:
 					warp "gld2_pay",0,0;
 					Set ZENY, ZENY - 100000000;
-					dispbottom "You've paid 10,000,000z to the ["+getguildname(.@GID)+"] Guild's Dungeon Fee.";
+					dispbottom "You've paid 100,000,000z to the ["+getguildname(.@GID)+"] Guild's Dungeon Fee.";
 					set $PayGDungeonFunds, $PayGDungeonFunds + 100000000;
 					close2;
 					break;
@@ -83,21 +83,21 @@ Lpayon:
 				case 1:
 					warp "gld_dun04",0,0;
 					Set ZENY, ZENY - 100000000;
-					dispbottom "You've paid 10,000,000z to the ["+getguildname(.@GID)+"] Guild's Dungeon Fee.";
+					dispbottom "You've paid 100,000,000z to the ["+getguildname(.@GID)+"] Guild's Dungeon Fee.";
 					set $PayGDungeonFunds, $PayGDungeonFunds + 100000000;
 					close2;
 					break;
 				case 2:
 					warp "gld_dun04_2",0,0;
 					Set ZENY, ZENY - 100000000;
-					dispbottom "You've paid 10,000,000z to the ["+getguildname(.@GID)+"] Guild's Dungeon Fee.";
+					dispbottom "You've paid 100,000,000z to the ["+getguildname(.@GID)+"] Guild's Dungeon Fee.";
 					set $PayGDungeonFunds, $PayGDungeonFunds + 100000000;
 					close2;
 					break;
 				case 3:
 					warp "gld2_gef",0,0;
 					Set ZENY, ZENY - 100000000;
-					dispbottom "You've paid 10,000,000z to the ["+getguildname(.@GID)+"] Guild's Dungeon Fee.";
+					dispbottom "You've paid 100,000,000z to the ["+getguildname(.@GID)+"] Guild's Dungeon Fee.";
 					set $PayGDungeonFunds, $PayGDungeonFunds + 100000000;
 					close2;
 					break;
@@ -105,7 +105,7 @@ Lpayon:
 		case 3:
 			warp "arug_dun01",0,0;
 			Set ZENY, ZENY - 100000000;
-			dispbottom "You've paid 10,000,000z to the ["+getguildname(.@GID)+"] Guild's Dungeon Fee.";
+			dispbottom "You've paid 100,000,000z to the ["+getguildname(.@GID)+"] Guild's Dungeon Fee.";
 			set $PayGDungeonFunds, $PayGDungeonFunds + 100000000;
 			close2;
 			break;
@@ -149,7 +149,7 @@ Lprontera:
 			mes "It seems that you are not a member of ^0000FF["+getguildname(.@GID)+"]^000000 Guild!";
 			next;
 			mes "[Ringing Voice]";
-			mes "You have to pay a fee of ^0000FF10,000,000 Zenies^000000 to enter!";
+			mes "You have to pay a fee of ^0000FF100,000,000 Zenies^000000 to enter!";
 			next;
 			if(select("Agree!:No, Thank you")==2) {
 				mes "[Ringing Voice]";
@@ -173,21 +173,21 @@ Lprontera:
 				case 1:
 					warp "gld_dun03",0,0;
 					Set ZENY, ZENY - 100000000;
-					dispbottom "You've paid 10,000,000z to the ["+getguildname(.@GID)+"] Guild's Dungeon Fee.";
+					dispbottom "You've paid 100,000,000z to the ["+getguildname(.@GID)+"] Guild's Dungeon Fee.";
 					set $PrtGDungeonFunds, $PrtGDungeonFunds + 100000000;					
 					close2;
 					break;
 				case 2: 
 					warp "gld_dun03_2",0,0;
 					Set ZENY, ZENY - 100000000;
-					dispbottom "You've paid 10,000,000z to the ["+getguildname(.@GID)+"] Guild's Dungeon Fee.";
+					dispbottom "You've paid 100,000,000z to the ["+getguildname(.@GID)+"] Guild's Dungeon Fee.";
 					set $PrtGDungeonFunds, $PrtGDungeonFunds + 100000000;					
 					close2;
 					break;
 				case 3:
 					warp "gld2_prt",0,0;
 					Set ZENY, ZENY - 100000000;
-					dispbottom "You've paid 10,000,000z to the ["+getguildname(.@GID)+"] Guild's Dungeon Fee.";
+					dispbottom "You've paid 100,000,000z to the ["+getguildname(.@GID)+"] Guild's Dungeon Fee.";
 					set $PrtGDungeonFunds, $PrtGDungeonFunds + 100000000;						
 					close2;
 					break;
@@ -198,21 +198,21 @@ Lprontera:
 				case 1:
 					warp "gld_dun02",0,0;
 					Set ZENY, ZENY - 100000000;
-					dispbottom "You've paid 10,000,000z to the ["+getguildname(.@GID)+"] Guild's Dungeon Fee.";
+					dispbottom "You've paid 100,000,000z to the ["+getguildname(.@GID)+"] Guild's Dungeon Fee.";
 					set $PrtGDungeonFunds, $PrtGDungeonFunds + 100000000;						
 					close2;
 					break;
 				case 2:
 					warp "gld_dun02_2",0,0;
 					Set ZENY, ZENY - 100000000;
-					dispbottom "You've paid 10,000,000z to the ["+getguildname(.@GID)+"] Guild's Dungeon Fee.";
+					dispbottom "You've paid 100,000,000z to the ["+getguildname(.@GID)+"] Guild's Dungeon Fee.";
 					set $PrtGDungeonFunds, $PrtGDungeonFunds + 100000000;						
 					close2;
 					break;
 				case 3: 
 					warp "gld2_ald",0,0;
 					Set ZENY, ZENY - 100000000;
-					dispbottom "You've paid 10,000,000z to the ["+getguildname(.@GID)+"] Guild's Dungeon Fee.";
+					dispbottom "You've paid 100,000,000z to the ["+getguildname(.@GID)+"] Guild's Dungeon Fee.";
 					set $PrtGDungeonFunds, $PrtGDungeonFunds + 100000000;						
 					close2;
 					break;
@@ -220,7 +220,7 @@ Lprontera:
 		case 3:
 			warp "schg_dun01",0,0;
 			Set ZENY, ZENY - 100000000;
-			dispbottom "You've paid 10,000,000z to the ["+getguildname(.@GID)+"] Guild's Dungeon Fee.";
+			dispbottom "You've paid 100,000,000z to the ["+getguildname(.@GID)+"] Guild's Dungeon Fee.";
 			set $PrtGDungeonFunds, $PrtGDungeonFunds + 100000000;
 			close2;
 			break;

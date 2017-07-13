@@ -39,7 +39,7 @@
 //0,15094,120 // Brave Magic Coat
 //0,15096,120 // Heroic Trade-Mail
 0,5208,40//Rideword Hat
-0,19509,20 //Butterfly Wing Ears
+//0,19509,20 //Butterfly Wing Ears
 0,2589,200 //Fallen Angel Wing
 0,2576,100 //Heroic Backpack
 0,18541,70 //Little Feather Hat
