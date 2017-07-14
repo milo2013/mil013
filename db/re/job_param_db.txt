@@ -13,5 +13,50 @@
 // Job_Novice,60
 //	Normally, Novice's max. param uses 'max_parameter' in 'conf/battle/player.conf'.
 //	With this config, Novice's max. param will be 60 (for all stats).
-4060,125 // Taekwon
-4047,125 // Star Gladiator
+
+Job_Novice,99
+Job_Swordman,99
+Job_Mage,99
+Job_Archer,99
+Job_Acolyte,99
+Job_Merchant,99
+Job_Thief,99
+Job_Knight,99
+Job_Priest,99
+Job_Wizard,99
+Job_Blacksmith,99
+Job_Hunter,99
+Job_Assassin,99
+Job_Crusader,99
+Job_Monk,99
+Job_Sage,99
+Job_Rogue,99
+Job_Alchemist,99
+Job_Bard,99
+Job_Dancer,99
+Job_Wedding,99
+Job_SuperNovice,99
+Job_Gunslinger,99
+Job_Ninja,99
+Job_Baby,99
+Job_Baby_Swordman,99
+Job_Baby_Mage,99
+Job_Baby_Archer,99
+Job_Baby_Acolyte,99
+Job_Baby_Merchant,99
+Job_Baby_Thief,99
+Job_Baby_Knight,99
+Job_Baby_Priest,99
+Job_Baby_Wizard,99
+Job_Baby_Blacksmith,99
+Job_Baby_Hunter,99
+Job_Baby_Assassin,99
+Job_Baby_Crusader,99
+Job_Baby_Monk,99
+Job_Baby_Sage,99
+Job_Baby_Rogue,99
+Job_Baby_Alchemist,99
+Job_Baby_Bard,99
+Job_Baby_Dancer,99
+Job_Super_Baby,99
+//Job_Taekwon,99

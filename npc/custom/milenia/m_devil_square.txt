@@ -174,7 +174,7 @@ OnFri2000:
 OnSat2000:
 OnSun2000:
 
-//OnMon1746:
+OnFri2032:
 		hideoffnpc "Devil Square Guardian#1";
 		hideoffnpc "Devil Square Guardian#2";
 		sleep 1000;
@@ -238,7 +238,7 @@ OnSun2000:
 		set .monstername$,"Beelzebub";
 		set .monsterhp,8000000;
 		
-		set .monstercount,5;
+		set .monstercount,1;
 		areamonster "ds",27,51,51,27,"[DS] "+.monstername$[.monster],.monsterid[.monster],.monstercount,strnpcinfo(0)+"::OnDevilDead";         
         set .mob, .mob+.monstercount;
 	

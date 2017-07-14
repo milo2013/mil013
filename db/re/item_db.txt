@@ -3800,7 +3800,7 @@
 5677,Scorpio_Diadem,Scorpio Diadem,4,20,,300,,3,,0,0xFFFFFFFF,63,2,256,,1,1,606,{ bonus bDex,2; if (getrefine()>6) { bonus bDex,1; bonus bAtk,5; } },{},{}
 5678,Notation_Hairband,Notation Hairband,4,200,,100,,5,,0,0xFFFFFFFF,63,2,256,,1,1,607,{ bonus bUnbreakableHelm,1; },{},{}
 5679,Engineer_Cap,Engineer Cap,4,20,,200,,2,,1,0xFFFFFFFF,63,2,256,,10,1,608,{ bonus2 bAddRace,RC_Formless,10; },{},{}
-5680,Hawkeyes,Hawkeyes,4,20,,10,,0,,0,0xFFFFFFFF,63,2,512,,10,0,609,{ bonus bHit,10; bonus bUnbreakableHelm,1; },{},{}
+5680,Hawkeyes,Hawkeyes,4,20,,100,,0,,0,0xFFFFFFFF,63,2,512,,10,0,609,{ bonus bHit,10; bonus bUnbreakableHelm,1; },{},{}
 5681,F_Ribbon_Green,Green Ribbon,4,800,,100,,1,,0,0xFFFFFFFF,63,0,256,,0,1,244,{ bonus bMdef,3; },{},{}
 5682,Triangle_Rune_Cap,Triangle Rune Cap,4,20,,300,,5,,1,0xFFFFFFFF,63,2,256,,1,1,610,{ bonus bInt,1; bonus bHealPower,2; if (getrefine() > 6) { bonus bMatk,10; bonus5 bAutoSpellWhenHit,"NPC_MAGICMIRROR",8,150,BF_MAGIC,0; } else { bonus5 bAutoSpellWhenHit,"NPC_MAGICMIRROR",7,150,BF_MAGIC,0; } },{},{}
 5683,Majestic_Goat_Repl,Baphomet Horns,4,20,,100,,5,,0,0xFFFFFFFF,63,2,256,,1,1,41,{},{},{}
@@ -10228,7 +10228,7 @@
 19918,C_Lude_Mask,Costume Lude Mask,4,0,,0,,0,,0,0xFFFFFFFF,63,2,6144,,1,0,802,{ bonus bAddItemHealRate,20; },{},{}
 19919,C_Cube_Mask_,Costume Quve Mask,4,0,,0,,0,,0,0xFFFFFFFF,63,2,6144,,1,0,472,{ bonus bAspdRate,10; },{},{}
 19920,C_Adv_Whisper_Mask,Costume Evolved Whisper Mask,4,0,,0,,0,,0,0xFFFFFFFF,63,2,7168,,1,0,458,{ bonus bFlee,20; },{},{}
-19922,C_Noah's_Hat,Costume Noah's Hat,4,0,,0,,0,,0,0xFFFFFFFF,63,2,7168,,1,0,636,{},{},{}
+19922,C_Noah's_Hat,Costume Noah's Hat,4,0,,0,,0,,0,0xFFFFFFFF,63,2,1024,,1,0,636,{},{},{}
 19925,C_Monocle,Costume Monocle,4,0,,0,,,,0,0xFFFFFFFF,63,2,2048,,1,1,23,{},{},{}
 19928,C_Gothic_Heart_Wing,Costume Gothic Heart Wing,4,0,,0,,,,0,0xFFFFFFFF,63,2,1024,,1,1,1111,{},{},{}
 19929,C_Classical_Ribbon,Costume Classical Ribbon,4,10,,0,,,,0,0xFFFFFFFF,63,2,1024,,,1,1112,{},{},{}
