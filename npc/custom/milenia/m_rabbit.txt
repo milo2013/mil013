@@ -47,7 +47,7 @@
 OnInit:
 set $AIItemPrize,41203;		//Set item prize here. GOLD FISH
 set $AIItemAmount,rand (1,50);		//Set item amount here.
-set $AntonioAmount,50;		//Set amount of antonios to start here.
+set $AntonioAmount,rand(50,200);		//Set amount of antonios to start here.
 if($AntonioEventStart==1) {
 	if($Antonio_Alive>0) { monster $AntonioMapAdd$,0,0,"Milenia Bunny",2576,$Antonio_Alive,"AntonioInvasion::OnAntonioKill"; }
 	if($AntonioLeaderSpawn==1) { monster $AntonioMapAdd$,0,0,"Milenia Bunny Boss",2576,1,"AntonioInvasion::OnAntonioLeaderKill"; }
@@ -63,6 +63,7 @@ OnClock1200:
 OnClock1500:
 OnClock1800:
 OnClock2100:
+
 set $Antonio_Alive,$AntonioAmount;
 set $AntonioEventStart,1;
 callsub S_PickTown;

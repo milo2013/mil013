@@ -38,6 +38,7 @@ OnRecvCastlear03:
 	FlagEmblem GetCastleData("arug_cas03",1);
 	end;
 }
+/*
 -	script	limit_map_item_main	-1,{
 	
 	function func_Add;
@@ -146,3 +147,5 @@ OnRecvCastlear03:
 		}
 		end;
 }
+*/
+ 
