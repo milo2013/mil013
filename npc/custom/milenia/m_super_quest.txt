@@ -18,7 +18,7 @@ Terms of Services
 4. Maintenance of scripts does not include modification of the original intended behavior. If the script has been broken due to prior modification of the original behavior then it would mean a new service request
 5. Modification of the original intended behavior would mean a new service request and would go through the process mentioned above
 6. I have the right to post all my free services to the release section and make it available for everybody to use
-7. Maintenance of scripts will be provide free of charge
+7. Maintenance of scripts will be provide free of charge 
 8. I will not keep any sensitive information from your server nor any credentials that you lend me
 9. I assume that the client will accept all the terms of services
 
@@ -33,6 +33,18 @@ Instructions:
 	2. Find "Configuration Part 2" and change it as you like but do not touch the "random" stuff
 
 Changelog:
+V 1.3.1
+	Removed debug lines
+	
+V 1.3.0
+	Players can now submit items collected to avoid exceeding weight limit
+	..	Questboard only takes the needed amount of items and leaves behind the excess
+	
+V 1.2.3
+	Fixed bug where a player can submit a quest after midnight(quest random reset) or when @reloadscript is done
+	Fixed bug where random monsters/items are duplicated within the same randomized quest
+	Added new atcommand: @resetlist - resets Questboard list (Affects randomized monsters only if used)
+	
 V 1.2.2
 	Fixed questboard item counter function
 	Tweaked questboard hunting counter function
@@ -84,10 +96,9 @@ V 1.0.0
 
 milenia,212,80,11	script	Daily Quest Board	857,{
 
-
 //Main script execution
 function AddQuest; function DisplayQuest; function ShowQuestList; function AcceptQuest; function CheckOngoing;
-function CheckQuestProgress;
+function CheckQuestProgress; function DelAllQuest; function SubmitItems;
 
 mes "["+strnpcinfo(0)+"]";
 if (.DelayType == 1){
@@ -117,9 +128,9 @@ if(CheckOngoing()) {
 		
 		//delete all items related to the quest
 		for(set .@i, 0; .@i < questcollect; set .@i, .@i + 2){
-			for (set .@j, 0; .@j < getarraysize(getd(".QuestNum"+quest+"Collecting")); set .@j, .@j + 2){
-				if (questcollect[.@i] == getd(".QuestNum"+quest+"Collecting["+.@j+"]")){
-					delitem questcollect[.@i], getd(".QuestNum"+quest+"Collecting["+(.@j+1)+"]");
+			for (set .@j, 0; .@j < getarraysize(questcollecttarget); set .@j, .@j + 2){
+				if (questcollect[.@i] == questcollecttarget[.@j]){
+					delitem questcollect[.@i], questcollecttarget[.@j+1] - questcollect[.@i+1];
 				}
 			}
 		}
@@ -137,14 +148,27 @@ if(CheckOngoing()) {
 		deletearray questhunt[0], getarraysize(questhunt);
 		set quest, 0;
 		deletearray questcollect[0], getarraysize(questcollect);
+		deletearray questhunttarget[0], getarraysize(questhunttarget);
 	} else {
-		mes "Do you want to drop the quest?";
-		Switch(Select("No:Yes")){
+		//Quest is in progress
+		set @thiscollect, 0;
+		if(questcollect[0]){
+			set @thiscollect, 1;
+		}
+		mes "What do you want to do?";
+		Switch(Select("Nothing:Drop Quest:"+(@thiscollect?"Submit Items Collected":""))){
 			case 2:
 				next;
 				mes "["+strnpcinfo(0)+"]";
 				doevent strnpcinfo(0)+"::OnEraseProgress";
 				mes "Quest Progress erased. Please come back again. Thanks.";
+				break;
+			case 3:
+				next;
+				SubmitItems();
+				mes "["+strnpcinfo(0)+"]";
+				mes "Quest items successfully submitted!";
+				close;
 				break;
 			default:
 				next;
@@ -211,10 +235,18 @@ OnInit:
 	//atcommands
 	bindatcmd "erasequest", strnpcinfo(0)+"::OnEraseProgress", 99;
 	bindatcmd "checkquest", strnpcinfo(0)+"::OnCheckProgress";
+	bindatcmd "resetlist", strnpcinfo(0)+"::OnResetList",99;
 	
+
 //Daily Reset at 12 midnight, feel free to change this
+OnResetList:
+	DelAllQuest();
+	debugmes "Questboard has been reset.";
 OnHour00:
 	// ===================================== STRICTLY: DO NOT TOUCH ===============================================
+	deletearray .monsterlist[0], getarraysize(.monsterlist);
+	deletearray .questmonsters[0], getarraysize(.questmonsters);
+	deletearray .questitems[0], getarraysize(.questitems);
 	freeloop(1);	
 	//random monster list
 	query_sql("SELECT ID FROM `" + .mob_db$ + "` WHERE left(Sprite, 4) != 'meta' AND right(Sprite, 2) != '_1' AND right(Sprite, 2) != '_2' AND right(Sprite, 2) != '_3' AND left(Sprite, 2) != 'E_' AND ~Mode & 32 AND EXP > 0 AND MVP1id = 0 AND DropCardid > 4000 AND DropCardid < 5000 AND ID < 2000 AND instr('"+.Blacklist$+"',ID) = 0 ORDER BY rand() LIMIT 50", .monsterlist);
@@ -224,7 +256,7 @@ OnHour00:
 		set .@thismonster, .monsterlist[rand(1,getarraysize(.monsterlist)) - 1];
 		set .@flag, 0;
 		for(set .@i, 0; .@i < getarraysize(.questmonsters); set .@i, .@i + 1)
-			if(.questmonsters == .@thismonster)
+			if(.questmonsters[.@i] == .@thismonster)
 				set .@flag, 1;
 		if (.@flag == 0)		
 			set .questmonsters[getarraysize(.questmonsters)], .@thismonster;	
@@ -242,7 +274,7 @@ OnHour00:
 		set .@thisitem, .itemlist[rand(1,getarraysize(.itemlist)) - 1];
 		set .@flag, 0;
 		for(set .@i, 0; .@i < getarraysize(.questitems); set .@i, .@i + 1)
-			if(.questitems == .@thisitem)
+			if(.questitems[.@i] == .@thisitem)
 				set .@flag, 1;
 		if (.@flag == 0)		
 			set .questitems[getarraysize(.questitems)], .@thisitem;	
@@ -287,32 +319,32 @@ OnHour00:
 		
 	*/
 	
-	AddQuest("Hunting Only ^FF0000[ Zeny ]^000000",1,175,rand(1000000,5000000),rand(1000000,5000000),
+	AddQuest("Hunting Only ^FF0000[ Zeny ]^000000",60,175,rand(1000000,5000000),rand(1000000,5000000),
 		"RewardZeny",rand(500000,3000000),
 		"Hunting",.questmonsters[rand(1,3)-1],rand(150,300),
 		"Hunting",.questmonsters[rand(4,6)-1],rand(150,300),
 		"Delay", 12 * 60 * 60); // 12 hours * 60 mins/hours * 60 secs /min
 		
-	AddQuest("Collecting Only ^FF0000[ Zeny ]^000000",1,175,rand(1000000,5000000),rand(1000000,5000000),
+	AddQuest("Collecting Only ^FF0000[ Zeny ]^000000",60,175,rand(1000000,5000000),rand(1000000,5000000),
 		"RewardZeny",rand(500000,3000000),
 
 		"Collecting",.questitems[rand(4,6)-1],rand(150,300),
 		"Collecting",.questitems[rand(7,9)-1],rand(150,300),
 		"Delay", 12 * 60 * 60); // 12 hours * 60 mins/hours * 60 secs /min
 		
-	AddQuest("Hunting Only ^FF0000[ CP ]^000000",1,175,rand(1000000,5000000),rand(1000000,5000000),
+	AddQuest("Hunting Only ^FF0000[ CP ]^000000",60,175,rand(1000000,5000000),rand(1000000,5000000),
 		"RewardCash",rand(1,30),
 		"Hunting",.questmonsters[rand(4,6)-1],rand(150,300),
 		"Hunting",.questmonsters[rand(7,9)-1],rand(150,300),
 		"Delay", 12 * 60 * 60); // 12 hours * 60 mins/hours * 60 secs /min
 		
-	AddQuest("Collecting Only ^FF0000[ CP ]^000000",1,175,rand(1000000,5000000),rand(1000000,5000000),
+	AddQuest("Collecting Only ^FF0000[ CP ]^000000",60,175,rand(1000000,5000000),rand(1000000,5000000),
 		"RewardCash",rand(1,30),
 		"Collecting",.questitems[rand(4,6)-1],rand(150,300),
 		"Collecting",.questitems[rand(7,9)-1],rand(150,300),
 		"Delay", 12 * 60 * 60); // 12 hours * 60 mins/hours * 60 secs /min
 		
-	AddQuest("Hybrid ^FF0000[ Gashapon ]^000000",1,175,rand(1000000,5000000),rand(1000000,5000000),
+	AddQuest("Hybrid ^FF0000[ Gashapon ]^000000",60,175,rand(1000000,5000000),rand(1000000,5000000),
 		"RewardItem",41258,rand(1,3),
 		"Hunting",.questmonsters[rand(7,9)-1],rand(150,300),
 		"Hunting",.questmonsters[rand(4,6)-1],rand(150,300),
@@ -320,7 +352,7 @@ OnHour00:
 		"Collecting",.questitems[rand(4,6)-1],rand(150,300),
 		"Delay", 12 * 60 * 60); // 12 hours * 60 mins/hours * 60 secs /min
 		
-	AddQuest("Hybrid ^FF0000[ Dokebi ]^000000",1,175,rand(1000000,5000000),rand(1000000,5000000),
+	AddQuest("Hybrid ^FF0000[ Dokebi ]^000000",60,175,rand(1000000,5000000),rand(1000000,5000000),
 		"RewardItem",41244,rand(1,2),
 		"Hunting",.questmonsters[rand(7,9)-1],rand(150,300),
 		"Hunting",.questmonsters[rand(4,6)-1],rand(150,300),
@@ -341,6 +373,7 @@ OnEraseProgress:
 	deletearray questhunt[0], getarraysize(questhunt);
 	deletearray questcollect[0], getarraysize(questcollect);
 	deletearray questf[0], getarraysize(questf);
+	deletearray questhunttarget[0], getarraysize(questhunttarget);
 	set QuestBoardDelay, 0;
 end;
 
@@ -365,19 +398,19 @@ OnCheckProgress:
 	if(questhunt[0]){
 		dispbottom "Hunting Progress:", 0xFFFF00;
 		for(set .@i, 0; .@i < getarraysize(questhunt); set .@i, .@i + 2){
-			for(set .@j, 0; .@j < getarraysize(getd(".QuestNum"+quest+"Hunting")); set .@j, .@j + 2)
-				if (questhunt[.@i] == getd(".QuestNum"+quest+"Hunting["+.@j+"]"))
-					dispbottom "..     "+getmonsterinfo(questhunt[.@j],MOB_NAME)+": "+questhunt[.@j+1]+" out of "+getd(".QuestNum"+quest+"Hunting["+(.@k+1)+"]")+" killed", 0xFFFF00;
+			for(set .@j, 0; .@j < getarraysize(questhunttarget); set .@j, .@j + 2)
+				if (questhunt[.@i] == questhunttarget[.@j])
+					dispbottom "..     "+getmonsterinfo(questhunt[.@j],MOB_NAME)+": "+questhunt[.@j+1]+" out of "+questhunttarget[.@j+1]+" killed", 0xFFFF00;
 		}
 	}
 	dispbottom " ";
 	if(questcollect[0]){
 		dispbottom "Collection Progress:", 0xFFFF00;
 		for(set .@i, 0; .@i < getarraysize(questcollect); set .@i, .@i + 2){
-			for (set .@j, 0; .@j < getarraysize(getd(".QuestNum"+quest+"Collecting")); set .@j, .@j + 2){
-				if (questcollect[.@i] == getd(".QuestNum"+quest+"Collecting["+.@j+"]")){
-					set questcollect[.@i+1], countitem(getd(".QuestNum"+quest+"collecting["+.@j+"]"));
-					dispbottom "..     "+getitemname(questcollect[.@i])+": "+questcollect[.@i+1]+" out of "+(getd(".QuestNum"+quest+"Collecting["+(.@j+1)+"]"))+" collected", 0xFFFF00;
+			for (set .@j, 0; .@j < getarraysize(questcollecttarget); set .@j, .@j + 2){
+				if (questcollect[.@i] == questcollecttarget[.@j]){
+					set @questcollect, countitem(questcollect[.@i]);
+					dispbottom "..     "+getitemname(questcollect[.@i])+": "+(@questcollect+questcollect[.@i+1])+" out of "+questcollecttarget[.@j+1]+" collected", 0xFFFF00;
 				}
 			}
 		}
@@ -389,9 +422,9 @@ function CheckQuestProgress {
 	freeloop(1);
 	if(questhunt[0])
 		for(set .@i, 0; .@i < getarraysize(questhunt); set .@i, .@i + 2){
-			for(set .@j, 0; .@j < getarraysize(getd(".QuestNum"+quest+"Hunting")); set .@j, .@j + 2)
-				if (questhunt[.@i] == getd(".QuestNum"+quest+"Hunting["+.@j+"]"))
-					if(questhunt[.@i+1] < getd(".QuestNum"+quest+"Hunting["+(.@j+1)+"]")){
+			for(set .@j, 0; .@j < getarraysize(questhunttarget); set .@j, .@j + 2)
+				if (questhunt[.@i] == questhunttarget[.@j])
+					if(questhunt[.@i+1] < questhunttarget[.@j+1]){
 						set @result[0], 0;
 						break;
 					}
@@ -399,10 +432,10 @@ function CheckQuestProgress {
 		
 	if(questcollect[0])
 		for(set .@i, 0; .@i < getarraysize(questcollect); set .@i, .@i + 2){
-			for (set .@j, 0; .@j < getarraysize(getd(".QuestNum"+quest+"Collecting")); set .@j, .@j + 2){
-				if (questcollect[.@i] == getd(".QuestNum"+quest+"Collecting["+.@j+"]")){
-					set questcollect[.@i+1], countitem(getd(".QuestNum"+quest+"collecting["+.@j+"]"));
-					if(questcollect[.@i+1] < getd(".QuestNum"+quest+"Collecting["+(.@j+1)+"]")){
+			for (set .@j, 0; .@j < getarraysize(questcollecttarget); set .@j, .@j + 2){
+				if (questcollect[.@i] == questcollecttarget[.@j]){
+					set @questcollect, countitem(questcollecttarget[.@j]);
+					if(questcollect[.@i+1] + @questcollect < questcollecttarget[.@j+1]){
 						set @result[1], 0;
 						break;
 					}
@@ -427,16 +460,23 @@ function CheckOngoing{
 function AcceptQuest{
 	deletearray questhunt[0], getarraysize(questhunt);
 	deletearray questcollect[0], getarraysize(questcollect);
+	deletearray questhunttarget[0], getarraysize(questhunttarget);
+	deletearray questcollecttarget[0], getarraysize(questcollecttarget);
+	
 	set quest$, getd(".QuestNum"+@selection+"$");
 	set quest, @selection;
-	for(set .@j, 0; .@j < getarraysize(getd(".QuestNum"+@selection+"Hunting")); set .@j, .@j + 2){
-		set questhunt[.@j],getd(".QuestNum"+@selection+"Hunting["+(.@j)+"]");
+	for(set .@j, 0; .@j < getarraysize(getd(".QuestNum"+quest+"Hunting")); set .@j, .@j + 2){
+		set questhunt[.@j], getd(".QuestNum"+quest+"Hunting["+(.@j)+"]");
 		set questhunt[.@j+1], 0;
+		set questhunttarget[getarraysize(questhunttarget)], getd(".QuestNum"+quest+"Hunting["+(.@j)+"]");
+		set questhunttarget[getarraysize(questhunttarget)], getd(".QuestNum"+quest+"Hunting["+(.@j+1)+"]");
 	}
 
-	for(set .@j, 0; .@j < getarraysize(getd(".QuestNum"+@selection+"Collecting")); set .@j, .@j + 2){
-		set questcollect[.@j], getd(".QuestNum"+@selection+"Collecting["+(.@j)+"]");
-		set questcollect[.@j+1], countitem(getd(".QuestNum"+@selection+"Collecting["+(.@j)+"]"));
+	for(set .@j, 0; .@j < getarraysize(getd(".QuestNum"+quest+"Collecting")); set .@j, .@j + 2){
+		set questcollect[.@j], getd(".QuestNum"+quest+"Collecting["+(.@j)+"]");
+		set questcollect[.@j+1], countitem(getd(".QuestNum"+quest+"Collecting["+(.@j)+"]"));
+		set questcollecttarget[getarraysize(questcollecttarget)], getd(".QuestNum"+quest+"Collecting["+(.@j)+"]");
+		set questcollecttarget[getarraysize(questcollecttarget)], getd(".QuestNum"+quest+"Collecting["+(.@j+1)+"]");
 	}	
 	
 	dispbottom "Please use @checkquest to check your progress.";
@@ -541,25 +581,25 @@ function AddQuest {
 	setd ".QuestNum"+.QuestCount+"[2]", getarg(3); //Base EXP 
 	setd ".QuestNum"+.QuestCount+"[3]", getarg(4); //Job EXP
 	
-	setd ".QuestNum"+.QuestCount+"Zeny", 0;
-	setd ".QuestNum"+.QuestCount+"Cash", 0;
+	setd ".QuestNum"+.QuestCount+"Zeny", 0; 
+	setd ".QuestNum"+.QuestCount+"Cash", 0; 
 	for(set .@i, 5; .@i < getargcount(); set .@i, .@i + 3){
-		if (getarg(.@i) == "RewardZeny"){
+		if (getarg(.@i) == "RewardZeny"){	//Zeny Reward
 			setd ".QuestNum"+.QuestCount+"Zeny",  getd(".QuestNum"+.QuestCount+"Zeny") + getarg(.@i + 1);
 			set .@i, .@i - 1; //for loop increment adjustment
-		} else if (getarg(.@i) == "RewardCash"){
+		} else if (getarg(.@i) == "RewardCash"){	//Cash Reward
 			setd ".QuestNum"+.QuestCount+"Cash", getd(".QuestNum"+.QuestCount+"Cash") + getarg(.@i + 1);
 			set .@i, .@i - 1;//for loop increment adjustment
-		} else if (getarg(.@i) == "RewardItem"){
+		} else if (getarg(.@i) == "RewardItem"){	//Item Reward
 			setd ".QuestNum"+.QuestCount+"Item"+"["+getarraysize(getd(".QuestNum"+.QuestCount+"Item"))+"]", getarg(.@i + 1);
 			setd ".QuestNum"+.QuestCount+"Item"+"["+getarraysize(getd(".QuestNum"+.QuestCount+"Item"))+"]", getarg(.@i + 2);
-		} else if (getarg(.@i) == "Hunting"){
-			setd ".QuestNum"+.QuestCount+"Hunting"+"["+getarraysize(getd(".QuestNum"+.QuestCount+"Hunting"))+"]", getarg(.@i + 1);
-			setd ".QuestNum"+.QuestCount+"Hunting"+"["+getarraysize(getd(".QuestNum"+.QuestCount+"Hunting"))+"]", getarg(.@i + 2);
+		} else if (getarg(.@i) == "Hunting"){	//Hunting details
+			setd ".QuestNum"+.QuestCount+"Hunting"+"["+getarraysize(getd(".QuestNum"+.QuestCount+"Hunting"))+"]", getarg(.@i + 1); //Mob ID
+			setd ".QuestNum"+.QuestCount+"Hunting"+"["+getarraysize(getd(".QuestNum"+.QuestCount+"Hunting"))+"]", getarg(.@i + 2); //Mob amount
 		} else if (getarg(.@i) == "Collecting"){
-			setd ".QuestNum"+.QuestCount+"Collecting"+"["+getarraysize(getd(".QuestNum"+.QuestCount+"Collecting"))+"]", getarg(.@i + 1);
-			setd ".QuestNum"+.QuestCount+"Collecting"+"["+getarraysize(getd(".QuestNum"+.QuestCount+"Collecting"))+"]", getarg(.@i + 2);		
-		} else if (getarg(.@i) == "Delay" && .DelayType == 0){
+			setd ".QuestNum"+.QuestCount+"Collecting"+"["+getarraysize(getd(".QuestNum"+.QuestCount+"Collecting"))+"]", getarg(.@i + 1); //Item ID
+			setd ".QuestNum"+.QuestCount+"Collecting"+"["+getarraysize(getd(".QuestNum"+.QuestCount+"Collecting"))+"]", getarg(.@i + 2); //Item amount
+		} else if (getarg(.@i) == "Delay" && .DelayType == 0){ //Delay
 			setd ".QuestNum"+.QuestCount+"Delay", getarg(.@i + 1);
 			set .@i, .@i - 1;//for loop increment adjustment
 		}
@@ -570,5 +610,60 @@ function AddQuest {
 	}
 	return;
 }
-	
+
+function DelAllQuest {
+	for(set .@h, 0; .@h < .QuestCount; set .@h, .@h + 1){
+		setd ".QuestNum"+.@h+"$", ""; 	//Quest Name
+		
+		//Min Lvl
+		//Max Lvl
+		//Base EXP 
+		//Job EXP
+		deletearray getd(".QuestNum"+.@h+"[0]"), getarraysize(getd(".QuestNum"+.@h));
+		
+		setd ".QuestNum"+.@h+"Zeny", 0; 
+		setd ".QuestNum"+.@h+"Cash", 0; 
+		
+		//Item Rewards
+		deletearray getd(".QuestNum"+.@h+"Item"+"[0]"), getarraysize(getd(".QuestNum"+.@h+"Item"));
+		
+		//MobID
+		//MobAmount
+		deletearray getd(".QuestNum"+.@h+"Hunting"+"[0]"), getarraysize(getd(".QuestNum"+.@h+"Hunting"));
+
+		
+		//ItemID
+		//ItemAmount
+		deletearray getd(".QuestNum"+.@h+"Collecting"+"[0]"), getarraysize(getd(".QuestNum"+.@h+"Collecting"));
+
+		setd ".QuestNum"+.@h+"Delay", 0;
+	}
+	set .QuestCount, 0;
+	return;
+}
+
+function SubmitItems {
+	for(set .@i, 0; .@i < getarraysize(questcollect); set .@i, .@i + 2){
+		for (set .@j, 0; .@j < getarraysize(questcollecttarget); set .@j, .@j + 2){
+			if (questcollect[.@i] == questcollecttarget[.@j]){
+				//get difference of target and what the player has
+				set @questcollect, questcollecttarget[.@j+1] - questcollect[.@i+1];
+				//These are debug lines
+				//dispbottom "questcollecttarget: "+questcollecttarget[.@j+1];
+				//dispbottom "questcollect: "+questcollect[.@i+1];
+				//dispbottom "@questcollect: "+@questcollect;
+				//if the difference is <= 0 collect none
+				//else collect what he has
+				//then update counter
+				if (@questcollect > 0){
+					set @thiscollect, countitem(questcollect[.@i])<@questcollect?countitem(questcollect[.@i]):@questcollect;
+					//dispbottom "@thiscollect: "+@thiscollect;
+					set questcollect[.@i+1], questcollect[.@i+1] + @thiscollect;
+					delitem questcollect[.@i], @thiscollect;
+				}
+			}
+		}
+	}
+	return;
+}
 }

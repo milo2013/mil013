@@ -30,6 +30,7 @@
 // 519,256 2  // Milk can't be consumed in PVP and maps marked as 'restricted zone 2' or 'restricted zone 4' (256+64+2)
 // 519,-2   // Unset `restricted in PVP` flag from Milk. Making it usable in PVP again.
 
+/*
 //----------------------------------------------------------------------------
 // Normal maps
 //----------------------------------------------------------------------------
@@ -64,6 +65,7 @@
 11549,1		// Woe_Blue_Potion
 11547,1		// Woe_Violet_Potion
 12600,1		// Treasure_Box_Scroll
+*/
 
 //----------------------------------------------------------------------------
 // PVP
