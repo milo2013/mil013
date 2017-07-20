@@ -48,6 +48,9 @@ Switch(gettime(DT_DAYOFWEEK)){
 	case 0:
 		set .WoECastle$, "payg_cas03";
 		break;
+	case 6:
+		set .WoECastle$, "arug_cas03";
+		break;
 	case 7:
 		set .WoECastle$, "prtg_cas01";
 		break;
@@ -256,6 +259,7 @@ end;
 //
 OnSunday1900:
 OnSaturday1900:
+OnFriday1900:
 OnAtCommand:
 announce "[Betting Girl] $$$! The WoE Betting Challenge has started!! Come to "+strnpcinfo(4)+" to place your bets!",bc_all|bc_blue;
 
