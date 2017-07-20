@@ -283,6 +283,8 @@
 20704,8175	// TE_Woe_Magic_Manteau
 21006,8175	// TE_Woe_Two_Hand_Sword
 
+/* 
+CANCELLED!!
 
 // Nerf's WoE Session 14/7/2017 - Friday
 
@@ -467,3 +469,5 @@
 2966,256	// RWC 2012 Ring [0]
 2968,256	// RWC 2012 Pendant [0]
 18509,256	// RWC2010 Indonesia [1]
+
+*/

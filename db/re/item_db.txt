@@ -4551,7 +4551,7 @@
 6538,Real_Blank_Card,Real Blank Card,3,20,,0,,,,,,,,,,,,,{},{},{}
 6539,Old_Left_Lapine,Old Left Lapine,3,0,,0,,,,,,,,,,,,,{},{},{}
 6540,Golden_Leaf,Golden Leaf,3,0,,0,,,,,,,,,,,,,{},{},{}
-6541,Avant_Research_Data,Avant Research Data,2,10,,10,,,,,0xFFFFFFFF,63,2,,,,,,{callfunc "GMPoliceFunc";},{},{}
+6541,Avant_Research_Data,Avant Research Data,2,10,,10,,,,,0xFFFFFFFF,63,2,,,,,,{callfunc "KatokFunc";},{},{}
 6542,Star_Shape_Mushroom,Star Shape Mushroom,3,20,,100,,,,,,,,,,,,,{},{},{}
 6543,Lv110_Achieved_Coin,Lv110 Achieved Coin,3,0,,0,,,,,,,,,,,,,{},{},{}
 6544,Lv120_Achieved_Coin,Lv120 Achieved Coin,3,0,,0,,,,,,,,,,,,,{},{},{}

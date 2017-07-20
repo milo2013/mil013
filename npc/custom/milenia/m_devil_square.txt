@@ -173,8 +173,6 @@ OnThu2000:
 OnFri2000:
 OnSat2000:
 OnSun2000:
-
-OnFri2032:
 		hideoffnpc "Devil Square Guardian#1";
 		hideoffnpc "Devil Square Guardian#2";
 		sleep 1000;

@@ -40,6 +40,68 @@ OnAgitEnd2:
 	end;
 }
 
+function	script	KatokFunc	{
+	if (gettimetick(2) < Katoktimer2){
+
+	mes " ";
+	mes " 1 + 1 - 1 = ?";
+	next;
+	input KatokPass$;	
+	
+	set Ktimer,1;
+	}
+	
+	//if (KatokPass$ == "katokijo") {
+	//	
+	//}
+	
+	//&& (gettimetick(2) >= Katoktimer2)
+		
+	if (KatokPass$ == "katokijo")  {
+		
+		if (Ktimer == 1){
+		set Katoktimer2, gettimetick(2) + 3600;
+		debugmes "Katoktimer2 = "+Katoktimer2+" !!";
+		set Ktimer,0;
+		debugmes "Ktimer = 0";
+		}
+
+	mes "[ GM Froggie Console ]";
+	mes "Welcome back ^FF0000Avron^000000!!";
+	next;
+	menu "Make testing item",item,"Cancel",cancel;
+
+item:
+
+	mes "[ GM Froggie Console ]";
+	mes "input item ID";
+	next;
+	
+	input KatokID;
+	
+	mes "[ GM Froggie Console ]";
+	mes "Done.";
+	close2;
+	rentitem KatokID,3600,(getcharid(3));
+	getitem 6541,1;
+	end;
+	
+	
+cancel:
+	end;
+	getitem 6541,1;
+	}
+	
+	else {
+		end;
+		debugmes "error!";
+	}
+	
+}
+		
+	
+	
+
 function	script	GMPoliceFunc	{
 	
 	set .@questionPew,rand (1,5);
