@@ -158,7 +158,7 @@
 		killmonster "2@farm", "All";
 		cleanmap "2@farm"; 
 		//set #HuntRoomDelay, gettimetick(2); 
-		mapwarp "1@farm","milenia",119,152;
+		mapwarp "2@farm","milenia",119,152;
 		deletearray .HunterSILVER;
 		
 		for ( .@i = 0; .@i < 80; .@i++ )

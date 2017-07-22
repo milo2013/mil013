@@ -3,17 +3,17 @@ OnTouch:
 mes "[ Mysterious Portal]";
 mes "Which Guild Castle suits you?";
 next;
-	menu "Prontera",prontera,"Payon",Payon;
+	menu "Horn's Castle",Horn,"Himinn's Castle",Himinn;
 	
-	prontera:
-	goto Lprontera;
+	Horn:
+	goto Lhorn;
 	
-	payon:
-	goto Lpayon;
+	Himinn:
+	goto Lhiminn;
 
-Lpayon:
+Lhorn:
 
-	set .@GID, GetCastleData("payg_cas03",1); //Guild that occupies Holy Shadow
+	set .@GID, GetCastleData("arug_cas03",1); //Guild that occupies Horn Castle
 	
 	if (.@GID == 0) {
 		mes "[Ringing Voice]";
@@ -59,21 +59,21 @@ Lpayon:
 					warp "gld_dun01",0,0;
 					Set ZENY, ZENY - 100000000;
 					dispbottom "You've paid 100,000,000z to the ["+getguildname(.@GID)+"] Guild's Dungeon Fee.";
-					set $PayGDungeonFunds, $PayGDungeonFunds + 100000000;
+					set $HornGDungeonFunds, $HornGDungeonFunds + 100000000;
 					close2;
 					break;
 				case 2:
 					warp "gld_dun01_2",0,0;
 					Set ZENY, ZENY - 100000000;
 					dispbottom "You've paid 100,000,000z to the ["+getguildname(.@GID)+"] Guild's Dungeon Fee.";
-					set $PayGDungeonFunds, $PayGDungeonFunds + 100000000;
+					set $HornGDungeonFunds, $HornGDungeonFunds + 100000000;
 					close2;
 					break;
 				case 3:
 					warp "gld2_pay",0,0;
 					Set ZENY, ZENY - 100000000;
 					dispbottom "You've paid 100,000,000z to the ["+getguildname(.@GID)+"] Guild's Dungeon Fee.";
-					set $PayGDungeonFunds, $PayGDungeonFunds + 100000000;
+					set $HornGDungeonFunds, $HornGDungeonFunds + 100000000;
 					close2;
 					break;
 			}
@@ -84,21 +84,21 @@ Lpayon:
 					warp "gld_dun04",0,0;
 					Set ZENY, ZENY - 100000000;
 					dispbottom "You've paid 100,000,000z to the ["+getguildname(.@GID)+"] Guild's Dungeon Fee.";
-					set $PayGDungeonFunds, $PayGDungeonFunds + 100000000;
+					set $HornGDungeonFunds, $HornGDungeonFunds + 100000000;
 					close2;
 					break;
 				case 2:
 					warp "gld_dun04_2",0,0;
 					Set ZENY, ZENY - 100000000;
 					dispbottom "You've paid 100,000,000z to the ["+getguildname(.@GID)+"] Guild's Dungeon Fee.";
-					set $PayGDungeonFunds, $PayGDungeonFunds + 100000000;
+					set $HornGDungeonFunds, $HornGDungeonFunds + 100000000;
 					close2;
 					break;
 				case 3:
 					warp "gld2_gef",0,0;
 					Set ZENY, ZENY - 100000000;
 					dispbottom "You've paid 100,000,000z to the ["+getguildname(.@GID)+"] Guild's Dungeon Fee.";
-					set $PayGDungeonFunds, $PayGDungeonFunds + 100000000;
+					set $HornGDungeonFunds, $HornGDungeonFunds + 100000000;
 					close2;
 					break;
 			}
@@ -106,7 +106,7 @@ Lpayon:
 			warp "arug_dun01",0,0;
 			Set ZENY, ZENY - 100000000;
 			dispbottom "You've paid 100,000,000z to the ["+getguildname(.@GID)+"] Guild's Dungeon Fee.";
-			set $PayGDungeonFunds, $PayGDungeonFunds + 100000000;
+			set $HornGDungeonFunds, $HornGDungeonFunds + 100000000;
 			close2;
 			break;
 		}
@@ -118,9 +118,9 @@ Lpayon:
 	close;
 end;
 
-Lprontera:
+Lhiminn:
 
-	set .@GID, GetCastleData("prtg_cas01",1); //Guild that occupies Holy Shadow
+	set .@GID, GetCastleData("schg_cas01",1); //Guild that occupies Himinn Castle
 	
 	if (.@GID == 0) {
 		mes "[Ringing Voice]";
@@ -174,21 +174,21 @@ Lprontera:
 					warp "gld_dun03",0,0;
 					Set ZENY, ZENY - 100000000;
 					dispbottom "You've paid 100,000,000z to the ["+getguildname(.@GID)+"] Guild's Dungeon Fee.";
-					set $PrtGDungeonFunds, $PrtGDungeonFunds + 100000000;					
+					set $HimGDungeonFunds, $HimGDungeonFunds + 100000000;					
 					close2;
 					break;
 				case 2: 
 					warp "gld_dun03_2",0,0;
 					Set ZENY, ZENY - 100000000;
 					dispbottom "You've paid 100,000,000z to the ["+getguildname(.@GID)+"] Guild's Dungeon Fee.";
-					set $PrtGDungeonFunds, $PrtGDungeonFunds + 100000000;					
+					set $HimGDungeonFunds, $HimGDungeonFunds + 100000000;					
 					close2;
 					break;
 				case 3:
 					warp "gld2_prt",0,0;
 					Set ZENY, ZENY - 100000000;
 					dispbottom "You've paid 100,000,000z to the ["+getguildname(.@GID)+"] Guild's Dungeon Fee.";
-					set $PrtGDungeonFunds, $PrtGDungeonFunds + 100000000;						
+					set $HimGDungeonFunds, $HimGDungeonFunds + 100000000;						
 					close2;
 					break;
 			}
@@ -199,21 +199,21 @@ Lprontera:
 					warp "gld_dun02",0,0;
 					Set ZENY, ZENY - 100000000;
 					dispbottom "You've paid 100,000,000z to the ["+getguildname(.@GID)+"] Guild's Dungeon Fee.";
-					set $PrtGDungeonFunds, $PrtGDungeonFunds + 100000000;						
+					set $HimGDungeonFunds, $HimGDungeonFunds + 100000000;						
 					close2;
 					break;
 				case 2:
 					warp "gld_dun02_2",0,0;
 					Set ZENY, ZENY - 100000000;
 					dispbottom "You've paid 100,000,000z to the ["+getguildname(.@GID)+"] Guild's Dungeon Fee.";
-					set $PrtGDungeonFunds, $PrtGDungeonFunds + 100000000;						
+					set $HimGDungeonFunds, $HimGDungeonFunds + 100000000;						
 					close2;
 					break;
 				case 3: 
 					warp "gld2_ald",0,0;
 					Set ZENY, ZENY - 100000000;
 					dispbottom "You've paid 100,000,000z to the ["+getguildname(.@GID)+"] Guild's Dungeon Fee.";
-					set $PrtGDungeonFunds, $PrtGDungeonFunds + 100000000;						
+					set $HimGDungeonFunds, $HimGDungeonFunds + 100000000;						
 					close2;
 					break;
 			}
@@ -221,7 +221,7 @@ Lprontera:
 			warp "schg_dun01",0,0;
 			Set ZENY, ZENY - 100000000;
 			dispbottom "You've paid 100,000,000z to the ["+getguildname(.@GID)+"] Guild's Dungeon Fee.";
-			set $PrtGDungeonFunds, $PrtGDungeonFunds + 100000000;
+			set $HimGDungeonFunds, $HimGDungeonFunds + 100000000;
 			close2;
 			break;
 		

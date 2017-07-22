@@ -29,6 +29,7 @@ OnRecvCastlear03:
 	FlagEmblem GetCastleData("arug_cas03",1);
 	end;
 }
+
 milenia,149,164,11	script	Horn#M2	722,{
 	callfunc "ReturnFlag","arug_cas03",1;
 	end;
