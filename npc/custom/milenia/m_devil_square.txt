@@ -483,4 +483,4 @@ ds	mapflag	nomemo
 ds	mapflag	nobranch
 ds	mapflag	nopenalty
 ds	mapflag	noicewall
-ds	mapflag	restricted	1
+//ds	mapflag	restricted	1

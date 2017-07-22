@@ -489,7 +489,14 @@ switch(select("Nahhh..:Infinity Dagger:Infinity Mace:Infinity Two Handed Axe:Inf
 					set .@part, EQI_HAND_R;
 					break;
 			}
-						
+	
+ if (getequiprefinerycnt(.@part) <= 4){
+	 mes "[Relic Enforcer]";
+	 mes "Hello~";
+	 mes "You must at least refine your "+(getitemname (.@equip_id))+" into ^FF0000+5^000000 to enchant!";
+	 close;
+ }
+ 	
 if (getequipisequiped(.@part) == 0) {
 		mes "[Relic Enforcer]";
 		mes "You will have to equip all items before ^44B7BC" + getitemname(.@equip_id) + "^000000.";

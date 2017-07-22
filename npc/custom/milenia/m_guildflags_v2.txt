@@ -1,5 +1,38 @@
-milenia,148,168,11	duplicate(OutsideFlagsPR1)	Kriemhild#16	722
-milenia,91,168,5	duplicate(OutsideFlagsPA3)	Holy Shadow#13	722
+milenia,148,168,11	script	Horn#M1	722,{
+	callfunc "ReturnFlag","arug_cas03",1;
+	end;
+
+OnAgitInit2:
+OnRecvCastlear03:
+	FlagEmblem GetCastleData("arug_cas03",1);
+	end;
+}
+
+
+milenia,91,168,5	script	Himinn#H1	722,{
+	callfunc "ReturnFlag","schg_cas01",1;
+	end;
+
+OnAgitInit2:
+OnRecvCastlear03:
+	FlagEmblem GetCastleData("schg_cas01",1);
+	end;
+}
+
+//milenia,148,168,11	duplicate(OutsideFlagsPR1)	Kriemhild#16	722
+//milenia,91,168,5	duplicate(OutsideFlagsPA3)	Holy Shadow#13	722
+
+arug_cas03	mapflag	nomemo
+arug_cas03	mapflag	noreturn
+arug_cas03	mapflag	nosave	SavePoint
+arug_cas03	mapflag	noteleport
+arug_cas03	mapflag	nowarp
+
+schg_cas01	mapflag	nomemo
+schg_cas01	mapflag	noreturn
+schg_cas01	mapflag	nosave	SavePoint
+schg_cas01	mapflag	noteleport
+schg_cas01	mapflag	nowarp
 
 payg_cas03	mapflag	nomemo
 payg_cas03	mapflag	noreturn

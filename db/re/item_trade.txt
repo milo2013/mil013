@@ -3681,7 +3681,7 @@
 19532,475,100	// C_Red_Bunny_Band
 19764,475,100	// C_Monster_Card
 19765,475,100	// C_Wing_Angels_Ears
-19853,507,100	// C_Filir Wings
+19853,507,100	// C_Filir_Wing_Ears
 19996,467,100	// Horse_King
 19999,464,100	// C_Mouse_Hat1
 20000,464,100	// C_Mouse_Hat2

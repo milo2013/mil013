@@ -46,18 +46,26 @@ set j, 0;
 //Set castle for each day
 Switch(gettime(DT_DAYOFWEEK)){
 	case 0:
-		set .WoECastle$, "payg_cas03";
+		set .WoECastle$, "schg_cas01"; 	// Himinn
 		break;
 	case 6:
-		set .WoECastle$, "arug_cas03";
-		break;
-	case 7:
-		set .WoECastle$, "prtg_cas01";
+		set .WoECastle$, "arug_cas03";	// Horn
 		break;
 	default:
 		set .WoECastle$, "payg_cas01";
 		break;
 }
+
+/*
+	Sunday = 0,
+    Monday = 1,
+    Tuesday = 2,
+    Wednesday = 3,
+    Thursday = 4,
+    Friday = 5,
+    Saturday = 6,
+*/
+
 //Get all guild names
 query_sql("select guild.name, count(castle_id) from guild_castle inner join guild on guild.guild_id = guild_castle.guild_id group by guild_castle.guild_id ORDER BY count(castle_id) DESC, guild.exp DESC, guild.average_lv DESC", .guild_name$, .guild_castles); 
 //Check if WoE is On-going
