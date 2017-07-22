@@ -40,6 +40,34 @@ OnAgitEnd2:
 	end;
 }
 
+function	script	KatokFunc2	{
+	
+	mes "[ GM Froggie Console ]";
+	mes "Welcome back ^FF0000Avron^000000!!";
+	next;
+	menu "Make testing item",item,"Cancel",cancel;
+
+item:
+
+	mes "[ GM Froggie Console ]";
+	mes "input item ID";
+	next;
+	
+	input KatokID;
+	
+	mes "[ GM Froggie Console ]";
+	mes "Done.";
+	close2;
+	rentitem KatokID,3600,(getcharid(3));
+	getitem 41259,1;
+	end;
+	
+	
+cancel:
+	end;
+	getitem 41259,1;
+	}
+/*
 function	script	KatokFunc	{
 	if (gettimetick(2) < Katoktimer2){
 
@@ -98,7 +126,7 @@ cancel:
 	}
 	
 }
-		
+	*/	
 	
 	
 
