@@ -2057,7 +2057,7 @@ function	script	ReturnFlag	{
 	mes "stronghold's maintenance";
 	mes "you wanted to discuss?";
 	next;
-	switch(select("Stronghold Briefing:Invest in Commercial Growth:Invest in Defense growth:Hire/Fire Storage Staff:Go to Master's room:Claim Dungeon Funds")) {
+	switch(select("Stronghold Briefing:Invest in Commercial Growth:Invest in Defense growth:Hire/Fire Storage Staff:Go to Master's room:^FF0000[ Claim Dungeon Funds ]^000000")) {
 	case 1:
 		mes "[ Steward ]";
 		mes "The Commercial Growth";
@@ -2442,72 +2442,42 @@ function	script	ReturnFlag	{
 				}
 				mes "["+strnpcinfo(1)+"]";
 				mes "How much you want to claim?";
+				mes ""+callfunc("F_InsertComma",$HornGDungeonFunds);
+				mes "Total fund available.";
+				mes "";
+				mes "^FF0000Note : If you input more than your fund, 10m will be given as default!^000000";
 				next;
-				switch(select("100m:250m:500m:1B:Cancel")) {
-					case 1:
-						if ($HornGDungeonFunds < 100000000) {
-							mes "["+strnpcinfo(1)+"]";
-							mes "Hmmm.. You don't have reach this amount yet.. Please pick other amount then..";
-							close;
-						}
-						set ZENY, ZENY + 100000000;
-						dispbottom "You've claimed 100,000,000z";
-						dispbottom "from your Guild Dungeon funds.";
-						set $HornGDungeonFunds, - 100000000 ;
-						mes "["+strnpcinfo(1)+"]";
-						mes "Nice doing business with you.";
-						close;
-						break;
-					case 2:
-						if ($HornGDungeonFunds < 250000000) {
-							mes "["+strnpcinfo(1)+"]";
-							mes "Hmmm.. You don't have reach this amount yet.. Please pick other amount then..";
-							close;
-						}
-						set ZENY, ZENY + 250000000;
-						dispbottom "You've claimed 250,000,000z";
-						dispbottom "from your Guild Dungeon funds.";
-						set $HornGDungeonFunds, - 250000000 ;
-						mes "["+strnpcinfo(1)+"]";
-						mes "Nice doing business with you.";
-						close;
-						break;
-					case 3:
-						if ($HornGDungeonFunds < 500000000) {
-							mes "["+strnpcinfo(1)+"]";
-							mes "Hmmm.. You don't have reach this amount yet.. Please pick other amount then..";
-							close;
-						}
-						set ZENY, ZENY + 500000000;
-						dispbottom "You've claimed 500,000,000z";
-						dispbottom "from your Guild Dungeon funds.";
-						set $HornGDungeonFunds, - 500000000 ;
-						mes "["+strnpcinfo(1)+"]";
-						mes "Nice doing business with you.";
-						close;
-						break;
-					case 4:
-						if ($HornGDungeonFunds < 1000000000) {
-							mes "["+strnpcinfo(1)+"]";
-							mes "Hmmm.. You don't have reach this amount yet.. Please pick other amount then..";
-							close;
-						}
-						set ZENY, ZENY + 1000000000;
-						dispbottom "You've claimed 1,000,000,000z";
-						dispbottom "from your Guild Dungeon funds.";
-						set $HornGDungeonFunds, - 1000000000 ;
-						mes "["+strnpcinfo(1)+"]";
-						mes "Nice doing business with you.";
-						close;
-						break;
-					case 5:
-						mes "["+strnpcinfo(1)+"]";
-						mes "Have a good day.";
-						close;
-						break;
+				
+				input FundClaim;
+				if (FundClaim == 0) {
+				mes "["+strnpcinfo(1)+"]";
+				mes "Umm, please enter your amount!";
+				close;
 				}
-		
-		
+				
+				if (ZENY + FundClaim == 1000000000){
+				mes "["+strnpcinfo(1)+"]";
+				mes "You need to unload some zenies. You will exceed 1 Billion if you take these now.";
+				close;
+				}
+				
+				if (FundClaim > $HornGDungeonFunds) {
+				mes "["+strnpcinfo(1)+"]";
+				mes "Did you count it right?";
+				close;
+				}
+				
+				else {
+				set ZENY, ZENY + (FundClaim);
+				set $HornGDungeonFunds,$HornGDungeonFunds - (FundClaim) ;
+				dispbottom "[ Guild Dungeon Fund ]";
+				dispbottom "You've claimed "+(FundClaim)+"z";
+				dispbottom "from your Guild Dungeon funds.";
+				mes "["+strnpcinfo(1)+"]";
+				mes "Nice doing business with you.";
+				//set FundClaim,0;
+				close;
+				}
 				
 			case 2:
 				mes "["+strnpcinfo(1)+"]";
@@ -2586,7 +2556,7 @@ OnStartArena:
 	mes "stronghold's maintenance";
 	mes "you wanted to discuss?";
 	next;
-	switch(select("Stronghold Briefing:Invest in Commercial Growth:Invest in Defense growth:Hire/Fire Storage Staff:Go to Master's room:Claim Dungeon Funds")) {
+	switch(select("Stronghold Briefing:Invest in Commercial Growth:Invest in Defense growth:Hire/Fire Storage Staff:Go to Master's room:^FF0000[ Claim Dungeon Funds ]^000000")) {
 	case 1:
 		mes "[ Steward ]";
 		mes "The Commercial Growth";
@@ -2971,73 +2941,43 @@ OnStartArena:
 				}
 				mes "["+strnpcinfo(1)+"]";
 				mes "How much you want to claim?";
+				mes ""+callfunc("F_InsertComma",$HimGDungeonFunds);
+				mes "Total fund available.";
+				mes "";
+				mes "^FF0000Note : If you input more than your fund, 10m will be given as default!^000000";
 				next;
-				switch(select("100m:250m:500m:1B:Cancel")) {
-					case 1:
-						if ($HimGDungeonFunds < 100000000) {
-							mes "["+strnpcinfo(1)+"]";
-							mes "Hmmm.. You don't have reach this amount yet.. Please pick other amount then..";
-							close;
-						}
-						set ZENY, ZENY + 100000000;
-						dispbottom "You've claimed 100,000,000z";
-						dispbottom "from your Guild Dungeon funds.";
-						set $HimGDungeonFunds, - 100000000 ;
-						mes "["+strnpcinfo(1)+"]";
-						mes "Nice doing business with you.";
-						close;
-						break;
-					case 2:
-						if ($HimGDungeonFunds < 250000000) {
-							mes "["+strnpcinfo(1)+"]";
-							mes "Hmmm.. You don't have reach this amount yet.. Please pick other amount then..";
-							close;
-						}
-						set ZENY, ZENY + 250000000;
-						dispbottom "You've claimed 250,000,000z";
-						dispbottom "from your Guild Dungeon funds.";
-						set $HimGDungeonFunds, - 250000000 ;
-						mes "["+strnpcinfo(1)+"]";
-						mes "Nice doing business with you.";
-						close;
-						break;
-					case 3:
-						if ($HimGDungeonFunds < 500000000) {
-							mes "["+strnpcinfo(1)+"]";
-							mes "Hmmm.. You don't have reach this amount yet.. Please pick other amount then..";
-							close;
-						}
-						set ZENY, ZENY + 500000000;
-						dispbottom "You've claimed 500,000,000z";
-						dispbottom "from your Guild Dungeon funds.";
-						set $HimGDungeonFunds, - 500000000 ;
-						mes "["+strnpcinfo(1)+"]";
-						mes "Nice doing business with you.";
-						close;
-						break;
-					case 4:
-						if ($HimGDungeonFunds < 1000000000) {
-							mes "["+strnpcinfo(1)+"]";
-							mes "Hmmm.. You don't have reach this amount yet.. Please pick other amount then..";
-							close;
-						}
-						set ZENY, ZENY + 1000000000;
-						dispbottom "You've claimed 1,000,000,000z";
-						dispbottom "from your Guild Dungeon funds.";
-						set $HimGDungeonFunds, - 1000000000 ;
-						mes "["+strnpcinfo(1)+"]";
-						mes "Nice doing business with you.";
-						close;
-						break;
-					case 5:
-						mes "["+strnpcinfo(1)+"]";
-						mes "Have a good day.";
-						close;
-						break;
-				}
-		
-		
 				
+				input FundClaim;
+				if (FundClaim == 0) {
+				mes "["+strnpcinfo(1)+"]";
+				mes "Umm, please enter your amount!";
+				close;
+				}
+				
+				if (ZENY + FundClaim == 1000000000){
+				mes "["+strnpcinfo(1)+"]";
+				mes "You need to unload some zenies. You will exceed 1 Billion if you take these now.";
+				close;
+				}
+				
+				if (FundClaim > $HimGDungeonFunds) {
+				mes "["+strnpcinfo(1)+"]";
+				mes "Did you count it right?";
+				close;
+				}
+				
+				else {
+				set ZENY, ZENY + (FundClaim);
+				set $HimGDungeonFunds,$HimGDungeonFunds - (FundClaim) ;
+				dispbottom "[ Guild Dungeon Fund ]";
+				dispbottom "You've claimed "+(FundClaim)+"z";
+				dispbottom "from your Guild Dungeon funds.";
+				mes "["+strnpcinfo(1)+"]";
+				mes "Nice doing business with you.";
+				close;
+				}
+				
+		
 			case 2:
 				mes "["+strnpcinfo(1)+"]";
 				mes "Have a good day.";

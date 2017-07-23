@@ -6577,12 +6577,12 @@
 12442,F_Kafra_Card,F Kafra Card,2,2,,10,,,,,0xFFFFFFFF,63,2,,,,,,{},{},{}
 12443,F_Neuralizer,F Neuralizer,2,2,,0,,,,,0xFFFFFFFF,63,2,,,,,,{},{},{}
 12444,F_Dun_Tele_Scroll1,WoE Telport Scroll,2,0,,10,,,,,0xFFFFFFFF,63,2,,,,,,{ callfunc "F_CashSiegeTele"; },{},{}
-12445,F_Str_Dish10_,F Str Dish10,2,2,,10,,,,,0xFFFFFFFF,63,2,,,,,,{},{},{}
-12446,F_Agi_Dish10_,F Agi Dish10,2,2,,10,,,,,0xFFFFFFFF,63,2,,,,,,{},{},{}
-12447,F_Int_Dish10_,F Int Dish10,2,2,,10,,,,,0xFFFFFFFF,63,2,,,,,,{},{},{}
-12448,F_Dex_Dish10_,F Dex Dish10,2,2,,10,,,,,0xFFFFFFFF,63,2,,,,,,{},{},{}
+12445,F_Str_Dish10_,F Str Dish10,2,2,,10,,,,,0xFFFFFFFF,63,2,,,,,,{ sc_start SC_FOOD_STR_CASH,1800000,10; percentheal 15,5; },{},{}
+12446,F_Agi_Dish10_,F Agi Dish10,2,2,,10,,,,,0xFFFFFFFF,63,2,,,,,,{ sc_start SC_FOOD_AGI_CASH,1800000,10; percentheal 15,5; },{},{}
+12447,F_Int_Dish10_,F Int Dish10,2,2,,10,,,,,0xFFFFFFFF,63,2,,,,,,{ sc_start SC_FOOD_INT_CASH,1800000,10; percentheal 15,5; },{},{}
+12448,F_Dex_Dish10_,F Dex Dish10,2,2,,10,,,,,0xFFFFFFFF,63,2,,,,,,{ sc_start SC_FOOD_DEX_CASH,1800000,10; percentheal 15,5; },{},{}
 12449,F_Luk_Dish10_,F Luk Dish10,2,2,,10,,,,,0xFFFFFFFF,63,2,,,,,,{},{},{}
-12450,F_Vit_Dish10_,F Vit Dish10,2,2,,10,,,,,0xFFFFFFFF,63,2,,,,,,{},{},{}
+12450,F_Vit_Dish10_,F Vit Dish10,2,2,,10,,,,,0xFFFFFFFF,63,2,,,,,,{ sc_start SC_FOOD_VIT_CASH,1800000,10; percentheal 15,5; },{},{}
 12451,F_WOB_Rune,F WOB Rune,2,0,,10,,,,,0xFFFFFFFF,63,2,,,,,,{},{},{}
 12452,F_WOB_Schwaltz,F WOB Schwaltz,2,0,,10,,,,,0xFFFFFFFF,63,2,,,,,,{},{},{}
 12453,F_WOB_Rachel,F WOB Rachel,2,0,,10,,,,,0xFFFFFFFF,63,2,,,,,,{},{},{}
