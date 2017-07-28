@@ -34,11 +34,11 @@ schg_cas01	mapflag	nosave	SavePoint
 schg_cas01	mapflag	noteleport
 schg_cas01	mapflag	nowarp
 
-payg_cas03	mapflag	nomemo
-payg_cas03	mapflag	noreturn
-payg_cas03	mapflag	nosave	SavePoint
-payg_cas03	mapflag	noteleport
-payg_cas03	mapflag	nowarp
+//payg_cas03	mapflag	nomemo
+//payg_cas03	mapflag	noreturn
+//payg_cas03	mapflag	nosave	SavePoint
+//payg_cas03	mapflag	noteleport
+//payg_cas03	mapflag	nowarp
 
 prtg_cas01	mapflag	nomemo
 prtg_cas01	mapflag	noreturn
