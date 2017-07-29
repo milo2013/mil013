@@ -36,6 +36,7 @@ prt_cas,94,254,5	script	Princess Eleanor	10184,{ callfunc "qshop",15; }// call s
 milenia,65,64,5	script	Novice Figures	10066,{ callfunc "qshop",18,19; }// call shop 18,19
 milenia,65,59,5	script	RWC Exchanger	10120,{ callfunc "qshop",21; }// call shop 21
 milenia,82,59,11	script	Rare Costume	10126,{ callfunc "qshop",22; }// call shop 22
+milenia,152,195,11	script	Froggie Headgear	10126,{ callfunc "qshop",24; }// call shop 24
 
 // Script Core
 //============================================================
@@ -66,7 +67,7 @@ OnInit:
 //	setarray .Shops$[1],"<Shop 1>","<Shop 2>"{,...};
 // -----------------------------------------------------------
 
-	setarray .Shops$[1],"Headgears","Wings","Mora Equipments","Other","Cute Headgears","Cool Headgears","New Headgear","Doram Charms","Crimson Equipments","Old Headgear","Weapons Alpha","Weapons Beta","Armor","Food Ration","Hero Equipments","Ladder Quest","Symphony Special","Figures","Premium Figures","Useable Quest","RWC Exchanger","Rare Costume","Vicious Equipments";
+	setarray .Shops$[1],"Headgears","Wings","Mora Equipments","Other","Cute Headgears","Cool Headgears","New Headgear","Doram Charms","Crimson Equipments","Old Headgear","Weapons Alpha","Weapons Beta","Armor","Food Ration","Hero Equipments","Ladder Quest","Symphony Special","Figures","Premium Figures","Useable Quest","RWC Exchanger","Rare Costume","Vicious Equipments","iRO Alternate Headgear";
 
 // -----------------------------------------------------------
 //  Quest items -- do NOT use a reward item more than once!
@@ -516,6 +517,25 @@ OnInit:
 	Add(23,13128,1,0,0,13107,1,41237,50,41236,50,41238,1,671,10); // VICIOUS REVOLVER
 	Add(23,13328,1,0,0,13304,1,41237,50,41236,50,41238,1,671,10); // VICIOUS HUUMA
 	
+	Add(24,5898,1,0,0,5123,1,7054,200,958,200,5073,1); 		// Autumn Headband
+	Add(24,5899,1,0,0,2700,5,7161,200,1020,200,5057,1); 	// Black Ribbon
+	Add(24,18793,1,0,0,2507,5,7120,200,930,200,5117,1);		// Magiaician's Night Cap
+	Add(24,18794,1,0,0,5162,5,7015,200,1059,200,5173,1);	// Ordinary Black Magician Hat
+	Add(24,18795,1,0,0,7169,5,7116,200,916,200,5016,1);		// Night Sparrow Hat
+	Add(24,18791,1,0,0,2258,5,7053,200,4316,200,5175,1);	// Shrine Maiden Hat
+	Add(24,5904,1,0,0,5019,5,7267,200,7038,200,5107,1);		// Very Normal Hat
+	Add(24,5902,1,0,0,1030,5,7564,200,6264,200,5078,1);		// Harvester Hat
+	Add(24,5899,1,0,0,7036,5,903,200,928,200,5077,1);		// Black Ribbon
+	Add(24,5905,1,0,0,1737,5,1023,200,7031,200,2272,1);		// Lyrica Hat
+	Add(24,5900,1,0,0,5096,5,7312,200,940,200,5004,1);		// Divine Guard Hat
+	Add(24,5901,1,0,0,1468,5,7071,200,7066,200,2273,1);		// Focus Beret
+	Add(24,5906,1,0,0,2103,5,1021,200,923,150,5018,1);		// Oni Horns
+	Add(24,5907,1,0,0,7109,5,1042,200,6325,200,5081,1);		// Sea Captain Hat
+	Add(24,19116,1,0,0,7018,5,7064,200,7168,200,5121,1);	// Red Baby Dragon 
+	Add(24,5969,1,0,0,7300,10,1027,200,1095,200,5021,1);	// QueenAnzRevenge
+	Add(24,18878,1,0,0,7450,10,7205,200,7752,200,5075,1);	// Palace Guard Cap
+	Add(24,5897,1,0,0,7754,10,6470,250,6471,250,5025,1);	// Ascendant Crown
+	
 	
 // -----------------------------------------------------------
 
@@ -688,3 +708,4 @@ function	script	qshop	{
 -	shop	qshop21	-1,909:-1
 -	shop	qshop22	-1,909:-1
 -	shop	qshop23	-1,909:-1
+-	shop	qshop24	-1,909:-1

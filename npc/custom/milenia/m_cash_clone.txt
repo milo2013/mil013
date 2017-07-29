@@ -1,7 +1,7 @@
 milenia,87,153,5	script	Cashpoints Forgery	494,{
 
 
-	if (countitem (31130)) < 1{
+	if (countitem (41130)) < 1{
 	mes "[Uncle Jack]";
 	mes "......";
 	close;
@@ -45,7 +45,7 @@ milenia,87,153,5	script	Cashpoints Forgery	494,{
     getitem .IDCP10, .@amount10Total;
 	getitem .IDCP50, .@amount50Total;
 	getitem .IDCP99, .@amount99Total;
-    delitem 31130,1;
+    delitem 41130,1;
 	dispbottom "You cloned "+.@total10+" of "+getitemname (.IDCP10)+"!!" ;
 	dispbottom "You cloned "+.@total50+" of "+getitemname (.IDCP50)+"!!" ;
 	dispbottom "You cloned "+.@total99+" of "+getitemname (.IDCP99)+"!!" ;
