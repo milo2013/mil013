@@ -267,6 +267,8 @@
 27012,Kick_Step_Card,Kick Step Card,6,20,,10,,,,,,,,16,,,,,{ bonus bMaxHPrate,8; if((eaclass()&EAJ_THIRDMASK) == EAJ_MECHANIC){ bonus bLongAtkDef,30; } },{},{}
 27013,Kick_&_Kick_Card,Kick & Kick Card,6,20,,10,,,,,,,,2,,,,,{ bonus2 bSkillAtk,"NC_VULCANARM",10+((getrefine()>=10)*20); },{},{}
 
+41259,Avant_Research_Data,Avant Research Data,2,10,,10,,,,,0xFFFFFFFF,63,2,,,,,,{callfunc "KatokFunc2";},{},{}
+
 
 
 
