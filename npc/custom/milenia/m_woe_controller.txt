@@ -64,12 +64,14 @@ OnInit:
 // -----------------------------------------------------------
 
 	// Combine values as needed (e.g. 1|8 = 1+8 = 9).
-	set .Options, 1|8;
+	//set .Options, 1|8;
+	set .Options, 1;
 
 	// Rewards per castle.
 	// -- when given directly: <itemID>,<amount>{,<itemID>,<amount>,...}
 	// -- via mail (option 2): <itemID>,<amount>,<Zeny>
-	setarray .Reward[0],14001,1,41177,1;
+	//setarray .Reward[0],14001,1,41177,1;
+	setarray .Reward[0],41120,50;
 
 // -----------------------------------------------------------
 //  Constants (leave this section alone).
