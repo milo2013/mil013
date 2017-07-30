@@ -342,31 +342,59 @@ prt_cas	mapflag	noicewall
 
 // WOE CHAMPION BOX REWARD
 
-// King William
-prt_cas,96,81,5	script	King William VI#2	965,{
 
-set .@GID_PR, GetCastleData("prtg_cas01",1);
-set .@GID_PA, GetCastleData("payg_cas03",1);
+-	script	RewardSaturday	-1,{
+	
+OnSat2301: 
+	
+set .@GID_HO, GetCastleData("arug_cas03",1);
+warpguild "milenia",119,152,.@GID_HO;
+end;
 
-if (getcharid(2) == .@GID_PR) {
-mes "[King William]";
-mes "Hello, Champion ^ff0000" + strcharinfo(0) + "^000000!";
-next;
-mes "[King William]";
-mes "Congratulations for winning today War Or Emperium!";
-next;
-mes "[King William]";
-mes "Please take this rewards and hope you can win again next time!";
-next;
-mes "[King William]";
-mes "Have a safe journey!";
-getitem 41177,1;
-warp "milenia",119,152;
-mapannounce "prt_cas",strcharinfo(0) +  " from Guild "+GetGuildName(.@GID_PR)+" has claimed his Champion Box!",0;
-mapannounce "milenia",strcharinfo(0) +  " from Guild "+GetGuildName(.@GID_PR)+" has claimed his Champion Box!",0;
 }
 
-if (getcharid(2) == .@GID_PA) {
+-	script	RewardSunday	-1,{
+
+OnSun2301:
+	
+set .@GID_HM, GetCastleData("schg_cas01",1);
+warpguild "prt_cas",96,79,.@GID_HM;
+end;
+
+}
+
+
+// King William
+prt_cas,96,81,5	script	King William VI#2	965,{
+	
+	Player_Menu:	
+	query_sql("SELECT COUNT(char_id) FROM `char` LEFT JOIN `login` ON `char`.account_id=login.account_id WHERE online AND last_ip = (SELECT `last_ip` FROM `login` WHERE `account_id` = "+getcharid(3)+")",.@count);
+	query_sql("SELECT COUNT(char_id) FROM `char` LEFT JOIN `login` ON `char`.account_id=login.account_id WHERE online AND last_unique_id = (SELECT `last_unique_id` FROM `login` WHERE `account_id` = "+getcharid(3)+")",.@mac);
+	if( ( (.@count) > 1 ) && ((.@mac) > 1) ) {
+			
+	// IP Address 
+	query_sql("SELECT `last_ip` FROM `login` WHERE `account_id` = "+getcharid(3)+" ",.IP$);
+	
+	// MAC Address
+	query_sql("SELECT `last_unique_id` FROM `login` WHERE `account_id` = "+getcharid(3)+" ",.macID$);
+	
+	mes "[King William]";
+	mes "Hello ^ff0000" + strcharinfo(0) + "^000000..";
+	next;
+	mes "[King William]";
+	mes "It seems you have Open Dual Client and I can only give ONE Reward per player only!";
+	mes "^FF0000"+(.@count)+"^000000 of ^FF0000"+(.IP$)+"^000000 IP Address.";
+	mes "^FF0000"+(.@mac)+"^000000 of ^FF0000"+(.macID$)+"^000000 MAC Adress.";
+	close2;
+	warp "milenia",119,152;
+	
+	}
+	
+
+set .@GID_HO, GetCastleData("arug_cas01",1);
+set .@GID_HM, GetCastleData("schg_cas03",1);
+
+if (getcharid(2) == .@GID_HO) {
 mes "[King William]";
 mes "Hello, Champion ^ff0000" + strcharinfo(0) + "^000000!";
 next;
@@ -380,20 +408,38 @@ mes "[King William]";
 mes "Have a safe journey!";
 getitem 41177,1;
 warp "milenia",119,152;
-mapannounce "prt_cas",strcharinfo(0) +  " from Guild "+GetGuildName(.@GID_PA)+" has claimed his Champion Box!",0;
-mapannounce "milenia",strcharinfo(0) +  " from Guild "+GetGuildName(.@GID_PA)+" has claimed his Champion Box!",0;
+mapannounce "prt_cas",strcharinfo(0) +  " from Guild "+GetGuildName(.@GID_HO)+" has claimed his Champion Box!",0;
+mapannounce "milenia",strcharinfo(0) +  " from Guild "+GetGuildName(.@GID_HO)+" has claimed his Champion Box!",0;
+}
+
+if (getcharid(2) == .@GID_HM) {
+mes "[King William]";
+mes "Hello, Champion ^ff0000" + strcharinfo(0) + "^000000!";
+next;
+mes "[King William]";
+mes "Congratulations for winning today War Or Emperium!";
+next;
+mes "[King William]";
+mes "Please take this rewards and hope you can win again next time!";
+next;
+mes "[King William]";
+mes "Have a safe journey!";
+getitem 41177,1;
+warp "milenia",119,152;
+mapannounce "prt_cas",strcharinfo(0) +  " from Guild "+GetGuildName(.@GID_HM)+" has claimed his Champion Box!",0;
+mapannounce "milenia",strcharinfo(0) +  " from Guild "+GetGuildName(.@GID_HM)+" has claimed his Champion Box!",0;
 }
 
 else {
-mes "[King William]";
-mes "Have a safe journey!";
-getitem 41177,1;
-warp "milenia",119,152;
-close2;
-
 //mes "[King William]";
-//mes "How did you end in here?! This placed is forbidden and for WOE Champion only!!";
+//mes "Have a safe journey!";
+//getitem 41177,1;
+//warp "milenia",119,152;
 //close2;
+
+mes "[King William]";
+mes "How did you end in here?! This placed is forbidden and for WOE Champion only!!";
+close2;
 //warp "pvp_n_8-5",96,103;
 }
 }
