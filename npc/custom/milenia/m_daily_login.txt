@@ -122,9 +122,9 @@ milenia,112,163,5	script	Daily Login Rewards	953,{
 					case 26: reward_list( .@give_reward, 6380,10 ); 		break;		// Mora Coin 10x
 					case 27: reward_list( .@give_reward, 41120,50 ); 		break;		// 50 Condense Yggberry Potion 
 					case 28: reward_list( .@give_reward, 41124,1 ); 		break;		// 3 Days Milenia Certificate 
-					//case 29: reward_list( .@give_reward, 12314,1 ); 		break;		// Gympass Box(10) 1x
-					//case 30: reward_list( .@give_reward, 41120,50 ); 		break;		// 50 Condense Yggberry Potion 
-					//case 31: reward_list( .@give_reward, 41124,1 ); 		break;		// 3 Days Milenia Certificate
+					case 29: reward_list( .@give_reward, 12211,10); 		break;		// Kafra Card 10x
+					case 30: reward_list( .@give_reward, 12103,rand (5,10));break;		// Bloody Branch 1x
+					case 31: reward_list( .@give_reward, 12350,10 ); 		break;		// Angeling Potion 10x
 						mes "No rewards available for this day.";
 						close;
 				}

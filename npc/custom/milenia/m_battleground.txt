@@ -391,8 +391,8 @@ prt_cas,96,81,5	script	King William VI#2	965,{
 	}
 	
 
-set .@GID_HO, GetCastleData("arug_cas01",1);
-set .@GID_HM, GetCastleData("schg_cas03",1);
+set .@GID_HO, GetCastleData("arug_cas03",1);
+set .@GID_HM, GetCastleData("schg_cas01",1);
 
 if (getcharid(2) == .@GID_HO) {
 mes "[King William]";
@@ -407,6 +407,7 @@ next;
 mes "[King William]";
 mes "Have a safe journey!";
 getitem 41177,1;
+getitem 14001,1;
 warp "milenia",119,152;
 mapannounce "prt_cas",strcharinfo(0) +  " from Guild "+GetGuildName(.@GID_HO)+" has claimed his Champion Box!",0;
 mapannounce "milenia",strcharinfo(0) +  " from Guild "+GetGuildName(.@GID_HO)+" has claimed his Champion Box!",0;
@@ -425,6 +426,7 @@ next;
 mes "[King William]";
 mes "Have a safe journey!";
 getitem 41177,1;
+getitem 14001,1;
 warp "milenia",119,152;
 mapannounce "prt_cas",strcharinfo(0) +  " from Guild "+GetGuildName(.@GID_HM)+" has claimed his Champion Box!",0;
 mapannounce "milenia",strcharinfo(0) +  " from Guild "+GetGuildName(.@GID_HM)+" has claimed his Champion Box!",0;
