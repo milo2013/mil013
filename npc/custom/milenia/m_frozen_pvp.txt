@@ -602,7 +602,7 @@ OnInit:
 	.MaxTeamMembers = 3;
 	
 	// Time it takes to free your team in seconds.
-	.timeToFree = 7;
+	.timeToFree = 1;
 	
 	// Reward for winning
 	.reward = 41251; // Dark Treasure Box
