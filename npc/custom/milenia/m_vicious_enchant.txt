@@ -1,122 +1,126 @@
-milenia,27,115,5	script	Vicious Enchant	10155,{
+milenia,29,115,5	script	Vicious Enchanter	10155,{
 
 mes "[Vicious Enchant]";
-mes "I can ^FF0000RANDOMLY^000000 give element to your Crimson Weapons.";
+mes "I can ^FF0000RANDOMLY^000000 give random stat to your Vicious Weapons.";
 next;
 mes "[Vicious Enchant]";
 mes "My service require ^FF0000 10,000,000z ^000000";
 mes "and 10 piece of ^FF0000 "+ (getitemname (41250))+"^000000.";
 next;
-switch(select("Give Crimson Element:Cancel")) {
+switch(select("Enchant Vicious Weapon:Cancel")) {
 	
 	case 1:
 		next;
-		if (getequipid(EQI_HAND_R) == 13454) {
-			set .@equip_id,13454; //CRIMSON SABER
+		if (getequipid(EQI_HAND_R) == 13455) {
+			set .@equip_id,13455; //Vicious SABER
 			set .@part, EQI_HAND_R;
 			break;
 		}
 	
-		if (getequipid(EQI_HAND_R) == 21015) {
-			set .@equip_id,21015; //CRIMSON SWORD
+		if (getequipid(EQI_HAND_R) == 21016) {
+			set .@equip_id,21016; //Vicious SWORD
 			set .@part, EQI_HAND_R;
 			break;
 		}
 	
-		if (getequipid(EQI_HAND_R) == 1498) {
-			set .@equip_id,1498; //CRIMSON LANCE
+		if (getequipid(EQI_HAND_R) == 1450) {
+			set .@equip_id,1450; //Vicious LANCE
 			set .@part, EQI_HAND_R;
 			break;
 		}
 	
-		if (getequipid(EQI_HAND_R) == 1443) { 
-			set .@equip_id,1443; //CRIMSON SPEAR
+		if (getequipid(EQI_HAND_R) == 1400) { 
+			set .@equip_id,1400; //Vicious SPEAR
 			set .@part, EQI_HAND_R;
 			break;
 		}
 
-		if (getequipid(EQI_HAND_R) == 18130) {
-			set .@equip_id,18130; //CRIMSON BOW
+		if (getequipid(EQI_HAND_R) == 18121) {
+			set .@equip_id,18121; //Vicious BOW
 			set .@part, EQI_HAND_R;
 			break;
 		}
 	
-		if (getequipid(EQI_HAND_R) == 28007) {
-			set .@equip_id,28007; //CRIMSON KATAR
+		if (getequipid(EQI_HAND_R) == 28008) {
+			set .@equip_id,28008; //Vicious KATAR
 			set .@part, EQI_HAND_R;
 			break;
 		}
 	
-		if (getequipid(EQI_HAND_R) == 28705) { 
-			set .@equip_id,28705; //CRIMSON DAGGER
+		if (getequipid(EQI_HAND_R) == 28706) { 
+			set .@equip_id,28706; //Vicious DAGGER
 			set .@part, EQI_HAND_R;
 			break;
 		}
 	
-		if (getequipid(EQI_HAND_R) == 1839) {
-			set .@equip_id,1839; //CRIMSON KNUCKLE
+		if (getequipid(EQI_HAND_R) == 1800) {
+			set .@equip_id,1800; //Vicious KNUCKLE
 			set .@part, EQI_HAND_R;
 			break;
 		}
 	
-		if (getequipid(EQI_HAND_R) == 16040) {
-			set .@equip_id,16040; //CRIMSON MACE
+		if (getequipid(EQI_HAND_R) == 16041) {
+			set .@equip_id,16041; //Vicious MACE
 			set .@part, EQI_HAND_R;
 			break;
 		}
 	
-		if (getequipid(EQI_HAND_R) == 1680) { 
-			set .@equip_id,1680; //CRIMSON WAND
+		if (getequipid(EQI_HAND_R) == 28605) { 
+			set .@equip_id,28605; //Vicious BOOK
+			set .@part, EQI_HAND_R;
+			break;
+		}
+		
+		if (getequipid(EQI_HAND_R) == 1600) { 
+			set .@equip_id,1600; //Vicious WAND
 			set .@part, EQI_HAND_R;
 			break;
 		}
 	
-		if (getequipid(EQI_HAND_R) == 2025) { 
-			set .@equip_id,2025; //CRIMSON STAFF
+		if (getequipid(EQI_HAND_R) == 2026) { 
+			set .@equip_id,2026; //Vicious STAFF
 			set .@part, EQI_HAND_R;
 			break;
 		}
 	
-		if (getequipid(EQI_HAND_R) == 28106) {
-			set .@equip_id,28106; //CRIMSON AXE
+		if (getequipid(EQI_HAND_R) == 28107) {
+			set .@equip_id,28107; //Vicious AXE
 			set .@part, EQI_HAND_R;
 			break;
 		}
 
-		if (getequipid(EQI_HAND_R) == 1939) { 
-			set .@equip_id,1939; //CRIMSON VIOLIN
+		if (getequipid(EQI_HAND_R) == 1900) { 
+			set .@equip_id,1900; //Vicious VIOLIN
 			set .@part, EQI_HAND_R;
 			break;
 		}
 	
-		if (getequipid(EQI_HAND_R) == 1995) { 
-			set .@equip_id,1995; //CRIMSON WHIP
+		if (getequipid(EQI_HAND_R) == 1996) { 
+			set .@equip_id,1996; //Vicious WHIP
 			set .@part, EQI_HAND_R;
 			break;
 		}
 	
-		if (getequipid(EQI_HAND_R) == 13127) {
-			set .@equip_id,13127; //CRIMSON REVOLVER
+		if (getequipid(EQI_HAND_R) == 13128) {
+			set .@equip_id,13128; //Vicious REVOLVER
 			set .@part, EQI_HAND_R;
 			break;
 		}
 	
-		if  (getequipid(EQI_HAND_R) == 13127) {
-			set .@equip_id,13327; //CRIMSON HUUMA
+		if  (getequipid(EQI_HAND_R) == 13328) {
+			set .@equip_id,13328; //Vicious HUUMA
 			set .@part, EQI_HAND_R;
 			break;
 		}
-	//}
 	else {
 			mes "[Vicious Enchant]";
-			mes "Sorry! There is no Crimson Weapon with you!";
+			mes "Sorry! There is no Vicious Weapon with you!";
 			next;
 			mes "[Vicious Enchant]";
 			mes "Please equip it if you're forgot!";
 			close;
 			}
 			end;
-		//goto Linfiweapon;
 	case 2:
 		close;
 		end;
@@ -160,33 +164,30 @@ switch(select("Give Crimson Element:Cancel")) {
 	set .@equip_refine, getequiprefinerycnt(.@part);
 	setarray .@equip_card[0], getequipcardid(.@part,0),getequipcardid(.@part,1),getequipcardid(.@part,2),getequipcardid(.@part,3);
 	
-	set random, rand (1,7);
+	//set random, rand (1,3);
 	
-	if (random == 1 ){
-	set .@ID, RDMOPT_WEAPON_ATTR_NOTHING;
-	}
-	if (random == 2 ){
-	set .@ID, RDMOPT_WEAPON_ATTR_WATER;
-	}
-	if (random == 3 ){
-	set .@ID, RDMOPT_WEAPON_ATTR_GROUND;
-	}
-	if (random == 4 ){
-	set .@ID, RDMOPT_WEAPON_ATTR_FIRE;
-	}
-	if (random == 5 ){
-	set .@ID, RDMOPT_WEAPON_ATTR_WIND;
-	}
-	if (random == 6 ){
-	set .@ID, RDMOPT_WEAPON_ATTR_SAINT;
-	}
-	if (random == 7 ){
-	set .@ID, RDMOPT_WEAPON_ATTR_DARKNESS;
-	}
+	
+	
+	//setarray .Id01$[0],"RDMOPT_VAR_DEXAMOUNT","RDMOPT_VAR_MAXSPPERCENT","RDMOPT_VAR_ATKPERCENT","RDMOPT_VAR_PLUSASPDPERCENT";
+	//set .randomID1$, .Id01$;
+	
+	//setarray .Id02$[0],"RDMOPT_VAR_MAXSPAMOUNT","RDMOPT_VAR_VITAMOUNT","RDMOPT_VAR_HPACCELERATION","RDMOPT_VAR_MAGICATKPERCENT";
+	//set .randomID2$, .Id02$;
+	
+	//setarray .Id03$[0],"RDMOPT_VAR_STRAMOUNT","RDMOPT_VAR_INTAMOUNT";
+	//set .randomID3$, .Id03$;
+	
+	setarray .optionIDVicious01$[0],"RDMOPT_VAR_MAXHPPERCENT","RDMOPT_VAR_AGIAMOUNT";
+	set .optionIDVicious$, .optionIDVicious01$[rand (getarraysize(.optionIDVicious01$)) ];
+	
 		
-	setarray .@OptID[0],.@ID;
-	setarray .@OptVal[0],0,1;
-	setarray .@OptParam[0],0,1;
+	
+	debugmes " "+(.optionIDVicious$)+" ";
+	
+	setarray .@OptID[0],.optionIDVicious$;	
+	//setarray .@OptID[0],rand (,),rand (RDMOPT_VAR_SPACCELERATION,RDMOPT_VAR_PLUSASPD),RDMOPT_VAR_LUKAMOUNT,RDMOPT_VAR_MAGICATKPERCENT;
+	setarray .@OptVal[0],rand (1,3),rand (1,3),rand (1,3),rand (1,3),rand (1,3),rand (1,3);
+	setarray .@OptParam[0],3;
 	
 	if (countitem (41250) < 10){ // Custom ITEM
 		mes "[Vicious Enchant]";

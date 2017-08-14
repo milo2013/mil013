@@ -1449,6 +1449,18 @@ OnMyMobDead:
 	if (mobcount(instance_mapname("2@gl_k"),instance_npcname("#ghmemorialmob10")+"::OnMyMobDead") < 1) {
 		donpcevent instance_npcname("Hugin#ghinstance1")+"::OnEnable";
 		donpcevent instance_npcname("#ghmemorialmob10")+"::OnDisable";
+		donpcevent instance_npcname("OGHwarp#01")+"::OnEnable";
+		donpcevent instance_npcname("OGHwarp#02")+"::OnEnable";
+		donpcevent instance_npcname("Suspicious#lever")+"::OnEnable";
+		donpcevent instance_npcname("Suspicious#reward01")+"::OnEnable";
+		donpcevent instance_npcname("Suspicious#reward02")+"::OnEnable";
+		donpcevent instance_npcname("Suspicious#reward03")+"::OnEnable";
+		donpcevent instance_npcname("Suspicious#reward04")+"::OnEnable";
+		donpcevent instance_npcname("Suspicious#reward05")+"::OnEnable";
+		donpcevent instance_npcname("Suspicious#reward06")+"::OnEnable";
+		donpcevent instance_npcname("Suspicious#reward07")+"::OnEnable";
+		donpcevent instance_npcname("Suspicious#reward08")+"::OnEnable";
+		
 	}
 	end;
 }
@@ -1659,6 +1671,225 @@ OnTimer80000:
 
 // Treasure Room
 
+
+2@gl_k,150,166,0	script	OGHwarp#01	45,1,2,{
+	end;
+OnInstanceInit:
+	donpcevent instance_npcname("OGHwarp#01")+"::OnDisable";
+	end;
+OnDisable:
+	disablenpc instance_npcname("OGHwarp#01");
+	end;
+OnEnable:
+	enablenpc instance_npcname("OGHwarp#01");
+	end;
+OnTouch:
+	set .@map$, instance_mapname("2@gl_k");
+	warp .@map$,150,147;
+	end;
+}
+
+2@gl_k,149,30,0	script	OGHwarp#02	45,1,2,{
+	end;
+OnInstanceInit:
+	donpcevent instance_npcname("OGHwarp#02")+"::OnDisable";
+	end;
+OnDisable:
+	disablenpc instance_npcname("OGHwarp#02");
+	end;
+OnEnable:
+	enablenpc instance_npcname("OGHwarp#02");
+	end;
+OnTouch:
+	set .@map$, instance_mapname("1@gl_k");
+	warp .@map$,150,277;
+	end;
+}
+
+1@gl_k,270,260,0	script	Suspicious#lever	111,{
+	mes "";
+	mes "You feel something under the grass.";
+	next;
+		switch( select( "Touch it!:Leave it alone" )) {
+			case 1:
+			set .@map$, instance_mapname("1@gl_k");
+			warp .@map$,158,140;
+			case 2:
+			close;
+			end;
+		}
+		
+OnInstanceInit:
+	donpcevent instance_npcname("Suspicious#lever")+"::OnDisable";
+	end;
+OnDisable:
+	disablenpc instance_npcname("Suspicious#lever");
+	end;
+OnEnable:
+	enablenpc instance_npcname("Suspicious#lever");
+	end;
+}
+
+1@gl_k,171,134,0	script	Suspicious#reward01	111,{
+	makeitem 6608, rand(1,3),instance_mapname("1@gl_k"),172,134;
+	makeitem 6607, rand(1,3),instance_mapname("1@gl_k"),173,134;
+	makeitem 6608, rand(1,3),instance_mapname("1@gl_k"),172,136;
+	makeitem 6607, rand(1,3),instance_mapname("1@gl_k"),173,136;
+	makeitem 6608, rand(1,3),instance_mapname("1@gl_k"),172,138;
+	makeitem 6607, rand(1,3),instance_mapname("1@gl_k"),173,138;
+	donpcevent instance_npcname("Suspicious#reward01")+"::OnDisable";
+
+OnInstanceInit:
+	donpcevent instance_npcname("Suspicious#reward01")+"::OnDisable";
+	end;
+OnDisable:
+	disablenpc instance_npcname("Suspicious#reward01");
+	end;
+OnEnable:
+	enablenpc instance_npcname("Suspicious#reward01");
+	end;
+}
+
+1@gl_k,165,134,0	script	Suspicious#reward02	111,{
+	makeitem 6608, rand(1,3),instance_mapname("1@gl_k"),166,134;
+	makeitem 6607, rand(1,3),instance_mapname("1@gl_k"),167,134;
+	makeitem 6608, rand(1,3),instance_mapname("1@gl_k"),166,136;
+	makeitem 6607, rand(1,3),instance_mapname("1@gl_k"),167,136;
+	makeitem 6608, rand(1,3),instance_mapname("1@gl_k"),166,138;
+	makeitem 6607, rand(1,3),instance_mapname("1@gl_k"),167,138;
+	donpcevent instance_npcname("Suspicious#reward02")+"::OnDisable";
+
+OnInstanceInit:
+	donpcevent instance_npcname("Suspicious#reward02")+"::OnDisable";
+	end;
+OnDisable:
+	disablenpc instance_npcname("Suspicious#reward02");
+	end;
+OnEnable:
+	enablenpc instance_npcname("Suspicious#reward02");
+	end;
+}
+
+1@gl_k,159,134,0	script	Suspicious#reward03	111,{
+	makeitem 6608, rand(1,3),instance_mapname("1@gl_k"),160,134;
+	makeitem 6607, rand(1,3),instance_mapname("1@gl_k"),161,134;
+	makeitem 6608, rand(1,3),instance_mapname("1@gl_k"),160,136;
+	makeitem 6607, rand(1,3),instance_mapname("1@gl_k"),161,136;
+	makeitem 6608, rand(1,3),instance_mapname("1@gl_k"),160,138;
+	makeitem 6607, rand(1,3),instance_mapname("1@gl_k"),161,138;
+	donpcevent instance_npcname("Suspicious#reward03")+"::OnDisable";
+
+OnInstanceInit:
+	donpcevent instance_npcname("Suspicious#reward03")+"::OnDisable";
+	end;
+OnDisable:
+	disablenpc instance_npcname("Suspicious#reward03");
+	end;
+OnEnable:
+	enablenpc instance_npcname("Suspicious#reward03");
+	end;
+}
+
+1@gl_k,153,134,0	script	Suspicious#reward04	111,{
+	makeitem 6608, rand(1,3),instance_mapname("1@gl_k"),154,134;
+	makeitem 6607, rand(1,3),instance_mapname("1@gl_k"),155,134;
+	makeitem 6608, rand(1,3),instance_mapname("1@gl_k"),154,136;
+	makeitem 6607, rand(1,3),instance_mapname("1@gl_k"),155,136;
+	makeitem 6608, rand(1,3),instance_mapname("1@gl_k"),154,138;
+	makeitem 6607, rand(1,3),instance_mapname("1@gl_k"),155,138;
+	donpcevent instance_npcname("Suspicious#reward04")+"::OnDisable";
+
+OnInstanceInit:
+	donpcevent instance_npcname("Suspicious#reward04")+"::OnDisable";
+	end;
+OnDisable:
+	disablenpc instance_npcname("Suspicious#reward04");
+	end;
+OnEnable:
+	enablenpc instance_npcname("Suspicious#reward04");
+	end;
+}
+
+1@gl_k,147,134,0	script	Suspicious#reward05	111,{
+	makeitem 6608, rand(1,3),instance_mapname("1@gl_k"),148,134;
+	makeitem 6607, rand(1,3),instance_mapname("1@gl_k"),149,134;
+	makeitem 6608, rand(1,3),instance_mapname("1@gl_k"),148,136;
+	makeitem 6607, rand(1,3),instance_mapname("1@gl_k"),149,136;
+	makeitem 6608, rand(1,3),instance_mapname("1@gl_k"),148,138;
+	makeitem 6607, rand(1,3),instance_mapname("1@gl_k"),149,138;
+	donpcevent instance_npcname("Suspicious#reward05")+"::OnDisable";
+
+OnInstanceInit:
+	donpcevent instance_npcname("Suspicious#reward05")+"::OnDisable";
+	end;
+OnDisable:
+	disablenpc instance_npcname("Suspicious#reward05");
+	end;
+OnEnable:
+	enablenpc instance_npcname("Suspicious#reward05");
+	end;
+}
+
+1@gl_k,141,134,0	script	Suspicious#reward06	111,{
+	makeitem 6608, rand(1,3),instance_mapname("1@gl_k"),142,134;
+	makeitem 6607, rand(1,3),instance_mapname("1@gl_k"),143,134;
+	makeitem 6608, rand(1,3),instance_mapname("1@gl_k"),142,136;
+	makeitem 6607, rand(1,3),instance_mapname("1@gl_k"),143,136;
+	makeitem 6608, rand(1,3),instance_mapname("1@gl_k"),142,138;
+	makeitem 6607, rand(1,3),instance_mapname("1@gl_k"),143,138;
+	donpcevent instance_npcname("Suspicious#reward06")+"::OnDisable";
+
+OnInstanceInit:
+	donpcevent instance_npcname("Suspicious#reward06")+"::OnDisable";
+	end;
+OnDisable:
+	disablenpc instance_npcname("Suspicious#reward06");
+	end;
+OnEnable:
+	enablenpc instance_npcname("Suspicious#reward06");
+	end;
+}
+
+1@gl_k,135,134,0	script	Suspicious#reward07	111,{
+	makeitem 6608, rand(1,3),instance_mapname("1@gl_k"),136,134;
+	makeitem 6607, rand(1,3),instance_mapname("1@gl_k"),137,134;
+	makeitem 6608, rand(1,3),instance_mapname("1@gl_k"),136,136;
+	makeitem 6607, rand(1,3),instance_mapname("1@gl_k"),137,136;
+	makeitem 6608, rand(1,3),instance_mapname("1@gl_k"),136,138;
+	makeitem 6607, rand(1,3),instance_mapname("1@gl_k"),137,138;
+	donpcevent instance_npcname("Suspicious#reward07")+"::OnDisable";
+
+OnInstanceInit:
+	donpcevent instance_npcname("Suspicious#reward07")+"::OnDisable";
+	end;
+OnDisable:
+	disablenpc instance_npcname("Suspicious#reward07");
+	end;
+OnEnable:
+	enablenpc instance_npcname("Suspicious#reward07");
+	end;
+}
+
+1@gl_k,129,134,0	script	Suspicious#reward08	111,{
+	makeitem 6608, rand(1,3),instance_mapname("1@gl_k"),130,134;
+	makeitem 6607, rand(1,3),instance_mapname("1@gl_k"),131,134;
+	makeitem 6608, rand(1,3),instance_mapname("1@gl_k"),130,136;
+	makeitem 6607, rand(1,3),instance_mapname("1@gl_k"),131,136;
+	makeitem 6608, rand(1,3),instance_mapname("1@gl_k"),130,138;
+	makeitem 6607, rand(1,3),instance_mapname("1@gl_k"),131,138;
+	donpcevent instance_npcname("Suspicious#reward08")+"::OnDisable";
+	
+OnInstanceInit:
+	donpcevent instance_npcname("Suspicious#reward08")+"::OnDisable";
+	end;
+OnDisable:
+	disablenpc instance_npcname("Suspicious#reward08");
+	end;
+OnEnable:
+	enablenpc instance_npcname("Suspicious#reward08");
+	end;
+}
+
 // Treasure Box
 //1@gl_k,170,134,1	Treasure#OGH1	111,{
 //	
@@ -1687,6 +1918,8 @@ OnTimer80000:
 	// Secrect Chamber
 	//1@gl_k,270,263,0	warp	ogh#3	1,1,1@gl_k,151,143
 	
+	//Warportals.
+
 		if (checkquest(12319,HUNTING) == 2) {
 		mes "[Hugin]";
 		mes "Well, you are pretty ridiculous. Beginners shouldn't get the loot Amdarias drops.";

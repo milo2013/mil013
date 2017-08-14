@@ -41,6 +41,28 @@ milenia,113,138,5	script	PvP Warper	497,{
 	close;
 	end;
 	}
+
+	mes "[PVP Officer]";
+	mes "Welcome back ^ff0000" + strcharinfo(0) + "^000000!!";
+	next;
+	mes "[PVP Officer]";
+	mes "Which arena you want to enter this time?";
+	next;
+		switch( select( "Milenia Arena:Izlude Arena:Cancel" )) {
+			case 1:
+				callfunc "PVP#NORMAL";
+				end;
+			case 2:
+				callfunc "PVP#IZLUDE";
+				end;
+			case 3:
+				close;
+				end;
+				}
+}
+	
+function	script	PVP#NORMAL	{
+	
 	if (pvp01) == 1 {
 	warp "milenia_pvp",82,49;
 	mapannounce "milenia_pvp", strcharinfo(0) + " has entered the PVP Arena!",0;
@@ -70,6 +92,41 @@ milenia,113,138,5	script	PvP Warper	497,{
     warp "milenia_pvp",50,83;
 	mapannounce "milenia_pvp", strcharinfo(0) + " has entered the PVP Arena!",0;
 	mapannounce "milenia", strcharinfo(0) + " has entered the PVP Arena!",0;
+	set pvp01,1;
+    end;
+}
+
+function	script	PVP#IZLUDE	{
+	
+	if (pvp01) == 1 {
+	warp "izlude_pvp",128,59;
+	mapannounce "izlude_pvp", strcharinfo(0) + " has entered the PVP Arena!",0;
+	mapannounce "milenia", strcharinfo(0) + " has entered the PVP Arena - Izlude!",0;
+	set pvp02,1;
+	set pvp01,0;
+    end;
+	}
+	
+	if (pvp02) == 1 {
+	warp "izlude_pvp",128,252;
+	mapannounce "izlude_pvp", strcharinfo(0) + " has entered the PVP Arena!",0;
+	mapannounce "milenia", strcharinfo(0) + " has entered the PVP Arena - Izlude!",0;
+	set pvp03,1;
+	set pvp02,0;
+    end;
+	}
+	
+	if (pvp03) == 1 {
+	warp "izlude_pvp",53,163;
+	mapannounce "izlude_pvp", strcharinfo(0) + " has entered the PVP Arena!",0;
+	mapannounce "milenia", strcharinfo(0) + " has entered the PVP Arena - Izlude!",0;
+	set pvp03,0;
+    end;
+	}
+	
+    warp "izlude_pvp",205,162;
+	mapannounce "izlude_pvp", strcharinfo(0) + " has entered the PVP Arena!",0;
+	mapannounce "milenia", strcharinfo(0) + " has entered the PVP Arena - Izlude!",0;
 	set pvp01,1;
     end;
 }
@@ -580,3 +637,11 @@ milenia_pvp	mapflag	pvp_noguild
 milenia_pvp	mapflag	noteleport
 milenia_pvp	mapflag	nomemo
 milenia_pvp	mapflag	restricted	3
+
+izlude_pvp	mapflag	nosave	SavePoint
+izlude_pvp	mapflag	pvp
+izlude_pvp	mapflag	pvp_noguild
+//izlude_pvp	mapflag	pvp_noparty
+izlude_pvp	mapflag	noteleport
+izlude_pvp	mapflag	nomemo
+izlude_pvp	mapflag	restricted	3
