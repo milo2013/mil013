@@ -42,7 +42,7 @@ milenia,134,159,4	script	Milenia GM Rewards#gmr	4_F_KAFRA9,{
 	function func_view_reward;
 	
 	OnInit:
-		.gm_level = 2;
+		.gm_level = 99;
 		.shop_name$ = "gm_reward_shop";
 		end;
 		

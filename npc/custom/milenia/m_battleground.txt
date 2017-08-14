@@ -345,7 +345,7 @@ prt_cas	mapflag	noicewall
 
 -	script	RewardSaturday	-1,{
 	
-OnSat2301: 
+OnSat2305: 
 	
 set .@GID_HO, GetCastleData("arug_cas03",1);
 warpguild "milenia",119,152,.@GID_HO;
@@ -355,7 +355,7 @@ end;
 
 -	script	RewardSunday	-1,{
 
-OnSun2301:
+OnSun2305:
 	
 set .@GID_HM, GetCastleData("schg_cas01",1);
 warpguild "prt_cas",96,79,.@GID_HM;
@@ -391,8 +391,8 @@ prt_cas,96,81,5	script	King William VI#2	965,{
 	}
 	
 
-set .@GID_HO, GetCastleData("arug_cas01",1);
-set .@GID_HM, GetCastleData("schg_cas03",1);
+set .@GID_HO, GetCastleData("arug_cas03",1);
+set .@GID_HM, GetCastleData("schg_cas01",1);
 
 if (getcharid(2) == .@GID_HO) {
 mes "[King William]";
