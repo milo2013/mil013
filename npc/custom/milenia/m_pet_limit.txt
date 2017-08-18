@@ -220,7 +220,7 @@ warp "milenia",71,185;
 function	script	TokenLimitFunc	{
 
 OnPCLoadMapEvent:
-setarray .map$,"ds","1@farm","2@farm","3@farm","4@farm";
+setarray .map$,"ds","1@farm","2@farm","3@farm","4@farm","milenia_pvp","izlude_pvp";
     getmapxy(@map$, @xb, @yb, 0 );
         if (@map$ == .map$) {
                 dispbottom "You cannot use this in here!!";

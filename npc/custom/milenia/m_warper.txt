@@ -364,7 +364,7 @@ D38: setarray @c[2],205,15,129,133;
 	 Disp("Toy Factory",1,2); Pick("xmas_dun");
 D39: setarray @c[2],154,49,148,261,132,189,100,192;
 	 Disp("Entrance:Turtle Dungeon 1:Turtle Dungeon 2:Turtle Dungeon 3"); Pick("tur_dun");
-D40: Restrict("Pre-RE",1,2);
+D40: //Restrict("Pre-RE",1,2);
 	 setarray @c[2],42,31,48,30,204,78;
 	 Disp("Carpenter's Shop in the Tree:Passage to a Foreign World:Hvergermil's Fountain");
 	 Pick("","um_dun01","um_dun02","yggdrasil01");

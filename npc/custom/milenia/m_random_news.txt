@@ -4,6 +4,7 @@ set .Time,60;		// Announce every x Minute.
 
 setarray .News$[0],	// Random Message to be Announced
 		"Milenia RO : RM1.00 = 1 Cashpoints~ Donate via Maybank2u now!!",
+		"Milenia RO : $0.50 for 1 Gashapon Coupon! Get it at our website!!",
 		"Milenia RO : 4 Cashpoints just $1~ Buy in our website..",
 		"Milenia RO : Did you know? You can get free 3 Days VIP Refiner with min $10 Donation.",
 		"Milenia RO : Recommend our server to your friends to make us grow!!",

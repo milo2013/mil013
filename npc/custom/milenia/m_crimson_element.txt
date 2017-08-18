@@ -106,6 +106,14 @@ switch(select("Give Crimson Element:Cancel")) {
 			set .@part, EQI_HAND_R;
 			break;
 		}
+		
+		
+		if  (getequipid(EQI_HAND_R) == 28604) {
+			set .@equip_id,13327; //CRIMSON BIBLE
+			set .@part, EQI_HAND_R;
+			break;
+		}
+		
 	//}
 	else {
 			mes "[Crimson Elementalist]";
@@ -130,7 +138,7 @@ switch(select("Give Crimson Element:Cancel")) {
 		close;
 	}
 	
-	if (Zeny < 100000) {  
+	if (Zeny < 10000000) {  
 		mes "[Crimson Elementalist]";
 		mes "I'm sorry, but you don't have enough Zeny!";
 		next;
