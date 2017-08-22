@@ -1,20 +1,6 @@
-// same method enchant in mora village (1 option explain, 2 option add enchants, 3 option remove enchants, if you equip is +9 add special enchants).
-//====================================== UNKNOWN %, ENCHANTS AVAILABLE, ETC (NO SCRIPTING FOR NOW).
 verus04,71,106,5	script	Charleston Enchant#2	10053,{
 	cutin "dalle01.bmp",2;
-	
-	/* 
-	
-	// NOT COMPLETE
-	mes "[Charleston Mass Production]";
-	mes "This script not complete yet.";
-	mes "Please wait till GM Rakuzas complete it. Thanks!";
-	cutin "",255;
-	close;
-	
-	*/
-	
-	//BEGIN HERE
+
 	mes "[Charleston Mass Production]";
 	mes "We are upgrading our Charleston factory products. If you have any related items, please let me know.";
 	next;
@@ -25,7 +11,7 @@ verus04,71,106,5	script	Charleston Enchant#2	10053,{
 			mes "I am charge 100,000 Zeny and 1 Charleston Part for 1 Reinforcement, or Initialization.";
 			next;
 			mes "[Charleston Mass Production]";
-			mes "For reference, if you bring your equipment up to ^ff0000 + 9 smelting ^000000, you will be able to choose a greater hidden power.";
+			mes "For reference, if you bring your equipment up to ^ff0000 + 9 refine ^000000, you will be able to choose a greater hidden power.";
 			next;
 			mes "[Charleston Mass Production]";
 			mes "And one more thing, I know how to refrain from destroying and damaging your cards when you give them power, so you can rest assured.";
@@ -66,15 +52,9 @@ verus04,71,106,5	script	Charleston Enchant#2	10053,{
 			mes "[Charleston Mass Production]";
 			mes "Please select the product you want to Initialization.";
 			next;
-			switch(select("^FF0000Cancel ^000000","Shoes","Armor","Garment","Accessory"))
+			switch(select("Shoes","Armor","Garment","Accessory","^FF0000Cancel ^000000"))
 			{
 				case 1:
-					mes "[Charleston Mass Production]";
-					mes "Please come back once you have equipped the equipment.";
-					close2;
-					cutin "",255;
-					end;
-				case 2:
 					cutin "",255;
 					if (getequipid(EQI_SHOES) == 22044) {
 						set .@equip_id,22044; // Upgrade Part - Booster [1]
@@ -83,14 +63,14 @@ verus04,71,106,5	script	Charleston Enchant#2	10053,{
 
 					}
 					
-					if (getequipid(EQI_SHOES) == 22043) {
+					if (getequipid(EQI_SHOES) == 22044) {
 						set .@equip_id,22043; // Supplement Part Agi [1]
 						set .@part, EQI_SHOES;
 						goto LResetMenu;
 
 					}
 					
-				case 3:
+				case 2:
 					cutin "",255;
 					if (getequipid(EQI_ARMOR) == 15111) {
 						set .@equip_id,15111; // Upgrade Part - Plate
@@ -105,7 +85,7 @@ verus04,71,106,5	script	Charleston Enchant#2	10053,{
 						goto LResetMenu;
 
 					}
-				case 4:
+				case 3:
 					cutin "",255;
 					
 					if (getequipid(EQI_GARMENT) == 20733) {
@@ -122,9 +102,16 @@ verus04,71,106,5	script	Charleston Enchant#2	10053,{
 						
 					}
 				
-				case 5:
+				case 4:
 					cutin "",255;
 					goto LAccecoryReset;
+					
+				case 5:
+					mes "[Charleston Mass Production]";
+					mes "Please come back once you have equipped the equipment.";
+					close2;
+					cutin "",255;
+					end;
 			}
 	}
 	
@@ -156,10 +143,10 @@ if (getequipisequiped(.@part) == 0) {
 	}
 	if (countitem (6752) < 10){
 		mes "[Charleston Mass Production]";
-		mes "I'm sorry, but you don't have enough Broken Magic Stone!";
+		mes "I'm sorry, but you don't have enough Charleson Parts!";
 		next;
 		mes "[Charleston Mass Production]";
-		mes "Please come again when you have enough Broken Magic Stone.";
+		mes "Please come again when you have enough Charleson Parts.";
 		close;
 	}
 	if (getequipid(.@part) != .@equip_id) {
@@ -194,51 +181,63 @@ if (getequipisequiped(.@part) == 0) {
 				mes "[Charleston Mass Production]";
 				mes "The third slot has already been enchanted. Shall I enchant the second slot as well?";
 				next;
-				if(select("Do it later:Do it now") == 1) {
-					mes "[Charleston Mass Production]";
-					mes "Very well. Hope to see you later.";
-					close;
+				switch(select("Do it now","Do it later")){
+					case 1:
+						mes "[Charleston Mass Production]";
+						mes "Starting to enchant the second slot.";
+						next;
+						set .@ko_type02,3;
+						break;
+				
+					case 2:
+						mes "[Charleston Mass Production]";
+						mes "Very well. Hope to see you later.";
+						close;
 				}
-				mes "[Charleston Mass Production]";
-				mes "Starting to enchant the second slot.";
-				next;
-				set .@ko_type02,3;
 			}
 			
 			else {
 				mes "[Charleston Mass Production]";
 				mes "The fourth slot has already been enchanted. Shall I enchant the third slot as well?";
 				next;
-				if(select("Do it later:Do it now") == 1) {
-					mes "[Charleston Mass Production]";
-					mes "Very well. Hope to see you later.";
-					close;
+				switch(select("Do it now","Do it later")){
+					case 1:
+						mes "[Charleston Mass Production]";
+						mes "Starting to enchant the third slot.";
+						next;
+						set .@ko_type02,2;
+						break;
+				
+					case 2:
+						mes "[Charleston Mass Production]";
+						mes "Very well. Hope to see you later.";
+						close;
 				}
-				mes "[Charleston Mass Production]";
-				mes "Starting to enchant the third slot.";
-				next;
-				set .@ko_type02,2;
 			}
 	} else {
 		mes "[Charleston Mass Production]";
 		mes "This equipment is not currently enchanted. Shall I enchant the fourth slot?";
 		next;
-		if(select("Do it later:Do it now") == 1) {
-			mes "[Charleston Mass Production]";
-			mes "Very well. Hope to see you later.";
-			close;
-		}
-		mes "[Charleston Mass Production]";
-		mes "Starting to enchant the fourth slot.";
-		next;
-		set .@ko_type02,1;
+		switch(select("Do it now","Do it later")){
+					case 1:
+						mes "[Charleston Mass Production]";
+						mes "Starting to enchant the fourth slot.";
+						next;
+						set .@ko_type02,1;
+						break;
+				
+					case 2:
+						mes "[Charleston Mass Production]";
+						mes "Very well. Hope to see you later.";
+						close;
+				}
 	}
 	
 	if (.@ko_type02 == 1) {  // slot 4
 		set .@r, rand(1,1000);
 		switch (.@ko_type01) {
 		case 1:
-			if (.@r <= 50) 		set .@d_socket04,4731; //Agility2 
+			if (.@r <= 50) 			set .@d_socket04,4731; //Agility2 
 			else if (.@r <= 200) 	set .@d_socket04,4730; //Agility1
 			else if (.@r <= 300) 	set .@d_socket04,4750; //Luck1
 			else if (.@r <= 400) 	set .@d_socket04,4751; //Luck2
@@ -254,7 +253,7 @@ if (getequipisequiped(.@part) == 0) {
 			set .@enchant, .@d_socket04;
 			break;
 		case 2:
-			if (.@r <= 50) 		set .@d_socket04,4731; //Agility2 
+			if (.@r <= 50) 			set .@d_socket04,4731; //Agility2 
 			else if (.@r <= 200) 	set .@d_socket04,4730; //Agility1
 			else if (.@r <= 300) 	set .@d_socket04,4750; //Luck1
 			else if (.@r <= 400) 	set .@d_socket04,4751; //Luck2
@@ -277,7 +276,7 @@ if (getequipisequiped(.@part) == 0) {
 		set .@r, rand(1,1000);
 		switch (.@ko_type01) {
 		case 1:
-			if (.@r <= 50) 		set .@d_socket03,4731; //Agility2 
+			if (.@r <= 50) 			set .@d_socket03,4731; //Agility2 
 			else if (.@r <= 200) 	set .@d_socket03,4730; //Agility1
 			else if (.@r <= 300) 	set .@d_socket03,4750; //Luck1
 			else if (.@r <= 400) 	set .@d_socket03,4751; //Luck2
@@ -293,7 +292,7 @@ if (getequipisequiped(.@part) == 0) {
 			set .@enchant, .@d_socket03;
 			break;
 		case 2:
-			if (.@r <= 50) 		set .@d_socket03,4731; //Agility2 
+			if (.@r <= 50) 			set .@d_socket03,4731; //Agility2 
 			else if (.@r <= 200) 	set .@d_socket03,4730; //Agility1
 			else if (.@r <= 300) 	set .@d_socket03,4750; //Luck1
 			else if (.@r <= 400) 	set .@d_socket03,4751; //Luck2
@@ -316,7 +315,7 @@ if (getequipisequiped(.@part) == 0) {
 		set .@r, rand(1,1000);
 		switch (.@ko_type01) {
 		case 1:
-			if (.@r <= 50) 		set .@d_socket02,4731; //Agility2 
+			if (.@r <= 50) 			set .@d_socket02,4731; //Agility2 
 			else if (.@r <= 200) 	set .@d_socket02,4730; //Agility1
 			else if (.@r <= 300) 	set .@d_socket02,4750; //Luck1
 			else if (.@r <= 400) 	set .@d_socket02,4751; //Luck2
@@ -332,7 +331,7 @@ if (getequipisequiped(.@part) == 0) {
 			set .@enchant, .@d_socket02;
 			break;
 		case 2:
-			if (.@r <= 50) 		set .@d_socket02,4731; //Agility2 
+			if (.@r <= 50) 			set .@d_socket02,4731; //Agility2 
 			else if (.@r <= 200) 	set .@d_socket02,4730; //Agility1
 			else if (.@r <= 300) 	set .@d_socket02,4750; //Luck1
 			else if (.@r <= 400) 	set .@d_socket02,4751; //Luck2
@@ -357,6 +356,8 @@ if (getequipisequiped(.@part) == 0) {
 		close;
 	}
 	if (.@enchantFAILED == 1) {
+			misceffect 155;
+			delequip .@part;
 			mes "[Charleston Mass Production]]";
 			mes "Be merciful to the survivor,";
 			mes "Send flowers to the dead.";
@@ -369,6 +370,7 @@ if (getequipisequiped(.@part) == 0) {
 			mes "But the important point is... the ^44B7BC" + getitemname(.@equip_id) + "^000000 is damaged!";
 			close;
 		set .@enchantFAILED,0;
+		
 		}
 		
 	if (.@ko_type02 == 1) {
@@ -420,10 +422,10 @@ if (getequipisequiped(.@part) == 0) {
 	}
 	if (countitem (6752) < 10){
 		mes "[Charleston Mass Production]";
-		mes "I'm sorry, but you don't have enough Broken Magic Stone!";
+		mes "I'm sorry, but you don't have enough Charleson Parts!";
 		next;
 		mes "[Charleston Mass Production]";
-		mes "Please come again when you have enough Broken Magic Stone.";
+		mes "Please come again when you have enough Charleson Parts.";
 		close;
 	}
 	if (getequipid(.@part) != .@equip_id) {
@@ -458,51 +460,64 @@ if (getequipisequiped(.@part) == 0) {
 				mes "[Charleston Mass Production]";
 				mes "The third slot has already been enchanted. Shall I enchant the second slot as well?";
 				next;
-				if(select("Do it later:Do it now") == 1) {
-					mes "[Charleston Mass Production]";
-					mes "Very well. Hope to see you later.";
-					close;
+				switch(select("Do it now","Do it later")){
+					case 1:
+						mes "[Charleston Mass Production]";
+						mes "Starting to enchant the second slot.";
+						next;
+						set .@ko_type02,3;
+						break;
+				
+					case 2:
+						mes "[Charleston Mass Production]";
+						mes "Very well. Hope to see you later.";
+						close;
 				}
-				mes "[Charleston Mass Production]";
-				mes "Starting to enchant the second slot.";
-				next;
-				set .@ko_type02,3;
 			}
 			
 			else {
 				mes "[Charleston Mass Production]";
 				mes "The fourth slot has already been enchanted. Shall I enchant the third slot as well?";
 				next;
-				if(select("Do it later:Do it now") == 1) {
-					mes "[Charleston Mass Production]";
-					mes "Very well. Hope to see you later.";
-					close;
+				switch(select("Do it now","Do it later")){
+					case 1:
+						mes "[Charleston Mass Production]";
+						mes "Starting to enchant the third slot.";
+						next;
+						set .@ko_type02,2;
+						break;
+				
+					case 2:
+						mes "[Charleston Mass Production]";
+						mes "Very well. Hope to see you later.";
+						close;
 				}
-				mes "[Charleston Mass Production]";
-				mes "Starting to enchant the third slot.";
-				next;
-				set .@ko_type02,2;
 			}
 	} else {
 		mes "[Charleston Mass Production]";
 		mes "This equipment is not currently enchanted. Shall I enchant the fourth slot?";
 		next;
-		if(select("Do it later:Do it now") == 1) {
-			mes "[Charleston Mass Production]";
-			mes "Very well. Hope to see you later.";
-			close;
+		
+		switch(select("Do it now","Do it later")){
+					case 1:
+						mes "[Charleston Mass Production]";
+						mes "Starting to enchant the fourth slot.";
+						next;
+						set .@ko_type02,1;
+						break;
+				
+					case 2:
+						mes "[Charleston Mass Production]";
+						mes "Very well. Hope to see you later.";
+						close;
 		}
-		mes "[Charleston Mass Production]";
-		mes "Starting to enchant the fourth slot.";
-		next;
-		set .@ko_type02,1;
 	}
 	
 	if (.@ko_type02 == 1) {  // slot 4
 		set .@r, rand(1,1000);
 		switch (.@ko_type01) {
 		case 1:
-			if (.@r <= 50) 		set .@d_socket04,4731; //Agility2 
+			if (.@r <= 50) 			set .@d_socket04,4731; //Agility2 
 			else if (.@r <= 150) 	set .@d_socket04,4730; //Agility1
 			else if (.@r <= 250) 	set .@d_socket04,4750; //Luck1
 			else if (.@r <= 350) 	set .@d_socket04,4751; //Luck2
@@ -517,7 +532,7 @@ if (getequipisequiped(.@part) == 0) {
 			set .@enchant, .@d_socket04;
 			break;
 		case 2:
-			if (.@r <= 50) 		set .@d_socket04,4731; //Agility2 
+			if (.@r <= 50) 			set .@d_socket04,4731; //Agility2 
 			else if (.@r <= 150) 	set .@d_socket04,4730; //Agility1
 			else if (.@r <= 250) 	set .@d_socket04,4750; //Luck1
 			else if (.@r <= 350) 	set .@d_socket04,4751; //Luck2
@@ -543,7 +558,7 @@ if (getequipisequiped(.@part) == 0) {
 		set .@r, rand(1,1000);
 		switch (.@ko_type01) {
 		case 1:
-			if (.@r <= 50) 		set .@d_socket03,4731; //Agility2 
+			if (.@r <= 50) 			set .@d_socket03,4731; //Agility2 
 			else if (.@r <= 150) 	set .@d_socket03,4730; //Agility1
 			else if (.@r <= 250) 	set .@d_socket03,4750; //Luck1
 			else if (.@r <= 350) 	set .@d_socket03,4751; //Luck2
@@ -558,7 +573,7 @@ if (getequipisequiped(.@part) == 0) {
 			set .@enchant, .@d_socket03;
 			break;
 		case 2:
-			if (.@r <= 50) 		set .@d_socket03,4731; //Agility2 
+			if (.@r <= 50) 			set .@d_socket03,4731; //Agility2 
 			else if (.@r <= 150) 	set .@d_socket03,4730; //Agility1
 			else if (.@r <= 250) 	set .@d_socket03,4750; //Luck1
 			else if (.@r <= 350) 	set .@d_socket03,4751; //Luck2
@@ -584,7 +599,7 @@ if (getequipisequiped(.@part) == 0) {
 		set .@r, rand(1,1000);
 		switch (.@ko_type01) {
 		case 1:
-			if (.@r <= 50) 		set .@d_socket02,4731; //Agility2 
+			if (.@r <= 50) 			set .@d_socket02,4731; //Agility2 
 			else if (.@r <= 150) 	set .@d_socket02,4730; //Agility1
 			else if (.@r <= 250) 	set .@d_socket02,4750; //Luck1
 			else if (.@r <= 350) 	set .@d_socket02,4751; //Luck2
@@ -599,7 +614,7 @@ if (getequipisequiped(.@part) == 0) {
 			set .@enchant, .@d_socket02;
 			break;
 		case 2:
-			if (.@r <= 50) 		set .@d_socket02,4731; //Agility2 
+			if (.@r <= 50) 			set .@d_socket02,4731; //Agility2 
 			else if (.@r <= 150) 	set .@d_socket02,4730; //Agility1
 			else if (.@r <= 250) 	set .@d_socket02,4750; //Luck1
 			else if (.@r <= 350) 	set .@d_socket02,4751; //Luck2
@@ -627,6 +642,8 @@ if (getequipisequiped(.@part) == 0) {
 		close;
 	}
 	if (.@enchantFAILED == 1) {
+			misceffect 155;
+			delequip .@part;
 			mes "[Charleston Mass Production]]";
 			mes "Be merciful to the survivor,";
 			mes "Send flowers to the dead.";
@@ -694,10 +711,10 @@ if (getequipisequiped(.@part) == 0) {
 	}
 	if (countitem (6752) < 10){
 		mes "[Charleston Mass Production]";
-		mes "I'm sorry, but you don't have enough Broken Magic Stone!";
+		mes "I'm sorry, but you don't have enough Charleson Parts!";
 		next;
 		mes "[Charleston Mass Production]";
-		mes "Please come again when you have enough Broken Magic Stone.";
+		mes "Please come again when you have enough Charleson Parts.";
 		close;
 	}
 	if (getequipid(.@part) != .@equip_id) {
@@ -732,45 +749,57 @@ if (getequipisequiped(.@part) == 0) {
 				mes "[Charleston Mass Production]";
 				mes "The third slot has already been enchanted. Shall I enchant the second slot as well?";
 				next;
-				if(select("Do it later:Do it now") == 1) {
-					mes "[Charleston Mass Production]";
-					mes "Very well. Hope to see you later.";
-					close;
+				switch(select("Do it now","Do it later")){
+					case 1:
+						mes "[Charleston Mass Production]";
+						mes "Starting to enchant the second slot.";
+						next;
+						set .@ko_type02,3;
+						break;
+				
+					case 2:
+						mes "[Charleston Mass Production]";
+						mes "Very well. Hope to see you later.";
+						close;
 				}
-				mes "[Charleston Mass Production]";
-				mes "Starting to enchant the second slot.";
-				next;
-				set .@ko_type02,3;
 			}
 			
 			else {
 				mes "[Charleston Mass Production]";
 				mes "The fourth slot has already been enchanted. Shall I enchant the third slot as well?";
 				next;
-				if(select("Do it later:Do it now") == 1) {
-					mes "[Charleston Mass Production]";
-					mes "Very well. Hope to see you later.";
-					close;
+				switch(select("Do it now","Do it later")){
+					case 1:
+						mes "[Charleston Mass Production]";
+						mes "Starting to enchant the third slot.";
+						next;
+						set .@ko_type02,2;
+						break;
+				
+					case 2:
+						mes "[Charleston Mass Production]";
+						mes "Very well. Hope to see you later.";
+						close;
 				}
-				mes "[Charleston Mass Production]";
-				mes "Starting to enchant the third slot.";
-				next;
-				set .@ko_type02,2;
 			}
 	} else {
 		mes "[Charleston Mass Production]";
 		mes "This equipment is not currently enchanted. Shall I enchant the fourth slot?";
 		next;
-		if(select("Do it later:Do it now") == 1) {
-			mes "[Charleston Mass Production]";
-			mes "Very well. Hope to see you later.";
-			close;
-		}
-		mes "[Charleston Mass Production]";
-		mes "Starting to enchant the fourth slot.";
-		next;
-		set .@ko_type02,1;
-	}
+				switch(select("Do it now","Do it later")){
+					case 1:
+						mes "[Charleston Mass Production]";
+						mes "Starting to enchant the fourth slot.";
+						next;
+						set .@ko_type02,1;
+						break;
+				
+					case 2:
+						mes "[Charleston Mass Production]";
+						mes "Very well. Hope to see you later.";
+						close;
+				}
+			}
 	
 	if (.@ko_type02 == 1) {  // slot 4
 		set .@r, rand(1,1000);
@@ -878,6 +907,8 @@ if (getequipisequiped(.@part) == 0) {
 		close;
 	}
 	if (.@enchantFAILED == 1) {
+			misceffect 155;
+			delequip .@part;
 			mes "[Charleston Mass Production]]";
 			mes "Be merciful to the survivor,";
 			mes "Send flowers to the dead.";
@@ -920,19 +951,32 @@ if (getequipisequiped(.@part) == 0) {
 		mes "You want to reset ^44B7BC" + getitemname(.@equip_id) + "^000000?";
 		next;
 		mes "[Charleston Mass Production]";
-		mes "The cost is the same but I do provide a service to remove only the Enchant on the 3rd slot and leave the 4th slot as is. Are you interested?";
+		mes "The cost is the same but I do provide a service to remove any slot of enchant. Are you interested?";
 		next;
-		switch(select("Reset only the 3rd Slot.:Reset all.")) {
+		switch(select("Reset all.:Reset only the 4th Slot.:Reset only the 3rd Slot.:Reset only the 2nd Slot.")) {
 		case 1:
+			mes "[Charleston Mass Production]";
+			mes "Very well. I will reset all slots.";
+			next;
+			set .@sot99_ck,1;
+			break;
+		case 2:
+			mes "[Charleston Mass Production]";
+			mes "Very well. I will reset only your 4th slot.";
+			next;
+			set .@sot04_ck,1;
+			break;
+		case 3:
 			mes "[Charleston Mass Production]";
 			mes "Very well. I will reset only your 3rd slot.";
 			next;
 			set .@sot03_ck,1;
 			break;
-		case 2:
+		case 4:
 			mes "[Charleston Mass Production]";
-			mes "Very well. I will reset all slots.";
+			mes "Very well. I will reset only your 2nd slot.";
 			next;
+			set .@sot02_ck,1;
 			break;
 		}
 	set .@select,2;
@@ -969,6 +1013,15 @@ if (getequipisequiped(.@part) == 0) {
 
 	// Initialization
 	if (.@select == 2) {
+		if (.@sot04_ck) {
+			if (.@equip_card[3] < 4700) { // Armor Enchant System
+				mes "[Charleston Mass Production]";
+				mes "The forth slot is is not enchanted. Please check again."; //custom translation
+				close;
+			}
+			set .@equip_card[3],0;
+			
+		}	
 		if (.@sot03_ck) {
 			if (.@equip_card[2] < 4700) { // Armor Enchant System
 				mes "[Charleston Mass Production]";
@@ -976,7 +1029,19 @@ if (getequipisequiped(.@part) == 0) {
 				close;
 			}
 			set .@equip_card[2],0;
-		} else {
+			
+		}	
+		if (.@sot02_ck) {
+			if (.@equip_card[1] < 4700) { // Armor Enchant System
+				mes "[Charleston Mass Production]";
+				mes "The second slot is is not enchanted. Please check again."; //custom translation
+				close;
+			}
+			set .@equip_card[1],0;
+		
+			
+		} 
+		if (.@sot99_ck) {
 			if (.@equip_card[3] < 4700) { // Armor Enchant System
 				mes "[Charleston Mass Production]";
 				mes "This equipment is is not enchanted. Please check again."; //custom translation
@@ -985,6 +1050,7 @@ if (getequipisequiped(.@part) == 0) {
 			set .@equip_card[1],0;
 			set .@equip_card[2],0;
 			set .@equip_card[3],0;
+			
 		}
 		progressbar "ffff00",2;
 		set Zeny, Zeny - 100000;
@@ -1045,26 +1111,33 @@ if (getequipisequiped(.@part) == 0) {
 		mes "You want to reset ^44B7BC" + getitemname(.@equip_id) + "^000000?";
 		next;
 		mes "[Charleston Mass Production]";
-		mes "The cost is the same but I do provide a service to remove only the Enchant on the 3rd slot and leave the 4th slot as is. Are you interested?";
+		mes "The cost is the same but I do provide a service to remove any enchant to 3rd slot only or 4 slot only. Are you interested?";
 		next;
-		switch(select("Reset only the 3rd Slot.:Reset all.")) {
+		switch(select("Reset all.:Reset only the 4th Slot.:Reset only the 3rd Slot.")) {
 		case 1:
+			mes "[Charleston Mass Production]";
+			mes "Very well. I will reset all slots.";
+			next;
+			set .@sot99_ck,1;
+			break;
+		case 2:
+			mes "[Charleston Mass Production]";
+			mes "Very well. I will reset only your 4th slot.";
+			next;
+			set .@sot04_ck,1;
+			break;
+		case 3:
 			mes "[Charleston Mass Production]";
 			mes "Very well. I will reset only your 3rd slot.";
 			next;
 			set .@sot03_ck,1;
-			break;
-		case 2:
-			mes "[Charleston Mass Production]";
-			mes "Very well. I will reset all slots.";
-			next;
 			break;
 		}
 	set .@select,2;
 
 	if (getequipisequiped(.@part) == 0) {
 		mes "[Charleston Mass Production]";
-		mes "You will have to equip all items before to start reset!";
+		mes "You will have to equip all items before you start RESET!";
 		close;
 	}
 	if (Zeny < 100000) {  //custom translation
@@ -1094,6 +1167,15 @@ if (getequipisequiped(.@part) == 0) {
 
 	// Initialization
 	if (.@select == 2) {
+		if (.@sot04_ck) {
+			if (.@equip_card[3] < 4700) { // Armor Enchant System
+				mes "[Charleston Mass Production]";
+				mes "The forth slot is is not enchanted. Please check again."; //custom translation
+				close;
+			}
+			set .@equip_card[3],0;
+			
+		}	
 		if (.@sot03_ck) {
 			if (.@equip_card[2] < 4700) { // Armor Enchant System
 				mes "[Charleston Mass Production]";
@@ -1101,7 +1183,9 @@ if (getequipisequiped(.@part) == 0) {
 				close;
 			}
 			set .@equip_card[2],0;
-		} else {
+			
+		}	 
+		if (.@sot99_ck) {
 			if (.@equip_card[3] < 4700) { // Armor Enchant System
 				mes "[Charleston Mass Production]";
 				mes "This equipment is is not enchanted. Please check again."; //custom translation
@@ -1110,12 +1194,13 @@ if (getequipisequiped(.@part) == 0) {
 			set .@equip_card[1],0;
 			set .@equip_card[2],0;
 			set .@equip_card[3],0;
+			
 		}
 		progressbar "ffff00",2;
 		set Zeny, Zeny - 100000;
 		delitem 6752,10;
 		delequip .@part;
-
+		
 //		GetNonSlotItemSock2 .@equip_refine .@equip_id .@equip_card[0] .@equip_card[1] .@equip_card[2] .@equip_card[3]
 		getitem2 .@equip_id,1,1,.@equip_refine,0,.@equip_card[0],.@equip_card[1],.@equip_card[2],.@equip_card[3];
 
@@ -1214,29 +1299,39 @@ if (getequipisequiped(.@part) == 0) {
 			mes "[Charleston Mass Production]";
 			mes "The fourth slot has already been enchanted. Shall I enchant the third slot as well?";
 			next;
-			if(select("Do it later:Do it now") == 1) {
-				mes "[Charleston Mass Production]";
-				mes "Very well. Hope to see you later.";
-				close;
-			}
-			mes "[Charleston Mass Production]";
-			mes "Starting to enchant the third slot.";
-			next;
-			set .@ko_type02,2;
+			
+			switch(select("Do it now","Do it later")){
+					case 1:
+						mes "[Charleston Mass Production]";
+						mes "Starting to enchant the third slot.";
+						next;
+						set .@ko_type02,2;
+						break;
+				
+					case 2:
+						mes "[Charleston Mass Production]";
+						mes "Very well. Hope to see you later.";
+						close;
+				}
+				
 		}
 	} else {
 		mes "[Charleston Mass Production]";
 		mes "This equipment is not currently enchanted. Shall I enchant the fourth slot?";
 		next;
-		if(select("Do it later:Do it now") == 1) {
-			mes "[Charleston Mass Production]";
-			mes "Very well. Hope to see you later.";
-			close;
-		}
-		mes "[Charleston Mass Production]";
-		mes "Starting to enchant the fourth slot.";
-		next;
-		set .@ko_type02,1;
+		switch(select("Do it now","Do it later")){
+					case 1:
+						mes "[Charleston Mass Production]";
+						mes "Starting to enchant the fourth slot.";
+						next;
+						set .@ko_type02,1;
+						break;
+				
+					case 2:
+						mes "[Charleston Mass Production]";
+						mes "Very well. Hope to see you later.";
+						close;
+				}
 	}
 
 	if (.@ko_type02 == 1) {  // slot 4
@@ -1277,6 +1372,8 @@ if (getequipisequiped(.@part) == 0) {
 	}
 	
 	if (.@enchantFAILED == 1) {
+			misceffect 155;
+			delequip .@part;
 			mes "[Charleston Mass Production]]";
 			mes "Be merciful to the survivor,";
 			mes "Send flowers to the dead.";
