@@ -13,8 +13,21 @@ set .@travel_sag_c, countitem (13847);
 set .@travel_sag_d, countitem (13848);
 set .@cash_voucher10, countitem (41126);
 set .@ygg_box10, countitem (14232);
+set .@bubble, countitem (12210);
+set .@life_ins, countitem (12209);
+set .@bloody_branch, countitem (12103);
+set .@dead_branch, countitem (604);
+set .@small_def, countitem (13747);
+set .@big_def, countitem (13749);
+set .@big_magic_def, countitem (13755);
 
 
+
+if (countitem (13755)) < 1 {}delitem 13755, .@big_def;getitem 13755, .@big_def;
+if (countitem (13749)) < 1 {}delitem 13749, .@big_def;getitem 13749, .@big_def;
+if (countitem (13747)) < 1 {}delitem 13747, .@small_def;getitem 13747, .@small_def;
+if (countitem (604)) < 1 {}delitem 604, .@dead_branch;getitem 604, .@dead_branch;
+if (countitem (12103)) < 1 {}delitem 12103, .@bloody_branch;getitem 12103, .@bloody_branch;
 if (countitem (12208)) < 1 {}delitem 12208, .@battle_manual;getitem 12208, .@battle_manual;
 if (countitem (12204)) < 1 {}delitem 12204, .@int_dish;getitem 12204, .@int_dish;
 if (countitem (12207)) < 1 {}delitem 12207, .@vit_dish;getitem 12207, .@vit_dish;
@@ -28,6 +41,8 @@ if (countitem (13847)) < 1 {}delitem 13847, .@travel_sag_c;getitem 13847, .@trav
 if (countitem (13848)) < 1 {}delitem 13848, .@travel_sag_d;getitem 13848, .@travel_sag_d;
 if (countitem (41126)) < 1 {}delitem 41126, .@cash_voucher10;getitem 41126, .@cash_voucher10;
 if (countitem (14232)) < 1 {}delitem 14232, .@ygg_box10;getitem 14232, .@ygg_box10;
+if (countitem (12210)) < 1 {}delitem 12210, .@bubble;getitem 12210, .@bubble;
+if (countitem (12209)) < 1 {}delitem 12209, .@life_ins;getitem 12209, .@life_ins;
 
 
 }

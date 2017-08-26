@@ -169,6 +169,7 @@ OnJoinQueue:
 		end;
 	}
 	callsub JoinQueue;
+	mapannounce "milenia", strcharinfo(0) + " has registered for joining FROZEN PVP! Typing @frozen to join!",0;
 	dispbottom "You have joined the queue. NOTE! You can be warped at any time!";
 	if(callsub(IsQueueReady)){
 		donpcevent strnpcinfo(0)+ "::OnEventStart";

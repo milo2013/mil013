@@ -58,7 +58,7 @@ milenia,113,138,5	script	PvP Warper	497,{
 	mes "[PVP Officer]";
 	mes "Which arena you want to enter this time?";
 	next;
-		switch( select( "Milenia Arena:Izlude Arena:Cancel" )) {
+		switch( select( "Milenia Arena:Izlude Arena:Frozen PVP ^FF0000(Treasure Box for winner)^000000:Cancel" )) {
 			case 1:
 				callfunc "PVP#NORMAL";
 				end;
@@ -66,6 +66,10 @@ milenia,113,138,5	script	PvP Warper	497,{
 				callfunc "PVP#IZLUDE";
 				end;
 			case 3:
+				mes "[PVP Officer]";
+				mes "To enter, simply typing ^FF0000@frozen^000000 and you will be in queue.";
+				close;
+			case 4:
 				close;
 				end;
 				}

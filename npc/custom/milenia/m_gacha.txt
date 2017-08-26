@@ -2,11 +2,67 @@
 
 
 milenia,119,166,11	script	Gashapon Machine	506,{
-		
-if (countitem (6697) >= 1) || (countitem (41258) >= 1) {
+	
+	
+/*//////////////////////////////////////////////////////////////
+// ===================  PAID Coupon!  ======================= //
+*///////////////////////////////////////////////////////////////
 
-	set .@couponFREE,6697;
-	set .@couponDONATION,41258;
+	if (countitem(41258) >= 1) {
+		
+	set .@rate, rand(1,100);
+	
+	
+	//41256,Scorpio_Stone/Legendary
+	if (.@rate >= 1) && (.@rate <= 7){
+	//setarray RandItem[0],41256; // Items with 7% Chance
+	getitem 41256,1;
+	set .@mesLEGEND,1;
+	
+	}
+	//41255,Aquarius_Stone/Epic
+	if (.@rate >= 8) && (.@rate <= 20) {
+	//setarray RandItem[0],41255; // Items with 13% Chance
+	getitem 41255,1;
+	set .@mesEPIC,1;
+	}
+	
+	//41254,Capricorn_Stone/Rare
+	if (.@rate >= 21) && (.@rate <= 40){
+	//setarray RandItem[0],41254; // Items with 20% Chance
+	getitem 41254,1;
+	}
+		
+	//41253,Pisces_Stone/Uncommon
+	if (.@rate >= 41) && (.@rate <= 100){
+	//setarray RandItem[0],41253; // Items with 60% Chance
+	getitem 41253,1;
+	}
+	
+	delitem 41258,1;
+	set .@rate,0;
+	
+	if (.@mesLEGEND == 1){
+	announce "Congratulations "+ strcharinfo(0) +" for obtaining Legendary Gashapon capsule from the Gashapon Machine!!",0;
+	set .@mesLEGEND,0;
+	}
+	
+	if (.@mesEPIC == 1){
+	announce "Congratulations "+ strcharinfo(0) +" for obtaining Epic Gashapon capsule from the Gashapon Machine!!",0;
+	set .@mesEPIC,0;
+	}
+	
+	end;
+	
+	}
+
+/*//////////////////////////////////////////////////////////////
+// ============  FREE or EVENT Coupon!  ===================== //
+*///////////////////////////////////////////////////////////////
+
+
+	if (countitem(6697) >= 1) {
+		
 	set .@rate, rand(1,100);
 	
 	//41257,Taurus_Stone/Empty
@@ -48,14 +104,7 @@ if (countitem (6697) >= 1) || (countitem (41258) >= 1) {
 	getitem 41252,1;
 	}
 	
-	if (countitem (.@couponFREE) >= 1){
 	delitem 6697,1;
-	}
-	
-	if (countitem (.@couponDONATION) >= 1){
-	delitem 41258,1;
-	}
-	
 	set .@rate,0;
 	
 	if (.@mesEMPTY == 1){
@@ -74,14 +123,23 @@ if (countitem (6697) >= 1) || (countitem (41258) >= 1) {
 	}
 	
 	end;
-	}
 	
-	if (countitem(6697) < 1) || (countitem (41258) < 1) { 
-		mes "[Gashapon Machine]";
-		mes "You need 1 Costume Exchange Coupon to spin!";
-		close;
 	}
 
+	if (countitem(41258) < 1) || (countitem (6697) < 1) { 
+		mes "[Gashapon Machine]";
+		mes "You need 1 Costume Exchange Coupon to spin!";
+		next;
+		mes "[Gashapon Machine]";
+		mes "You can get FREE Coupon from our event.";
+		next;
+		mes "[Gashapon Machine]";
+		mes "OR you can buy from our Donation Shop!";
+		next;
+		mes "[Gashapon Machine]";
+		mes "Coupon in Donation Shop ^FF0000bypass Empty and Common Capsule^000000!";
+		close;
+	}
 }
 
 // ============================== Gacha Callfunc =================================//
@@ -135,10 +193,7 @@ function	script	Gasha02Func	{
 	"20222","20223","20224","20226","20230","20237","20238","20241","20264","20304","20320","20322",
 	"20331","20345","20348","19737","20065","20066","19530","19532","19535","19536","19540","19555",
 	"19557","19556","19555","19558","19560","19567","19569","19570","19731","19733","19918","20245",
-	"31043","","31107","31113","31114","31129","31130","31131","31144";
-	
-	// No Sprites 
-	// 31106 - Eye Patch of Peace
+	"31043","31106","31107","31113","31114","31129","31130","31131","31144";
 	
 	set .item_id, .@items[rand (getarraysize(.@items)) ];
 	set .item_amount, 1;
@@ -243,11 +298,8 @@ function	script	Gasha05Func	{
 	"31031","31032","31039","31040","31042","31046","31047","31051","31052","31055","31057","31062",
 	"31079","31080","31081","31082","31083","31084","31085","31086","31087","31088","31093","31095",
 	"31096","31097","31098","31099","31100","31117","31118","31120","31121","31123","31125","31133",
-	"31145","31147","31160","31162","31165";
-	
-	// No Sprites
-	// 31148 - Costume Drooping W Doll
-	
+	"31145","31147","31148","31160","31162","31165";
+		
 	set .item_id, .@items[rand (getarraysize(.@items)) ];
 	set .item_amount, 1;
 	
@@ -255,3 +307,26 @@ function	script	Gasha05Func	{
 	}
 
 }
+
+/* 
+
+== //  BACKUP SCRIPTS  // ==
+
+	
+	//if (countitem (6697) >= 1) || (countitem (41258) >= 1) {
+		
+	//set .@couponFREE,6697;
+	//set .@couponDONATION,41258;
+
+	//if (countitem (.@couponFREE) >= 1){
+	//delitem 6697,1;
+	//}
+	
+	//if (countitem (.@couponDONATION) >= 1){
+	//delitem 41258,1;
+	//}
+	
+*/
+
+	
+	
