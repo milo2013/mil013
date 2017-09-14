@@ -17,6 +17,7 @@ This bit of information is here to guide you through the process of creating a b
 ### Did you find a bug? :bug:
 
 * **Ensure the bug is not coming from a customization** within your files!
+* **Ensure the bug was not already reported** by searching on GitHub under [Issues](https://github.com/rathena/rathena/issues). If the same issue exists, feel free to leave a comment and tell us you are experiencing the issue as well and if possible add some additional or missing information!
 * If you are unable to find an open issue addressing the problem, [open a new one](#submit-a-bug-report)!
 
 #### Submit A Bug Report :inbox_tray:
