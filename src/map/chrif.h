@@ -8,7 +8,22 @@
 #include "../common/socket.h" // enum chrif_req_op
 #include <time.h>
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 enum sd_state { ST_LOGIN, ST_LOGOUT, ST_MAPCHANGE };
+
+enum e_chrif_save_opt {
+	CSAVE_NORMAL = 0x00,		/// Normal
+	CSAVE_QUIT = 0x01,				/// Character quitting
+	CSAVE_CHANGE_MAPSERV = 0x02,	/// Character changing map server
+	CSAVE_AUTOTRADE = 0x04,		/// Character entering autotrade state
+	CSAVE_INVENTORY = 0x08,		/// Inventory data changed
+	CSAVE_CART = 0x10,				/// Cart data changed
+	CSAVE_QUITTING = CSAVE_QUIT|CSAVE_CHANGE_MAPSERV|CSAVE_AUTOTRADE,
+};
+
 struct auth_node {
 	uint32 account_id, char_id;
 	int login_id1, login_id2, sex, fd;
@@ -81,5 +96,9 @@ int chrif_gepard_req_block(unsigned int unique_id, const char* violator_name, un
 bool chrif_gepard_ack_block(int fd);
 int chrif_gepard_req_unblock(unsigned int unique_id, const char* violator_name, unsigned int violator_aid, unsigned int initiator_aid);
 bool chrif_gepard_ack_unblock(int fd);
+
+#ifdef __cplusplus
+}
+#endif
 
 #endif /* _CHRIF_H_ */

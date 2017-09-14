@@ -1,0 +1,331 @@
+milenia,29,115,5	script	Vicious Enchanter	10156,{
+
+mes "[Vicious Enchant]";
+mes "I can ^FF0000RANDOMLY^000000 give random stat to your Vicious Weapons.";
+next;
+mes "[Vicious Enchant]";
+mes "My service require ^FF0000 10,000,000z ^000000";
+mes "and 10 piece of ^FF0000 "+ (getitemname (41260))+"^000000.";
+next;
+switch(select("Enchant Vicious Weapon:Cancel")) {
+	if (ZENY < 10000000){
+		mes "[Vicious Enchant]";
+		mes "Come back when you're rich!";
+		close;
+	}
+	
+	case 1:
+		next;
+		if (getequipid(EQI_HAND_R) == 13455) {
+			set .@equip_id,13455; //Vicious SABER
+			set .@part, EQI_HAND_R;
+			break;
+		}
+	
+		if (getequipid(EQI_HAND_R) == 21016) {
+			set .@equip_id,21016; //Vicious SWORD
+			set .@part, EQI_HAND_R;
+			break;
+		}
+	
+		if (getequipid(EQI_HAND_R) == 1450) {
+			set .@equip_id,1450; //Vicious LANCE
+			set .@part, EQI_HAND_R;
+			break;
+		}
+	
+		if (getequipid(EQI_HAND_R) == 1400) { 
+			set .@equip_id,1400; //Vicious SPEAR
+			set .@part, EQI_HAND_R;
+			break;
+		}
+
+		if (getequipid(EQI_HAND_R) == 18121) {
+			set .@equip_id,18121; //Vicious BOW
+			set .@part, EQI_HAND_R;
+			break;
+		}
+	
+		if (getequipid(EQI_HAND_R) == 28008) {
+			set .@equip_id,28008; //Vicious KATAR
+			set .@part, EQI_HAND_R;
+			break;
+		}
+	
+		if (getequipid(EQI_HAND_R) == 28706) { 
+			set .@equip_id,28706; //Vicious DAGGER
+			set .@part, EQI_HAND_R;
+			break;
+		}
+	
+		if (getequipid(EQI_HAND_R) == 1800) {
+			set .@equip_id,1800; //Vicious KNUCKLE
+			set .@part, EQI_HAND_R;
+			break;
+		}
+	
+		if (getequipid(EQI_HAND_R) == 16041) {
+			set .@equip_id,16041; //Vicious MACE
+			set .@part, EQI_HAND_R;
+			break;
+		}
+	
+		if (getequipid(EQI_HAND_R) == 28605) { 
+			set .@equip_id,28605; //Vicious BOOK
+			set .@part, EQI_HAND_R;
+			break;
+		}
+		
+		if (getequipid(EQI_HAND_R) == 1600) { 
+			set .@equip_id,1600; //Vicious WAND
+			set .@part, EQI_HAND_R;
+			break;
+		}
+	
+		if (getequipid(EQI_HAND_R) == 2026) { 
+			set .@equip_id,2026; //Vicious STAFF
+			set .@part, EQI_HAND_R;
+			break;
+		}
+	
+		if (getequipid(EQI_HAND_R) == 28107) {
+			set .@equip_id,28107; //Vicious AXE
+			set .@part, EQI_HAND_R;
+			break;
+		}
+
+		if (getequipid(EQI_HAND_R) == 1900) { 
+			set .@equip_id,1900; //Vicious VIOLIN
+			set .@part, EQI_HAND_R;
+			break;
+		}
+	
+		if (getequipid(EQI_HAND_R) == 1996) { 
+			set .@equip_id,1996; //Vicious WHIP
+			set .@part, EQI_HAND_R;
+			break;
+		}
+	
+		if (getequipid(EQI_HAND_R) == 13128) {
+			set .@equip_id,13128; //Vicious REVOLVER
+			set .@part, EQI_HAND_R;
+			break;
+		}
+	
+		if  (getequipid(EQI_HAND_R) == 13328) {
+			set .@equip_id,13328; //Vicious HUUMA
+			set .@part, EQI_HAND_R;
+			break;
+		}
+	else {
+			mes "[Vicious Enchant]";
+			mes "Sorry! There is no Vicious Weapon with you!";
+			next;
+			mes "[Vicious Enchant]";
+			mes "Please equip it if you're forgot!";
+			close;
+			}
+			end;
+	case 2:
+		close;
+		end;
+}
+
+
+			
+	if (getequipisequiped(.@part) == 0) {
+		mes "[Vicious Enchant]";
+		mes "You will have to equip all items before ^44B7BC" + getitemname(.@equip_id) + "^000000.";
+		close;
+	}
+	
+	if (Zeny < 10000000) {  
+		mes "[Vicious Enchant]";
+		mes "I'm sorry, but you don't have enough Zeny!";
+		next;
+		mes "[Vicious Enchant]";
+		mes "Our charge is very low, so please bear with me.";
+		close;
+	}
+	
+	if (countitem (41260) < 10){ // Custom ITEM
+		mes "[Vicious Enchant]";
+		mes "I'm sorry, but you don't have enough ^FF0000 "+ (getitemname (41260))+"^000000!";
+		next;
+		mes "[Vicious Enchant]";
+		mes "Please come again when you have enough ^FF0000 "+ (getitemname (41260))+"^000000.";
+		close;
+	}
+	
+	if (getequipid(.@part) != .@equip_id) {
+		mes "[Vicious Enchant]";
+		mes "I don't think this is the equipment you requested.";
+		next;
+		mes "[Vicious Enchant]";
+		mes "I cannot work on equipment other than those from my list.";
+		close;
+	}
+	
+	set .@equip_refine, getequiprefinerycnt(.@part);
+	setarray .@equip_card[0], getequipcardid(.@part,0),getequipcardid(.@part,1),getequipcardid(.@part,2),getequipcardid(.@part,3);
+	
+	set random, rand (1,27);
+	
+	if (random == 1 ){
+	setarray .@OptID[0],RDMOPT_WEAPON_ATTR_NOTHING,RDMOPT_RACE_DAMAGE_HUMAN,rand (RDMOPT_VAR_MAXHPAMOUNT,RDMOPT_VAR_MAXSPAMOUNT);
+	setarray .@OptVal[0],0,rand (1,20),rand (50,500);
+	setarray .@OptParam[0],1;
+	}
+	if (random == 2 ){
+	setarray .@OptID[0],RDMOPT_WEAPON_ATTR_FIRE,RDMOPT_RACE_MDAMAGE_UNDEAD,rand (RDMOPT_VAR_STRAMOUNT,RDMOPT_VAR_AGIAMOUNT);
+	setarray .@OptVal[0],0,rand (1,20),rand (1,10);
+	setarray .@OptParam[0],1;
+	}
+	if (random == 3 ){
+	setarray .@OptID[0],RDMOPT_WEAPON_ATTR_WIND,RDMOPT_RACE_MDAMAGE_FISHS,rand (RDMOPT_VAR_INTAMOUNT,RDMOPT_VAR_VITAMOUNT);
+	setarray .@OptVal[0],0,rand (1,20),rand (1,10);
+	setarray .@OptParam[0],1;
+	}
+	if (random == 4 ){
+	setarray .@OptID[0],RDMOPT_WEAPON_ATTR_SAINT,RDMOPT_RACE_DAMAGE_HUMAN,rand (RDMOPT_VAR_HPACCELERATION,RDMOPT_VAR_SPACCELERATION);
+	setarray .@OptVal[0],0,rand (1,20),rand (10,50);
+	setarray .@OptParam[0],1;
+	}
+	if (random == 5 ){
+	setarray .@OptID[0],RDMOPT_WEAPON_ATTR_DARKNESS,RDMOPT_RACE_DAMAGE_ANGEL,rand (RDMOPT_VAR_AVOIDSUCCESSVALUE,RDMOPT_VAR_PLUSAVOIDSUCCESSVALUE);
+	setarray .@OptVal[0],0,rand (1,20),rand (4,47);
+	setarray .@OptParam[0],1;
+	}
+	if (random == 6 ){
+	setarray .@OptID[0],RDMOPT_WEAPON_ATTR_SAINT,RDMOPT_RACE_MDAMAGE_HUMAN,rand (RDMOPT_VAR_INTAMOUNT,RDMOPT_VAR_VITAMOUNT);
+	setarray .@OptVal[0],0,rand (1,20),rand (1,10);
+	setarray .@OptParam[0],1;
+	}
+	if (random == 7 ){
+	setarray .@OptID[0],RDMOPT_WEAPON_ATTR_DARKNESS,RDMOPT_RACE_MDAMAGE_ANGEL,rand (RDMOPT_VAR_INTAMOUNT,RDMOPT_VAR_VITAMOUNT);
+	setarray .@OptVal[0],0,rand (1,20),rand (1,10);
+	setarray .@OptParam[0],1;
+	}
+	if (random == 8 ){
+	setarray .@OptID[0],RDMOPT_WEAPON_ATTR_TELEKINESIS,RDMOPT_RACE_DAMAGE_DEVIL,rand (RDMOPT_VAR_ATTPOWER,RDMOPT_VAR_HITSUCCESSVALUE);
+	setarray .@OptVal[0],0,rand (1,20),rand (4,47);
+	setarray .@OptParam[0],1;
+	}
+	if (random == 9 ){
+	setarray .@OptID[0],RDMOPT_WEAPON_INDESTRUCTIBLE,RDMOPT_RACE_DAMAGE_HUMAN,rand (RDMOPT_VAR_ATTPOWER,RDMOPT_VAR_HITSUCCESSVALUE);
+	setarray .@OptVal[0],0,rand (1,20),rand (4,47);
+	setarray .@OptParam[0],1;
+	}
+	if (random == 10 ){
+	setarray .@OptID[0],RDMOPT_WEAPON_ATTR_UNDEAD,RDMOPT_RACE_DAMAGE_DEVIL,rand (RDMOPT_VAR_CRITICALSUCCESSVALUE,RDMOPT_VAR_HITSUCCESSVALUE);
+	setarray .@OptVal[0],0,rand (1,20),rand (4,47);
+	setarray .@OptParam[0],1;
+	}
+	if (random == 11 ){
+	setarray .@OptID[0],RDMOPT_WEAPON_ATTR_UNDEAD,RDMOPT_RACE_MDAMAGE_DEVIL,RDMOPT_VAR_MDEFPOWER;
+	setarray .@OptVal[0],0,rand (1,20),rand (4,47);
+	setarray .@OptParam[0],1;
+	}
+	if (random == 12 ){
+	setarray .@OptID[0],RDMOPT_WEAPON_ATTR_POISON,RDMOPT_RACE_DAMAGE_ANIMAL,RDMOPT_VAR_CRITICALSUCCESSVALUE;
+	setarray .@OptVal[0],0,rand (1,20),rand (4,47);
+	setarray .@OptParam[0],1;
+	}
+	if (random == 13 ){
+	setarray .@OptID[0],RDMOPT_WEAPON_ATTR_POISON,RDMOPT_RACE_MDAMAGE_ANIMAL,RDMOPT_VAR_INTAMOUNT;
+	setarray .@OptVal[0],0,rand (1,20),rand (1,10);
+	setarray .@OptParam[0],1;
+	}
+	if (random == 14 ){
+	setarray .@OptID[0],RDMOPT_WEAPON_ATTR_GROUND,RDMOPT_RACE_DAMAGE_DRAGON,RDMOPT_VAR_PLUSASPD;
+	setarray .@OptVal[0],0,rand (1,20),rand (1,10);
+	setarray .@OptParam[0],1;
+	}
+	if (random == 15 ){
+	setarray .@OptID[0],RDMOPT_WEAPON_ATTR_GROUND,RDMOPT_RACE_MDAMAGE_DRAGON,RDMOPT_VAR_INTAMOUNT;
+	setarray .@OptVal[0],0,rand (1,20),rand (1,10);
+	setarray .@OptParam[0],1;
+	}
+	if (random == 16 ){
+	setarray .@OptID[0],RDMOPT_WEAPON_ATTR_POISON,RDMOPT_RACE_DAMAGE_PLANT,RDMOPT_VAR_CRITICALSUCCESSVALUE;
+	setarray .@OptVal[0],0,rand (1,20),rand (4,47);
+	setarray .@OptParam[0],1;
+	}
+	if (random == 17 ){
+	setarray .@OptID[0],RDMOPT_WEAPON_ATTR_POISON,RDMOPT_RACE_MDAMAGE_PLANT,RDMOPT_VAR_INTAMOUNT;
+	setarray .@OptVal[0],0,rand (1,20),rand (1,10);
+	setarray .@OptParam[0],1;
+	}
+	if (random == 18 ){
+	setarray .@OptID[0],RDMOPT_WEAPON_ATTR_POISON,RDMOPT_RACE_MDAMAGE_INSECT,RDMOPT_VAR_INTAMOUNT;
+	setarray .@OptVal[0],0,rand (1,20),rand (1,10);
+	setarray .@OptParam[0],1;
+	}
+	if (random == 19 ){
+	setarray .@OptID[0],RDMOPT_WEAPON_ATTR_POISON,RDMOPT_RACE_DAMAGE_INSECT,RDMOPT_VAR_CRITICALSUCCESSVALUE;
+	setarray .@OptVal[0],0,rand (1,20),rand (4,47);
+	setarray .@OptParam[0],1;
+	}
+	if (random == 20 ){
+	setarray .@OptID[0],RDMOPT_WEAPON_ATTR_WIND,RDMOPT_RACE_DAMAGE_FISHS,RDMOPT_VAR_DEXAMOUNT;
+	setarray .@OptVal[0],0,rand (1,20),rand (1,10);
+	setarray .@OptParam[0],1;
+	}
+	if (random == 21 ){
+	setarray .@OptID[0],RDMOPT_WEAPON_ATTR_NOTHING,RDMOPT_RACE_MDAMAGE_NOTHING,RDMOPT_VAR_INTAMOUNT;
+	setarray .@OptVal[0],0,rand (1,20),rand (1,10);
+	setarray .@OptParam[0],1;
+	}
+	if (random == 22 ){
+	setarray .@OptID[0],RDMOPT_WEAPON_ATTR_NOTHING,RDMOPT_VAR_ATTMPOWER,RDMOPT_VAR_INTAMOUNT;
+	setarray .@OptVal[0],0,rand (1,20),rand (1,10);
+	setarray .@OptParam[0],1;
+	}
+	if (random == 23 ){
+	setarray .@OptID[0],RDMOPT_WEAPON_ATTR_POISON,RDMOPT_RACE_DAMAGE_INSECT,RDMOPT_VAR_LUKAMOUNT;
+	setarray .@OptVal[0],0,rand (1,20),rand (1,10);
+	setarray .@OptParam[0],1;
+	}
+	if (random == 24 ){
+	setarray .@OptID[0],RDMOPT_WEAPON_ATTR_NOTHING,RDMOPT_VAR_ATTMPOWER,RDMOPT_HEAL_VALUE;
+	setarray .@OptVal[0],0,rand (1,20),rand (1,10);
+	setarray .@OptParam[0],1;
+	}
+	if (random == 25 ){
+	setarray .@OptID[0],RDMOPT_WEAPON_ATTR_NOTHING,RDMOPT_VAR_ATTMPOWER,RDMOPT_DEC_SPELL_CAST_TIME;
+	setarray .@OptVal[0],0,rand (1,20),rand (1,18);
+	setarray .@OptParam[0],1;
+	}
+	if (random == 26 ){
+	setarray .@OptID[0],RDMOPT_WEAPON_ATTR_NOTHING,RDMOPT_VAR_ATTMPOWER,RDMOPT_DEC_SPELL_DELAY_TIME;
+	setarray .@OptVal[0],0,rand (1,20),rand (5,20);
+	setarray .@OptParam[0],1;
+	}
+	if (random == 27 ){
+	setarray .@OptID[0],RDMOPT_WEAPON_ATTR_NOTHING,RDMOPT_VAR_ATTMPOWER,RDMOPT_DEC_SP_CONSUMPTION;
+	setarray .@OptVal[0],0,rand (1,20),5;
+	setarray .@OptParam[0],1;
+	}
+	
+	
+	if (countitem (41260) < 10){ // Custom ITEM
+		mes "[Vicious Enchant]";
+		mes "I'm sorry, but you don't have enough ^FF0000 "+ (getitemname (41260))+"^000000!";
+		next;
+		mes "[Vicious Enchant]";
+		mes "Please come again when you have enough ^FF0000 "+ (getitemname (41260))+"^000000.";
+		close;
+	}
+	
+	mes "[Vicious Enchant]";
+	mes "Here you go~";
+	set ZENY, ZENY - 10000000;
+	dispbottom "You paid 10m Zeny as Elemental Charge and give 20pcs "+ (getitemname (41260))+" .";
+	delitem 41260,10; // custom item
+	delitem  .@equip_id,1;
+	getitem3 .@equip_id,1,1,.@equip_refine,0,.@equip_card[0],.@equip_card[1],.@equip_card[2],.@equip_card[3],.@OptID,.@OptVal,.@OptParam;
+	close;
+	end;
+	
+		
+}

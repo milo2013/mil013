@@ -1,0 +1,194 @@
+milenia,67,66,5	script	Novice Kafra	114,{
+	if	(Class > 0){
+		mes "[Kafra Employee]";
+		mes "Sorry.. For Novice only~";
+		}
+		
+	// Make sure the invoking character does not have a cart already
+	if(checkcart() == 1){
+		mes "[Kafra Employee]";
+		mes "You already have";
+		mes "a Pushcart equipped.";
+		mes "Unfortunately, we can't";
+		mes "rent more than one to";
+		mes "each customer at a time.";
+		close;
+	}
+	// Check if the player has the Pushcart skill
+	else if(getskilllv("MC_PUSHCART") == 0) {
+		mes "[Kafra Employee]";
+		mes "You can only rent a cart after learning the \"Push Cart\" skill.";
+		close;
+	}
+	mes "[Kafra Employee]";
+	mes "Have a nice day~";
+	setcart;
+	close;
+}
+
+
+
+milenia,130,163,11	script	Unknown Scout	998,{
+		
+		mes "[Unknown Scout]";
+		mes "Hello Adventurer..";
+		next;
+		switch( select( "Information:Crafting Figurine:Let's Save Prontera!!" )) {
+		case 1:
+			mes "[Unknown Scout]";
+			mes "Our Prontera being invaded!!";
+			mes "Please come to help us!!";
+			mes "Every Monster you kill,we will award you random items.";
+			next;
+			mes "[Unknown Scout]";
+			mes "But there is some Condition..";
+			mes "We only accept ^FF0000Novice^000000 for now!!";
+			mes "Maximum Rewards Limit ^FF0000"+.MaxItemLimit+"^000000";
+			next;
+			mes "[Unknown Scout]";
+			mes "We need ^FF00001 Gold Fish^000000 per entry!!";
+			mes "Or....";
+			mes "^FF0000Bravery Medal^000000";
+			next;
+			mes "[Unknown Scout]";
+			mes "For more bonus, please craft for rent our ^FF0000Figurine!!^000000";
+			close;
+		case 2: 
+			warp "milenia",65,62;
+					break;	
+		case 3:
+			if (getpetinfo(1)){
+			mes "[Unknown Scout]";
+			mes "You cannot enter with your pet!!";
+			close;
+			}
+			else if(Class > 0){
+			mes "[Unknown Scout]";
+			mes "Like I said.. We only recruit ^FF0000Novice^000000 only!!";
+			}
+			else if (countitem (41203) > 0) {
+				if ( #Invaded_timer > gettimetick(2) ) {
+				mes "[Unknown Scout]";
+				mes "You must wait ^ff0000"+ callfunc( "timeleft__", #Invaded_timer - gettimetick(2) ) +"^000000.";
+				next;
+				mes "[Unknown Scout]";
+				mes "Rent our ^FF0000Bravery Medal^000000 from our Donation Shop for bypass Cooling Down and No More Gold Fish for enter!!"; 		
+				close;
+				}
+				set #FarmHunt,0;
+				delitem 41203,1;
+				set .Hunter[getarraysize( .Hunter )], getcharid(3);
+				warp .Map$,0,0;
+				mapannounce "prt_q", strcharinfo(0) + " has join to protect Invaded Prontera!!",0;
+				mapannounce "milenia", strcharinfo(0) + " has join to protect Invaded Prontera!!",0;
+				end;
+				
+			} else if (countitem (41163) > 0) {
+				set #FarmHunt,0;
+				set .Hunter[getarraysize( .Hunter )], getcharid(3);
+				warp .Map$,0,0;
+				mapannounce "prt_q", strcharinfo(0) + " has join to protect Invaded Prontera using Bravery Medal!!",0;
+				mapannounce "milenia", strcharinfo(0) + " has join to protect Invaded Prontera using Bravery Medal!!",0;
+				end;
+			}
+			else {
+			mes "[Unknown Scout]";
+			mes "You don't have any ^FF0000Gold Fish^000000 or ^FF0000Bravery Medal^000000!!";
+			}
+	close;
+
+OnPCDieEvent:
+	setarray .map$,"prt_q";
+    getmapxy(@map$, @xb, @yb, 0 );
+        if (@map$ == .map$) {
+               
+	if (countitem (41163) < 1) {
+		#Invaded_timer = gettimetick(2) + 300;
+		}
+		mapannounce "prt_q", strcharinfo(0) + " has killed in action!! R.I.P",0;
+		//mapannounce "milenia", strcharinfo(0) + " has killed in action during defend Prontera from invaded!! R.I.P!!",0;
+		dispbottom  "[ Invaded Prontera ] : You've died! GAME OVER!!";
+		dispbottom  "[ Invaded Prontera ] : Your rewards count will resume when you're alive as penalty!!";
+	}
+		end;
+OnNormalKill:
+	monster .Map$,0,0,"--ja--",.normal_mob[rand(.normal_mob_size)],1,strnpcinfo(0)+"::OnNormalKill";
+	getitem .farm_normal[rand(.farm_normal_size)], 2;
+	goto L_kill;
+OnCaptainKill:
+	monster .Map$,0,0,"--ja--",.captain_mob[rand(.captain_mob_size)],1,strnpcinfo(0)+"::OnCaptainKill";
+	getitem .farm_captain[rand(.farm_captain_size)], 5;
+	goto L_kill;	
+OnCommanderKill:
+	monster .Map$,0,0,"--ja--",.commander_mob[rand(.commander_mob_size)],1,strnpcinfo(0)+"::OnCommanderKill";
+	getitem .farm_commander[rand(.farm_commander_size)], 10;
+	goto L_kill;
+OnBossKill:
+	monster .Map$,0,0,"--ja--",.boss_mob[rand(.boss_mob_size)],1,strnpcinfo(0)+"::OnBossKill";
+	getitem .farm_boss[rand(.farm_boss_size)], 15;
+	mapannounce "prt_q", strcharinfo(0) + " has killed the Invader General and Claimed 15 Gold pieces!!",0;
+	//mapannounce "milenia", strcharinfo(0) + " has killed the Invader General and Claimed 10 Gold pieces!!",0;
+	goto L_kill;
+	
+L_kill:
+	#FarmHunt++;
+	dispbottom "[ Invaded Prontera ] : Rewarded "+ #FarmHunt +" / "+.MaxItemLimit+" Items";
+	if ( #FarmHunt >= .MaxItemLimit ) {
+		message strcharinfo(0),"Limit Reach , you may join again later.";
+		sleep2 2000;
+		if (countitem (41163) < 1) {
+		#Invaded_timer = gettimetick(2) + 300;
+		}
+	.Hunter--;
+		warp "milenia",127,164;
+	}
+	end;
+OnInit:
+	// Maximum Hunt Limit per round inside the Zone.
+	set .MaxItemLimit,500;
+	// Map that will be used in thos Zone.
+	set .Map$,"prt_q";
+	// Mapflag Initialization
+	setmapflag .Map$, mf_nomobloot;
+	setmapflag .Map$, mf_nomvploot;
+	setmapflag .Map$, mf_nowarpto;
+	setmapflag .Map$, mf_nosave;
+	setmapflag .Map$, mf_nomemo;
+	setmapflag .Map$, mf_nochat;
+	setmapflag .Map$, mf_novending;
+	//setmapflag .Map$, mf_nocommand,60;
+	//setmapflag .Map$, mf_noskill;
+	setmapflag .Map$, mf_noteleport;
+	setmapflag .Map$, mf_nojobexp;
+	setmapflag .Map$, mf_nobaseexp;
+	
+	setarray .farm_normal, 13517,13517,969; // farm 1 of these items when kill normal mobs
+	setarray .farm_captain,13517,969,969; // farm 1 of these items when kill boss monsters
+	setarray .farm_commander,13517,969,969; // farm 1 of these items when kill boss monsters
+	setarray .farm_boss, 969,969,969; // farm 1 of these items when kill boss monsters
+
+	setarray .normal_mob,3951,3951,3951;
+	setarray .captain_mob,3952,3952,3952;
+	setarray .commander_mob,3953,3953,3953;	
+	setarray .boss_mob,3950,3950,3950;
+	
+	.farm_normal_size = getarraysize(.farm_normal);
+	.normal_mob_size = getarraysize(.normal_mob);
+	.farm_boss_size = getarraysize(.farm_boss);
+	.boss_mob_size = getarraysize(.boss_mob);
+	.farm_captain_size = getarraysize(.farm_captain);
+	.captain_mob_size = getarraysize(.captain_mob);
+	.farm_commander_size = getarraysize(.farm_commander);
+	.commander_mob_size = getarraysize(.commander_mob);
+
+		for ( .@i = 0; .@i < 220; .@i++ )
+			monster .Map$,0,0, "Invader Soldier", .normal_mob[ rand( .normal_mob_size ) ], 1, strnpcinfo(0)+"::OnNormalKill";
+		for ( .@i = 0; .@i < 120; .@i++ )
+			monster .Map$,0,0, "Invader Captain", .captain_mob[ rand( .captain_mob_size ) ], 1, strnpcinfo(0)+"::OnCaptainKill";
+		for ( .@i = 0; .@i < 70; .@i++ )
+			monster .Map$,0,0, "Invader Commander", .commander_mob[ rand( .commander_mob_size ) ], 1, strnpcinfo(0)+"::OnCommanderKill";
+		for ( .@i = 0; .@i < 45; .@i++ )
+			monster .Map$,0,0, "Invader General", .boss_mob[ rand( .boss_mob_size ) ], 1, strnpcinfo(0)+"::OnBossKill";
+
+	}
+}

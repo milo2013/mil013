@@ -1,0 +1,216 @@
+milenia,205,115,5	script	Marvin	603,{
+function CardValue;
+
+if( #daily_cedi_limit == .today_date ){
+	mes "You already reach the daily point exchange of today. Which is "+.max_daily_exchange+" points.";
+}else{
+	if( .today_date > #daily_cedi_limit && #daily_cedi_limit > .year )
+		#daily_cedi_limit = 0;
+		
+	.@card_point = getd( ".point_"+.target_card );
+	if( !.@card_point ) .@card_point = 1;
+	mes "Currently I need "+getitemname( .target_card )+" to finish my Card Collection.";
+	mes "Every "+getitemname( .target_card )+" worth for "+.@card_point+" points.";
+	.@countitem = countitem( .target_card );
+	if( .@countitem ){
+		next;
+		if( select( "Exchange mine "+getitemname( .target_card )+" to points.","Cancel" ) == 1 ){
+			mes "You have "+.@countitem+" x "+getitemname( .target_card );
+			mes .@card_point+" points each.";
+			mes "How many will be exchanged to points ?";
+			mes "Today exchanged "+#daily_cedi_limit+" points.";
+			.@maximum = ( ( .max_daily_exchange - #daily_cedi_limit ) / .@card_point );
+			input .@amount,0,.@maximum;
+			if( .@amount ){
+				next;
+				mes "Exchange "+.@amount+" x "+getitemname( .target_card )+" into "+( .@amount * .@card_point )+" points.";
+				if( select( "Confirm","Cancel" ) == 1 ){
+					delitem .target_card,.@amount;
+					#daily_cedi_limit += ( .@amount * .@card_point );
+					#cedi_point += ( .@amount * .@card_point );
+					mes "Gained "+( .@amount * .@card_point )+" points.";
+					if( #daily_cedi_limit >= .max_daily_exchange )
+						#daily_cedi_limit = .today_date;
+				}
+			}
+		}
+	}
+}
+close;
+
+OnWhisperGlobal:
+if( .target_card ){
+	.@card_point = getd( ".point_"+.target_card );
+	if( !.@card_point ) .@card_point = 1;
+	dispbottom "[ "+strnpcinfo(1)+" ]: currently i need "+getitemname( .target_card )+". In return I offer "+.@card_point+" points for each.";
+}
+end;
+
+
+OnInit:
+// daily point exchange limit
+.max_daily_exchange = 2000;
+
+.year = ( gettime(7) * 1000 );
+
+// CardValue( <point>,<card1>,...,<card127> );
+// ( if didnt add = 1 point each card )
+// 		card that worth 5 points. ( max 127 card )
+CardValue( 5,4054,4241,4590,4428,4426,4290,4300,4392,4527,4169,4171,4174,4179,4266,4391,4423,4431,4394,4393,4429,4250,4529,4391,4171,4423,4354,4047,4534,4147,4526,4163,4462,4384,4431,4524,4197,4198,4528,4203,4207,4457,4440,4440,4392,4238,4237,4237,4632,4631,4391,4429,4393,4406,4406,4533,4394,4391,4427,4463,4397,4398,4395,4396,4254,4306,4183,4532);
+// 		card that worth 10 points. ( max 127 card )
+CardValue( 10,4236,4359,4425,4372,4147,4145,4168,4386,4142,4134,4137,4123,4330,4441,4324,4408,4128,4363,4365,4430,4263,4403,4318,4419,4376,4357,4276,4146,4132,4131,4236,4143,4135,4144,4148,4121,4342,4367,4302,4399,4305,4407,4374,4361,4352);
+
+OnClock0000:
+.today_date = atoi( gettimestr( "%Y%m%d",21 ) );
+OnMinute00:
+if( gettime(3) % 2 == 0 && .target_card ) end;
+do{
+	.target_card = rand( 4001,4555 );
+}while( getiteminfo( .target_card,2 ) != IT_CARD );
+announce "[ Cedi MVP ] : Card already changed, current card now is "+(getitemname (.target_card))+".", bc_blue;
+end;
+
+function	CardValue	{
+	.@point = getarg(0);
+	.@card_count = getargcount() - 1;
+	.@i = 1;
+	while( .@i <= .@card_count ){
+		setd( ".point_"+getarg(.@i) ),.@point;
+		.@i++;
+	}
+	// debugmes "Added "+.@card_count+" Card that worth "+.@point+" Points.";
+	return;
+}
+}
+
+//////////////////////////////////////////////////////
+///												   ///
+// 	============= Nectar & Ambrosia	==========		//
+///												   ///
+//////////////////////////////////////////////////////
+milenia,209,115,4	script	Tim Tom	630,{
+if( countitem( .bca_exchange[0] ) ){
+	if( select( "Exchange "+getitemname( .bca_exchange[0] )+" into "+getitemname( .bca_exchange[1] ),"Pick Tier" ) == 1 ){
+		delitem .bca_exchange[0],1;
+		getitem .bca_exchange[1],1;		
+		mes "Gained 1x "+getitemname( .bca_exchange[1] );
+		next;
+	}
+}
+mes "You got "+#cedi_point+" points.";
+mes "Pick a tier.";
+next;
+set .@i,select( .tier_menu$ ) - 1;
+mes "["+getitemname( .nectar[.@i] ) +" ("+.tier$[.@i]+")]";
+mes "Required :";
+if( .bio_point[.@i] )
+	mes .bio_point[.@i]+" x Points";
+if( .bio_sample[.@i] && .bio_amount[.@i] ){
+	mes .bio_amount[.@i]+" x "+getitemname( .bio_sample[.@i] );
+	if( countitem( .bio_sample[.@i] ) < .bio_amount[.@i] ) close;
+}
+if( .bio_point[.@i] && #cedi_point < .bio_point[.@i] ) close;
+if( select( "Exchange to "+getitemname( .nectar[.@i] )+" ("+.tier$[.@i]+")","Cancel" ) == 1 ){
+	if( .bio_point[.@i] ) 
+		#cedi_point -= .bio_point[.@i];
+	if( .bio_sample[.@i] && .bio_amount[.@i] )
+		delitem .bio_sample[.@i],.bio_amount[.@i];
+	getitem .nectar[.@i],1;
+	mes "Gained 1 "+getitemname( .nectar[.@i] );
+}
+close;
+
+OnInit:
+// Consummate to Bloody Card Album
+setarray .bca_exchange,
+	41217,	// item id for Consummate Bio Sample
+	616;	// item id for Bloody Card Album
+	
+// tiers name
+setarray .tier$,"Tier D","Tier C","Tier B","Tier A";
+// nectar item id
+setarray .nectar,
+	41207,	// item id for clear nectar
+	41208,	// item id for yellow nectar
+	41209,	// item id for red nectar
+	41210;	// item id for blue nectar
+
+// Requirements for each tier ( if 0 = none )
+setarray .bio_sample,
+	0,		// no need bio sample
+	41214,	// item id for bio sample
+	41215,	// item id for quality bio sample
+	41216,	// item id for pristine bio sample
+	41217;	// item id for consummate bio sample ( reward for tier A )
+	
+// required bio sample amount 
+setarray .bio_amount,0,2,2,2;
+// required cedi point
+setarray .bio_point,125,250,500,1000;	
+
+.tier_size = getarraysize( .tier$ );
+for( .@i = 0; .@i < .tier_size; .@i++ )
+	.tier_menu$ = .tier_menu$ + getitemname( .nectar[.@i] ) + "( "+.tier$[.@i]+" )" +":";
+end;
+}
+
+
+milenia,213,115,4	script	BillyBob	636,{
+mes "You got "+#cedi_point+" points.";
+mes "Pick a tier.";
+next;
+set .@i,select( .tier_menu$ ) - 1;
+mes "["+getitemname( .nectar[.@i] ) +" ("+.tier$[.@i]+")]";
+mes "^777777( gain "+getitemname( .ambrosia[.@i] )+" )^000000";
+mes "Required :";
+if( .bio_point[.@i] )
+	mes .bio_point[.@i]+" x Points";
+if( .bio_sample[.@i] && .bio_amount[.@i] ){
+	mes .bio_amount[.@i]+" x "+getitemname( .bio_sample[.@i] );
+	if( countitem( .bio_sample[.@i] ) < .bio_amount[.@i] ) close;
+}
+if( .bio_point[.@i] && #cedi_point < .bio_point[.@i] ) close;
+if( select( "Exchange to "+getitemname( .nectar[.@i] )+" ("+.tier$[.@i]+")","Cancel" ) == 1 ){
+	if( .bio_point[.@i] ) 
+		#cedi_point -= .bio_point[.@i];
+	if( .bio_sample[.@i] && .bio_amount[.@i] )
+		delitem .bio_sample[.@i],.bio_amount[.@i];
+	getitem .nectar[.@i],1;
+	getitem .ambrosia[.@i],1;
+	mes "Gained 1 "+getitemname( .nectar[.@i] )+" and 1 "+getitemname( .ambrosia[.@i] );
+}
+close;
+
+OnInit:
+// tiers name
+setarray .tier$,"Tier C","Tier B","Tier A";
+
+// ambrosia item id
+setarray .ambrosia,
+	41211,	// item id for clear ambrosia
+	41212,	// item id for yellow ambrosia
+	41213;	// item id for red ambrosia
+
+// nectar item id
+setarray .nectar,
+	41208,	// item id for yellow nectar
+	41209,	// item id for red nectar
+	41210;	// item id for blue nectar
+
+// Requirements for each tier ( if 0 = none )
+setarray .bio_sample,
+	41214,	// item id for bio sample
+	41215,	// item id for quality bio sample
+	41216,	// item id for pristine bio sample
+	41217;	// item id for consummate bio sample ( reward for tier A )
+	
+// required bio sample amount 
+setarray .bio_amount,2,2,2;
+// required cedi point
+setarray .bio_point,325,750,1500;
+
+.tier_size = getarraysize( .tier$ );
+for( .@i = 0; .@i < .tier_size; .@i++ )
+	.tier_menu$ = .tier_menu$ + getitemname( .nectar[.@i] ) + "( "+.tier$[.@i]+" )" +":";
+end;
+}

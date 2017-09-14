@@ -1,0 +1,208 @@
+milenia,100,161,5	script	MVP Ladder Exchanger	10183,{
+
+	mes "[Ladder Exchanger]";
+	set .Exchange,0;
+	mes "Let's see.. Hmmm..";
+	next;
+	mes "[Ladder Exchanger]";
+	mes "You have..";
+    mes "^ff0000" + getitemname(.IDP) + "^000000 : ^ff0000 "+countitem(.IDP) +" ^000000";
+	set .Total, countitem (.IDP);
+	mes "^ff0000" + getitemname(.IDP2) + "^000000 : ^ff0000 "+countitem(.IDP2) +" ^000000";
+	set .Total2, countitem (.IDP2);
+    next;
+	mes "[Ladder Exchanger]";
+    mes "Do you me to exchange this permit?";
+    next;
+	switch(select("Permit Exchange:Permit Exchange II:Close")) {
+		case 1:
+			mes "[Ladder Exchanger]";
+			mes "Please select which Exchange do you want?";
+			next;
+			switch(select("Ladder Material:Red Reagent or Golden Tread:Close")) {
+			case 1:
+				if (countitem (.IDP)) < 1{
+				mes "[Ladder Exchanger]";
+				mes "Sorry! You don't have any permit to exchange!!";
+				close;
+				}
+				next;
+				mes "[Ladder Exchanger]";
+				mes "Every 1 MVP Ladder Permit I you may exhange 1 Random Material.";
+				next;
+				switch(select("Got it!:Close")) {
+				case 1:
+				// start here
+						mes "[Ladder Exchanger]";
+						mes "How many " + getitemname(.IDP) + " do you want to exchange?";
+						next;
+						input .@amountP;
+					if (.@amountP == 0) {
+						mes "[Ladder Exchanger]";
+						mes "Umm, please enter your amount!";
+						close;
+						}
+						
+						.@totalP = (countitem (.IDP));
+					if (.@amountP > .@totalP){
+						mes "[Ladder Exchanger]";
+						mes "You don't have enough Permit!!!";
+						next;
+						mes "[Ladder Exchanger]";
+						mes "Please take this matter seriously!!";
+						next;
+						mes "[Ladder Exchanger]";
+						mes "You #$%$@$!!";
+						close;
+						}
+					if (.@totalP == 0){
+	
+						mes "[Ladder Exchanger]";
+						mes "You don't have "+.IDP+"!!";
+						next;
+						mes "[Ladder Exchanger]";
+						mes "Please go away!!";
+						next;
+						mes "[Ladder Exchanger]";
+						mes "I don't have time for you!!";
+						close;
+						}
+						
+						mes "[Ladder Exchanger]";
+						mes "Are you sure want to exchange "+ .@amountP +" "+ (getitemname (41204)) +"?";
+						next;
+						switch(select("Bring it on!:Maybe later")) {
+							case 1 : 
+								goto Ltrade;
+							case 2 : 
+								close;
+						}
+				//end here
+					
+				case 2:
+					close;
+					break;
+					}
+			case 2:
+				if (countitem (.IDP)) < 100{
+				mes "[Ladder Exchanger]";
+				mes "Sorry! You don't have any permit to exchange!!";
+				next;
+				mes "[Ladder Exchanger]";
+				mes "You need at least 100 MVP Ladder Permit I to exchange!";
+				next;
+				mes "[Ladder Exchanger]";
+				mes "Please come back when you have enough permit! Thanks!";
+				close;
+				break;
+				}
+				next;
+				mes "[Ladder Exchanger]";
+				mes "Every 100 MVP Ladder Permit I you may exchange 1 Red Reagent or 1 Golden Tread randomly.";
+				next;
+				switch(select("Got it!:Close")) {
+				case 1:
+					goto Ltrade3;
+				case 2:
+					close;
+					break;
+					}
+			case 3:
+				close;
+				break;
+				}
+		case 2:
+			if (countitem (.IDP2)) < 1{
+			mes "[Ladder Exchanger]";
+			mes "Sorry! You don't have any permit to exchange!!";
+			close;
+			break;
+			}
+			next;
+			goto Ltrade2;
+		case 3:
+			close;
+			break;
+	}
+			
+	// PERMIT EXCHANGE
+	Ltrade:
+	setarray .@items[0],"6746","7914","7844","7231";
+	set .round_item_id, .@items[rand (getarraysize(.@items)) ];
+	set .round_item_amount, rand(1,3);
+	set .Exchange, .Exchange + 1;
+	
+	
+	mes "[Ladder Exchanger]";
+    mes "Exchanging your permit....";
+	//message strcharinfo(0),"Exchanging permit "+(.Exchange)+"/"+(.Total)+".";
+	message strcharinfo(0),"Exchanging permit "+(.Exchange)+"/"+(.@amountP)+".";
+	getitem .round_item_id, .round_item_amount;
+	delitem .IDP,1;
+		if (.Exchange) == (.Total){
+		next;
+		mes "[Ladder Exchanger]";
+		mes "Sorry! You have reach the limit for exchange!!";
+		close;
+		}
+		
+		if (.Exchange) == (.@amountP){
+		next;
+		mes "[Ladder Exchanger]";
+		mes "Sorry! You have reach the limit for exchange!!";
+		close;
+		}
+			
+	next;
+	goto Ltrade;
+	
+	// PERMIT 2 EXCHANGE
+	Ltrade2:
+	
+	setarray .@itemsBonus[0],"6277","7879";
+	set .bonus_item_id, .@itemsBonus[rand (getarraysize(.@itemsBonus)) ];
+	set .bonus_item_amount, rand(1,5);
+	set .Exchange, .Exchange + 1;
+	
+	mes "[Ladder Exchanger]";
+    mes "Exchanging your permit....";
+	message strcharinfo(0),"Exchanging permit "+(.Exchange)+"/"+(.Total2)+".";
+	getitem .bonus_item_id, .bonus_item_amount;
+	delitem .IDP2,1;
+		if (.Exchange) == (.Total2){
+		next;
+		mes "[Ladder Exchanger]";
+		mes "Sorry! You have reach the limit for exchange!!";
+		close;
+		}
+	next;
+	goto Ltrade2;
+	
+	// PERMIT 1 - OPTIONAL
+	Ltrade3:
+	
+	setarray .@itemsBonus[0],"6277","7879";
+	set .bonus_item_id, .@itemsBonus[rand (getarraysize(.@itemsBonus)) ];
+	set .bonus_item_amount,1;
+	set .Exchange, .Exchange + 1;
+	
+	mes "[Ladder Exchanger]";
+    mes "Exchanging your permit....";
+	message strcharinfo(0),"Exchanging permit "+(.Exchange)+"/"+((.Total) / 100)+".";
+	getitem .bonus_item_id, .bonus_item_amount;
+	delitem .IDP,100;
+		if (.Exchange) == ((.Total) / 100){
+		next;
+		mes "[Ladder Exchanger]";
+		mes "Sorry! You have reach the limit for exchange!!";
+		close;
+		}
+	next;
+	goto Ltrade3;
+	
+
+	OnInit:
+    set .IDP,41204; // Ladder Permit
+	set .IDP2,41205; // Ladder Permit 2
+    end;
+}

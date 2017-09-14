@@ -9,7 +9,7 @@ Player_Menu:
 	mes "I can teleport you to any Milenia NPC.";
 	mes "Where do you want to go?";
 	next;
-	switch(select("Basic:Trading:Market Place:Mini Games:Quest:Special:Refiner:Zeny Farming")) {
+	switch(select("Basic:Trading:Market Place:Mini Games:Quest:Special:Refiner:Zeny Farming:Cedi MVP System")) {
 		case 1:
 			mes "[Milenia]";
 			mes "Please select which NPC you would like to be teleported to.";
@@ -45,7 +45,7 @@ Player_Menu:
 			mes "[Milenia]";
 			mes "Please select which NPC you would like to be teleported to.";
 			next;
-			switch(select("Michimaru's Workshop:Milenia Hyper Dealer:Quest Shop:3rd Job Shop:Ammunition:Ingredients:Pet Food Shop")) {
+			switch(select("Michimaru's Workshop:Milenia Hyper Dealer:Quest Shop:3rd Job Shop:Ammunition:Ingredients:Pet Food Shop:Cash Shop:Vicious Trader")) {
 				case 1:
 					warp "milenia",135,182;
 					break;	
@@ -67,18 +67,24 @@ Player_Menu:
 				case 7:
 					warp "milenia",133,181;
 					break;
+				case 8:
+					warp "milenia",73,61;
+					break;
+				case 9:
+					warp "milenia",28,145;
+					break;
 			}
 			break;
 		case 3:
 			mes "[Milenia]";
 			mes "Please select which NPC you would like to be teleported to.";
 			next;
-			switch(select("Milenia Item Mall:Milenia Market West :Milenia Market East")) {
+			switch(select("Milenia Item Mall:Universal Shop :Player Vendor")) {
 				case 1:
 					warp "milenia",95,185;
 					break;	
 				case 2:
-					warp "milenia",62,183;
+					warp "milenia",71,185;
 					break;
 				case 3:
 					warp "milenia",162,180;
@@ -89,20 +95,23 @@ Player_Menu:
 			mes "[Milenia]";
 			mes "Please select which NPC you would like to be teleported to.";
 			next;
-			switch(select("Disguise Game:Zombie PVP Game:Black Jack Game:Stock Market:Lottery")) {
+			switch(select("TicTacToe:Disguise Game:Zombie PVP Game:Black Jack Game:Stock Market:Lottery")) {
 				case 1:
-					warp "milenia",75,109;
+					warp "milenia",166,52;
 					break;
 				case 2:
-					warp "milenia",52,102;
+					warp "milenia",75,109;
 					break;
 				case 3:
-					warp "milenia",55,94;
+					warp "milenia",52,102;
 					break;
 				case 4:
-					warp "milenia",52,89;
+					warp "milenia",55,94;
 					break;
 				case 5:
+					warp "milenia",52,89;
+					break;
+				case 6:
 					warp "milenia",55,84;
 					break;
 			}
@@ -124,34 +133,37 @@ Player_Menu:
 			mes "[Milenia]";
 			mes "Please select which NPC you would like to be teleported to.";
 			next;
-			switch(select("New Acccount Freebies:Novice Support:GM Online List:Vote For Points:Coins Exchanger:Build Manager (Premium Resetter):Stylist:Mercenary Manager:Poring Vending Machine:Card Remover")) {
+			switch(select("Crimson Elementalist:New Acccount Freebies:Novice Support:GM Online List:Vote For Points:Coins Exchanger:Build Manager (Premium Resetter):Stylist:Mercenary Manager:Poring Vending Machine:Card Remover")) {
 				case 1:
-					warp "milenia",125,154;
+					warp "milenia",27,113;
 					break;
 				case 2:
-					warp "milenia",105,157;
+					warp "milenia",125,154;
 					break;
 				case 3:
-					warp "milenia",111,157;
+					warp "milenia",105,157;
 					break;
 				case 4:
-					warp "milenia",130,157;
+					warp "milenia",111,157;
 					break;
 				case 5:
-					warp "milenia",109,156;
+					warp "milenia",130,157;
 					break;
 				case 6:
-					warp "milenia",122,112;
+					warp "milenia",109,156;
 					break;
 				case 7:
-					warp "milenia",64,147;
+					warp "milenia",122,112;
 					break;
 				case 8:
-					warp "milenia",217,143;
+					warp "milenia",64,147;
 					break;
 				case 9:
-					warp "milenia",176,147;
+					warp "milenia",217,143;
+					break;
 				case 10:
+					warp "milenia",176,147;
+				case 11:
 					warp "milenia",191,147;
 					break;
 			}
@@ -200,18 +212,27 @@ Player_Menu:
 			mes "[Milenia]";
 			mes "Please select which NPC you would like to be teleported to.";
 			next;
-			switch(select("Dokebi Farm:Ore Mining:Gem Collector")) {
+			switch(select("Dokebi Farm:Invaded Prontera:Ore Mining:Gem Collector:Fishing")) {
 				case 1:
 					warp "milenia",52,126;
 					break;
 				case 2:
-					warp "milenia",40,145;
+					warp "milenia",127,163;
 					break;
 				case 3:
+					warp "milenia",40,145;
+					break;
+				case 4:
 					warp "milenia",37,145;
+					break;
+				case 5:
+					warp "milenia",120,78;
 					break;
 			}
 			break;
+			case 9:
+				warp "milenia",209,113;
+				break;
 	}
 	end;
 }
@@ -225,3 +246,8 @@ milenia,221,139,11	duplicate(Milenia Tour)	Milenia Tour#mercenary	721
 milenia,202,85,11	duplicate(Milenia Tour)	Milenia Tour#quest	721
 milenia,169,100,11	duplicate(Milenia Tour)	Milenia Tour#refine	721
 milenia,43,147,11	duplicate(Milenia Tour)	Milenia Tour#mine	721
+milenia,67,57,5	duplicate(Milenia Tour)	Milenia Tour#novice	721
+milenia,130,82,11	duplicate(Milenia Tour)	Milenia Tour#fish	721
+milenia,218,118,11	duplicate(Milenia Tour)	Milenia Tour#cedi	721
+milenia,169,45,11	duplicate(Milenia Tour)	Milenia Tour#tictac	721
+milenia,22,115,5	duplicate(Milenia Tour)	Milenia Tour#crimele	721

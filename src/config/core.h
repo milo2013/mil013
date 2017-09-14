@@ -8,6 +8,8 @@
  * For detailed guidance on these check http://rathena.org/wiki/SRC/config/
  **/
 
+#include "../custom/defines_pre.h"
+
 /// Max number of items on @autolootid list
 #define AUTOLOOTITEM_SIZE 10
 
@@ -61,7 +63,7 @@
 #define HP_SP_TABLES
 
 /// Uncomment to enable VIP system.
-//#define VIP_ENABLE
+#define VIP_ENABLE
 
 /// Enable VIP script changes? (requires VIP_ENABLE)
 /// The primary effects of this are restrictions on non-VIP players, such as requiring
@@ -70,21 +72,22 @@
 #define VIP_SCRIPT 0
 
 #ifdef VIP_ENABLE
-	#define MIN_STORAGE 300 // Default number of storage slots.
-	#define MIN_CHARS 3 // Default number of characters per account.
+	#define MIN_STORAGE 600 // Default number of storage slots.
+	#define MIN_CHARS 9 // Default number of characters per account.
 	#define MAX_CHAR_VIP 6 // This must be less than MAX_CHARS
 	#define MAX_CHAR_BILLING 0 // This must be less than MAX_CHARS
 #endif
 
-/// Comment to disable the official packet obfuscation support.
-/// When enabled, make sure there is value for 'packet_keys' of used packet version or
-/// defined 'packet_keys_use' in db/[import/]packet_db.txt.
-/// This requires PACKETVER 2011-08-17 or newer.
-//#define PACKET_OBFUSCATION
+/// Comment to disable warnings for deprecated script commands
+#define SCRIPT_COMMAND_DEPRECATION
+
+/// Comment to disable warnings for deprecated script constants
+#define SCRIPT_CONSTANT_DEPRECATION
 
 /**
  * No settings past this point
  **/
+#include "./packets.h"
 #include "./renewal.h"
 #include "./secure.h"
 #include "./classes/general.h"
@@ -93,5 +96,7 @@
  * Constants come last; so they process anything that could've been modified in early includes
  **/
 #include "./const.h"
+
+#include "../custom/defines_post.h"
 
 #endif // _CONFIG_CORE_H_

@@ -162,5 +162,3 @@ prontera,184,177,6	script	Refine Master	851,{
 	mes "Farewell~!";
 	close;
 }
-
-milenia,174,107,11	duplicate(Refine Master)	Refine Master#mro	851

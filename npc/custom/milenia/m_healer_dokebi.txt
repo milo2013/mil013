@@ -27,7 +27,7 @@
 		set Zeny, Zeny-.@Price;
 	}
 	specialeffect2 EF_HEAL2; percentheal 100,100;
-	savepoint "milenia",119,152;
+	//savepoint "milenia",119,152;
 	if (.@Buffs) {
 		specialeffect2 EF_INCAGILITY; sc_start SC_INCREASEAGI,300000,10;
 		specialeffect2 EF_BLESSING; sc_start SC_BLESSING,300000,10;
@@ -46,3 +46,7 @@
 
 
 farm,100,72,6	duplicate(Dokebi Farm Nurse)	Dokebi Farm Nurse#df	76
+1@farm,100,72,6	duplicate(Dokebi Farm Nurse)	Dokebi Farm Nurse#df1	76
+2@farm,100,72,6	duplicate(Dokebi Farm Nurse)	Dokebi Farm Nurse#df2	76
+3@farm,100,72,6	duplicate(Dokebi Farm Nurse)	Dokebi Farm Nurse#df3	76
+4@farm,100,72,6	duplicate(Dokebi Farm Nurse)	Dokebi Farm Nurse#df4	76

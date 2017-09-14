@@ -37,7 +37,7 @@ OnInit:
 
 	// Min & Max buyable //
 	set $S_BuyMin,1;
-	set $S_BuyMax,1000000;
+	set $S_BuyMax,100000000;
 	end;
 
 	// Average Price (Your start prices) //
@@ -183,6 +183,9 @@ milenia,50,90,5	script	Stock Market::stockmarket	109,{
 
 	// Begining of interface //
 S_Start:
+	mes "[Stock Market]";
+	mes "^FF0000 Note : For 1Bil Zeny or more stock, this NPC may calculate it wrong and you may lose some Zeny Here. Use it at your own risk! - ADMIN^000000";
+	next;
 	mes "[Stock Market]";
 	mes "Last fluctuation: " + $S_LastUpd$;
 

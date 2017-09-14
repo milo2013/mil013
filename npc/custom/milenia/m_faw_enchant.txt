@@ -78,7 +78,7 @@ OnInit:
 .enchant_reset_Zeny = 1000000;
 
 // enchant type category
-setarray .enchant_type$,"Fighting","Magic","Archer","Critical","MaxHP","MaxSP","ASPD","STR","AGI","DEX","VIT","INT","LUK";
+setarray .enchant_type$,"Fighting","Magic","Archer","Fatal","MaxHP","MaxSP","ASPD","STR","AGI","DEX","VIT","INT","LUK";
 
 // enchant list ( Fighting Spirit )
 setarray .enchant_list_1,4809,4808,4820;
@@ -86,8 +86,8 @@ setarray .enchant_list_1,4809,4808,4820;
 setarray .enchant_list_2,4812,4827,4826;
 // enchant list ( Archer )
 setarray .enchant_list_3,4832,4833,4834;
-// enchant list ( Critical )
-setarray .enchant_list_4,4764,4765;
+// enchant list ( Fatal )
+setarray .enchant_list_4,4863,4864,4865;
 // enchant list ( Max HP )
 setarray .enchant_list_5,4861,4862;
 // enchant list ( Max SP )
@@ -108,7 +108,7 @@ setarray .enchant_list_12,4712,4713,4715;
 setarray .enchant_list_13,4752,4753,4755;
 
 // extra 1 special enchant for 3rd slot if refine above 9 ( follow by category sequences )
-setarray .special_enchant,4821,4828,4835,4765,4868,4801,4807,4853,4854,4857,4855,4856,4858;
+setarray .special_enchant,4821,4828,4835,4866,4868,4801,4807,4853,4854,4857,4855,4856,4858;
 
 
 .enchant_type_size = getarraysize( .enchant_type$ );

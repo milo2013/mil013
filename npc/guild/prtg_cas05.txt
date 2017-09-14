@@ -1,19 +1,11 @@
 //===== rAthena Script =======================================
-<<<<<<< HEAD
 //= War of Emperium (Prontera)
-=======
-//= War of Emperium (Prontera) - Gondul
->>>>>>> 03a54402bc14c620d4f478c5c8b887728213aad4
 //===== By: ==================================================
 //= L0ne_W0lf
 //===== Current Version: =====================================
 //= 1.4
 //===== Compatible With: =====================================
-<<<<<<< HEAD
 //= rAthena SVN
-=======
-//= rAthena Project
->>>>>>> 03a54402bc14c620d4f478c5c8b887728213aad4
 //===== Description: =========================================
 //= NPCs that relate to Prontera Guild Castle 5
 //===== Additional Comments: =================================
@@ -103,10 +95,7 @@ prtg_cas05,273,257,4	duplicate(InsideFlagsPR5)	Gondul#12	722
 // Guild Flag (Town)
 //============================================================
 prontera,165,194,5	duplicate(InsideFlagsPR5)	Gondul#13	722
-<<<<<<< HEAD
-milenia,131,113,5	duplicate(InsideFlagsPR5)	Gondul#14	722
-=======
->>>>>>> 03a54402bc14c620d4f478c5c8b887728213aad4
+
 
 // Kafra Employee
 //============================================================
@@ -119,10 +108,7 @@ prtg_cas05,36,37,4	duplicate(cm)	Raynor#prtg_cas05	55
 // Treasure Room Exit
 //============================================================
 prtg_cas05,281,176,0	script	#Lever_PR05	111,{
-<<<<<<< HEAD
 
-=======
->>>>>>> 03a54402bc14c620d4f478c5c8b887728213aad4
 	mes " ";
 	mes "There's a small lever. Will you pull it?";
 	next;

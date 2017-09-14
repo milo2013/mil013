@@ -1,19 +1,11 @@
 //===== rAthena Script =======================================
-<<<<<<< HEAD
 //= War of Emperium (Geffen)
-=======
-//= War of Emperium (Geffen) - Mersetzdeitz
->>>>>>> 03a54402bc14c620d4f478c5c8b887728213aad4
 //===== By: ==================================================
 //= L0ne_W0lf
 //===== Current Version: =====================================
 //= 1.2
 //===== Compatible With: =====================================
-<<<<<<< HEAD
 //= rAthena SVN
-=======
-//= rAthena Project
->>>>>>> 03a54402bc14c620d4f478c5c8b887728213aad4
 //===== Description: =========================================
 //= NPCs that relate to Geffen Guild Castle 5
 //===== Additional Comments: =================================
@@ -99,10 +91,7 @@ gefg_cas05,69,66,4	duplicate(InsideFlagsG5)	Mersetzdeitz#10	722
 // Guild Flag (Town)
 //============================================================
 geffen,131,123,6	duplicate(InsideFlagsG5)	Mersetzdeitz#11	722
-<<<<<<< HEAD
-milenia,76,142,5	duplicate(InsideFlagsG5)	Mersetzdeitz#12	722
-=======
->>>>>>> 03a54402bc14c620d4f478c5c8b887728213aad4
+
 
 // Kafra Employee
 //============================================================
@@ -115,10 +104,7 @@ gefg_cas05,70,52,3	duplicate(cm)	Byohre#gefg_cas05	55
 // Treasure Room Exit
 //============================================================
 gefg_cas05,149,107,0	script	#lever_G05	111,{
-<<<<<<< HEAD
 
-=======
->>>>>>> 03a54402bc14c620d4f478c5c8b887728213aad4
 	mes " ";
 	mes "There's a small lever. Will you pull it?";
 	next;

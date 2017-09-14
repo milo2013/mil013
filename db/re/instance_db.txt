@@ -20,8 +20,19 @@
 13,Eclage Interior,1200,300,1@ecl,60,50
 14,Sara's Memories,3600,300,1@sara,250,155
 15,Geffen Magic Tournament,7200,300,1@gef,119,209,1@gef_in,1@ge_st
-
+16,Horror Toy Factory,3600,300,1@xm_d,111,22
+17,Faceworm's Nest,3600,300,1@face,112,374
+18,Ghost Palace,3600,300,1@spa,198,188
+19,Bios Island,7200,300,1@dth1,19,94,1@dth2,1@dth3
 // Custom
-26,Nightmarish Jitterbug,3600,300,1@jtb,16,18
+26,Nightmarish Jitterbug,14400,300,1@jtb,16,18
+27,Charleston Crisis,14400,300,1@mcd,127,282
 50,MVP Ladder,3600,300,guild_vs2-2,49,49
 52,Endless Cellar,14400,300,1@new,50,355,2@new,3@new,4@new,5@new,6@new
+53,Airship Assault,3600,300,1@air1,244,73,1@air2
+101,LV1 Elite MVP Ladder,3600,300,1@ldr,9,39
+102,LV2 Elite MVP Ladder,3600,300,2@ldr,39,72
+103,LV3 Elite MVP Ladder,3600,300,3@ldr,72,40
+104,LV4 Elite MVP Ladder,3600,300,4@ldr,39,7
+105,Vicious Prison,3600,300,1@prison,245,16
+108,Infinite Space,3600,300,1@infi,30,8

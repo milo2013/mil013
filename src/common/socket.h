@@ -17,8 +17,6 @@
 
 #include <time.h>
 
-// GEPARD START
-
 extern bool is_gepard_active;
 extern uint32 min_allowed_gepard_version;
 
@@ -69,9 +67,9 @@ enum gepard_packets
 {
 	CS_LOGIN_PACKET        = 0x0064,
 	CS_WHISPER_TO          = 0x0096,
-	CS_WALK_TO_XY          = 0x0363,
-	CS_USE_SKILL_TO_ID     = 0x083c,
-	CS_USE_SKILL_TO_POS    = 0x0438,
+	CS_WALK_TO_XY          = 0x08a8,
+	CS_USE_SKILL_TO_ID     = 0x0815,
+	CS_USE_SKILL_TO_POS    = 0x0817,
 
 	CS_LOGIN_PACKET_1      = 0x0277,
 	CS_LOGIN_PACKET_2      = 0x02b0,
@@ -110,7 +108,9 @@ void gepard_send_info(int fd, unsigned short info_type, char* message);
 bool gepard_process_packet(int fd, uint8* packet_data, uint32 packet_size, struct gepard_crypt_link* link);
 void gepard_enc_dec(uint8* in_data, uint8* out_data, unsigned int data_size, struct gepard_crypt_link* link);
 
-// GEPARD END
+#ifdef __cplusplus
+extern "C" {
+#endif
 
 #define FIFOSIZE_SERVERLINK 256*1024
 
@@ -282,6 +282,10 @@ void set_eof(int fd);
 void send_shortlist_add_fd(int fd);
 // Do pending network sends (and eof handling) from the shortlist.
 void send_shortlist_do_sends();
+#endif
+
+#ifdef __cplusplus
+}
 #endif
 
 #endif /* _SOCKET_H_ */

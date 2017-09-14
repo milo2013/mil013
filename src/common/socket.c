@@ -1454,6 +1454,7 @@ void socket_init(void)
 #endif
 
 	socket_config_read(SOCKET_CONF_FILENAME);
+	
 	// Gepard Shield
 	gepard_config_read();
 	// Gepard Shield

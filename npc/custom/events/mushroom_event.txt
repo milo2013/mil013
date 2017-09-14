@@ -20,7 +20,7 @@ milenia,50,107,6	script	Find the Mushroom	452,{
 		mes "There is no event at the moment!";
 	else {
 		mes "There are "+.Spawn+" Mushrooms left in "+.Map$+"!";
-		mes "Find and kill the mushrooms to gain "+getitemname(.Prize)+"!";
+		mes "Find and kill the mushrooms to gain random amount of "+getitemname(.Prize)+"!";
 	}
 	if (.Status || getgmlevel() < .GM) close;
 	mes "Start the event?";
@@ -33,7 +33,7 @@ milenia,50,107,6	script	Find the Mushroom	452,{
 
 OnInit:
 	set .Prize,969;	// Reward item ID
-	set .Amount,1;	// Reward item amount
+	set .Amount,rand(1,5);	// Reward item amount
 	set .GM,60;	// GM level required to access NPC
 	setarray .Maps$[0],"milenia"; // Possible maps
 	end;
@@ -41,7 +41,7 @@ OnInit:
 OnMinute10:	// Start time (every hour)
 	if (.Status) end;
 	set .Status,1;
-	set .Spawn,rand(2,10);	// How many Mushrooms should spawn?
+	set .Spawn,rand(5,20);	// How many Mushrooms should spawn?
 	set .Map$,.Maps$[rand(getarraysize(.Maps$))];
 	killmonster .Map$,"All";
 	monster .Map$,0,0,"Please don't kill me!",1084,.Spawn,strnpcinfo(0)+"::OnMobKilled";

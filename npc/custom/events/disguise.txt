@@ -15,7 +15,7 @@
 //= 5.1 Cleaned and standardized, mostly. [Euphy]
 //============================================================
 //milenia,119,147,5	script	Disguise Event	795,{
-milenia,73,101,5	script	Disguise Event	795,{
+milenia,71,101,5	script	Disguise Event	795,{
 
 	// Currently set to run every two hours.
 	// To change times, edit the OnClock labels below.

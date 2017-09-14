@@ -16,9 +16,71 @@
 //============================================================================
 
 milenia,113,138,5	script	PvP Warper	497,{
+
+	if (countitem (7621) >= 1){ // Token Check
+        mes "[Devil Square Guardian]";
+        mes "^FF0000Token of Siegfried^000000 is probited to bring in PVP Arena!!";
+		next;
+		mes "[Devil Square Guardian]";
+		mes "Please save in your storage!";
+		callfunc "F_KafStor",2,0,0;
+		close;
+		}
+		
+	Player_Menu:	
+	query_sql("SELECT COUNT(char_id) FROM `char` LEFT JOIN `login` ON `char`.account_id=login.account_id WHERE online AND last_ip = (SELECT `last_ip` FROM `login` WHERE `account_id` = "+getcharid(3)+")",.@count);
+	query_sql("SELECT COUNT(char_id) FROM `char` LEFT JOIN `login` ON `char`.account_id=login.account_id WHERE online AND last_unique_id = (SELECT `last_unique_id` FROM `login` WHERE `account_id` = "+getcharid(3)+")",.@mac);
+	if( ( (.@count) > 1 ) && ((.@mac) > 1) ) {
+			
+	// IP Address 
+	query_sql("SELECT `last_ip` FROM `login` WHERE `account_id` = "+getcharid(3)+" ",.IP$);
+	
+	// MAC Address
+	query_sql("SELECT `last_unique_id` FROM `login` WHERE `account_id` = "+getcharid(3)+" ",.macID$);
+	
+	mes "[PVP Officer]";
+	mes "My.. My.. ^ff0000" + strcharinfo(0) + "^000000..";
+	next;
+	mes "[PVP Officer]";
+	mes "It's seem you have more than 1 client online!";
+	mes "^FF0000"+(.@count)+"^000000 of ^FF0000"+(.IP$)+"^000000 IP Address.";
+	mes "^FF0000"+(.@mac)+"^000000 of ^FF0000"+(.macID$)+"^000000 MAC Adress.";
+	next;
+	mes "[PVP Officer]";
+	mes "Please make sure only 1 running to enter this PVP!";
+	close;
+	end;
+	}
+
+	mes "[PVP Officer]";
+	mes "Welcome back ^ff0000" + strcharinfo(0) + "^000000!!";
+	next;
+	mes "[PVP Officer]";
+	mes "Which arena you want to enter this time?";
+	next;
+		switch( select( "Milenia Arena:Izlude Arena:Frozen PVP ^FF0000(Treasure Box for winner)^000000:Cancel" )) {
+			case 1:
+				callfunc "PVP#NORMAL";
+				end;
+			case 2:
+				callfunc "PVP#IZLUDE";
+				end;
+			case 3:
+				mes "[PVP Officer]";
+				mes "To enter, simply typing ^FF0000@frozen^000000 and you will be in queue.";
+				close;
+			case 4:
+				close;
+				end;
+				}
+}
+	
+function	script	PVP#NORMAL	{
 	
 	if (pvp01) == 1 {
 	warp "milenia_pvp",82,49;
+	mapannounce "milenia_pvp", strcharinfo(0) + " has entered the PVP Arena!",0;
+	mapannounce "milenia", strcharinfo(0) + " has entered the PVP Arena!",0;
 	set pvp02,1;
 	set pvp01,0;
     end;
@@ -26,6 +88,8 @@ milenia,113,138,5	script	PvP Warper	497,{
 	
 	if (pvp02) == 1 {
 	warp "milenia_pvp",50,16;
+	mapannounce "milenia_pvp", strcharinfo(0) + " has entered the PVP Arena!",0;
+	mapannounce "milenia", strcharinfo(0) + " has entered the PVP Arena!",0;
 	set pvp03,1;
 	set pvp02,0;
     end;
@@ -33,11 +97,50 @@ milenia,113,138,5	script	PvP Warper	497,{
 	
 	if (pvp03) == 1 {
 	warp "milenia_pvp",16,49;
+	mapannounce "milenia_pvp", strcharinfo(0) + " has entered the PVP Arena!",0;
+	mapannounce "milenia", strcharinfo(0) + " has entered the PVP Arena!",0;
 	set pvp03,0;
     end;
 	}
 	
     warp "milenia_pvp",50,83;
+	mapannounce "milenia_pvp", strcharinfo(0) + " has entered the PVP Arena!",0;
+	mapannounce "milenia", strcharinfo(0) + " has entered the PVP Arena!",0;
+	set pvp01,1;
+    end;
+}
+
+function	script	PVP#IZLUDE	{
+	
+	if (pvp01) == 1 {
+	warp "izlude_pvp",128,59;
+	mapannounce "izlude_pvp", strcharinfo(0) + " has entered the PVP Arena!",0;
+	mapannounce "milenia", strcharinfo(0) + " has entered the PVP Arena - Izlude!",0;
+	set pvp02,1;
+	set pvp01,0;
+    end;
+	}
+	
+	if (pvp02) == 1 {
+	warp "izlude_pvp",128,252;
+	mapannounce "izlude_pvp", strcharinfo(0) + " has entered the PVP Arena!",0;
+	mapannounce "milenia", strcharinfo(0) + " has entered the PVP Arena - Izlude!",0;
+	set pvp03,1;
+	set pvp02,0;
+    end;
+	}
+	
+	if (pvp03) == 1 {
+	warp "izlude_pvp",53,163;
+	mapannounce "izlude_pvp", strcharinfo(0) + " has entered the PVP Arena!",0;
+	mapannounce "milenia", strcharinfo(0) + " has entered the PVP Arena - Izlude!",0;
+	set pvp03,0;
+    end;
+	}
+	
+    warp "izlude_pvp",205,162;
+	mapannounce "izlude_pvp", strcharinfo(0) + " has entered the PVP Arena!",0;
+	mapannounce "milenia", strcharinfo(0) + " has entered the PVP Arena - Izlude!",0;
 	set pvp01,1;
     end;
 }
@@ -540,3 +643,19 @@ milenia,126,138,11	script	PVP Officer	498,{
 		}
 	}
 }
+
+milenia_pvp	mapflag	nosave	SavePoint
+milenia_pvp	mapflag	pvp
+milenia_pvp	mapflag	pvp_noguild
+//milenia_pvp	mapflag	pvp_noparty
+milenia_pvp	mapflag	noteleport
+milenia_pvp	mapflag	nomemo
+milenia_pvp	mapflag	restricted	3
+
+izlude_pvp	mapflag	nosave	SavePoint
+izlude_pvp	mapflag	pvp
+izlude_pvp	mapflag	pvp_noguild
+//izlude_pvp	mapflag	pvp_noparty
+izlude_pvp	mapflag	noteleport
+izlude_pvp	mapflag	nomemo
+izlude_pvp	mapflag	restricted	3

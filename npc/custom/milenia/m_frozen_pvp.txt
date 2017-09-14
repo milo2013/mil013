@@ -1,0 +1,666 @@
+																	//////////////////////////////////////////////////////
+																	/////											//////
+																	/////			PvP Freeze Event				//////
+																	/////			 Version:  1.1					//////
+																	/////				By Jeroen					//////
+																	/////			This is a paid script, 			//////
+																	/////		     do not redistribute			//////
+																	//////////////////////////////////////////////////////
+
+									////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+									// Commands:																									////
+									// @joinqueue joins the event queue : upon reaching the required players the event starts						////
+									// @leavequeue leave's the event queue 																			////
+									// @freezeconfig Opens GM menu to configure some settings														////
+									// @claimreward claims reward if the item was not received due to the character being Overweight 				////
+									////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+									/// How to: 																									////	
+									/// Thank you for purchasing the PvP Freeze event. This event is a team-based elemination type PvP. However,	////
+									/// instead of players being eliminated, they become frozen. If a player becomes frozen, it's team can decide to////
+									///	free him/her by talking to an NPC that can be found on the bottom area of the PvP room for X amount of 		////
+									///	seconds (Specified in the config). 																			////
+									///	players can join the event by the @commands specified above. Players are randomly assigned to a team.		//// 
+									///																												//// 
+									/// If you find any bugs or do if you have suggestions either e-mail me at garet999@gmail.com or send me a PM on////
+									///	rAthena. I'll try to respond within 24 hours.																//// 
+									////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+prt_pvp,49,28,7	script	TheUnFreezer	4_M_FROZEN1,{
+	dispbottom "You're attempting to free your team...";
+	callsub FreeTeam;
+	end;
+
+// ------------- Events ----------------
+OnEventStart:
+	// Set mapflags
+	.sessionId++;
+	for(set .@i, 0; .@i < getarraysize(.mapf); set .@i,.@i+1)
+		setmapflag .map$,.mapf[.@i];
+	.active = 1;
+	callsub QueueWarpPlayers;
+	// explain rules.	
+	sleep(2000);
+	mapannounce .map$,"Each of you have been assigned to a team, your team consists of the people spawned in the same area.",0;
+	sleep(5000);
+	mapannounce .map$,"If you get killed, you'll get into a frozen state. During this, you cannot move or attack.",0;
+	sleep(5000);
+	mapannounce .map$,"Your team can be freed if you talk to the NPC at the bottom for a short duration.",0;
+	sleep(5000);	
+	.@i = 5;
+	while(.@i > 0){
+		mapannounce .map$,"Starting in "+ .@i + "...",0;
+		sleep(1000);
+		.@i--;
+	}
+	mapannounce .map$,"Goodluck!",0;
+	pvpon(.map$);
+	removemapflag .map$,44;
+	initnpctimer;
+	end;
+
+OnEventEnd:
+	sleep(1000); // Waiting for players to finish warping, mapannounce doesn't show during mid warp.
+	mapannounce .map$,"You will be warped out shortly",0;
+	sleep(10000);
+	if(!.locations){
+		mapwarp .map$,"milenia",120,150;
+	} else{
+		callsub WarpPlayers;
+	}
+	.disabled = 0;
+	.active = 0;
+	for(set .@i, 0; .@i < getarraysize(.mapf); set .@i,.@i+1)
+		removemapflag .map$,.mapf[.@i];
+	end;
+
+// On Load, you get assigned to a team.
+OnPCLoadMapEvent:
+	if((@team && @FreezeSessionId == .sessionId) || .disabled || .map$ != strcharinfo(3))
+		end;
+	if(getgmlevel() && .gmAccess)
+	{
+		dispbottom "Hello GM, You're free to watch, just don't touch anyone!"; 
+		end;
+	}
+	set @team,callsub(AddToTeam);
+	@FreezeSessionId = .sessionId;
+	// Custom Script command
+	jointeam @team;
+	
+	if(!@team){ //Should NEVER trigger on it's own. It's a safeguard for GM's warping players in. Which is a posibility if a player leaves.
+		dispbottom "Something appears to have gone wrong, sorry! please come back later";
+		warp "milenia",120,150;
+		end;
+	}
+	
+	warp .map$,getd(".team"+@team+"Spawnx"),getd(".team"+@team+"Spawny"); 
+	dispbottom "You're on team " + @team + " Goodluck!";
+	end;
+	
+OnPCDieEvent:
+	// Player is not a part of the Event
+	if(.map$ != strcharinfo(3) || callsub(PlayerAlreadyFrozen))
+		end;
+	mapannounce .map$,strcharinfo(0) + " of team "+ @team +" has been frozen!",0;
+	
+	//Generate cell in certain area
+	do{
+		.@x = rand(.celMinx,.celMaxx);
+		.@y = rand(.celMiny,.celMaxy);
+	}while(!checkcell(.map$, .@x, .@y, cell_chkpass)); 
+	pcblockmove(getcharid(CHAR_ID_ACCOUNT), true);
+	warp(.map$,.@x,.@y);
+	callsub FindFreeSpot,@team + "Frozen";
+	if(.@t = callsub(TeamIsEmptyOrFrozen))
+	{
+		if(.@t == 3){
+			donpcevent strnpcinfo(0) + "::OnEventEnd"; // Both teamsa re empty, so just stop the event.
+			end;
+		}
+		// Win condition opposite team.
+		callsub DeclareWinners,.@t;
+	}
+	else {
+		dispbottom "You have died, wait for your team to free you.";
+		addtimer 10,strnpcinfo(0) + "::OnRevive"; /// You can't ressurect rightaway for some reason.
+	}
+	end;
+
+OnRevive:
+	setoption2 2,1;
+	atcommand "@alive";
+	end;
+	
+//Player has left. Remove from GID list	
+OnPCLogoutEvent:
+	if(callsub(PlayerIsQueued)){
+		callsub(LeaveQueue);
+	}
+	if(.map$ != strcharinfo(3)) // Player is not a part of the Event
+		end;
+	callsub RemovePlayer,@team;
+	mapannounce .map$,strcharinfo(0) + " has left the battlefield!",0;
+	end;
+
+// Check if a GM forced a player to leave...
+OnTimer30000: 
+	if(callsub(PlayerLeft)){
+		callsub KickInactivePlayers;
+	}
+	if(.@t = callsub(TeamIsEmptyOrFrozen))
+	{
+		callsub DeclareWinners,.@t;
+	}
+	initnpctimer;
+    end;
+	
+// Join the queue
+OnJoinQueue:
+	if(!.open){
+		dispbottom "The event is not active.";
+		end;
+	}
+	else if(.active){
+		dispbottom "You cannot join the queue when the Event is active.";
+		end;
+	}
+	else if(callsub(PlayerIsQueued))
+	{
+		dispbottom "You are already in the queue!";
+		end;
+	}
+	callsub JoinQueue;
+	mapannounce "milenia", strcharinfo(0) + " has registered for joining FROZEN PVP! Typing @frozen to join!",0;
+	dispbottom "You have joined the queue. NOTE! You can be warped at any time!";
+	if(callsub(IsQueueReady)){
+		donpcevent strnpcinfo(0)+ "::OnEventStart";
+		callsub QueueDelete;
+	}
+	else{
+		callsub(NotifyPlayers);
+	}
+	end;
+	
+// Leave the queue
+OnLeaveQueue:
+	if(callsub(PlayerIsQueued))
+	{
+		callsub(LeaveQueue);
+		dispbottom "You have left the queue"; 
+		callsub(NotifyPlayers);
+		end;
+	}
+	dispbottom "You're not in the queue";
+	end;
+
+// Claim reward
+OnClaim:
+	if(!freezeReward)
+	{
+		dispbottom "There is no reward for you to claim.";
+		end;
+	}
+	.@reward = (freezeReward&~(65535<<15));
+	.@rewardAmount = (freezeReward>>15);
+	if(checkweight(.@reward,.@rewardAmount))
+	{
+		getitem .@reward,.@rewardAmount;
+		freezeReward = 0;
+	}
+	else{
+		dispbottom "Unable to claim your reward, please clean your inventory.";
+	}
+	end;
+
+// GM config
+OnConfig:
+	while(1){
+		switch(select(((!.open) ? "~^00FF00 Open ":"~^FF0000 Close") + " Event^000000:"+
+								 "~ Change reward (" + .rewardAmount + "x " + getitemname(.reward) + "):"+  
+								 "~ Change player requirement (" + .MaxTeamMembers + " Per team):"+
+								 "~ Time to free players (" + .timeToFree + " Seconds)"
+		))
+		{
+			case 1: // Open or close event.
+				.open = (!.open);
+				break;
+			case 2: 
+				dispbottom "What item would you like to have as a reward? (0 to cancel)";
+				do{
+					input .@i;
+				}while(getitemname(.@i) == "null" && .@i != 0);				
+				if(.@i == 0)
+				{
+					dispbottom "cancaled";
+					break;
+				}
+				dispbottom "How many " + getitemname(.@i) + "'s  do you want to give?";
+				do{
+					input .@j;
+				}while(.@j <= 0 || .@j >= 30000);
+				.reward = .@i;
+				.rewardAmount = .@j;
+				dispbottom "Changed!";
+				break;
+			case 3:
+				dispbottom "How many players need to be in each team before the game starts? (between 2 and 50)";
+				do{
+					input .@j;
+				}while(.@j <= 1 || .@j >= 50);
+				.MaxTeamMembers = .@j;
+				dispbottom "Changed!";
+				break;
+			case 4:
+				dispbottom "How long does it take to be freed? (between 1 and 30 seconds)";
+				do{
+					input .@j;
+				}while(.@j <= 0 || .@j >= 30);
+				.timeToFree = .@j;
+				dispbottom "Changed!";
+				break;
+		}
+	}
+	end;
+	
+//---------------- Functions -------------------
+
+//Add player to team
+// Player needs to be attached.
+AddToTeam:
+	if(getarraysize(.team1List) < .MaxTeamMembers)
+	{
+		return callsub(FindFreeSpot,1);
+	}
+	else if(getarraysize(.team2List) < .MaxTeamMembers)
+	{
+		return callsub(FindFreeSpot,2);
+	}
+	return 0;
+	
+// Finds a free spot for the player to join
+// Argument 0: Team id
+// Player attachment is required.
+FindFreeSpot:
+	for(.@i = 0; .@i < .MaxTeamMembers; .@i++)
+	{
+		if(!getd(".team" + getarg(0) + "List[" + .@i + "]"))
+		{
+			setd(".team" + getarg(0) + "List[" + .@i + "]",getcharid(3));
+			break;
+		}
+	}
+	return getarg(0);
+
+//removes player from list
+// Argument 0: Team id
+RemovePlayer:
+	for(.@i = 0; .@i < getarraysize(getd(".team" + getarg(0) + "List")); .@i++)
+	{
+		if(getd(".team" + getarg(0) + "List[" + .@i + "]" == getcharid(3)))
+		{
+			deletearray(getd(".team" + getarg(0) + "List[" + .@i + "]"),1); 
+		}
+	}
+	return getarg(0);
+
+// Starts the Unfreezing process
+FreeTeam:
+	if(!callsub(PartyMemberIsFrozen,@team)){
+		dispbottom "No-one in your team is frozen!";
+		return;
+	}
+	callsub(DisableHiding);
+	progressbar("0xRRGGBB", .timeToFree);
+	mapannounce .map$,strcharinfo(0) + " Freed team " + @team + "!",0;
+	dispbottom "Success!";		
+	callsub FreeParty,@team;
+	return;
+
+DisableHiding:
+	sc_end SC_HIDING;
+	sc_end SC_CLOAKING;
+	sc_end SC_CHASEWALK;
+	// Renewal invisibility
+	sc_end SC_CLOAKINGEXCEED;
+	sc_end SC_CAMOUFLAGE;
+	sc_end SC__INVISIBILITY;
+	return;
+
+// Unfreezes all Players0
+// Argument 0: team id (int 1 or 2)
+FreeParty:
+	for(.@i = 0; .@i < getarraysize(getd(".team"+ getarg(0) +"FrozenList")); .@i++) 
+	{
+		if(attachrid(getd(".team"+ getarg(0) +"FrozenList["+.@i + "]")))
+		{
+			callsub FreePlayer; // Free the player that is stuck
+		}
+	}
+	deletearray(getd(".team"+ getarg(0) +"FrozenList"),getarraysize(getd(".team"+ getarg(0) +"FrozenList"))); //Empty the array. Everyone is free!
+	return;
+
+// Check if team is frozen
+PartyMemberIsFrozen:
+	return (getarraysize(getd(".team"+ getarg(0) +"FrozenList")) > 0);
+	
+PlayerAlreadyFrozen:
+	for(.@i = 0; .@i < getarraysize(getd(".team"+ @team +"FrozenList")); .@i++) {
+		if(getcharid(3) == getd(getd(".team"+ @team +"FrozenList["+.@i+"]")))
+		{
+			debugmes "A player has reached a frozen player. Please make sure the invisible wall is setup properly.";
+			return 1;
+		}	
+	}
+	return 0;
+
+// Free player, Player needs to be attached
+FreePlayer:
+	pcblockmove(getcharid(CHAR_ID_ACCOUNT), false);
+	setoption2 2,0;
+	// Warp player back in the field
+	warp .map$,getd(".team"+@team+"Spawnx"),getd(".team"+@team+"Spawny"); 
+	return;
+
+// Returns whether or not players have left.
+PlayerLeft:
+	return (getusers(8) < getarraysize(.team1List) + getarraysize(.team2List));
+
+TeamIsEmptyOrFrozen:
+	if(getarraysize(.team1List) == 0 && getarraysize(.team2List) == 0){
+		return 3; // Both teams left.
+	}
+	if(getarraysize(.team1List) == 0 || getarraysize(.team1List) == getarraysize(.team1FrozenList)){
+		return 2;
+	}
+	else if(getarraysize(.team2List) == 0 || getarraysize(.team2List) == getarraysize(.team2FrozenList)){
+		return 1;
+	}
+	return 0;
+	
+// Reward players of winning team
+// Argument 0: team id
+RewardPlayers:
+	for(.@i = 0; .@i < getarraysize(getd(".team"+ getarg(0) +"List")); .@i++) 
+	{
+		if(attachrid(getd(".team"+ getarg(0) +"List["+.@i + "]")))
+		{
+			if(.map$ == strcharinfo(3)){
+				if(checkweight(.reward,.rewardAmount))
+				{
+					getitem .reward,.rewardAmount;
+				}
+				else{
+					dispbottom "You cannot claim the item right now, please use @claimreward once you cleared up your space.";
+					freezeReward = (.rewardAmount << 15)|.reward;  // 65535 slots slots available!
+				}
+			}
+			detachrid;
+		}
+	}
+	return;
+
+// Kicks the players that are not on the map
+// Argument 0:  teamid
+KickInactivePlayers:
+	for(.@i = 0; .@i < getarraysize(getd(".team"+ getarg(0) +"List")); .@i++) 
+	{
+		if(attachrid(getd(".team"+ getarg(0) +"List["+.@i + "]")))
+		{
+			if(.map$ != strcharinfo(3)){
+				callsub RemovePlayer,getarg(0); // Player is not on the map anymore.
+				callsub RemovePlayer,getarg(0)+"Frozen"; // Remove if he's in frozen
+				mapannounce .map$,strcharinfo(0) + " has left the battlefield!",0;
+				leaveteam;
+				@team = 0;
+			}	
+		}
+		else{
+			callsub KickOfflinePlayer,getarg(0),getd(".team"+ getarg(0) +"List["+.@i + "]"); // Player is not on the map anymore.
+			callsub KickOfflinePlayer,getarg(0)+"Frozen",getd(".team"+ getarg(0) +"List["+.@i + "]"); // Remove if he's in frozen
+		}
+	}
+	return;
+
+KickOfflinePlayer:
+	for(.@i = 0; .@i < getarraysize(getd(".team" + getarg(0) + "List")); .@i++)
+	{
+		if(getd(".team" + getarg(0) + "List[" + .@i + "]" == getarg(1)))
+		{
+			deletearray(getd(".team" + getarg(0) + "List[" + .@i + "]"),1); 
+		}
+	}
+	return getarg(0);
+
+// At times like these, I wish Lambda existed... anyway
+// Disbands the team
+// argument 0 team id
+DisbandTeam:
+	for(.@i = 0; .@i < getarraysize(getd(".team"+ getarg(0) +"List")); .@i++) 
+		if(attachrid(getd(".team"+ getarg(0) +"List["+.@i + "]")))
+		{
+			leaveteam;
+			@team = 0;
+		}
+	return;
+
+// Declare the winner
+// Argument 0: Team id
+DeclareWinners:
+	if(.disabled) // prevention mechanism for doommap.
+		end;
+	.disabled = 1;
+	sleep(1000); // await, for some reason map announce doesn't show when someone is in midwarp. 
+	mapannounce .map$,"Team " + getarg(0) + " stands victorious!",0;
+	pvpoff(.map$);
+	sleep(1500);
+	callsub FreeParty,1;
+	callsub FreeParty,2;
+	callsub RewardPlayers,getarg(0);
+	if(.locations)
+		callsub SubCombine;
+	callsub DisbandTeam,1;
+	callsub DisbandTeam,2;
+	callsub CleanUpEvent;
+	donpcevent strnpcinfo(0) + "::OnEventEnd";
+	end;
+
+CleanUpEvent:
+	deletearray(.team1List[0],getarraysize(.team1List));
+	deletearray(.team2List[0],getarraysize(.team2List));
+	stopnpctimer;
+	return;
+	
+// IP Function
+// Return type 1: Already existes
+// 0 Does not exist && added
+CheckIP:
+	query_sql("SELECT `last_ip` FROM `login` where `account_id` = "+getcharid(3),.@ip$);
+	for(.@i = 0; .@i < getarraysize(.ipar$); .@i++)
+	{	
+		if(.ipar$[.@i] == .@ip$[0])
+		{
+			return 1;
+		}
+	}
+	.ipar$[.@i] = .@ip$;
+	return 0;
+// Cleans up the IP list
+ClearIP:
+	deletearray(.ipar$[0],getarraysize(.ipar$));
+	end;
+
+// Delete an IP
+// getarg(0) index
+DeleteIP:
+	deletearray(.ipar$[getarg(0)],1);
+	return;
+
+/**
+	Other functions
+**/
+//Combines the arrays of the players (IF Locations is enabled.)
+SubCombine:
+    copyarray(.temp[0],.team1List[0],getarraysize(.team1List));
+    copyarray(.temp[getarraysize(.team1List)],.team2List[0],getarraysize(.team2List));
+    return;
+
+// Warps the players to their old locations.
+WarpPlayers:
+     for(.@i = 0; .@i < getarraysize(.temp); .@i++) 
+    {
+        if(attachrid(.temp[.@i]))
+        {
+			warp @freezemap$,@freezex,@freezey;
+        }
+    }
+    return;
+
+// -------- Queue Functions ---------
+// Let attached player join the queue
+JoinQueue:
+	for(.@i = 0; .@i < .MaxTeamMembers<<1; .@i++)
+	{
+		if(!.queue[.@i])
+		{
+			if(.ip)
+			{	
+				if(callsub(CheckIP))
+				{
+					dispbottom "[IP Restriction] You are already in queue on a different character.";
+					end;
+				}
+			}
+			.queue[.@i] = getcharid(3);
+			break;
+		}
+	}
+	return;
+
+// Check if the player is queued
+PlayerIsQueued:
+	for(.@i = 0; .@i < getarraysize(.queue[0]); .@i++)
+	{
+		if(.queue[.@i] == getcharid(3))
+		{
+			return 1; 
+		}
+	}
+	return 0;
+
+// Player requested leave queue
+LeaveQueue:
+	for(.@i = 0; .@i < getarraysize(.queue[0]); .@i++)
+	{
+		if(.queue[.@i] == getcharid(3))
+		{
+			deletearray(.queue[.@i],1);
+			if(.ip)
+				callsub(DeleteIP,.@i);
+			break;
+		}
+	}
+	return;
+
+// Is the queue ready?
+IsQueueReady:
+	return (getarraysize(.queue) == .MaxTeamMembers<<1);
+
+// Warp all the players to the map
+QueueWarpPlayers:
+	for(.@i = 0; .@i < getarraysize(.queue); .@i++) 
+	{
+		if(attachrid(.queue[.@i]))
+		{
+			percentheal 100,100;
+			if(.locations)
+				getmapxy(@freezemap$,@freezex,@freezey,0);
+			warp .map$,49,83;
+			detachrid;
+		}
+	}
+	return;
+// Notify the players of the amount of players in the queue.
+NotifyPlayers:
+	for(.@i = 0; .@i < getarraysize(.queue); .@i++) 
+	{
+		if(attachrid(.queue[.@i]))
+		{
+			dispbottom "[" + getarraysize(.queue) + "/" + (.MaxTeamMembers<<1) + "] Players are in the queue";
+			detachrid;
+		}
+	}
+	return;
+	
+// Delete the queue
+QueueDelete:
+	deletearray(.queue[0],getarraysize(.queue));
+	if(.ip)
+		callsub(ClearIP);
+	return;
+
+//----------- Configuration -----------------------
+OnInit:
+	//Maximum amount of players per team.
+	.MaxTeamMembers = 3;
+	
+	// Time it takes to free your team in seconds.
+	.timeToFree = 1;
+	
+	// Reward for winning
+	.reward = 41251; // Dark Treasure Box
+	
+	// How many items do the players get?
+	.rewardAmount = 1; // 5 Apples!
+	
+	// Can Gm's spectate?
+	.gmAccess = 1; // 0 = no, 1 = yes
+	
+	// Are the queue's open by default?
+	.open = 1;
+	
+	// Restrict double logging via IP
+	.ip = 1; // 0 = no, 1 = yes
+	
+	// Remember Locations (Warp back to the place the players were warped from?)
+	.locations = 1; // 0 = no, 1 = yes
+	
+	//-- Do not Touch unless you know what you're doing --
+		
+	// Mapflags
+	setarray .mapf[0],0,1,2,3,4,11,13,22,42; //in order "No memo, No teleport, no save, no branch, No Penalty,No trade, No Warp, No go, No return, load event"
+	
+	.team1Spawnx = 16;
+	.team1Spawny = 49;
+	.team2Spawnx = 83;
+	.team2Spawny = 50;
+	
+	// Map of Event
+	.map$ = "prt_pvp"; 
+	
+	// Area separating players from the frozen players.
+	.@wallx = 42;
+	.@wally = 73;
+	.@direction = 6;
+	.@size = 15;
+	
+	// Cell player will be warped to
+	.celMinx = 45;
+	.celMaxx = 53;
+	.celMiny = 75;
+	.celMaxy = 93;
+		
+	// Set active
+	.active = 0;
+	setwall .map$,.@wallx,.@wally,.@size,.@direction,0,"frozenWall";
+
+	// Bind at commands
+	bindatcmd("joinqueue", strnpcinfo(0)+"::OnJoinQueue");
+	bindatcmd("frozen", strnpcinfo(0)+"::OnJoinQueue");
+	bindatcmd("leavequeue", strnpcinfo(0)+"::OnLeaveQueue");
+	bindatcmd("frozenquit", strnpcinfo(0)+"::OnLeaveQueue");
+	bindatcmd("claimreward",strnpcinfo(0)+"::OnClaim"); 
+	bindatcmd("freezeconfig",strnpcinfo(0)+"::OnConfig",1); 
+	
+	//-- end --//
+
+	end;
+}

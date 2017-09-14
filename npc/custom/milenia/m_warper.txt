@@ -31,8 +31,8 @@ menu	"Last Warp ^777777["+lastwarp$+"]^000000",-,
     	" ~ Towns",Towns,
     	" ~ Fields",Fields,
     	" ~ Dungeons",Dungeons,
-    	" ~ Guild Castles",Castles,
-    	" ~ Guild Dungeons",Guild_Dungeons,
+    	//" ~ Guild Castles",Castles,
+    	//" ~ Guild Dungeons",Guild_Dungeons,
     	" ~ Instances",Instances,
     	" ~ Special Areas",Special;
 
@@ -364,7 +364,7 @@ D38: setarray @c[2],205,15,129,133;
 	 Disp("Toy Factory",1,2); Pick("xmas_dun");
 D39: setarray @c[2],154,49,148,261,132,189,100,192;
 	 Disp("Entrance:Turtle Dungeon 1:Turtle Dungeon 2:Turtle Dungeon 3"); Pick("tur_dun");
-D40: Restrict("Pre-RE",1,2);
+D40: //Restrict("Pre-RE",1,2);
 	 setarray @c[2],42,31,48,30,204,78;
 	 Disp("Carpenter's Shop in the Tree:Passage to a Foreign World:Hvergermil's Fountain");
 	 Pick("","um_dun01","um_dun02","yggdrasil01");
@@ -428,7 +428,9 @@ G6: Go("schg_dun01",200,124);
 menu	"Bakonawa Lake",I1, "Bangungot Hospital 2F",I2, "Buwaya Cave",I3,
     	"Endless Tower",I4, "Hazy Forest",I5, "Malangdo Culvert",I6, "Nidhoggur's Nest",I7,
     	"Octopus Cave",I8, "Old Glast Heim",I9, "Orc's Memory",I10, "Sealed Shrine",I11,
-    	"Wolfchev's Laboratory",I12,"Sara's Memory",I13,"Nightmare Jitterbug",I14,"Endless Cellar",I15;
+    	"Wolfchev's Laboratory",I12,"Sara's Memory",I13,"Nightmare Jitterbug",I14,
+		"Endless Cellar (Shadow EQ)",I15,"Geffen Magic Tournament",I16,"Horror Toy Factory",
+		I17,"Faceworm's Nest",I18,"Ghost Palace",I19,"Bios Island",I20,"Charleston Crisis (MILENIA RO VERSION)",I21,"Airship Assault",I22,"Vicious Prison",I23,"Infinite Space",I24;
 
 I1: Restrict("RE");
 	Go("ma_scene01",172,175);
@@ -456,7 +458,24 @@ I14: Restrict("RE");
 	Go("moc_para01",27,92);
 I15: Restrict("RE");	
 	Go("e_tower",75,86);
-
+I16: Restrict("RE");	
+	Go("dali",95,139);
+I17: Restrict("RE");	
+	Go("xmas",237,300);
+I18: Restrict("RE");	
+	Go("dali",83,62);
+I19: Restrict("RE");	
+	Go("dali",48,128);
+I20: Restrict("RE");	
+	Go("moro_cav",43,63);
+I21: Restrict("RE");	
+	Go("verus04",77,114);
+I22: Restrict("RE");	
+	Go("dali02",138,82);
+I23: Restrict("RE");	
+	Go("milenia",31,145);
+I24: Restrict("RE");	
+	Go("cmd_fild07",54,276);
 // --------------------------------------------------
 	Special:
 // --------------------------------------------------

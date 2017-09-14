@@ -251,6 +251,7 @@ void ipban_final(void) {
 }
 
 
+
 void gepard_update_last_unique_id(int account_id, uint32 unique_id)
 {
 	if (SQL_SUCCESS != Sql_Query(sql_handle, "UPDATE `login` SET `last_unique_id`= '%u' WHERE `account_id` = '%d'", unique_id, account_id))

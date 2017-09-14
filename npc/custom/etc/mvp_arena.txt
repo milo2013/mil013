@@ -17,13 +17,36 @@
 //============================================================
 
 // Entrance
-milenia,117,154,5	script	MVP Warper	768,{
+milenia,113,156,5	script	MVP Warper	768,{
+	Player_Menu:	
+	query_sql("SELECT COUNT(char_id) FROM `char` LEFT JOIN `login` ON `char`.account_id=login.account_id WHERE online AND last_ip = (SELECT `last_ip` FROM `login` WHERE `account_id` = "+getcharid(3)+")",.@count);
+	query_sql("SELECT COUNT(char_id) FROM `char` LEFT JOIN `login` ON `char`.account_id=login.account_id WHERE online AND last_unique_id = (SELECT `last_unique_id` FROM `login` WHERE `account_id` = "+getcharid(3)+")",.@mac);
+	if( ( (.@count) > 1 ) && ((.@mac) > 1) ) {
+			
+	// IP Address 
+	query_sql("SELECT `last_ip` FROM `login` WHERE `account_id` = "+getcharid(3)+" ",.IP$);
+	
+	// MAC Address
+	query_sql("SELECT `last_unique_id` FROM `login` WHERE `account_id` = "+getcharid(3)+" ",.macID$);
+	
+	mes "[MVP Warper]";
+	mes "My.. My.. ^ff0000" + strcharinfo(0) + "^000000..";
+	next;
+	mes "[MVP Warper]";
+	mes "It's seem you have more than 1 client online!";
+	mes "^FF0000"+(.@count)+"^000000 of ^FF0000"+(.IP$)+"^000000 IP Address.";
+	mes "^FF0000"+(.@mac)+"^000000 of ^FF0000"+(.macID$)+"^000000 MAC Adress.";
+	next;
+	mes "[MVP Warper]";
+	mes "Please make sure only 1 running to enter this room!";
+	close;
+	end;
+	}
 	mes "[ ^0065DFMVP Warper^000000 ]";
 	mes "Would you like to enter";
 	mes "the MVP Arena?";
 	if (select("Yes!","No thanks.") == 2) close;
 	warp "quiz_00",50,24;
-	close;
 }
 
 // Information
@@ -120,126 +143,126 @@ pvp_n_7-5,100,100,4	script	MVP-Protector#31	727,{ callfunc "Protector","pvp_n_8-
 pvp_n_8-5,100,100,4	script	MVP-Protector#32	727,{ callfunc "Protector",""; }
 
 // Alpha
-pvp_n_1-2,0,0,0,0	monster	Eddga	1115,3,60000,66000
-pvp_n_1-2,0,0,0,0	monster	Mistress	1059,1,60000,66000
-pvp_n_2-2,0,0,0,0	monster	Mistress	1059,3,60000,66000
-pvp_n_2-2,0,0,0,0	monster	Moonlight	1150,1,60000,66000
-pvp_n_3-2,0,0,0,0	monster	Mistress	1059,1,60000,66000
-pvp_n_3-2,0,0,0,0	monster	Moonlight	1150,2,60000,66000
-pvp_n_3-2,0,0,0,0	monster	Maya	1147,1,60000,66000
-pvp_n_4-2,0,0,0,0	monster	Eddga	1115,1,60000,66000
-pvp_n_4-2,0,0,0,0	monster	Mistress	1059,1,60000,66000
-pvp_n_4-2,0,0,0,0	monster	Moonlight	1150,1,60000,66000
-pvp_n_4-2,0,0,0,0	monster	Maya	1147,1,60000,66000
-pvp_n_5-2,0,0,0,0	monster	Eddga	1115,1,60000,66000
-pvp_n_5-2,0,0,0,0	monster	Mistress	1059,2,60000,66000
-pvp_n_5-2,0,0,0,0	monster	Moonlight	1150,1,60000,66000
-pvp_n_5-2,0,0,0,0	monster	Maya	1147,2,60000,66000
-pvp_n_6-2,0,0,0,0	monster	Eddga	1115,2,60000,66000
-pvp_n_6-2,0,0,0,0	monster	Mistress	1059,3,60000,66000
-pvp_n_6-2,0,0,0,0	monster	Moonlight	1150,1,60000,66000
-pvp_n_6-2,0,0,0,0	monster	Maya	1147,2,60000,66000
-pvp_n_7-2,0,0,0,0	monster	Eddga	1115,3,60000,66000
-pvp_n_7-2,0,0,0,0	monster	Mistress	1059,3,60000,66000
-pvp_n_7-2,0,0,0,0	monster	Moonlight	1150,2,60000,66000
-pvp_n_7-2,0,0,0,0	monster	Maya	1147,2,60000,66000
-pvp_n_8-2,0,0,0,0	monster	Eddga	1115,3,60000,66000
-pvp_n_8-2,0,0,0,0	monster	Mistress	1059,3,60000,66000
-pvp_n_8-2,0,0,0,0	monster	Moonlight	1150,3,60000,66000
-pvp_n_8-2,0,0,0,0	monster	Maya	1147,3,60000,66000
+pvp_n_1-2,0,0	monster	Eddga	1115,3,60000,66000
+pvp_n_1-2,0,0	monster	Mistress	1059,1,60000,66000
+pvp_n_2-2,0,0	monster	Mistress	1059,3,60000,66000
+pvp_n_2-2,0,0	monster	Moonlight	1150,1,60000,66000
+pvp_n_3-2,0,0	monster	Mistress	1059,1,60000,66000
+pvp_n_3-2,0,0	monster	Moonlight	1150,2,60000,66000
+pvp_n_3-2,0,0	monster	Maya	1147,1,60000,66000
+pvp_n_4-2,0,0	monster	Eddga	1115,1,60000,66000
+pvp_n_4-2,0,0	monster	Mistress	1059,1,60000,66000
+pvp_n_4-2,0,0	monster	Moonlight	1150,1,60000,66000
+pvp_n_4-2,0,0	monster	Maya	1147,1,60000,66000
+pvp_n_5-2,0,0	monster	Eddga	1115,1,60000,66000
+pvp_n_5-2,0,0	monster	Mistress	1059,2,60000,66000
+pvp_n_5-2,0,0	monster	Moonlight	1150,1,60000,66000
+pvp_n_5-2,0,0	monster	Maya	1147,2,60000,66000
+pvp_n_6-2,0,0	monster	Eddga	1115,2,60000,66000
+pvp_n_6-2,0,0	monster	Mistress	1059,3,60000,66000
+pvp_n_6-2,0,0	monster	Moonlight	1150,1,60000,66000
+pvp_n_6-2,0,0	monster	Maya	1147,2,60000,66000
+pvp_n_7-2,0,0	monster	Eddga	1115,3,60000,66000
+pvp_n_7-2,0,0	monster	Mistress	1059,3,60000,66000
+pvp_n_7-2,0,0	monster	Moonlight	1150,2,60000,66000
+pvp_n_7-2,0,0	monster	Maya	1147,2,60000,66000
+pvp_n_8-2,0,0	monster	Eddga	1115,3,60000,66000
+pvp_n_8-2,0,0	monster	Mistress	1059,3,60000,66000
+pvp_n_8-2,0,0	monster	Moonlight	1150,3,60000,66000
+pvp_n_8-2,0,0	monster	Maya	1147,3,60000,66000
 
 // Beta
-pvp_n_1-3,0,0,0,0	monster	Phreeoni	1159,3,60000,66000
-pvp_n_1-3,0,0,0,0	monster	Turtle General	1312,1,60000,66000
-pvp_n_2-3,0,0,0,0	monster	Phreeoni	1159,2,60000,66000
-pvp_n_2-3,0,0,0,0	monster	Turtle General	1312,1,60000,66000
-pvp_n_2-3,0,0,0,0	monster	Orc Hero	1087,1,60000,66000
-pvp_n_3-3,0,0,0,0	monster	Phreeoni	1159,1,60000,66000
-pvp_n_3-3,0,0,0,0	monster	Turtle General	1312,1,60000,66000
-pvp_n_3-3,0,0,0,0	monster	Orc Hero	1087,1,60000,66000
-pvp_n_3-3,0,0,0,0	monster	Orc Lord	1190,1,60000,66000
-pvp_n_4-3,0,0,0,0	monster	Phreeoni	1159,2,60000,66000
-pvp_n_4-3,0,0,0,0	monster	Turtle General	1312,1,60000,66000
-pvp_n_4-3,0,0,0,0	monster	Orc Hero	1087,1,60000,66000
-pvp_n_4-3,0,0,0,0	monster	Orc Lord	1190,1,60000,66000
-pvp_n_5-3,0,0,0,0	monster	Phreeoni	1159,1,60000,66000
-pvp_n_5-3,0,0,0,0	monster	Turtle General	1312,2,60000,66000
-pvp_n_5-3,0,0,0,0	monster	Orc Hero	1087,2,60000,66000
-pvp_n_5-3,0,0,0,0	monster	Orc Lord	1190,1,60000,66000
-pvp_n_6-3,0,0,0,0	monster	Phreeoni	1159,2,60000,66000
-pvp_n_6-3,0,0,0,0	monster	Turtle General	1312,1,60000,66000
-pvp_n_6-3,0,0,0,0	monster	Orc Hero	1087,2,60000,66000
-pvp_n_6-3,0,0,0,0	monster	Orc Lord	1190,2,60000,66000
-pvp_n_7-3,0,0,0,0	monster	Phreeoni	1159,3,60000,66000
-pvp_n_7-3,0,0,0,0	monster	Turtle General	1312,1,60000,66000
-pvp_n_7-3,0,0,0,0	monster	Orc Hero	1087,2,60000,66000
-pvp_n_7-3,0,0,0,0	monster	Orc Lord	1190,3,60000,66000
-pvp_n_8-3,0,0,0,0	monster	Phreeoni	1159,3,60000,66000
-pvp_n_8-3,0,0,0,0	monster	Turtle General	1312,3,60000,66000
-pvp_n_8-3,0,0,0,0	monster	Orc Hero	1087,3,60000,66000
-pvp_n_8-3,0,0,0,0	monster	Orc Lord	1190,3,60000,66000
+pvp_n_1-3,0,0	monster	Phreeoni	1159,3,60000,66000
+pvp_n_1-3,0,0	monster	Turtle General	1312,1,60000,66000
+pvp_n_2-3,0,0	monster	Phreeoni	1159,2,60000,66000
+pvp_n_2-3,0,0	monster	Turtle General	1312,1,60000,66000
+pvp_n_2-3,0,0	monster	Orc Hero	1087,1,60000,66000
+pvp_n_3-3,0,0	monster	Phreeoni	1159,1,60000,66000
+pvp_n_3-3,0,0	monster	Turtle General	1312,1,60000,66000
+pvp_n_3-3,0,0	monster	Orc Hero	1087,1,60000,66000
+pvp_n_3-3,0,0	monster	Orc Lord	1190,1,60000,66000
+pvp_n_4-3,0,0	monster	Phreeoni	1159,2,60000,66000
+pvp_n_4-3,0,0	monster	Turtle General	1312,1,60000,66000
+pvp_n_4-3,0,0	monster	Orc Hero	1087,1,60000,66000
+pvp_n_4-3,0,0	monster	Orc Lord	1190,1,60000,66000
+pvp_n_5-3,0,0	monster	Phreeoni	1159,1,60000,66000
+pvp_n_5-3,0,0	monster	Turtle General	1312,2,60000,66000
+pvp_n_5-3,0,0	monster	Orc Hero	1087,2,60000,66000
+pvp_n_5-3,0,0	monster	Orc Lord	1190,1,60000,66000
+pvp_n_6-3,0,0	monster	Phreeoni	1159,2,60000,66000
+pvp_n_6-3,0,0	monster	Turtle General	1312,1,60000,66000
+pvp_n_6-3,0,0	monster	Orc Hero	1087,2,60000,66000
+pvp_n_6-3,0,0	monster	Orc Lord	1190,2,60000,66000
+pvp_n_7-3,0,0	monster	Phreeoni	1159,3,60000,66000
+pvp_n_7-3,0,0	monster	Turtle General	1312,1,60000,66000
+pvp_n_7-3,0,0	monster	Orc Hero	1087,2,60000,66000
+pvp_n_7-3,0,0	monster	Orc Lord	1190,3,60000,66000
+pvp_n_8-3,0,0	monster	Phreeoni	1159,3,60000,66000
+pvp_n_8-3,0,0	monster	Turtle General	1312,3,60000,66000
+pvp_n_8-3,0,0	monster	Orc Hero	1087,3,60000,66000
+pvp_n_8-3,0,0	monster	Orc Lord	1190,3,60000,66000
 
 // Theta
-pvp_n_1-4,0,0,0,0	monster	Drake	1112,3,60000,66000
-pvp_n_1-4,0,0,0,0	monster	Osiris	1038,1,60000,66000
-pvp_n_2-4,0,0,0,0	monster	Drake	1112,2,60000,66000
-pvp_n_2-4,0,0,0,0	monster	Osiris	1038,1,60000,66000
-pvp_n_2-4,0,0,0,0	monster	Doppelganger	1046,1,60000,66000
-pvp_n_3-4,0,0,0,0	monster	Drake	1112,1,60000,66000
-pvp_n_3-4,0,0,0,0	monster	Osiris	1038,1,60000,66000
-pvp_n_3-4,0,0,0,0	monster	Doppelganger	1046,1,60000,66000
-pvp_n_3-4,0,0,0,0	monster	Lord of Death	1373,1,60000,66000
-pvp_n_4-4,0,0,0,0	monster	Drake	1112,2,60000,66000
-pvp_n_4-4,0,0,0,0	monster	Osiris	1038,1,60000,66000
-pvp_n_4-4,0,0,0,0	monster	Doppelganger	1046,2,60000,66000
-pvp_n_4-4,0,0,0,0	monster	Lord of Death	1373,1,60000,66000
-pvp_n_5-4,0,0,0,0	monster	Drake	1112,3,60000,66000
-pvp_n_5-4,0,0,0,0	monster	Osiris	1038,2,60000,66000
-pvp_n_5-4,0,0,0,0	monster	Doppelganger	1046,2,60000,66000
-pvp_n_5-4,0,0,0,0	monster	Lord of Death	1373,1,60000,66000
-pvp_n_6-4,0,0,0,0	monster	Drake	1112,3,60000,66000
-pvp_n_6-4,0,0,0,0	monster	Osiris	1038,2,60000,66000
-pvp_n_6-4,0,0,0,0	monster	Doppelganger	1046,2,60000,66000
-pvp_n_6-4,0,0,0,0	monster	Lord of Death	1373,2,60000,66000
-pvp_n_7-4,0,0,0,0	monster	Drake	1112,3,60000,66000
-pvp_n_7-4,0,0,0,0	monster	Osiris	1038,2,60000,66000
-pvp_n_7-4,0,0,0,0	monster	Doppelganger	1046,3,60000,66000
-pvp_n_7-4,0,0,0,0	monster	Lord of Death	1373,2,60000,66000
-pvp_n_8-4,0,0,0,0	monster	Drake	1112,3,60000,66000
-pvp_n_8-4,0,0,0,0	monster	Osiris	1038,3,60000,66000
-pvp_n_8-4,0,0,0,0	monster	Doppelganger	1046,3,60000,66000
-pvp_n_8-4,0,0,0,0	monster	Lord of Death	1373,3,60000,66000
+pvp_n_1-4,0,0	monster	Drake	1112,3,60000,66000
+pvp_n_1-4,0,0	monster	Osiris	1038,1,60000,66000
+pvp_n_2-4,0,0	monster	Drake	1112,2,60000,66000
+pvp_n_2-4,0,0	monster	Osiris	1038,1,60000,66000
+pvp_n_2-4,0,0	monster	Doppelganger	1046,1,60000,66000
+pvp_n_3-4,0,0	monster	Drake	1112,1,60000,66000
+pvp_n_3-4,0,0	monster	Osiris	1038,1,60000,66000
+pvp_n_3-4,0,0	monster	Doppelganger	1046,1,60000,66000
+pvp_n_3-4,0,0	monster	Lord of Death	1373,1,60000,66000
+pvp_n_4-4,0,0	monster	Drake	1112,2,60000,66000
+pvp_n_4-4,0,0	monster	Osiris	1038,1,60000,66000
+pvp_n_4-4,0,0	monster	Doppelganger	1046,2,60000,66000
+pvp_n_4-4,0,0	monster	Lord of Death	1373,1,60000,66000
+pvp_n_5-4,0,0	monster	Drake	1112,3,60000,66000
+pvp_n_5-4,0,0	monster	Osiris	1038,2,60000,66000
+pvp_n_5-4,0,0	monster	Doppelganger	1046,2,60000,66000
+pvp_n_5-4,0,0	monster	Lord of Death	1373,1,60000,66000
+pvp_n_6-4,0,0	monster	Drake	1112,3,60000,66000
+pvp_n_6-4,0,0	monster	Osiris	1038,2,60000,66000
+pvp_n_6-4,0,0	monster	Doppelganger	1046,2,60000,66000
+pvp_n_6-4,0,0	monster	Lord of Death	1373,2,60000,66000
+pvp_n_7-4,0,0	monster	Drake	1112,3,60000,66000
+pvp_n_7-4,0,0	monster	Osiris	1038,2,60000,66000
+pvp_n_7-4,0,0	monster	Doppelganger	1046,3,60000,66000
+pvp_n_7-4,0,0	monster	Lord of Death	1373,2,60000,66000
+pvp_n_8-4,0,0	monster	Drake	1112,3,60000,66000
+pvp_n_8-4,0,0	monster	Osiris	1038,3,60000,66000
+pvp_n_8-4,0,0	monster	Doppelganger	1046,3,60000,66000
+pvp_n_8-4,0,0	monster	Lord of Death	1373,3,60000,66000
 
 // Epsilon
-pvp_n_1-5,0,0,0,0	monster	Incantation Samurai	1492,3,60000,66000
-pvp_n_1-5,0,0,0,0	monster	Pharoh	1157,1,60000,66000
-pvp_n_2-5,0,0,0,0	monster	Incantation Samurai	1492,2,60000,66000
-pvp_n_2-5,0,0,0,0	monster	Pharoh	1157,1,60000,66000
-pvp_n_2-5,0,0,0,0	monster	Dark Lord	1272,1,60000,66000
-pvp_n_3-5,0,0,0,0	monster	Incantation Samurai	1492,1,60000,66000
-pvp_n_3-5,0,0,0,0	monster	Pharoh	1157,1,60000,66000
-pvp_n_3-5,0,0,0,0	monster	Dark Lord	1272,1,60000,66000
-pvp_n_3-5,0,0,0,0	monster	Baphomet	1039,1,60000,66000
-pvp_n_4-5,0,0,0,0	monster	Incantation Samurai	1492,3,60000,66000
-pvp_n_4-5,0,0,0,0	monster	Pharoh	1157,1,60000,66000
-pvp_n_4-5,0,0,0,0	monster	Dark Lord	1272,1,60000,66000
-pvp_n_4-5,0,0,0,0	monster	Baphomet	1039,1,60000,66000
-pvp_n_5-5,0,0,0,0	monster	Incantation Samurai	1492,2,60000,66000
-pvp_n_5-5,0,0,0,0	monster	Pharoh	1157,2,60000,66000
-pvp_n_5-5,0,0,0,0	monster	Dark Lord	1272,2,60000,66000
-pvp_n_5-5,0,0,0,0	monster	Baphomet	1039,1,60000,66000
-pvp_n_6-5,0,0,0,0	monster	Incantation Samurai	1492,2,60000,66000
-pvp_n_6-5,0,0,0,0	monster	Pharoh	1157,2,60000,66000
-pvp_n_6-5,0,0,0,0	monster	Dark Lord	1272,2,60000,66000
-pvp_n_6-5,0,0,0,0	monster	Baphomet	1039,1,60000,66000
-pvp_n_7-5,0,0,0,0	monster	Incantation Samurai	1492,2,60000,66000
-pvp_n_7-5,0,0,0,0	monster	Pharoh	1157,2,60000,66000
-pvp_n_7-5,0,0,0,0	monster	Dark Lord	1272,2,60000,66000
-pvp_n_7-5,0,0,0,0	monster	Baphomet	1039,2,60000,66000
-pvp_n_8-5,0,0,0,0	monster	Incantation Samurai	1492,3,60000,66000
-pvp_n_8-5,0,0,0,0	monster	Pharoh	1157,2,60000,66000
-pvp_n_8-5,0,0,0,0	monster	Dark Lord	1272,2,60000,66000
-pvp_n_8-5,0,0,0,0	monster	Baphomet	1039,2,60000,66000
+pvp_n_1-5,0,0	monster	Incantation Samurai	1492,3,60000,66000
+pvp_n_1-5,0,0	monster	Pharoh	1157,1,60000,66000
+pvp_n_2-5,0,0	monster	Incantation Samurai	1492,2,60000,66000
+pvp_n_2-5,0,0	monster	Pharoh	1157,1,60000,66000
+pvp_n_2-5,0,0	monster	Dark Lord	1272,1,60000,66000
+pvp_n_3-5,0,0	monster	Incantation Samurai	1492,1,60000,66000
+pvp_n_3-5,0,0	monster	Pharoh	1157,1,60000,66000
+pvp_n_3-5,0,0	monster	Dark Lord	1272,1,60000,66000
+pvp_n_3-5,0,0	monster	Baphomet	1039,1,60000,66000
+pvp_n_4-5,0,0	monster	Incantation Samurai	1492,3,60000,66000
+pvp_n_4-5,0,0	monster	Pharoh	1157,1,60000,66000
+pvp_n_4-5,0,0	monster	Dark Lord	1272,1,60000,66000
+pvp_n_4-5,0,0	monster	Baphomet	1039,1,60000,66000
+pvp_n_5-5,0,0	monster	Incantation Samurai	1492,2,60000,66000
+pvp_n_5-5,0,0	monster	Pharoh	1157,2,60000,66000
+pvp_n_5-5,0,0	monster	Dark Lord	1272,2,60000,66000
+pvp_n_5-5,0,0	monster	Baphomet	1039,1,60000,66000
+pvp_n_6-5,0,0	monster	Incantation Samurai	1492,2,60000,66000
+pvp_n_6-5,0,0	monster	Pharoh	1157,2,60000,66000
+pvp_n_6-5,0,0	monster	Dark Lord	1272,2,60000,66000
+pvp_n_6-5,0,0	monster	Baphomet	1039,1,60000,66000
+pvp_n_7-5,0,0	monster	Incantation Samurai	1492,2,60000,66000
+pvp_n_7-5,0,0	monster	Pharoh	1157,2,60000,66000
+pvp_n_7-5,0,0	monster	Dark Lord	1272,2,60000,66000
+pvp_n_7-5,0,0	monster	Baphomet	1039,2,60000,66000
+pvp_n_8-5,0,0	monster	Incantation Samurai	1492,3,60000,66000
+pvp_n_8-5,0,0	monster	Pharoh	1157,2,60000,66000
+pvp_n_8-5,0,0	monster	Dark Lord	1272,2,60000,66000
+pvp_n_8-5,0,0	monster	Baphomet	1039,2,60000,66000
 
 // Mapflags
 pvp_n_1-1	mapflag	pvp_nightmaredrop	off

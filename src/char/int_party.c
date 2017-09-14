@@ -31,6 +31,7 @@ int party_check_empty(struct party_data *p);
 int mapif_parse_PartyLeave(int fd, int party_id, uint32 account_id, uint32 char_id, char *name, enum e_party_member_withdraw type);
 int party_check_exp_share(struct party_data *p);
 int mapif_party_optionchanged(int fd,struct party *p, uint32 account_id, int flag);
+int party_check_family_share(struct party_data *p);
 
 //Updates party's level range and unsets even share if broken.
 static int int_party_check_lv(struct party_data *p) {
@@ -40,9 +41,9 @@ static int int_party_check_lv(struct party_data *p) {
 	p->max_lv = 0;
 	for(i=0;i<MAX_PARTY;i++){
 		/**
-		 * - If not online OR if it's a family party and this is the child (doesn't affect exp range)
+		 * - If not online (doesn't affect exp range)
 		 **/
-		if(!p->party.member[i].online || p->party.member[i].char_id == p->family )
+		if (!p->party.member[i].online)
 			continue;
 
 		lv=p->party.member[i].lv;
@@ -69,7 +70,8 @@ static void int_party_calc_state(struct party_data *p)
 
 	//Check party size
 	for(i=0;i<MAX_PARTY;i++){
-		if (!p->party.member[i].lv) continue;
+		if (!p->party.member[i].lv) 
+			continue;
 		p->size++;
 		if(p->party.member[i].online)
 			p->party.count++;
@@ -91,11 +93,9 @@ static void int_party_calc_state(struct party_data *p)
 	//max/min levels.
 	for(i=0;i<MAX_PARTY;i++){
 		unsigned int lv=p->party.member[i].lv;
-		if (!lv) continue;
-		if(p->party.member[i].online &&
-			//On families, the kid is not counted towards exp share rules.
-			p->party.member[i].char_id != p->family)
-		{
+		if (!lv) 
+			continue;
+		if (p->party.member[i].online) {
 			if( lv < p->min_lv ) p->min_lv=lv;
 			if( p->max_lv < lv ) p->max_lv=lv;
 		}
@@ -301,10 +301,45 @@ struct party_data* search_partyname(char* str)
 	return p;
 }
 
+int party_check_family_share(struct party_data *p) {
+	int i;
+	unsigned short map = 0;
+	if (!p->family)
+		return 0;
+	for (i = 0; i < MAX_PARTY; i++) {
+		if (p->party.member[i].char_id == p->family) {
+			map = p->party.member[i].map;
+			break;
+		}
+	}
+
+	for (i = 0; i < MAX_PARTY; i++) {
+		struct party_member * mem = &(p->party.member[i]);
+		if (mem->lv == 0)
+			continue;
+		if (p->family == mem->char_id) {
+			continue;
+		}
+		if (mem->online == 0) {
+			//everyone should be online to share
+			return 0;
+		}
+		if (mem->map != map) {
+			//everyone should be on the same map
+			return 0;
+		}
+		if (mem->lv < 70) {
+			//parents must both be above 70
+			return 0;
+		}
+	}
+	return 1;
+}
+
 // Returns whether this party can keep having exp share or not.
 int party_check_exp_share(struct party_data *p)
 {
-	return (p->party.count < 2 || p->max_lv - p->min_lv <= party_share_level);
+	return (p->party.count < 2 || p->max_lv - p->min_lv <= party_share_level || party_check_family_share(p));
 }
 
 // Is there any member in the party?
@@ -521,7 +556,6 @@ static void mapif_parse_PartyInfo(int fd, int party_id, uint32 char_id)
 {
 	struct party_data *p;
 	p = inter_party_fromsql(party_id);
-
 	if (p)
 		mapif_party_info(fd, &p->party, char_id);
 	else
@@ -575,7 +609,8 @@ int mapif_parse_PartyChangeOption(int fd,int party_id,uint32 account_id,int exp,
 
 	if(!p)
 		return 0;
-
+	if (p->size == 2 || p->size == 3) //check family state. Also accept either of their parents.
+		int_party_calc_state(p);
 	p->party.exp=exp;
 	if( exp && !party_check_exp_share(p) ){
 		flag|=0x01;
@@ -692,6 +727,7 @@ int mapif_parse_PartyChangeMap(int fd, int party_id, uint32 account_id, uint32 c
 	if (p->party.member[i].map != map) {
 		p->party.member[i].map = map;
 		mapif_party_membermoved(&p->party, i);
+		int_party_check_lv(p);
 	}
 	return 0;
 }
@@ -888,4 +924,30 @@ int inter_party_CharOffline(uint32 char_id, int party_id) {
 		//Parties don't have any data that needs be saved at this point... so just remove it from memory.
 		idb_remove(party_db_, party_id);
 	return 1;
+}
+
+int inter_party_charname_changed(int party_id, uint32 char_id, char *name)
+{
+	struct party_data* p = NULL;
+	int i;
+
+	p = inter_party_fromsql(party_id);
+	if( p == NULL || p->party.party_id == 0 )
+	{
+		ShowError("inter_party_charname_changed: Can't find party %d.\n", party_id);
+		return 0;
+	}
+
+	ARR_FIND(0, MAX_PARTY, i, p->party.member[i].char_id == char_id);
+	if( i == MAX_PARTY )
+	{
+		ShowError("inter_party_charname_changed: Can't find character %d in party %d.\n", char_id, party_id);
+		return 0;
+	}
+
+	safestrncpy(p->party.member[i].name, name, NAME_LENGTH);
+
+	mapif_party_info(-1, &p->party, char_id);
+	
+	return 0;
 }

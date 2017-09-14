@@ -11,6 +11,10 @@
 #ifndef __IPBAN_H_INCLUDED__
 #define __IPBAN_H_INCLUDED__
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 #include "../common/cbasetypes.h"
 
 /**
@@ -49,5 +53,9 @@ void ipban_final(void);
 
 bool gepard_check_unique_id(int fd, uint32 unique_id);
 void gepard_update_last_unique_id(int account_id, uint32 unique_id);
+
+#ifdef __cplusplus
+}
+#endif
 
 #endif // __IPBAN_H_INCLUDED__

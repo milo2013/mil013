@@ -29,7 +29,7 @@ if ( getcharid(3) > 2000003 ) {
 	next;
 	mes "[Sarah]";
 	mes "Have a nice day~";
-	getitem 31129,1;
+	getitem 41129,1;
 	close;
 	
 }

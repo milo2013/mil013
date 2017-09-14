@@ -13,7 +13,7 @@
 //= 1.0 First Version. [Euphy]
 //============================================================ 
 
-prontera,147,61,3	script	Driller#pron	87,{
+milenia,67,57,5	script	RWC Enchant#pron	10126,{
 	disable_items;
 	if (checkweight(1201,1) == 0) {
 		mes "You're carrying too many items in your inventory. Visit Kafra storage and try again.";

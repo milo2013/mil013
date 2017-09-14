@@ -4,6 +4,10 @@
 #ifndef _INSTANCE_H_
 #define _INSTANCE_H_
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 #include "../common/mmo.h" // struct point
 #include "script.h" // struct reg_db
 
@@ -25,6 +29,7 @@ enum instance_mode {
 	IM_CHAR,
 	IM_PARTY,
 	IM_GUILD,
+	IM_CLAN,
 	IM_MAX,
 };
 
@@ -71,6 +76,7 @@ extern int instance_start;
 extern struct instance_data instance_data[MAX_INSTANCE_DATA];
 
 struct instance_db *instance_searchtype_db(unsigned short instance_id);
+struct instance_db *instance_searchname_db(const char* name);
 void instance_getsd(unsigned short instance_id, struct map_session_data **sd, enum send_target *target);
 
 int instance_create(int owner_id, const char *name, enum instance_mode mode);
@@ -91,6 +97,10 @@ void do_final_instance(void);
 
 #if MAX_MAP_PER_INSTANCE > 255
 	#error Too many maps per instance defined! Please adjust MAX_MAP_PER_INSTANCE to a lower value.
+#endif
+
+#ifdef __cplusplus
+}
 #endif
 
 #endif

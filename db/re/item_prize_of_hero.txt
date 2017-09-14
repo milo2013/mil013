@@ -1,0 +1,22 @@
+// BIOS
+IG_Prize_Of_Hero,522,50,100,1		// 100x Mastela Fruit
+IG_Prize_Of_Hero,547,50,100,1		// 100x Condense White Potion
+IG_Prize_Of_Hero,608,50,100,1		// 100x Yggdrasil Seed
+IG_Prize_Of_Hero,607,50,50,1		// 50x Yggdrasilberry
+IG_Prize_Of_Hero,678,50,50,1		// 50x Poison Bottle
+IG_Prize_Of_Hero,12075,50,10,1		// 10x Steam Tounge
+IG_Prize_Of_Hero,12080,50,10,1		// 10x Dragon Breath
+IG_Prize_Of_Hero,12080,50,10,1		// 10x Dragon Breath Cocktail
+IG_Prize_Of_Hero,12090,50,10,1		// 10x Steam Desert Scorpion
+IG_Prize_Of_Hero,12095,50,10,1		// 10x Hwergelmir's Tonic
+IG_Prize_Of_Hero,12100,50,10,1		// 10x Cooked Nine Tail's Tails
+IG_Prize_Of_Hero,12623,40,1,1		// 1x High Weapon Box
+IG_Prize_Of_Hero,15093,1,1,1		// 1x Hero Plate [1]
+IG_Prize_Of_Hero,15094,1,1,1		// 1x Hero Magic Coat [1]
+IG_Prize_Of_Hero,15095,1,1,1		// 1x Hero Judgement Shawl [1]
+IG_Prize_Of_Hero,15096,1,1,1		// 1x Hero Trade Mail [1]
+IG_Prize_Of_Hero,15097,1,1,1		// 1x Hero Hidden Cloth [1]
+IG_Prize_Of_Hero,15098,1,1,1		// 1x Hero Taget Suits [1]
+IG_Prize_Of_Hero,22035,1,1,1		// 1x Hero Nependess Shoes [1]
+IG_Prize_Of_Hero,22036,1,1,1		// 1x Hero Silverleather Boots [1]
+IG_Prize_Of_Hero,22037,1,1,1		// 1x Hero Ungoliant Boots [1]

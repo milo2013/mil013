@@ -69,6 +69,7 @@ Table of Contents
 4. Troubleshooting
 5. Helpful Links
 6. More Documentation
+7. How to Contribute
 
 1. What is rAthena?
 ---------
@@ -94,6 +95,7 @@ is broken down into Windows and Linux prerequisites.
 
 * Linux (names of packages may require specific version numbers on certain distributions)
 	* gcc
+	* g++
 	* make
 	* mysql
 	* mysql-devel
@@ -124,10 +126,10 @@ relevant to your Operation System, please refer to the Wiki (links at the end of
 	* Type:
 		* (For CentOS)
 
-				yum install gcc make mysql mysql-devel mysql-server pcre-devel zlib-devel git
+				yum install gcc g++ make mysql mysql-devel mysql-server pcre-devel zlib-devel git
 		* (For Debian)
 
-				apt-get install git make gcc libmysqlclient-dev zlib1g-dev libpcre3-dev
+				apt-get install git make gcc g++ libmysqlclient-dev zlib1g-dev libpcre3-dev
 	* Type:
 
 				mysql_secure_installation
@@ -256,3 +258,7 @@ directory. These include detailed explanations of NPC script commands, atcommand
 group permissions, item bonuses, and packet structures, among many other topics. We
 recommend that all users take the time to look over this directory before asking for
 assistance elsewhere.
+
+7. How to Contribute
+---------
+Details on how to contribute to rAthena can be found in [CONTRIBUTING.md](https://github.com/rathena/rathena/blob/master/.github/CONTRIBUTING.md)!

@@ -103,7 +103,6 @@ aldeg_cas01,210,150,4	duplicate(InsideFlagsA1)	Neuschwanstein#22	722
 // Guild Flag (Town)
 //============================================================
 aldebaran,152,97,4	duplicate(InsideFlagsA1)	Neuschwanstein#23	722
-milenia,151,142,11	duplicate(InsideFlagsA1)	Neuschwanstein#24	722
 
 // Kafra Employee
 //============================================================

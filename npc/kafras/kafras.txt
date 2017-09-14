@@ -196,7 +196,7 @@ payon,181,104,4	script	Kafra Employee::kaf_payon	113,{
 	mes "you with convenient services.";
 	mes "How may I be of assistance?";
 	callfunc "F_Kafra",5,0,1,60,930;
-	savepoint "payon",160,58,1,1;
+	savepoint "payon",185,100,1,1;
 	callfunc "F_KafEnd",0,1,"in the city of Payon";
 }
 
@@ -426,7 +426,7 @@ cmd_fild07,136,134,4	script	Kafra Employee::kaf_cmd_fild07	721,{
 moscovia,223,191,3	script	Kafra Employee::kaf_mosk	114,{
 	cutin "kafra_04",2;
 	callfunc "F_Kafra",0,3,0,80,700;
-	savepoint "moscovia",221,194,1,1;;
+	savepoint "moscovia",221,194,1,1;
 	callfunc "F_KafEnd",0,3,"in the city of Moscovia";
 }
 

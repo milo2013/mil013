@@ -13,6 +13,7 @@
 //    5: Scrolls
 //    6: Useable
 //    7: Other
+//    8: Sale
 //
 // Price:
 //    Item cost, in cash points (#CASHPOINTS).
@@ -23,33 +24,35 @@
 //4,26003,200 //
 //4,26010,100 //
 //start here
-0,19823,30 //White Cat Hood 
-0,20036,30 //Crown Of Victory
-0,20147,20 //Pigoen On Shoulder
-0,20398,30 //Niflheim Bunny Hat
-0,20266,30 //Secret Zipper
-0,20318,20 //Charleston Antenna
-0,20315,20 //Analyze Eye
-0,20430,30 //Loyal Servant Of Evil Morroc
-0,20314,30 //New Wave Sunglasses
-0,19727,30 //Develing Hat
-0,20034,30 //Jack Battle Bat
-0,15093,120 // Brave Plate
-0,15094,120 // Brave Magic Coat
-0,15096,120 // Heroic Trade-Mail
+//0,19823,30 //White Cat Hood 
+//0,20036,30 //Crown Of Victory
+//0,20147,20 //Pigoen On Shoulder
+//0,20398,30 //Niflheim Bunny Hat
+//0,20266,30 //Secret Zipper
+//0,20318,20 //Charleston Antenna
+//0,20315,20 //Analyze Eye
+//0,20430,30 //Loyal Servant Of Evil Morroc
+//0,20314,30 //New Wave Sunglasses
+//0,19727,30 //Develing Hat
+//0,20034,30 //Jack Battle Bat
+//0,15093,120 // Brave Plate
+//0,15094,120 // Brave Magic Coat
+//0,15096,120 // Heroic Trade-Mail
 0,5208,40//Rideword Hat
-0,19509,20 //Butterfly Wing Ears
+//0,19509,20 //Butterfly Wing Ears
 0,2589,200 //Fallen Angel Wing
 0,2576,100 //Heroic Backpack
 0,18541,70 //Little Feather Hat
-0,15097,120 //Brave Hidden Cloth
+//0,15097,120 //Brave Hidden Cloth
+1,18574,30 // Lord Of Death Helm
+1,2177,30 // Shield Of Death
 1,5518,75 //Large Baphomet Horns
 1,5377,60 //Gentleman's Pipe
 1,5013,80 //Lord Kaho's Horn
 1,18601,90 // Red Bread Hat
 1,18522,90 // Evil Marching
-1,5497,80 // King Tiger Doll
-1,18856,80 // King Tiger Doll
+//1,5497,80 // King Tiger Doll
+//1,18856,80 // King Tiger Doll
 1,18539,80 //Skull Cap
 1,5374,110 //Giantic Majestic Goat
 1,18503,120 //Small Devil Horns
@@ -94,8 +97,8 @@
 4,5516,50 //Hawk Eyes
 5,12916,10 //Assumptio 5
 5,14174,5 //Adrenaline 5
-5,12915,10 //Aspersio 5
-5,13546,10 //Chemical Protection Weapon 5
+5,12927,10 //Aspersio 10
+5,13546,10 //Chemical Protection Weapon 5 - fixed
 5,13545,10 //Chemical Protection Armour
 5,13543,5 //Chemical Protection Helm
 5,13544,5 //Chemical Protection Shield
@@ -112,11 +115,12 @@
 5,14604,2 //Oh s
 5,14605,5 //OL S
 5,12279,5 // Undead E S
-6,12922,10 // Token of Siegfried
+6,13718,15 // Abrasive Box 10
+6,41231,10 // Token of Siegfried
 6,13610,15 //Enriched Elunium 5
-6,16393,15 //HE Oridecon 5
+6,16393,15 //HD Oridecon 5
 6,13611,15 //Enriched Oridecon 5
-6,16395,15 //HE Elunium 5
+6,16395,15 //HD Elunium 5
 6,12210,3 //Bubble Gum
 6,12214,3 //Convex Mirror
 6,12412,10 //HE Bubble Gum
@@ -129,15 +133,20 @@
 6,13898,10 //Alice Summon box
 6,13996,25 //Big Bun 100
 6,13997,80 //Big Bun 500
-6,12314,4 //Adventurer Returns Support Box 
-7,31123,10 // Rare Mithril
-7,6380,3 //Mora Coins
-7,31115,20 //Mora Coins Bag
+6,16420,100 //Adventurer Pack 
+7,6000 ,20 // Ashes of Darknesss - Cellar
+7,41123,10 // Rare Mithril
+7,6380,3 // Mora Coins
+7,6081,3 // Splendide Coins
+7,41115,20 //Mora Coins Bag
 7,6417,3 //Silvervine Fruit
-7,31116,20 //Silvervine Fruit Bag
-7,13973,1 // Poison Bottle
-7,31117,2 // Acid Demonstration Box 50
-7,31118,3 // Acid Demonstration Box 100
+7,41116,20 //Silvervine Fruit Bag
+7,41233,5 // Shop Permit @ Universal Shop
+7,13973,10 // Poison Bottle 100
+7,41117,2 // Acid Demonstration Box 50
+7,41118,3 // Acid Demonstration Box 100
 7,14103,3 //Gympass Box 1
 7,17475,20 //Gympass Box 10
+
+//8,501,1 // test
 //end here //

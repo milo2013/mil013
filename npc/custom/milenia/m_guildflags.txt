@@ -1,0 +1,30 @@
+milenia,151,142,11	duplicate(InsideFlagsA1)	Neuschwanstein#24	722
+milenia,154,142,11	duplicate(InsideFlagsA2)	Hohenschwangau#18	722
+milenia,157,142,11	duplicate(InsideFlagsA3)	Nuernberg#21	722
+milenia,160,142,11	duplicate(InsideFlagsA4)	Wuerzburg#21	722
+milenia,163,142,11	duplicate(InsideFlagsA5)	Rothenburg#20	722
+milenia,88,142,5	duplicate(InsideFlagsG1)	Repherion#12	722
+milenia,85,142,5	duplicate(InsideFlagsG2)	Eeyorbriggar#13	722
+milenia,82,142,5	duplicate(InsideFlagsG3)	Yesnelph#16	722
+milenia,79,142,5	duplicate(InsideFlagsG4)	Bergel#12	722
+milenia,76,142,5	duplicate(InsideFlagsG5)	Mersetzdeitz#12	722
+milenia,108,136,11	duplicate(InsideFlagsPA1)	Bright Arbor#13	722
+milenia,108,131,11	duplicate(InsideFlagsPA2)	Sacred Altar#13	722
+milenia,108,125,11	duplicate(InsideFlagsPA3)	Holy Shadow#13	722
+milenia,108,119,11	duplicate(InsideFlagsPA4)	Scarlet Palace#13	722
+milenia,108,113,11	duplicate(InsideFlagsPA5)	Bamboo Grove Hill#13	722
+milenia,131,136,5	duplicate(InsideFlagsPR1)	Kriemhild#16	722
+milenia,131,131,5	duplicate(InsideFlagsPR2)	Swanhild#18	722
+milenia,131,125,5	duplicate(InsideFlagsPR3)	Fadhgridh#16	722
+milenia,131,119,5	duplicate(InsideFlagsPR4)	Skoegul#16	722
+milenia,131,113,5	duplicate(InsideFlagsPR5)	Gondul#14	722
+milenia,148,132,11	duplicate(LF_ar01_2)	Mardol#LF_ar01_1400	722
+milenia,148,127,11	duplicate(LF_ar02_2)	Cyr#LF_ar02_1600	722
+milenia,148,121,11	duplicate(LF_ar03_02)	Horn#LF_ar03_1003	722
+milenia,148,115,11	duplicate(LF_ar04_02)	Gefn#LF_ar04_1300	722
+milenia,148,104,11	duplicate(LF_ar05_02)	Banadis#LF_ar05_1300	722
+milenia,91,132,5	duplicate(LF_sc01_2)	Himinn#LF_sc01_700	722
+milenia,91,127,5	duplicate(Sc02_Flag)	Andlangr#flag_sc02_211	722
+milenia,91,121,5	duplicate(LF_sc03_2)	Vidblainn#LF_sc03_1400	722
+milenia,91,115,5	duplicate(LF_sc04_2)	Hljod#LF_sc04_800	722
+milenia,91,104,5	duplicate(LF_sc05_2)	Skidbladnir#LF_sc05_800	722

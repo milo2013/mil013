@@ -4,6 +4,10 @@
 #ifndef _STATUS_H_
 #define _STATUS_H_
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 struct block_list;
 struct mob_data;
 struct pet_data;
@@ -141,7 +145,7 @@ typedef enum sc_type {
 	SC_VIOLENTGALE,
 	SC_WATK_ELEMENT,
 	SC_ARMOR,
-	SC_ARMOR_ELEMENT,
+	SC_ARMOR_ELEMENT_WATER,
 	SC_NOCHAT,
 	SC_BABY,
 	SC_AURABLADE,
@@ -792,6 +796,29 @@ typedef enum sc_type {
 	SC_GEFFEN_MAGIC1,
     SC_GEFFEN_MAGIC2,
     SC_GEFFEN_MAGIC3,
+
+	SC_MAXPAIN,
+	SC_ARMOR_ELEMENT_EARTH,
+	SC_ARMOR_ELEMENT_FIRE,
+	SC_ARMOR_ELEMENT_WIND,
+
+	SC_DAILYSENDMAILCNT,
+
+	SC_DORAM_BUF_01,
+	SC_DORAM_BUF_02,
+
+	/**
+	 * Summoner - Extended
+	 */
+	SC_HISS,
+	SC_NYANGGRASS,
+	SC_GROOMING,
+	SC_SHRIMPBLESSING,
+	SC_CHATTERING,
+	SC_DORAM_WALKSPEED,
+	SC_DORAM_MATK,
+	SC_DORAM_FLEE2,
+	SC_DORAM_SVSP,
 
 #ifdef RENEWAL
 	SC_EXTREMITYFIST2, //! NOTE: This SC should be right before SC_MAX, so it doesn't disturb if RENEWAL is disabled
@@ -1829,9 +1856,7 @@ enum sc_opt1 {
 	//Aegis uses OPT1 = 5 to identify undead enemies (which also grants them immunity to the other opt1 changes)
 	OPT1_STONEWAIT = 6, //Petrifying
 	OPT1_BURNING,
-	OPT1_FREEZING,
 	OPT1_IMPRISON,
-	OPT1_CRYSTALIZE,
 };
 
 ///opt2: (HEALTHSTATE_*) Stackable status changes.
@@ -1909,7 +1934,6 @@ enum e_option {
 	// compound constants
 	OPTION_DRAGON	= OPTION_DRAGON1|OPTION_DRAGON2|OPTION_DRAGON3|OPTION_DRAGON4|OPTION_DRAGON5,
 	OPTION_COSTUME	= OPTION_WEDDING|OPTION_XMAS|OPTION_SUMMER|OPTION_HANBOK|OPTION_OKTOBERFEST,
-	OPTION_AUTOATTACK   = 0x10000000,
 };
 
 ///Defines for the manner system [Skotlex]
@@ -2058,13 +2082,13 @@ struct weapon_atk {
 #endif
 };
 
-sc_type SkillStatusChangeTable[MAX_SKILL];   /// skill  -> status
-int StatusIconChangeTable[SC_MAX];           /// status -> "icon" (icon is a bit of a misnomer, since there exist values with no icon associated)
-unsigned int StatusChangeFlagTable[SC_MAX];  /// status -> flags
-int StatusSkillChangeTable[SC_MAX];          /// status -> skill
-int StatusRelevantBLTypes[SI_MAX];           /// "icon" -> enum bl_type (for clif->status_change to identify for which bl types to send packets)
-unsigned int StatusChangeStateTable[SC_MAX]; /// status -> flags
-bool StatusDisplayType[SC_MAX];
+extern sc_type SkillStatusChangeTable[MAX_SKILL];   /// skill  -> status
+extern int StatusIconChangeTable[SC_MAX];           /// status -> "icon" (icon is a bit of a misnomer, since there exist values with no icon associated)
+extern unsigned int StatusChangeFlagTable[SC_MAX];  /// status -> flags
+extern int StatusSkillChangeTable[SC_MAX];          /// status -> skill
+extern int StatusRelevantBLTypes[SI_MAX];           /// "icon" -> enum bl_type (for clif->status_change to identify for which bl types to send packets)
+extern unsigned int StatusChangeStateTable[SC_MAX]; /// status -> flags
+extern unsigned int StatusDisplayType[SC_MAX];
 
 ///For holding basic status (which can be modified by status changes)
 struct status_data {
@@ -2072,13 +2096,13 @@ struct status_data {
 		hp, sp,  // see status_cpy before adding members before hp and sp
 		max_hp, max_sp;
 	short
-		str, agi, vit, int_, dex, luk;
+		str, agi, vit, int_, dex, luk,
+		eatk;
 	unsigned short
 		batk,
 #ifdef RENEWAL
 		watk,
 		watk2,
-		eatk,
 #endif
 		matk_min, matk_max,
 		speed,
@@ -2192,8 +2216,6 @@ sc_type status_skill2sc(int skill);
 int status_sc2skill(sc_type sc);
 unsigned int status_sc2scb_flag(sc_type sc);
 int status_type2relevant_bl_types(int type);
-
-int StatusIconChangeTable[SC_MAX];          /// status -> "icon" (icon is a bit of a misnomer, since there exist values with no icon associated)
 
 int status_damage(struct block_list *src,struct block_list *target,int64 dhp,int64 dsp, int walkdelay, int flag);
 //Define for standard HP damage attacks.
@@ -2348,5 +2370,9 @@ void initChangeTables(void);
 int status_readdb(void);
 int do_init_status(void);
 void do_final_status(void);
+
+#ifdef __cplusplus
+}
+#endif
 
 #endif /* _STATUS_H_ */

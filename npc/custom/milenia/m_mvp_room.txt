@@ -239,9 +239,9 @@ OnInit:
 	set .@menu[4], 0;	// Sell items (branches) On/Off (see shop below, before the mapflags)
 
 	// Respawn point when players leave the room
-	set .respawnmap$, "prontera";
-	set .respawnx, 150;
-	set .respawny, 174;
+	set .respawnmap$, "milenia";
+	set .respawnx, 119;
+	set .respawny, 151;
 
 	setarray .mvpid[0],
 		1511,//	Amon Ra
@@ -308,7 +308,7 @@ OnInit:
 	setarray .bossid[0],
 		1096,// Angeling
 		1388,// Archangeling
-		1795,// Bloody Knight
+		1268,// Bloody Knight
 		1830,// Bow Guardian
 		1839,// Byorgue
 		1309,// Cat O' Nine Tail
@@ -320,7 +320,7 @@ OnInit:
 		1093,// Eclipse
 		1205,// Executioner
 		1783,// Galion
-		1592,// Gangster
+		1313,// Mobster
 		1120,// Ghostring
 		1259,// Gryphon
 		1990,// Hard Rock Mammoth - NEW

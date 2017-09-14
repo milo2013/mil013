@@ -4,6 +4,10 @@
 #ifndef _GUILD_H_
 #define _GUILD_H_
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 //#include "../common/mmo.h"
 struct guild;
 struct guild_member;
@@ -86,22 +90,22 @@ int guild_send_dot_remove(struct map_session_data *sd);
 int guild_skillupack(int guild_id,uint16 skill_id,uint32 account_id);
 int guild_break(struct map_session_data *sd,char *name);
 int guild_broken(int guild_id,int flag);
-int guild_gm_change(int guild_id, struct map_session_data *sd);
-int guild_gm_changed(int guild_id, uint32 account_id, uint32 char_id);
+int guild_gm_change(int guild_id, uint32 char_id);
+int guild_gm_changed(int guild_id, uint32 account_id, uint32 char_id, time_t time);
 
 void guild_castle_map_init(void);
 int guild_castledatasave(int castle_id,int index,int value);
 int guild_castledataloadack(int len, struct guild_castle *gc);
 void guild_castle_reconnect(int castle_id, int index, int value);
 
-void guild_agit_start(void);
-void guild_agit_end(void);
+bool guild_agit_start(void);
+bool guild_agit_end(void);
 
-void guild_agit2_start(void);
-void guild_agit2_end(void);
+bool guild_agit2_start(void);
+bool guild_agit2_end(void);
 
-void guild_agit3_start(void);
-void guild_agit3_end(void);
+bool guild_agit3_start(void);
+bool guild_agit3_end(void);
 
 /* guild flag cachin */
 void guild_flag_add(struct npc_data *nd);
@@ -114,5 +118,9 @@ void guild_retrieveitembound(uint32 char_id,uint32 account_id,int guild_id);
 #endif
 
 void do_final_guild(void);
+
+#ifdef __cplusplus
+}
+#endif
 
 #endif /* _GUILD_H_ */

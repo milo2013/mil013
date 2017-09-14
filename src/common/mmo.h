@@ -9,27 +9,9 @@
 #include "db.h"
 #include <time.h>
 
-// server->client protocol version
-//        0 - pre-?
-//        1 - ?                    - 0x196
-//        2 - ?                    - 0x78, 0x79
-//        3 - ?                    - 0x1c8, 0x1c9, 0x1de
-//        4 - ?                    - 0x1d7, 0x1d8, 0x1d9, 0x1da
-//        5 - 2003-12-18aSakexe+   - 0x1ee, 0x1ef, 0x1f0, ?0x1c4, 0x1c5?
-//        6 - 2004-03-02aSakexe+   - 0x1f4, 0x1f5
-//        7 - 2005-04-11aSakexe+   - 0x229, 0x22a, 0x22b, 0x22c
-// see conf/battle/client.conf for other version
-
 #ifndef PACKETVER
-	#define PACKETVER 20151104
-	//#define PACKETVER 20120410
+	#error Please define PACKETVER in src/config/packets.h
 #endif
-
-// Check if the specified packetversion supports the pincode system
-#define PACKETVER_SUPPORTS_PINCODE PACKETVER>=20110309
-
-/// Check if the client needs delete_date as remaining time and not the actual delete_date (actually it was tested for clients since 2013)
-#define PACKETVER_CHAR_DELETEDATE (PACKETVER > 20130000 && PACKETVER < 20141016) || PACKETVER >= 20150826
 
 ///Remove/Comment this line to disable sc_data saving. [Skotlex]
 #define ENABLE_SC_SAVING
@@ -52,7 +34,7 @@
 #define MAX_INVENTORY 100 ///Maximum items in player inventory
 /** Max number of characters per account. Note that changing this setting alone is not enough if the client is not hexed to support more characters as well.
 * Max value tested was 265 */
-#define MAX_CHARS 9 
+#define MAX_CHARS 15
 /** Number of slots carded equipment can have. Never set to less than 4 as they are also used to keep the data of forged items/equipment. [Skotlex]
 * Note: The client seems unable to receive data for more than 4 slots due to all related packets having a fixed size. */
 #define MAX_SLOTS 4
@@ -65,7 +47,7 @@
 #define DEFAULT_WALK_SPEED 150 ///Default walk speed
 #define MIN_WALK_SPEED 20 ///Min walk speed
 #define MAX_WALK_SPEED 1000 ///Max walk speed
-#define MAX_STORAGE 600 ///Max number of storage slots a player can have
+#define MAX_STORAGE 900 ///Max number of storage slots a player can have
 #define MAX_GUILD_STORAGE 600 ///Max number of storage slots a guild
 #define MAX_PARTY 12 ///Max party member
 #define MAX_GUILD 16+10*6	///Increased max guild members +6 per 1 extension levels [Lupus]
@@ -101,6 +83,8 @@
 #define PASSWD_LENGTH (32+1)
 //NPC names can be longer than it's displayed on client (NAME_LENGTH).
 #define NPC_NAME_LENGTH 50
+// <NPC_NAME_LENGTH> for npc name + 2 for a "::" + <NAME_LENGTH> for label + 1 for EOS
+#define EVENT_NAME_LENGTH ( NPC_NAME_LENGTH + 2 + NAME_LENGTH + 1 )
 //For item names, which tend to have much longer names.
 #define ITEM_NAME_LENGTH 50
 //For Map Names, which the client considers to be 16 in length including the .gat extension
@@ -135,7 +119,14 @@
 //Mail System
 #define MAIL_MAX_INBOX 30
 #define MAIL_TITLE_LENGTH 40
+#if PACKETVER < 20150513
 #define MAIL_BODY_LENGTH 200
+#define MAIL_MAX_ITEM 1
+#else
+#define MAIL_BODY_LENGTH 500
+#define MAIL_MAX_ITEM 5
+#define MAIL_PAGE_SIZE 7
+#endif
 
 //Mercenary System
 #define MC_SKILLBASE 8201
@@ -149,6 +140,12 @@
 #define MAX_ELEMENTAL_CLASS 12
 #define EL_CLASS_BASE 2114
 #define EL_CLASS_MAX (EL_CLASS_BASE+MAX_ELEMENTAL_CLASS-1)
+
+//Achievement System
+#define MAX_ACHIEVEMENT_RANK 20 /// Maximum achievement level
+#define MAX_ACHIEVEMENT_OBJECTIVES 10 /// Maximum different objectives in achievement_db.conf
+#define MAX_ACHIEVEMENT_DEPENDENTS 20 /// Maximum different dependents in achievement_db.conf
+#define ACHIEVEMENT_NAME_LENGTH 50 /// Max Achievement Name length
 
 enum item_types {
 	IT_HEALING = 0,
@@ -183,6 +180,21 @@ struct quest {
 	enum quest_state state;          ///< Current quest state
 };
 
+struct s_item_randomoption {
+	short id;
+	short value;
+	char param;
+};
+
+/// Achievement log entry
+struct achievement {
+	int achievement_id;                    ///< Achievement ID
+	int count[MAX_ACHIEVEMENT_OBJECTIVES]; ///< Counters of each achievement objective
+	time_t completed;                      ///< Date completed
+	time_t rewarded;                       ///< Received reward?
+	int score;                             ///< Amount of points achievement is worth
+};
+
 struct item {
 	int id;
 	unsigned short nameid;
@@ -192,11 +204,7 @@ struct item {
 	char refine;
 	char attribute;
 	unsigned short card[MAX_SLOTS];
-	struct {
-		short id;
-		short value;
-		char param;
-	} option[MAX_ITEM_RDM_OPT];		// max of 5 random options can be supported.
+	struct s_item_randomoption option[MAX_ITEM_RDM_OPT];		// max of 5 random options can be supported.
 	unsigned int expire_time;
 	char favorite, bound;
 	uint64 unique_id;
@@ -212,8 +220,8 @@ enum equip_pos {
 	EQP_ARMOR            = 0x000010, // 16
 	EQP_SHOES            = 0x000040, // 64
 	EQP_GARMENT          = 0x000004, // 4
-	EQP_ACC_L            = 0x000008, // 8
-	EQP_ACC_R            = 0x000080, // 128
+	EQP_ACC_R            = 0x000008, // 8
+	EQP_ACC_L            = 0x000080, // 128
 	EQP_COSTUME_HEAD_TOP = 0x000400, // 1024
 	EQP_COSTUME_HEAD_MID = 0x000800, // 2048
 	EQP_COSTUME_HEAD_LOW = 0x001000, // 4096
@@ -252,12 +260,6 @@ enum e_skill_flag
 
 	//! NOTE: This flag be the last flag, and don't change the value if not needed!
 	SKILL_FLAG_REPLACED_LV_0 = 10, // temporary skill overshadowing permanent skill of level 'N - SKILL_FLAG_REPLACED_LV_0',
-};
-
-enum e_mmo_charstatus_opt {
-	OPT_NONE        = 0x0,
-	OPT_SHOW_EQUIP  = 0x1,
-	OPT_ALLOW_PARTY = 0x2,
 };
 
 struct s_skill {
@@ -349,8 +351,8 @@ struct s_pet {
 	int pet_id;
 	short class_;
 	short level;
-	short egg_id;//pet egg id
-	short equip;//pet equip name_id
+	unsigned short egg_id;//pet egg id
+	unsigned short equip;//pet equip name_id
 	short intimate;//pet friendly
 	short hungry;//pet hungry
 	char name[NAME_LENGTH];
@@ -485,6 +487,7 @@ struct mmo_charstatus {
 	uint32 uniqueitem_counter;
 
 	unsigned char hotkey_rowshift;
+	unsigned long title_id;
 };
 
 typedef enum mail_status {
@@ -492,6 +495,19 @@ typedef enum mail_status {
 	MAIL_UNREAD,
 	MAIL_READ,
 } mail_status;
+
+enum mail_inbox_type {
+	MAIL_INBOX_NORMAL = 0,
+	MAIL_INBOX_ACCOUNT,
+	MAIL_INBOX_RETURNED
+};
+
+enum mail_attachment_type {
+	MAIL_ATT_NONE = 0,
+	MAIL_ATT_ZENY = 1,
+	MAIL_ATT_ITEM = 2,
+	MAIL_ATT_ALL = MAIL_ATT_ZENY | MAIL_ATT_ITEM
+};
 
 struct mail_message {
 	int id;
@@ -501,12 +517,14 @@ struct mail_message {
 	char dest_name[NAME_LENGTH];    //receiver nickname
 	char title[MAIL_TITLE_LENGTH];
 	char body[MAIL_BODY_LENGTH];
+	int type; // enum mail_inbox_type
+	time_t scheduled_deletion;
 
 	mail_status status;
 	time_t timestamp; // marks when the message was sent
 
 	uint32 zeny;
-	struct item item;
+	struct item item[MAIL_MAX_ITEM];
 };
 
 struct mail_data {
@@ -564,6 +582,7 @@ struct guild_member {
 	char name[NAME_LENGTH];
 	struct map_session_data *sd;
 	unsigned char modified;
+	uint32 last_login;
 };
 
 struct guild_position {
@@ -607,6 +626,7 @@ struct guild {
 	struct guild_skill skill[MAX_GUILDSKILL];
 	struct Channel *channel;
 	unsigned short instance_id;
+	time_t last_leader_change;
 
 	/* Used by char-server to save events for guilds */
 	unsigned short save_flag;
@@ -616,7 +636,7 @@ struct guild_castle {
 	int castle_id;
 	int mapindex;
 	char castle_name[NAME_LENGTH];
-	char castle_event[NAME_LENGTH];
+	char castle_event[EVENT_NAME_LENGTH];
 	int guild_id;
 	int economy;
 	int defense;
@@ -838,6 +858,19 @@ enum e_job {
 
 	JOB_SUMMONER = 4218,
 
+	JOB_BABY_SUMMONER = 4220,
+
+	JOB_BABY_NINJA = 4222,
+	JOB_BABY_KAGEROU,
+	JOB_BABY_OBORO,
+	JOB_BABY_TAEKWON,
+	JOB_BABY_STAR_GLADIATOR,
+	JOB_BABY_SOUL_LINKER,
+	JOB_BABY_GUNSLINGER,
+	JOB_BABY_REBELLION,
+
+	JOB_BABY_STAR_GLADIATOR2 = 4238,
+
 	JOB_MAX,
 };
 
@@ -897,6 +930,7 @@ struct clan{
 	short max_member, connect_member;
 	struct map_session_data *members[MAX_CLAN];
 	struct clan_alliance alliance[MAX_CLANALLIANCE];
+	unsigned short instance_id;
 };
 
 // Sanity checks...

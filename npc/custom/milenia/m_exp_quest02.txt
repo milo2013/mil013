@@ -249,21 +249,21 @@ mes "Which would you like to do?";
 next;
 switch(select("Gather Items:Hunt Magmarings:Cancel")) {
 case 1:
+mes "[Erdy]";
+mes "Sorry! We don't have any request for gathering right now!";
+close;
+
+/* 
+// START HERE : 
+
+
 // Item turn in
 mes "[Erdy]";
 mes "If you can bring me ^00CC0020 Burning Heart^000000. I'll help you get stronger.";
 next;
 switch(select("I have the Burning Heart:Gators bite!")) {
 case 1:
-/*
-if (checkweight(503,10) == 0) {
-mes "[Erdy]";
-mes "Hey, it looks like that the weight on";
-mes "your back will crush you. Come back";
-mes "after you have lost some weight.";
-close;
-}
-*/
+
 if (countitem(7097) > 19) {
 mes "[Erdy]";
 mes "Thank you for the ^00CE0020 Burning Heart^000000!";
@@ -284,6 +284,9 @@ mes "[Erdy]";
 mes "I need ^00CE0020 Burning Heart^000000.";
 close;
 }
+
+*/
+
 case 2:
 // Kill Count Quest
 mes "[Erdy]";
