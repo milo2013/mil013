@@ -1086,13 +1086,6 @@ milenia_pvp
 4@new
 5@new
 6@new
-milenia_pvp
-1@cellar
-2@cellar
-3@cellar
-4@cellar
-5@cellar
-6@cellar
 endless_war
 1@ldr
 2@ldr
@@ -1107,7 +1100,6 @@ ds
 mining
 1@prison
 tictactoe
-1@milenia_pvp
 prt_pvp
-ratempfo
 izlude_pvp
+kampung

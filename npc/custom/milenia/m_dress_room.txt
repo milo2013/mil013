@@ -32,7 +32,7 @@ Laccessroom:
 	set @hairstylemax,27;
 	set @bodystylemax,1;
 	set @hairdyemax,8;
-	set @bodydyemax,3;
+	set @bodydyemax,2;
 
 	// Summoner's only have 6 hair styles.
 	if (Class != 4218) //Summoner
