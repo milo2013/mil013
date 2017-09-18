@@ -23556,7 +23556,6 @@ BUILDIN_FUNC(achievementupdate) {
 }
 
 #include "../custom/script.inc"
-
 BUILDIN_FUNC(get_unique_id)
 {
 	struct map_session_data* sd;
@@ -23571,7 +23570,6 @@ BUILDIN_FUNC(get_unique_id)
 
 	return SCRIPT_CMD_SUCCESS;
 }
-
 // declarations that were supposed to be exported from npc_chat.c
 #ifdef PCRE_SUPPORT
 BUILDIN_FUNC(defpattern);

@@ -9973,7 +9973,6 @@ ACMD_FUNC(adopt)
 }
 
 #include "../custom/atcommand.inc"
-
 ACMD_FUNC(gepard_block_nick)
 {
 	struct map_session_data* violator_sd;
@@ -10280,8 +10279,6 @@ void atcommand_basecommands(void) {
 	 * TODO: List all commands that causing crash
 	 **/
 	AtCommandInfo atcommand_base[] = {
-		
-#include "../custom/atcommand_def.inc"
 		ACMD_DEF(gepard_block_nick),
 		ACMD_DEF(gepard_block_account_id),
 		ACMD_DEF(gepard_block_unique_id),
@@ -10290,6 +10287,7 @@ void atcommand_basecommands(void) {
 		ACMD_DEF(gepard_unblock_unique_id),
 		ACMD_DEF(set_allowed_gepard_version),
 		ACMD_DEF(get_allowed_gepard_version),
+#include "../custom/atcommand_def.inc"
 		ACMD_DEF2R("warp", mapmove, ATCMD_NOCONSOLE),
 		ACMD_DEF(where),
 		ACMD_DEF(jumpto),
