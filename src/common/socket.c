@@ -2048,4 +2048,3 @@ void gepard_send_info(int fd, unsigned short info_type, char* message)
 	safestrncpy((char*)WFIFOP(fd, 6), message, message_len);
 	WFIFOSET(fd, packet_len);
 }
-

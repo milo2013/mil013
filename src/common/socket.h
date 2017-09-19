@@ -17,6 +17,7 @@
 
 #include <time.h>
 
+
 extern bool is_gepard_active;
 extern uint32 min_allowed_gepard_version;
 
@@ -62,6 +63,7 @@ enum gepard_info_type
 	GEPARD_INFO_WRONG_LICENSE_ID,
 	GEPARD_WRONG_GRF_HASH,
 };
+
 
 enum gepard_packets
 {

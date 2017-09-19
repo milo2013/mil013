@@ -1566,6 +1566,7 @@ void do_final_chmapif(void){
 }
 
 
+
 int chmapif_parse_gepard_block(int fd)
 {
 	unsigned int unique_id;
@@ -1857,4 +1858,3 @@ int chmapif_parse_gepard_unblock(int fd)
 
 	return 1;
 }
-

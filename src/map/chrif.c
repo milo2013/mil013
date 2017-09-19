@@ -1783,7 +1783,7 @@ int chrif_parse(int fd) {
 
 	while ( RFIFOREST(fd) >= 2 ) {
 		int cmd = RFIFOW(fd,0);
-			if (cmd == GEPARD_C2M_BLOCK_ACK)
+		if (cmd == GEPARD_C2M_BLOCK_ACK)
 		{
 			if (chrif_gepard_ack_block(fd) == true)
 				continue;
@@ -1797,7 +1797,6 @@ int chrif_parse(int fd) {
 			else
 				return 0;
 		}
-
 		if (cmd < 0x2af8 || cmd >= 0x2af8 + ARRAYLENGTH(packet_len_table) || packet_len_table[cmd-0x2af8] == 0) {
 			int r = intif_parse(fd); // Passed on to the intif
 
