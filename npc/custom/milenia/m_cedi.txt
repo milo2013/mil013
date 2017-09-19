@@ -54,7 +54,7 @@ OnTalk:
 	
 }
 
-milenia,203,110,4	script	Ancient Tapestry	510,{
+kampung,208,66,4	script	Ancient Tapestry	510,{
 .@party_id = getcharid(1);
 
 if( !.@party_id ){
@@ -149,7 +149,7 @@ end;
 
 
 
-milenia,209,110,4	script	Watery Lair	604,{
+kampung,214,59,4	script	Watery Lair	604,{
 .@party_id = getcharid(1);
 
 if( !.@party_id ){
@@ -228,7 +228,7 @@ end;
 
 
 
-milenia,216,110,4	script	Beacon	501,{
+kampung,214,72,5	script	Beacon	501,{
 .@party_id = getcharid(1);
 
 if( !.@party_id ){

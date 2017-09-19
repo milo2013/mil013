@@ -169,46 +169,11 @@ Player_Menu:
 			}
 			break;
 		case 7:
-			mes "[Milenia]";
-			mes "Please select which NPC you would like to be teleported to.";
-			next;
-			switch(select("Refiner:Enrich Refiner:HD Refiner I:HD Refiner II:Repairman:Armor Enchanting:Socket Enchanting I:Socket Enchanting II:Refine Seller:Purifier:Exchanger")) {
-				case 1:
-					warp "milenia",169,104;
-					break;
-				case 2:
-					warp "milenia",158,106;
-					break;
-				case 3:
-					warp "milenia",169,117;
-					break;
-				case 4:
-					warp "milenia",158,113;
-					break;
-				case 5:
-					warp "milenia",173,106;
-					break;
-				case 6:
-					warp "milenia",163,100;
-					break;
-				case 7:
-					warp "milenia",156,110;
-					break;
-				case 8:
-					warp "milenia",175,110;
-					break;
-				case 9:
-					warp "milenia",161,115;
-					break;
-				case 10:
-					warp "milenia",173,112;
-					break;
-				case 11:
-					warp "milenia",163,104;
-					break;
-			}
+			/* Refine Zone */
+			warp "kampung",165,98;
 			break;
-			case 8:
+		
+		case 8:
 			mes "[Milenia]";
 			mes "Please select which NPC you would like to be teleported to.";
 			next;
@@ -244,10 +209,11 @@ milenia,123,177,11	duplicate(Milenia Tour)	Milenia Tour#trade	721
 milenia,50,115,5	duplicate(Milenia Tour)	Milenia Tour#game	721
 milenia,221,139,11	duplicate(Milenia Tour)	Milenia Tour#mercenary	721
 milenia,202,85,11	duplicate(Milenia Tour)	Milenia Tour#quest	721
-milenia,169,100,11	duplicate(Milenia Tour)	Milenia Tour#refine	721
+kampung,170,109,11	duplicate(Milenia Tour)	Milenia Tour#refine	721
 milenia,43,147,11	duplicate(Milenia Tour)	Milenia Tour#mine	721
 milenia,67,57,5	duplicate(Milenia Tour)	Milenia Tour#novice	721
 milenia,130,82,11	duplicate(Milenia Tour)	Milenia Tour#fish	721
-milenia,218,118,11	duplicate(Milenia Tour)	Milenia Tour#cedi	721
+kampung,195,64,5	duplicate(Milenia Tour)	Milenia Tour#cedi	721
 milenia,169,45,11	duplicate(Milenia Tour)	Milenia Tour#tictac	721
 milenia,22,115,5	duplicate(Milenia Tour)	Milenia Tour#crimele	721
+kampung,140,185,11	duplicate(Milenia Tour)	Milenia Tour#questshop	721

@@ -1,4 +1,4 @@
-milenia,48,146,5	script	SG Resetter	644,{
+kampung,215,130,5	script	SG Resetter	644,{
 	cutin "arang01",2;
 	mes "[Star Gladiator Resetter]";
 	mes "Hi.. Every reset is 10m Zeny..";

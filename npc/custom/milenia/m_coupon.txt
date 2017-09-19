@@ -18,7 +18,7 @@
 // 1.1.2 Added announce if player got a item
 //----------------------------------------------------------------//
 //--- Main Script ------------------------------------------------//
-milenia,128,159,11	script	Milenia Coupon Master	459,{
+kampung,94,171,11	script	Milenia Coupon Master	459,{
 	
 	//Set code type (0 = normal | 1 = MD5-Hash)
 	set .code_type, 0;

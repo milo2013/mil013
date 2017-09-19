@@ -14,7 +14,7 @@
 //= 1.0 First version.
 //============================================================
 
-milenia,218,87,3	script	EXP Quest III	732,{
+kampung,158,59,11	script	EXP Quest III	732,{
 if (checkquest(65009) != -1) {
 if (checkquest(65009,HUNTING) != 2 ) {
 mes "[Jaxxal]";

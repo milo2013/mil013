@@ -549,4 +549,3 @@ malangdo,224,172,6	script	Clink#mal_normal	544,{
 	close;
 }
 
-milenia,161,103,5	duplicate(Austri#ref)	Austri#mro	826

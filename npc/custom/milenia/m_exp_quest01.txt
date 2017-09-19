@@ -14,7 +14,7 @@
 //= 1.0 First version.
 //============================================================
 
-milenia,206,85,3	script	EXP Quest	731,{
+kampung,156,65,5	script	EXP Quest	731,{
 if (checkquest(60119) != -1) {
 if (checkquest(60119,HUNTING) != 2 ) {
 mes "[Ham Nez]";

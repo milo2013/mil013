@@ -14,7 +14,7 @@
 //= 3.6a Slightly edited. [Euphy]
 //============================================================ 
 
-milenia,50,107,6	script	Find the Mushroom	452,{
+kampung,63,198,6	script	Mushroom Spawner	452,{
 	mes "[ Find The Mushroom ]";
 	if (!.Status)
 		mes "There is no event at the moment!";
@@ -34,18 +34,18 @@ milenia,50,107,6	script	Find the Mushroom	452,{
 OnInit:
 	set .Prize,969;	// Reward item ID
 	set .Amount,rand(1,5);	// Reward item amount
-	set .GM,60;	// GM level required to access NPC
-	setarray .Maps$[0],"milenia"; // Possible maps
+	set .GM,99;	// GM level required to access NPC
+	setarray .Maps$[0],"kampung"; // Possible maps
 	end;
 
 OnMinute10:	// Start time (every hour)
 	if (.Status) end;
 	set .Status,1;
-	set .Spawn,rand(5,20);	// How many Mushrooms should spawn?
+	set .Spawn,rand(10,30);	// How many Mushrooms should spawn?
 	set .Map$,.Maps$[rand(getarraysize(.Maps$))];
 	killmonster .Map$,"All";
 	monster .Map$,0,0,"Please don't kill me!",1084,.Spawn,strnpcinfo(0)+"::OnMobKilled";
-	announce "Find the Mushroom : Total of "+.Spawn+" Mushrooms have been spawned in Milenia Capital City!",0;
+	announce "Find the Mushroom : Total of "+.Spawn+" Mushrooms have been spawned in Milenia Valley!",0;
 	sleep 2500;
 	announce "Find the Mushroom : Every Mushroom you kill will give you "+getitemname(.Prize)+"!",0;
 	end;

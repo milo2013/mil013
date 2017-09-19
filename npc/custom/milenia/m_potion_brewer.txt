@@ -7,7 +7,7 @@
 //======Comments====================================
 // In loving memory of AstralRO
 //==================================================
-milenia,34,147,11	script	Potion Expert	46,{
+kampung,164,161,11	script	Potion Expert	46,{
 
 if (tutorial == 1){
 Lbrewing:

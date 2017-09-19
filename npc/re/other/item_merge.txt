@@ -71,4 +71,4 @@ prontera,146,95,3	script	Mergician#pron	64,{
 	}
 }
 
-milenia,149,154,7	duplicate(Mergician#pron)	Mergician	64
+//milenia,149,154,7	duplicate(Mergician#pron)	Mergician	64

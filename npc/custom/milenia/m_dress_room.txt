@@ -1,171 +1,148 @@
-//===== 3CeAM Script =========================================
-//= 3CeAM Custom Stylist NPC
-//===== Original Script By: =====================================
-//=  Rytech
-//===== rAthena Ported By: =====================================
-//=  Incik Rakuzas 
-//===== Current Version: =====================================
-//= 1.1
-//===== Compatible With: =====================================
-//= 3CeAM r791+
-//=  rAthena 
-//===== Description: =========================================
-//= A new generation stylist that offers enhanced style
-//= options and dressing room for character dye/style preview.
-//= Stylist also detects the server's max dyes/styles settings
-//= and also auto adjusts maxes between jobs as needed.
-//===== Additional Comments: =================================
-//= 1.0 First release. [Rytech]
-//= 1.1 Modified script for enable using and support for rAthena emulator. [Incik Rakuzas]
-//============================================================
-milenia,65,150,11	script	Super Stylist	429,{
-Lintro:
-	mes "[Super Stylist]";
-	mes "Hey there. Im a super stylist. Want to try out my services?";
-	mes "I can customize your character's appearance in a hand full of ways.";
+//==================================================================================================================
+//				By : IUbantot
+//				Facebook : www.facebook.com/ivantuting
+//				Outfit Stylist ver 1.0 (compatible with : rA)
+//				You may use, modify, and host all of my released scripts.
+//				You may not sell them, re-release them in any way (modified or otherwise), or remove the credits.
+//==================================================================================================================
+
+
+
+kampung,52,163,11	script	Super Stylist	429,{
+	mes .npcName$;
+	
+	@eac = eaclass();
+	if(!(@eac&EAJL_THIRD)){
+		mes "Sorry I only work with 3rd jobs.";
+		close;
+	}
+	mes "Hello I am the Outfit Stylist!";
+	mes "I can offer you new outfits for a price!";
 	next;
-	menu "Sure.",Laccessroom,"No Thanks.",Lbye,"Super Stylist???",Lwhoareyou;
-
-Laccessroom:
-	// Open the dressing room and sets the dye/style max's depending on the job.
-	opendressroom(0);
-	set @hairstylemax,27;
-	set @bodystylemax,1;
-	set @hairdyemax,8;
-	set @bodydyemax,2;
-
-	// Summoner's only have 6 hair styles.
-	if (Class != 4218) //Summoner
-		set @hairstylemax,27;
-	else
-		set @hairstylemax,6;
-
-	// Only 3rd job's have access to a 2nd body style.
-	// Note: Not all of the new body styles are out. Best to limit only to jobs that do have them.
-	if (
-	Class == 4072 || // Shadow Chaser Regular
-	Class == 4079 || // Shadow Chaser Reborn
-	Class == 4108 || // Shadow Chaser Baby
-	Class == 4069 || // Wanderer Regular
-	Class == 4076 || // Wanderer Reborn
-	Class == 4105 || // Wanderer Baby
-	Class == 4068 || // Minstrel Regular
-	Class == 4075 || // Minstrel Reborn
-	Class == 4104 || // Minstrel Baby
-	//Class == 4051 || // Rune Knight Regular [x]
-	//Class == 4060 || // Rune Knight Reborn [x]
-	//Class == 4096 || // Rune Knight Baby [x]
-	Class == 4055 || // Warlock Regular
-	Class == 4061 || // Warlock Reborn
-	Class == 4097 || // Warlock Baby
-	Class == 4056 || // Ranger Regular
-	Class == 4062 || // Ranger Reborn
-	Class == 4098 || // Ranger Baby
-	Class == 4057 || // Arch Bishop Regular
-	Class == 4063 || // Arch Bishop Reborn
-	Class == 4099 || // Arch Bishop Baby
-	Class == 4058 || // Mechanic Regular
-	Class == 4064 || // Mechanic Reborn
-	Class == 4100 || // Mechanic Baby
-	Class == 4059 || // GX Regular
-	Class == 4065 || // GX Reborn
-	Class == 4101 || // GX Baby
-	Class == 4066 || // RG Regular
-	Class == 4073 || // RG Reborn
-	Class == 4102 || // RG Baby
-	Class == 4078 || // Genetic Regular
-	Class == 4071 || // Genetic Reborn
-	Class == 4107 // Genetic Baby
-	)
-		set @bodystylemax,1;
-	else
-		set @bodystylemax,0;
-
-Lmain:
-	mes "[Super Stylist]";
-	mes "Ok step this way. A dressing room window should open. Use this to decide what you want and then select in the menu what your interested in.";
+	opendressroom(1);
+	mes .npcName$;
+	.@menu$ = "";
+	
+		//	----------------------------------------------
+		// Is the Alternate Outfit available for this job?.
+			.@stylemax = .maxOutfit;
+			for(.@i = 0; .@i < .maxRestrict; .@i++){
+				if(Class == .outfitRestrict[.@i]){
+					.@i = .maxRestrict;
+					.@stylemax -= 1;
+				}
+			}
+		//	----------------------------------------------
+	
+	
+		//	-------------------------------------------------------
+		//	Get purchased outfits list.
+			.@curOpen = openOutfit;
+			
+			if(.@curOpen > 0){
+				setarray .@purchased[0],0,0,0;
+				for(.@i = 0; .@curOpen != 0; .@i++){
+					.@curOpen -= .outfitNum[.@i];
+						if(.@curOpen < 0){
+							.@curOpen += .outfitNum[.@i];
+						}else{
+							.@purchased[.@i] = 1;
+						}
+				}
+			}
+		//	-------------------------------------------------------
+		
+		
+	mes "Select the outfit that you want.";
+		for(.@i = 0;.@i < .@stylemax;.@i++){
+			if(.@purchased[.@i] == 1){
+				.@menu$ += .outfit$[.@i] + " - " + "<Purchased>"+ ":";
+			}else{
+			.@menu$ += .outfit$[.@i] + " - <" + .outfitPrice[.@i] +  " Cash>"+ ":";
+			}
+			if(.@i == (.@stylemax - 1)){
+				.@menu$ += "Default Outfit";
+			}
+		}
 	next;
-	menu "All Colors And Styles",Lalldyestyle,"Hair Color Only",Lhairdye,"Hair Style Only",Lhairstyle,"Cloth Color Only",Lbodydye,"Body Style Only",Lbodystyle,"Im done.",Lbye;
+	.@pick = (select(.@menu$)-1);
+	
 
-Lalldyestyle:
-	mes "[Super Stylist]";
-	mes "Enter the Color/Styles you want in the 4 input boxes in order....";
-	mes "Max Hair Color = "+@hairdyemax+"";
-	mes "Max Hair Styles = "+@hairstylemax+"";
-	mes "Max Body Color = "+@bodydyemax+"";
-	mes "Max Body Styles = "+@bodystylemax+"";
-	input @hairdye;
-	if (@hairdye < 0 || @hairdye > @hairdyemax) set @hairdye,0;
-	input @hairstyle;
-	if (@hairstyle < 0 || @hairstyle > @hairstylemax) set @hairstyle,0;
-	input @bodydye;
-	if (@bodydye < 0 || @bodydye > @bodydyemax) set @bodydye,0;
-	input @bodystyle;
-	if (@bodystyle < 0 || @bodystyle > @bodystylemax) set @bodystyle,0;
-	setlook 6,@hairdye;
-	setlook 1,@hairstyle;
-	setlook 7,@bodydye;
-	setlook 13,@bodystyle;
-	next;
-	goto Lmain;
+		// ------------------------------------------------------
+		//	This Resets the style if Default Style is selected.
+			if((.@pick + 1) > .@stylemax ){
+				mes .npcName$;
+				mes "Oh so you prefer the original huh? well here you go!";
+				setlook  LOOK_BODY2,0;
+				close;
+			}
+		// ------------------------------------------------------
 
-Lhairdye:
-	mes "[Super Stylist]";
-	mes "Enter the dye you want.";
-	mes "Max Hair Color = "+@hairdyemax+"";
-	input @hairdye;
-	if (@hairdye < 0 || @hairdye > @hairdyemax) set @hairdye,0;
-	setlook 6,@hairdye;
-	next;
-	goto Lmain;
+		
 
-Lhairstyle:
-	mes "[Super Stylist]";
-	mes "Enter the style you want.";
-	mes "Max Hair Styles = "+@hairstylemax+"";
-	input @hairstyle;
-	if (@hairstyle < 0 || @hairstyle > @hairstylemax) set @hairstyle,0;
-	setlook 1,@hairstyle;
-	next;
-	goto Lmain;
-
-Lbodydye:
-	mes "[Super Stylist]";
-	mes "Enter the dye you want.";
-	mes "Max Cloth Color = "+@bodydyemax+"";
-	input @bodydye;
-	if (@bodydye < 0 || @bodydye > @bodydyemax) set @bodydye,0;
-	setlook 7,@bodydye;
-	next;
-	goto Lmain;
-
-Lbodystyle:
-	mes "[Super Stylist]";
-	mes "Enter the style you want.";
-	mes "Max Body Styles = "+@bodystylemax+"";
-	input @bodystyle;
-	if (@bodystyle < 0 || @bodystyle > @bodystylemax) set @bodystyle,0;
-	setlook 13,@bodystyle;
-	next;
-	goto Lmain;
-
-Lbye:
-	mes "[Super Stylist]";
-	mes "Ok then. Ill be here whenever you need to change your look.";
+		
+		
+		for(.@i = 0;.@i < 3; .@i++){
+					if(.@purchased[.@pick] == 1){
+						mes .npcName$;
+						mes "Well thank you for using the service here you go!";
+						.@setStyle = .outfitNum[.@pick];
+						if(.@setStyle == 4){
+							.@setStyle--;
+						}
+						setlook  LOOK_BODY2,.@setStyle;
+						close;
+					}
+			}
+		
+		mes .npcName$;
+		mes "Do you really want to proceed?";
+		next;
+		if(select("Proceed...:Changed my mind!") == 2){
+			mes "Well its you're decision!";
+			close;
+		}
+	// ------------------------------------------------------
+		if(#CASHPOINTS < .outfitPrice[.@pick]){
+			mes .npcName$;
+			mes "You do not have what it takes to buy this outfit!";
+			close;
+		}
+	
+	// Change Cloths to desired.
+			mes .npcName$;
+			mes "Well thank you using the service here you go!";
+			.@setStyle = .outfitNum[.@pick];
+			if(.@setStyle == 4){
+				.@setStyle--;
+			}
+			setlook  LOOK_BODY2,.@setStyle;
+			// Character variable for purchased outfits.
+			openOutfit += .outfitNum[.@pick];
+			
+			 #CASHPOINTS -= .outfitPrice[.@pick];
+			 dispbottom "You now have " +#CASHPOINTS+ " cash points.";
 	close;
+end;
 
-Lwhoareyou:
-	mes "[Super Stylist]";
-	mes "Never herd of us?";
-	mes "We super stylist are a new generation of stylist that are able to provide character appearance customization to players.";
-	next;
-	mes "But the difference between us and regular stylist is that we have a dressing room that allows you to try out different styles and dyes freely all together.";
-	mes "This allows you to get a full preview of what your char will look like if you applied all the styles and dyes selected before finalizing what you want.";
-	mes "Better then doing one at a time.";
-	next;
-	mes "Super stylist can also change the appearance of the outfit you wear. We call them body styles. However, only 3rd job characters are offered this service at the moment.";
-	mes "Also we don't have outfits ready for all of these jobs yet since this service is still very new and designs are still being worked on.";
-	mes "Be sure to check back later if a style isnt available for your job as were releasing them one by one.";
-	next;
-	goto Lintro;
+OnInit:
+	.npcName$ = "[Fashionista Merry]";
+	
+	// Input the names of the outfits that is available into your client.
+	setarray .outfit$[0],"^0000FFTranscendent Outfit^000000","^00FF00Second Class Outfit^000000","^FF0000Alternate Outfit^000000";
+	setarray .outfitPrice[0],5000,5000,5000; // in cashpoints
+	setarray .outfitNum[0],4,2,1;
+	.maxOutfit = getarraysize(.outfit$);
+	
+	//list of restricted classes.
+	// As of now restricted classes are.
+	//	Rune Knight
+	//	Sorcerer
+	//	Shura
+	setarray .outfitRestrict[0],	4060,4054,4096,4067,4074,4103,4070,4077,4106;
+	.maxRestrict = getarraysize(.outfitRestrict);
+	
+	
+	
+end;
 }

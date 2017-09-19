@@ -8,7 +8,7 @@
 ///) ENGINE=MyISAM;
 
 //SQL Version 2
-milenia,136,160,11	script	Guild Warehouse#v2	112,{
+kampung,180,149,11	script	Guild Warehouse#v2	112,{
 //NPC file here!
 	cutin "kafra_06",2;
 	set .@a,getcharid(0);	set .@b,getcharid(2);	set .@z,getguildmasterid(.@b);

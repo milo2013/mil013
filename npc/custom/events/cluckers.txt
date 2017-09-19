@@ -19,7 +19,7 @@
 //= 1.3 Switched 'unitskilluseid' to 'unitkill'.
 //============================================================
 
-milenia,141,153,11	script	Cluckers	800,{
+kampung,138,158,5	script	Cluckers	800,{
 
 	set .@GMAccess,1;	// GM level required to access NPC
 

@@ -1,4 +1,4 @@
-milenia,150,153,11	script	Milenia Item Stacker	985,{
+-	script	Milenia Item Stacker	-,{
 
 	mes "[Milenia Item Stacker]";
 	mes "You have..";

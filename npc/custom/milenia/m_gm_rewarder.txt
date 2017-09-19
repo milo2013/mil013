@@ -26,7 +26,7 @@ CREATE TABLE IF NOT EXISTS `ero_gm_reward` (
 */
 
 
-milenia,134,159,4	script	Milenia GM Rewards#gmr	4_F_KAFRA9,{
+kampung,95,169,11	script	Milenia GM Rewards#gmr	4_F_KAFRA9,{
 	doevent "gm_reward_main::OnTalk";
 }
 

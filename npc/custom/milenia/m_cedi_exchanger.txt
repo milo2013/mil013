@@ -1,4 +1,4 @@
-milenia,205,115,5	script	Marvin	603,{
+kampung,211,48,5	script	Marvin	603,{
 function CardValue;
 
 if( #daily_cedi_limit == .today_date ){
@@ -88,7 +88,7 @@ function	CardValue	{
 // 	============= Nectar & Ambrosia	==========		//
 ///												   ///
 //////////////////////////////////////////////////////
-milenia,209,115,4	script	Tim Tom	630,{
+kampung,205,47,4	script	Tim Tom	630,{
 if( countitem( .bca_exchange[0] ) ){
 	if( select( "Exchange "+getitemname( .bca_exchange[0] )+" into "+getitemname( .bca_exchange[1] ),"Pick Tier" ) == 1 ){
 		delitem .bca_exchange[0],1;
@@ -155,7 +155,7 @@ end;
 }
 
 
-milenia,213,115,4	script	BillyBob	636,{
+kampung,206,42,4	script	BillyBob	636,{
 mes "You got "+#cedi_point+" points.";
 mes "Pick a tier.";
 next;

@@ -1,4 +1,4 @@
-milenia,201,87,11	script	ROTD	837,{
+kampung,156,46,11	script	ROTD	837,{
 set .@gmlevel,getgmlevel();
 
 do{

@@ -1,4 +1,4 @@
-milenia,161,148,11	script	Delete Master	853,{
+kampung,85,163,5	script	Delete Master	10181,{
 
 mes "[ Delete Master ]";	
 mes "Hello ^FF0000"+strcharinfo(0)+"^000000!!";

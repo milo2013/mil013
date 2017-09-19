@@ -16,7 +16,7 @@
 //= 1.4 Rebellion added.
 //============================================================
 
-milenia,118,114,6	script	Job Master	894,{
+kampung,208,124,5	script	Job Master	894,{
 function Job_Menu;
 
 	mes "[Job Master]";

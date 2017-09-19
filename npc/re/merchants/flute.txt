@@ -146,7 +146,7 @@ tur_dun01,89,170,5	script	Expert Flute Crafter	59,{
 }
 // Wolf Flute :: job_ranger
 //============================================================
-milenia,114,114,5	script	Expert Flute Crafter#2	59,{
+kampung,207,101,11	script	Expert Flute Crafter#2	59,{
 	if (Class == Job_Ranger || Class == Job_Ranger_T || Class == Job_Baby_Ranger) {
 		if (countitem(6124)) {
 			mes "[Expert Flute Crafter]";

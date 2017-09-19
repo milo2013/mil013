@@ -1,4 +1,4 @@
-milenia,132,159,11	script	Donation Redeem	416,{
+kampung,184,150,11	script	Donation Redeem	416,{
 	// ----------------- NPC Settings -----------------
 	// --- SET THESE BEFORE LOADING THE SCRIPT! ---
 

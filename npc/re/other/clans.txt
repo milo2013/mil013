@@ -631,7 +631,7 @@ OnInit:
 	end;
 }
 
-milenia,67,114,11	duplicate(Raffam Oranpere)	clan#01	10058
-milenia,80,114,5	duplicate(Devon Aire)	clan#02	10059
-milenia,80,105,5	duplicate(Berman Aire)	clan#03	10060
-milenia,67,105,11	duplicate(Shaam Rumi)	clan#04	10027
+kampung,69,107,11	duplicate(Raffam Oranpere)	clan#01	10058
+kampung,78,107,5	duplicate(Devon Aire)	clan#02	10059
+kampung,72,105,5	duplicate(Berman Aire)	clan#03	10060
+kampung,75,105,11	duplicate(Shaam Rumi)	clan#04	10027

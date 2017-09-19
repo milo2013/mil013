@@ -32,7 +32,7 @@
 //= 1.0
 //=========================================================================
 
-milenia,155,113,5	script	Shadow Blacksmith#nomal	482,{
+kampung,160,107,5	script	Shadow Blacksmith#nomal	482,{
 	disable_items;
 	mes "[Shadow Blacksmith]";
 	mes "Do you want to refine a Shadow item?.";

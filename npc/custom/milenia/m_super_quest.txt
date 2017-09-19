@@ -94,7 +94,7 @@ V 1.0.0
 	Everyone atcommand: @checkquest
 */
 
-milenia,212,80,11	script	Daily Quest Board	857,{
+kampung,171,54,11	script	Daily Quest Board	857,{
 
 //Main script execution
 function AddQuest; function DisplayQuest; function ShowQuestList; function AcceptQuest; function CheckOngoing;

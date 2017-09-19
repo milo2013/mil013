@@ -1,4 +1,4 @@
-milenia,131,171,11	script	Milenia Box Trader	952,{
+kampung,81,160,5	script	Milenia Box Trader	952,{
 
     mes "[Milenia Box Trader]";
     mes "Do you want to trade your box into zeny?";

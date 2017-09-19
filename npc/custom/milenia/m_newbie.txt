@@ -1,4 +1,4 @@
-milenia,124,156,11	script	Newbie Freebies	899,{
+kampung,100,163,11	script	Newbie Freebies	899,{
 cutin "gl_barmund3",2;
     if( #freebies == 2){
     mes "[^000088Incik Rakuzas^000000]";
@@ -9,7 +9,7 @@ end;
     } else {
 cutin "gl_barmund1",2;
     mes "[^000088Incik Rakuzas^000000]";
-    mes "Hi, welcome to Milenia RO a brand new server!";
+    mes "Hi, welcome to Milenia RO a server since 2013!";
     mes "I can give 1 set of freebies per Account so please think about this WISELY.";
 	next;
 	if (select("Yes i want it now.:Maybe later.") == 2) {

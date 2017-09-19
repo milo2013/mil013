@@ -1,4 +1,4 @@
-milenia,127,163,11	script	Login Settings	10187,{
+kampung,86,165,5	script	Login Settings	10187,{
 
 
 set .@n$,"[Login Settings]";

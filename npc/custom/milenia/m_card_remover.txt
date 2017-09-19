@@ -14,7 +14,7 @@
 //= 1.2a Added 'disable_items' command. [Euphy]
 //============================================================
 
-milenia,190,149,11	script	Wise Old Woman#eAcustom	78,{
+kampung,163,108,5	script	Wise Old Woman#eAcustom	78,{
 
 	set .zenycost,200000;    // base cost of the card remover services (in Zeny)
 	set .percardcost,25000;  // cost per card of the card remover services (in Zeny)

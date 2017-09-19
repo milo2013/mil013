@@ -722,7 +722,7 @@ return;
 /////////////////////////////////////////////////////////////////////////
 //                         FISHING GURU                                //
 /////////////////////////////////////////////////////////////////////////
-milenia,123,81,4	script	Fishing Guru	560,{
+kampung,133,82,5	script	Fishing Guru	560,{
 	goto FishGuru;                        
 	FishGuru:
 		mes $@NPC_Fishing$; 
@@ -1104,7 +1104,7 @@ return;
 /////////////////////////////////////////////////////////////////////////
 //                           LADDER BOARD                              //
 //=====================================================================//	
-milenia,110,74,4	script	Fishing Ladder Board	857,{
+kampung,131,91,5	script	Fishing Rank	857,{
 goto mainmenu; mainmenu: mes "[ ^aa557fFishing Ladder Board^000000 ]"; mes "You check the fishing ladder board."; next;
 menu "[ ^aa557fInformation^000000 ]",FInfo,"[ ^ff0000Ranking^000000 ]",FRank,"[ ^aaaa7fExpedition^000000 ]",FExpe; 
 FInfo:  
@@ -1180,7 +1180,7 @@ FExpe:
 	menu "^005500[ Return ]^000000",mainmenu; 
 	close; 
 	OnInit:
-		waitingroom "Fishing Ladder Board",0;
+		waitingroom "Fishing Rank",0;
 	end;
 	}
 // ======================================================= DONT CHANGE ANYTHING HERE UNLESS YOU KNOW HOW LADDER IS DONE...	
@@ -1188,7 +1188,8 @@ FExpe:
 //                           FISHING SHOP                              //
 //=====================================================================//
 -	shop	Fishing_Shop	-1,512:-1				// #SETUP FISHING SHOP NPC#
-milenia,116,81,5	script	Fishing Shop	757,{   // Sir Emistry script! :)
+
+kampung,136,83,5	script	Fishing Shop	757,{   // Sir Emistry script! :)
 function ShopSettings; function ValidateCost; function CurrencyInfo;
 function ClearData; function ValueConvert; function ErrorNotice;
 mes "[ ^55ffffFishing Shop^000000 ]";
@@ -1652,7 +1653,7 @@ callfunc "Fish_Fail"; callfunc "Fish_Timer"; end; return; }
 // ======================= I DONT RECOMMEND ANYONE WHO CANT READ SCRIPT CHANGE ANYTHING ABOCE THIS LINE!
 // ===================================== DONT CHANGE ANYTHING ABOVE IF YOU DONT KNOW WHAT ARE YOU DOING!
 
-// LIFEGUARD
+/*// LIFEGUARD
 
 milenia,130,106,11	script	Milenia Lifeguard#1	544,{
 Player_Menu:	
@@ -1696,6 +1697,6 @@ Player_Menu:
 	}			
 	
 	end;
-	}
+	} */
 	
-milenia,129,74,11	shop	Fishing Gears	828,6903:150,41135:250,41136:100,41141:10000,41138:10000,41139:10000,41134:10000
+kampung,135,88,5	shop	Fishing Gears	828,6903:150,41135:250,41136:100,41141:10000,41138:10000,41139:10000,41134:10000

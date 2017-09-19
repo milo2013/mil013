@@ -329,7 +329,7 @@
 		end;
 }
 	
-milenia,50,126,5	script	Dokebi Farm	478,{
+kampung,29,43,5	script	Dokebi Farm	478,{
 while ( true ) {
 		mes "[Dokebi Farmer]";
 		mes "How can i help you ?";

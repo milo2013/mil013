@@ -146,7 +146,7 @@ OnStart:
 }
 
 // Battleground Warper
-milenia,109,163,5	script	Duke Bradley	10119,{
+kampung,27,45,11	script	Duke Bradley	10119,{
 
 Player_Menu:	
 	query_sql("SELECT COUNT(char_id) FROM `char` LEFT JOIN `login` ON `char`.account_id=login.account_id WHERE online AND last_ip = (SELECT `last_ip` FROM `login` WHERE `account_id` = "+getcharid(3)+")",.@count);

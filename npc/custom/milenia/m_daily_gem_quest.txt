@@ -8,7 +8,7 @@
 // In loving memory of AstralRO
 //==================================================
 
-milenia,37,147,11	script	Gem Collector	754,{
+kampung,170,61,5	script	Gem Collector	754,{
 
 if(#TaskDelay+86400 > gettimetick(2)) goto Ltdelay;
 mes "[ ^000088Gem Collector^000000 ]";

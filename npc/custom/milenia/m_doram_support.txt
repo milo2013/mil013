@@ -1,4 +1,4 @@
-milenia,104,160,5	script	Doram Support	556,{
+kampung,96,166,11	script	Doram Support	556,{
 
 if (Class != 4218)	goto Lhaveitem3;
 else if(doram == 13) goto Lhaveitem1;

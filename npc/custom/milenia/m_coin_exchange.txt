@@ -1,4 +1,4 @@
-milenia,108,158,5	script	Coin Manager	906,{
+kampung,55,152,11	script	Coin Manager	906,{
 function int__;
 
 do{

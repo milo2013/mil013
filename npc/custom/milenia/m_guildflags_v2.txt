@@ -1,4 +1,4 @@
-milenia,148,168,11	script	Horn#M1	722,{
+kampung,127,163,11	script	Horn#M1	722,{
 	callfunc "ReturnFlag","arug_cas03",1;
 	end;
 
@@ -9,7 +9,7 @@ OnRecvCastlear03:
 }
 
 
-milenia,91,168,5	script	Himinn#H1	722,{
+kampung,112,163,5	script	Himinn#H1	722,{
 	callfunc "ReturnFlag","schg_cas01",1;
 	end;
 

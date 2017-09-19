@@ -1,4 +1,4 @@
-milenia,76,101,11	script	Super Stacker	985,{
+kampung,57,153,11	script	Super Stacker	985,{
 
 set .@battle_manual, countitem (12208);
 set .@int_dish, countitem (12204);
@@ -20,9 +20,11 @@ set .@dead_branch, countitem (604);
 set .@small_def, countitem (13747);
 set .@big_def, countitem (13749);
 set .@big_magic_def, countitem (13755);
+set .@royaljelly,countitem (13516);
+set .@yggberry,countitem (13517);
 
-
-
+if (countitem (13517)) < 1 {}delitem 13517, .@royaljelly;getitem 13517, .@royaljelly;
+if (countitem (13516)) < 1 {}delitem 13516, .@yggberry;getitem 13516, .@yggberry;
 if (countitem (13755)) < 1 {}delitem 13755, .@big_def;getitem 13755, .@big_def;
 if (countitem (13749)) < 1 {}delitem 13749, .@big_def;getitem 13749, .@big_def;
 if (countitem (13747)) < 1 {}delitem 13747, .@small_def;getitem 13747, .@small_def;

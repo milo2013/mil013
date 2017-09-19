@@ -15,7 +15,7 @@
 //= still don't have modify value option, will be done ... in next year ...
 //============================================================================
 
-milenia,113,138,5	script	PvP Warper	497,{
+kampung,141,163,5	script	PvP Warper	497,{
 
 	if (countitem (7621) >= 1){ // Token Check
         mes "[Devil Square Guardian]";
@@ -464,7 +464,7 @@ OnPCLoadMapEvent:
 	end;
 }
 
-milenia,126,138,11	script	PVP Officer	498,{
+kampung,140,159,5	script	PVP Rank	498,{
 	set .@npcname$, strnpcinfo(0);
 	while (1) {
 		mes "["+ .@npcname$ +"]";

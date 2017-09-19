@@ -212,8 +212,7 @@
 }
 prontera,41,337,5	duplicate(Mercenary Manager#main)	Mercenary Manager#Spear	8W_SOLDIER
 pay_arche,99,167,4	duplicate(Mercenary Manager#main)	Mercenary Manager#Bow	4_M_JOB_HUNTER
-milenia,218,147,11	duplicate(Mercenary Manager#main)	Mercenary Chief#Spear	105
-milenia,216,147,11	duplicate(Mercenary Manager#main)	Mercenary Chief#Bow	732
+
 
 
 
@@ -334,4 +333,4 @@ pay_arche,102,167,5	duplicate(MercMerchant)	Mercenary Merchant#Bow	4_F_CAPEGIRL
 prontera,299,379,5	duplicate(Mercenary_Switch)	Mercenary Switch#Spear	8W_SOLDIER
 pay_arche,170,185,5	duplicate(Mercenary_Switch)	Mercenary Switch#Bow	4_F_CAPEGIRL
 izlude,245,250,4	duplicate(Mercenary_Switch)	Mercenary Switch#Sword	4_F_HUWOMAN
-milenia,214,147,11	duplicate(MercMerchant)	Mercenary Trader#MRO	879
+

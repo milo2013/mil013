@@ -1,7 +1,8 @@
-milenia,67,66,5	script	Novice Kafra	114,{
+kampung,79,61,5	script	Novice Kafra	114,{
 	if	(Class > 0){
 		mes "[Kafra Employee]";
 		mes "Sorry.. For Novice only~";
+		close;
 		}
 		
 	// Make sure the invoking character does not have a cart already
@@ -28,7 +29,7 @@ milenia,67,66,5	script	Novice Kafra	114,{
 
 
 
-milenia,130,163,11	script	Unknown Scout	998,{
+kampung,32,49,5	script	Unknown Scout	998,{
 		
 		mes "[Unknown Scout]";
 		mes "Hello Adventurer..";

@@ -892,6 +892,8 @@ lhz_in02,278,24,3	script	Krugg	86,{
 	end;
 }
 
+
+
 // Material Salesmen Functions
 //============================================================
 function	script	phramain	{

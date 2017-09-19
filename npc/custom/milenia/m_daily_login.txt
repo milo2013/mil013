@@ -13,7 +13,7 @@ CREATE TABLE IF NOT EXISTS `ero_daily_rewards` (
 
 */
 
-milenia,112,163,5	script	Daily Login Rewards	953,{
+kampung,87,168,5	script	Daily Login Rewards	953,{
 	doevent "daily_login_reward::OnTalk";
 }
 
