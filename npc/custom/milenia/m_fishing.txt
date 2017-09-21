@@ -147,7 +147,7 @@ setarray $@FishingLevelName$[0],   			// Feel free to change Fishing-Titles.
 "Elite Fisher","Fisher Crackerjack","First Rate Fisher","Outstanding Fisher",
 "Fisher Master","Trancend Fisher","Master of the Deep";
 // ======= Monster Encounter ===========================================
-set $@FMap$,"milenia";         				// Warp command usage.                     
+set $@FMap$,"kampung";         				// Warp command usage.                     
 set $@X,122;                                     	// Change map setting where fish monster dragged your feet.
 set $@Y,89;
 setarray $FishingMonster[0],2070,2709; 	// Fishing Monsters. MUST BE AGGRESSIVE!
@@ -275,7 +275,7 @@ Fishing Manual.
 /////////////////////////////////////////////////////////////////////////
 //                      AUTOMATIC FISHING MAIN                         //
 // =========================== FISH NPCS ================================
-milenia,115,86,0	script	Swarm of Fish	723,{
+kampung,115,86,0	script	Swarm of Fish	10065,{
 
 	if(FishingAbuse == 1) end; 
 	
@@ -331,42 +331,53 @@ return;
 /////////////////////////////////////////////////////////////////////////
 //                         FISH DUPLICATES                             //
 //=====================================================================//
-milenia,120,86,0	duplicate(Swarm of Fish)	Swarm of Fish#9	723
-milenia,125,86,0	duplicate(Swarm of Fish)	Swarm of Fish#6	723
-milenia,115,90,0	duplicate(Swarm of Fish)	Swarm of Fish#10	723
-milenia,125,90,0	duplicate(Swarm of Fish)	Swarm of Fish#11	723
-milenia,120,90,0	duplicate(Swarm of Fish)	Swarm of Fish#12	723
-milenia,115,102,0	duplicate(Swarm of Fish)	Swarm of Fish#7	723
-milenia,120,102,0	duplicate(Swarm of Fish)	Swarm of Fish#8	723
-milenia,125,102,0	duplicate(Swarm of Fish)	Swarm of Fish#13	723
-milenia,125,98,0	duplicate(Swarm of Fish)	Swarm of Fish#14	723
-milenia,120,98,0	duplicate(Swarm of Fish)	Swarm of Fish#15	723
-milenia,115,98,0	duplicate(Swarm of Fish)	Swarm of Fish#16	723
+kampung,116,165,0	duplicate(Swarm of Fish)	Swarm of Fish#9	10065
+kampung,120,86,0	duplicate(Swarm of Fish)	Swarm of Fish#6	10065
+kampung,124,164,0	duplicate(Swarm of Fish)	Swarm of Fish#10	10065
+kampung,122,159,0	duplicate(Swarm of Fish)	Swarm of Fish#11	10065
+kampung,117,159,0	duplicate(Swarm of Fish)	Swarm of Fish#12	10065
+kampung,115,147,0	duplicate(Swarm of Fish)	Swarm of Fish#7	10065
+kampung,124,144,0	duplicate(Swarm of Fish)	Swarm of Fish#8	10065
+kampung,116,136,0	duplicate(Swarm of Fish)	Swarm of Fish#13	10065
+kampung,123,134,0	duplicate(Swarm of Fish)	Swarm of Fish#14	10065
+kampung,121,121,0	duplicate(Swarm of Fish)	Swarm of Fish#15	10065
+kampung,115,127,0	duplicate(Swarm of Fish)	Swarm of Fish#16	10065
 
-//raya event fishing
-comodo,48,321,0	duplicate(Swarm of Fish)	Swarm of Fish#17	723
-comodo,53,232,0	duplicate(Swarm of Fish)	Swarm of Fish#18	723
-comodo,58,233,0	duplicate(Swarm of Fish)	Swarm of Fish#19	723
-comodo,64,233,0	duplicate(Swarm of Fish)	Swarm of Fish#20	723
-comodo,71,236,0	duplicate(Swarm of Fish)	Swarm of Fish#21	723
-comodo,74,242,0	duplicate(Swarm of Fish)	Swarm of Fish#22	723
-comodo,80,246,0	duplicate(Swarm of Fish)	Swarm of Fish#23	723
-comodo,86,249,0	duplicate(Swarm of Fish)	Swarm of Fish#24	723
-comodo,91,252,0	duplicate(Swarm of Fish)	Swarm of Fish#25	723
-comodo,97,253,0	duplicate(Swarm of Fish)	Swarm of Fish#26	723
-comodo,103,254,0	duplicate(Swarm of Fish)	Swarm of Fish#27	723
-comodo,106,250,0	duplicate(Swarm of Fish)	Swarm of Fish#28	723
-comodo,102,243,0	duplicate(Swarm of Fish)	Swarm of Fish#29	723
-comodo,97,237,0	duplicate(Swarm of Fish)	Swarm of Fish#30	723
-comodo,90,235,0	duplicate(Swarm of Fish)	Swarm of Fish#31	723
-comodo,85,234,0	duplicate(Swarm of Fish)	Swarm of Fish#32	723
-comodo,81,230,0	duplicate(Swarm of Fish)	Swarm of Fish#33	723
-comodo,74,227,0	duplicate(Swarm of Fish)	Swarm of Fish#34	723
-comodo,70,225,0	duplicate(Swarm of Fish)	Swarm of Fish#35	723
-comodo,65,225,0	duplicate(Swarm of Fish)	Swarm of Fish#36	723
-comodo,58,226,0	duplicate(Swarm of Fish)	Swarm of Fish#37	723
-comodo,52,226,0	duplicate(Swarm of Fish)	Swarm of Fish#38	723
-comodo,48,229,0	duplicate(Swarm of Fish)	Swarm of Fish#39	723
+kampung,120,112,0	duplicate(Swarm of Fish)	Swarm of Fish#17	10065
+kampung,115,100,0	duplicate(Swarm of Fish)	Swarm of Fish#18	10065
+kampung,117,94,0	duplicate(Swarm of Fish)	Swarm of Fish#19	10065
+kampung,118,82,0	duplicate(Swarm of Fish)	Swarm of Fish#20	10065
+kampung,123,82,0	duplicate(Swarm of Fish)	Swarm of Fish#21	10065
+
+kampung,118,79,0	duplicate(Swarm of Fish)	Swarm of Fish#22	10065
+kampung,120,72,0	duplicate(Swarm of Fish)	Swarm of Fish#23	10065
+kampung,115,71,0	duplicate(Swarm of Fish)	Swarm of Fish#24	10065
+kampung,123,69,0	duplicate(Swarm of Fish)	Swarm of Fish#25	10065
+
+/*//raya event fishing
+comodo,48,321,0	duplicate(Swarm of Fish)	Swarm of Fish#17	10065
+comodo,53,232,0	duplicate(Swarm of Fish)	Swarm of Fish#18	10065
+comodo,58,233,0	duplicate(Swarm of Fish)	Swarm of Fish#19	10065
+comodo,64,233,0	duplicate(Swarm of Fish)	Swarm of Fish#20	10065
+comodo,71,236,0	duplicate(Swarm of Fish)	Swarm of Fish#21	10065
+comodo,74,242,0	duplicate(Swarm of Fish)	Swarm of Fish#22	10065
+comodo,80,246,0	duplicate(Swarm of Fish)	Swarm of Fish#23	10065
+comodo,86,249,0	duplicate(Swarm of Fish)	Swarm of Fish#24	10065
+comodo,91,252,0	duplicate(Swarm of Fish)	Swarm of Fish#25	10065
+comodo,97,253,0	duplicate(Swarm of Fish)	Swarm of Fish#26	10065
+comodo,103,254,0	duplicate(Swarm of Fish)	Swarm of Fish#27	10065
+comodo,106,250,0	duplicate(Swarm of Fish)	Swarm of Fish#28	10065
+comodo,102,243,0	duplicate(Swarm of Fish)	Swarm of Fish#29	10065
+comodo,97,237,0	duplicate(Swarm of Fish)	Swarm of Fish#30	10065
+comodo,90,235,0	duplicate(Swarm of Fish)	Swarm of Fish#31	10065
+comodo,85,234,0	duplicate(Swarm of Fish)	Swarm of Fish#32	10065
+comodo,81,230,0	duplicate(Swarm of Fish)	Swarm of Fish#33	10065
+comodo,74,227,0	duplicate(Swarm of Fish)	Swarm of Fish#34	10065
+comodo,70,225,0	duplicate(Swarm of Fish)	Swarm of Fish#35	10065
+comodo,65,225,0	duplicate(Swarm of Fish)	Swarm of Fish#36	10065
+comodo,58,226,0	duplicate(Swarm of Fish)	Swarm of Fish#37	10065
+comodo,52,226,0	duplicate(Swarm of Fish)	Swarm of Fish#38	10065
+comodo,48,229,0	duplicate(Swarm of Fish)	Swarm of Fish#39	10065*/
 
 
 
@@ -480,7 +491,7 @@ function	script	Monster_Encounter	{
 		specialeffect 54; 
 		specialeffect 236; 
 		sleep2 1000; 
-		setnpcdisplay ""+strnpcinfo(0)+"",723; 
+		setnpcdisplay ""+strnpcinfo(0)+"",10065; 
 		specialeffect 236; 
 		hideonnpc strnpcinfo(0);  
 		percentheal -50,-50;
@@ -564,7 +575,7 @@ function	script	Lucky_Prize	{
 		getitem .@FLucky,1;    // This is where the player gets the Lucky Prize(Recommended Rare Items)
 		announce ""+strcharinfo(0)+" got "+getitemname(.@FLucky)+" from fishing.",bc_all,0x00FF00;  
 		dispbottom "[ Minor Bonus Boost Applied! ] [ Fishing Rank: " + FishingLevel + ", Fishing Exp: " + FishingNowExp + " / " + $@FishingExpMax[ FishingLevel ] + " ] [Fishing Points: "+#FishingPoints+"]"; 
-		set FishingAbuse,0; setnpcdisplay ""+strnpcinfo(0)+"",723; 
+		set FishingAbuse,0; setnpcdisplay ""+strnpcinfo(0)+"",10065; 
 		callfunc "Fish_Moments"; 
 		callfunc "Fish_Success"; 
 		specialeffect 54; 
@@ -580,7 +591,7 @@ function	script	Lucky_Prize	{
 		close2; 
 		dispbottom "[ Minor Bonus Boost Applied! ] [ Fishing Rank: " + FishingLevel + ", Fishing Exp: " + FishingNowExp + " / " + $@FishingExpMax[ FishingLevel ] + " ] [Fishing Points: "+#FishingPoints+"]"; 
 		set FishingAbuse,0; 
-		setnpcdisplay ""+strnpcinfo(0)+"",723;
+		setnpcdisplay ""+strnpcinfo(0)+"",10065;
 		specialeffect 54; specialeffect 236;  
 		hideonnpc strnpcinfo(0); 
 		sleep2 $@FishHidingTime; 
@@ -618,7 +629,7 @@ function	script	Jackpot_Prize	{		// Modify to your liking, add effects, more dia
 	callfunc "JackpotScene"; callfunc "JackpotScene"; callfunc "JackpotScene"; callfunc "JackpotScene"; 
 	callfunc "JackpotScene"; callfunc "JackpotScene"; callfunc "Fish_Moments"; callfunc "Fish_Success"; 
 	dispbottom "[ Major Bonus Boost Applied! ] [ Fishing Rank: " + FishingLevel + ", Fishing Exp: " + FishingNowExp + " / " + $@FishingExpMax[ FishingLevel ] + " ] [Fishing Points: "+#FishingPoints+"]";
-	set FishingAbuse,0; setnpcdisplay ""+strnpcinfo(0)+"",723; 
+	set FishingAbuse,0; setnpcdisplay ""+strnpcinfo(0)+"",10065; 
 	specialeffect 54; 
 	specialeffect 236; 
 	hideonnpc strnpcinfo(0); 
@@ -708,7 +719,7 @@ function	script	Marine_Sphere_Caught	{
 	atcommand "@nuke "+strcharinfo(0);  	// You can change @die if you have @nuke restrictions.
 	announce "The Marine Sphere that "+strcharinfo(0)+" caught exploded in his face!",bc_map; // KABOOOM EFFECT! :D
 	for (.@i = 0; .@i < getarraysize(.@SpecialFXMarine); .@i++) specialeffect .@SpecialFXMarine[.@i];
-	setnpcdisplay ""+strnpcinfo(0)+"",723;	cutin "",255; 
+	setnpcdisplay ""+strnpcinfo(0)+"",10065;	cutin "",255; 
 	callfunc "Fish_Fail"; 
 	specialeffect 54; 
 	specialeffect 236; 
@@ -1655,44 +1666,44 @@ callfunc "Fish_Fail"; callfunc "Fish_Timer"; end; return; }
 
 /*// LIFEGUARD
 
-milenia,130,106,11	script	Milenia Lifeguard#1	544,{
+kampung,130,106,11	script	kampung Lifeguard#1	544,{
 Player_Menu:	
 	
-	mes "[Milenia Lifeguard]";
+	mes "[kampung Lifeguard]";
 	mes "Hello ^ff0000" + strcharinfo(0) + "^000000,";
 	mes "Do you want me to pull you out?!";
 	next;
 	switch(select("Sure!!:Nope~:I want swimming inside!!")) {
 				case 1:
-					warp "milenia",133,109;
+					warp "kampung",133,109;
 					break;
 				case 2:
 					close;
 					break;
 				case 3:
-					warp "milenia",112,97;
+					warp "kampung",112,97;
 					break;
 	}
 	
 	end;
 	}
 	
-milenia,109,82,5	script	Milenia Lifeguard#2	544,{
+kampung,109,82,5	script	kampung Lifeguard#2	544,{
 Player_Menu:	
 	
-	mes "[Milenia Lifeguard]";
+	mes "[kampung Lifeguard]";
 	mes "Hello ^ff0000" + strcharinfo(0) + "^000000,";
 	mes "Do you want me to pull you out?!";
 	next;
 	switch(select("Sure!!:Nope~:I want swimming inside!!")) {
 				case 1:
-					warp "milenia",106,80;
+					warp "kampung",106,80;
 					break;
 				case 2:
 					close;
 					break;	
 				case 3:
-					warp "milenia",127,90;
+					warp "kampung",127,90;
 					break;
 	}			
 	
