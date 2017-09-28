@@ -1,7 +1,7 @@
-milenia,119,22,0	script	Mysterious Portal	10007,2,2,{
+kampung,61,123,0	script	Mysterious Portal	10007,2,2,{
 OnTouch:
 mes "[ Mysterious Portal]";
-mes "Which Guild Castle suits you?";
+mes "Which Guild Castle you expect?";
 next;
 	menu "Horn's Castle",Horn,"Himinn's Castle",Himinn;
 	

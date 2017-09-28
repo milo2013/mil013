@@ -687,7 +687,7 @@ alb2trea,59,69,5	script	Kafra Employee::kaf_alb2trea	117,{
 	savepoint "alb2trea",92,64,1,1;
 	callfunc "F_KafEnd",0,1,0,"at Sunken Ship";
 }
-milenia,116,177,5	script	Milenia Kafra::milenia	116,{
+kampung,157,150,11	script	Kafra::milenia	116,{
 	cutin "kafra_03",2;
 	callfunc "F_KafSet";
 	mes "[Milenia Kafra]";
@@ -697,11 +697,11 @@ milenia,116,177,5	script	Milenia Kafra::milenia	116,{
 	mes "always ready to serve you.";
 	mes "How can I help you today?";
 	callfunc "F_Kafra",5,0,0,50,850;
-	savepoint "milenia",119,152;
-	callfunc "F_KafEnd",0,1,"in Milenia Capital City";
+	savepoint "kampung",150,150;
+	callfunc "F_KafEnd",0,1,"in Milenia Valley";
 }
 
-milenia,118,138,5	script	Milenia Kafra::milenia2	116,{
+/*kampung,122,20,11	script	Kafra::milenia2	116,{
 	cutin "kafra_03",2;
 	callfunc "F_KafSet";
 	mes "[Milenia Kafra]";
@@ -711,6 +711,6 @@ milenia,118,138,5	script	Milenia Kafra::milenia2	116,{
 	mes "always ready to serve you.";
 	mes "How can I help you today?";
 	callfunc "F_Kafra",5,0,0,50,850;
-	savepoint "milenia",119,152;
+	savepoint "kampung",120,9;
 	callfunc "F_KafEnd",0,1,"in Milenia Capital City";
-}
+}*/

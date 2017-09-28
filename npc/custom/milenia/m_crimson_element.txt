@@ -1,4 +1,4 @@
-milenia,27,115,5	script	Crimson Elementalist	10155,{
+kampung,31,75,5	script	Crimson Elementalist	10155,{
 
 mes "[Crimson Elementalist]";
 mes "I can ^FF0000RANDOMLY^000000 give element to your Crimson Weapons.";

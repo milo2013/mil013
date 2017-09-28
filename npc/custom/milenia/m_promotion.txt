@@ -1,7 +1,8 @@
-milenia,99,152,11	script	Information Staff	640,{
+kampung,178,128,11	script	Information Staff	640,{
 
 	mes "[Information Staff]";
 	mes "Please check out our ^ff0000Donation Shop^000000 at ^ff0000Website^000000. Thank you!";
+	mes "^ff0000http://www.mileniaro.com^000000";
 	close2;
 	cutin "", 255;
 end;
@@ -11,6 +12,7 @@ setarray .message$,
 
 	"Donate $1 Get 4 Donation Credit",
 	"Donate now at our website",
+	"We accept Maybank2u too!",
 	"Min $10 Donation got 1 Freegift Box";
 set .message_size,getarraysize( .message$ );
 while( .message_size ){

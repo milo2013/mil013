@@ -19,7 +19,7 @@
 
 // Information NPC
 //============================================================
-milenia,122,154,4	script	Milenia War Master	483,{
+kampung,143,165,5	script	Milenia War Master	483,{
 	doevent "WOE_CONTROL::OnMenu";
 	end;
 OnAgitStart:

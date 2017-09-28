@@ -1,4 +1,4 @@
-milenia,29,115,5	script	Vicious Enchanter	10156,{
+kampung,30,71,5	script	Vicious Enchanter	10156,{
 
 mes "[Vicious Enchant]";
 mes "I can ^FF0000RANDOMLY^000000 give random stat to your Vicious Weapons.";

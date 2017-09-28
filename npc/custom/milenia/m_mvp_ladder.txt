@@ -47,7 +47,7 @@ function	script	F_getitemname	{
 4@ldr	mapflag	noteleport
 
 
-milenia,102,161,5	script	Elite MVP Ladder	10192,{
+kampung,31,59,5	script	Elite MVP Ladder	10192,{
 	doevent "elite_mvp_ladder::OnTalk";
 }
 

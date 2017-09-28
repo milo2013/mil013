@@ -14,7 +14,7 @@
 //= 1.0 First version.
 //============================================================
 
-milenia,213,85,3	script	EXP Quest II	733,{
+kampung,154,60,11	script	EXP Quest II	733,{
 if (checkquest(65004) != -1) {
 if (checkquest(65004,HUNTING) != 2 ) {
 mes "[Erdy]";

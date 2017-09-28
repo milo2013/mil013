@@ -286,5 +286,3 @@ alberta_in,18,56,3	duplicate(Basta)	Basta#alberta	826
 yuno_in01,173,18,3	duplicate(Basta)	Basta#yuno	826
 ein_in01,24,82,3	duplicate(Basta)	Basta#einbroch	826
 lhz_in02,280,17,3	duplicate(Basta)	Basta#lighthalzen	826
-milenia,170,116,11	duplicate(MightyHammer)	Mighty Hammer#mro	826
-milenia,159,114,5	duplicate(Basta)	Basta#MRO	826

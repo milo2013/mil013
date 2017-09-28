@@ -545,5 +545,5 @@ ecl_in01,51,60,4	duplicate(Warper)	Warper#ecl	811
 malangdo,134,117,6	duplicate(Warper)	Warper#mal	811
 malaya,231,204,4	duplicate(Warper)	Warper#ma	811
 mora,57,152,4	duplicate(Warper)	Warper#mora	811
-milenia,113,159,5	duplicate(Warper)	Milenia Warper#milenia	811
+kampung,156,158,5	duplicate(Warper)	Milenia Warper#milenia	811
 lasagna,213,187,5	duplicate(Warper)	Milenia Warper#lasagna	10166

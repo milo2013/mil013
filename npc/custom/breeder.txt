@@ -10,7 +10,7 @@
 //= One-click automatic mount rentals.
 //============================================================
 
-milenia,123,114,11	script	Master Rental	416,{
+kampung,214,98,5	script	Master Rental	416,{
 	if (ismounting()) {
 		message strcharinfo(0),"You must first remove your mount.";
 		end;

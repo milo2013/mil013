@@ -148,6 +148,3 @@ payon,173,141,4	script	Ripped Cabus#GymPass	899,{
 		}
 	}
 }
-
-// ------------ Duplicate -------------- //
-milenia,128,114,4	duplicate(Ripped Cabus#GymPass)	Gym Master#ra	899

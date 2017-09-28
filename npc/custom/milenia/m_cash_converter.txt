@@ -1,4 +1,4 @@
-milenia,89,153,5	script	Milenia Cashpoints	861,{
+kampung,178,152,11	script	Milenia Cashpoints	861,{
 
 
     mes .NPC$;

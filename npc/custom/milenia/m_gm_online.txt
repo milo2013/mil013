@@ -1,4 +1,4 @@
-milenia,110,159,5	script	GM Online Lists	856,{
+kampung,171,158,11	script	GM Online Lists	856,{
 cutin "3rd_wl_queen06",2;
 mes "Staffs Online Lists : ^FF0000"+getarraysize( .GM_Name$ )+"^000000 Staffs";
 mes "^0000FF_____________________________^000000";

@@ -1,4 +1,4 @@
-milenia,150,193,11	script	Shadow Trader	10038,{
+kampung,82,164,11	script	Shadow Trader	10038,{
 
 	mes "[Shadow Trader]";
 	mes "....";

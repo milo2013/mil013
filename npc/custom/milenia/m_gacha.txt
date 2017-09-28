@@ -1,7 +1,7 @@
 //=========== Gashapon Machine ===============
 
 
-milenia,119,166,11	script	Gashapon Machine	506,{
+kampung,71,56,11	script	Gashapon Machine	506,{
 	
 	
 /*//////////////////////////////////////////////////////////////

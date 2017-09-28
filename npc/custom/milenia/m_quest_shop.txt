@@ -23,20 +23,22 @@
 // Shop NPCs -- supplying no argument displays entire menu.
 //	callfunc "qshop"{,<shop ID>{,<shop ID>{,...}}};
 //============================================================
-milenia,142,189,11	script	Recorn's Works#2	622,{ callfunc "qshop",1,3; }// call shop 1,2,3
-milenia,144,190,11	script	Primelda's Headgear	562,{ callfunc "qshop",4,5,6; }// call shop 4,5,6
-milenia,146,191,11	script	Yokociputra's Quest	762,{ callfunc "qshop",7; }// call shop 7
-milenia,169,61,5	script	Doram Charm	877,{ callfunc "qshop",8; }// call shop 8
-milenia,148,192,11	script	Symphony Quest	10191,{ callfunc "qshop",9,10,23,16,17,20; }// call shop 9,10,16,17,20,23
+//milenia,142,189,11	script	Recorn's Works#2	622,{ callfunc "qshop",1,3; }// call shop 1,2,3
+kampung,134,189,5	script	Quest	10179,{ callfunc "qshop",1,3; }// call shop 1,2,3,4,5,6,7
+//milenia,144,190,11	script	Primelda's Headgear	562,{ callfunc "qshop",4,5,6; }// call shop 4,5,6
+//milenia,146,191,11	script	Yokociputra's Quest	762,{ callfunc "qshop",7; }// call shop 7
+kampung,76,53,11	script	Doram Charm	877,{ callfunc "qshop",8; }// call shop 8
+kampung,140,192,11	script	Symphony Quest	10246,{ callfunc "qshop",9,10,23,16,17,20; }// call shop 9,10,16,17,20,23
 prt_cas,88,292,5	script	Commander Aaron	628,{ callfunc "qshop",11; }// call shop 11
 prt_cas,86,292,5	script	Commander Bobby	470,{ callfunc "qshop",12; }// call shop 12
 prt_cas,99,292,5	script	Minister of Defence 	684,{ callfunc "qshop",13; }// call shop 13
 prt_cas,101,292,5	script	Minister of Supplies	643,{ callfunc "qshop",14; }// call shop 14
 prt_cas,94,254,5	script	Princess Eleanor	10184,{ callfunc "qshop",15; }// call shop 15
-milenia,65,64,5	script	Novice Figures	10066,{ callfunc "qshop",18,19; }// call shop 18,19
-milenia,65,59,5	script	RWC Exchanger	10120,{ callfunc "qshop",21; }// call shop 21
-milenia,82,59,11	script	Rare Costume	10126,{ callfunc "qshop",22; }// call shop 22
-milenia,152,195,11	script	Froggie Headgear	10126,{ callfunc "qshop",24; }// call shop 24
+
+kampung,68,62,11	script	Novice Figures	10066,{ callfunc "qshop",18,19; }// call shop 18,19
+kampung,69,59,11	script	RWC Exchanger	10120,{ callfunc "qshop",21; }// call shop 21
+kampung,78,59,5	script	Rare Costume	10126,{ callfunc "qshop",22; }// call shop 22
+kampung,137,187,11	script	Froggie Headgear	10126,{ callfunc "qshop",24; }// call shop 24
 
 // Script Core
 //============================================================

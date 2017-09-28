@@ -158,7 +158,7 @@ OnInit:
 	disablenpc "PoringCatcher";
 }
 //---------All Job Registration----------------------------------------
-milenia,83,149,0	warp	PoringCatcher	2,2,poring,94,96
+kampung,165,130,0	warp	PoringCatcher	2,2,poring,94,96
 
 //---------------------------------------------------------------------
 

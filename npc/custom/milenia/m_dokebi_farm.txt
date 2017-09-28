@@ -3,10 +3,16 @@
 	OnNormalKill:
 		monster "1@farm",0,0,"--ja--",.normal_mob[rand(.normal_mob_size)],1,strnpcinfo(0)+"::OnNormalKill";
 		getitem .farm_normal[rand(.farm_normal_size)], 1;
+		if (vip_status(VIP_STATUS_ACTIVE)) {
+			getitem .farm_normal[rand(.farm_normal_size)], 1;
+		}
 		goto L_kill;
 	OnBossKill:
 		monster "1@farm",0,0,"--ja--",.boss_mob[rand(.boss_mob_size)],1,strnpcinfo(0)+"::OnBossKill";
 		getitem .farm_boss[rand(.farm_boss_size)], 4;
+		if (vip_status(VIP_STATUS_ACTIVE)) {
+			getitem .farm_boss[rand(.farm_boss_size)], 4;
+		}
 	L_kill:
 		#FarmHunt++;
 		dispbottom "[ Farm Zone ] : Farmed "+ #FarmHunt +" / "+.MaxItemLimit+" Items";
@@ -103,10 +109,16 @@
 	OnNormalKill:
 		monster "2@farm",0,0,"--ja--",.normal_mob[rand(.normal_mob_size)],1,strnpcinfo(0)+"::OnNormalKill";
 		getitem .farm_normal[rand(.farm_normal_size)], 1;
+		if (vip_status(VIP_STATUS_ACTIVE)) {
+			getitem .farm_normal[rand(.farm_normal_size)], 1;
+		}
 		goto L_kill;
 	OnBossKill:
 		monster "2@farm",0,0,"--ja--",.boss_mob[rand(.boss_mob_size)],1,strnpcinfo(0)+"::OnBossKill";
 		getitem .farm_boss[rand(.farm_boss_size)], 4;
+		if (vip_status(VIP_STATUS_ACTIVE)) {
+			getitem .farm_boss[rand(.farm_boss_size)], 4;
+		}
 	L_kill:
 		#FarmHunt++;
 		dispbottom "[ Farm Zone ] : Farmed "+ #FarmHunt +" / "+.MaxItemLimit+" Items";
@@ -179,10 +191,16 @@
 	OnNormalKill:
 		monster "3@farm",0,0,"--ja--",.normal_mob[rand(.normal_mob_size)],1,strnpcinfo(0)+"::OnNormalKill";
 		getitem .farm_normal[rand(.farm_normal_size)], 1;
+		if (vip_status(VIP_STATUS_ACTIVE)) {
+			getitem .farm_normal[rand(.farm_normal_size)], 1;
+		}
 		goto L_kill;
 	OnBossKill:
 		monster "3@farm",0,0,"--ja--",.boss_mob[rand(.boss_mob_size)],1,strnpcinfo(0)+"::OnBossKill";
 		getitem .farm_boss[rand(.farm_boss_size)], 4;
+		if (vip_status(VIP_STATUS_ACTIVE)) {
+			getitem .farm_boss[rand(.farm_boss_size)], 4;
+		}
 	L_kill:
 		#FarmHunt++;
 		dispbottom "[ Farm Zone ] : Farmed "+ #FarmHunt +" / "+.MaxItemLimit+" Items";
@@ -256,10 +274,16 @@
 	OnNormalKill:
 		monster "4@farm",0,0,"--ja--",.normal_mob[rand(.normal_mob_size)],1,strnpcinfo(0)+"::OnNormalKill";
 		getitem .farm_normal[rand(.farm_normal_size)], 1;
+		if (vip_status(VIP_STATUS_ACTIVE)) {
+			getitem .farm_normal[rand(.farm_normal_size)], 1;
+		}
 		goto L_kill;
 	OnBossKill:
 		monster "4@farm",0,0,"--ja--",.boss_mob[rand(.boss_mob_size)],1,strnpcinfo(0)+"::OnBossKill";
 		getitem .farm_boss[rand(.farm_boss_size)], 4;
+		if (vip_status(VIP_STATUS_ACTIVE)) {
+			getitem .farm_boss[rand(.farm_boss_size)], 4;
+		}
 	L_kill:
 		#FarmHunt++;
 		dispbottom "[ Farm Zone ] : Farmed "+ #FarmHunt +" / "+.MaxItemLimit+" Items";
@@ -329,7 +353,7 @@
 		end;
 }
 	
-milenia,50,126,5	script	Dokebi Farm	478,{
+kampung,29,43,5	script	Dokebi Farm	478,{
 while ( true ) {
 		mes "[Dokebi Farmer]";
 		mes "How can i help you ?";

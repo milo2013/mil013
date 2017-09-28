@@ -1,4 +1,4 @@
-milenia,28,147,11	script	Vicious Material Trader	742,{
+kampung,25,74,11	script	Vicious Material Trader	742,{
 
 	mes "[Escaped Prisoner]";
 	set .Exchange,0;

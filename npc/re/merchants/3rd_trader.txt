@@ -279,8 +279,4 @@ manuk,261,206,3	duplicate(pss)	Point Merchant#Manuk	8_F_GIRL
 splendide,207,160,5	duplicate(pss)	Point Merchant#Splendide	8_F_GIRL
 mid_camp,224,237,3	duplicate(pss)	Point Merchant#Midgard	8_F_GIRL
 
-//milenia
-milenia,146,195,11	duplicate(pss)	Point Merchant#m	8_F_GIRL
-milenia,148,196,11	duplicate(runesale)	Rune Merchant#mil	4_M_YURI
-milenia,150,197,11	duplicate(phs)	Poison Herb Merchant#mil	4_F_YUNYANG
-milenia,152,198,11	duplicate(Rare Herb Collector)	Rare Herb Collector#m	1_M_03
+

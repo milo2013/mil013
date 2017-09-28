@@ -1,4 +1,4 @@
-milenia,162,61,11	script	Doram Token Trader	496,{
+kampung,75,57,11	script	Doram Token Trader	496,{
 
 		// TOTAL EQ FOR TRADE
 		set .totalEQ1, ((countitem (.EQA1)) + (countitem (.EQA2)) + (countitem (.EQA3)) + (countitem (.EQA4)) + (countitem (.EQA5)) + (countitem (.EQA6)) + (countitem (.EQA7)) + (countitem (.EQA8)));

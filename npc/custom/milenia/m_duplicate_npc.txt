@@ -1,9 +1,27 @@
-milenia,157,112,5	duplicate(SocketEnchant)	Seiyablem#mro	84
-milenia,174,112,11	duplicate(SocketEnchant2)	Leablem#mro	86
-milenia,172,114,11	duplicate(Fruel)	Fruel#job	84
-milenia,172,105,11	duplicate(Repairman#sch_gld)	Repairman#job	86
-milenia,162,116,5	duplicate(Krugg)	Krugg#job	86
-milenia,170,103,11	duplicate(Hollgrehenn)	Hollgrehenn#mro	85
-milenia,162,100,5	duplicate(Apprentice Craftsman)	Apprentice Craftsman#mro	73
-milenia,159,105,5	duplicate(Suhnbi#cash)	Suhnbi#cash2	85
-milenia,174,107,11	duplicate(Refine Master)	Refine Master#mro	851
+kampung,173,119,11	duplicate(SocketEnchant)	Seiyablem#mro	84
+kampung,175,116,11	duplicate(SocketEnchant2)	Leablem#mro	86
+kampung,173,101,11	duplicate(Fruel)	Fruel#job	84
+kampung,154,116,5	duplicate(Repairman#sch_gld)	Repairman#job	86
+kampung,154,103,5	duplicate(Krugg)	Krugg#job	86
+kampung,168,106,11	duplicate(Hollgrehenn)	Hollgrehenn#mro	85
+kampung,157,101,5	duplicate(Apprentice Craftsman)	Apprentice Craftsman#mro	73
+kampung,166,107,11	duplicate(Suhnbi#cash)	Suhnbi#cash2	85
+kampung,156,118,5	duplicate(Refine Master)	Refine Master#mro	851
+kampung,175,103,11	duplicate(Austri#ref)	Austri#mro	826
+kampung,168,102,11	duplicate(MightyHammer)	Mighty Hammer#mro	826
+kampung,165,103,5	duplicate(Basta)	Basta#MRO	826
+
+
+kampung,162,105,5	script	VIP Refiner	533,{
+	callfunc( "RefineFunc",8191,0,15,1,0,60,-1,50,30,41123);
+}
+
+kampung,161,103,5	script	VIP Refiner 2.0	10184,{
+	callfunc( "RefineFunc",8191,15,20,1,0,1,-1,50,49,41123);
+}
+
+kampung,163,59,5	duplicate(MercMerchant)	Mercenary Trader#MRO	879
+kampung,160,56,11	duplicate(Mercenary Manager#main)	Mercenary Chief#Spear	105
+kampung,162,55,5	duplicate(Mercenary Manager#main)	Mercenary Chief#Bow	732
+
+kampung,208,94,11	duplicate(Ripped Cabus#GymPass)	Gym Master#ra	899

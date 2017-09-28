@@ -1,4 +1,4 @@
-milenia,106,159,5	script	Novice Support	864,{
+kampung,98,164,11	script	Novice Support	864,{
 
 cutin "malaya_nursea04",2;
 if (Class > 0)	goto Lhaveitem3;

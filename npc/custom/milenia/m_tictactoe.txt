@@ -289,11 +289,11 @@ OnHideall:
 	}
 	end;
 	}
-	
+/*	
 //NPCs Waiting Room and Warper
 
 	//Player [1]
-milenia,161,55,5	script	Tictactoe#a	10157,{
+kampung,24,133,5	script	Tictactoe#a	10157,{
 end;
 OnEnable:
 	delwaitingroom;
@@ -323,7 +323,7 @@ end;
 }
 
 	//Player [2]
-milenia,170,55,11	script	Tictactoe#b	10156,{
+kampung,31,133,11	script	Tictactoe#b	10156,{
 end;
 OnEnable:
 	delwaitingroom;
@@ -350,6 +350,8 @@ OnWait:
 	waitingroom "Please wait",1;
 end;	
 }
+
+*/
 	
 //Shift system
 tictactoe,34,38,5	script	Square nº1#1::tic1	723,{

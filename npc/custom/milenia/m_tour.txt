@@ -1,237 +1,244 @@
-milenia,126,159,11	script	Milenia Tour	721,{
+kampung,83,159,11	script	Valley Warper	10173 ,{
 Player_Menu:
-	cutin "kafra_07",2;
+	cutin "pops_lau",2;
 	specialeffect 75;
 	specialeffect 312;
 	specialeffect 42;
-	mes "[Milenia]";
+	mes "[ Valley Warper ]";
 	mes "Hello ^ff0000" + strcharinfo(0) + "^000000,";
-	mes "I can teleport you to any Milenia NPC.";
+	mes "I can teleport you to any kampung NPC.";
 	mes "Where do you want to go?";
 	next;
-	switch(select("Basic:Trading:Market Place:Mini Games:Quest:Special:Refiner:Zeny Farming:Cedi MVP System")) {
+	switch(select("Basic:Trading:Market Place:Mini Games:Quest:Special:Refiner:Zeny Farming:Cedi MVP System:Elite MVP Ladder:Vicious Prison")) {
 		case 1:
-			mes "[Milenia]";
+			mes "[ Valley Warper ]";
 			mes "Please select which NPC you would like to be teleported to.";
 			next;
-			switch(select("Warper & Healer:Job Master:Clan:Master Rental:Platinum Skills:Master Arena:Skill & Stat Reset:Potion Expert")) {
+			switch(select("Warper & Healer:Job Master:Clan:Master Rental:Platinum Skills:MVP Arena:Skill & Stat Reset:Potion Expert:Guild Dungeon Portal")) {
 				case 1:
-					warp "milenia",112,156;
+					/* Warper */
+					warp "kampung",156,155;
 					break;
 				case 2:
-					warp "milenia",119,112;
-					break;	
+					/* Job Master */
+					warp "kampung",208,121;
+					break;
 				case 3:
-					warp "milenia",73,106;
+					/* Clan */
+					warp "kampung",74,100;
 					break;
 				case 4:
-					warp "milenia",124,112;
+					/* Master Rental */
+					warp "kampung",216,98;
 					break;
 				case 5:
-					warp "milenia",117,112;
+					/* Platinum Skills */
+					warp "kampung",214,122;
 					break;
 				case 6:
-					warp "milenia",118,152;
+					/* MVP Arena */
+					warp "kampung",32,96;
 					break;
 				case 7:
-					warp "milenia",126,113;
+					/* Skill & Stat Reset */
+					warp "kampung",205,130;
 					break;
 				case 8:
-					warp "milenia",34,145;
+					/* Potion Expert */
+					warp "kampung",164,158;
 					break;
+				case 9:
+					/* Guild Dungeon Portal */
+					warp "kampung",61,119;
+					break;
+		
 			}
 			break;
 		case 2:
-			mes "[Milenia]";
+			mes "[ Valley Warper ]";
 			mes "Please select which NPC you would like to be teleported to.";
 			next;
-			switch(select("Michimaru's Workshop:Milenia Hyper Dealer:Quest Shop:3rd Job Shop:Ammunition:Ingredients:Pet Food Shop:Cash Shop:Vicious Trader")) {
+			switch(select("Stock Market:Tool Dealer:3rd Job Shop:Ammunition:Ingredients:Pet Food Shop:Cash Shop:Vicious and Ladder Trader")) {
 				case 1:
-					warp "milenia",135,182;
-					break;	
-				case 2:
-					warp "milenia",131,180;
+					/* Stock Market */
+					warp "kampung",50,156;
 					break;
+				case 2:
+					/* Tool Dealer */
+					warp "kampung",61,151;
+					break;	
 				case 3:
-					warp "milenia",143,186;
+					/* 3rd Job Shop */
+					warp "kampung",77,156;
 					break;
 				case 4:
-					warp "milenia",137,183;
+					/* Ammunition */
+					warp "kampung",68,151;
 					break;
 				case 5:
-					warp "milenia",139,185;
+					/* Ingredients */
+					warp "kampung",160,158;
 					break;
 				case 6:
-					warp "milenia",141,185;
+					/* Pet Food Shop */
+					warp "kampung",59,150;
 					break;
 				case 7:
-					warp "milenia",133,181;
+					/* Cash Shop */
+					warp "kampung",73,52;
 					break;
 				case 8:
-					warp "milenia",73,61;
+					/* Vicious and Ladder Trader */
+					warp "kampung",23,69;
 					break;
-				case 9:
-					warp "milenia",28,145;
-					break;
+					
 			}
 			break;
 		case 3:
-			mes "[Milenia]";
+			mes "[ Valley Warper ]";
 			mes "Please select which NPC you would like to be teleported to.";
 			next;
-			switch(select("Milenia Item Mall:Universal Shop :Player Vendor")) {
+			switch(select("Shop:Vending East:Vending West")) {
 				case 1:
-					warp "milenia",95,185;
-					break;	
+					/* Shop */
+					warp "kampung",61,150;
+					break;
 				case 2:
-					warp "milenia",71,185;
+					/* Vending East */
+					warp "kampung",198,146;
 					break;
 				case 3:
-					warp "milenia",162,180;
+					/* Vending West */
+					warp "kampung",41,149;
 					break;
 			}
 			break;
 		case 4:
-			mes "[Milenia]";
+			mes "[ Valley Warper ]";
 			mes "Please select which NPC you would like to be teleported to.";
 			next;
-			switch(select("TicTacToe:Disguise Game:Zombie PVP Game:Black Jack Game:Stock Market:Lottery")) {
+			switch(select("Disguise Game")) {
 				case 1:
-					warp "milenia",166,52;
-					break;
-				case 2:
-					warp "milenia",75,109;
-					break;
-				case 3:
-					warp "milenia",52,102;
-					break;
-				case 4:
-					warp "milenia",55,94;
-					break;
-				case 5:
-					warp "milenia",52,89;
-					break;
-				case 6:
-					warp "milenia",55,84;
-					break;
+					/* Disguise Game */
+					warp "kampung",25,120;
+					break;		
+			
 			}
 			break;
 		case 5:
-			mes "[Milenia]";
+			mes "[ Valley Warper ]";
 			mes "Please select which NPC you would like to be teleported to.";
 			next;
-			switch(select("Hunting Mission:Quest Shop")) {
+			switch(select("Hunting Mission:Quest Shop:Daily Quest Board")) {
 				case 1:
-					warp "milenia",210,83;
+					/* EXP Quest */
+					warp "kampung",156,62;
 					break;
 				case 2:
-					warp "milenia",143,186;
+					/* Quest Shop */
+					warp "kampung",138,185;
+					break;
+				case 3:
+					/* Daily Quest Board */
+					warp "kampung",171,151;
 					break;
 			}
 			break;
 		case 6:
-			mes "[Milenia]";
+			mes "[ Valley Warper ]";
 			mes "Please select which NPC you would like to be teleported to.";
 			next;
-			switch(select("Crimson Elementalist:New Acccount Freebies:Novice Support:GM Online List:Vote For Points:Coins Exchanger:Build Manager (Premium Resetter):Stylist:Mercenary Manager:Poring Vending Machine:Card Remover")) {
+			switch(select("Crimson Elementalist:Vicious Enchanter:New Acccount Freebies:Novice and Doram Support:GM Online List:Vote Shop:Coins Exchanger:Build Manager (Premium Resetter):Stylist:Mercenary Manager:Poring Vending Machine:Card Remover")) {
 				case 1:
-					warp "milenia",27,113;
+					/* Crimson Elementalist */
+					warp "kampung",33,75;
 					break;
 				case 2:
-					warp "milenia",125,154;
+					/* Vicious Enchanter */
+					warp "kampung",32,71;
 					break;
 				case 3:
-					warp "milenia",105,157;
+					/* New Acccount Freebies */
+					warp "kampung",100,160;
 					break;
 				case 4:
-					warp "milenia",111,157;
+					/* Novice Support */
+					warp "kampung",96,162;
 					break;
 				case 5:
-					warp "milenia",130,157;
+					/* GM Online List */
+					warp "kampung",171,155;
 					break;
 				case 6:
-					warp "milenia",109,156;
+					/* Vote Shop */
+					warp "kampung",70,151;
 					break;
 				case 7:
-					warp "milenia",122,112;
+					/* Coins Exchanger */
+					warp "kampung",55,149;
 					break;
 				case 8:
-					warp "milenia",64,147;
+					/* Build Manager */
+					warp "kampung",216,93;
 					break;
 				case 9:
-					warp "milenia",217,143;
+					/* Stylist */
+					warp "kampung",49,163;
 					break;
 				case 10:
-					warp "milenia",176,147;
-				case 11:
-					warp "milenia",191,147;
+					/* Mercenary Manager */
+					warp "kampung",161,52;
 					break;
+				case 11:
+					/* Poring Vending Machine */
+					warp "kampung",82,63;
+					break;
+				case 12:
+					/* Card Remover */
+					warp "kampung",164,106;
+					break;
+				
 			}
 			break;
 		case 7:
-			mes "[Milenia]";
-			mes "Please select which NPC you would like to be teleported to.";
-			next;
-			switch(select("Refiner:Enrich Refiner:HD Refiner I:HD Refiner II:Repairman:Armor Enchanting:Socket Enchanting I:Socket Enchanting II:Refine Seller:Purifier:Exchanger")) {
-				case 1:
-					warp "milenia",169,104;
-					break;
-				case 2:
-					warp "milenia",158,106;
-					break;
-				case 3:
-					warp "milenia",169,117;
-					break;
-				case 4:
-					warp "milenia",158,113;
-					break;
-				case 5:
-					warp "milenia",173,106;
-					break;
-				case 6:
-					warp "milenia",163,100;
-					break;
-				case 7:
-					warp "milenia",156,110;
-					break;
-				case 8:
-					warp "milenia",175,110;
-					break;
-				case 9:
-					warp "milenia",161,115;
-					break;
-				case 10:
-					warp "milenia",173,112;
-					break;
-				case 11:
-					warp "milenia",163,104;
-					break;
-			}
+			/* Refine Zone */
+			warp "kampung",165,98;
 			break;
-			case 8:
-			mes "[Milenia]";
+		
+		case 8:
+			mes "[ Valley Warper ]";
 			mes "Please select which NPC you would like to be teleported to.";
 			next;
-			switch(select("Dokebi Farm:Invaded Prontera:Ore Mining:Gem Collector:Fishing")) {
+			switch(select("Dokebi Farm:Invaded Prontera:Gem Collector:Fishing")) {
 				case 1:
-					warp "milenia",52,126;
+					/* Dokebi Farm */
+					warp "kampung",29,40;
 					break;
 				case 2:
-					warp "milenia",127,163;
+					/* Invaded Prontera */
+					warp "kampung",34,49;
 					break;
 				case 3:
-					warp "milenia",40,145;
+					/* Gem Collector */
+					warp "kampung",172,61;
 					break;
 				case 4:
-					warp "milenia",37,145;
-					break;
-				case 5:
-					warp "milenia",120,78;
+					/* Fishing */
+					warp "kampung",134,84;
 					break;
 			}
 			break;
 			case 9:
-				warp "milenia",209,113;
+				/* Cedi MVP */
+				warp "kampung",209,53;
+				break;
+			case 10:
+				/* MVP Ladder*/
+				warp "kampung",32,59;
+				break;
+			case 11:
+				/* Vicious Prison */
+				warp "kampung",25,58;
 				break;
 	}
 	end;
@@ -239,15 +246,13 @@ Player_Menu:
 // ----------------------
 //	Duplicates
 // ----------------------
-milenia,111,114,5	duplicate(Milenia Tour)	Milenia Tour#job	721
-milenia,123,177,11	duplicate(Milenia Tour)	Milenia Tour#trade	721
-milenia,50,115,5	duplicate(Milenia Tour)	Milenia Tour#game	721
-milenia,221,139,11	duplicate(Milenia Tour)	Milenia Tour#mercenary	721
-milenia,202,85,11	duplicate(Milenia Tour)	Milenia Tour#quest	721
-milenia,169,100,11	duplicate(Milenia Tour)	Milenia Tour#refine	721
-milenia,43,147,11	duplicate(Milenia Tour)	Milenia Tour#mine	721
-milenia,67,57,5	duplicate(Milenia Tour)	Milenia Tour#novice	721
-milenia,130,82,11	duplicate(Milenia Tour)	Milenia Tour#fish	721
-milenia,218,118,11	duplicate(Milenia Tour)	Milenia Tour#cedi	721
-milenia,169,45,11	duplicate(Milenia Tour)	Milenia Tour#tictac	721
-milenia,22,115,5	duplicate(Milenia Tour)	Milenia Tour#crimele	721
+kampung,170,109,5	duplicate(Valley Warper)	Valley Warper#refine	10173 
+kampung,139,184,11	duplicate(Valley Warper)	Valley Warper#qshop	10173 
+kampung,165,150,11	duplicate(Valley Warper)	Valley Warper#warper	10173
+kampung,195,115,5	duplicate(Valley Warper)	Valley Warper#job	10173  
+kampung,65,121,11	duplicate(Valley Warper)	Valley Warper#clan	10173 
+kampung,26,93,11	duplicate(Valley Warper)	Valley Warper#mvp	10173 
+kampung,28,44,11	duplicate(Valley Warper)	Valley Warper#dokebi	10173 
+kampung,72,57,5	duplicate(Valley Warper)	Valley Warper#cash	10173 
+kampung,160,63,11	duplicate(Valley Warper)	Valley Warper#training	10173 
+kampung,197,63,5	duplicate(Valley Warper)	Valley Warper#cedi	10173 

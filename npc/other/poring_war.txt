@@ -1771,5 +1771,5 @@ OnTouch:
 }
 
 
-milenia,156,149,11	duplicate(Poring War Recruiter#wop)	Poring War Recruiter#M	909
-milenia,175,149,11	duplicate(Poring Vending Machine#w)	Poring Vending Machine#M	506
+kampung,32,44,5	duplicate(Poring War Recruiter#wop)	Poring War Recruiter#M	909
+kampung,79,63,5	duplicate(Poring Vending Machine#w)	Poring Vending Machine#M	564

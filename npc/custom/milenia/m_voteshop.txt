@@ -8,7 +8,7 @@
 //to claim their vote points
 //====================================================================================
 
-milenia,130,159,11	script	Milenia Vote Shop	758,{
+kampung,70,155,11	script	Milenia Vote Shop	758,{
 
 //Function Prototypes
 function garbagecol;//Garbage collection for the Character variables
