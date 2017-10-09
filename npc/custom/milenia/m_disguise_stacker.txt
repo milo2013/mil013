@@ -1,5 +1,35 @@
 kampung,57,153,11	script	Super Stacker	985,{
+	
+// Repair and Identify Script
+set .@Price,10000;
+	
+	if (.@Price) {
+		message strcharinfo(0),"Repair and Identify costs "+.@Price+" Zeny!!";
+		if (Zeny < .@Price) end;
+	switch(select("^0055FFRepair and Identify^000000:^777777Just stack item only^000000")){
+		case 1:
+		// Identify and Repair 
+		set Zeny, Zeny-.@Price;
+			if( getbrokenid(1) ) repairall;
+				getinventorylist;
+			while( .@i < @inventorylist_count ){
+			if ( !@inventorylist_identify[.@i] ){
+				delitem2 @inventorylist_id[.@i],1,0,0,0,0,0,0,0;
+				getitem @inventorylist_id[.@i],1;
+			}
+				.@i++;
+			}
+		goto Lstack;
+		
+		case 2:
+		goto Lstack;
+		
+	}
+	}
 
+
+Lstack:
+// Stacker Script
 set .@battle_manual, countitem (12208);
 set .@int_dish, countitem (12204);
 set .@vit_dish, countitem (12207);
@@ -23,28 +53,28 @@ set .@big_magic_def, countitem (13755);
 set .@royaljelly,countitem (13516);
 set .@yggberry,countitem (13517);
 
-if (countitem (13517)) < 1 {}delitem 13517, .@royaljelly;getitem 13517, .@royaljelly;
-if (countitem (13516)) < 1 {}delitem 13516, .@yggberry;getitem 13516, .@yggberry;
-if (countitem (13755)) < 1 {}delitem 13755, .@big_def;getitem 13755, .@big_def;
-if (countitem (13749)) < 1 {}delitem 13749, .@big_def;getitem 13749, .@big_def;
-if (countitem (13747)) < 1 {}delitem 13747, .@small_def;getitem 13747, .@small_def;
-if (countitem (604)) < 1 {}delitem 604, .@dead_branch;getitem 604, .@dead_branch;
-if (countitem (12103)) < 1 {}delitem 12103, .@bloody_branch;getitem 12103, .@bloody_branch;
-if (countitem (12208)) < 1 {}delitem 12208, .@battle_manual;getitem 12208, .@battle_manual;
-if (countitem (12204)) < 1 {}delitem 12204, .@int_dish;getitem 12204, .@int_dish;
-if (countitem (12207)) < 1 {}delitem 12207, .@vit_dish;getitem 12207, .@vit_dish;
-if (countitem (12216)) < 1 {}delitem 12216, .@agi_scroll;getitem 12216, .@agi_scroll;
-if (countitem (12215)) < 1 {}delitem 12215, .@blessing_scroll;getitem 12215, .@blessing_scroll;
-if (countitem (12211)) < 1 {}delitem 12211, .@kafra_card;getitem 12211, .@kafra_card;
-if (countitem (7621)) < 1 {}delitem 7621, .@token_sig;getitem 7621, .@token_sig;
-if (countitem (13845)) < 1 {}delitem 13845, .@travel_sag_a;getitem 13845, .@travel_sag_a;
-if (countitem (13846)) < 1 {}delitem 13846, .@travel_sag_b;getitem 13846, .@travel_sag_b;
-if (countitem (13847)) < 1 {}delitem 13847, .@travel_sag_c;getitem 13847, .@travel_sag_c;
-if (countitem (13848)) < 1 {}delitem 13848, .@travel_sag_d;getitem 13848, .@travel_sag_d;
-if (countitem (41126)) < 1 {}delitem 41126, .@cash_voucher10;getitem 41126, .@cash_voucher10;
-if (countitem (14232)) < 1 {}delitem 14232, .@ygg_box10;getitem 14232, .@ygg_box10;
-if (countitem (12210)) < 1 {}delitem 12210, .@bubble;getitem 12210, .@bubble;
-if (countitem (12209)) < 1 {}delitem 12209, .@life_ins;getitem 12209, .@life_ins;
+if (countitem (13517)) 	< 1 {}	delitem 13517,	.@yggberry;	getitem 13517, .@yggberry;
+if (countitem (13516)) 	< 1 {}	delitem 13516,	.@royaljelly;	getitem 13516, .@royaljelly;
+if (countitem (13755)) 	< 1 {}	delitem 13755,	.@big_def;	getitem 13755, .@big_def;
+if (countitem (13749)) 	< 1 {}	delitem 13749,	.@big_def;	getitem 13749, .@big_def;
+if (countitem (13747)) 	< 1 {}	delitem 13747,	.@small_def;	getitem 13747, .@small_def;
+if (countitem (604)) 	< 1 {}	delitem 604,	.@dead_branch;	getitem 604, .@dead_branch;
+if (countitem (12103)) 	< 1 {}	delitem 12103,	.@bloody_branch;	getitem 12103, .@bloody_branch;
+if (countitem (12208)) 	< 1 {}	delitem 12208,	.@battle_manual;	getitem 12208, .@battle_manual;
+if (countitem (12204))	< 1 {}	delitem 12204,	.@int_dish;	getitem 12204, .@int_dish;
+if (countitem (12207)) 	< 1 {}	delitem 12207,	.@vit_dish;	getitem 12207, .@vit_dish;
+if (countitem (12216)) 	< 1 {}	delitem 12216,	.@agi_scroll;	getitem 12216, .@agi_scroll;
+if (countitem (12215))	< 1 {}	delitem 12215,	.@blessing_scroll;	getitem 12215, .@blessing_scroll;
+if (countitem (12211)) 	< 1 {}	delitem 12211,	.@kafra_card;	getitem 12211, .@kafra_card;
+if (countitem (7621)) 	< 1 {}	delitem 7621,	.@token_sig;	getitem 7621, .@token_sig;
+if (countitem (13845)) 	< 1 {}	delitem 13845,	.@travel_sag_a;		getitem 13845, .@travel_sag_a;
+if (countitem (13846)) 	< 1 {}	delitem 13846,	.@travel_sag_b;	getitem 13846, .@travel_sag_b;
+if (countitem (13847)) 	< 1 {}	delitem 13847,	.@travel_sag_c;	getitem 13847, .@travel_sag_c;
+if (countitem (13848))	< 1 {}	delitem 13848,	.@travel_sag_d;	getitem 13848, .@travel_sag_d;
+if (countitem (41126)) 	< 1 {}	delitem 41126,	.@cash_voucher10;	getitem 41126, .@cash_voucher10;
+if (countitem (14232)) 	< 1 {}	delitem 14232,	.@ygg_box10;	getitem 14232, .@ygg_box10;
+if (countitem (12210)) 	< 1 {}	delitem 12210,	.@bubble;	getitem 12210, .@bubble;
+if (countitem (12209)) 	< 1 {}	delitem 12209,	.@life_ins;	getitem 12209, .@life_ins;
 
-
+end;
 }

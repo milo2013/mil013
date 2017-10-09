@@ -1,0 +1,144 @@
+milenia,120,142,11	script	Dead Person	849,{
+Player_Menu:	
+	
+	mes "....";
+	mes "You found a dying note!";
+	next;
+	mes "...";
+	mes "Its too chaos! I must escape with other citizen before its too late!";
+	next;
+	mes "...";
+	mes "Don't forget to bring (getitemname (41126)) or (getitemname (41124))!!";
+	next;
+		if (#valley == 1){
+			warp "kampung",119,9;
+		}
+		
+		if (vip_status(VIP_STATUS_ACTIVE)) {
+			set #valley,1;
+			warp "kampung",119,9;
+		}
+		
+		if (countitem (41126) >= 1 ){
+			set #valley,1;
+			delitem 41126,1;
+			warp "kampung",119,9;
+		}
+		
+		if (countitem (41124) >= 1 ){
+			set #valley,1;
+			delitem 41124,1;
+			warp "kampung",119,9;
+		}
+		
+		else	{
+			close;
+		}
+	}
+	
+mil_maze,175,15,11	script	Escaped Citizen	882,{
+Player_Menu:	
+	
+	mes " [ Escaped Citizen ]";
+	mes "*SOB* *SOB*";
+	mes "Did.. Did you saw my husband?";
+	next;
+	mes " [ Escaped Citizen ]";
+	mes "Our town was invaded! All of us run into this emergency portal!";
+	next;
+	mes " [ Escaped Citizen ]";
+	mes "Now.. I lost my husband when we run away..";
+	next;
+	switch(select("Your husband is dead!:Sorry.. He didnt make it:Just forget him! Marry me!")){
+		case 1: 
+			mes " [ Escaped Citizen ]";
+			mes "Noooooo!!!!!!";
+			if (#valley < 1){
+			set #valley,1;
+			getitem 6684,1;
+			}
+			warp "kampung",119,9;
+			mapannounce "kampung", strcharinfo(0) + " entered Milenia Valley!",0;
+			mapannounce "mil_maze", strcharinfo(0) + " entered Milenia Valley!",0;
+			close2;
+		case 2:
+			mes " [ Escaped Citizen ]";
+			mes "......";
+			mes "*CRY OUT LOUD*";
+			if (#valley < 1){
+			getitem 6684,1;
+			set #valley,1;
+			}
+			warp "kampung",119,9;
+			mapannounce "kampung", strcharinfo(0) + " entered Milenia Valley!",0;
+			mapannounce "mil_maze", strcharinfo(0) + " entered Milenia Valley!",0;
+			close2;
+		case 3:
+			mes " [ Escaped Citizen ]";
+			mes "%$%$#%$ (Mencarut)";
+			mes "^037021MAK KAU HIJAU!!^000000";
+			if (#valley < 1){
+			getitem 6684,1;
+			set #valley,1;
+			}
+			warp "kampung",119,9;
+			mapannounce "kampung", strcharinfo(0) + " entered Milenia Valley!",0;
+			mapannounce "mil_maze", strcharinfo(0) + " entered Milenia Valley!",0;
+			close2;
+		}
+	}
+
+milenia,120,147,0	warp	mz#0	1,1,mil_maze,16,182	// Entry
+mil_maze,5,185,0	warp	mz#1	1,1,mil_maze,99,144	// Portal 1
+mil_maze,98,151,0	warp	mz#2	1,1,mil_maze,57,17	// Portal 2
+mil_maze,73,11,0	warp	mz#3	1,1,mil_maze,18,179	// Portal 3
+mil_maze,21,191,0	warp	mz#4	1,1,mil_maze,149,20	// Portal 4
+mil_maze,154,21,0	warp	mz#5	1,1,mil_maze,143,138	// Portal 5
+mil_maze,154,134,0	warp	mz#6	1,1,mil_maze,183,140	// Portal 6
+mil_maze,193,139,0	warp	mz#7	1,1,mil_maze,53,54	// Portal 7
+mil_maze,49,47,0	warp	mz#8	1,1,mil_maze,61,93	// Portal 8
+mil_maze,72,98,0	warp	mz#9	1,1,mil_maze,21,19	// Portal 9
+mil_maze,17,31,0	warp	mz#10	1,1,mil_maze,99,99	// Portal 10
+mil_maze,103,113,0	warp	mz#11	1,1,mil_maze,21,99	// Portal 11
+mil_maze,21,89,0	warp	mz#12	1,1,mil_maze,178,174	// Portal 12
+mil_maze,193,175,0	warp	mz#13	1,1,mil_maze,140,57	// Portal 13
+mil_maze,140,73,0	warp	mz#14	1,1,mil_maze,176,60	// Portal 14
+mil_maze,177,73,0	warp	mz#15	1,1,mil_maze,137,100	// Portal 15
+mil_maze,143,113,0	warp	mz#16	1,1,mil_maze,100,175	// Portal 16
+mil_maze,86,174,0	warp	mz#17	1,1,mil_maze,59,138	// Portal 17
+mil_maze,60,127,0	warp	mz#18	1,1,mil_maze,59,182	// Portal 18
+mil_maze,48,193,0	warp	mz#19	1,1,mil_maze,99,52	// Portal 19
+mil_maze,98,47,0	warp	mz#20	1,1,mil_maze,181,95	// Portal 20
+mil_maze,181,87,0	warp	mz#21	1,1,mil_maze,98,22	// Portal 21
+mil_maze,87,12,0	warp	mz#22	1,1,mil_maze,18,139	// Portal 22
+mil_maze,22,128,0	warp	mz#23	1,1,mil_maze,15,59	// Portal 23
+mil_maze,15,48,0	warp	mz#24	1,1,mil_maze,136,180	// Portal 24
+mil_maze,126,172,0	warp	mz#25	1,1,mil_maze,174,19	// Portal 25
+mil_maze,176,8,0	warp	mz#00	1,1,kampung,119,9 // Exit
+
+//TRAP
+mil_maze,15,70,0	warp	tr#1	1,1,mil_maze,99,52	// Trap 1
+mil_maze,6,58,0	warp	tr#2	1,1,mil_maze,183,140	// Trap 2
+mil_maze,23,8,0	warp	tr#3	1,1,mil_maze,59,138	// Trap 3
+mil_maze,56,150,0	warp	tr#4	1,1,mil_maze,181,95		// Trap 4
+mil_maze,191,95,0	warp	tr#5	1,1,mil_maze,176,60// Trap 5
+mil_maze,176,48,0	warp	tr#6	1,1,mil_maze,140,57	// Trap 6
+mil_maze,140,49,0	warp	tr#7	1,1,mil_maze,21,99		// Trap 7
+mil_maze,19,110,0	warp	tr#8	1,1,mil_maze,61,93	// Trap 8
+mil_maze,63,87,0	warp	tr#9	1,1,mil_maze,143,138	// Trap 9
+mil_maze,136,128,0	warp	tr#10	1,1,mil_maze,99,144	// Trap 10
+
+
+
+
+
+
+mil_maze	mapflag	nowarp
+mil_maze	mapflag	nowarpto
+mil_maze	mapflag	noteleport
+mil_maze	mapflag	monster_noteleport
+mil_maze	mapflag	nosave	SavePoint
+mil_maze	mapflag	nomemo
+mil_maze	mapflag	nobranch
+mil_maze	mapflag	nopenalty
+mil_maze	mapflag	noicewall

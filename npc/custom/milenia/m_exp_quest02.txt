@@ -9,7 +9,7 @@
 //===== Description: =========================================
 //= [Aegis Conversion]
 //= Added Monster Killing quests.
-//= Repeatable EXP Quest (Burning Heart)
+//= Repeatable EXP Quest (Drosera Tentacle)
 //===== Additional Comments: =================================
 //= 1.0 First version.
 //============================================================
@@ -249,43 +249,37 @@ mes "Which would you like to do?";
 next;
 switch(select("Gather Items:Hunt Magmarings:Cancel")) {
 case 1:
-mes "[Erdy]";
-mes "Sorry! We don't have any request for gathering right now!";
-close;
 
-/* 
-// START HERE : 
-
+//mes "[Erdy]";
+//mes "Sorry! We don't have any request for gathering right now!";
+//close;
 
 // Item turn in
 mes "[Erdy]";
-mes "If you can bring me ^00CC0020 Burning Heart^000000. I'll help you get stronger.";
+mes "If you can bring me ^00CC0020 Drosera Tentacle^000000. I'll help you get stronger.";
 next;
-switch(select("I have the Burning Heart:Gators bite!")) {
+switch(select("I have the Drosera Tentacle:Still collecting!")) {
 case 1:
 
-if (countitem(7097) > 19) {
+if (countitem(6259 ) > 19) {
 mes "[Erdy]";
-mes "Thank you for the ^00CE0020 Burning Heart^000000!";
-mes "I hope you can continue to help me collect these skins.";
-mes "The armor creators around the world are clamoring for them.";
-delitem 7097,20; //Burning Heart
+mes "Thank you for the ^00CE0020 Drosera Tentacle^000000!";
+mes "I hope you can continue to help me collect these Tentacle.";
+delitem 6259,20; //Drosera Tentacle
 getexp 137900,86600;
 //getitem 503,10; //Yellow_Potion
 close;
 }
 else {
 mes "[Erdy]";
-mes "I know a Burning Heart when I see it and I don't see ^00CE0020 Burning Heart^000000.";
+mes "I know a Drosera Tentacle when I see it and I don't see ^00CE0020 Drosera Tentacle^000000.";
 close;
 }
 case 2:
 mes "[Erdy]";
-mes "I need ^00CE0020 Burning Heart^000000.";
+mes "I need ^00CE0020 Drosera Tentacle^000000.";
 close;
 }
-
-*/
 
 case 2:
 // Kill Count Quest

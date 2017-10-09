@@ -16,7 +16,7 @@
 //= 1.3 Just another revision. Removed waitingroom [Jezznar]
 //============================================================
   
-milenia,120,143,5	script	Devil Square Guardian#1	406,{
+kampung,165,129,5	script	Devil Square Guardian#1	406,{
 	
 	Player_Menu:	
 	query_sql("SELECT COUNT(char_id) FROM `char` LEFT JOIN `login` ON `char`.account_id=login.account_id WHERE online AND last_ip = (SELECT `last_ip` FROM `login` WHERE `account_id` = "+getcharid(3)+")",.@count);
@@ -182,7 +182,7 @@ OnSun2000:
         disablenpc "Devil Square Guardian#2";
         mapannounce "ds","Devil Square is now closed.", bc_map;
         getmapxy .@map$, .@x, .@y, 1;
-        mapwarp "ds","milenia",119,152;
+        mapwarp "ds","kampung",150,150;
         killmonsterall "ds";
 
         //announce "Devil Square is OPEN. The event will begin in 3 minutes.", bc_all;
@@ -462,7 +462,7 @@ ds,39,19,7	script	Devil Square Guardian#2	406,{
         close2;
 		//mapannounce "ds", strcharinfo(0) + " has found the Devil Square Guardian and claim Hidden Cashpoints!",0;
 		//mapannounce "milenia", strcharinfo(0) + " has found the Devil Square Guardian and claim Hidden Cashpoints!",0;
-        warp "milenia",119,152;
+        warp "kampung",150,150;
         end;
 }
 

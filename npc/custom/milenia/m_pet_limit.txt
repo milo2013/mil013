@@ -217,6 +217,20 @@ function	script	UniversalShopFunc	{
 warp "milenia",71,185;
 }
 
+function	script	VipFunc	{
+
+dispbottom "[ VIP System ]";
+atcommand "@vip +720h "+strcharinfo(0)+"";
+dispbottom "=========================================";
+dispbottom "Type @checkvip to check your VIP Status";
+dispbottom "Type @storage2 to Open Premium and VIP Storage";
+dispbottom "=========================================";
+dispbottom "Generating Mystery Gift...";
+callfunc "Gasha03Func";
+
+end;
+}
+
 function	script	TokenLimitFunc	{
 
 OnPCLoadMapEvent:

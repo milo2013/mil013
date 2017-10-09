@@ -32,22 +32,26 @@ function	script	F_getitemname	{
 // instance
 //1@ldr	mapflag	nocommand	10
 1@ldr	mapflag	nosave
+1@ldr	mapflag	partylock
 1@ldr	mapflag	noteleport
 
 //2@ldr	mapflag	nocommand	10
 2@ldr	mapflag	nosave
+2@ldr	mapflag	partylock
 2@ldr	mapflag	noteleport
 
 //3@ldr	mapflag	nocommand	10
 3@ldr	mapflag	nosave
+3@ldr	mapflag	partylock
 3@ldr	mapflag	noteleport
 
 //4@ldr	mapflag	nocommand	10
 4@ldr	mapflag	nosave
+4@ldr	mapflag	partylock
 4@ldr	mapflag	noteleport
 
 
-kampung,30,59,5	script	Elite MVP Ladder	10192,{
+kampung,31,59,5	script	Elite MVP Ladder	10192,{
 	doevent "elite_mvp_ladder::OnTalk";
 }
 

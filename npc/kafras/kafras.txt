@@ -697,11 +697,11 @@ kampung,175,154,11	script	Kafra::milenia	116,{
 	mes "always ready to serve you.";
 	mes "How can I help you today?";
 	callfunc "F_Kafra",5,0,0,50,850;
-	savepoint "kampung",149,154;
-	callfunc "F_KafEnd",0,1,"in Milenia Capital City";
+	savepoint "kampung",150,150;
+	callfunc "F_KafEnd",0,1,"in Milenia Valley";
 }
 
-kampung,122,20,11	script	Kafra::milenia2	116,{
+/*kampung,122,20,11	script	Kafra::milenia2	116,{
 	cutin "kafra_03",2;
 	callfunc "F_KafSet";
 	mes "[Milenia Kafra]";
@@ -713,4 +713,4 @@ kampung,122,20,11	script	Kafra::milenia2	116,{
 	callfunc "F_Kafra",5,0,0,50,850;
 	savepoint "kampung",120,9;
 	callfunc "F_KafEnd",0,1,"in Milenia Capital City";
-}
+}*/

@@ -119,3 +119,4 @@ te_aldecas5	mapflag	nobranch
 
 // CUSTOM MAP
 milenia	mapflag	nobranch
+kampung	mapflag	nobranch

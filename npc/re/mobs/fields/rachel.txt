@@ -103,17 +103,17 @@ ra_fild12,0,0	monster	Red Plant	1078,5,10000
 
 /// Custom
 kampung,177,68,0,0	monster	Training [ Neutral ]	2577,1,1,0,0
-kampung,177,46,0,0	monster	Training [ Neutral ]	2577,1,1,0,0
-kampung,177,54,0,0	monster	Training [ Water ]	2578,1,1,0,0
-kampung,177,49,0,0	monster	Training [ Neutral ]	2577,1,1,0,0
-kampung,172,45,0,0	monster	Training [ Earth  ]	2586,1,1,0,0
+kampung,177,45,0,0	monster	Training [ Neutral ]	2577,1,1,0,0
+kampung,177,54,0,0	monster	Training [ Demi Human ]	2587,1,1,0,0
+kampung,177,79,0,0	monster	Training [ Water ]	2578,1,1,0,0
+kampung,170,45,0,0	monster	Training [ Earth  ]	2586,1,1,0,0
 kampung,160,44,0,0	monster	Training [ Fire ]	2579,1,1,0,0
 kampung,152,44,0,0	monster	Training [ Wind ]	2580,1,1,0,0
 kampung,152,54,0,0	monster	Training [ Poison ]	2581,1,1,0,0
 kampung,152,68,0,0	monster	Training [ Holy ]	2582,1,1,0,0
 kampung,152,78,0,0	monster	Training [ Shadow  ]	2583,1,1,0,0
 kampung,159,79,0,0	monster	Training [ Ghost  ]	2584,1,1,0,0
-kampung,172,79,0,0	monster	Training [ Undead  ]	2585,1,1,0,0
+kampung,170,79,0,0	monster	Training [ Undead  ]	2585,1,1,0,0
 
 
 //kampung,0,0,0,0	monster	kampung	3997,5,1,0,0

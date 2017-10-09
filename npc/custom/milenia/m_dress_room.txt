@@ -130,7 +130,7 @@ OnInit:
 	
 	// Input the names of the outfits that is available into your client.
 	setarray .outfit$[0],"^0000FFTranscendent Outfit^000000","^00FF00Second Class Outfit^000000","^FF0000Alternate Outfit^000000";
-	setarray .outfitPrice[0],5000,5000,5000; // in cashpoints
+	setarray .outfitPrice[0],10,10,10; // in cashpoints
 	setarray .outfitNum[0],4,2,1;
 	.maxOutfit = getarraysize(.outfit$);
 	
