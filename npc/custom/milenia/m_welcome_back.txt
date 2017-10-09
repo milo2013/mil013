@@ -1,4 +1,4 @@
-kampung,102,161,11	script	Welcome Back Rewards	10185,{
+kampung,101,160,11	script	Welcome Back Rewards	10185,{
 
 if (WBP == 1) {
 	mes "[Sarah]";

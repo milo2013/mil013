@@ -1,0 +1,274 @@
+//===== rAthena Script =======================================
+//= Yuchinin Item Hunting
+//===== By: ==================================================
+//= Yuchinin
+//===== Current Version: =====================================
+//= 1.0
+//===== Compatible With: =====================================
+//= rAthena Project
+//===== Description: =========================================
+//= Generate item in cell and try to find it out with correct tools
+//= On default you will sense item around you if distance is <= 13
+//= The sense will only work on specified item, so when you are using 
+//= showel, only type with 'dig' tag will get sensed
+//=====******** Note ********=================================
+//= This script need my release of:
+//= 1. Common Useful Function	(common.txt) 2.4.1+
+//= Better let it load first before adding my other script.
+//= 2. You will need little sql knowledge to use this
+//===== Additional Comments: =================================
+//= 1.0 - Initial Release
+//===== Todo: ================================================
+//= Add more sample and tutorial
+//= Idea about when enchant should get apply
+//= Event only tool
+//= Item Hunting Guild
+//= Add video showcase
+//= Mob show up on search (Hidden Mob)
+//============================================================
+
+function	script	IH_Count	{
+	.@sql$ = getarg(0);
+	.@count = query_sql("SELECT itemid FROM item_hunting WHERE "+.@sql$,.@dummy);
+	if(.@count<0) return 0;
+	return .@count;
+}
+
+function	script	IH_Generate	{
+	.@type$ = getarg(0);
+	.@sql_arguement$ = getarg(1);
+	.@mapdata$ = getarg(2);
+	.@hp = getarg(3);
+	
+	explode(.@T$,.@mapdata$,"|");
+	.@map$ = .@T$[0];
+	
+	if(!ismapexist(.@map$)){
+		debugmes "IH_Generate: Map "+.@map$+" not found! Point not generate!";
+		return;
+	}
+	
+	if(.@T$[1]=="Random"){
+		do{
+			sleep 1;
+			.@mapx = rand(0,500);
+			.@mapy = rand(0,500);
+			if( !checkcell(.@map$,.@mapx,.@mapy,cell_chkpass) ) continue;
+			// stack prevention =========== Start
+			/*
+			.@count = query_sql("SELECT itemid FROM item_hunting WHERE type = '"+.@type$+"' AND map = '"+.@map$+"' AND mapx = "+.@mapx+" AND mapy = "+.@mapy,.@dummy);
+			if(.@count > 0) continue;
+			*/
+			// stack prevention =========== End
+			break;
+		}while(1);
+	}else{
+		.@mapx = atoi(.@T$[1]);
+		.@mapy = atoi(.@T$[2]);
+		if( !checkcell(.@map$,.@mapx,.@mapy,cell_chkpass) ){
+			debugmes "IH_Generate: Invalid map coordinate "+.@map$+","+.@mapx+","+.@mapy+" ! Point not generate!";
+			return;
+		}
+	}
+	
+	query_sql("INSERT INTO item_hunting SET type = '"+.@type$+"', "+.@sql_arguement$+", map = '"+.@map$+"', mapx = "+.@mapx+", mapy = "+.@mapy+", hp = "+.@hp+", maxhp = "+.@hp);
+	return;
+	
+}
+
+function	script	IH_Action	{
+	if(@isbusy) end;
+	@isbusy = 1;
+	pcblockmove getcharid(3),1;
+
+	.@type$ = getarg(0);	
+	.@action_range = getarg(1,0);
+	.@detect_range = 13;
+	
+	.@base_damage = 1;			// damage to reduce point hp
+	.@base_durable = 9000;		// base durable rate
+	.@base_speed = 1000;		// higher = slower (millisecond)
+	.@damage_per_refine = 1;	// will have no effect outside this tool
+	.@durable_per_refine = 50;	// durable per refine rate
+	
+	.@tools_id = getequipid(EQI_HAND_R);
+	.@tools_refine = getequiprefinerycnt(EQI_HAND_R);
+	
+	//Tool stat calculate
+	for(.@i=0;.@i<=3;.@i++){
+		.@slotitemid = getequipcardid(EQI_HAND_R,.@i);
+		if(!.@slotitemid) break;	// skip remaining check 
+		if( .@slotitemid == 41269 ) .@bonus_unbreakable = 1;	// applied
+		else if( .@slotitemid == 41270 ) .@bonus_sharp += 5;		// applied
+		else if( .@slotitemid == 41271 ) .@bonus_range += 1;		// applied
+		else if( .@slotitemid == 41272 ) .@bonus_double += 500;	// applied
+		else if( .@slotitemid == 41273 ) .@bonus_speed += 150;		// applied
+	}
+	
+	getmapxy(.@map$,.@x,.@y,UNITTYPE_PC);
+	
+	.@action_range += .@bonus_range;
+	.@total_damage = (.@tools_refine*.@damage_per_refine)+.@base_damage + .@bonus_sharp;
+	.@total_durable = (.@tools_refine*.@durable_per_refine)+.@base_durable;
+	
+	//dispbottom "total_damage "+.@total_damage;
+	//dispbottom "action_range "+.@action_range;
+	
+	// action sound effect
+	for(.@i=0;.@i<2;.@i++){
+		if(.@type$=="dig") soundeffectall "anolian_move1.wav",0;
+		else if(.@type$=="harvest") soundeffectall "_thief_attack.wav",0;
+		sleep2 .@base_speed - .@bonus_speed;
+	}
+	
+	// dig effect
+	for(.@i=.@x-.@action_range;.@i<=.@x+.@action_range;.@i++){
+		for(.@j=.@y-.@action_range;.@j<=.@y+.@action_range;.@j++){
+			if( checkcell(.@map$,.@i,.@j,cell_chkpass) ) tempeffect(6,.@map$,.@i,.@j);
+		}
+	}
+	
+	.@count = query_sql("SELECT uid, itemid, mapx, mapy, hp, maxhp, bomb, mobid FROM item_hunting WHERE type = '"+.@type$+"' AND map = '"+.@map$+"' AND mapx >= "+.@x+"-"+.@detect_range+" AND mapx <= "+.@x+"+"+.@detect_range+" AND mapy >= "+.@y+"-"+.@detect_range+" AND mapy <= "+.@y+"+"+.@detect_range, .@uid, .@itemid, .@mapx, .@mapy, .@hp, .@maxhp, .@bomb, .@mobid);
+	
+	//dispbottom "count "+.@count;
+	
+	if(.@count > 0){
+		// find the nearest point index
+		//.@index = -1;					// for scanner use
+		for(.@i=0;.@i<.@count;.@i++){
+			.@distancelist[.@i] = distance(.@x,.@y,.@mapx[.@i],.@mapy[.@i]);
+			//dispbottom "x "+.@mapx[.@i]+" y "+.@mapy[.@i];
+			
+			if( .@distancelist[.@i] <= .@action_range ){
+				.@isinrange = 1;
+				if( .@total_damage >= .@hp[.@i] ){
+					//dispbottom "hp "+.@hp[.@i];
+					.@isOut = 1;
+					if( getitemname(.@itemid[.@i]) != "null" ){
+						makeitem .@itemid,1,.@map$,.@mapx[.@i],.@mapy[.@i];
+						if( .@bonus_double >= rand(1,10000) ) makeitem .@itemid,1,.@map$,.@mapx[.@i],.@mapy[.@i];
+					}
+					if( .@bomb[.@i] > 0 ){
+						explosion(.@map$,.@mapx[.@i],.@mapy[.@i],.@bomb[.@i]);
+						.@isbomb = 1;
+					}
+					if( getmonsterinfo(.@mobid[.@i], MOB_NAME) != "null" ){
+						monster(.@map$,.@mapx,.@mapy,"--ja--",.@mobid[.@i],1);
+					}
+					query_sql("DELETE FROM item_hunting WHERE uid = "+.@uid[.@i]);
+				}else{
+					query_sql("UPDATE item_hunting SET hp = "+(.@hp[.@i]-.@total_damage)+" WHERE uid = "+.@uid[.@i]);
+				}
+				
+				//break;	// limit to per item to avoid abuse
+			}else if( .@distancelist[.@i] <= .@detect_range ){
+				tempeffect(186,.@map$,.@mapx[.@i],.@mapy[.@i]);
+				.@isfound = 1;
+			}
+		}
+		//.@index = min(.@distancelist); // for scanner use
+	}
+	if(.@isbomb){
+		emotion e_wah,1;
+	}else if(.@isinrange){
+		showscript "I hit something !",getcharid(3);
+		if(.@isOut){
+			sleep2 500;
+			soundeffectall "aster_die.wav",0;
+			emotion e_cash,1;
+		}
+	}else if(.@isfound){
+		showscript "I should search nearby here...",getcharid(3);
+		emotion e_gasp,1;
+	}else{
+		showscript "Nothing around here...",getcharid(3);
+		//emotion e_swt,1;
+	}
+	
+	if( !.@bonus_unbreakable && .@total_durable < rand(1,10000) ){
+		breakequip(EQI_HAND_R);
+		emotion e_swt,1;
+	}
+	
+	// auto enchants if refine value >= 5
+	
+	
+	if(.@tools_refine/5 > 0){
+		// enchants
+		// durable +10%
+		// sharp +1
+		// range +1
+		// double +1
+		// speed +1
+		
+		
+	}
+	.@count = .@tools_refine/5;
+	
+	// record old stat for later use
+	for(.@i=0;.@i<4;.@i++){
+		set getd(".@slot"+.@i),getequipcardid(EQI_HAND_R,.@i);
+	}
+	
+	for(.@i=0;.@i<.@count;.@i++){
+		if( !getequipcardid(EQI_HAND_R,.@i) ){
+			.@needUpdate = 1;
+			set getd(".@slot"+.@i),rand(25102,25106);
+		}
+	}
+	
+	if(.@needUpdate){
+		delequip(EQI_HAND_R);
+		getitem2 .@tools_id,1,1,.@tools_refine,0,.@slot0,.@slot1,.@slot2,.@slot3;
+		dispbottom getitemname(.@tools_id)+" has just gain a new enchants!";
+		//equip .@tools_id;	// will not always equip the right equip 
+	}
+	
+	pcblockmove getcharid(3),0;
+	@isbusy = 0;
+	return;
+}
+
+function	script	IH_Equipped	{
+	if(countitem(getarg(0))<=0) getitem getarg(0),1;
+	return;
+}
+
+function	script	IH_Unequipped	{
+	delitem getarg(0),countitem(getarg(0));
+	return;
+}
+
+-	script	IH_Engine	-1,{
+OnInit:
+	query_sql("CREATE TABLE IF NOT EXISTS `item_hunting` (`uid` int(10) unsigned NOT NULL AUTO_INCREMENT,`type` varchar(15) NOT NULL,`itemid` int(10) unsigned NOT NULL,`map` varchar(15) NOT NULL,`mapx` int(3) unsigned NOT NULL,`mapy` int(3) unsigned NOT NULL,`hp` int(5) unsigned NOT NULL,`maxhp` int(5) unsigned NOT NULL,PRIMARY KEY (`uid`),UNIQUE KEY `uid_UNIQUE` (`uid`)) ENGINE=InnoDB DEFAULT CHARSET=utf8;");
+	
+	setitemscript 41265,"{IH_Action(\"harvest\");}";	// dummy item
+	setitemscript 41266,"{IH_Equipped(25098);}";
+	setitemscript 41266,"{IH_Unequipped(25098);}",2;
+	setitemscript 41267,"{IH_Action(\"dig\");}";		// dummy item
+	setitemscript 41268,"{IH_Equipped(25100);}";
+	setitemscript 41268,"{IH_Unequipped(25100);}",2;
+}
+
+//==================== Sample ==========================
+-	script	IH_prt_fild08	-1,{
+OnInit:
+	donpcevent strnpcinfo(3)+"::OnGenDig";
+	donpcevent strnpcinfo(3)+"::OnGenHerb";
+	end;
+	
+OnGenDig:
+	while( IH_Count("map = 'prt_fild08' AND type = 'dig'") < 50){
+		IH_Generate("dig","itemid = 7444","prt_fild08|Random",rand(10,20));
+	};
+	while( IH_Count("map = 'prt_fild08' AND type = 'dig' AND bomb > 0") < 30){
+		IH_Generate("dig","bomb = "+rand(1000,5000),"prt_fild08|Random",rand(5,10));
+	};
+	end;
+	
+OnGenHerb:
+	while( IH_Count("map = 'prt_fild08' AND type = 'harvest'") < 50){
+		IH_Generate("harvest","itemid = "+rand(507,511),"prt_fild08|Random",rand(3,10));
+	};
+}

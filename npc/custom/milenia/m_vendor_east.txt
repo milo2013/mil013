@@ -45,6 +45,7 @@ setcell .map$,0,0,284,365,cell_novending,1;
 setarray .x_line,198,202,206,210,214,218,222,12,16,20,24,28,32,36,40;
 setarray .y_line,170,176,182,188,194,200,206,212,218,224,230;
 
+
 set .x_line_size,getarraysize( .x_line );
 set .y_line_size,getarraysize( .y_line );
 set .count,1;

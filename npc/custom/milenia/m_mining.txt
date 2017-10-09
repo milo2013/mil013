@@ -45,7 +45,7 @@ bindatcmd "mining","cmdMining::OnCmdMining";
 end;
 }
 
-milenia,40,147,3	script	Mining Manager	726,{
+kampung,172,58,5	script	Mining Manager	726,{
 
 mes "[^0000FF Milenia Mining Corp ^000000]";
 mes "Hiya! I'm the master of Mining, ^880000Milenia Mining Corp^000000!";
@@ -321,7 +321,7 @@ mining,107,43,11	script	Mining Corp CEO	1681,{
 
 
 	LwalkCEO:
-		sleep2 5000;
+		sleep 5000;
 		npcwalkto rand(107,39),rand(60,99);
 		goto LwalkCEO;
 		end;
@@ -532,7 +532,7 @@ end;
 
 
 Lwalk:
-sleep2 1000;
+sleep 1000;
 npcwalkto rand(107,39),rand(60,99);
 goto Lwalk;
 end;
@@ -708,7 +708,7 @@ end;
 
 
 Lwalk:
-sleep2 1000;
+sleep 1000;
 npcwalkto rand(107,39),rand(60,99);
 goto Lwalk;
 end;
@@ -884,7 +884,7 @@ end;
 
 
 Lwalk:
-sleep2 1000;
+sleep 1000;
 npcwalkto rand(107,39),rand(60,99);
 goto Lwalk;
 end;
@@ -1060,7 +1060,7 @@ end;
 
 
 Lwalk:
-sleep2 1000;
+sleep 1000;
 npcwalkto rand(107,39),rand(60,99);
 goto Lwalk;
 end;
@@ -1236,7 +1236,7 @@ end;
 
 
 Lwalk:
-sleep2 1000;
+sleep 1000;
 npcwalkto rand(107,39),rand(60,99);
 goto Lwalk;
 end;
@@ -1413,7 +1413,7 @@ end;
 
 
 Lwalk:
-sleep2 1000;
+sleep 1000;
 npcwalkto rand(107,39),rand(60,99);
 goto Lwalk;
 end;
@@ -1589,7 +1589,7 @@ end;
 
 
 Lwalk:
-sleep2 1000;
+sleep 1000;
 npcwalkto rand(107,39),rand(60,99);
 goto Lwalk;
 end;
@@ -1765,7 +1765,7 @@ end;
 
 
 Lwalk:
-sleep2 1000;
+sleep 1000;
 npcwalkto rand(107,39),rand(60,99);
 goto Lwalk;
 end;
@@ -1941,7 +1941,7 @@ end;
 
 
 Lwalk:
-sleep2 1000;
+sleep 1000;
 npcwalkto rand(60,82),rand(127,83);
 goto Lwalk;
 end;
@@ -2117,7 +2117,7 @@ end;
 
 
 Lwalk:
-sleep2 1000;
+sleep 1000;
 npcwalkto rand(107,39),rand(60,99);
 goto Lwalk;
 end;
@@ -2294,7 +2294,7 @@ end;
 
 
 Lwalk:
-sleep2 1000;
+sleep 1000;
 npcwalkto rand(107,39),rand(60,99);
 goto Lwalk;
 end;
@@ -2470,7 +2470,7 @@ end;
 
 
 Lwalk:
-sleep2 1000;
+sleep 1000;
 npcwalkto rand(107,39),rand(60,99);
 goto Lwalk;
 end;
@@ -2646,7 +2646,7 @@ end;
 
 
 Lwalk:
-sleep2 1000;
+sleep 1000;
 npcwalkto rand(107,39),rand(60,99);
 goto Lwalk;
 end;
@@ -2822,7 +2822,7 @@ end;
 
 
 Lwalk:
-sleep2 1000;
+sleep 1000;
 npcwalkto rand(107,39),rand(60,99);
 goto Lwalk;
 end;
@@ -2998,7 +2998,7 @@ end;
 
 
 Lwalk:
-sleep2 1000;
+sleep 1000;
 npcwalkto rand(107,39),rand(60,99);
 goto Lwalk;
 end;
@@ -3174,7 +3174,7 @@ end;
 
 
 Lwalk:
-sleep2 1000;
+sleep 1000;
 npcwalkto rand(107,39),rand(60,99);
 goto Lwalk;
 end;
@@ -3350,7 +3350,7 @@ end;
 
 
 Lwalk:
-sleep2 1000;
+sleep 1000;
 npcwalkto rand(107,39),rand(60,99);
 goto Lwalk;
 end;
@@ -3526,7 +3526,7 @@ end;
 
 
 Lwalk:
-sleep2 1000;
+sleep 1000;
 npcwalkto rand(107,39),rand(60,99);
 goto Lwalk;
 end;
@@ -3702,7 +3702,7 @@ end;
 
 
 Lwalk:
-sleep2 1000;
+sleep 1000;
 npcwalkto rand(107,39),rand(60,99);
 goto Lwalk;
 end;
@@ -3878,7 +3878,7 @@ end;
 
 
 Lwalk:
-sleep2 1000;
+sleep 1000;
 npcwalkto rand(107,39),rand(60,99);
 goto Lwalk;
 end;
@@ -4054,7 +4054,7 @@ end;
 
 
 Lwalk:
-sleep2 1000;
+sleep 1000;
 npcwalkto rand(107,39),rand(60,99);
 goto Lwalk;
 end;
@@ -4230,7 +4230,7 @@ end;
 
 
 Lwalk:
-sleep2 1000;
+sleep 1000;
 npcwalkto rand(107,39),rand(60,99);
 goto Lwalk;
 end;
@@ -4406,7 +4406,7 @@ end;
 
 
 Lwalk:
-sleep2 1000;
+sleep 1000;
 npcwalkto rand(107,39),rand(60,99);
 goto Lwalk;
 end;
@@ -4582,7 +4582,7 @@ end;
 
 
 Lwalk:
-sleep2 1000;
+sleep 1000;
 npcwalkto rand(107,39),rand(60,99);
 goto Lwalk;
 end;
@@ -4758,7 +4758,7 @@ end;
 
 
 Lwalk:
-sleep2 1000;
+sleep 1000;
 npcwalkto rand(107,39),rand(60,99);
 goto Lwalk;
 end;
@@ -4934,7 +4934,7 @@ end;
 
 
 Lwalk:
-sleep2 1000;
+sleep 1000;
 npcwalkto rand(107,39),rand(60,99);
 goto Lwalk;
 end;
@@ -5110,7 +5110,7 @@ end;
 
 
 Lwalk:
-sleep2 1000;
+sleep 1000;
 npcwalkto rand(107,39),rand(60,99);
 goto Lwalk;
 end;
@@ -5286,7 +5286,7 @@ end;
 
 
 Lwalk:
-sleep2 1000;
+sleep 1000;
 npcwalkto rand(107,39),rand(60,99);
 goto Lwalk;
 end;
@@ -5462,7 +5462,7 @@ end;
 
 
 Lwalk:
-sleep2 1000;
+sleep 1000;
 npcwalkto rand(107,39),rand(60,99);
 goto Lwalk;
 end;
@@ -5638,7 +5638,7 @@ end;
 
 
 Lwalk:
-sleep2 1000;
+sleep 1000;
 npcwalkto rand(107,39),rand(60,99);
 goto Lwalk;
 end;
@@ -5814,7 +5814,7 @@ end;
 
 
 Lwalk:
-sleep2 1000;
+sleep 1000;
 npcwalkto rand(107,39),rand(60,99);
 goto Lwalk;
 end;
@@ -5990,7 +5990,7 @@ end;
 
 
 Lwalk:
-sleep2 1000;
+sleep 1000;
 npcwalkto rand(107,39),rand(60,99);
 goto Lwalk;
 end;
@@ -6166,7 +6166,7 @@ end;
 
 
 Lwalk:
-sleep2 1000;
+sleep 1000;
 npcwalkto rand(107,39),rand(60,99);
 goto Lwalk;
 end;
@@ -6342,7 +6342,7 @@ end;
 
 
 Lwalk:
-sleep2 1000;
+sleep 1000;
 npcwalkto rand(107,39),rand(60,99);
 goto Lwalk;
 end;
@@ -6518,7 +6518,7 @@ end;
 
 
 Lwalk:
-sleep2 1000;
+sleep 1000;
 npcwalkto rand(107,39),rand(60,99);
 goto Lwalk;
 end;
@@ -6694,7 +6694,7 @@ end;
 
 
 Lwalk:
-sleep2 1000;
+sleep 1000;
 npcwalkto rand(107,39),rand(60,99);
 goto Lwalk;
 end;
@@ -6870,7 +6870,7 @@ end;
 
 
 Lwalk:
-sleep2 1000;
+sleep 1000;
 npcwalkto rand(107,39),rand(60,99);
 goto Lwalk;
 end;
@@ -7046,7 +7046,7 @@ end;
 
 
 Lwalk:
-sleep2 1000;
+sleep 1000;
 npcwalkto rand(107,39),rand(60,99);
 goto Lwalk;
 end;
@@ -7222,7 +7222,7 @@ end;
 
 
 Lwalk:
-sleep2 1000;
+sleep 1000;
 npcwalkto rand(107,39),rand(60,99);
 goto Lwalk;
 end;
@@ -7398,7 +7398,7 @@ end;
 
 
 Lwalk:
-sleep2 1000;
+sleep 1000;
 npcwalkto rand(107,39),rand(60,99);
 goto Lwalk;
 end;

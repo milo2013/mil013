@@ -106,11 +106,11 @@ OnClock2150:
 if($AntonioEventStart!=1) { end; }
 killmonster $AntonioMapAdd$,"AntonioInvasion::OnAntonioKill";
 killmonster $AntonioMapAdd$,"AntonioInvasion::OnAntonioLeaderKill";
-sleep2 1000;
+sleep 1000;
 callsub S_PickTown;
-sleep2 1000;
+sleep 1000;
 announce "The Milenia Bunny have teleported away!",bc_all;
-sleep2 5000;
+sleep 5000;
 announce ""+$Antonio_Alive+" Milenia Bunny"+($Antonio_Alive!=1?"s":"")+" "+($Antonio_Alive!=1?"have":"has")+" appeared in "+$AntonioMapName$+"!",bc_all;
 if($AntonioLeaderSpawn==1) { monster $AntonioMapAdd$,0,0,"Milenia Bunny Boss",2576,1,"AntonioInvasion::OnAntonioLeaderKill"; } else { monster $AntonioMapAdd$,0,0,"Milenia Bunny",2576,$Antonio_Alive,"AntonioInvasion::OnAntonioKill"; }
 end;
@@ -128,9 +128,9 @@ if($AntonioEventStart!=1) { end; }
 set $AntonioEventStart,0;
 killmonster $AntonioMapAdd$,"AntonioInvasion::OnAntonioKill";
 killmonster $AntonioMapAdd$,"AntonioInvasion::OnAntonioLeaderKill";
-sleep2 1000;
+sleep 1000;
 announce "All the Milenia Bunny have retreated without a trace!",bc_all;
-sleep2 5000;
+sleep 5000;
 announce "It seems the Invasion is over!",bc_all;
 end;
 
@@ -166,7 +166,7 @@ killmonster $AntonioMapAdd$,"AntonioInvasion::OnAntonioKill";
 killmonster $AntonioMapAdd$,"AntonioInvasion::OnAntonioLeaderKill";
 announce "It seems the Milenia Bunny invasion is over!",bc_all;
 if(playerattached()!=0) {
-	sleep2 1000;
+	sleep 1000;
 	dispbottom "You got the Milenia Bunny  killing reward!";	
 	getitem $AIItemPrize,$AIItemAmount;
 	announce strcharinfo(0)+" has killed Milenia Bunny and was awarded a worthy prize!",bc_all;
@@ -189,7 +189,7 @@ end;
 S_PickTown:
 killmonster $AntonioMapAdd$,"AntonioInvasion::OnAntonioKill";
 killmonster $AntonioMapAdd$,"AntonioInvasion::OnAntonioLeaderKill";
-sleep2 1000;
+sleep 1000;
 set $@AntonioMob,rand(1,28);
 if($@AntonioMob==1) { set $AntonioMapAdd$,"splendide"; set $AntonioMapName$,"Splendide"; }
 if($@AntonioMob==2) { set $AntonioMapAdd$,"izlude"; set $AntonioMapName$,"Izlude"; }

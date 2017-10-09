@@ -736,8 +736,6 @@ struct map_session_data {
 	uint32* hatEffectIDs;
 	uint8 hatEffectCount;
 #endif
-// Custom Team
-	uint16 Team;
 };
 
 extern struct eri *pc_sc_display_ers; /// Player's SC display table

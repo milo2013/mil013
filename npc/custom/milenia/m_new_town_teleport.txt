@@ -29,7 +29,7 @@ Player_Menu:
 	next;
 	switch(select("Sure!!:Nope")) {
 				case 1:
-					warp "milenia",119,152;
+					warp "kampung",150,150;
 					break;
 				case 2:
 					close;

@@ -1,3 +1,139 @@
+kampung,52,163,11	script	Super Stylist	429,{
+
+mes "[ Super Stylist ]";	
+mes "Hello ^FF0000"+strcharinfo(0)+"^000000!!";
+mes "I can change your alternate body!";
+mes "But only for Third Job only~";
+next;
+switch(select("^0055FF[ Henshiiin!! ] ^000000:[ Reset ]:^777777Not Interested!^000000")){
+		case 1:
+			// Only 3rd job's have access to a 2nd body style.
+			// Note: Not all of the new body styles are out. Best to limit only to jobs that do have them.
+			if (
+			
+			Class == 4070 || // Sura Regular
+			Class == 4077 || // Sura Chaser Reborn
+			Class == 4106 || // Sura Chaser Baby
+			Class == 4072 || // Shadow Chaser Regular
+			Class == 4079 || // Shadow Chaser Reborn
+			Class == 4108 || // Shadow Chaser Baby
+			Class == 4069 || // Wanderer Regular
+			Class == 4076 || // Wanderer Reborn
+			Class == 4105 || // Wanderer Baby
+			Class == 4068 || // Minstrel Regular
+			Class == 4075 || // Minstrel Reborn
+			Class == 4104 || // Minstrel Baby
+			//Class == 4051 || // Rune Knight Regular [x]
+			//Class == 4060 || // Rune Knight Reborn [x]
+			//Class == 4096 || // Rune Knight Baby [x]
+			Class == 4055 || // Warlock Regular
+			Class == 4061 || // Warlock Reborn
+			Class == 4097 || // Warlock Baby
+			Class == 4056 || // Ranger Regular
+			Class == 4062 || // Ranger Reborn
+			Class == 4098 || // Ranger Baby
+			Class == 4057 || // Arch Bishop Regular
+			Class == 4063 || // Arch Bishop Reborn
+			Class == 4099 || // Arch Bishop Baby
+			Class == 4058 || // Mechanic Regular
+			Class == 4064 || // Mechanic Reborn
+			Class == 4100 || // Mechanic Baby
+			Class == 4059 || // GX Regular
+			Class == 4065 || // GX Reborn
+			Class == 4101 || // GX Baby
+			Class == 4066 || // RG Regular
+			Class == 4073 || // RG Reborn
+			Class == 4102 || // RG Baby
+			Class == 4078 || // Genetic Regular
+			Class == 4071 || // Genetic Reborn
+			Class == 4107 // Genetic Baby
+	)	
+	{
+		mes "[ Super Stylist ]";	
+		mes "Much better looks!";
+		specialeffect2 EF_SIGHTRASHER;
+		misceffect 610;
+		setlook LOOK_BODY2,1;
+		close;
+		end;
+	}
+	else
+	{	mes "[ Super Stylist ]";	
+		mes "Hmmmmmmmmm..";
+		close;
+		setlook LOOK_BODY2,0;
+		end;
+	}
+	
+	case 2:
+			// Only 3rd job's have access to a 2nd body style.
+			// Note: Not all of the new body styles are out. Best to limit only to jobs that do have them.
+			if (
+			
+			Class == 4070 || // Sura Regular
+			Class == 4077 || // Sura Chaser Reborn
+			Class == 4106 || // Sura Chaser Baby
+			Class == 4072 || // Shadow Chaser Regular
+			Class == 4079 || // Shadow Chaser Reborn
+			Class == 4108 || // Shadow Chaser Baby
+			Class == 4069 || // Wanderer Regular
+			Class == 4076 || // Wanderer Reborn
+			Class == 4105 || // Wanderer Baby
+			Class == 4068 || // Minstrel Regular
+			Class == 4075 || // Minstrel Reborn
+			Class == 4104 || // Minstrel Baby
+			//Class == 4051 || // Rune Knight Regular [x]
+			//Class == 4060 || // Rune Knight Reborn [x]
+			//Class == 4096 || // Rune Knight Baby [x]
+			Class == 4055 || // Warlock Regular
+			Class == 4061 || // Warlock Reborn
+			Class == 4097 || // Warlock Baby
+			Class == 4056 || // Ranger Regular
+			Class == 4062 || // Ranger Reborn
+			Class == 4098 || // Ranger Baby
+			Class == 4057 || // Arch Bishop Regular
+			Class == 4063 || // Arch Bishop Reborn
+			Class == 4099 || // Arch Bishop Baby
+			Class == 4058 || // Mechanic Regular
+			Class == 4064 || // Mechanic Reborn
+			Class == 4100 || // Mechanic Baby
+			Class == 4059 || // GX Regular
+			Class == 4065 || // GX Reborn
+			Class == 4101 || // GX Baby
+			Class == 4066 || // RG Regular
+			Class == 4073 || // RG Reborn
+			Class == 4102 || // RG Baby
+			Class == 4078 || // Genetic Regular
+			Class == 4071 || // Genetic Reborn
+			Class == 4107 // Genetic Baby
+	)
+	{
+		mes "[ Super Stylist ]";	
+		mes "Nahhh! Booooriinnnggg!!";
+		setlook LOOK_BODY2,0;
+		close;
+		end;
+	}
+	else
+	{
+		mes "[ Super Stylist ]";	
+		mes "Hmmmmmmmmm..";
+		setlook LOOK_BODY2,0;
+		close;
+		end;
+	}
+	
+	case 3:
+	mes "[ Super Stylist ]";	
+	mes "Okay.. Okay..";
+	close;
+	end;
+	}
+}
+	
+
+/*
+
 //==================================================================================================================
 //				By : IUbantot
 //				Facebook : www.facebook.com/ivantuting
@@ -146,3 +282,4 @@ OnInit:
 	
 end;
 }
+*/
