@@ -4,9 +4,9 @@ kampung,57,153,11	script	Super Stacker	985,{
 set .@Price,10000;
 	
 	if (.@Price) {
-		message strcharinfo(0),"Repair and Identify costs "+.@Price+" Zeny!!";
+		message strcharinfo(0),"Repair, Stack and Identify costs "+.@Price+" Zeny!!";
 		if (Zeny < .@Price) end;
-	switch(select("^0055FFRepair and Identify^000000:^777777Just stack item only^000000")){
+	switch(select("^0055FFRepair, Stack and Identify^000000:^777777Just stack item only^000000")){
 		case 1:
 		// Identify and Repair 
 		set Zeny, Zeny-.@Price;

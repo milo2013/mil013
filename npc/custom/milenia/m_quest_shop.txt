@@ -24,7 +24,7 @@
 //	callfunc "qshop"{,<shop ID>{,<shop ID>{,...}}};
 //============================================================
 //milenia,142,189,11	script	Recorn's Works#2	622,{ callfunc "qshop",1,3; }// call shop 1,2,3
-kampung,134,189,5	script	Quest	10179,{ callfunc "qshop",1,3; }// call shop 1,2,3,4,5,6,7
+kampung,134,189,5	script	Quest	10179,{ callfunc "qshop",1,2,3,4,5,6,7; }// call shop 1,2,3,4,5,6,7
 //milenia,144,190,11	script	Primelda's Headgear	562,{ callfunc "qshop",4,5,6; }// call shop 4,5,6
 //milenia,146,191,11	script	Yokociputra's Quest	762,{ callfunc "qshop",7; }// call shop 7
 kampung,76,53,11	script	Doram Charm	877,{ callfunc "qshop",8; }// call shop 8
@@ -69,7 +69,7 @@ OnInit:
 //	setarray .Shops$[1],"<Shop 1>","<Shop 2>"{,...};
 // -----------------------------------------------------------
 
-	setarray .Shops$[1],"Headgears","Wings","Mora Equipments","Other","Cute Headgears","Cool Headgears","New Headgear","Doram Charms","Crimson Equipments","Old Headgear","Weapons Alpha","Weapons Beta","Armor","Food Ration","Hero Equipments","Ladder Quest","Symphony Special","Figures","Premium Figures","Useable Quest","RWC Exchanger","Rare Costume","Vicious Equipments","iRO Alternate Headgear";
+	setarray .Shops$[1],"Headgears","Wings","Mora Equipments","MVP Pet Egg","Cute Headgears","Cool Headgears","New Headgear","Doram Charms","Crimson Equipments","Old Headgear","Weapons Alpha","Weapons Beta","Armor","Food Ration","Hero Equipments","Ladder Quest","Symphony Special","Figures","Premium Figures","Useable Quest","RWC Exchanger","Rare Costume","Vicious Equipments","iRO Alternate Headgear";
 
 // -----------------------------------------------------------
 //  Quest items -- do NOT use a reward item more than once!

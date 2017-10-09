@@ -8,7 +8,7 @@ Player_Menu:
 	mes "Its too chaos! I must escape with other citizen before its too late!";
 	next;
 	mes "...";
-	mes "Don't forget to bring (getitemname (41126)) or (getitemname (41124))!!";
+	mes "Don't forget to bring "+(getitemname (41126))+" or "+(getitemname (41124))+"!!";
 	next;
 		if (#valley == 1){
 			warp "kampung",119,9;

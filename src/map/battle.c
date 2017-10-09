@@ -7755,11 +7755,6 @@ int battle_check_target( struct block_list *src, struct block_list *target,int f
 			struct map_session_data *sd = BL_CAST(BL_PC, s_bl);
 			if( s_bl != t_bl )
 			{
-					if (t_bl->type == BL_PC) {
-					if (sd->Team == ((TBL_PC*)t_bl)->Team && (sd->Team != 0 || ((TBL_PC*)t_bl)->Team != 0)) {
-						return 0;
-					}
-				}
 				if( sd->state.killer )
 				{
 					state |= BCT_ENEMY; // Can kill anything
@@ -8190,6 +8185,7 @@ static const struct _battle_data {
 	{ "equip_self_break_rate",              &battle_config.equip_self_break_rate,           100,    0,      INT_MAX,        },
 	{ "equip_skill_break_rate",             &battle_config.equip_skill_break_rate,          100,    0,      INT_MAX,        },
 	{ "pk_mode",                            &battle_config.pk_mode,                         0,      0,      2,              },
+	{ "pk_mode_mes",                        &battle_config.pk_mode_mes,                     1,      0,      1,              },
 	{ "pk_level_range",                     &battle_config.pk_level_range,                  0,      0,      INT_MAX,        },
 	{ "manner_system",                      &battle_config.manner_system,                   0xFFF,  0,      0xFFF,          },
 	{ "pet_equip_required",                 &battle_config.pet_equip_required,              0,      0,      1,              },

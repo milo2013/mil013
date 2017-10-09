@@ -1,18 +1,27 @@
-milenia,119,143,12	script	No Vending Here	858,{
+kampung,200,149,11	script	Vending Notice	529,{
 	
-	mes "^ff0000[No Vending Here]^000000";
-	mes "Please vending on the ^ff0000following area^000000.";
-	mes "Thank You..";
-	mes "^ff0000- MILENIA RO ADMIN^000000";
+	mes "^ff0000[ Vending Notice ]^000000";
+	mes "Please vending on the";
+	mes "^ff0000Vending Area^000000 provided";
 	next;
-	switch(select("Market Place A:Market Place B:Cancel")) {
+	mes "^ff0000[Vending Notice]^000000";
+	mes "If you vending outside";
+	mes "^FF0000Vending Area^000000,";
+	mes "GM will kick you anytime.";
+	next;
+	mes "^ff0000[ Vending Notice ]^000000";
+	mes "For 3rd time kick, you will be jail.";
+	next;
+	switch(select("Vending A Location:Vending B Location:Cancel")) {
 		case 1:
-			warp "milenia",91,180;
+			warp "kampung",211,177;
 			break;
 		case 2:
-			warp "milenia",147,180;
+			warp "kampung",28,180;
 			break;	
 		case 3:
 			close;
 			}
 	}
+	
+kampung,39,151,5	duplicate(Vending Notice)	Vending Notice#2	529 
