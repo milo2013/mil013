@@ -119,7 +119,7 @@ function Restrict {
 // --------------------------------------------------
 	Towns:
 // --------------------------------------------------
-menu	"Milenia Capital City",T37,"Prontera",T1, "Alberta",T2, "Aldebaran",T3, "Amatsu",T4, "Ayothaya",T5,
+menu	"Milenia Valley",T37,"Prontera",T1, "Alberta",T2, "Aldebaran",T3, "Amatsu",T4, "Ayothaya",T5,
     	"Brasilis",T6, "Comodo",T7, "Dewata",T8, "Eclage",T9, "Einbech",T10, 
     	"Einbroch",T11, "El Dicastes",T12, "Geffen",T13, "Gonryun",T14, "Hugel",T15,
     	"Izlude",T16, "Jawaii",T17, "Lasagna",T38, "Lighthalzen",T18, "Louyang",T19, "Lutie",T20,
@@ -128,7 +128,7 @@ menu	"Milenia Capital City",T37,"Prontera",T1, "Alberta",T2, "Aldebaran",T3, "Am
     	"Niflheim",T29, "Payon",T30, "Rachel",T31, "Splendide",T32, "Thor Camp",T33,
     	"Umbala",T34, "Veins",T35, "Yuno",T36;
 
-T37: Go("milenia",119,152);
+T37: Go("kampung",150,150);
 T1: Go("prontera",155,183);
 T2: Go("alberta",28,234);
 T3: Go("aldebaran",140,131);

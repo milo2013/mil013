@@ -92,3 +92,4 @@ malangdo,132,114,6	duplicate(Healer)	Healer#mal	909
 malaya,227,204,6	duplicate(Healer)	Healer#ma	909
 mora,55,152,4	duplicate(Healer)	Healer#mora	909
 kampung,145,165,5	duplicate(Healer)	Milenia Healer#mro	612
+kampung,23,93,5	duplicate(Healer)	Milenia Healer#mro2	612

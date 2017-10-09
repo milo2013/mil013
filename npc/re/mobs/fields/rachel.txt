@@ -104,7 +104,7 @@ ra_fild12,0,0	monster	Red Plant	1078,5,10000
 /// Custom
 kampung,177,68,0,0	monster	Training [ Neutral ]	2577,1,1,0,0
 kampung,177,45,0,0	monster	Training [ Neutral ]	2577,1,1,0,0
-kampung,177,54,0,0	monster	Training [ Neutral ]	2577,1,1,0,0
+kampung,177,54,0,0	monster	Training [ Demi Human ]	2587,1,1,0,0
 kampung,177,79,0,0	monster	Training [ Water ]	2578,1,1,0,0
 kampung,170,45,0,0	monster	Training [ Earth  ]	2586,1,1,0,0
 kampung,160,44,0,0	monster	Training [ Fire ]	2579,1,1,0,0

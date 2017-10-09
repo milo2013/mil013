@@ -687,7 +687,7 @@ alb2trea,59,69,5	script	Kafra Employee::kaf_alb2trea	117,{
 	savepoint "alb2trea",92,64,1,1;
 	callfunc "F_KafEnd",0,1,0,"at Sunken Ship";
 }
-kampung,157,150,11	script	Kafra::milenia	116,{
+kampung,175,154,11	script	Kafra::milenia	116,{
 	cutin "kafra_03",2;
 	callfunc "F_KafSet";
 	mes "[Milenia Kafra]";

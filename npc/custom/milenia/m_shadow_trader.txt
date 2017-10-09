@@ -9,7 +9,7 @@ kampung,82,164,11	script	Shadow Trader	10038,{
 	mes "[Shadow Trader]";
 	mes "..........";
 	close2;
-	warp "milenia",119,152;
+	warp "kampung",150,150;
 	end;
 	}
 	
@@ -70,14 +70,14 @@ kampung,82,164,11	script	Shadow Trader	10038,{
 	mes "[Shadow Trader]";
 	mes "...............";
 	close2;
-	warp "milenia",119,152;
+	warp "kampung",150,150;
 	end;
 		
 	case 2:
 	mes "[Shadow Trader]";
 	mes "...";
 	next;
-	warp "milenia",119,152;
+	warp "kampung",150,150;
 	end;
 	}
 }
