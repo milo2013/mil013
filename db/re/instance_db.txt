@@ -27,7 +27,7 @@
 // Custom
 26,Nightmarish Jitterbug,14400,300,1@jtb,16,18
 27,Charleston Crisis,14400,300,1@mcd,127,282
-30,Devils Tower,14400,300,1@tnm1,50,104,1@tnm2,1@tnm13
+30,Devils Tower,14400,300,1@tnm1,50,104,1@tnm2,1@tnm3
 50,MVP Ladder,3600,300,guild_vs2-2,49,49
 52,Endless Cellar,14400,300,1@new,50,355,2@new,3@new,4@new,5@new,6@new
 53,Airship Assault,3600,300,1@air1,244,73,1@air2
