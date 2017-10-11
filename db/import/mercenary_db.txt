@@ -3,3 +3,5 @@
 // Structure of Database:
 // ID,Sprite_Name,Name,LV,HP,SP,Range1,ATK1,ATK2,DEF,MDEF,STR,AGI,VIT,INT,DEX,LUK,Range2,Range3,Scale,Race,Element,Speed,aDelay,aMotion,dMotion
 
+// Devil Tower Mercenaries
+2937,M_LOKI,Loki,145,1215600,451,1,1835,2279,15,89,76,66,90,55,189,22,10,0,0,7,20,150,450,432,300

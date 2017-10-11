@@ -1,0 +1,2122 @@
+// ==========================================================
+// Agregar en db/re/instance_db
+//30,Devils Tower,14400,300,1@tnml,50,104,1@tnml2,1@tnml3
+// ===========================================================
+
+// ============================================================================================================================================================================================================================================
+// Agregar en db/mob_db
+// 2939,MM_EVIL_SHADOW1,Evil Shadow,Evil Shadow,138,112000,4000,7828,6282,5,2838,4145,30,30,88,44,88,21,95,44,5,8,2,6,47,8325,120,329,329,420,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+// 2940,MM_EVIL_SHADOW2,Evil Shadow,Evil Shadow,141,127650,4000,7828,6282,5,2343,3414,121,36,60,103,45,35,172,15,8,8,2,6,47,133,120,329,329,420,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+// 2941,MM_EVIL_SHADOW3,Evil Shadow,Evil Shadow,142,153400,4000,7828,6282,5,2795,4062,89,44,120,87,66,33,106,27,8,8,2,6,47,133,120,329,329,420,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+// 2942,MM_EVIL_FANATICS,Evil Fanatics,Ecil Fanatics,151,8256000,4000,1059085,1038401,1,2949,4289,166,103,118,72,40,55,213,30,10,12,2,6,67,16317,120,329,329,420,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+// 2960,MM_FLAMECROSS,FLAMECROSS,FLAMECROSS,149,10000,1,81,60,1,493,565,200,10,200,200,200,200,200,200,10,12,1,2,24,0x1081,150,1148,648,480,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+// 2937,M_LOKI,Loki,Loki,145,1215600,4000,0,0,5,1835,2279,15,89,76,66,90,55,189,22,3,10,1,13,20,14237,120,329,329,420,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+// =============================================================================================================================================================================================================================================
+// Agregar en db/mercenary_db
+// 2937,M_LOKI,Loki,145,1215600,451,1,1835,2279,15,89,76,66,90,55,189,22,10,0,0,7,20,150,450,432,300
+// =========================================================== ===========================================================
+// Agregar en db/re/mob_db_skill
+// Evil's Tower
+// 2939,Evil Shadow@NPC_PIERCINGATT,chase,158,1,4000,0,5000,yes,target,always,0,,0x81,,,,,
+// 2939,Evil Shadow@NPC_CURSEATTACK,attack,181,5,3500,0,20000,yes,target,always,0,,0x81,,,,,
+// 2940,Evil Shadow@NPC_DARKSTRIKE,attack,340,1,3000,0,5000,yes,target,always,0,,0x81,,,,,
+// 2941,Evil Shadow@NPC_CRITICALSLASH,chase,170,1,3000,0,5000,yes,target,always,0,,0x81,,,,,
+// 2941,Evil Shadow@NPC_PETRIFYATTACK,attack,180,1,3500,0,5000,yes,target,always,0,,0x81,,,,,
+// 2942,Evil Fanatics@EL_FIRE_WAVE,attack,8428,5,1000,0,15000,yes,target,always,10,,,,,,,
+// 2942,Evil Fanatics@RL_FIREDANCE,attack,2561,5,800,0,15000,yes,target,always,10,,0x81,,,,,
+// 2942,Evil Fanatics@EL_CIRCLE_OF_FIRE,attack,8401,1,2500,0,60000,yes,target,always,10,,0x81,,,,,
+// 2942,Evil Fanatics@NPC_INVINCIBLE,chase,685,1,10000,0,60000,yes,self,always,0,,,,,,,
+// 2942,Evil Fanatics@NPC_INVINCIBLE,attack,685,1,10000,0,60000,yes,self,always,0,,,,,,,
+// =========================================================== ===========================================================
+// Agregar en db/re/quest_db
+//--- Devil's Tower
+//
+//7568,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,"Explore the tower"
+//7569,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,"Treat the injured"
+//7570,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,"Destroy the demons!"
+//7571,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,"Tower Expedition"
+//7572,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,"Lucile...?"
+//7573,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,"Magic Swordman Thanatos"
+//7574,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,"Thanatos Tower"
+//7575,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,"Evil followers"
+//7576,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,"Morocc castle seal"
+//7577,82800,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,"Space distortion"
+
+1@tnm1	mapflag	nowarp
+1@tnm1	mapflag	nowarpto
+1@tnm1	mapflag	noteleport
+1@tnm1	mapflag	nosave	SavePoint
+1@tnm1	mapflag	nomemo
+1@tnm1	mapflag	nobranch
+1@tnm1	mapflag	nopenalty
+1@tnm1	mapflag	noicewall
+1@tnm1	mapflag	monster_noteleport
+
+1@tnm2	mapflag	nowarp
+1@tnm2	mapflag	nowarpto
+1@tnm2	mapflag	noteleport
+1@tnm2	mapflag	nosave	SavePoint
+1@tnm2	mapflag	nomemo
+1@tnm2	mapflag	nobranch
+1@tnm2	mapflag	nopenalty
+1@tnm2	mapflag	noicewall
+1@tnm2	mapflag	monster_noteleport
+
+1@tnm3	mapflag	nowarp
+1@tnm3	mapflag	nowarpto
+1@tnm3	mapflag	noteleport
+1@tnm3	mapflag	nosave	SavePoint
+1@tnm3	mapflag	nomemo
+1@tnm3	mapflag	nobranch
+1@tnm3	mapflag	nopenalty
+1@tnm3	mapflag	noicewall
+1@tnm3	mapflag	monster_noteleport
+
+dali,68,129,3	script	Sign#dali	2_BULLETIN_BOARD,{
+	mes "[Message]";
+	mes "Ahead:";
+	mes "Dimensional Crack 02";
+	mes "Other ^ff0000Instances^000000 await.";
+	close;
+}
+
+dali02,70,98,3	script	Sign#dali02	2_BULLETIN_BOARD,{
+	mes "[Message]";
+	mes "Would you like to mark the entrance to Devil's Tower?";
+	next;
+	switch(select("Mark location","Cancel marking")) {
+	case 1:
+		mes "[Message]";
+		mes "The location has been marked on the minimap.";
+		viewpoint 1, 141, 120, 1, 0x00FF00;
+		close;
+	case 2:
+		mes "[Message]";
+		mes "Marking has been cancelled.";
+		viewpoint 2, 1, 1, 1, 0xFFFFFF;
+		close;
+	}
+}
+
+dali02,51,112,5	script	Thief in Distress#cr	4_DST_SOLDIER,{
+	mes "[Thief in Distress]";
+	mes "Ever since I tried to steal from this guy, I've been trapped here with all the weird things.";
+	next;
+	mes "[Thief in Distress]";
+	mes "Time and space are messed up here. I wonder if I can still return to my old place?";
+	mes "Maybe if I concentrate hard enough?";
+	close;
+}
+
+dali02,68,117,5	script	Dimensional Guide#cr	4_M_RAFLE_GR,{
+	mes "[Dimensional Guide]";
+	mes "How did we end up here again. I was sure we were heading towards the exit. I guess not? Seems like we can't get out of here.";
+	close;
+}
+
+dali02,65,119,5	script	Dimensional Traveler#cr1	4_M_RAFLE_GR,{
+	mes "[Dimensional Traveler]";
+	mes "Wow, is this the famous Prontera? It's so dark. But it sure is a magnificant city!";
+	close;
+}
+
+dali02,69,122,5	script	Dimensional Traveler#cr2	4_M_RAFLE_GR,{
+	mes "[Dimensional Traveler]";
+	mes "A dark place where we can hear the sound of things moving all the time? This is definitely Comodo!";
+	close;
+}
+
+dali02,65,115,5	script	Adventurous Traveler#cr#	4_M_RAFLE_GR,{
+	mes "[Adventurous Traveler]";
+	mes "Get your weapons everyone. Let's explore this Thanatos Tower!";
+	close;
+}
+
+dali02,45,96,6	script	Guide#ep	4_M_MOC_SOLDIER,{
+	mes "[Guide]";
+	mes "This is a dangerous area.";
+	mes "You are prohibited from entering";
+	mes "without proper approval.";
+	next;
+	switch(select("Enter the dimensional crack.","Where does this lead to?","Ask what happened.","End conversation")) {
+	 case 1:
+		mes "[Guide]";
+		mes "Do you wish to enter the dimensional crack? Please wait while we validate the stability of the system.";
+		next;
+		mes "[Guide]";
+		mes "The system is stable. Please enter.";
+		close2;
+		warp "moc_fild22",36,196;
+		end;
+	 case 2:
+		mes "[Guide]";
+		mes "Ever since Satan Morroc died, time and space became merged in this area. If we can control this flow, we may be able to travel to the past.";
+		next;
+		mes "[Guide]";
+		mes "Researchers find that it may even be possible to travel to the past when Satan Morroc was still alive.";
+		next;
+		mes "[Guide]";
+		mes "I have never been there personally. If you wish to know more, you may enter to investigate.";
+		close;
+	 case 3:
+		mes "[Guide]";
+		mes "You haven't heard of the curse of Satan Morroc?";
+		next;
+		mes "[Guide]";
+		mes "Many years ago, Satan Morrco was sealed under the desert city, Morroc. But not long ago, somebody broke the seal.";
+		next;
+		mes "[Guide]";
+		mes "Satan Morroc was resurrected. The Alliance from Rune Midgard worked together with the Giants and Laphines and defeated Satan Morroc once more.";
+		next;
+		mes "[Guide]";
+		mes "However, there are still shadows of Satan Morroc lurking about around the city of Morroc.";
+		mes "If you plan to visit there, please be careful.";
+		close;
+	 case 4:
+		mes "[Guide]";
+		mes "Safe travels.";
+		close;
+	}
+}
+
+dali02,134,119,5	script	Historian Shep#tnm01	4_F_NOVICE,{
+	if ( devilstower == 0 ) {
+		mes "[Historian Shep]";
+		mes "Hello traveler, you have finally come to explore the Devil's tower eh?";
+		next;
+		mes "[Historian Shep]";
+		mes "All I can say is that everyone who has entered the tower and has made it back alive has not been the same.";
+		next;
+		mes "[Historian Shep]";
+		mes "If you still wish to explore it, talk to Artie.";
+		devilstower = 1;
+		close;
+	}
+	mes "[Historian Shep]";
+	mes "Nice to see you again my friend.";
+	close;
+}
+
+// Custom - Solo de prueba
+/*
+dali02,132,117,5	script	Reset	4_F_NOVICE,{
+erasequest 7577;
+}
+*/
+
+dali02,141,120,3	script	Dimensional Device#tnm	PORTAL,{
+	if(BaseLevel < 150) {
+		mes "[Scholar Artie]";
+		mes "Sorry, this is a dangerous mission.";
+		mes "You must be at least level 150 to join.";
+		close;
+	}
+	switch( checkquest(7577,PLAYTIME) ) {
+	case -1:
+		switch( instance_enter("Devils Tower") ) {
+		case IE_NOMEMBER:
+		case IE_NOINSTANCE:
+		case IE_OTHER:
+			mes "[Temporary Dimension-mover]";
+			mes "The passage for dimensional moving has not been vitalized.";
+			close;
+		case IE_OK:
+			mapannounce "dali02", "" + strcharinfo(0) + " of "+getpartyname(.@party_id) + " party is entering Devil's Tower",bc_map,"0x00ff99";
+			setquest 7577;// Trace of Laboratory Access
+			end;
+		}
+	case 0:
+	case 1:
+		mes "[Temporary Dimension-mover]";
+		mes "There are remaining traces of the last event. Access denied.";
+		close;
+	case 2:
+		mes "^0000ffUse of Dimension-mover seems possible.^000000";
+		erasequest 7577;// Trace of Laboratory Access
+		close;
+	}
+
+}
+
+dali02,137,121,3	script	Scholar Artie#tnm02	4_M_FAIRYKID6,{
+	.@party_id = getcharid(1);
+	if(BaseLevel < 150) {
+		mes "[Scholar Artie]";
+		mes "Sorry, this is a dangerous mission. You must be at least level 150 to join.";
+		close;
+	}
+	if ( devilstower == 0 ) {
+		mes "[Scholar Artie]";
+		mes "Maybe Shep has some advice for you.";
+		close;
+	}
+
+
+	
+	mes "[Scholar Artie]";
+	mes "This dimensional device is connected to Devil's Tower.";
+	mes "We are asking for volunteers to help us investigate the monsters inside the tower.";
+	next;
+	mes "[Scholar Artie]";
+	mes "If you wish to help us, I can start the device for you.";
+	next;
+	if(select("Help","Cancel") == 2) {
+		mes "[Scholar Artie]";
+		mes "Alright, see you.";
+		close;
+	}
+	.@party_id = getcharid(1);
+	if (.@party_id == 0) {
+		mes "[Scholar Artie]";
+		mes "Please talk to me after composing a party of 1 or more, or after joining a party.";
+		close;
+	}
+	if (getpartyleader(.@party_id,2) != getcharid(0)) {
+		mes "[Scholar Artie]";
+		mes "Ah. You aren't the party leader. Take me to your leader! Or perhaps take your leader to me.";
+		close;
+	}
+	switch( checkquest(7577,PLAYTIME) ) {
+	case -1:
+		if (select( "Produce a crack of time", "Cancel" ) == 1) {
+			mes "[Scholar Artie]";
+			mes "When the crack of time opens take a breath and speak again.";
+			instance_create("Devils Tower");
+			
+		}
+		close;
+	case 0:
+	case 1:
+		mes "[Scholar Artie]";
+		mes "Are you here to volunteer?";
+		mes "I'm sorry, but you need to wait at least ^ff000023 hours^000000 since your last mission.";
+		mes "You may not enter right now.";
+		close;
+	case 2:
+		mes "^0000ffAll the traces of entering the central laboratory have been erased. Speaking with the Civilization Explorer seems possible.^000000";
+		erasequest 7577;
+		close;
+	}
+}
+
+
+//===============================================================================
+// INSTANCE START
+//===============================================================================
+1@tnm1,57,112,5	script	Office Heim#heim0	4_TOWER_05,{
+	.@party_id = getcharid(1);
+	if (getcharid(0) != getpartyleader(.@party_id,2)) {
+			mes "Please wait for party leader to start the cutscene.";
+			close;
+	}
+	stopnpctimer;
+	mes "[Office Heim]";
+	mes "What is the status report?";
+	npctalk "What is the status report?";
+	next;
+	mes "[Scout]";
+	mes "If we can break through the lower level, we can get to the top level directly. There are many monsters on the top level.";
+	npctalk "If we can break through the lower level, we can get to the top level directly. There are many monsters on the top level.",instance_npcname("Scout#tnm01");
+	next;
+	mes "[Scout]";
+	mes "But... we can't break through the lower level with these guys alone.";
+	emotion 19,0, instance_npcname("Scout#tnm01");
+	npctalk "But... we can't break through the lower level with these guys alone.",instance_npcname("Scout#tnm01");
+	next;
+	mes "[Office Heim]";
+	mes "How many men do we have left?";
+	mes "Where is the reinforcement?";
+	npctalk "How many men do we have left? Where is the reinforcement?";
+	emotion 9; //60431
+	next;
+	mes "[Support]";
+	mes "... I'm not sure if we can still fight, Sir.";
+	emotion 9,0, instance_npcname("Support#tnm02"); //60434
+	npctalk "... I'm not sure if we can still fight, Sir.",instance_npcname("Support#tnm02");
+	next;
+	mes "[Support]";
+	mes "Our best outcome is... hoping that monsters from the top level do not come down here.";
+	npctalk "Our best outcome is... hoping that monsters from the top level do not come down here.",instance_npcname("Support#tnm02");
+	next;
+	mes "[Office Heim]";
+	mes "What are you talking about...!";
+	mes "We can't retreat now!";
+	mes "We must move forward!";
+	npctalk "What are you talking about...! We can't retreat now! We must move forward!";
+	next;
+	mes "[Office Heim]";
+	mes "Wait. I don't hear anything above us any more..?!";
+	npctalk "Wait. I don't hear anything above us any more..?!";
+	next;
+	mes "[Scout]";
+	mes "What happened to the monsters";
+	mes "on the top level?";
+	npctalk "What happened to the monsters on the top level?",instance_npcname("Scout#tnm01");
+	close2;
+	donpcevent instance_npcname("Office Heim#heim")+"::OnStart";
+	end;
+OnInstanceInit:
+	'TNM1_QUE = 0;
+OnTimer3000:
+	initnpctimer;
+	emotion 9;
+	end;
+}
+
+1@tnm1,56,110,3	script	Office Heim#heim	4_TOWER_05,{
+	if('TNM1_QUE == 0) {
+		stopnpctimer;
+		mes "[Office Heim]";
+		mes "Are you our reinforcement?";
+		mes "How did you get here directly?";
+		npctalk "Are you our reinforcement? How did you get here directly?";
+		next;
+		donpcevent instance_npcname("Healer Fama#feima")+"::OnEnable";
+		mes "[Healer Fama]";
+		mes "Ah!";
+		mes "Help me Officer!!";
+		mes "I can't handle so many casulaties by myself!";
+		npctalk "Ah! Help me Officer!! I can't handle so many casulaties by myself!",instance_npcname("Healer Fama#feima");
+		next;
+		mes "[Office Heim]";
+		mes "You heard that.";
+		npctalk "You heard that.";
+		next;
+		mes "[Office Heim]";
+		mes "Go help Fama. Find her medical supplies and treat the casulaties.";
+		npctalk "Go help Fama. Find her medical supplies and treat the casulaties.";
+		next;
+		mes "[Healer Fama]";
+		mes "Can somebody help? Pass me my medical supplies please.";
+		npctalk "Can somebody help? Pass me my medical supplies please.",instance_npcname("Healer Fama#feima");
+		'TNM1_QUE = 1;
+		close;
+	}
+	else if('TNM1_QUE < 8) {
+		mes "[Office Heim]";
+		mes "Please prioritize the casualties. Go help Fama.";
+		close;
+	}
+	else {
+		mes "[Office Heim]";
+		mes "Thankfully everybody is saved. We can't afford to lose any more soldiers.";
+		close;
+	}
+OnStart:
+	initnpctimer;
+	npctalk "Who's there?";
+	hideonnpc instance_npcname("Office Heim#heim0");
+	hideoffnpc instance_npcname("Office Heim#heim");
+	end;
+OnTimer3000:
+	initnpctimer;
+	emotion 9;
+	end;
+OnInstanceInit:
+	hideonnpc instance_npcname("Office Heim#heim");
+	end;
+}
+
+1@tnm1,61,113,3	script	Scout#tnm01	4_M_MOCASS1,{
+	mes "[Scout]";
+	mes "Reinforcement?";
+	mes "Perfect timing. We could use a lot of help. Thank you for coming.";
+	close;
+}
+
+1@tnm1,61,110,3	script	Support#tnm02	4_M_MOCASS2,{
+	mes "[Support]";
+	mes "Is history going to repeat itself? Why did the monster re-appear so quickly?";
+	close;
+}
+
+1@tnm1,47,109,3	script	Healer Fama#feima	4_TOWER_10,{
+	if('TNM1_QUE == 1) {
+		mes "[Healer Fama]";
+		mes "Are you here to help?";
+		mes "That's great.";
+		mes "Please use these supplies to heal the casualties.";
+		
+		switch( checkquest(7569,PLAYTIME) ) {
+	case 0:
+	setquest 7569;
+	}
+		next;
+		if(select("Help healing","Cancel") == 2) {
+			close;
+		}
+		mes "[Healer Fama]";
+		mes "Please put these supplies to good use, when you are done, let us know.";
+		'TNM1_QUE = 2;
+		close;
+	}
+	else if('TNM1_QUE >= 2 && 'TNM1_QUE < 8) {
+		if(countitem(7641)) {
+			mes "[Healer Fama]";
+			mes "I'm sorry, we only have enough supplies for one casualty at a time.";
+			mes "Please come for new supplies after you've used up your current ones.";
+			close;
+		}
+		mes "[Healer Fama]";
+		mes "Use these supplies to heal the casualties.";
+		mes "It's pretty straight forward.";
+		mes "Just follow the instructions on the packages.";
+		next;
+		mes "[Healer Fama]";
+		mes "We only have enough supplies for one casualty at a time.";
+		mes "Please come for new supplies after you've used up your current ones.";
+		getitem 7641, 1;
+		close;
+	}
+	else {
+		mes "[Healer Fama]";
+		mes "Hmm...";
+		mes "I think this is ok I will collect the leftover supplies from you.";
+		next;
+		mes "[Healer Fama]";
+		mes "Thank you very much for all your help today.";
+		mes "Did you also treat your own injuries?";
+		mes "Please take care!";
+		switch( checkquest(7569,PLAYTIME) ) {
+		case 1:
+			completequest 7569;
+		}
+		emotion 14;
+		.@i = countitem(7641);
+		if(.@i)
+			delitem 7641,.@i;
+		close;
+	}
+	
+OnCount:
+	.@left = 7;
+	for(.@i = 0; .@i <= 6; ++.@i) {
+		if('TNM_HEAL[.@i])
+			.@left -= 1;
+	}
+	if(.@left) {
+		mapannounce instance_mapname("1@tnm1"),"Healer Fama : We still have " +.@left+ " casualties left!", 0x9, 0x00ff00, 0x190, 12, 0, 0;
+	}
+	else {
+		'TNM1_QUE = 8;
+		mapannounce instance_mapname("1@tnm1"),"Healer Fama : Everyone has been treated!", 0x9, 0xff0000;
+		donpcevent instance_npcname("Lucille#tnm01")+"::OnStart";
+	}
+	end;
+
+OnInstanceInit:
+	disablenpc instance_npcname("Healer Fama#feima");
+	for(.@i = 1; .@i <= 7; ++.@i) {
+		disablenpc instance_npcname("Casualty#"+.@i);
+		disablenpc instance_npcname("Casualty#"+.@i+"_1");
+	}
+	setarray 'TNM_HEAL[0],0,0,0,0,0,0,0;
+	end;
+
+OnEnable:
+	enablenpc instance_npcname("Healer Fama#feima");
+	for(.@i = 1; .@i <= 7; ++.@i) {
+		enablenpc instance_npcname("Casualty#"+.@i);
+	}
+	end;
+
+}
+
+
+1@tnm1,39,114,3	script	Casualty#1_1	4_TOWER_02,{
+	mes "[Casualty]";
+	mes "That helped.";
+	mes "Thank you.";
+	close;
+}
+
+1@tnm1,30,120,3	script	Casualty#2_1	4_TOWER_04,{
+	mes "[Casualty]";
+	mes "Oww....";
+	mes "Do you know how to heal?!";
+	mes "That was a terrible experience...";
+	close;
+}
+
+1@tnm1,25,117,5	script	Casualty#3_1	4_TOWER_07,{
+	mes "[Casualty]";
+	mes "Thank you for your help";
+	mes "My comrades are saved.";
+	close;
+}
+
+1@tnm1,19,118,4	script	Casualty#4_1	4_TOWER_09,{
+	mes "[Casualty]";
+	mes "I thought I was going to die.";
+	mes "Thank you so much.";
+	close;
+}
+
+1@tnm1,19,110,4	script	Casualty#5_1	4_TOWER_12,{
+	mes "[Casualty]";
+	mes "After this war";
+	mes "I will go back and propose to my sweetheart.";
+	mes "I can't wait to see her again.";
+	close;
+}
+
+1@tnm1,24,104,7	script	Casualty#6_1	4_TOWER_14,{
+	mes "[Casualty]";
+	mes "I'm feeling much better than before.";
+	mes "But I don't think I would be walking any time soon.";
+	mes "Oh well, at least I'm alive.";
+	close;
+}
+
+1@tnm1,31,110,3	script	Casualty#7_1	4_TOWER_04,{
+	mes "[Casualty]";
+	mes "Thanks!!";
+	mes "You saved my life.";
+	close;
+}
+
+
+1@tnm1,39,114,3	script	Casualty#1	4_TOWER_01,3,3,{
+	if(!countitem(7641)) {
+		mes "I need medical supplies";
+		mes "to heal this person.";
+		close;
+	}
+	mes "He needs help.";
+	mes "Use your medical supplies";
+	mes "to heal him?";
+	next;
+	if(select("Yes","Look around") == 2) {
+		mes "There are many";
+		mes "casualties around here.";
+		close;
+	}
+	mes "You used the medical supplies";
+	mes "on this soldier.";
+	delitem 7641, 1;
+	specialeffect 72;
+	progressbar "0xFFFF00",2;
+	specialeffect 6;
+	disablenpc instance_npcname(strnpcinfo(0));
+	enablenpc instance_npcname(strnpcinfo(0)+"_1");
+	specialeffect 16, AREA, instance_npcname(strnpcinfo(0)+"_1");
+	specialeffect 6, AREA, instance_npcname(strnpcinfo(0)+"_1");
+	'TNM_HEAL[atoi(strnpcinfo(2))-1] = 1;
+	donpcevent instance_npcname("Healer Fama#feima")+"::OnCount";
+	mes "This soldier has recovered.";
+	close;
+OnTouch_:
+	switch(atoi(strnpcinfo(2))) {
+		case 1: npctalk "...uhhh...."; break;
+		case 2: npctalk "Ahh...."; break;
+		case 3: npctalk "...cough...cough...."; break;
+		case 4: npctalk "...hurts...."; break;
+		case 5: npctalk "...I don't...want..to. die."; break;
+		case 6: npctalk "...Owww...."; break;
+		case 7: npctalk "Pain...."; break;
+	}
+	end;
+}
+
+
+1@tnm1,30,120,3	duplicate(Casualty#1)	Casualty#2	4_TOWER_03,3,3
+1@tnm1,25,117,5	duplicate(Casualty#1)	Casualty#3	4_TOWER_06,3,3
+1@tnm1,19,118,4	duplicate(Casualty#1)	Casualty#4	4_TOWER_08,3,3
+1@tnm1,19,110,4	duplicate(Casualty#1)	Casualty#5	4_TOWER_11,3,3
+1@tnm1,24,104,7	duplicate(Casualty#1)	Casualty#6	4_TOWER_13,3,3
+1@tnm1,31,110,3	duplicate(Casualty#1)	Casualty#7	4_TOWER_03,3,3
+
+
+1@tnm1,46,105,5	script	Lucille#tnm01	4_F_LUCILE,{
+	switch('TNM1_QUE) {
+	case 8:
+		.@party_id = getcharid(1);
+		if (getcharid(0) != getpartyleader(.@party_id,2)) {
+				mes "Please wait for party leader to start the cutscene.";
+				close;
+		}
+		stopnpctimer;
+		cutin "tnm_lucile01.bmp", 0;
+		mes "[Lucille]";
+		mes "I am Lucille from Assassin's Guild.";
+		mes "Sorry for the delay. I was on a different mission.";
+		npctalk "I am Lucille from Assassin's Guild. Sorry for the delay. I was on a different mission.";
+		next;
+		cutin "tnm_loki.bmp", 2;
+		mes "[Thanatos]";
+		mes "Thanatos....";
+		npctalk "Thanatos....",instance_npcname("Thanatos#tnm01");
+		next;
+		cutin "tnm_loki.bmp", 255;
+		mes "[Office Heim]";
+		mes "Reinforcement from Assassin's Guild?";
+		mes "Finally!";
+		npctalk "Reinforcement from Assassin's Guild? Finally!",instance_npcname("Office Heim#heim");
+		next;
+		cutin "tnm_lucile01.bmp", 0;
+		mes "[Lucille]";
+		mes "This doesn't look like much.";
+		mes "Is that what you've been struggling with?";
+		npctalk "This doesn't look like much. Is that what you've been struggling with?";
+		next;
+		mes "[Lucille]";
+		mes "What happened to the brave Knights of Prontera?";
+		npctalk "What happened to the brave Knights of Prontera?";
+		next;
+		cutin "tnm_lucile01.bmp", 255;
+		mes "[Office Heim]";
+		mes "You..!";
+		mes "Are you just here to cause trouble?";
+		npctalk "You..! Are you just here to cause trouble?",instance_npcname("Office Heim#heim");
+		next;
+		cutin "tnm_lucile01.bmp", 0;
+		mes "[Lucille]";
+		mes "Not at all.";
+		mes "Anyway, did something happen to the upper level of this tower?";
+		npctalk "Not at all. Anyway, did something happen to the upper level of this tower?";
+		next;
+		cutin "tnm_lucile01.bmp", 255;
+		emotion 0, 0,instance_npcname("Office Heim#heim"); //60432
+		mes "[Office Heim]";
+		mes "How did you know...";
+		mes "We were fighting against the monsters.";
+		mes "But suddenly everything went quiet up there.";
+		npctalk "How did you know... We were fighting against the monsters. But suddenly everything went quiet up there.",instance_npcname("Office Heim#heim");
+		next;
+		cutin "tnm_lucile01.bmp", 0;
+		emotion 5, "Lucille#tnm01"; //60451
+		mes "[Lucille]";
+		mes "Is that so?";
+		mes "Looks like our target is up there.";
+		mes "What do you think Thanatos?";
+		npctalk "Is that so? Looks like our target is up there. What do you think Thanatos?";
+		next;
+		cutin "tnm_loki.bmp", 2;
+		mes "[Thanatos]";
+		mes "Oh?";
+		mes "Let me go first then.";
+		npctalk "Oh? Let me go first then.",instance_npcname("Thanatos#tnm01");
+		next;
+		cutin "tnm_lucile01.bmp", 0;
+		mes "[Lucille]";
+		mes "Aha this guy.";
+		mes "Rushing into things as always.";
+		npctalk "Aha this guy. Rushing into things as always.";
+		hideonnpc instance_npcname("Thanatos#tnm01");
+		next;
+		cutin "tnm_lucile01.bmp", 255;
+		mes "[Office Heim]";
+		mes "What are you doing?!";
+		mes "Rushing into situations without a proper strategy.";
+		npctalk "What are you doing?! Rushing into situations without a proper strategy.",instance_npcname("Office Heim#heim");
+		next;
+		cutin "tnm_lucile01.bmp", 0;
+		mes "[Lucille]";
+		mes "You think we don't have enough men?";
+		mes "There are still soldiers here who can help.";
+		npctalk "You think we don't have enough men? There are still soldiers here who can help.";
+		next;
+		mes "[Lucille]";
+		mes "You guys, cover our backs.";
+		mes "Dio!";
+		mes "I'm leaving this area to you.";
+		npctalk "You guys, cover our backs. Dio! I'm leaving this area to you.";
+		next;
+		cutin "tnm_lucile01.bmp", 255;
+		mes "[Assassin Dewey]";
+		mes "No problem.";
+		'TNM1_QUE = 9;
+		donpcevent instance_npcname("Assassin Dewey#tnm01") + "::OnStart";
+		next;
+		mes "[Office Heim]";
+		mes "I have no idea what they are trying to do.";
+		mes "But it looks urgent.";
+		mes "I think it's better if you give them a hand.";
+		npctalk "I have no idea what they are trying to do. But it looks urgent. I think it's better if you give them a hand.",instance_npcname("Office Heim#heim");
+		hideonnpc instance_npcname("Lucille#tnm01");
+		hideonnpc instance_npcname("Assassin Louie#tnm01");
+		hideonnpc instance_npcname("Assassin Long#tnm01");
+		next;
+		mes "[Office Heim]";
+		mes "I'm leaving the future of this mission in your hands.";
+		npctalk "I'm leaving the future of this mission in your hands.",instance_npcname("Office Heim#heim");
+		close;
+	}
+	end;
+	
+OnStart:
+	initnpctimer;
+	enablenpc instance_npcname("Lucille#tnm01");
+	enablenpc instance_npcname("Thanatos#tnm01");
+	enablenpc instance_npcname("Assassin Louie#tnm01");
+	enablenpc instance_npcname("Assassin Long#tnm01");
+	end;
+OnTimer3000:
+	initnpctimer;
+	emotion 9;
+	end;
+OnInstanceInit:
+	disablenpc instance_npcname("Lucille#tnm01");
+	disablenpc instance_npcname("Thanatos#tnm01");
+	disablenpc instance_npcname("Assassin Louie#tnm01");
+	disablenpc instance_npcname("Assassin Long#tnm01");
+	end;
+}
+
+1@tnm1,52,104,3	script	Thanatos#tnm01	4_M_ROKI,{
+	cutin "tnm_loki.bmp", 2;
+	mes "[Thanatos]";
+	mes "....";
+	close2;
+	cutin "tnm_loki.bmp", 255;
+	end;
+}
+
+1@tnm1,42,104,5	script	Assassin Louie#tnm01	4_TOWER_15,{
+	mes "[Assassin Louie]";
+	mes "I work with Lucille.";
+	close;
+}
+
+1@tnm1,44,101,5	script	Assassin Long#tnm01	4_M_ACROSS,{
+	mes "[Assassin Long]";
+	mes "We are on a mission.";
+	close;
+}
+
+1@tnm1,70,108,3	script	Assassin Dewey#tnm01	4_M_ACROSS,{
+	mes "[Assassin Dewey]";
+	mes "I can lead you to the upper level.";
+	switch( checkquest(7570,PLAYTIME) ) {
+			case 0:
+		setquest 7570;
+	}
+	next;
+	if(select("Go","Cancel") == 2) {
+		mes "[Assassin Dewey]";
+		mes "We are going to face numerous monsters in the upper levels.";
+		mes "Please be prepared.";
+		close;
+	}
+	mes "[Assassin Dewey]";
+	mes "Good luck.";
+	close2;
+	'TNM1_QUE = 10;
+//	setquest 114815;
+//	compquest 114815;
+	@TNMEXP = 0;
+	set .@map1$, instance_mapname("1@tnm1");
+	warp .@map1$,91,23;
+	stopnpctimer;
+	end;
+	
+OnStart:
+	enablenpc instance_npcname("Assassin Dewey#tnm01");
+OnTimer3000:
+	initnpctimer;
+	emotion 9;
+	end;
+OnInstanceInit:
+	disablenpc instance_npcname("Assassin Dewey#tnm01");
+	disablenpc instance_npcname("#newwarp_jp");
+	end;
+}
+
+1@tnm1,91,23,0	script	#tnm1stepmob	HIDDEN_WARP_NPC,3,3,{
+OnTouch_:
+	initnpctimer;
+	disablenpc instance_npcname("#tnm1stepmob");
+	mapannounce instance_mapname("1@tnm1"),"Temptation Shadow : Humans? Oh joy, taste our wrath!", 0x9, 0x00ff00;
+	.@map$ = instance_mapname("1@tnm1");
+	.@label$ = instance_npcname("#tnm1stepmob") + "::OnKilled";
+	monster .@map$,99,24,"Temptation Shadow",2939,1,.@label$;
+	monster .@map$,113,21,"Shadow of Mistrust",2940,1,.@label$;
+	monster .@map$,113,26,"Despair Shadow",2941,1,.@label$;
+	monster .@map$,122,27,"Temptation Shadow",2939,1,.@label$;
+	monster .@map$,124,26,"Shadow of Mistrust",2940,1,.@label$;
+	monster .@map$,126,27,"Shadow of Mistrust",2940,1,.@label$;
+	monster .@map$,129,25,"Despair Shadow",2941,1,.@label$;
+	monster .@map$,136,25,"Temptation Shadow",2939,1,.@label$;
+	monster .@map$,136,26,"Shadow of Mistrust",2940,1,.@label$;
+	monster .@map$,137,25,"Despair Shadow",2941,1,.@label$;
+	end;
+OnTimer3000:
+	mapannounce instance_mapname("1@tnm1"),"Assassin Louie : Lucille! Watch out!", 0x9, 0x00ff00;
+	end;
+OnTimer5000:
+	mapannounce instance_mapname("1@tnm1"),"Lucille : Eh? Ahhhhh...?!", 0x9, 0x00ff00;
+	end;
+OnTimer7000:
+	mapannounce instance_mapname("1@tnm1"),"Temptation Shadow : Ahaha, more human sacrifices for us. Delightful!", 0x9, 0x00ff00;
+	enablenpc instance_npcname("#newwarp_jp");
+	stopnpctimer;
+	end;
+OnKilled:
+	// dummy
+	end;
+}
+1@tnm1,158,24,0	warp	#newwarp_jp	2,2,1@tnm1,124,86	//60457 from_pos=(157, 24)
+1@tnm1,138,96,3	script	Lucille#tnm02	4_F_LUCILE,{
+	if (getcharid(0) != getpartyleader(getcharid(1),2)) {
+			mes "Please wait for party leader to start the cutscene.";
+			close;
+	}
+	switch('TNM1_QUE) {
+	case 10:
+		cutin "tnm_lucile02.bmp", 2;
+		mes "[Lucille]";
+		mes "I was careless and got injured.";
+		mes "I won't be able to move for a little while.";
+		npctalk "I was careless and got injured. I won't be able to move for a little while.";
+		next;
+		mes "[Lucille]";
+		mes "The wound was actually pretty bad.";
+		mes "At this rate I might not be able to talk soon.";
+		npctalk "The wound was actually pretty bad. At this rate I might not be able to talk soon.";
+		next;
+		mes "[Lucille]";
+		mes "I'm sorry.";
+		mes "Could you give me a hand?";
+		npctalk "I'm sorry. Could you give me a hand?";
+		next;
+		mes "[Lucille]";
+		mes "My body is special.";
+		mes "It will self-recover";
+		mes "after a while.";
+		npctalk "My body is special. It will self-recover after a while.";
+		next;
+		mes "[Lucille]";
+		mes "But during the recovery period";
+		mes "I will be completely immobile,";
+		mes "and anybody could kill me.";
+		npctalk "But during the recovery period I will be completely immobile, and anybody could kill me.";
+		next;
+		mes "[Lucille]";
+		mes "Could you stay with me";
+		mes "and keep guard for a while?";
+		npctalk "Could you stay with me and keep guard for a while?";
+		next;
+		cutin "tnm_lucile03.bmp", 2;
+		mes "[Lucille]";
+		mes "Thanks.....";
+		mes "...";
+		mes "^ff0000Talk to Lucille";
+		mes "again to check on her^000000";
+		npctalk "Thanks.....";
+		close2;
+		cutin "tnm_lucile03.bmp", 255;
+		'TNM1_QUE = 11;
+		donpcevent instance_npcname("Assassin Louie#hui02") + "::OnStart";
+		end;
+	case 11:
+		mes "Lucille appears to be unresponsive.";
+		mes "¡¡";
+		mes "^ff0000Attempt to wake her up?^000000";
+		cutin "tnm_lucile03.bmp", 2;
+		next;
+		if(select("Wake her up","Leave") == 2){
+			mes "You decided to leave.";
+			close2;
+			cutin "tnm_lucile03.bmp", 255;
+			end;
+		}
+		cutin "tnm_lucile03.bmp", 255;
+		mes "Attempting to wake up Lucille.";
+		mes "Her body is vibrating slightly.";
+		mes "You heard some electronic noises.";
+		close2;
+		specialeffect 202, AREA, instance_npcname("Lucille#tnm02"); //60458
+		progressbar "0xFFFF00",30;
+		mes "^ff0000System restarted.^000000";
+		mes "Talk to Lucille.";
+		'TNM1_QUE = 12;
+		killmonster instance_mapname("1@tnm1"),instance_npcname("Assassin Louie#hui02")+"::OnKilled";
+		close;
+	case 12:
+		cutin "tnm_lucile02.bmp", 2;
+		mes "[Lucille]";
+		mes "Huuu...";
+		mes "That was earlier than expected.";
+		mes "Sorry, did I scare you?";
+		mes "My body is different from the others.";
+		mes "I have to be shut down to be repaired.";
+		npctalk "Huuu... That was earlier than expected. Sorry, did I scare you? My body is different from the others. I have to be shut down to be repaired.";
+		next;
+		mes "[Lucille]";
+		mes "But this was how I've always been.";
+		mes "So I'm used to it already.";
+		mes "Anyway, ";
+		mes "did you see the gate in the middle?";
+		npctalk "But this was how I've always been. So I'm used to it already. Anyway, did you see the gate in the middle?";
+		cutin "tnm_lucile01.bmp", 2;
+		next;
+		mes "[Lucille]";
+		mes "Let's hurry and go through it.";
+		mes "I can smell the danger in the air.";
+		npctalk "Let's hurry and go through it. I can smell the danger in the air.";
+		close2;
+		cutin "tnm_lucile02.bmp", 255;
+		'TNM1_QUE = 13;
+		initnpctimer;
+		npctalk "I will be heading there now. Please follow shortly.";
+		hideonnpc instance_npcname("Lucille#tnm02");
+		end;
+	}
+OnTimer1000:
+	stopnpctimer;
+	npctalk "Lucille... Lucille....",instance_npcname("Assassin Louie#hui02");
+	end;
+}
+
+1@tnm1,135,99,5	script	Assassin Louie#hui02	4_TOWER_15,{
+	if('TNM1_QUE < 13) {
+		mes "[Assassin Louie]";
+		mes "I was so worried....";
+		mes "Even though I know your body ^ff0000is very durable^000000.";
+		mes "But if anything unexpected happens,";
+		mes "It could be unrepairable.";
+		close;
+	}
+	mes "[Assassin Louie]";
+	mes "Sir Thanatos is upstairs!";
+	mes "Let's follow Lucille up!";
+	next;
+	mes "[Assassin Louie]";
+	mes "If you wish to join us,";
+	mes "follow me.";
+	next;
+	if(select("Go","Cancel") == 2) {
+		mes "[Assassin Louie]";
+		mes "... Ok.";
+		close;
+	}
+	mes "[Assassin Louie]";
+	mes "This way.";
+	mes "Please stay alert.";
+	close2;
+	set .@map2$, instance_mapname("1@tnm2");
+	warp .@map2$,90,86;
+	end;
+	
+OnStart:
+	enablenpc instance_npcname("Assassin Louie#hui02");
+	.@map$ = instance_mapname("1@tnm1");
+	.@label$ = instance_npcname("Assassin Louie#hui02") + "::OnKilled";
+	areamonster .@map$,132,96,149,110,"Temptation Shadow",2939,5,.@label$;
+	areamonster .@map$,132,96,149,110,"Shadow of Mistrust",2940,7,.@label$;
+	areamonster .@map$,132,96,149,110,"Despair Shadow",2941,4,.@label$;
+	npctalk "Lucille be careful! A lot of monsters are gathering.";
+	end;
+	
+OnKilled:
+	.@count = mobcount(instance_mapname("1@tnm1"),instance_npcname("Assassin Louie#hui02")+"::OnKilled");
+	if(.@count <= 0) {
+		npctalk "I don't sense any more monster auras. I think we've got them all.";
+	}
+	end;
+
+OnInstanceInit:
+	disablenpc instance_npcname("Assassin Louie#hui02");
+	end;
+}
+
+
+//===============================================================================
+// Morroc vs. Thanatos
+//===============================================================================
+
+// NOTA: ESTA PARTE ES CUSTOM, EL EMULADOR NO CUENTA CON LA HABILIDAD FLAMECROSS
+
+1@tnm2,0,0,0	script	#tnm2flamecross	CLEAR_NPC,{
+OnStart:
+	sleep 10000;
+OnTimer20000:
+	initnpctimer;
+	npctalk "Ahaha! Burn my beautiful! BURN!",instance_npcname("Satan Morroc#tnm01");
+	mapannounce instance_mapname("1@tnm2"),"Satan Morroc : Ahaha! Burn my beautiful! BURN!", 0x1, 0xff0000, 0x190, 12, 0, 0;
+	for(.@i = 0; .@i < 18; ++.@i) {
+		sleep 200;
+		if(!'TNM_FLAMECROSS)
+			break;
+		unitskillusepos 'TNM_FLAMECROSS,535,10,141,146+.@i*3;
+		unitskillusepos 'TNM_FLAMECROSS,535,10,140+.@i*3,144+.@i;
+		unitskillusepos 'TNM_FLAMECROSS,535,10,145+.@i*2,131-.@i*2;
+		unitskillusepos 'TNM_FLAMECROSS,535,10,133-.@i*2,133-.@i*2;
+		unitskillusepos 'TNM_FLAMECROSS,535,10,139-.@i*3,145+.@i;
+		unitskillusepos 'TNM_FLAMECROSS,535,10,136,128;
+	}
+	end;
+	
+OnEnd:
+	stopnpctimer;
+	unitkill 'TNM_FLAMECROSS;
+	'TNM_FLAMECROSS = 0;
+	end;
+}
+
+1@tnm2,0,0,0	script	#tnm2topmob	CLEAR_NPC,{
+OnStart:
+	initnpctimer;
+	'TNM_STONEMOVE = 0;
+	end;
+OnTimer2000:
+	.@map$ = instance_mapname("1@tnm2");
+	.@label$ = instance_npcname("#tnm2topmob")+"::OnStone";
+	.@label2$ = instance_npcname("#tnm2topmob")+"::OnSummon";
+	setarray .@x[0],192, 205, 141, 68, 90;
+	setarray .@y[0],86, 161, 213, 167, 86;
+	mapannounce instance_mapname("1@tnm2"),"Lucille : 5 Magic Seals will spawn on the five corners. Destroy them before they reach Satan Morroc.", 0x1, 0x00ff00, 0x190, 18, 0, 0;
+	monster(.@map$,.@x[.@i],.@y[.@i],"",2960,1,.@label$+(.@i+1));
+	'TNM_FLAMECROSS = $@mobid[0];
+	unitskilluseid 'TNM_FLAMECROSS, 353, 1;
+	//unitskilluseid 'TNM_FLAMECROSS, 353, 1;
+	donpcevent instance_npcname("#tnm2flamecross")+"::OnStart";
+	for(.@i = 0; .@i < 5; ++.@i) {
+		 monster(instance_mapname("1@tnm2"),.@x[.@i],.@y[.@i],"Magic Seal",2938,1,.@label$+(.@i+1));
+		'TNM_STONE[.@i] = $@mobid[0];
+		areamonster .@map$,.@x[.@i]-2,.@y[.@i]-2, .@x[.@i]+2,.@y[.@i]+2,"--en--",2939,1,.@label2$+(.@i+1);
+		setunitdata 'TNM_FLAMECROSS,9,0x400085;
+		areamonster .@map$,.@x[.@i]-2,.@y[.@i]-2, .@x[.@i]+2,.@y[.@i]+2,"--en--",2940,1,.@label2$+(.@i+1);
+		setunitdata 'TNM_FLAMECROSS,9,0x400085;
+		areamonster .@map$,.@x[.@i]-2,.@y[.@i]-2, .@x[.@i]+2,.@y[.@i]+2,"--en--",2941,1,.@label2$+(.@i+1);
+		setunitdata 'TNM_FLAMECROSS,9,0x400085;
+	}
+	end;
+OnTimer6000:
+	setnpctimer 10000;
+	mapannounce instance_mapname("1@tnm2"),"Lucille : Defeat Satan Morroc before he fully recovers!", 0x1, 0x00ff00, 0x190, 18, 0, 0;
+	end;
+OnTimer30000:
+	setnpctimer 10000;
+	++ 'TNM_STONEMOVE;
+  .@map$ = instance_mapname("1@tnm2");
+	mapannounce .@map$,"Lucille : Magic seals are moving again! #"+'TNM_STONEMOVE+".", 0x1, 0x00ff00, 0x190, 12, 0, 0;
+	switch('TNM_STONEMOVE) {
+		case 1:
+			setarray .@x[0],186, 199, 141, 74, 94;
+			setarray .@y[0],91, 163, 207, 165, 91;
+			break;
+		case 2:
+			setarray .@x[0],178, 188, 141, 87, 99;
+			setarray .@y[0],100, 160, 196, 162, 98;
+			break;
+		case 3:
+			setarray .@x[0],159, 166, 141, 107, 114;
+			setarray .@y[0],117, 152, 175, 156, 114;
+			break;
+		case 4:
+			setarray .@x[0],147, 152, 141, 122, 125;
+			setarray .@y[0],128, 146, 155, 150, 126;
+			break;
+		case 5:
+			setarray .@x[0],140, 141, 140, 130, 131;
+			setarray .@y[0],135, 143, 144, 143, 135;
+			break;
+
+	}
+	for(.@i = 0; .@i < 5; ++.@i) {
+		if(!'TNM_STONE[.@i])
+			continue;
+		.@label$ = instance_npcname("#tnm2topmob")+"::OnSummon"+(.@i+1);
+		killmonster .@map$,.@label$;
+		unitwarp 'TNM_STONE[.@i],.@map$,.@x[.@i],.@y[.@i];
+		areamonster .@map$,.@x[.@i]-2,.@y[.@i]-2, .@x[.@i]+2,.@y[.@i]+2,"--en--",2939,1,.@label$;
+		//setunitdata 'TNM_FLAMECROSS,9,0x400085;
+		areamonster .@map$,.@x[.@i]-2,.@y[.@i]-2, .@x[.@i]+2,.@y[.@i]+2,"--en--",2940,1,.@label$;
+		//setunitdata 'TNM_FLAMECROSS,9,0x400085;
+		areamonster .@map$,.@x[.@i]-2,.@y[.@i]-2, .@x[.@i]+2,.@y[.@i]+2,"--en--",2941,1,.@label$;
+		//setunitdata 'TNM_FLAMECROSS,9,0x400085;
+	}
+	if('TNM_STONEMOVE >= 5)
+		donpcevent instance_npcname("#tnm2topmob")+"::OnPushBack";
+	end;
+
+OnPushBack:
+  .@map$ = instance_mapname("1@tnm2");
+	.@label$ = instance_npcname("#tnm2topmob")+"::OnSummon"+(.@i+1);
+	sleep 2000;
+	mapannounce .@map$,"Thanatos : The seals are too close to Satan Morroc. Let me help you.", 0x1, 0x00ff00, 0x190, 12, 0, 0;
+	sleep 2000;
+	specialeffect 894,AREA,instance_npcname("Thanatos#tnm02");
+	setnpctimer 10000;
+	'TNM_STONEMOVE = 0;
+	setarray .@x[0],192, 205, 141, 68, 90;
+	setarray .@y[0],86, 161, 213, 167, 86;
+	for(.@i = 0; .@i < 5; ++.@i) {
+		if(!'TNM_STONE[.@i])
+			continue;
+		.@label$ = instance_npcname("#tnm2topmob")+"::OnSummon"+(.@i+1);
+		killmonster .@map$,.@label$;
+		unitwarp 'TNM_STONE[.@i],.@map$,.@x[.@i],.@y[.@i];
+		//setunitdata 'TNM_STONE[.@i],2,10; //MaxHP = 10;
+		areamonster .@map$,.@x[.@i]-2,.@y[.@i]-2, .@x[.@i]+2,.@y[.@i]+2,"--en--",2939,1,.@label$;
+		//setunitdata 'TNM_STONE,9,0x400085;
+		areamonster .@map$,.@x[.@i]-2,.@y[.@i]-2, .@x[.@i]+2,.@y[.@i]+2,"--en--",2940,1,.@label$;
+		//setunitdata 'TNM_STONE,9,0x400085;
+		areamonster .@map$,.@x[.@i]-2,.@y[.@i]-2, .@x[.@i]+2,.@y[.@i]+2,"--en--",2941,1,.@label$;
+		//setunitdata 'TNM_STONE,9,0x400085;
+	}
+	end;
+
+OnStone1:
+	'TNM_STONE[0] = 0;
+	killmonster instance_mapname("1@tnm2"),instance_npcname("#tnm2topmob") + "::OnSummon1";
+	donpcevent instance_npcname("#tnm2topmob") + "::OnStoneKilled";
+	end;
+OnStone2:
+	'TNM_STONE[1] = 0;
+	killmonster instance_mapname("1@tnm2"),instance_npcname("#tnm2topmob") + "::OnSummon2";
+	donpcevent instance_npcname("#tnm2topmob") + "::OnStoneKilled";
+	end;
+OnStone3:
+	'TNM_STONE[2] = 0;
+	killmonster instance_mapname("1@tnm2"),instance_npcname("#tnm2topmob") + "::OnSummon3";
+	donpcevent instance_npcname("#tnm2topmob") + "::OnStoneKilled";
+	end;
+OnStone4:
+	'TNM_STONE[3] = 0;
+	killmonster instance_mapname("1@tnm2"),instance_npcname("#tnm2topmob") + "::OnSummon4";
+	donpcevent instance_npcname("#tnm2topmob") + "::OnStoneKilled";
+	end;
+OnStone5:
+	'TNM_STONE[4] = 0;
+	killmonster instance_mapname("1@tnm2"),instance_npcname("#tnm2topmob") + "::OnSummon5";
+	donpcevent instance_npcname("#tnm2topmob") + "::OnStoneKilled";
+	end;
+OnSummon1:
+OnSummon2:
+OnSummon3:
+OnSummon4:
+OnSummon5:
+	end;
+
+OnStoneKilled:
+	.@count = 0;
+	for(.@i = 0; .@i < 5; ++.@i) {
+			if('TNM_STONE[.@i])
+				.@count ++;
+	}
+	if(.@count <= 0) {
+		stopnpctimer;
+		mapannounce instance_mapname("1@tnm2"),"Lucille : Looks like all the Magic Seals are destroyed. Satan Morroc is rapidly losing power!!", 0x9, 0x00ff00;
+		mapwarp instance_mapname("1@tnm2"),instance_mapname("1@tnm2"),139,133;
+		donpcevent instance_npcname("Satan Morroc#tnm01")+"::OnStart";
+		donpcevent instance_npcname("#tnm2flamecross")+"::OnEnd";
+	} else {
+		mapannounce instance_mapname("1@tnm2"),"Lucille : Good, keep this up! There are "+.@count+" Magic Seals left.", 0x1, 0x00ff00, 0x190, 12, 0, 0;
+	}
+	end;
+}
+
+1@tnm2,144,137,3	script	Lucille#tnm03	4_F_LUCILE,{
+	if('TNM1_QUE == 13) {
+		cutin "tnm_lucile01.bmp", 2;
+		mes "[Lucille]";
+		mes "Just in time!";
+		npctalk "Just in time!";
+		next;
+		mes "[Lucille]";
+		mes "Just as I thought.";
+		mes "Satan Morroc is behind this.";
+		mes "Let's put a stop to this.";
+		npctalk "Just as I thought. Satan Morroc is behind this. Let's put a stop to this.";
+		next;
+		cutin "tnm_lucile01.bmp", 255;
+		mes "[Satan Morroc]";
+		mes "Stupid humans...!";
+		mes "You think you can stop me";
+		mes "with your laughable abilities?";
+		npctalk "Stupid humans...! You think you can stop me with your laughable abilities?",instance_npcname("Satan Morroc#tnm01");
+		next;
+		mes "[Satan Morroc]";
+		mes "My shadows!";
+		mes "Come and teach these fools";
+		mes "the consequences of standing against our power.";
+		npctalk "My shadows! Come and teach these fools the consequences of standing against our power.",instance_npcname("Satan Morroc#tnm01");
+		next;
+		mes "[Thanatos]";
+		mes "Requesting for reinforcement already? Pathetic.";
+		npctalk "Requesting for reinforcement already? Pathetic.",instance_npcname("Thanatos#tnm02");
+		next;
+		cutin "tnm_lucile01.bmp", 2;
+		mes "[Lucille]";
+		mes "Sir Thanatos,";
+		mes "looks like he means business.";
+		npctalk "Sir Thanatos, looks like he means business.";
+		next;
+		cutin "tnm_lucile01.bmp", 255;
+		mes "[Satan Morroc]";
+		mes "I will show you the meaning";
+		mes "of destruction and despair!";
+		npctalk "I will show you the meaning of destruction and despair!",instance_npcname("Satan Morroc#tnm01");
+		next;
+		mes "[Thanatos]";
+		mes "Be quiet!";
+		mes "Enough of your boasting.";
+		mes "I won't let you out of here.";
+		npctalk "Be quiet! Enough of your boasting. I won't let you out of here.",instance_npcname("Thanatos#tnm02");
+		next;
+		mes "[Thanatos]";
+		mes "Lucille£¡You will handle these.";
+		mes "I will handle Satan Morroc.";
+		npctalk "Lucille£¡You will handle these. I will handle Satan Morroc.",instance_npcname("Thanatos#tnm02");
+		next;
+		cutin "tnm_lucile01.bmp", 2;
+		mes "[Lucille]";
+		mes "Roger.";
+		npctalk "Roger.";
+		next;
+		mes "[Lucille]";
+		mes "Ok, Everyone.";
+		mes "Our duty is to destroy all the Magic Seals here.";
+		mes "Do not let them get close to Satan Morroc!";
+		npctalk "Ok, Everyone. Our duty is to destroy all the Magic Seals here. Do not let them get close to Satan Morroc!";
+		'TNM1_QUE = 14;
+//		setquest 7573;
+		hideonnpc instance_npcname("Lucille#tnm03");
+		donpcevent instance_npcname("#tnm2topmob")+"::OnStart";
+		close2;
+		cutin "tnm_lucile01.bmp", 255;
+		end;
+	}
+}
+
+1@tnm2,144,137,3	script	Lucille#tnm04	4_F_LUCILE,{/* 60463 (hide)*/
+		if(!@TNMEXP) {
+//		delquest 7573;
+			mes "You can feel a steady stream of power";
+			mes "flowing through you as you speak to Lucille.";
+			specialeffect2 35;
+//		setquest 114805;
+//		compquest 114805;
+			specialeffect2 58;
+			getexp 500000,0;
+			getexp 500000,0;
+			getexp 0,500000;
+			@TNMEXP =1;
+			next;
+		}
+		mes "[Lucille]";
+		mes "Satan Morroc is still trying to break the seals";
+		mes "and fighting against Thanatos.";
+		mes "This victory will be a tough one.";
+		cutin "tnm_lucile01.bmp", 2;
+		next;
+		mes "[Lucille]";
+		mes "The shock from that last hit pushed Satan Morroc to the South.";
+		mes "Should we chase him?";
+		next;
+		switch(select("Chase","Stop fighting","Wait")) {
+		case 1:
+			mes "[Lucille]";
+			mes "The blow wasn't enough to hurt him,";
+			mes "But it looks like we could begin the sealing process.";
+			mes "Good luck.";
+			next;
+			mes "You moved South to chase Satan Morroc.";
+			mes "Suddenly, the dimension shifted.";
+			specialeffect2 432; //self
+			specialeffect2 174; //self
+			specialeffect2 899; //self
+			close2;
+			cutin "tnm_lucile01.bmp", 255;
+			set .@map3$, instance_mapname("1@tnm3");
+			warp .@map3$,21,171;
+			end;
+		case 2:
+			mes "[Lucille]";
+			mes "Do you really wish to quit?";
+			cutin "tnm_lucile02.bmp", 2;
+			next;
+			if(select("Yes","No") == 2) {
+				mes "[Lucille]";
+				mes "OK.";
+				mes "Talk to me again when you are ready.";
+				close2;
+				cutin "tnm_lucile01.bmp", 255;
+				end;
+			}
+			mes "[Lucille]";
+			mes "Is that so...";
+			mes "I guess you are at your limit now.";
+			close2;
+			cutin "tnm_lucile01.bmp", 255;
+			warp "dali02",134,112;
+			end;
+		case 3:
+			mes "[Lucille]";
+			mes "OK.";
+			mes "Talk to me again when you are ready.";
+			close2;
+			cutin "tnm_lucile01.bmp", 255;
+			end;
+		}
+
+OnInstanceInit:
+	disablenpc instance_npcname("Lucille#tnm04");
+	end;
+}
+
+1@tnm2,136,139,5	script	Satan Morroc#tnm01	1916,{/* 60464 */
+	end;
+OnStart:
+	'TNM1_QUE = 15;
+	initnpctimer;
+	end;
+OnTimer3000:
+	npctalk "Wh..what? Who are you? How is this possible??";
+	end;
+OnTimer6000:
+	npctalk "Ahahaha, this shall be your end!",instance_npcname("Thanatos#tnm02");
+	end;
+OnTimer7000:
+	specialeffect 90;
+	end;
+OnTimer10000:
+	stopnpctimer;
+	enablenpc instance_npcname("Lucille#tnm04");
+	npctalk "This... this seal is successful??",instance_npcname("Lucille#tnm04");
+	disablenpc instance_npcname("Thanatos#tnm02");
+	disablenpc instance_npcname("Satan Morroc#tnm01");
+	end;
+}
+
+1@tnm2,142,139,3	script	Thanatos#tnm02	THANATOS_KEEP,{/* 60465 */
+	if('TNM1_QUE == 13) {
+		emotion 6, "Thanatos#tnm02"; //60465
+		end;
+	}
+	if('TNM1_QUE == 14) {
+		npctalk "Sorry, no time to talk right now.";
+		end;
+	}
+	end;
+}
+
+
+//=====================================================================================
+// Part 3
+//=====================================================================================
+1@tnm3,21,171,0	script	#tnm3event01	HIDDEN_WARP_NPC,1,1,{
+	OnTouch_:
+	disablenpc instance_npcname("#tnm3event01");
+	.@map$ = instance_mapname("1@tnm3");
+	.@label$ = instance_npcname("Girl#tnm01")+"::OnMobKilled";
+	mapannounce .@map$,"Scream of a girl : Ahhhh! Help! Monsters!", 0x1, 0x00ff00, 0x190, 12, 0, 0;
+	areamonster .@map$,21,185,47,159,"--en--",2939,4,.@label$;
+	areamonster .@map$,21,185,47,159,"--en--",2940,4,.@label$;
+	areamonster .@map$,21,185,47,159,"--en--",2941,4,.@label$;
+	end;
+}
+
+1@tnm3,43,175,3	script	Girl#tnm01	4_F_DST_CHILD,{/* 84728 */
+	if('TNM1_QUE < 16) {
+		mes "[Young Girl]";
+		mes "Why are there so many monsters in the city?";
+		mes "Please help me!!";
+		close;
+	} else if ('TNM1_QUE == 16) {
+		if (getcharid(0) != getpartyleader(getcharid(1),2)) {
+			mes "[Young Girl]";
+			mes "Uhuhuhu...";
+			mes "- Let the party leader talk to her -";
+			close;
+		}
+		mes "[Young Girl]";
+		mes "All these monsters suddenly appeared in the castle!";
+		mes "All the guards are...";
+		npctalk "All these monsters suddenly appeared in the castle! All the guards are...";
+		next;
+		unittalk getcharid(3),"Where is this?";
+		select("Where is this?");
+		mes "[Young Girl]";
+		mes "This is Morroc.";
+		mes "You are inside the Morroc Castle.";
+		npctalk "This is Morroc. You are inside the Morroc Castle.";
+		next;
+		mes "Morroc Castle?";
+		unittalk getcharid(3),"Morroc Castle?";
+		next;
+		mes "[Young Girl]";
+		mes "That's right.";
+		mes "My father is the Morroc LK.";
+		npctalk "That's right. My father is the Morroc LK.";
+		next;
+		mes "Looks like the dimensions have shifted.";
+		mes "We are no longer in the same time as Lucille.";
+		unittalk getcharid(3),"- Looks like the dimensions have shifted. We are no longer in the same time as Lucille.";
+		next;
+		mes "[Young Girl]";
+		mes "I think there was a weird noise coming from the basement.";
+		npctalk "I think there was a weird noise coming from the basement.";
+		next;
+		mes "[Young Girl]";
+		mes "A man dressed in black went into the basement and never came out.";
+		mes "What's happening?";
+		npctalk "A man dressed in black went into the basement and never came out. What's happening?";
+		next;
+		mes "[Young Girl]";
+		mes "My father...";
+		mes "Is he going to be ok?";
+		npctalk "My father... Is he going to be ok?";
+		next;
+		mes "[Young Girl]";
+		mes "There is a door behind the bookshelf that can take you to the basement.";
+		mes "Please take me with you. Thanks!";
+		npctalk "There is a door behind the bookshelf that can take you to the basement. Please take me with you. Thanks!";
+		close2;
+		'TNM1_QUE = 17;
+		specialeffect 35, AREA, instance_npcname("#tnm3gate01");
+		enablenpc instance_npcname("#tnm3gate01");
+		end;
+	} else 	{
+		mes "[Young Girl]";
+		mes "There is a door behind the bookshelf that can take you to the basement.";
+		mes "Please take me with you. Thanks!";
+		mes "Father, please hang on!";
+		npctalk "There is a door behind the bookshelf that can take you to the basement. Please take me with you. Thanks!";
+		close;
+	}
+OnMobKilled:
+	.@map$ = instance_mapname("1@tnm3");
+	.@label$ = instance_npcname("Girl#tnm01")+"::OnMobKilled";
+	if(mobcount(.@map$,.@label$))
+		end;
+	'TNM1_QUE = 16;
+	npctalk "Thank you... where did all these monsters come from...?";
+	end;
+OnInstanceInit:
+	disablenpc instance_npcname("#tnm3gate01");
+	end;
+}
+
+
+1@tnm3,50,176,0	warp	#tnm3gate01	1,1,1@tnm3,85,178
+
+
+1@tnm3,85,178,0	script	#tnm3event02ect	HIDDEN_WARP_NPC,1,1,{
+OnTouch_:
+	disablenpc instance_npcname("#tnm3event02ect");
+	donpcevent instance_npcname("Young Girl#tnm02") + "::OnStart";
+	end;
+OnInstanceInit:
+	hideonnpc instance_npcname("Young Girl#tnm02");
+	hideonnpc instance_npcname("Young Girl#tnm03");
+	disablenpc instance_npcname("#tnm3gate02");
+	end;
+}
+
+1@tnm3,89,179,4	script	Young Girl#tnm02	4_F_DST_CHILD,{
+	npctalk "Ah! Over there! So many monsters!";
+	end;
+	
+OnStart:
+	hideoffnpc instance_npcname("Young Girl#tnm02");
+	npctalk "Ah! Over there! So many monsters!";
+	.@map$ = instance_mapname("1@tnm3");
+	.@label$ = instance_npcname("Young Girl#tnm02")+"::OnMobKilled";
+	monster .@map$,102,168,"--en--",2939,1,.@label$;
+	monster .@map$,102,178,"--en--",2940,1,.@label$;
+	monster .@map$,104,172,"--en--",2940,1,.@label$;
+	monster .@map$,104,174,"--en--",2940,1,.@label$;
+	monster .@map$,104,178,"--en--",2940,1,.@label$;
+	monster .@map$,108,173,"--en--",2940,1,.@label$;
+	monster .@map$,110,173,"--en--",2941,1,.@label$;
+	monster .@map$,111,169,"--en--",2941,1,.@label$;
+	monster .@map$,114,169,"--en--",2941,1,.@label$;
+	monster .@map$,116,169,"--en--",2941,1,.@label$;
+	monster .@map$,126,167,"--en--",2941,1,.@label$;
+	monster .@map$,127,169,"--en--",2941,1,.@label$;
+	monster .@map$,110,170,"--en--",2939,1,.@label$;
+	monster .@map$,91,169,"--en--",2939,1,.@label$;
+	end;
+	
+OnMobKilled:
+	.@map$ = instance_mapname("1@tnm3");
+	.@label$ = instance_npcname("Young Girl#tnm02")+"::OnMobKilled";
+	if(mobcount(.@map$,.@label$))
+		end;
+	mapannounce .@map$,"Young Girl : Here! The entrance to the basement is at the end of the corridor.", 0x1, 0x00ff00, 0x190, 12, 0, 0;
+	hideonnpc instance_npcname("Young Girl#tnm02");
+	hideoffnpc instance_npcname("Young Girl#tnm03");
+	enablenpc instance_npcname("#tnm3gate02");
+	end;		
+}
+
+
+1@tnm3,128,164,3	script	Young Girl#tnm03	4_F_DST_CHILD,{
+	mes "[Young Girl]";
+	mes "I can't give you any more information beyond this point.";
+	mes "I think there are even more monsters further down.";
+	mes "Please save my father!";
+	mes "He must be in grave danger.";
+	close;
+}
+
+1@tnm3,134,156,0	warp	#tnm3gate02	2,2,1@tnm3,169,165
+
+
+1@tnm3,169,165,3	script	#tnm3mob0trg	HIDDEN_WARP_NPC,1,1,{
+	OnTouch_:
+		disablenpc instance_npcname("#tnm3mob0trg");
+		initnpctimer instance_npcname("Despair Shadow#tnm3");
+		end;
+}
+
+1@tnm3,179,172,3	script	Despair Shadow#tnm3	2941,7,7,{
+	end;
+	OnTimer2000:
+		npctalk "Well well, which careless rat got into my castle?";
+		end;
+	OnTimer6000:
+		npctalk "Looks like you have no idea of the consequences. But do not worry, I won't let you interfere with our holy ritual.";
+		end;
+	OnTimer9000:
+		npctalk "Come, my fellow shadows!";
+		end;
+	OnTimer10000:
+		stopnpctimer;
+		hideonnpc instance_npcname("Despair Shadow#tnm3");
+		.@map$ = instance_mapname("1@tnm3");
+		.@label$ = instance_npcname("Despair Shadow#tnm3")+"::OnMobKilled";
+		areamonster .@map$,177,170,181,174,"--en--",2941,4,.@label$;
+		//SPAWN MONSTERS
+		end;
+	
+	OnMobKilled:
+		.@map$ = instance_mapname("1@tnm3");
+		.@label$ = instance_npcname("Despair Shadow#tnm3")+"::OnMobKilled";
+		if(!mobcount(.@map$,.@label$))
+			end;
+		enablenpc instance_npcname("#tnm3gate03");
+		specialeffect 35, AREA, instance_npcname("#tnm3gate03");
+		end;
+	
+	OnInstanceInit:
+		disablenpc instance_npcname("#tnm3gate03");
+		end;
+}
+
+1@tnm3,183,177,0	warp	#tnm3gate03	2,2,1@tnm3,97,6
+
+1@tnm3,97,6,3	script	#tnm3mob1trg	HIDDEN_WARP_NPC,1,1,{
+	OnTouch_:
+		disablenpc instance_npcname("#tnm3mob1trg");
+		initnpctimer instance_npcname("Temptation Shadow#tnm3");
+		donpcevent instance_npcname("#tnm3trap")+"::OnStart";
+		end;
+}
+
+1@tnm3,97,18,3	script	Temptation Shadow#tnm3	2939,{
+	end;
+	OnTimer2000:
+		npctalk "You are the cause of the disturbance?";
+		end;
+	OnTimer5000:
+		npctalk "Don't worry, we will put you out of your misery soon.";
+		end;
+	OnTimer9000:
+		npctalk "I will offer you as a blood sacrifice to Satan Morroc!";
+		end;
+	OnTimer10000:
+		stopnpctimer;
+		hideonnpc instance_npcname("Temptation Shadow#tnm3");
+		.@map$ = instance_mapname("1@tnm3");
+		//SPAWN MONSTERS
+		monster .@map$,77,18,"--en--",2940,1;
+		monster .@map$,112,18,"--en--",2939,1;
+		monster .@map$,112,20,"--en--",2940,1;
+		monster .@map$,112,22,"--en--",2941,1;
+		monster .@map$,113,23,"--en--",2939,1;
+		monster .@map$,114,13,"--en--",2941,1;
+		monster .@map$,115,11,"--en--",2940,1;
+		monster .@map$,119,20,"--en--",2940,1;
+		monster .@map$,113,20,"--en--",2940,1;
+		monster .@map$,107,19,"--en--",2939,1;
+		monster .@map$,82,18,"--en--",2939,1;
+		monster .@map$,78,14,"--en--",2941,1;
+		monster .@map$,71,18,"--en--",2941,1;
+		monster .@map$,69,16,"--en--",2939,1;
+		monster .@map$,67,19,"--en--",2940,1;
+		monster .@map$,63,42,"--en--",2940,1;
+		monster .@map$,63,43,"--en--",2939,1;
+		monster .@map$,60,46,"--en--",2940,1;
+		monster .@map$,60,49,"--en--",2940,1;
+		monster .@map$,62,50,"--en--",2939,1;
+		monster .@map$,56,50,"--en--",2941,1;
+		monster .@map$,75,67,"--en--",2941,1;
+		monster .@map$,78,71,"--en--",2940,1;
+		monster .@map$,77,71,"--en--",2940,1;
+		monster .@map$,78,72,"--en--",2939,1;
+		monster .@map$,60,73,"--en--",2940,1;
+		monster .@map$,57,73,"--en--",2941,1;
+		monster .@map$,62,73,"--en--",2941,1;
+		monster .@map$,79,73,"--en--",2939,1;
+		monster .@map$,64,74,"--en--",2940,1;
+		monster .@map$,60,75,"--en--",2939,1;
+		monster .@map$,60,77,"--en--",2939,1;
+		monster .@map$,80,67,"--en--",2941,1;
+		end;
+}
+
+
+1@tnm3,93,52,4	script	Morroc LK#moclord01	1_M_MOC_LORD,{/* 84738 */
+	if (getcharid(0) != getpartyleader(getcharid(1),2)) {
+			mes "Please wait for party leader to start the cutscene.";
+			close;
+	}
+	mes "[Morroc LK]";
+	mes "What do we have here. The rat that got in was an assassin?";
+	mes "You even brought some friends.";
+	mes "Did you all want to die so desperately?";
+	npctalk "What do we have here. The rat that got in was an assassin? You even brought some friends.Did you all want to die so desperately?";
+	next;
+	mes "[Loki]";
+	mes "You were the one who was trying to revive the corrupted Satan Morroc?";
+	npctalk "You were the one who was trying to revive the corrupted Satan Morroc?",instance_npcname("Loki#tnmloki01");
+	cutin "ep14_roki01.bmp", 2;
+	next;
+	mes "[Loki]";
+	mes "I finally found the culprit.";
+	mes "Good thing I came here.";
+	npctalk "I finally found the culprit. Good thing I came here.",instance_npcname("Loki#tnmloki01");
+	next;
+	mes "[Morroc LK]";
+	mes "Ha? Are you telling me";
+	mes "that you selfish people from the Assassin's Guild";
+	mes "are actually interested in saving the world?";
+	mes "Blasphemy!";
+	npctalk "Ha? Are you telling me that you selfish people from the Assassin's Guild are actually interested in saving the world? Blasphemy!";
+	cutin "ep14_roki01.bmp", 255;
+	next;
+	mes "[Morroc LK]";
+	mes "This is for the balance of the world!";
+	mes "We have become toys of Gods";
+	mes "in this corrupt world.";
+	mes "We must revive demons to restore our balance!";
+	npctalk "This is for the balance of the world! We have become toys of Gods in this corrupt world. We must revive demons to restore our balance!";
+	next;
+	mes "[Morroc LK]";
+	mes "Do you even know";
+	mes "how Gods treat us humans?";
+	npctalk "Do you even know how Gods treat us humans?";
+	next;
+	mes "[Morroc LK]";
+	mes "They wave the banners of Light, and Justice, and Order,";
+	mes "and force us humans to... no, force the whole world to...";
+	npctalk "They wave the banners of Light, and Justice, and Order, and force us humans to... no, force the whole world to...";
+	next;
+	mes "[Loki]";
+	mes "Be quiet!";
+	npctalk "Be quiet!",instance_npcname("Loki#tnmloki01");
+	cutin "ep14_roki01.bmp", 2;
+	next;
+	mes "[Loki]";
+	mes "It had nothing to do with the Gods,";
+	mes "or Demons.";
+	mes "It was all about your ambition. And now you have to pay.";
+	npctalk "It had nothing to do with Gods, or Demons. It was all about your ambition. And now you have to pay.",instance_npcname("Loki#tnmloki01");
+	next;
+	mes "[Loki]";
+	mes "And that was my mission.";
+	npctalk "And that was my mission.",instance_npcname("Loki#tnmloki01");
+	next;
+	mes "[Morroc LK]";
+	mes "Such a boring mission.";
+	mes "Why don't you try your best.. hahaha.";
+	npctalk "Such a boring mission. Why don't you try your best.. hahaha.";
+	cutin "ep14_roki01.bmp", 255;
+	next;
+	mes "[Loki]";
+	mes "Of course.";
+	cutin "ep14_roki01.bmp", 2;
+	npctalk "Of course.",instance_npcname("Loki#tnmloki01");
+	specialeffect 55, AREA, instance_npcname("Loki#tnmloki01");
+	next;
+	mes "[Loki]";
+	mes "Soul Strike!!";
+	npctalk "Soul Strike!!",instance_npcname("Loki#tnmloki01");
+	next;
+	mes "[Young Girl]";
+	mes "No!!";
+	mes "Please don't hurt my father!!";
+	cutin "ep14_roki01.bmp", 255;
+	hideoffnpc instance_npcname("Young Girl#tnm04");
+	specialeffect 135, AREA, instance_npcname("Young Girl#tnm04");
+	npctalk "No!! Please don't hurt my father!!",instance_npcname("Young Girl#tnm04");
+	next;
+	mes "[Loki]";
+	mes "What...!?";
+	npctalk "What...!?",instance_npcname("Loki#tnmloki01");
+	cutin "ep14_roki01.bmp", 2;
+	next;
+	mes "[Morroc LK]";
+	mes "Oh my oh my.. Ahahaha!";
+	mes "You missed. Mr. Assassin. HAHAHA.";
+	npctalk "Oh my oh my.. Ahahaha! You missed. Mr. Assassin. HAHAHA.";
+	cutin "ep14_roki01.bmp", 255;
+	next;
+	mes "[Young Girl]";
+	mes "There must...be... ";
+	mes "some kind of misunderstanding...";
+	npctalk "There must...be...  some kind of misunderstanding...",instance_npcname("Young Girl#tnm04");
+	next;
+	mes "[Young Girl]";
+	mes "Father.. would never..";
+	mes "do something... like.. this...";
+	npctalk "Father.. would never.. do something... like.. this...",instance_npcname("Young Girl#tnm04");
+	next;
+	mes "[Loki]";
+	mes "Why did you protect him!?";
+	mes "Humans are such strange creatures.";
+	mes "Maybe that's what they call heart.";
+	npctalk "Why did you protect him!? Humans are such strange creatures. Maybe that's what they call heart.",instance_npcname("Loki#tnmloki01");
+	cutin "ep14_roki01.bmp", 2;
+	next;
+	mes "[Morroc LK]";
+	mes "Hard to understand?";
+	mes "This is called... sacrifice.";
+	npctalk "Hard to understand? This is called... sacrifice.";
+	cutin "ep14_roki01.bmp", 255;
+	next;
+	mes "[Morroc LK]";
+	mes "But little girl,";
+	mes "that was entirely pointless!";
+	mes "Hahaha!!";
+	npctalk "But little girl, that was entirely pointless! Hahaha!!";
+	next;
+	mes "[Morroc LK]";
+	mes "Stupid humans!";
+	mes "Rot here!";
+	mes "Don't get in the way of the holy revival!";
+	mes "Bwahahaha!!";
+	npctalk "Stupid humans! Rot here! Don't get in the way of the holy revival! Bwahahaha!!";
+	specialeffect 225;
+	next;
+	mes "[Loki]";
+	mes "Sorry. I refuse.";
+	npctalk "Sorry. I refuse.",instance_npcname("Loki#tnmloki01");
+	cutin "ep14_roki01.bmp", 2;
+	close2;
+	cutin "ep14_roki01.bmp", 255;
+	hideonnpc instance_npcname("Morroc LK#moclord01");
+	hideonnpc instance_npcname("Young Girl#tnm04");
+	hideonnpc instance_npcname("Loki#tnmloki01");
+	hideoffnpc instance_npcname("Loki#tnmloki02");
+	donpcevent instance_npcname("#tnmfinal") + "::OnStart";
+	end;
+}
+
+1@tnm3,98,47,3	script	Loki#tnmloki01	4_M_ROKI2,{}
+1@tnm3,95,50,4	script	Young Girl#tnm04	4_F_DST_CHILD,{
+	end;
+  OnInstanceInit:
+		hideonnpc instance_npcname("Young Girl#tnm04");
+		end;
+}
+
+1@tnm3,98,47,3	script	Loki#tnmloki02	4_M_ROKI2,{
+	mes "[Loki]";
+	mes "...";
+	mes "When did you get here?";
+	mes "Anyway, it doesn't matter.";
+	mes "This lord knight is no longer human.";
+	mes "It's my job to defeat them.";
+	mes "So come and help me.";
+	cutin "ep14_roki01.bmp", 2;
+	if (getcharid(0) != getpartyleader(getcharid(1),2)) {
+			next;
+			mes "[Message]";
+			mes "Only your party leader can summon Loki.";
+			close;
+	}
+	.@merid = getmercinfo(0);
+	if(.@merid) {
+		next;
+		mes "[Message]";
+		mes "^0000FFPlease dismiss your current mecenary.^000000";
+		close;
+	}
+	mercenary_create 2937,900000;
+	hideonnpc instance_npcname("Loki#tnmloki02");
+	//setquest 114800; //state=1
+	//delquest 114800;
+	enablenpc instance_npcname("Loki's Memory#tnm3");
+	close2;
+	cutin "",255;
+	end;
+	
+	OnInstanceInit:
+		hideonnpc instance_npcname("Loki#tnmloki02");
+		end;
+}
+
+1@tnm3,98,53,3	script	Mercenary Change#tnm3	2_BULLETIN_BOARD,{
+	mes "Due to the mercenary skill not functioning properly we have slightly adjusted this portion of the instace.";
+	mes "Rather than using the mercenary skill to make the Evil Fanatic vincible, you will use Loki's Memory NPC to cast the skill.";
+	mes "In essence it is the same as before, your mercenary must be alive and only the party leader may cast the vincible skill.";
+	close;
+}
+
+1@tnm3,0,0,0	script	#tnmfinal	CLEAR_NPC,{
+		end;
+	OnStart:
+		initnpctimer;
+		monster(instance_mapname("1@tnm3"),98,74,"Evil Fanatic",2942,1,instance_npcname("#tnmfinal")+"::OnBossDead");
+		'BossID = $@mobid[0];
+		donpcevent instance_npcname("#tnmskill")+"::OnStart";
+		mapannounce instance_mapname("1@tnm3"),"Evil Fanatic : You lowly humans!", 0x1, 0x00ff00, 0x190, 12, 0, 0;
+		end;
+		
+	OnTimer3000:
+		mapannounce instance_mapname("1@tnm3"),"Evil Fanatic : You will be my first sacrifices to Satan Morroc!", 0x1, 0x00ff00, 0x190, 12, 0, 0;
+		end;
+	
+	OnTimer6000:
+		mapannounce instance_mapname("1@tnm3"),"Loki : This fanatic is connected to Satan Morroc. He is invincible right now.", 0x1, 0x00ff00, 0x190, 18, 0, 0;
+		end;
+
+	OnTimer9000:
+		mapannounce instance_mapname("1@tnm3"),"Loki : I can use Soul Strike to destroy their connection.", 0x1, 0x00ff00, 0x190, 18, 0, 0;
+		end;
+
+	OnTimer12000:
+		stopnpctimer;
+		mapannounce instance_mapname("1@tnm3"),"Use Loki's 'Soul Strike' to temporarily disable Evil Fanatic's invincibility.", 0x1, 0x00ffff, 0x190, 18, 0, 0;
+		end;
+		
+	OnBossDead:
+		mapannounce instance_mapname("1@tnm3"),"Evil Fanatic : What... Your power... I cannot.. Who are you...??", 0x1, 0xff0000, 0x190, 12, 0, 0;
+		disablenpc instance_npcname("Loki's Memory#tnm3");
+		enablenpc instance_npcname("Loki#tnmloki03");
+		enablenpc instance_npcname("Treasure Chest#tnmboss");
+		donpcevent instance_npcname("#tnm3trap")+"::OnEnd";
+		donpcevent instance_npcname("#tnmskill")+"::OnEnd";
+		end;
+
+}
+
+1@tnm3,98,47,3	script	Loki's Memory#tnm3	4_ENERGY_BLUE,{
+	/*
+	mes "[Message]";
+	mes "Right click on Loki's Memory,";
+	mes "Select 'Status'.";
+	mes "Under 'Skill', select 'Soul Strike',";
+	mes "Use this skill to cancel the connection between Evil Fanatic and Satan Morroc,";
+	mes "You cannot damage Evil Fanatic otherwise.";
+	next;
+	*/
+	if (getcharid(0) != getpartyleader(getcharid(1),2)) {
+		mes "[Message]";
+		mes "When Loki's Memory disappears,";
+		mes "Party leader may summon him again.";
+		close;
+	}
+	.@merid = getmercinfo(1);
+	if(.@merid) {
+		if(.@merid!=2937) {
+			mes "[Message]";
+			mes "Please dismiss your current mecenary.";
+			close;
+		}
+		.@charid = getcharid(0,strcharinfo(0));
+		.@party_id = getcharid(1);
+		mes "[Message]";
+		mes "When Loki's Memory disappears,";
+		mes "Party leader may summon him again.";
+		mes "Do you wish to use Loki's Soul Strike?";
+		if (select("Yes","No") == 1) {
+			unitskilluseid 'BossID,"NPC_INVINCIBLEOFF",1;
+		}
+		close;
+	} else {
+			mes "[Message]";
+			mes "Do you wish to summon Loki's Memory again?";
+			next;
+			if(select("Summon","Cancel")==2){ close; }	
+			close2;
+			mercenary_create 2937,1800000;
+			end;
+	}
+	
+	OnInstanceInit:
+		disablenpc instance_npcname("Loki's Memory#tnm3");
+		end;
+}
+
+1@tnm3,0,0,0	script	#tnmskill	CLEAR_NPC,{
+		end;
+	OnStart:
+		initnpctimer;
+		monster(instance_mapname("1@tnm3"),1,1,"",2960,1);
+		'TNM_SKILL = $@mobid[0];
+		setunitdata 'TNM_SKILL, 29, 1;
+		unitskilluseid 'TNM_SKILL, 353, 1;
+		end;
+
+	OnTimer15000:
+		initnpctimer;
+		getunitdata 'BossID,.@bossdata;
+		.@x = .@bossdata[6];
+		.@y = .@bossdata[7];
+		switch(rand(2)) {
+			case 0:
+				setarray .@spiralx[0], 0,  4,  0, -6, -6, 0, 9, 10,   0, -13, -15, -14, -9;
+				setarray .@spiraly[0], 4, -1, -6, -3,  4, 9, 3, -5, -12,  -7,   0,   9, 16;
+				unittalk 'BossID,"Ohahaha£¡";
+				for(.@i = 1; .@i <= getarraysize(.@spiralx); ++.@i) {
+					sleep 200;
+					if('TNM_SKILL)
+						unitskillusepos 'TNM_SKILL,535,1,.@x+.@spiralx[.@i-1],.@y+.@spiraly[.@i-1];
+				}
+				break;
+			case 1:
+				unittalk 'BossID,"How does my Hell Flame taste?";
+				for(.@i = 1; .@i <= 5; ++.@i) {
+					sleep 500;
+					if('TNM_SKILL)
+						unitskillusepos 'TNM_SKILL,535,1,.@x+.@i*3,.@y+.@i*3;
+						unitskillusepos 'TNM_SKILL,535,1,.@x-.@i*3,.@y+.@i*3;
+						unitskillusepos 'TNM_SKILL,535,1,.@x-.@i*3,.@y-.@i*3;
+						unitskillusepos 'TNM_SKILL,535,1,.@x+.@i*3,.@y-.@i*3;
+				}
+				break;
+		}
+		end;
+		
+	OnEnd:
+		unitkill 'TNM_SKILL;
+		stopnpctimer;
+	OnInstanceInit:
+		'TNM_SKILL = 0;
+		end;		
+}
+
+1@tnm3,0,0,0	script	#tnm3trap	CLEAR_NPC,{
+		end;
+	OnStart:
+		monster(instance_mapname("1@tnm3"),1,1,"",2960,1);
+		'TNM_TRAP = $@mobid[0];
+		setunitdata 'TNM_TRAP, 29, 1;
+		unitskilluseid 'TNM_TRAP, 353, 1;
+		for(.@i = 1; .@i <= 10; ++.@i)
+			enablenpc instance_npcname("#tnm3trap"+.@i);
+		end;
+		
+	OnEnd:
+		unitkill 'TNM_TRAP;
+	OnInstanceInit:
+		'TNM_TRAP = 0;
+		for(.@i = 1; .@i <= 10; ++.@i) {
+			stopnpctimer instance_npcname("#tnm3trap"+.@i);
+			disablenpc instance_npcname("#tnm3trap"+.@i);
+		}
+		end;
+}
+
+1@tnm3,54,42,0	script	#tnm3trap1	HIDDEN_WARP_NPC,5,5,{
+	OnTouch_:
+		disablenpc instance_npcname(strnpcinfo(0));
+		getmapxy(.@map$,.@x,.@y,1);
+		if('TNM_TRAP)
+			unitskillusepos 'TNM_TRAP, 92, 5, .@x, .@y;
+		initnpctimer;
+		end;
+	
+	OnTimer45000:
+		enablenpc instance_npcname(strnpcinfo(0));
+		stopnpctimer;
+		end;
+}
+1@tnm3,92,47,3	script	Treasure Chest#tnmboss	4_TREASURE_BOX,{
+	if ( @deviltwritem == 1 ) {
+		end;
+	}
+	specialeffect 10;
+	@deviltwritem = 1;
+	setarray .@gain[0],1671,13094,16027,21010,28001,18120;
+	setarray .@equip_refine[0],0,1,2,3,4,5;
+	setarray .@enchant[0],4811,4810,4809,4808,4820,4815,4814,4813,4812,4791,4792,4793,4890,4891,4892;
+	getitem2 .@gain[rand(0,5)],1,1,.@equip_refine[rand(0,5)],0,0,0,0,.@enchant[rand(0,14)];
+	
+	//getmapxy(.@map$,.@x,.@y,1,instance_npcname(strnpcinfo(0)));
+	//getmapxy(.@map$,.@x,.@y,1,strnpcinfo(0));
+	//hideonnpc instance_npcname(strnpcinfo(0));
+	//makeitem .@gain[rand(6)],1,.@map$,.@x+rand(3)-1,.@y+rand(3)-1;
+	//makeitem .@gain[rand(6)],1,.@map$,.@x+rand(3)-1,.@y+rand(3)-1;
+	end;
+	
+	OnInstanceInit:
+		disablenpc instance_npcname(strnpcinfo(0));
+		end;
+}
+
+1@tnm3,98,47,3	script	Loki#tnmloki03	4_M_ROKI2,{
+	if(@TNMEXP < 2) {
+		mes "You can feel a steady stream of power";
+		mes "flowing through you as you speak to Loki.";
+		specialeffect2 35;
+		//setquest 114810;
+		//compquest 114810;
+		specialeffect2 58;
+		@TNMEXP = 2;
+		getexp 500000,0;
+		getexp 500000,0;
+		getexp 0,500000;
+		next;
+	}
+	mes "[Loki]";
+	mes "Well, that was easy.";
+	mes "This should put an end to the revival of Satan Morroc.";
+	mes "I guess we are done here.";
+	cutin "ep14_roki01.bmp", 2;
+	next;
+	mes "[Loki]";
+	mes "But.. this dead girl.";
+	mes "I still cannont comprehend her actions.";
+	next;
+	mes "Ask Loki how to return";
+	mes "to your own time.";
+	cutin "ep14_roki01.bmp", 255;
+	next;
+	mes "[Loki]";
+	mes "Oh that's right.";
+	mes "You don't belong to this timeline.";
+	mes "I can send you back if you wish.";
+	cutin "ep14_roki01.bmp", 2;
+	next;
+	if(select("Leave","Let me look around") == 2) {
+		mes "[Loki]";
+		mes "You shouldn't stay here for too long.";
+		close2;
+		cutin "ep14_roki01.bmp", 255;
+		end;
+	}
+	mes "[Loki]";
+	mes "Hope to meet you again.";
+	next;
+	mes "[Loki]";
+	mes "I am sending you back";
+	mes "with my remaining power.";
+	//setquest 114800;
+	//compquest 114800;
+	close2;
+	cutin "ep14_roki01.bmp", 255;
+//	if(checkquests(40025, PLAYTIME)){ completequest 40025;}
+	warp "dali02",134,112;
+	end;
+	
+	OnInstanceInit:
+		disablenpc instance_npcname("Loki#tnmloki03");
+		end;
+}
+
+1@tnm3,63,46,0	duplicate(#tnm3trap1)	#tnm3trap2	HIDDEN_WARP_NPC,5,5
+1@tnm3,59,66,0	duplicate(#tnm3trap1)	#tnm3trap3	HIDDEN_WARP_NPC,5,5
+1@tnm3,72,84,0	duplicate(#tnm3trap1)	#tnm3trap4	HIDDEN_WARP_NPC,5,5
+1@tnm3,90,74,0	duplicate(#tnm3trap1)	#tnm3trap5	HIDDEN_WARP_NPC,5,5
+1@tnm3,125,80,0	duplicate(#tnm3trap1)	#tnm3trap6	HIDDEN_WARP_NPC,5,5
+1@tnm3,138,71,0	duplicate(#tnm3trap1)	#tnm3trap7	HIDDEN_WARP_NPC,5,5
+1@tnm3,134,58,0	duplicate(#tnm3trap1)	#tnm3trap8	HIDDEN_WARP_NPC,5,5
+1@tnm3,138,46,0	duplicate(#tnm3trap1)	#tnm3trap9	HIDDEN_WARP_NPC,5,5
+1@tnm3,142,38,0	duplicate(#tnm3trap1)	#tnm3trap10	HIDDEN_WARP_NPC,5,5

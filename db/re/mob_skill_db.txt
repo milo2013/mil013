@@ -10964,6 +10964,18 @@
 2959,Torturous Redeemer@WZ_FIREPILLAR,attack,80,5,500,0,10000,no,around2,always,0,,,,,,,
 2959,Torturous Redeemer@SM_BASH,attack,5,5,500,0,5000,no,target,always,0,,,,,,,
 
+// Devil Tower
+2939,Evil Shadow@NPC_PIERCINGATT,chase,158,1,4000,0,5000,yes,target,always,0,,0x81,,,,,
+2939,Evil Shadow@NPC_CURSEATTACK,attack,181,5,3500,0,20000,yes,target,always,0,,0x81,,,,,
+2940,Evil Shadow@NPC_DARKSTRIKE,attack,340,1,3000,0,5000,yes,target,always,0,,0x81,,,,,
+2941,Evil Shadow@NPC_CRITICALSLASH,chase,170,1,3000,0,5000,yes,target,always,0,,0x81,,,,,
+2941,Evil Shadow@NPC_PETRIFYATTACK,attack,180,1,3500,0,5000,yes,target,always,0,,0x81,,,,,
+2942,Evil Fanatics@EL_FIRE_WAVE,attack,8428,5,1000,0,15000,yes,target,always,10,,,,,,,
+2942,Evil Fanatics@RL_FIREDANCE,attack,2561,5,800,0,15000,yes,target,always,10,,0x81,,,,,
+2942,Evil Fanatics@EL_CIRCLE_OF_FIRE,attack,8401,1,2500,0,60000,yes,target,always,10,,0x81,,,,,
+2942,Evil Fanatics@NPC_INVINCIBLE,chase,685,1,10000,0,60000,yes,self,always,0,,,,,,,
+2942,Evil Fanatics@NPC_INVINCIBLE,attack,685,1,10000,0,60000,yes,self,always,0,,,,,,,
+
 // Horror Toy Factory
 2987,Decorated Evil Tree@AS_GRIMTOOTH,chase,137,5,2000,0,5000,yes,target,always,0,,,,,,,
 2987,Decorated Evil Tree@NPC_CURSEATTACK,attack,181,3,1000,0,5000,yes,target,always,0,,,,,,6,

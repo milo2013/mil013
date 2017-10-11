@@ -85,7 +85,7 @@
 41118,Acid_Demonstration_Box_100,Acid Demonstration Box 100,2,20,,10,,,,,0xFFFFFFFF,63,2,,,,,,{ getitem 7136,100; getitem 7135,100; },{},{}
 41119,Margaretha_Scroll,Margaretha Contract,2,0,,10,,,,,0xFFFFFFFF,63,2,,,,,,{ mercenary_create 2001,1800000; },{},{}
 41120,Super_Potion,Super Potion,0,600,,2,,,,,0xFFFFFFFF,63,2,,,,,,{ percentheal 100,100; },{},{}
-41121,Milenia_Certificate,Milenia Refine Certificate,0,10000000,10000000,0,,,,,,,,,,,,,{},{},{}
+41121,Milenia_Certificate,Milenia Refine Certificate,0,20000000,10000000,0,,,,,,,,,,,,,{},{},{}
 41122,Milenia_Certificate_Box_30,Milenia Refine Certificate Box,18,10,,10,,,,0,0xFFFFFFFF,63,2,,,,,,{ rentitem 41121,2592000; },{},{}
 41123,Rare_Mithril,Rare Mithril,3,20,,1,,,,,,,,,,,,,{},{},{}
 41124,Milenia_Certificate_Box_3,Milenia Refine Certificate Box,18,10,,10,,,,0,0xFFFFFFFF,63,2,,,,,,{ rentitem 41121,259200; },{},{}
@@ -120,7 +120,7 @@
 41134,FishingBox,FishingBox,2,0,,20,,,,,0xFFFFFFFF,63,2,,,,,,{ getitem 41134,1; callfunc "Fishing_Box_Menu";},{},{}
 41135,Fish_Hook,Hook Level-1,3,6,,10,,,,,,,,,,,,,{},{},{}
 41136,Fish_Line,Line Level-1,3,6,,10,,,,,,,,,,,,,{},{},{}
-41137,Rotten_Fish_F,Rotten Fish,3,6,,10,,,,,,,,,,,,,{},{},{}
+41137,Rotten_Fish_F,[F] Rotten Fish,3,6,,10,,,,,,,,,,,,,{},{},{}
 41138,Fish_,Fishing Rod,5,50,,400,17,,1,3,0x3E9F7EEF,63,2,2,1,1,1,1,{},{},{}
 41139,Manual_,Fishing Manual,2,0,,20,,,,,0xFFFFFFFF,63,2,,,,,,{ getitem 41139,1; callfunc "Fishing_Manual";},{},{}
 41140,Smelly_Old_Shoes,Smelly Old Shoes,4,150,,400,,10,,0,0xFFFFFFFE,63,2,64,,0,1,0,{},{},{}
@@ -134,11 +134,11 @@
 41148,F_Medal,Fishing Medal,3,2,,0,,,,,,,,,,,,,{},{},{}
 41149,F_Bucket,Fishing Bucket,4,0,,0,,5,,0,0xFFFFFFFF,63,2,32,,0,0,2,{ bonus bAgi,2; bonus2 bSubEle,Ele_Neutral,10; bonus3 bAutoSpellWhenHit,"PR_KYRIE",10,10; bonus bMdef,1; },{},{}
 41150,F_Ear_Wing,Fishing Ear Wing,4,0,,100,,0,,0,0xFFFFFFFF,63,2,512,,10,0,584,{ bonus bLuk,1; bonus3 bAutoSpellWhenHit,"MG_COLDBOLT",5,5; },{},{}
-6039,Piece_Of_Fish_F,Piece of Fish,3,0,,10,,,,,,,,,,,,,{},{},{}
-41151,Delicious_Fish_F,Fresh Fish,0,55000,50000,20,,,,,0xFFFFFFFF,63,2,,,,,,{ itemheal rand(5000,5500),0; },{},{}
-41156,Piece_Of_Fish_F,Piece of Fish,0,1500,1000,20,,,,,0xFFFFFFFF,63,2,,,,,,{itemheal rand(1000,1500),0;},{},{}
-41157,Fish_With_Blue_Back_F,Fish With Blue Back,0,30000,25000,20,,,,,0xFFFFFFFF,63,2,,,,,,{itemheal rand(4000,4500),0;},{},{}
-41158,Unknown_Fish_F,Unknown Fish,0,15000,10000,20,,,,,0xFFFFFFFF,63,2,,,,,,{itemheal rand(2000,2500),0;},{},{}
+6039,Piece_Of_Fish,Piece of Fish,3,0,,10,,,,,,,,,,,,,{},{},{}
+41151,Delicious_Fish_F,[F] Fresh Fish,0,110000,55000,20,,,,,0xFFFFFFFF,63,2,,,,,,{ itemheal rand(5000,5500),0; },{},{}
+41156,Piece_Of_Fish_F,[F] Piece of Fish,0,30000,1500,20,,,,,0xFFFFFFFF,63,2,,,,,,{itemheal rand(1000,1500),0;},{},{}
+41157,Fish_With_Blue_Back_F,[F] Fish With Blue Back,0,60000,30000,20,,,,,0xFFFFFFFF,63,2,,,,,,{itemheal rand(4000,4500),0;},{},{}
+41158,Unknown_Fish_F,[F] Unknown Fish,0,30000,15000,20,,,,,0xFFFFFFFF,63,2,,,,,,{itemheal rand(2000,2500),0;},{},{}
 
 // NEW ITEM 
 41162,Hero_Badge,Hero Badge,3,0,,0,,,,,,,,,,,,,{},{},{}
@@ -186,7 +186,7 @@
 41201,Merchant_Figure_II_Box_B,Merchant Figure II Box,18,10,,10,,,,0,0xFFFFFFFF,63,2,,,,,,{ rentitem 41176,604800; },{},{}
 
 41202,Figure_Rent_Permit,Figure Rent Permit,3,0,,0,,,,,,,,,,,,,{},{},{}
-41203,Gold_Fish,Gold Fish,0,10,10,20,,,,,0xFFFFFFFF,63,2,,,,,,{ itemheal rand(5000,5500),0; },{},{}
+41203,Gold_Fish,Gold Fish,0,20,10,20,,,,,0xFFFFFFFF,63,2,,,,,,{ itemheal rand(5000,5500),0; },{},{}
 41204,Exchange_Permit,Ladder Exchange Permit,3,0,,0,,,,,,,,,,,,,{},{},{}
 41205,Exchange_Permit_2,Ladder Exchange Permit II,3,0,,0,,,,,,,,,,,,,{},{},{}
 
@@ -230,8 +230,8 @@
 41233,Shop Permit,Shop Permit,2,10,,10,,,,,0xFFFFFFFF,63,2,,,,,,{ getitem 41233,1; callfunc "UniversalShopFunc"; },{},{}
 41234,Broken_Picklock,Broken Picklock,3,6,,10,,,,,,,,,,,,,{},{},{}
 41235,Picklock,Picklock,3,6,,10,,,,,,,,,,,,,{},{},{}
-41236,Bloody_Page,Bloody Page,3,6,,10,,,,,,,,,,,,,{},{},{}
-41237,Bloody_Edge,Bloody Edge,3,6,,10,,,,,,,,,,,,,{},{},{}
+41236,Bloody_Page_C,[C] Bloody Page,3,6,,10,,,,,,,,,,,,,{},{},{}
+41237,Bloody_Edge_C,[C] Bloody Edge,3,6,,10,,,,,,,,,,,,,{},{},{}
 41238,Book_About_True_Life,Book About True Life,2,10,,10,,,,,0xFFFFFFFF,63,2,,,,,,{},{},{}
 41239,Crystal_Of_Feardom,Crystal Of Feardom,3,6,,10,,,,,,,,,,,,,{},{},{}
 41240,Crystal_Of_Feardom_Fragment,Crystal Of Feardom Fragment,3,6,,10,,,,,,,,,,,,,{},{},{}
@@ -266,7 +266,7 @@
 27012,Kick_Step_Card,Kick Step Card,6,20,,10,,,,,,,,16,,,,,{ bonus bMaxHPrate,8; if((eaclass()&EAJ_THIRDMASK) == EAJ_MECHANIC){ bonus bLongAtkDef,30; } },{},{}
 27013,Kick_&_Kick_Card,Kick & Kick Card,6,20,,10,,,,,,,,2,,,,,{ bonus2 bSkillAtk,"NC_VULCANARM",10+((getrefine()>=10)*20); },{},{}
 
-41259,Avant_Research_Data,Avant Research Data,2,10,,10,,,,,0xFFFFFFFF,63,2,,,,,,{callfunc "KatokFunc2";},{},{}
+41259,Avant_Research_Data_C,[C] Avant Research Data,2,10,,10,,,,,0xFFFFFFFF,63,2,,,,,,{callfunc "KatokFunc2";},{},{}
 41260,Aura_Of_Vicious,Aura of Vicious,3,6,,10,,,,,,,,,,,,,{},{},{}
 41261,VIP_Certificate,VIP Certificate,2,10,,1,,,,,0xFFFFFFFF,63,2,,,,,,{callfunc "VipFunc";},{},{}
 41262,Premium_Storage_Pass,Premium Storage Pass,3,6,,10,,,,,,,,,,,,,{},{},{}

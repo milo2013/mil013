@@ -416,8 +416,8 @@ OnStopEvent:
         end;
  
 OnInit:
-		bindatcmd "enableds",strnpcinfo(3)+"::OnGMStartEvent";
-		bindatcmd "disableds",strnpcinfo(3)+"::OnGMStopEvent";
+		//bindatcmd "enableds",strnpcinfo(3)+"::OnGMStartEvent";
+		//bindatcmd "disableds",strnpcinfo(3)+"::OnGMStopEvent";
 		hideonnpc "Devil Square Guardian#1";
 		hideonnpc "Devil Square Guardian#2";
 		end;

@@ -474,7 +474,7 @@ I21: Restrict("RE");
 I22: Restrict("RE");	
 	Go("dali02",138,82);
 I23: Restrict("RE");	
-	Go("milenia",31,145);
+	Go("kampung",27,56);
 I24: Restrict("RE");	
 	Go("cmd_fild07",54,276);
 // --------------------------------------------------
