@@ -14,6 +14,9 @@ switch(select("^0055FF[ Henshiiin!! ] ^000000:[ Reset ]:^777777Not Interested!^0
 			Class == 4070 || // Sura Regular
 			Class == 4077 || // Sura Chaser Reborn
 			Class == 4106 || // Sura Chaser Baby
+			Class == 4067 || // Sorcerer Regular
+			Class == 4074 || // Sorcerer Chaser Reborn
+			Class == 4103 || // Sorcerer Chaser Baby
 			Class == 4072 || // Shadow Chaser Regular
 			Class == 4079 || // Shadow Chaser Reborn
 			Class == 4108 || // Shadow Chaser Baby
@@ -73,6 +76,9 @@ switch(select("^0055FF[ Henshiiin!! ] ^000000:[ Reset ]:^777777Not Interested!^0
 			Class == 4070 || // Sura Regular
 			Class == 4077 || // Sura Chaser Reborn
 			Class == 4106 || // Sura Chaser Baby
+			Class == 4067 || // Sorcerer Regular
+			Class == 4074 || // Sorcerer Chaser Reborn
+			Class == 4103 || // Sorcerer Chaser Baby
 			Class == 4072 || // Shadow Chaser Regular
 			Class == 4079 || // Shadow Chaser Reborn
 			Class == 4108 || // Shadow Chaser Baby
