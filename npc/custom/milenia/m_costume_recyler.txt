@@ -1,0 +1,588 @@
+//===== rAthena Script =======================================
+//= Sample: Dynamic Shop
+//===== By: ==================================================
+//= Lance
+//===== Last Updated: ========================================
+//= 20140208
+//===== Description: ========================================= 
+//= Contains commands needed for a dynamic shop.
+//============================================================
+
+// Dummy shop to insert items into:
+-	shop	costume_recycler	-1,501:50.
+
+kampung,67,56,11	script	Costume Recycler	4_F_01,{
+	dispbottom "[ Costume Recycler ] : You have "+#rPoints+" Recycling Points";
+	callshop "costume_recycler",0;
+	npcshopattach "costume_recycler";
+	end;
+	
+
+
+OnSellItem:
+	for (.@i = 0; .@i < getarraysize(@sold_nameid); .@i++) {
+		if (countitem(@sold_nameid[.@i]) < @sold_quantity[.@i] || @sold_quantity[.@i] <= 0) {
+			mes "omgh4x!";
+			close;
+		} 
+		
+		
+		else if (@sold_nameid[.@i] == 19501){delitem 19501, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 19502){delitem 19502, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 19503){delitem 19503, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 19508){delitem 19508, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 19523){delitem 19523, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 19524){delitem 19524, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 19526){delitem 19526, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 19527){delitem 19527, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 19528){delitem 19528, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 19549){delitem 19549, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 19550){delitem 19550, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 19551){delitem 19551, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 19552){delitem 19552, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 19578){delitem 19578, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 19580){delitem 19580, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 19591){delitem 19591, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 19625){delitem 19625, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 19628){delitem 19628, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 19629){delitem 19629, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 19630){delitem 19630, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 19632){delitem 19632, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 19633){delitem 19633, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 19634){delitem 19634, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 19635){delitem 19635, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 19636){delitem 19636, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 19637){delitem 19637, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 19638){delitem 19638, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 19639){delitem 19639, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 19719){delitem 19719, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 19735){delitem 19735, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 19789){delitem 19789, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 19790){delitem 19790, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 19791){delitem 19791, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 19792){delitem 19792, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 19793){delitem 19793, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 19794){delitem 19794, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 19795){delitem 19795, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 19796){delitem 19796, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 19797){delitem 19797, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 19799){delitem 19799, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 19828){delitem 19828, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 19829){delitem 19829, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 19832){delitem 19832, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 19843){delitem 19843, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 19845){delitem 19845, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 19847){delitem 19847, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 19848){delitem 19848, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 19849){delitem 19849, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 19850){delitem 19850, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 19858){delitem 19858, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 19861){delitem 19861, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 19864){delitem 19864, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 19865){delitem 19865, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 19889){delitem 19889, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 19913){delitem 19913, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 19939){delitem 19939, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 19941){delitem 19941, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 19982){delitem 19982, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 19983){delitem 19983, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 20059){delitem 20059, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 20090){delitem 20090, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 20091){delitem 20091, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 20092){delitem 20092, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 20093){delitem 20093, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 20114){delitem 20114, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 20118){delitem 20118, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 20119){delitem 20119, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 20120){delitem 20120, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 20129){delitem 20129, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 20137){delitem 20137, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 20151){delitem 20151, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 20158){delitem 20158, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 20178){delitem 20178, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 20186){delitem 20186, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 20187){delitem 20187, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 20188){delitem 20188, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 20189){delitem 20189, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 20203){delitem 20203, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 20236){delitem 20236, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 20265){delitem 20265, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 20271){delitem 20271, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 20295){delitem 20295, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 20296){delitem 20296, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 20330){delitem 20330, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 20073){delitem 20073, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 20049){delitem 20049, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 20050){delitem 20050, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 20024){delitem 20024, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 19888){delitem 19888, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 19902){delitem 19902, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 19925){delitem 19925, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 19885){delitem 19885, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 19844){delitem 19844, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 19783){delitem 19783, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 19798){delitem 19798, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 19830){delitem 19830, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 19743){delitem 19743, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 19775){delitem 19775, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 20051){delitem 20051, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 20055){delitem 20055, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 20057){delitem 20057, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 20432){delitem 20432, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 20433){delitem 20433, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 20434){delitem 20434, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 20437){delitem 20437, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 20438){delitem 20438, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 20452){delitem 20452, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 20455){delitem 20455, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 20459){delitem 20459, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 20464){delitem 20464, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 20470){delitem 20470, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 19856){delitem 19856, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 19765){delitem 19765, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 19779){delitem 19779, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 19853){delitem 19853, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 19534){delitem 19534, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 19539){delitem 19539, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 19542){delitem 19542, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 19559){delitem 19559, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 19561){delitem 19561, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 19562){delitem 19562, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 19568){delitem 19568, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 19570){delitem 19570, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 19571){delitem 19571, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 19579){delitem 19579, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 19599){delitem 19599, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 19666){delitem 19666, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 19739){delitem 19739, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 19752){delitem 19752, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 20070){delitem 20070, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 20103){delitem 20103, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 20061){delitem 20061, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 19504){delitem 19504, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 19505){delitem 19505, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 19583){delitem 19583, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 19617){delitem 19617, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 19677){delitem 19677, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 19695){delitem 19695, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 19690){delitem 19690, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 19709){delitem 19709, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 19717){delitem 19717, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 19732){delitem 19732, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 19749){delitem 19749, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 20074){delitem 20074, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 20127){delitem 20127, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 20157){delitem 20157, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 20159){delitem 20159, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 20180){delitem 20180, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 20161){delitem 20161, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 20182){delitem 20182, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 20184){delitem 20184, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 20205){delitem 20205, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 20244){delitem 20244, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 19500){delitem 19500, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 20272){delitem 20272, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 19619){delitem 19619, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 19734){delitem 19734, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 19529){delitem 19529, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 19533){delitem 19533, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 19511){delitem 19511, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 19512){delitem 19512, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 19514){delitem 19514, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 19521){delitem 19521, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 19522){delitem 19522, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 19525){delitem 19525, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 19541){delitem 19541, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 19545){delitem 19545, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 19547){delitem 19547, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 19548){delitem 19548, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 19553){delitem 19553, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 19554){delitem 19554, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 19581){delitem 19581, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 19582){delitem 19582, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 19592){delitem 19592, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 19593){delitem 19593, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 19594){delitem 19594, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 19597){delitem 19597, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 19610){delitem 19610, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 19611){delitem 19611, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 19614){delitem 19614, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 19615){delitem 19615, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 19618){delitem 19618, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 19620){delitem 19620, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 19621){delitem 19621, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 19622){delitem 19622, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 19627){delitem 19627, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 19640){delitem 19640, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 19644){delitem 19644, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 19646){delitem 19646, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 19647){delitem 19647, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 19648){delitem 19648, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 19656){delitem 19656, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 19657){delitem 19657, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 19658){delitem 19658, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 19659){delitem 19659, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 19662){delitem 19662, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 19665){delitem 19665, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 19668){delitem 19668, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 19670){delitem 19670, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 19671){delitem 19671, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 19687){delitem 19687, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 19701){delitem 19701, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 19702){delitem 19702, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 19707){delitem 19707, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 19710){delitem 19710, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 19713){delitem 19713, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 19715){delitem 19715, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 19716){delitem 19716, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 19720){delitem 19720, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 19725){delitem 19725, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 19726){delitem 19726, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 19727){delitem 19727, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 19738){delitem 19738, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 19741){delitem 19741, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 19744){delitem 19744, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 19747){delitem 19747, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 19754){delitem 19754, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 19757){delitem 19757, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 19759){delitem 19759, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 19761){delitem 19761, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 19763){delitem 19763, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 19781){delitem 19781, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 19782){delitem 19782, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 19784){delitem 19784, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 19785){delitem 19785, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 19786){delitem 19786, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 19821){delitem 19821, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 19833){delitem 19833, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 19834){delitem 19834, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 19842){delitem 19842, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 19846){delitem 19846, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 19851){delitem 19851, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 19852){delitem 19852, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 19862){delitem 19862, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 19863){delitem 19863, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 19876){delitem 19876, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 19878){delitem 19878, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 19882){delitem 19882, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 19886){delitem 19886, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 19887){delitem 19887, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 19931){delitem 19931, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 19932){delitem 19932, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 19956){delitem 19956, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 19984){delitem 19984, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 19986){delitem 19986, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 19987){delitem 19987, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 19988){delitem 19988, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 19996){delitem 19996, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 20004){delitem 20004, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 20013){delitem 20013, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 20017){delitem 20017, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 20023){delitem 20023, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 20040){delitem 20040, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 20078){delitem 20078, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 20084){delitem 20084, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 20094){delitem 20094, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 20095){delitem 20095, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 20096){delitem 20096, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 20097){delitem 20097, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 20123){delitem 20123, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 20124){delitem 20124, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 20125){delitem 20125, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 20126){delitem 20126, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 31030){delitem 31030, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 31034){delitem 31034, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 31035){delitem 31035, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 31036){delitem 31036, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 31037){delitem 31037, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 31044){delitem 31044, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 31184){delitem 31184, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 19507){delitem 19507, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 19515){delitem 19515, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 19516){delitem 19516, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 19518){delitem 19518, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 19519){delitem 19519, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 19520){delitem 19520, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 19537){delitem 19537, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 19543){delitem 19543, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 20228){delitem 20228, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 20232){delitem 20232, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 20288){delitem 20288, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 20291){delitem 20291, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 20347){delitem 20347, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 20371){delitem 20371, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 20402){delitem 20402, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 20403){delitem 20403, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 31163){delitem 31163, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 31171){delitem 31171, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 19604){delitem 19604, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 19607){delitem 19607, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 19682){delitem 19682, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 19685){delitem 19685, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 19777){delitem 19777, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 19778){delitem 19778, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 19999){delitem 19999, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 31165){delitem 31165, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 20000){delitem 20000, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 20086){delitem 20086, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 20087){delitem 20087, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 20199){delitem 20199, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 20201){delitem 20201, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 20268){delitem 20268, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 20279){delitem 20279, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 20323){delitem 20323, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 20324){delitem 20324, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 20354){delitem 20354, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 20355){delitem 20355, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 20366){delitem 20366, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 20367){delitem 20367, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 20419){delitem 20419, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 20420){delitem 20420, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 20450){delitem 20450, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 20456){delitem 20456, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 20114){delitem 20114, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 20117){delitem 20117, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 19994){delitem 19994, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 31049){delitem 31049, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 31050){delitem 31050, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 31071){delitem 31071, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 31072){delitem 31072, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 31103){delitem 31103, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 31104){delitem 31104, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 31173){delitem 31173, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 31175){delitem 31175, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 19916){delitem 19916, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 19928){delitem 19928, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 20014){delitem 20014, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 20015){delitem 20015, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 20083){delitem 20083, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 20098){delitem 20098, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 20173){delitem 20173, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 20174){delitem 20174, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 20243){delitem 20243, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 20256){delitem 20256, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 20312){delitem 20312, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 20316){delitem 20316, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 20382){delitem 20382, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 20383){delitem 20383, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 20451){delitem 20451, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 20461){delitem 20461, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 20448){delitem 20448, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 20449){delitem 20449, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 20038){delitem 20038, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 20248){delitem 20248, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 31046){delitem 31046, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 31047){delitem 31047, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 31084){delitem 31084, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 31085){delitem 31085, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 31117){delitem 31117, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 31118){delitem 31118, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 20194){delitem 20194, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 20204){delitem 20204, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 20238){delitem 20238, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 20241){delitem 20241, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 19530){delitem 19530, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 19532){delitem 19532, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 19569){delitem 19569, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 19570){delitem 19570, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 31130){delitem 31130, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 31131){delitem 31131, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 19575){delitem 19575, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 19577){delitem 19577, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 19613){delitem 19613, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 19623){delitem 19623, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 19661){delitem 19661, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 19686){delitem 19686, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 19755){delitem 19755, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 19756){delitem 19756, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 19841){delitem 19841, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 19857){delitem 19857, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 19957){delitem 19957, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 19961){delitem 19961, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 19972){delitem 19972, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 19973){delitem 19973, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 20030){delitem 20030, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 20039){delitem 20039, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 20076){delitem 20076, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 20077){delitem 20077, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 20143){delitem 20143, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 20144){delitem 20144, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 20168){delitem 20168, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 20169){delitem 20169, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 31145){delitem 31145, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 31147){delitem 31147, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 31148){delitem 31148, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 31160){delitem 31160, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 31162){delitem 31162, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 31093){delitem 31093, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 31095){delitem 31095, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 31120){delitem 31120, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 31121){delitem 31121, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 31123){delitem 31123, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 31125){delitem 31125, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 31133){delitem 31133, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		
+		else if (@sold_nameid[.@i] == 20201){delitem 20201, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 20201){delitem 20201, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 20201){delitem 20201, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 20201){delitem 20201, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 20201){delitem 20201, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 20201){delitem 20201, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 20201){delitem 20201, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 20201){delitem 20201, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 20201){delitem 20201, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 20201){delitem 20201, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 20201){delitem 20201, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 20201){delitem 20201, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 20201){delitem 20201, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 20201){delitem 20201, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 20201){delitem 20201, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 20201){delitem 20201, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 20201){delitem 20201, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 20201){delitem 20201, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 20201){delitem 20201, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 20201){delitem 20201, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 20201){delitem 20201, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 20201){delitem 20201, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 20201){delitem 20201, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 20201){delitem 20201, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 20201){delitem 20201, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 20201){delitem 20201, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 20201){delitem 20201, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 20201){delitem 20201, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 20201){delitem 20201, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 20201){delitem 20201, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 20201){delitem 20201, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 20201){delitem 20201, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 20201){delitem 20201, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 20201){delitem 20201, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 20201){delitem 20201, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 20201){delitem 20201, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 20201){delitem 20201, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 20201){delitem 20201, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 20201){delitem 20201, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 20201){delitem 20201, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 20201){delitem 20201, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 20201){delitem 20201, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 20201){delitem 20201, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 20201){delitem 20201, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 20201){delitem 20201, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 20201){delitem 20201, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 20201){delitem 20201, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 20201){delitem 20201, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 20201){delitem 20201, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 20201){delitem 20201, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 20201){delitem 20201, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 20201){delitem 20201, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 20201){delitem 20201, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 20201){delitem 20201, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 20201){delitem 20201, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 20201){delitem 20201, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 20201){delitem 20201, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 20201){delitem 20201, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 20201){delitem 20201, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 20201){delitem 20201, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 20201){delitem 20201, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 20201){delitem 20201, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 20201){delitem 20201, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 20201){delitem 20201, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 20201){delitem 20201, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 20201){delitem 20201, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 20201){delitem 20201, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 20201){delitem 20201, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 20201){delitem 20201, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 20201){delitem 20201, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 20201){delitem 20201, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 20201){delitem 20201, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 20201){delitem 20201, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 20201){delitem 20201, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 20201){delitem 20201, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 20201){delitem 20201, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 20201){delitem 20201, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 20201){delitem 20201, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 20201){delitem 20201, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 20201){delitem 20201, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 20201){delitem 20201, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 20201){delitem 20201, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 20201){delitem 20201, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 20201){delitem 20201, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 20201){delitem 20201, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 20201){delitem 20201, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 20201){delitem 20201, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 20201){delitem 20201, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 20201){delitem 20201, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 20201){delitem 20201, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 20201){delitem 20201, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 20201){delitem 20201, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 20201){delitem 20201, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 20201){delitem 20201, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 20201){delitem 20201, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 20201){delitem 20201, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 20201){delitem 20201, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 20201){delitem 20201, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 20201){delitem 20201, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 20201){delitem 20201, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 20201){delitem 20201, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 20201){delitem 20201, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 20201){delitem 20201, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 20201){delitem 20201, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 20201){delitem 20201, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		else if (@sold_nameid[.@i] == 20201){delitem 20201, @sold_quantity[.@i];set $@rcouponleft, $@rcouponleft + @sold_quantity[.@i];set #rPoints, #rPoints + @sold_quantity[.@i]*1;}
+		
+		 else {
+			mes " [ Costume Recycler ]";
+			mes "Sorry, I don't need your items.";
+			close;
+		}
+	}
+	deletearray @sold_quantity, getarraysize(@sold_quantity);
+	deletearray @sold_nameid, getarraysize(@sold_nameid);
+	mes " [ Costume Recycler ]";
+	mes "Deal completed.";
+	mes " You have "+#rPoints+" Recycling Points.";
+	dispbottom "[ Costume Recycler ] : You have "+#rPoints+" Recycling Points";
+	close;
+
+OnBuyItem:
+	for (.@i = 0; .@i < getarraysize(@bought_nameid); .@i++){
+		if (@bought_quantity[.@i] <= 0){
+			mes " [ Costume Recycler ]";
+			mes "Congratulations!";
+			mes "Remaining Coupon Available : "+rcouponleft+"";
+			dispbottom "[ Costume Recycler ] : You have "+#rPoints+" Recycling Points";
+			close;
+		} else if (@bought_nameid[.@i] == 6697){
+			if (@bought_quantity[.@i] > $@rcouponleft){
+				if ($@rcouponleft > 0){
+					@bought_quantity[.@i] = $@rcouponleft;
+				} else {
+					mes " [ Costume Recycler ]";
+					mes "We are out of Gashapon Coupon!";
+					close;
+				}
+			}
+			if (#rPoints >= 15*@bought_quantity[.@i]){
+				set #rPoints, #rPoints - 15*@bought_quantity[.@i];
+				getitem 6697, @bought_quantity[.@i];
+				$@rcouponleft -= @bought_quantity[.@i];
+			} else {
+				mes " [ Costume Recycler ]";
+				mes "You have insufficient Recycling Points.";
+				dispbottom "[ Costume Recycler ] : You have "+#rPoints+" Recycling Points";
+				close;
+			}
+		}
+	}
+	deletearray @bought_quantity, getarraysize(@bought_quantity);
+	deletearray @bought_nameid, getarraysize(@bought_nameid);
+	mes " [ Costume Recycler ]";
+	mes "Trade done.";
+	mes " You have "+#rPoints+" Recycling Points.";
+	dispbottom "[ Costume Recycler ] : You have "+#rPoints+" Recycling Points";
+	close;
+
+OnInit:
+	npcshopitem "costume_recycler", 6697,15;
+	$@rcouponleft = 10;
+	end;
+}

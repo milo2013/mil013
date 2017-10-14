@@ -231,6 +231,18 @@ callfunc "Gasha03Func";
 end;
 }
 
+function	script	Vip1HOURFunc	{
+
+dispbottom "[ VIP System ]";
+atcommand "@vip +1h "+strcharinfo(0)+"";
+dispbottom "=========================================";
+dispbottom "Type @checkvip to check your VIP Status";
+dispbottom "Type @storage2 to Open Premium and VIP Storage";
+dispbottom "=========================================";
+
+end;
+}
+
 function	script	TokenLimitFunc	{
 
 OnPCLoadMapEvent:
@@ -287,6 +299,28 @@ function	script	FrozenBoxFunc	{
 	getitem 41258,rand (1,30);
 	dispbottom "Congratulations!! You got BONUS Gashapon Coupon!!";
 	}
+	
+	}
+	
+function	script	EventBoxFunc	{
+		
+	setarray .@items[0],
+	"674", 		// Mithril Coin
+	"41123",	// Rare Mithril
+	"6697",		// Costume Exchange Coupon
+	"12365","12362","12372","12366","12368","12364","12395","12357", // Event Pet Taming
+	"6238",		// +11 Refine Ticket Weapon
+	"6239",		// +11 Refine Ticket Armor
+	"6697",		// VIP Certificate 1 Hour << Later
+	"41244",	// Premium Dokebi Membership Pass 1 Day
+	"12246",	// Mystical Card Album
+	"41250";	// Crimson Elemental Guide
+	
+	set .item_id, .@items[rand (getarraysize(.@items)) ];
+	set .item_amount, 1;
+	//debugmes " "+(.@eventRandom)+" ";
+	
+	getitem .item_id, .item_amount;
 	
 	}
 	
