@@ -57,6 +57,7 @@ switch(select("^0055FF[ Henshiiin!! ] ^000000:[ Reset ]:^777777Not Interested!^0
 		specialeffect2 EF_SIGHTRASHER;
 		misceffect 610;
 		setlook LOOK_BODY2,1;
+		setlook LOOK_CLOTHES_COLOR,0;
 		close;
 		end;
 	}
@@ -65,6 +66,7 @@ switch(select("^0055FF[ Henshiiin!! ] ^000000:[ Reset ]:^777777Not Interested!^0
 		mes "Hmmmmmmmmm..";
 		close;
 		setlook LOOK_BODY2,0;
+		setlook LOOK_CLOTHES_COLOR,0;
 		end;
 	}
 	
@@ -117,6 +119,7 @@ switch(select("^0055FF[ Henshiiin!! ] ^000000:[ Reset ]:^777777Not Interested!^0
 		mes "[ Super Stylist ]";	
 		mes "Nahhh! Booooriinnnggg!!";
 		setlook LOOK_BODY2,0;
+		setlook LOOK_CLOTHES_COLOR,0;
 		close;
 		end;
 	}
@@ -125,6 +128,7 @@ switch(select("^0055FF[ Henshiiin!! ] ^000000:[ Reset ]:^777777Not Interested!^0
 		mes "[ Super Stylist ]";	
 		mes "Hmmmmmmmmm..";
 		setlook LOOK_BODY2,0;
+		setlook LOOK_CLOTHES_COLOR,0;
 		close;
 		end;
 	}

@@ -146,10 +146,11 @@ kampung,71,56,11	script	Gashapon Machine	506,{
 
 function	script	Gasha01Func	{
 	//29148,Leo_Stone/Common
-
-	.@item_rate = rand(1,10);
 	
-	if ((.@item_rate) >= 1) && ((.@item_rate)<= 10) {
+	if (checkweight(1201,1) == 0) {
+		dispbottom "You're carrying too much stuff. Why don't you put some of it away, and then try again?";
+		getitem 41252,1;
+	}
 
 	setarray .@items[0],
 	"19501","19502","19503","19508","19523","19524","19526","19527","19528","19549","19550","19551",
@@ -168,16 +169,16 @@ function	script	Gasha01Func	{
 	set .item_amount, 1;
 	
 	getitem .item_id, .item_amount;
-	}
 
 }
 
 function	script	Gasha02Func	{
 	//29149,Pisces_Stone/Uncommon
-
-	.@item_rate = rand(1,10);
 	
-	if ((.@item_rate) >= 1) && ((.@item_rate)<= 10) {
+	if (checkweight(1201,1) == 0) {
+		dispbottom "You're carrying too much stuff. Why don't you put some of it away, and then try again?";
+		getitem 41253,1;
+	}
 
 	setarray .@items[0],
 	"19511","19512","19514","19521","19522","19525","19541","19545","19547","19548","19553","19554",
@@ -200,15 +201,14 @@ function	script	Gasha02Func	{
 	
 	getitem .item_id, .item_amount;
 	}
-
-}
 	
 function	script	Gasha03Func	{
 	//29150,Capricorn_Stone/Rare
-
-	.@item_rate = rand(1,10);
 	
-	if ((.@item_rate) >= 1) && ((.@item_rate)<= 10) {
+	if (checkweight(1201,1) == 0) {
+		dispbottom "You're carrying too much stuff. Why don't you put some of it away, and then try again?";
+		getitem 41254,1;
+	}
 
 	setarray .@items[0],
 	"19506","19509","19510","19517","19546","19563","19564","19566","19574","19575","19577","19584",
@@ -237,14 +237,13 @@ function	script	Gasha03Func	{
 	getitem .item_id, .item_amount;
 	}
 
-}
-
 function	script	Gasha04Func	{
 	//29151,Aquarius_Stone/Epic
-
-	.@item_rate = rand(1,10);
 	
-	if ((.@item_rate) >= 1) && ((.@item_rate)<= 10) {
+	if (checkweight(1201,1) == 0) {
+		dispbottom "You're carrying too much stuff. Why don't you put some of it away, and then try again?";
+		getitem 41255,1;
+	}
 
 	setarray .@items[0],
 	"19507","19515","19516","19518","19519","19520","19537","19543","19544","19573","19576","19587",
@@ -275,15 +274,14 @@ function	script	Gasha04Func	{
 	getitem .item_id, .item_amount;
 	}
 
-}
-
 function	script	Gasha05Func	{
 	//29152,Scorpio_Stone/Legendary
 	
-	.@item_rate = rand(1,10);
+	if (checkweight(1201,1) == 0) {
+		dispbottom "You're carrying too much stuff. Why don't you put some of it away, and then try again?";
+		getitem 41256,1;
+	}
 	
-	if ((.@item_rate) >= 1) && ((.@item_rate)<= 10) {
-
 	setarray .@items[0],
 	"19827","20763","19760","19762","19910","19916","19928","19929","19930","19958","19959","19960",
 	"19989","19991","20010","20011","20012","20014","20015","20031","20033","20035","20037","20046",
@@ -304,7 +302,6 @@ function	script	Gasha05Func	{
 	set .item_amount, 1;
 	
 	getitem .item_id, .item_amount;
-	}
 
 }
 
