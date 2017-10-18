@@ -37,3 +37,5 @@ kampung,214,98,5	script	Master Rental	416,{
 	specialeffect2 EF_TEIHIT3;
 	end;
 }
+
+dewata,209,172,5	duplicate(Master Rental)	Riding Creature Master#DE	416

@@ -22,5 +22,13 @@
 
 
 kampung,147,165,6	duplicate(Healer FREE)	FREE Healer#ractemp2	478
-payon,177,106,6	duplicate(Healer FREE)	FREE Healer#pa	478
+payon,164,231,6	duplicate(Healer FREE)	FREE Healer#pa	478
 prontera,163,192,6	duplicate(Healer FREE)	FREE Healer#pr	478
+dicastes01,199,192,11	duplicate(Healer FREE)	FREE Healer#dis	478
+mid_camp,225,233,11	duplicate(Healer FREE)	FREE Healer#mc	478
+verus04,137,248,11	duplicate(Healer FREE)	FREE Healer#vc	478
+manuk,271,142,5	duplicate(Healer FREE)	FREE Healer#mn	478
+einbroch,244,201,11	duplicate(Healer FREE)	FREE Healer#en	478
+dewata,197,184,5	duplicate(Healer FREE)	FREE Healer#de	478
+
+ 

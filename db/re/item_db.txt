@@ -169,7 +169,7 @@
 671,Gold_Coin,Gold Coin,2,10000,,0,,,,,0xFFFFFFFF,63,2,,,,,,{ RouletteGold++; Set Zeny,Zeny + 1000000; Dispbottom "You got 1,000,000 Zeny.";},{},{}
 672,Copper_Coin_Moneybag,Bag of Bronze Coins,3,1000,,400,,,,,0xFFFFFFFF,63,2,,,,,,{},{},{}
 673,Copper_Coin,Bronze Coin,2,100,,40,,,,,0xFFFFFFFF,63,2,,,,,,{ RouletteBronze++; },{},{}
-674,Mithril_Coin,Mithril Coin,3,5000,,40,,,,,0xFFFFFFFF,63,2,,,,,,{Set Zeny,Zeny + 100000000; Dispbottom "You got 100,000,000 Zeny.";},{},{}
+674,Mithril_Coin,Mithril Coin,2,5000,,40,,,,,0xFFFFFFFF,63,2,,,,,,{Set Zeny,Zeny + 100000000; Dispbottom "You got 100,000,000 Zeny.";},{},{}
 675,Silver_Coin,Silver Coin,2,5000,,0,,,,,0xFFFFFFFF,63,2,,,,,,{ RouletteSilver++; Set Zeny,Zeny + 10000; Dispbottom "You got 10,000 Zeny.";},{},{}
 676,Silver_Coin_Moneybag,Bag of Silver Coins,3,50000,,400,,,,,0xFFFFFFFF,63,2,,,,,,{},{},{}
 677,White_Gold_Coin,Platinum Coin,3,2000,,40,,,,,0xFFFFFFFF,63,2,,,,,,{Set Zeny,Zeny + 10000000; Dispbottom "You got 10,000,000 Zeny.";},{},{}
@@ -7479,7 +7479,7 @@
 13450,Saber__,Saber,5,10,,1000,115,,,2,0x000654E2,63,2,2,3,27,1,0,{},{},{}
 13451,Ru_Blue_Sword,Blue Sword,5,10,,1200,190,,1,1,0x00000080,56,2,2,3,100,1,2,{ bonus bStr,5; bonus bAgi,5; },{},{}
 13452,Ru_Gold_Sword,Ru Gold Sword,5,0,,1200,190,,1,2,0x00000080,56,2,2,3,120,1,2,{ bonus bStr,8; bonus bAgi,8; },{},{}
-13454,Crimson_Saber,Crimson Saber,5,20,,850,85,,1,2,0x000654E3,57,2,2,3,70,1,2,{ .@r = getrefine(); bonus bBaseAtk,((BaseLevel/10)*5)+(.@r<=15?pow(.@r,2):225); },{},{}
+13454,Crimson_Saber,Crimson Saber,5,20,,850,85,,1,2,0x000654E3,59,2,2,3,70,1,2,{ .@r = getrefine(); bonus bBaseAtk,((BaseLevel/10)*5)+(.@r<=15?pow(.@r,2):225); },{},{}
 13455,Saber_of_Vicious_Mind,Saber of Vicious Mind,5,20,,1350,135,,1,1,0x000654E3,63,2,2,4,160,1,2,{ bonus bAtk,pow(min(getrefine(),15),2); },{},{}
 13456,Unity_Sword,Unity Sword,5,20,,420,80,,1,1,0x000654E3,56,2,2,3,1,1,2,{ bonus bBaseAtk,pow(getrefine(),2)*125/100; },{},{}
 13457,Unity_Dagger,Unity Dagger,5,20,,270,52,,1,1,0x028F5EEF,63,2,2,3,1,1,1,{ bonus bBaseAtk,pow(getrefine(),2)*125/100; },{},{}
