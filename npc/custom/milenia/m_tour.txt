@@ -256,3 +256,4 @@ kampung,28,44,11	duplicate(Valley Warper)	Valley Warper#dokebi	10173
 kampung,72,57,5	duplicate(Valley Warper)	Valley Warper#cash	10173 
 kampung,160,63,11	duplicate(Valley Warper)	Valley Warper#training	10173 
 kampung,197,63,5	duplicate(Valley Warper)	Valley Warper#cedi	10173 
+dewata,188,193,5	duplicate(Valley Warper)	Valley Warper#de	10173 

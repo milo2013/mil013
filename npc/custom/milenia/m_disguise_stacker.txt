@@ -79,4 +79,4 @@ if (countitem (12209)) 	< 1 {}	delitem 12209,	.@life_ins;	getitem 12209, .@life_
 end;
 }
 
-dewata,225,177,5	duplicate(Super Stackerr)	Repair Master#DE	483
+dewata,225,177,5	duplicate(Super Stacker)	Repair Master#DE	483

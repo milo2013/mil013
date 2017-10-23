@@ -659,3 +659,5 @@ izlude_pvp	mapflag	pvp_noguild
 izlude_pvp	mapflag	noteleport
 izlude_pvp	mapflag	nomemo
 izlude_pvp	mapflag	restricted	3
+
+dewata,181,178,5	duplicate(PvP Warper)	PVP Warper#DE	483

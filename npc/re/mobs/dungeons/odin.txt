@@ -43,10 +43,8 @@ odin_tem02,0,0	monster	Blue Plant	1079,10,1800000,900000
 // odin_tem03 - Odin Shrine
 //==================================================
 odin_tem03,0,0	monster	Plasma	1693,20,5000
-//odin_tem03,0,0	monster	Skeggiold	1754,16,5000
-//odin_tem03,0,0	monster	Skeggiold	1755,16,5000
-odin_tem03,0,0	monster	Skeggiold	1754,50,5000
-odin_tem03,0,0	monster	Skeggiold	1755,50,5000
+odin_tem03,0,0	monster	Skeggiold	1754,16,5000
+odin_tem03,0,0	monster	Skeggiold	1755,16,5000
 odin_tem03,0,0	monster	Skogul	1761,5,5000
 odin_tem03,0,0	monster	Frus	1762,5,5000
 odin_tem03,0,0	monster	Skogul	1752,4,5000

@@ -348,7 +348,7 @@ prt_cas	mapflag	noicewall
 OnSat2301: 
 	
 set .@GID_HO, GetCastleData("arug_cas03",1);
-warpguild "milenia",119,152,.@GID_HO;
+warpguild "prt_cas",119,152,.@GID_HO;
 end;
 
 }

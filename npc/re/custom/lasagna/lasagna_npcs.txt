@@ -1313,7 +1313,7 @@ amatsu,102,122,5	duplicate(Cat Paw Shrimp Merchant#iz)	Cat Paw Shrimp Merchant#a
 // ayo_in01,15,177
 brasilis,249,257,3	duplicate(Cat Paw Shrimp Merchant#iz)	Cat Paw Shrimp Merchant#bra	4_M_MERCAT1
 comodo,103,136,3	duplicate(Cat Paw Shrimp Merchant#iz)	Cat Paw Shrimp Merchant#com	4_M_MERCAT1
-dewata,193,169,5	duplicate(Cat Paw Shrimp Merchant#iz)	Cat Paw Shrimp Merchant#dew	4_M_MERCAT1
+dewata,179,164,5	duplicate(Cat Paw Shrimp Merchant#iz)	Cat Paw Shrimp Merchant#dew	4_M_MERCAT1
 einbroch,164,316,3	duplicate(Cat Paw Shrimp Merchant#iz)	Cat Paw Shrimp Merchant#ein	4_M_MERCAT1
 ein_in01,194,22,3	duplicate(Cat Paw Shrimp Merchant#iz)	Cat Paw Shrimp Merchant#ein1	4_M_MERCAT1
 dic_in01,242,119,5	duplicate(Cat Paw Shrimp Merchant#iz)	Cat Paw Shrimp Merchant#dic	4_M_MERCAT1
