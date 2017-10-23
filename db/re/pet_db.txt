@@ -128,7 +128,7 @@
 1404,MIYABI_NINGYO,Miyabi Doll,12366,9915,0,6106,,80,20,50,100,250,20,2000,200,1,1,350,400,800,{bonus bInt,1; bonus bCastrate,-3;},{};
 1148,MEDUSA,Medusa,12368,9916,0,6108,,80,20,50,100,250,20,2000,200,1,1,350,400,800,{bonus bVit,1; bonus2 bResEff,Eff_Stone,500;},{};
 1299,GOBLIN_LEADER,Goblin Leader,12364,9917,0,6104,,80,20,50,100,250,20,2000,200,1,1,350,400,800,{bonus2 bAddRace,RC_DemiHuman,3;},{};
-1519,CHUNG_E,Chung E,12395,9918,0,553,,80,20,50,100,250,20,2000,200,1,1,350,400,800,{bonus bDef,1; bonus2 bSubRace,RC_DemiHuman,1;},{};
+1519,CHUNG_E,Chung E,12395,9918,0,553,,80,20,50,100,250,20,2000,200,1,1,350,400,800,{bonus bDef,1; bonus bMdef,1; bonus2 bSubRace,RC_DemiHuman,1;},{};
 1518,BACSOJIN,White Lady,12357,9919,0,6094,,80,20,50,100,250,20,2000,200,1,1,350,400,800,{bonus bNoKnockback; bonus2 bSubEle,Ele_Water,10; bonus bDef,-2;},{};
 
 
