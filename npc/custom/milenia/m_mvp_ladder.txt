@@ -325,7 +325,7 @@ OnTalk:
 				}
 		detachrid;
 	}
-	
+		
 	OnInit:
 		hideonnpc strnpcinfo(0);
 		end;
@@ -369,17 +369,6 @@ OnTalk:
 		
 		
 		if ( playerattached() ) {
-		//	.@rate = ( 95 + 'ladder_level );
-		//	if ( rand( 100 ) < .@rate ) {
-		//		getitem 41204,1;
-		//	}
-	
-		//	addrid(2,0,getcharid(1));
-		//	getitem 41204,1;
-			
-		//.@party_id = getcharid(1);
-			
-			
 		
 			percentheal 100,100;
 			mapannounce .@map$,"[Elite MVP Ladder] The Boss has been defeated. You have some time for rest now.",bc_map;
@@ -387,9 +376,14 @@ OnTalk:
 			party_delay( .@map$,.@party_id,.@zeny );
 			
 			getpartymember .@party_id;
+			
+			
 			for ( .@i = 0; .@i < $@partymembercount; .@i++ ) {
-					getitem 41204,1,$@partymemberaid[.@i];
-			}
+				getitem 41204,1,$@partymemberaid[.@i];
+		
+				
+				}
+					
 			
 			detachrid;
 		}

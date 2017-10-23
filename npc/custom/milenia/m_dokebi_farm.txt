@@ -20,7 +20,7 @@
 		message strcharinfo(0),"Limit Reach , you may join again later.";
 		sleep2 2000;
 		//set #HuntRoomDelay, gettimetick(2); 
-		warp "milenia",51,127;
+		warp "kampung",150,150;
 		
 	}
 	
@@ -126,7 +126,7 @@
 		message strcharinfo(0),"Limit Reach , you may join again later.";
 		sleep2 2000;
 		//set #HuntRoomDelay, gettimetick(2); 
-		warp "milenia",51,127;
+		warp "kampung",150,150;
 	}
 	end;
 	OnInit:
@@ -208,7 +208,7 @@
 		message strcharinfo(0),"Limit Reach , you may join again later.";
 		sleep2 2000;
 		//set #HuntRoomDelay, gettimetick(2); 
-		warp "milenia",51,127;
+		warp "kampung",150,150;
 	}
 	end;
 	OnInit:
@@ -291,7 +291,7 @@
 		message strcharinfo(0),"Limit Reach , you may join again later.";
 		sleep2 2000;
 		//set #HuntRoomDelay, gettimetick(2); 
-		warp "milenia",51,127;
+		warp "kampung",150,150;
 	}
 	
 	end;

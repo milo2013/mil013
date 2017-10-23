@@ -81,4 +81,4 @@ L_Mark:
 	mes "Is there anything else I can do for you?";
 	return;
 }
-dewata,197,184,4	duplicate(Dewata Guide#dewata01)	Dewata Guide#dewata02	535
+dewata,186,198,4	duplicate(Dewata Guide#dewata01)	Dewata Guide#dewata02	535
