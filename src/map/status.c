@@ -884,6 +884,8 @@ void initChangeTables(void)
 	add_sc( SU_MEOWMEOW				, SC_CHATTERING );
 	set_sc( SU_CHATTERING			, SC_CHATTERING		, SI_CHATTERING		, SCB_WATK|SCB_MATK );
 
+	set_sc( WE_CHEERUP				, SC_CHEERUP		, SI_CHEERUP		, SCB_STR|SCB_AGI|SCB_VIT|SCB_INT|SCB_DEX|SCB_LUK );
+
 	/* Storing the target job rather than simply SC_SPIRIT simplifies code later on */
 	SkillStatusChangeTable[skill_get_index(SL_ALCHEMIST)]	= (sc_type)MAPID_ALCHEMIST,
 	SkillStatusChangeTable[skill_get_index(SL_MONK)]		= (sc_type)MAPID_MONK,
@@ -1685,7 +1687,7 @@ int status_damage(struct block_list *src,struct block_list *target,int64 dhp, in
 				* Endure count is only reduced by non-players on non-gvg maps.
 				* val4 signals infinite endure.
 				**/
-				if (src && src->type != BL_PC && !map_flag_gvg2(target->m) && !map[target->m].flag.battleground && --(sce->val2) < 0)
+				if (src && src->type != BL_PC && !map_flag_gvg2(target->m) && !map[target->m].flag.battleground && --(sce->val2) <= 0)
 					status_change_end(target, SC_ENDURE, INVALID_TIMER);
 			}
 			if ((sce=sc->data[SC_GRAVITATION]) && sce->val3 == BCT_SELF) {
@@ -5415,6 +5417,8 @@ static unsigned short status_calc_str(struct block_list *bl, struct status_chang
 		str += 1;
 	if(sc->data[SC_FULL_THROTTLE])
 		str += str * sc->data[SC_FULL_THROTTLE]->val3 / 100;
+	if(sc->data[SC_CHEERUP])
+		str += 3;
 
 	return (unsigned short)cap_value(str,0,USHRT_MAX);
 }
@@ -5487,6 +5491,8 @@ static unsigned short status_calc_agi(struct block_list *bl, struct status_chang
 		agi += agi * sc->data[SC_FULL_THROTTLE]->val3 / 100;
 	if (sc->data[SC_ARCLOUSEDASH])
 		agi += sc->data[SC_ARCLOUSEDASH]->val2;
+	if(sc->data[SC_CHEERUP])
+		agi += 3;
 
 	return (unsigned short)cap_value(agi,0,USHRT_MAX);
 }
@@ -5551,6 +5557,8 @@ static unsigned short status_calc_vit(struct block_list *bl, struct status_chang
 	if(sc->data[SC_DEFENCE])
 		vit += sc->data[SC_DEFENCE]->val2;
 #endif
+	if(sc->data[SC_CHEERUP])
+		vit += 3;
 
 	return (unsigned short)cap_value(vit,0,USHRT_MAX);
 }
@@ -5621,6 +5629,8 @@ static unsigned short status_calc_int(struct block_list *bl, struct status_chang
 		int_ += 1;
 	if(sc->data[SC_FULL_THROTTLE])
 		int_ += int_ * sc->data[SC_FULL_THROTTLE]->val3 / 100;
+	if(sc->data[SC_CHEERUP])
+		int_ += 3;
 
 	if(bl->type != BL_PC) {
 		if(sc->data[SC_STRIPHELM])
@@ -5702,6 +5712,8 @@ static unsigned short status_calc_dex(struct block_list *bl, struct status_chang
 		dex -= dex * sc->data[SC_MARSHOFABYSS]->val2 / 100;
 	if(sc->data[SC_FULL_THROTTLE])
 		dex += dex * sc->data[SC_FULL_THROTTLE]->val3 / 100;
+	if(sc->data[SC_CHEERUP])
+		dex += 3;
 
 	return (unsigned short)cap_value(dex,0,USHRT_MAX);
 }
@@ -5764,6 +5776,8 @@ static unsigned short status_calc_luk(struct block_list *bl, struct status_chang
 		luk += 1;
 	if(sc->data[SC_FULL_THROTTLE])
 		luk += luk * sc->data[SC_FULL_THROTTLE]->val3 / 100;
+	if(sc->data[SC_CHEERUP])
+		luk += 3;
 
 	return (unsigned short)cap_value(luk,0,USHRT_MAX);
 }
@@ -7610,7 +7624,7 @@ void status_set_viewdata(struct block_list *bl, int class_)
 	nullpo_retv(bl);
 	if (mobdb_checkid(class_) || mob_is_clone(class_))
 		vd = mob_get_viewdata(class_);
-	else if (npcdb_checkid(class_) || (bl->type == BL_NPC && class_ == WARP_CLASS))
+	else if (npcdb_checkid(class_))
 		vd = npc_get_viewdata(class_);
 	else if (homdb_checkid(class_))
 		vd = hom_get_viewdata(class_);
@@ -9619,14 +9633,14 @@ int status_change_start(struct block_list* src, struct block_list* bl,enum sc_ty
 		case SC_BOSSMAPINFO:
 			if( sd != NULL ) {
 				struct mob_data *boss_md = map_getmob_boss(bl->m); // Search for Boss on this Map
-				if( boss_md == NULL || boss_md->bl.prev == NULL ) { // No MVP on this map - MVP is dead
-					clif_bossmapinfo(sd->fd, boss_md, 1);
-					return 0; // No need to start SC
+
+				if( boss_md == NULL ) { // No MVP on this map
+					clif_bossmapinfo(sd, NULL, BOSS_INFO_NOT);
+					return 0;
 				}
 				val1 = boss_md->bl.id;
-				if( (val4 = tick/1000) < 1 )
-					val4 = 1;
 				tick_time = 1000; // [GodLesZ] tick time
+				val4 = tick / tick_time;
 			}
 			break;
 		case SC_HIDING:
@@ -11505,7 +11519,8 @@ int status_change_start(struct block_list* src, struct block_list* bl,enum sc_ty
 			}
 			break;
 		case SC_BOSSMAPINFO:
-			clif_bossmapinfo(sd->fd, map_id2boss(sce->val1), 0); // First Message
+			if (sd)
+				clif_bossmapinfo(sd, map_id2boss(sce->val1), BOSS_INFO_ALIVE_WITHMSG); // First Message
 			break;
 		case SC_MERC_HPUP:
 			status_percent_heal(bl, 100, 0); // Recover Full HP
@@ -12827,13 +12842,20 @@ int status_change_timer(int tid, unsigned int tick, int id, intptr_t data)
 	case SC_BOSSMAPINFO:
 		if( sd && --(sce->val4) >= 0 ) {
 			struct mob_data *boss_md = map_id2boss(sce->val1);
-			if( boss_md && sd->bl.m == boss_md->bl.m ) {
-				clif_bossmapinfo(sd->fd, boss_md, 1); // Update X, Y on minimap
-				if (boss_md->bl.prev != NULL) {
-					sc_timer_next(5000 + tick, status_change_timer, bl->id, data);
+
+			if (boss_md) {
+				if (sd->bl.m != boss_md->bl.m) // Not on same map anymore
 					return 0;
+				else if (boss_md->bl.prev != NULL) { // Boss is alive - Update X, Y on minimap
+					sce->val2 = 0;
+					clif_bossmapinfo(sd, boss_md, BOSS_INFO_ALIVE);
+				} else if (boss_md->spawn_timer != INVALID_TIMER && !sce->val2) { // Boss is dead
+					sce->val2 = 1;
+					clif_bossmapinfo(sd, boss_md, BOSS_INFO_DEAD);
 				}
 			}
+			sc_timer_next(1000 + tick, status_change_timer, bl->id, data);
+			return 0;
 		}
 		break;
 

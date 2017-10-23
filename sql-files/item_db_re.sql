@@ -1869,8 +1869,8 @@ REPLACE INTO `item_db_re` VALUES (2630,'Brysinggamen','Brisingamen',4,20,NULL,15
 REPLACE INTO `item_db_re` VALUES (2631,'First_Age_Ring','Celebration Ring',4,1,NULL,10,NULL,0,NULL,0,0xFFFFFFFF,63,2,136,NULL,'0',0,0,'bonus bAllStats,5;',NULL,NULL);
 REPLACE INTO `item_db_re` VALUES (2632,'Korean_Trinket','Korean Trinket',4,125000,NULL,100,NULL,1,NULL,0,0xFFFFFFFE,63,2,136,NULL,'65',0,0,'bonus bVit,1; bonus bDex,1; bonus bLuk,1;',NULL,NULL);
 REPLACE INTO `item_db_re` VALUES (2633,'Jade_Ring','Jade Ring',4,204000,NULL,100,NULL,0,NULL,0,0xFFFFFFFE,63,2,136,NULL,'80',0,0,'bonus bStr,2; bonus bInt,1;',NULL,NULL);
-REPLACE INTO `item_db_re` VALUES (2634,'Bridegroom_Ring','Wedding Ring',4,0,NULL,0,NULL,0,NULL,0,0xFFFFFFFF,63,1,136,NULL,'0',0,0,'skill "WE_MALE",1; skill "WE_FEMALE",1; skill "WE_CALLPARTNER",1;',NULL,NULL);
-REPLACE INTO `item_db_re` VALUES (2635,'Bride_Ring','Wedding Ring',4,0,NULL,0,NULL,0,NULL,0,0xFFFFFFFF,63,0,136,NULL,'0',0,0,'skill "WE_MALE",1; skill "WE_FEMALE",1; skill "WE_CALLPARTNER",1;',NULL,NULL);
+REPLACE INTO `item_db_re` VALUES (2634,'Bridegroom_Ring','Wedding Ring',4,0,NULL,0,NULL,0,NULL,0,0xFFFFFFFF,63,1,136,NULL,'0',0,0,'skill "WE_MALE",1; skill "WE_FEMALE",1; skill "WE_CALLPARTNER",1; skill "WE_CALLALLFAMILY",1; skill "WE_ONEFOREVER",1;',NULL,NULL);
+REPLACE INTO `item_db_re` VALUES (2635,'Bride_Ring','Wedding Ring',4,0,NULL,0,NULL,0,NULL,0,0xFFFFFFFF,63,0,136,NULL,'0',0,0,'skill "WE_MALE",1; skill "WE_FEMALE",1; skill "WE_CALLPARTNER",1; skill "WE_CALLALLFAMILY",1; skill "WE_ONEFOREVER",1;',NULL,NULL);
 REPLACE INTO `item_db_re` VALUES (2636,'Gold_Ring_','Gold Christmas Ring',4,30000,NULL,100,NULL,0,NULL,0,0xFFFFFFFF,63,2,136,NULL,'0',0,0,'bonus bLuk,1;',NULL,NULL);
 REPLACE INTO `item_db_re` VALUES (2637,'Silver_Ring_','Silver Christmas Ring',4,20000,NULL,100,NULL,0,NULL,0,0xFFFFFFFF,63,2,136,NULL,'0',0,0,'bonus bLuk,1;',NULL,NULL);
 REPLACE INTO `item_db_re` VALUES (2638,'Exorcize_Sachet','Sacred Incense',4,20000,NULL,100,NULL,0,NULL,0,0xFFFFFFFF,63,2,136,NULL,'0',0,0,'bonus bStr,1; bonus bLuk,1;',NULL,NULL);
@@ -7503,7 +7503,7 @@ REPLACE INTO `item_db_re` VALUES (13449,'Gladius_Daemonicus','Gladius Daemonicus
 REPLACE INTO `item_db_re` VALUES (13450,'Saber__','Saber',5,10,NULL,1000,'115',NULL,NULL,2,0x000654E2,63,2,2,3,'27',1,0,NULL,NULL,NULL);
 REPLACE INTO `item_db_re` VALUES (13451,'Ru_Blue_Sword','Blue Sword',5,10,NULL,1200,'190',NULL,1,1,0x00000080,56,2,2,3,'100',1,2,'bonus bStr,5; bonus bAgi,5;',NULL,NULL);
 REPLACE INTO `item_db_re` VALUES (13452,'Ru_Gold_Sword','Ru Gold Sword',5,0,NULL,1200,'190',NULL,1,2,0x00000080,56,2,2,3,'120',1,2,'bonus bStr,8; bonus bAgi,8;',NULL,NULL);
-REPLACE INTO `item_db_re` VALUES (13454,'Crimson_Saber','Crimson Saber',5,20,NULL,850,'85',NULL,1,2,0x000654E3,56,2,2,3,'70',1,2,'.@r = getrefine(); bonus bBaseAtk,((BaseLevel/10)*5)+(.@r<=15?pow(.@r,2):225);',NULL,NULL);
+REPLACE INTO `item_db_re` VALUES (13454,'Crimson_Saber','Crimson Saber',5,20,NULL,850,'85',NULL,1,2,0x000654E3,63,2,2,3,'70',1,2,'.@r = getrefine(); bonus bBaseAtk,((BaseLevel/10)*5)+(.@r<=15?pow(.@r,2):225);',NULL,NULL);
 REPLACE INTO `item_db_re` VALUES (13455,'Saber_of_Vicious_Mind','Saber of Vicious Mind',5,20,NULL,1350,'135',NULL,1,1,0x000654E3,63,2,2,4,'160',1,2,'bonus bAtk,pow(min(getrefine(),15),2);',NULL,NULL);
 REPLACE INTO `item_db_re` VALUES (13456,'Unity_Sword','Unity Sword',5,20,NULL,420,'80',NULL,1,1,0x000654E3,56,2,2,3,'1',1,2,'bonus bBaseAtk,pow(getrefine(),2)*125/100;',NULL,NULL);
 REPLACE INTO `item_db_re` VALUES (13457,'Unity_Dagger','Unity Dagger',5,20,NULL,270,'52',NULL,1,1,0x028F5EEF,63,2,2,3,'1',1,1,'bonus bBaseAtk,pow(getrefine(),2)*125/100;',NULL,NULL);
