@@ -23,6 +23,7 @@ OnAgitInit3:
 	if (.@guild_id == 0) {
 		killmonster .@map$, .@npc_name$ +"::OnMyMobDead";
 		donpcevent strnpcinfo(0)+"::OnEmpSpawn";
+		/*
 		if (compare(.@map$,"te_aldecas")) {
 			monster .@map$,0,0,"Evil Druid",1117,10,.@npc_name$ +"::OnMyMobDead";
 			monster .@map$,0,0,"Khalitzburg",1132,4,.@npc_name$ +"::OnMyMobDead";
@@ -47,7 +48,9 @@ OnAgitInit3:
 			monster .@map$,.@emproom[0],.@emproom[1],"Abysmal Knight",1219,1,.@npc_name$ +"::OnMyMobDead";
 			monster .@map$,.@emproom[0],.@emproom[1],"Raydric Archer",1276,5,.@npc_name$ +"::OnMyMobDead";
 		}
-		else if (compare(.@map$,"te_prtcas")) {
+		*/
+		//else if (compare(.@map$,"te_prtcas")) {
+		if (compare(.@map$,"te_prtcas")) {
 			monster .@map$,0,0,"Raydric",1163,10,.@npc_name$ +"::OnMyMobDead";
 			monster .@map$,0,0,"Khalitzburg",1132,10,.@npc_name$ +"::OnMyMobDead";
 			monster .@map$,0,0,"Abysmal Knight",1219,5,.@npc_name$ +"::OnMyMobDead";
@@ -60,10 +63,10 @@ OnAgitInit3:
 			monster .@map$,0,0,"Alice",1275,1,.@npc_name$ +"::OnMyMobDead";
 			monster .@map$,0,0,"Zealotus",1200,1,.@npc_name$ +"::OnMyMobDead";
 			if (.@map$ == "te_prtcas01") { setarray .@emproom[0],197,197; }
-			else if (.@map$ == "te_prtcas02") { setarray .@emproom[0],157,174; }
+			//else if (.@map$ == "te_prtcas02") { setarray .@emproom[0],157,174; }
 			else if (.@map$ == "te_prtcas03") { setarray .@emproom[0],16,220; }
-			else if (.@map$ == "te_prtcas04") { setarray .@emproom[0],291,14; }
-			else if (.@map$ == "te_prtcas05") { setarray .@emproom[0],266,266; }
+			//else if (.@map$ == "te_prtcas04") { setarray .@emproom[0],291,14; }
+			//else if (.@map$ == "te_prtcas05") { setarray .@emproom[0],266,266; }
 			monster .@map$,.@emproom[0],.@emproom[1],"Guardian Knight of Emperium",1268,1,.@npc_name$ +"::OnMyMobDead";
 			monster .@map$,.@emproom[0],.@emproom[1],"Chief Guardian Knight of Emperium",1251,1,.@npc_name$ +"::OnMyMobDead";
 			monster .@map$,.@emproom[0],.@emproom[1],"Hatii",1252,1,.@npc_name$ +"::OnMyMobDead";
@@ -72,6 +75,7 @@ OnAgitInit3:
 		}
 		disablenpc "Kafra Employee#"+ replacestr(.@map$, "cas", "");
 	}
+	/*
 	else {
 		requestguildinfo .@guild_id;
 		donpcevent "::OnFlagTE" + strnpcinfo(2);// Guild emblem on flags.
@@ -90,21 +94,23 @@ OnAgitInit3:
 		else if (.@map$ == "te_prtcas04") donpcevent "Casate::OnSpawnGuardians";
 		else if (.@map$ == "te_prtcas05") donpcevent "Pisaro::OnSpawnGuardians";
 	}
+	*/
 	end;
 
 OnEmpSpawn:
 	.@map$ = strnpcinfo(4);
 	if (!mobcount( .@map$, strnpcinfo(0) +"::OnAgitBreak" )) {
-		if (.@map$ == "te_aldecas1") { setarray .@emproom[0],216,23; }
-		else if (.@map$ == "te_aldecas2") { setarray .@emproom[0],213,23; }
-		else if (.@map$ == "te_aldecas3") { setarray .@emproom[0],205,31; }
-		else if (.@map$ == "te_aldecas4") { setarray .@emproom[0],36,217; }
-		else if (.@map$ == "te_aldecas5") { setarray .@emproom[0],27,101; }
-		else if (.@map$ == "te_prtcas01") { setarray .@emproom[0],197,197; }
-		else if (.@map$ == "te_prtcas02") { setarray .@emproom[0],157,174; }
+		//if (.@map$ == "te_aldecas1") { setarray .@emproom[0],216,23; }
+		//else if (.@map$ == "te_aldecas2") { setarray .@emproom[0],213,23; }
+		//else if (.@map$ == "te_aldecas3") { setarray .@emproom[0],205,31; }
+		//else if (.@map$ == "te_aldecas4") { setarray .@emproom[0],36,217; }
+		//else if (.@map$ == "te_aldecas5") { setarray .@emproom[0],27,101; }
+		//else if (.@map$ == "te_prtcas01") { setarray .@emproom[0],197,197; }
+		if (.@map$ == "te_prtcas01") { setarray .@emproom[0],197,197; }
+		//else if (.@map$ == "te_prtcas02") { setarray .@emproom[0],157,174; }
 		else if (.@map$ == "te_prtcas03") { setarray .@emproom[0],16,220; }
-		else if (.@map$ == "te_prtcas04") { setarray .@emproom[0],291,14; }
-		else if (.@map$ == "te_prtcas05") { setarray .@emproom[0],266,266; }
+		//else if (.@map$ == "te_prtcas04") { setarray .@emproom[0],291,14; }
+		//else if (.@map$ == "te_prtcas05") { setarray .@emproom[0],266,266; }
 		monster .@map$,.@emproom[0],.@emproom[1],"Emperium",1288,1, strnpcinfo(0) +"::OnAgitBreak";
 	}
 	end;
@@ -192,6 +198,7 @@ S_Message:
 		.@string$ = "prt0"+ charat( .@map$,getstrlen(.@map$)-1 );
 	donpcevent "#popswitch_"+ .@string$ +"::"+ getarg(0);// monsters for mission TE
 
+	/*
 	if (.@map$ == "te_aldecas1") {
 		donpcevent "Blacksmith Cano#tegod01::OnInit";// god item TE
 		$2012_tegod_kafra = 0;
@@ -203,6 +210,7 @@ S_Message:
     	donpcevent "Blacksmith Kai#tegod01::OnInit";
 	}
 	return;
+	*/
 
 OnMyMobDead:
 	end;
@@ -501,16 +509,17 @@ function GuardianData;
 			mes "I'll show you the secret path. Follow me...please.";
 			mes "When you want to return here, please press the secret switch.";
 			close2;
-			if (.@map$ == "te_aldecas1") warp "te_aldecas1",113,223;
-			else if (.@map$ == "te_aldecas2") warp "te_aldecas2",134,225;
-			else if (.@map$ == "te_aldecas3") warp "te_aldecas3",229,267;
-			else if (.@map$ == "te_aldecas4") warp "te_aldecas4",83,17;
-			else if (.@map$ == "te_aldecas5") warp "te_aldecas5",64,8;
-			else if (.@map$ == "te_prtcas01") warp "te_prtcas01",15,209;
-			else if (.@map$ == "te_prtcas02") warp "te_prtcas02",207,229;
+			//if (.@map$ == "te_aldecas1") warp "te_aldecas1",113,223;
+			//else if (.@map$ == "te_aldecas2") warp "te_aldecas2",134,225;
+			//else if (.@map$ == "te_aldecas3") warp "te_aldecas3",229,267;
+			//else if (.@map$ == "te_aldecas4") warp "te_aldecas4",83,17;
+			//else if (.@map$ == "te_aldecas5") warp "te_aldecas5",64,8;
+			//else if (.@map$ == "te_prtcas01") warp "te_prtcas01",15,209;
+			if (.@map$ == "te_prtcas01") warp "te_prtcas01",15,209;
+			//else if (.@map$ == "te_prtcas02") warp "te_prtcas02",207,229;
 			else if (.@map$ == "te_prtcas03") warp "te_prtcas03",190,130;
-			else if (.@map$ == "te_prtcas04") warp "te_prtcas04",275,160;
-			else if (.@map$ == "te_prtcas05") warp "te_prtcas05",281,176;
+			//else if (.@map$ == "te_prtcas04") warp "te_prtcas04",275,160;
+			//else if (.@map$ == "te_prtcas05") warp "te_prtcas05",281,176;
 			end;
 		case 2:
 			mes .@npc_name$;
@@ -564,7 +573,7 @@ S_Invest:
 
 function GuardianData {
 	.@map$ = strnpcinfo(4);
-	if (.@map$ == "te_aldecas1") {
+	/*if (.@map$ == "te_aldecas1") {
 		setarray .@data$[0],
 			1287, 17, 218, "Inner Castle Soldier Guardian",// SOLDIER_GUARDIAN
 			1285, 39, 205, "Outer Castle Archer Guardian",// ARCHER_GUARDIAN
@@ -619,7 +628,9 @@ function GuardianData {
 			1286, 156, 73, "Inner Castle Knight Guardian",// KNIGHT_GUARDIAN
 			1286, 41, 112, "Inner Castle Knight Guardian";// KNIGHT_GUARDIAN
 	}
-	else if (.@map$ == "te_prtcas01") {
+	*/
+	//else if (.@map$ == "te_prtcas01") {
+	if (.@map$ == "te_prtcas01") {
 		setarray .@data$[0],
 			1287, 182, 68, "Inner Castle Soldier Guardian",// SOLDIER_GUARDIAN
 			1287, 182, 116, "Inner Castle Soldier Guardian",// SOLDIER_GUARDIAN
@@ -630,6 +641,7 @@ function GuardianData {
 			1286, 196, 189, "Inner Castle Knight Guardian",// KNIGHT_GUARDIAN
 			1286, 107, 179, "Inner Castle Knight Guardian";// KNIGHT_GUARDIAN
 	}
+	/*
 	else if (.@map$ == "te_prtcas02") {
 		setarray .@data$[0],
 			1286, 162, 161, "Inner Castle Knight Guardian",// KNIGHT_GUARDIAN
@@ -641,6 +653,7 @@ function GuardianData {
 			1285, 76, 196, "Outer Castle Archer Guardian",// ARCHER_GUARDIAN
 			1285, 75, 175, "Outer Castle Archer Guardian";// ARCHER_GUARDIAN
 	}
+	*/
 	else if (.@map$ == "te_prtcas03") {
 		setarray .@data$[0],
 			1286, 191, 190, "Inner Castle Knight Guardian",// KNIGHT_GUARDIAN
@@ -652,6 +665,7 @@ function GuardianData {
 			1285, 179, 43, "Outer Castle Archer Guardian",// ARCHER_GUARDIAN
 			1285, 191, 72, "Outer Castle Archer Guardian";// ARCHER_GUARDIAN
 	}
+	/*
 	else if (.@map$ == "te_prtcas04") {
 		setarray .@data$[0],
 			1286, 276, 14, "Inner Castle Knight Guardian",// KNIGHT_GUARDIAN
@@ -674,6 +688,7 @@ function GuardianData {
 			1285, 32, 253, "Outer Castle Archer Guardian",// ARCHER_GUARDIAN
 			1285, 44, 248, "Outer Castle Archer Guardian";// ARCHER_GUARDIAN
 	}
+	*/
 	for ( .@i = 0; .@i < getarraysize(.@data$); .@i += 4 ) {
 		set getelementofarray( getarg(0),.@index ), .@data$[.@i];
 		set getelementofarray( getarg(1),.@index ), .@data$[.@i+1];
@@ -712,7 +727,7 @@ OnSpawnGuardians:
 	if (select( "Pull.","Don't pull." ) == 1) {
 		if (.@guild_id == getcharid(2)) {
 			.@npc_map$ = strnpcinfo(4);
-			if (compare( .@npc_map$,"te_alde" )) {
+			/*if (compare( .@npc_map$,"te_alde" )) {
 				.@map$ = "teg_dun02";
 				if (.@npc_map$ == "te_aldecas1") setarray .@coord[0],32,122;
 				else if (.@npc_map$ == "te_aldecas2") setarray .@coord[0],79,30;
@@ -720,13 +735,15 @@ OnSpawnGuardians:
 				else if (.@npc_map$ == "te_aldecas4") setarray .@coord[0],160,148;
 				else if (.@npc_map$ == "te_aldecas5") setarray .@coord[0],103,169;
 			}
-			else {
+			*/
+			//else {
+			if	(compare( .@npc_map$,"te_alde" )) {
 				.@map$ = "teg_dun01";
 				if (.@npc_map$ == "te_prtcas01") setarray .@coord[0],28,251;
-				else if (.@npc_map$ == "te_prtcas02") setarray .@coord[0],164,268;
+				//else if (.@npc_map$ == "te_prtcas02") setarray .@coord[0],164,268;
 				else if (.@npc_map$ == "te_prtcas03") setarray .@coord[0],164,179;
-				else if (.@npc_map$ == "te_prtcas04") setarray .@coord[0],268,203;
-				else if (.@npc_map$ == "te_prtcas05") setarray .@coord[0],199,28;
+				//else if (.@npc_map$ == "te_prtcas04") setarray .@coord[0],268,203;
+				//else if (.@npc_map$ == "te_prtcas05") setarray .@coord[0],199,28;
 			}
 			warp .@map$,.@coord[0],.@coord[1];
 		}
@@ -747,16 +764,17 @@ OnSpawnGuardians:
 	next;
 	if ( select( "Pull.","Do not." ) == 1 ) {
 		.@map$ = strnpcinfo(4);
-		if (.@map$ == "te_aldecas1") setarray .@coord[0],218,176;
-		else if (.@map$ == "te_aldecas2") setarray .@coord[0],51,179;
-		else if (.@map$ == "te_aldecas3") setarray .@coord[0],110,119;
-		else if (.@map$ == "te_aldecas4") setarray .@coord[0],67,117;
-		else if (.@map$ == "te_aldecas5") setarray .@coord[0],51,179;
-		else if (.@map$ == "te_prtcas01") setarray .@coord[0],112,183;
-		else if (.@map$ == "te_prtcas02") setarray .@coord[0],94,62;
+		//if (.@map$ == "te_aldecas1") setarray .@coord[0],218,176;
+		//else if (.@map$ == "te_aldecas2") setarray .@coord[0],51,179;
+		//else if (.@map$ == "te_aldecas3") setarray .@coord[0],110,119;
+		//else if (.@map$ == "te_aldecas4") setarray .@coord[0],67,117;
+		//else if (.@map$ == "te_aldecas5") setarray .@coord[0],51,179;
+		//else if (.@map$ == "te_prtcas01") setarray .@coord[0],112,183;
+		if (.@map$ == "te_prtcas01") setarray .@coord[0],112,183;
+		//else if (.@map$ == "te_prtcas02") setarray .@coord[0],94,62;
 		else if (.@map$ == "te_prtcas03") setarray .@coord[0],51,101;
-		else if (.@map$ == "te_prtcas04") setarray .@coord[0],259,265;
-		else if (.@map$ == "te_prtcas05") setarray .@coord[0],36,38;
+		//else if (.@map$ == "te_prtcas04") setarray .@coord[0],259,265;
+		//else if (.@map$ == "te_prtcas05") setarray .@coord[0],36,38;
 		warp .@map$,.@coord[0],.@coord[1];
 	}
 	end;
@@ -790,6 +808,7 @@ OnClock0001:// Spawn Treasure Chests based on castle economy.
 		setcastledata .@map$,5,0;
 	}
 
+	/*
 	if (.@map$ == "te_aldecas1") {
 		setarray .@data[0],// <mob_id>, <x>,<y>
 			2452, 115,226,// TREASURE_BOX_TE
@@ -924,7 +943,9 @@ OnClock0001:// Spawn Treasure Chests based on castle economy.
 			2462, 59,12,
 			2452, 59,13;
 	}
-	else if (.@map$ == "te_prtcas01") {
+	*/
+	//else if (.@map$ == "te_prtcas01") {
+	if (.@map$ == "te_prtcas01") {
 		setarray .@data[0],
 			2452, 8,211,// TREASURE_BOX_TE
 			2453, 9,211,// TREASURE_BOX_TE_1
@@ -951,6 +972,7 @@ OnClock0001:// Spawn Treasure Chests based on castle economy.
 			2452, 9,206,
 			2453, 8,206;
 	}
+	/*
 	else if (.@map$ == "te_prtcas02") {
 		setarray .@data[0],
 			2452, 201,228,// TREASURE_BOX_TE
@@ -978,6 +1000,7 @@ OnClock0001:// Spawn Treasure Chests based on castle economy.
 			2452, 199,228,
 			2454, 199,229;
 	}
+	*/
 	else if (.@map$ == "te_prtcas03") {
 		setarray .@data[0],
 			2452, 187,132,// TREASURE_BOX_TE
@@ -1005,6 +1028,7 @@ OnClock0001:// Spawn Treasure Chests based on castle economy.
 			2452, 185,132,
 			2455, 185,133;
 	}
+	/*
 	else if (.@map$ == "te_prtcas04") {
 		setarray .@data[0],
 			2452, 269,162,// TREASURE_BOX_TE
@@ -1059,6 +1083,7 @@ OnClock0001:// Spawn Treasure Chests based on castle economy.
 			2452, 273,178,
 			2457, 273,179;
 	}
+	*/
 	.@treasure_num = ( 4 + ( .@economy /5 ) ) *3;// x3 <-> data[] size
 	for ( .@i = 0; .@i < getarraysize(.@data) && .@treasure_num > .@i; .@i += 3 )// nb. [4;24] chests
 		monster .@map$, .@data[.@i+1], .@data[.@i+2],"Treasure Chest", .@data[.@i],1, strnpcinfo(0)+"::OnTreasureDied";
@@ -1185,6 +1210,7 @@ alde_gld,1,4,0	script	#Enterance Button ald	CLEAR_NPC,{
 	}
 }
 
+/*
 // God Item Hervor & Jormungand
 sec_in02,20,20,0	script	Test Guide	CLEAR_NPC,{
 	mes "Password?";
@@ -1218,3 +1244,4 @@ sec_in02,20,20,0	script	Test Guide	CLEAR_NPC,{
 		end;
 	}
 }
+*/

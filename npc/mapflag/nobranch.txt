@@ -118,5 +118,6 @@ te_aldecas4	mapflag	nobranch
 te_aldecas5	mapflag	nobranch
 
 // CUSTOM MAP
+milenia_pvp	mapflag	nobranch
 milenia	mapflag	nobranch
 kampung	mapflag	nobranch

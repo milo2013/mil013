@@ -13,7 +13,12 @@
 //= 1.2 fixed bugs, optimized. Now uses 1 var instead of 3 [Lupus]
 //============================================================
 
-prontera,151,190,5	script	Hallows' Eve Event	807,{
+kampung,130,136,5	script	Hallows' Eve Event	807,{
+	set .@part, EQI_HEAD_TOP;
+	set .@equip_id,5134; //Pumpkin-Head
+	
+	if (getequipid(.@part) == .@equip_id) {
+			
 	mes "[Hallows' Eve Event]";
 	if(Class == Job_Novice){
 		mes "I am sorry but you have to got a job to complete the event.";
@@ -45,6 +50,7 @@ prontera,151,190,5	script	Hallows' Eve Event	807,{
 	next;
 	set BaseExp,BaseExp+BaseLevel*1000;
 	set EVENT_HALWN06,EVENT_HALWN06|2;
+	getitem 529,20;
 
 	mes "[Hallows' Eve Event]";
 	mes "Here is your treat. Your Base EXP has been slightly increased.";
@@ -89,7 +95,7 @@ L_Treat:
 	menu "Got'em",-, "Don't Have",L_Dont_Have, "See List",L_List;
 
 	mes "[Hallows' Eve Event]";
-	if((countitem(2220) < 1) || (countitem(535) < 30) || (countitem(7205) < 20)){
+	if((countitem(2220) < 1) || (countitem(535) < 30) || (countitem(7205) < 20) || (countitem(7511) < 20) || (countitem(7566) < 5) || (countitem(7019) < 30)){
 		mes "You don't have enough items. Come back when you do.";
 		emotion e_sry;
 		close;
@@ -97,7 +103,11 @@ L_Treat:
 	delitem 2220,1;
 	delitem 535,30;
 	delitem 7205,20;
-	getitem 5134,1;
+	delitem 7511,20;
+	delitem 7566,5;
+	delitem 7019,30;
+	getitem 41278,1;
+	
 	set EVENT_HALWN06,EVENT_HALWN06|1;
 	mes "Good job! I hope you are happy with your item.";
 	emotion e_grat;
@@ -118,7 +128,19 @@ L_List:
 	mes "[Hallows' Eve Event]";
 	mes "I require the following items:";
 	mes "1 Hat,";
-	mes "30 Pumpkin, and";
-	mes "20 Black Piece of Cloth.";
+	mes "30 Pumpkin,";
+	mes "20 Black Piece of Cloth,";
+	mes "20 Rune Of Darkness,";
+	mes "5 Will Of Red Darkness and";
+	mes "30 Loki's Whispers.";
 	close;
+}
+	else {
+		mes "[Hallows' Eve Event]";
+		mes "Show me some Halloween Spirit!";
+		next;
+		mes "[Hallows' Eve Event]";
+		mes "Come again after you equip Pumpkin-Head.";
+		close;
+	}
 }

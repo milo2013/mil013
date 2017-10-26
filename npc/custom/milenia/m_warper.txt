@@ -31,7 +31,7 @@ menu	"Last Warp ^777777["+lastwarp$+"]^000000",-,
     	" ~ Towns",Towns,
     	" ~ Fields",Fields,
     	" ~ Dungeons",Dungeons,
-    	//" ~ Guild Castles",Castles,
+    	" ~ Guild Castles TE",Castles,
     	//" ~ Guild Dungeons",Guild_Dungeons,
     	" ~ Instances",Instances,
     	" ~ Special Areas",Special;
@@ -376,7 +376,14 @@ D41: Restrict("RE");
 // --------------------------------------------------
 	Castles:
 // --------------------------------------------------
-menu	"Aldebaran Castles",C1, "Geffen Castles",C2, "Payon Castles",C3,
+menu	"Wigner TE Castles",C1, "Gaeblog TE Castles",C2;
+
+C1: Restrict("RE");
+	Go("te_prt_gld",142,64);
+C2: Restrict("RE");
+	Go("te_prt_gld",153,134);
+	
+/*menu	"Aldebaran Castles",C1, "Geffen Castles",C2, "Payon Castles",C3,
     	"Prontera Castles",C4, "Arunafeltz Castles",C5, "Schwaltzvalt Castles",C6;
 
 C1: setarray @c[2],48,83,95,249,142,85,239,242,264,90;
@@ -397,6 +404,7 @@ C5: setarray @c[2],158,272,83,47,68,155,299,345,292,107;
 C6: setarray @c[2],293,100,288,252,97,196,137,90,71,315;
 	Disp("Himinn:Andlangr:Viblainn:Hljod:Skidbladnir");
 	Pick("","sch_gld","sch_gld","sch_gld","sch_gld","sch_gld");
+	*/
 
 // --------------------------------------------------
 	Guild_Dungeons:

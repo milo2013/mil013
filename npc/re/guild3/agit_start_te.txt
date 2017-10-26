@@ -19,6 +19,7 @@ OnFri2300:// date woe end
 	end;
 
 OnAgitInit3:
+	WoeTimer( THURSDAY,11,12 );// <day>, <hour start>, <hour end>
 	WoeTimer( FRIDAY,22,23 );// <day>, <hour start>, <hour end>
 	end;
 

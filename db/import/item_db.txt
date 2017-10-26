@@ -118,7 +118,7 @@
 
 
 // GM EQ
-41133,GM_RING,GM Ring,4,,,,1000000,1000000,,0,0xFFFFFFFE,63,2,8192,,,,,{ skill "AL_HEAL",10; bonus bMdef,1000000; bonus bDef,1000000; bonus bFlee,1000000; bonus bFlee2,1000000; bonus bAspd,999; bonus bLuk,10000; bonus bMaxHp,2000000; bonus bHPrecovRate,1000; sc_start4 SC_ENDURE,60000,10,0,0,1; bonus bNoKnockback,0; bonus bMagicDamageReturn,5000; autobonus2 "{ bonus bShortWeaponDamageReturn,5000; }",20,1000,BF_WEAPON,"{ specialeffect2 EF_REFLECTSHIELD; }"; autobonus2 "{ bonus bNoMagicDamage,5000; }",10,2000,BF_MAGIC,"{ specialeffect2 EF_ENERGYCOAT; }"; bonus3 bAutoSpellwhenhit,"AL_HEAL",max(1,getskilllv("AL_HEAL")),20; bonus2 bHPDrainRate,100,2000; bonus2 bHPRegenRate,(( MaxHP * 200 )/200 ),1000; },{},{ sc_end SC_ENDURE; }
+41133,GM_RING,GM Ring,4,,,,1000000,1000000,,0,0xFFFFFFFE,63,2,8192,,,,,{ skill "AL_HEAL",10; bonus bMdef,1000000; bonus bDef,1000000; bonus bFlee,1000000; bonus bFlee2,1000000; bonus bAspd,999; bonus bLuk,10000; bonus bMaxHp,2000000; bonus bHPrecovRate,1000; sc_start4 SC_ENDURE,60000,10,0,0,1; bonus bNoKnockback,0; bonus bMagicDamageReturn,5000; autobonus2 "{ bonus bShortWeaponDamageReturn,5000; }",20,1000,BF_WEAPON,"{ specialeffect2 EF_REFLECTSHIELD; }"; autobonus2 "{ bonus bNoMagicDamage,5000; }",10,2000,BF_MAGIC,"{ specialeffect2 EF_ENERGYCOAT; }"; bonus3 bAutoSpellwhenhit,"AL_HEAL",max(1,getskilllv("AL_HEAL")),20; bonus2 bHPDrainRate,100,2000; bonus2 bHPRegenRate,(( MaxHP * 200 )/200 ),1000; bonus bHealPower,200; bonus2 bAddClass,Class_All,100; skill "WZ_STORMGUST",10; Skill "WZ_METEOR",10; Skill "WZ_VERMILION",10; skill "GM_SANDMAN",1; bonus bVariableCastrate,-100; bonus bFixedCastrate,-100;},{},{ sc_end SC_ENDURE; }
 
 
 // Box Package

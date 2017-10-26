@@ -324,7 +324,72 @@ function	script	EventBoxFunc	{
 	
 	}
 	
+function	script	HWeenFunc	{
 	
+	if (checkweight(1201,1) == 0) {
+		dispbottom "You're carrying too much stuff. Why don't you put some of it away, and then try again?";
+		getitem 41277,1;
+	}
+	
+	getitem 12103,1; 	//Bloody Branch
+	getitem	12016,20; 	//Speed Potion x 20
+	getitem 7539,1; 	//Poring Coin x1
+	
+	.@item_rate = rand(1,100);
+	
+	if ((.@item_rate) >= 1) && ((.@item_rate) <= 10) {
+	getitem 12246,1; // Mystical Card Album 10%
+	}
+	
+	if ((.@item_rate) >= 11) && ((.@item_rate) <= 20) {
+	getitem 674,1; // Mithril Coin 10%
+	}
+	
+	if ((.@item_rate) >= 21) && ((.@item_rate) <= 30) {
+	getitem 41250,1; // Crimson Elemental Guide 10%
+	}
+	
+	if ((.@item_rate) >= 31) && ((.@item_rate) <= 40){	
+	getitem 9052,1; // Incubus Egg 10%
+	}
+	
+	if ((.@item_rate) >= 41) && ((.@item_rate) <= 50) {
+	getitem 9055,1; // Succubus Egg 10%
+	}
+	
+	if ((.@item_rate) >= 51) && ((.@item_rate) <= 60) {
+	getitem 674,1; // Mithril Coin 10%
+	}
+	 
+	if ((.@item_rate) >= 61) && ((.@item_rate) <= 70) {
+	getitem 41123 ,1; // Rare Mithril 10%
+	}
+	
+	if ((.@item_rate) >= 71) && ((.@item_rate) <= 75) {
+	getitem 31120 ,1; // Costume VampireFamiliar 5%
+	}
+	
+	if ((.@item_rate) >= 76) && ((.@item_rate) <= 80) {
+	getitem 18603,1; // Black Devil Mask 5%
+	}
+	
+	if ((.@item_rate) >= 81) && ((.@item_rate) <= 85) {
+	getitem 2983,1; // Brooch of Greed 5%
+	}
+	
+	if ((.@item_rate) >= 86) && ((.@item_rate) <= 90) {
+	getitem 18656,1; //	Witch's Pumpkin Hat 5%
+	}
+	
+	if ((.@item_rate) >= 91) && ((.@item_rate) <= 95) {
+	getitem 2983,1; // Costume Grim Reaper 5%
+	}
+	
+	if ((.@item_rate) >= 96) && ((.@item_rate) <= 100) {
+	getitem 18810,1; // Hell Pumpkin Hat 5%
+	}
+}
+
 function	script	PrizeHeroFunc	{
 
 	.@item_rate = rand(1,50);

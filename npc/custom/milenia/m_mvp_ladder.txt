@@ -369,23 +369,20 @@ OnTalk:
 		
 		
 		if ( playerattached() ) {
-		
-			percentheal 100,100;
-			mapannounce .@map$,"[Elite MVP Ladder] The Boss has been defeated. You have some time for rest now.",bc_map;
-			.@party_id = getcharid(1);
-			party_delay( .@map$,.@party_id,.@zeny );
-			
-			getpartymember .@party_id;
-			
-			
-			for ( .@i = 0; .@i < $@partymembercount; .@i++ ) {
-				getitem 41204,1,$@partymemberaid[.@i];
-		
-				
-				}
-					
-			
-			detachrid;
+		percentheal 100,100;
+		mapannounce .@map$,"[Elite MVP Ladder] The Boss has been defeated. You have some time for rest now.",bc_map;
+		.@party_id = getcharid(1);
+		party_delay( .@map$,.@party_id,.@zeny );
+	
+		getpartymember .@party_id;
+		for ( .@i = 0; .@i < $@partymembercount; .@i++ ) {
+			if (attachrid($@partymemberaid[.@i])) {
+			if (strcharinfo(3) == .@map$) {
+				getitem 41204,1,$@partymemberaid[.@i];	
+			}
+		}
+				detachrid;
+			}
 		}
 		
 		hideoffnpc .@npc_name$;

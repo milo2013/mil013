@@ -952,6 +952,7 @@ OnSellItem:
 		 else {
 			mes " [ Costume Recycler ]";
 			mes "Sorry, I don't need your items.";
+			mes "Currently ^FF0000"+(getitemname (@sold_nameid))+"^000000 is not in our database.";
 			close;
 		}
 	}
