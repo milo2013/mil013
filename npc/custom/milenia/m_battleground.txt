@@ -476,8 +476,8 @@ prt_cas,96,81,5	script	King William VI#2	965,{
 	mes "Have a safe journey!";
 	getitem 674,1;
 	warp "milenia",119,152;
-	mapannounce "prt_cas",strcharinfo(0) +  " from Guild "+GetGuildName(.@GID_WE)+" has claimed his Champion Box!",0;
-	mapannounce "milenia",strcharinfo(0) +  " from Guild "+GetGuildName(.@GID_WE)+" has claimed his Champion Box!",0;
+	mapannounce "prt_cas",strcharinfo(0) +  " from Guild "+GetGuildName(.@GID_WE)+" has claimed his WOE:TE Reward!",0;
+	mapannounce "milenia",strcharinfo(0) +  " from Guild "+GetGuildName(.@GID_WE)+" has claimed his WOE:TE Reward!",0;
 	}
 
 	if (getcharid(2) == .@GID_GE) {
@@ -494,8 +494,8 @@ prt_cas,96,81,5	script	King William VI#2	965,{
 	mes "Have a safe journey!";
 	getitem 674,1;
 	warp "milenia",119,152;
-	mapannounce "prt_cas",strcharinfo(0) +  " from Guild "+GetGuildName(.@GID_GE)+" has claimed his Champion Box!",0;
-	mapannounce "milenia",strcharinfo(0) +  " from Guild "+GetGuildName(.@GID_GE)+" has claimed his Champion Box!",0;
+	mapannounce "prt_cas",strcharinfo(0) +  " from Guild "+GetGuildName(.@GID_GE)+" has claimed his WOE:TE Reward!",0;
+	mapannounce "milenia",strcharinfo(0) +  " from Guild "+GetGuildName(.@GID_GE)+" has claimed his WOE:TE Reward!",0;
 	}
 	}
 
