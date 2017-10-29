@@ -44,3 +44,5 @@ end;
 
 // Special Thanks to Emistry for nice script and guide to make it works!
 // Edit some script to make it works on Milenia Ragnarok Online by Rakuzas.
+
+dewata,197,190,5	duplicate(GM Online Lists)	GM Online Lists#de	856

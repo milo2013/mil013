@@ -205,7 +205,7 @@ Player_Menu:
 	next;
 	switch(select("Sure!!:Nope")) {
 				case 1:
-					warp "milenia",119,152;
+					warp "kampung",150,150;
 					break;
 				case 2:
 					close;
@@ -453,7 +453,7 @@ prt_cas,96,81,5	script	King William VI#2	965,{
 	mes "^FF0000"+(.@count)+"^000000 of ^FF0000"+(.IP$)+"^000000 IP Address.";
 	mes "^FF0000"+(.@mac)+"^000000 of ^FF0000"+(.macID$)+"^000000 MAC Adress.";
 	close2;
-	warp "milenia",119,152;
+	warp "kampung",150,150;
 	
 	}
 	
@@ -475,7 +475,7 @@ prt_cas,96,81,5	script	King William VI#2	965,{
 	mes "[King William]";
 	mes "Have a safe journey!";
 	getitem 674,1;
-	warp "milenia",119,152;
+	warp "kampung",150,150;
 	mapannounce "prt_cas",strcharinfo(0) +  " from Guild "+GetGuildName(.@GID_WE)+" has claimed his WOE:TE Reward!",0;
 	mapannounce "milenia",strcharinfo(0) +  " from Guild "+GetGuildName(.@GID_WE)+" has claimed his WOE:TE Reward!",0;
 	}
@@ -493,7 +493,7 @@ prt_cas,96,81,5	script	King William VI#2	965,{
 	mes "[King William]";
 	mes "Have a safe journey!";
 	getitem 674,1;
-	warp "milenia",119,152;
+	warp "kampung",150,150;
 	mapannounce "prt_cas",strcharinfo(0) +  " from Guild "+GetGuildName(.@GID_GE)+" has claimed his WOE:TE Reward!",0;
 	mapannounce "milenia",strcharinfo(0) +  " from Guild "+GetGuildName(.@GID_GE)+" has claimed his WOE:TE Reward!",0;
 	}
@@ -518,7 +518,7 @@ prt_cas,96,81,5	script	King William VI#2	965,{
 	mes "Have a safe journey!";
 	getitem 41177,1;
 	getitem 14001,1;
-	warp "milenia",119,152;
+	warp "kampung",150,150;
 	mapannounce "prt_cas",strcharinfo(0) +  " from Guild "+GetGuildName(.@GID_HO)+" has claimed his Champion Box!",0;
 	mapannounce "milenia",strcharinfo(0) +  " from Guild "+GetGuildName(.@GID_HO)+" has claimed his Champion Box!",0;
 	}
@@ -537,7 +537,7 @@ prt_cas,96,81,5	script	King William VI#2	965,{
 	mes "Have a safe journey!";
 	getitem 41177,1;
 	getitem 14001,1;
-	warp "milenia",119,152;
+	warp "kampung",150,150;
 	mapannounce "prt_cas",strcharinfo(0) +  " from Guild "+GetGuildName(.@GID_HM)+" has claimed his Champion Box!",0;
 	mapannounce "milenia",strcharinfo(0) +  " from Guild "+GetGuildName(.@GID_HM)+" has claimed his Champion Box!",0;
 	}
@@ -546,7 +546,7 @@ prt_cas,96,81,5	script	King William VI#2	965,{
 	//mes "[King William]";
 	//mes "Have a safe journey!";
 	//getitem 41177,1;
-	//warp "milenia",119,152;
+	//warp "kampung",150,150;
 	//close2;
 
 	mes "[King William]";

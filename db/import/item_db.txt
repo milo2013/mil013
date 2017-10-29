@@ -297,7 +297,7 @@
 41275,VIP_Certificate_1H,VIP Certificate 1 Hour,2,10,,1,,,,,0xFFFFFFFF,63,2,,,,,,{callfunc "Vip1HOURFunc"; },{},{}
 41276,Event Treasure Box,Event Treasure Box,18,10,,10,,,,0,0xFFFFFFFF,63,2,,,,,,{ callfunc "EventBoxFunc"; },{},{}
 41277,Muruku,Muruku,0,2,,20,,,,,0xFFFFFFFF,63,2,,,,,,{ itemheal rand(50,90),0; },{},{}
-41278,Halloween Box,Halloween Box,18,10,,10,,,,0,0xFFFFFFFF,63,2,,,,,,{  },{},{}
+41278,Halloween Box,Halloween Box,18,10,,10,,,,0,0xFFFFFFFF,63,2,,,,,,{ callfunc "HWeenFunc"; },{},{}
 
 
 

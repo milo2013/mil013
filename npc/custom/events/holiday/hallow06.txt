@@ -13,9 +13,88 @@
 //= 1.2 fixed bugs, optimized. Now uses 1 var instead of 3 [Lupus]
 //============================================================
 
-kampung,130,136,5	script	Hallows' Eve Event	807,{
-	set .@part, EQI_HEAD_TOP;
-	set .@equip_id,5134; //Pumpkin-Head
+
+kampung,128,131,5	script	Hallows' Disguiser	1295,{
+	setarray .@IDH[0],"1962","2772","1504","1505","1510","2852","1507","2989","2990","2991","2992","2993","2994","2995","1120","2614","1435","2941";
+	set .@ID, .@IDH[rand (getarraysize(.@IDH)) ];
+	
+	mes "[ Hallows' Disguiser ]";
+	mes "Do you want to disguise?";
+	mes "10m Zeny per ^FF0000RANDOM^000000 disguise.";
+	next;
+	menu "Henshinnnn!!",L_Disguise,"Maybe Later",L_Cancel;
+
+	L_Disguise:
+	mes "[ Hallows' Disguiser ]";
+	mes "Are you sure?";
+	mes "You may reset if logout or DC.";
+	next;
+	menu "SURE!!",L_Confirm,"Maybe Later",L_Cancel;
+	end;
+	
+	L_Confirm:
+	if (ZENY < 10000000){
+		mes "[ Hallows' Disguiser ]";
+		mes "Come back when you're richer!";
+		close;
+	}
+		
+	atcommand "@disguise "+(.@ID)+" ";
+	set ZENY, ZENY - 10000000;
+	dispbottom "SYSTEM : You've paid 10,000,000z for Disguise Service Event.";
+	end;
+	
+	L_Cancel:
+	mes "[ Hallows' Disguiser ]";
+	mes "See you later then~";
+	close;
+	end;
+}
+	
+kampung,129,133,5	script	Hallows' Hat Trader	1244,{
+	mes "[ Hallows' Hat Trader ]";
+	mes "What may I help you?";
+	next;
+	menu "Trade",L_Trade,"Item List",L_List,"Cancel",L_Cancel;
+	
+	L_Trade:
+	if((countitem(2282) < 1) || (countitem(7568) < 200) || (countitem(7225) < 50)  || (countitem(7109)) < 10  || (countitem(31017) < 1)){
+	mes "[ Hallows' Hat Trader ]";
+	mes "Hey! This is not enough!";
+	close;
+	}
+	delitem 2282,1;
+	delitem 7568,200;
+	delitem 7225,50;
+	delitem 7109,10;
+	delitem 31017,1;
+	
+	getitem 19531,1;
+	end;
+	
+	L_List:
+	mes "[ Hallows' Hat Trader ]";
+	mes "Bring me :";
+	mes "1 - Halo";
+	mes "200 - White Mask";
+	mes "50 - Pumpkin Lantern";
+	mes "10 - Shining Spear Blade";
+	mes "1 - Viscious Cookie Card";
+	close;
+	end;
+	
+	L_Cancel:
+	mes "[ Hallows' Hat Trader ]";
+	mes "See you later then~";
+	close;
+	end;
+}
+		
+kampung,130,136,5	script	Hallows' Eve Event	10015,{
+		
+	set .@part, EQI_COSTUME_HEAD_MID;
+	set .@equip_id,19531; //Costume Cube Mask
+	
 	
 	if (getequipid(.@part) == .@equip_id) {
 			
@@ -23,11 +102,6 @@ kampung,130,136,5	script	Hallows' Eve Event	807,{
 	if(Class == Job_Novice){
 		mes "I am sorry but you have to got a job to complete the event.";
 		emotion e_swt,1;
-		close;
-	}
-	if((EVENT_HALWN06&1) && (EVENT_HALWN06&2)){
-		mes "I am sorry but you have already completed the event.";
-		emotion e_sry;
 		close;
 	}
 	mes "Greetings fellow lively human.";
@@ -38,7 +112,7 @@ kampung,130,136,5	script	Hallows' Eve Event	807,{
 	mes "[Hallows' Eve Event]";
 	mes "Trick or treat, which do you prefer?";
 	next;
-	menu "Trick",-, "Treat",L_Treat;
+	menu "Trick",-, "Treat [ Repeatable Quest ]",L_Treat;
 
 	mes "[Hallows' Eve Event]";
 	if(EVENT_HALWN06&2){
@@ -61,11 +135,6 @@ kampung,130,136,5	script	Hallows' Eve Event	807,{
 
 L_Treat:
 	mes "[Hallows' Eve Event]";
-	if(EVENT_HALWN06&1){
-		mes "I'm sorry but you have already had a treat. Why don't you go pick a trick now.";
-		emotion e_sry;
-		close;
-	}
 	if(!(EVENT_HALWN06&4)){
 		mes "Great! This shall be so much fun.";
 		next;
@@ -81,9 +150,9 @@ L_Treat:
 		mes "[Hallows' Eve Event]";
 		mes "But with all things made, some items are required first.";
 		mes "The list:";
-		mes "1 Hat,";
-		mes "30 Pumpkin, and";
-		mes "20 Black Piece of Cloth";
+		mes "20 - Pumpkin Head Crushed,";
+		mes "30 - Pumpkin Lantern,";
+		mes "1 - Dracula Card.";
 		next;
 		mes "[Hallows' Eve Event]";
 		mes "Hurry along now.";
@@ -95,17 +164,15 @@ L_Treat:
 	menu "Got'em",-, "Don't Have",L_Dont_Have, "See List",L_List;
 
 	mes "[Hallows' Eve Event]";
-	if((countitem(2220) < 1) || (countitem(535) < 30) || (countitem(7205) < 20) || (countitem(7511) < 20) || (countitem(7566) < 5) || (countitem(7019) < 30)){
+	if((countitem(6298) < 20) || (countitem(7225) < 30) || (countitem(4134) < 1)){
 		mes "You don't have enough items. Come back when you do.";
 		emotion e_sry;
 		close;
 	}
-	delitem 2220,1;
-	delitem 535,30;
-	delitem 7205,20;
-	delitem 7511,20;
-	delitem 7566,5;
-	delitem 7019,30;
+	delitem 6298,20;
+	delitem 7225,30;
+	delitem 4134,1;
+		
 	getitem 41278,1;
 	
 	set EVENT_HALWN06,EVENT_HALWN06|1;
@@ -140,7 +207,7 @@ L_List:
 		mes "Show me some Halloween Spirit!";
 		next;
 		mes "[Hallows' Eve Event]";
-		mes "Come again after you equip Pumpkin-Head.";
+		mes "Come again after you equip Costume Cube Mask.";
 		close;
 	}
 }

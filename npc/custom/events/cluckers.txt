@@ -60,7 +60,7 @@ kampung,138,158,5	script	Cluckers	800,{
 		mes "Cluck cluck! Cluuuuuck? ^FF0000~Hi GM " + strcharinfo(0) + ", Wanna play today?~^000000";
 		mes "Cluck cluck... CLUCK! ^FF0000~Just tell me what to do!~^000000";
 		next;
-		while(1) switch(select("Start Event:Check Prize:Set Prize:Not today Cluckers")) {
+		while(1) switch(select("Start Event:Check Prize:Set Prize [ ADMIN ]:Not today Cluckers")) {
 			case 1:
 				mes "[Cluckers]";
 				mes "CLUCK! ^FF0000~Sure thing!~^000000";
@@ -75,6 +75,7 @@ kampung,138,158,5	script	Cluckers	800,{
 				next;
 				break;
 			case 3:
+				if (getgmlevel() >= 99) {
 				mes "[Cluckers]";
 				mes "Cluck cluck? Cluck??? ^FF0000~What should the prize for winning be? Please input the ID.~^000000";
 				input $cluck_item_id;
@@ -88,6 +89,11 @@ kampung,138,158,5	script	Cluckers	800,{
 				emotion e_ok;
 				next;
 				break;
+				}
+				mes "[Cluckers]";
+				mes "Cluck cluck? Cluck???";
+				mes "^FF0000~Sorry. Only Admin can change the reward.~^000000";
+				close;
 			case 4:
 				mes "[Cluckers]";
 				mes "Cluck cluck cluck...";

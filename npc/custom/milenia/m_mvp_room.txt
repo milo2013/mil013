@@ -239,9 +239,9 @@ OnInit:
 	set .@menu[4], 0;	// Sell items (branches) On/Off (see shop below, before the mapflags)
 
 	// Respawn point when players leave the room
-	set .respawnmap$, "milenia";
-	set .respawnx, 119;
-	set .respawny, 151;
+	set .respawnmap$, "kampung";
+	set .respawnx, 150;
+	set .respawny, 150;
 
 	setarray .mvpid[0],
 		1511,//	Amon Ra
