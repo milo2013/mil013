@@ -663,7 +663,6 @@
 //6277,507,100	// Red_Reagent
 6278,507,100	// Black_Reagent
 6296,499,100	// RF_Taining_Notice
-6298,499,100	// Pumpkin_Head_Crushed
 6299,499,100	// Worn_Cloth_Piece
 6304,475,100	// Sapa_Feat_Cert
 6305,507,100	// Frozen_Skin_Piece
