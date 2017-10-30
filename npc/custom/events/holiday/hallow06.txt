@@ -194,12 +194,9 @@ L_Dont_Have:
 L_List:
 	mes "[Hallows' Eve Event]";
 	mes "I require the following items:";
-	mes "1 Hat,";
-	mes "30 Pumpkin,";
-	mes "20 Black Piece of Cloth,";
-	mes "20 Rune Of Darkness,";
-	mes "5 Will Of Red Darkness and";
-	mes "30 Loki's Whispers.";
+	mes "20 - Pumpkin Head Crushed,";
+	mes "30 - Pumpkin Lantern,";
+	mes "1 - Dracula Card.";
 	close;
 }
 	else {
