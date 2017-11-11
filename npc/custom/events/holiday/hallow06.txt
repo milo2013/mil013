@@ -190,7 +190,6 @@ L_Dont_Have:
 	next;
 	menu "No",-, "Yes",L_List;
 	close;
-
 L_List:
 	mes "[Hallows' Eve Event]";
 	mes "I require the following items:";
