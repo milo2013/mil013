@@ -270,7 +270,7 @@
 
 // Charleston Card
 4697,Charleston3_Card,Charleston3 Card,6,20,,10,,,,,,,,2,,,,,{ bonus bMaxSP,-300; bonus bBreakArmorRate,1500; /* Custom rate [Secret] */ },{},{}
-4698,Step_Card,Step Card,6,20,,10,,,,,,,,2,,,,,{ bonus2 bSkillAtk,"NC_ARMSCANNON",20+((getrefine()>=10)*20); },{},{}
+4698,Step_Card,Step Card,6,20,,10,,,,,,,,2,,,,,{ bonus2 bSkillAtk,"NC_AXEBOOMERANG",30+((getrefine() >= 10)*30); },{},{}
 4699,Rock_Step_Card,Rock Step Card,6,20,,10,,,,,,,,2,,,,,{ bonus2 bSkillAtk,"NC_ARMSCANNON",20+((getrefine()>=10)*20); },{},{}
 27012,Kick_Step_Card,Kick Step Card,6,20,,10,,,,,,,,16,,,,,{ bonus bMaxHPrate,8; if((eaclass()&EAJ_THIRDMASK) == EAJ_MECHANIC){ bonus bLongAtkDef,30; } },{},{}
 27013,Kick_&_Kick_Card,Kick & Kick Card,6,20,,10,,,,,,,,2,,,,,{ bonus2 bSkillAtk,"NC_VULCANARM",10+((getrefine()>=10)*20); },{},{}
@@ -281,7 +281,7 @@
 41262,Premium_Storage_Pass,Premium Storage Pass,3,6,,10,,,,,,,,,,,,,{},{},{}
 41263,Premium_Storage_Pass_Box,Premium Storage Pass Box,2,10,,1,,,,,0xFFFFFFFF,63,2,,,,,,{ rentitem 41262,2592000; },{},{}
 
-41264,VIP_Certificate_Combo,VIP Certificate Combo,2,10,,1,,,,,0xFFFFFFFF,63,2,,,,,,{ callfunc "VipFunc"; rentitem 41121,2592000; },{},{}
+41264,VIP_Certificate_Combo,VIP Certificate Combo,2,10,,1,,,,,0xFFFFFFFF,63,2,,,,,,{ callfunc "VipCOMBOFunc"; },{},{}
 41274,Milenia_Certificate_Box_Combo,VIP Refiner Combo Box,18,10,,10,,,,0,0xFFFFFFFF,63,2,,,,,,{ rentitem 41121,2592000; getitem 41123,500; },{},{}
 
 41265, Scythe(Use), Scythe(Use),5,50,,400,17,,1,3,0x03EFDFFF,63,2,2,1,1,1,1,{},{},{}

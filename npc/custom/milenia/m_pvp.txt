@@ -80,7 +80,7 @@ function	script	PVP#NORMAL	{
 	if (pvp01) == 1 {
 	warp "milenia_pvp",82,49;
 	mapannounce "milenia_pvp", strcharinfo(0) + " has entered the PVP Arena!",0;
-	mapannounce "milenia", strcharinfo(0) + " has entered the PVP Arena!",0;
+	mapannounce "kampung", strcharinfo(0) + " has entered the PVP Arena!",0;
 	set pvp02,1;
 	set pvp01,0;
     end;
@@ -89,7 +89,7 @@ function	script	PVP#NORMAL	{
 	if (pvp02) == 1 {
 	warp "milenia_pvp",50,16;
 	mapannounce "milenia_pvp", strcharinfo(0) + " has entered the PVP Arena!",0;
-	mapannounce "milenia", strcharinfo(0) + " has entered the PVP Arena!",0;
+	mapannounce "kampung", strcharinfo(0) + " has entered the PVP Arena!",0;
 	set pvp03,1;
 	set pvp02,0;
     end;
@@ -98,14 +98,14 @@ function	script	PVP#NORMAL	{
 	if (pvp03) == 1 {
 	warp "milenia_pvp",16,49;
 	mapannounce "milenia_pvp", strcharinfo(0) + " has entered the PVP Arena!",0;
-	mapannounce "milenia", strcharinfo(0) + " has entered the PVP Arena!",0;
+	mapannounce "kampung", strcharinfo(0) + " has entered the PVP Arena!",0;
 	set pvp03,0;
     end;
 	}
 	
     warp "milenia_pvp",50,83;
 	mapannounce "milenia_pvp", strcharinfo(0) + " has entered the PVP Arena!",0;
-	mapannounce "milenia", strcharinfo(0) + " has entered the PVP Arena!",0;
+	mapannounce "kampung", strcharinfo(0) + " has entered the PVP Arena!",0;
 	set pvp01,1;
     end;
 }
@@ -115,7 +115,7 @@ function	script	PVP#IZLUDE	{
 	if (pvp01) == 1 {
 	warp "izlude_pvp",128,59;
 	mapannounce "izlude_pvp", strcharinfo(0) + " has entered the PVP Arena!",0;
-	mapannounce "milenia", strcharinfo(0) + " has entered the PVP Arena - Izlude!",0;
+	mapannounce "kampung", strcharinfo(0) + " has entered the PVP Arena - Izlude!",0;
 	set pvp02,1;
 	set pvp01,0;
     end;
@@ -124,7 +124,7 @@ function	script	PVP#IZLUDE	{
 	if (pvp02) == 1 {
 	warp "izlude_pvp",128,252;
 	mapannounce "izlude_pvp", strcharinfo(0) + " has entered the PVP Arena!",0;
-	mapannounce "milenia", strcharinfo(0) + " has entered the PVP Arena - Izlude!",0;
+	mapannounce "kampung", strcharinfo(0) + " has entered the PVP Arena - Izlude!",0;
 	set pvp03,1;
 	set pvp02,0;
     end;
@@ -133,14 +133,14 @@ function	script	PVP#IZLUDE	{
 	if (pvp03) == 1 {
 	warp "izlude_pvp",53,163;
 	mapannounce "izlude_pvp", strcharinfo(0) + " has entered the PVP Arena!",0;
-	mapannounce "milenia", strcharinfo(0) + " has entered the PVP Arena - Izlude!",0;
+	mapannounce "kampung", strcharinfo(0) + " has entered the PVP Arena - Izlude!",0;
 	set pvp03,0;
     end;
 	}
 	
     warp "izlude_pvp",205,162;
 	mapannounce "izlude_pvp", strcharinfo(0) + " has entered the PVP Arena!",0;
-	mapannounce "milenia", strcharinfo(0) + " has entered the PVP Arena - Izlude!",0;
+	mapannounce "kampung", strcharinfo(0) + " has entered the PVP Arena - Izlude!",0;
 	set pvp01,1;
     end;
 }

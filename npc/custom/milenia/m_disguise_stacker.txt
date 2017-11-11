@@ -30,6 +30,7 @@ set .@Price,10000;
 
 Lstack:
 // Stacker Script
+
 set .@battle_manual, countitem (12208);
 set .@int_dish, countitem (12204);
 set .@vit_dish, countitem (12207);
@@ -52,10 +53,32 @@ set .@big_def, countitem (13749);
 set .@big_magic_def, countitem (13755);
 set .@royaljelly,countitem (13516);
 set .@yggberry,countitem (13517);
+set .@steam_tounge, countitem (12903);
+set .@ninetail_dish, countitem (12907);
+set .@stew_immortal, countitem (12908);
+set .@candy_box, countitem (13858);
+set .@herb_incant, countitem (683);
+set .@fighting_spirit, countitem (682);
+set .@mental_potion, countitem (14600);
+set .@old_candy, countitem (12709);
+set .@old_pudding, countitem (12710);
+set .@old_blue_box, countitem (12702);
+set .@m_travel_sack_b, countitem (13846);
 
+if (countitem (13846)) 	< 1 {}	delitem 13846,	.@m_travel_sack_b;	getitem 13846, .@m_travel_sack_b;
+if (countitem (12702)) 	< 1 {}	delitem 12702,	.@old_blue_box;	getitem 12702, .@old_blue_box;
+if (countitem (12710)) 	< 1 {}	delitem 12710,	.@old_pudding;	getitem 12710, .@old_pudding;
+if (countitem (12709)) 	< 1 {}	delitem 12709,	.@old_candy;	getitem 12709, .@old_candy;
+if (countitem (14600)) 	< 1 {}	delitem 14600,	.@mental_potion;	getitem 14600, .@mental_potion;
+if (countitem (682)) 	< 1 {}	delitem 682,	.@fighting_spirit;	getitem 682, .@fighting_spirit;
+if (countitem (683)) 	< 1 {}	delitem 683,	.@herb_incant;	getitem 683, .@herb_incant;
+if (countitem (13858)) 	< 1 {}	delitem 13858,	.@candy_box;	getitem 13858, .@candy_box;
+if (countitem (12908)) 	< 1 {}	delitem 12908,	.@stew_immortal;	getitem 12908, .@stew_immortal;
+if (countitem (12907)) 	< 1 {}	delitem 12907,	.@ninetail_dish;	getitem 12907, .@ninetail_dish;
+if (countitem (12903)) 	< 1 {}	delitem 12903,	.@steam_tounge;	getitem 12903, .@steam_tounge;
 if (countitem (13517)) 	< 1 {}	delitem 13517,	.@yggberry;	getitem 13517, .@yggberry;
 if (countitem (13516)) 	< 1 {}	delitem 13516,	.@royaljelly;	getitem 13516, .@royaljelly;
-if (countitem (13755)) 	< 1 {}	delitem 13755,	.@big_def;	getitem 13755, .@big_def;
+if (countitem (13755)) 	< 1 {}	delitem 13755,	.@big_magic_def;	getitem 13755, .@big_magic_def;
 if (countitem (13749)) 	< 1 {}	delitem 13749,	.@big_def;	getitem 13749, .@big_def;
 if (countitem (13747)) 	< 1 {}	delitem 13747,	.@small_def;	getitem 13747, .@small_def;
 if (countitem (604)) 	< 1 {}	delitem 604,	.@dead_branch;	getitem 604, .@dead_branch;

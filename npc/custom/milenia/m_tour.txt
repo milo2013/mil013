@@ -252,7 +252,7 @@ kampung,165,150,11	duplicate(Valley Warper)	Valley Warper#warper	10173
 kampung,195,115,5	duplicate(Valley Warper)	Valley Warper#job	10173  
 kampung,65,121,11	duplicate(Valley Warper)	Valley Warper#clan	10173 
 kampung,26,93,11	duplicate(Valley Warper)	Valley Warper#mvp	10173 
-kampung,28,44,11	duplicate(Valley Warper)	Valley Warper#dokebi	10173 
+kampung,28,49,11	duplicate(Valley Warper)	Valley Warper#dokebi	10173 
 kampung,72,57,5	duplicate(Valley Warper)	Valley Warper#cash	10173 
 kampung,160,63,11	duplicate(Valley Warper)	Valley Warper#training	10173 
 kampung,197,63,5	duplicate(Valley Warper)	Valley Warper#cedi	10173 

@@ -61,17 +61,17 @@
 1,5155,70 //Papa Beard
 1,18518,90 // Angel Ear[1]
 1,2204,80 //Glasses [1]
-2,9901,35 //Moonlight Egg
-2,9902,45 //Ifrit  Egg
-2,9903,50 //Valkyrie  Egg
-2,9904,30 //Drake  Egg
-2,9905,40 //Delate  Egg
-2,9906,30 //TaoGunka  Egg
-2,9907,45 //Ndhoggr Shadow  Egg
-2,9908,40 //Atroce  Egg
-2,9909,35 //Incantation Samurai  Egg
-2,9910,50 //Thanatos  Egg
-2,9911,50 //Thanatos Egg
+//2,9901,35 //Moonlight Egg
+//2,9902,45 //Ifrit  Egg
+//2,9903,50 //Valkyrie  Egg
+//2,9904,30 //Drake  Egg
+//2,9905,40 //Delate  Egg
+//2,9906,30 //TaoGunka  Egg
+//2,9907,45 //Ndhoggr Shadow  Egg
+//2,9908,40 //Atroce  Egg
+//2,9909,35 //Incantation Samurai  Egg
+//2,9910,50 //Thanatos  Egg
+//2,9911,50 //Thanatos Egg
 3,17229,5 //Infinite Fly Wing Box 7-Days
 4,2776,35 // Adventurer's Trusty Tower
 4,5137,70 //Alice Doll
