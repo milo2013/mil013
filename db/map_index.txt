@@ -1104,3 +1104,4 @@ prt_pvp
 izlude_pvp
 kampung
 mil_maze
+mall

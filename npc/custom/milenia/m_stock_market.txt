@@ -184,7 +184,8 @@ kampung,52,156,11	script	Stock Market::stockmarket	109,{
 	// Begining of interface //
 S_Start:
 	mes "[Stock Market]";
-	mes "^FF0000 Note : For 1Bil Zeny or more stock, this NPC may calculate it wrong and you may lose some Zeny Here. Use it at your own risk! - ADMIN^000000";
+	mes "^FF0000 We will revamp Stock System! Please sell your stock now!^000000";
+	mes "New Stock System will be implement on ^FF000023/11/2017 - Thursday^000000!";
 	next;
 	mes "[Stock Market]";
 	mes "Last fluctuation: " + $S_LastUpd$;
@@ -257,10 +258,12 @@ S_Start:
 
 	// GM Menu link //
 	if (getgmlevel() > 90) goto GM_subMenu;
-	menu "Portfolio",S_Port,"Buy Shares",S_Buy,"Sell Shares",S_Sell,"Cancel",S_Quit;
+	//menu "Portfolio",S_Port,"Buy Shares",S_Buy,"Sell Shares",S_Sell,"Cancel",S_Quit;
+	menu "Portfolio",S_Port,"Sell Shares",S_Sell,"Cancel",S_Quit;
 
 GM_subMenu:
-	menu "Portfolio",S_Port,"Buy Shares",S_Buy,"Sell Shares",S_Sell,"GM Menu",GM_Menu,"Cancel",S_Quit;
+	//menu "Portfolio",S_Port,"Buy Shares",S_Buy,"Sell Shares",S_Sell,"GM Menu",GM_Menu,"Cancel",S_Quit;
+	menu "Portfolio",S_Port,"Sell Shares",S_Sell,"GM Menu",GM_Menu,"Cancel",S_Quit;
 
 	// Selling Shares //
 S_Sell:

@@ -21,27 +21,27 @@
 	end;
 OnInit:
 	// Sets the names of the shares //
-	set $S1N$,"JIN";
-	set $S2N$,"VNG";
-	set $S3N$,"SHA";
-	set $S4N$,"RGC";
-	set $S5N$,"PSC";
-	set $S6N$,"GNG";
-	set $S7N$,"XRO";
-	set $S8N$,"GRM";
-	set $S9N$,"DOP";
-	set $S10N$,"POR";
+	set $S1N$,"BTC";
+	set $S2N$,"ETH";
+	set $S3N$,"XMR";
+	set $S4N$,"DASH";
+	set $S5N$,"LTC";
+	set $S6N$,"XRP";
+	set $S7N$,"ETC";
+	set $S8N$,"LSK";
+	set $S9N$,"ZEC";
+	set $S10N$,"AEON";
 
 	// Transaction fee //
-	set $S_Trans,1500;
+	set $S_Trans,150000;
 
 	// Min & Max buyable //
 	set $S_BuyMin,1;
-	set $S_BuyMax,1000000;
+	set $S_BuyMax,100000;
 	end;
 
 	// Average Price (Your start prices) //
-	set $S_Avg,100;
+	set $S_Avg,100000;
 
 	// Set times of fluctuation //
 OnClock1100:
@@ -80,7 +80,7 @@ OnClock1500:
 	end;
 
 S_Fluc:
-	set $fluc,rand (-6,6);
+	set $fluc,rand (-100000,50000);
 	set $S1B,$S1;
 	set $S1,$S1+$fluc;
 	if ($S1 < 25) set $S1,$S1+3;
@@ -89,7 +89,7 @@ S_Fluc:
 	if ($S1 > 175) set $S1,$S1-3;
 	if ($S1 < 1) set $S1,1;
 
-	set $fluc,rand (-6,6);
+	set $fluc,rand (-100000,50000);
 	set $S2B,$S2;
 	set $S2,$S2+$fluc;
 	if ($S2 < 25) set $S2,$S2+3;
@@ -98,7 +98,7 @@ S_Fluc:
 	if ($S2 > 175) set $S2,$S2-3;
 	if ($S2 < 1) set $S2,1;
 
-	set $fluc,rand (-6,6);
+	set $fluc,rand (-100000,50000);
 	set $S3B,$S3;
 	set $S3,$S3+$fluc;
 	if ($S3 < 25) set $S3,$S3+3;
@@ -107,7 +107,7 @@ S_Fluc:
 	if ($S3 > 175) set $S3,$S3-3;
 	if ($S3 < 1) set $S3,1;
 
-	set $fluc,rand (-6,6);
+	set $fluc,rand (-100000,50000);
 	set $S4B,$S4;
 	set $S4,$S4+$fluc;
 	if ($S4 < 25) set $S4,$S4+3;
@@ -116,7 +116,7 @@ S_Fluc:
 	if ($S4 > 175) set $S4,$S4-3;
 	if ($S4 < 1) set $S4,1;
 
-	set $fluc,rand (-6,6);
+	set $fluc,rand (-100000,50000);
 	set $S5B,$S5;
 	set $S5,$S5+$fluc;
 	if ($S5 < 25) set $S5,$S5+3;
@@ -125,7 +125,7 @@ S_Fluc:
 	if ($S5 > 175) set $S5,$S5-3;
 	if ($S5 < 1) set $S5,1;
 
-	set $fluc,rand (-6,6);
+	set $fluc,rand (-100000,50000);
 	set $S6B,$S6;
 	set $S6,$S6+$fluc;
 	if ($S6 < 25) set $S6,$S6+3;
@@ -134,7 +134,7 @@ S_Fluc:
 	if ($S6 > 175) set $S6,$S6-3;
 	if ($S6 < 1) set $S6,1;
 
-	set $fluc,rand (-6,6);
+	set $fluc,rand (-100000,50000);
 	set $S7B,$S7;
 	set $S7,$S7+$fluc;
 	if ($S7 < 25) set $S7,$S7+3;
@@ -143,7 +143,7 @@ S_Fluc:
 	if ($S7 > 175) set $S7,$S7-3;
 	if ($S7 < 1) set $S7,1;
 
-	set $fluc,rand (-6,6);
+	set $fluc,rand (-100000,50000);
 	set $S8B,$S8;
 	set $S8,$S8+$fluc;
 	if ($S8 < 25) set $S8,$S8+3;
@@ -152,7 +152,7 @@ S_Fluc:
 	if ($S8 > 175) set $S8,$S8-3;
 	if ($S8 < 1) set $S8,1;
 
-	set $fluc,rand (-6,6);
+	set $fluc,rand (-100000,50000);
 	set $S9B,$S9;
 	set $S9,$S9+$fluc;
 	if ($S9 < 25) set $S9,$S9+3;
@@ -161,7 +161,7 @@ S_Fluc:
 	if ($S9 > 175) set $S9,$S9-3;
 	if ($S9 < 1) set $S9,1;
 
-	set $fluc,rand (-6,6);
+	set $fluc,rand (-100000,50000);
 	set $S10B,$S10;
 	set $S10,$S10+$fluc;
 	if ($S10 < 25) set $S10,$S10+3;
@@ -655,7 +655,7 @@ GM_Menu:
 	menu "Fluctuate Market",S_Fluc,"Reset Prices",GM_Open,"Nothing",S_Start;
 
 S_Fluc:
-	set $fluc,rand (-6,6);
+	set $fluc,rand (-100000,50000);
 	set $S1B,$S1;
 	set $S1,$S1+$fluc;
 	if ($S1 < 25) set $S1,$S1+3;
@@ -664,7 +664,7 @@ S_Fluc:
 	if ($S1 > 175) set $S1,$S1-3;
 	if ($S1 < 1) set $S1,1;
 
-	set $fluc,rand (-6,6);
+	set $fluc,rand (-100000,50000);
 	set $S2B,$S2;
 	set $S2,$S2+$fluc;
 	if ($S2 < 25) set $S2,$S2+3;
@@ -673,7 +673,7 @@ S_Fluc:
 	if ($S2 > 175) set $S2,$S2-3;
 	if ($S2 < 2) set $S2,1;
 
-	set $fluc,rand (-6,6);
+	set $fluc,rand (-100000,50000);
 	set $S3B,$S3;
 	set $S3,$S3+$fluc;
 	if ($S3 < 25) set $S3,$S3+3;
@@ -682,7 +682,7 @@ S_Fluc:
 	if ($S3 > 175) set $S3,$S3-3;
 	if ($S3 < 1) set $S3,1;
 
-	set $fluc,rand (-6,6);
+	set $fluc,rand (-100000,50000);
 	set $S4B,$S4;
 	set $S4,$S4+$fluc;
 	if ($S4 < 25) set $S4,$S4+3;
@@ -691,7 +691,7 @@ S_Fluc:
 	if ($S4 > 175) set $S4,$S4-3;
 	if ($S4 < 1) set $S4,1;
 
-	set $fluc,rand (-6,6);
+	set $fluc,rand (-100000,50000);
 	set $S5B,$S5;
 	set $S5,$S5+$fluc;
 	if ($S5 < 25) set $S5,$S5+3;
@@ -700,7 +700,7 @@ S_Fluc:
 	if ($S5 > 175) set $S5,$S5-3;
 	if ($S5 < 1) set $S5,1;
 
-	set $fluc,rand (-6,6);
+	set $fluc,rand (-100000,50000);
 	set $S6B,$S6;
 	set $S6,$S6+$fluc;
 	if ($S6 < 25) set $S6,$S6+3;
@@ -709,7 +709,7 @@ S_Fluc:
 	if ($S6 > 175) set $S6,$S6-3;
 	if ($S6 < 1) set $S6,1;
 
-	set $fluc,rand (-6,6);
+	set $fluc,rand (-100000,50000);
 	set $S7B,$S7;
 	set $S7,$S7+$fluc;
 	if ($S7 < 25) set $S7,$S7+3;
@@ -718,7 +718,7 @@ S_Fluc:
 	if ($S7 > 175) set $S7,$S7-3;
 	if ($S7 < 1) set $S7,1;
 
-	set $fluc,rand (-6,6);
+	set $fluc,rand (-100000,50000);
 	set $S8B,$S8;
 	set $S8,$S8+$fluc;
 	if ($S8 < 25) set $S8,$S8+3;
@@ -727,7 +727,7 @@ S_Fluc:
 	if ($S8 > 175) set $S8,$S8-3;
 	if ($S8 < 1) set $S8,1;
 
-	set $fluc,rand (-6,6);
+	set $fluc,rand (-100000,50000);
 	set $S9B,$S9;
 	set $S9,$S9+$fluc;
 	if ($S9 < 25) set $S9,$S9+3;
@@ -736,7 +736,7 @@ S_Fluc:
 	if ($S9 > 175) set $S9,$S9-3;
 	if ($S9 < 1) set $S9,1;
 
-	set $fluc,rand (-6,6);
+	set $fluc,rand (-100000,50000);
 	set $S10B,$S10;
 	set $S10,$S10+$fluc;
 	if ($S10 < 25) set $S10,$S10+3;

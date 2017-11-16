@@ -50,6 +50,8 @@ end;
 OnInit:
 // daily point exchange limit
 .max_daily_exchange = 2000;
+.blacklist_card$ = "#4018#4059#4130#4243#4446#4454#4455#4478#4479#4480#4481#4482#4483#4484#4485#4486#4487#4488#4489#4490#4491#4492#4493#4494#4495#4496#4497#4498#4499#4500#4501#4502#4503#4504#4535#4536#4537#4538#4539#4540#4541#4542#4543#4544#4546#4547#4548#4549#4550#4551#4552#4553#4554#4555#4557#4559";
+
 
 .year = ( gettime(7) * 1000 );
 
@@ -64,11 +66,11 @@ OnClock0000:
 .today_date = atoi( gettimestr( "%Y%m%d",21 ) );
 OnMinute00:
 if( gettime(3) % 2 == 0 && .target_card ) end;
-do{
+do {
 	.target_card = rand( 4001,4555 );
-}while( getiteminfo( .target_card,2 ) != IT_CARD );
-announce "[ Cedi MVP ] : Card already changed, current card now is "+(getitemname (.target_card))+".", bc_blue;
-end;
+} while (compare("#"+.blacklist_card$+"#", "#"+.target_card+"#"));
+
+	
 
 function	CardValue	{
 	.@point = getarg(0);
