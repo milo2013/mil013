@@ -94,7 +94,7 @@
 41118,Acid_Demonstration_Box_100,Acid Demonstration Box 100,2,20,,10,,,,,0xFFFFFFFF,63,2,,,,,,{ getitem 7136,100; getitem 7135,100; },{},{}
 41119,Margaretha_Scroll,Margaretha Contract,2,0,,10,,,,,0xFFFFFFFF,63,2,,,,,,{ mercenary_create 2001,1800000; },{},{}
 41120,Super_Potion,Super Potion,0,600,,2,,,,,0xFFFFFFFF,63,2,,,,,,{ percentheal 100,100; },{},{}
-41121,Milenia_Certificate,Milenia Refine Certificate,0,20000000,10000000,0,,,,,,,,,,,,,{},{},{}
+41121,Milenia_Certificate,VIP Refiner,0,20000000,10000000,0,,,,,,,,,,,,,{},{},{}
 41122,Milenia_Certificate_Box_30,Milenia Refine Certificate Box,18,10,,10,,,,0,0xFFFFFFFF,63,2,,,,,,{ rentitem 41121,2592000; },{},{}
 41123,Rare_Mithril,Rare Mithril,3,20,,1,,,,,,,,,,,,,{},{},{}
 41124,Milenia_Certificate_Box_3,Milenia Refine Certificate Box,18,10,,10,,,,0,0xFFFFFFFF,63,2,,,,,,{ rentitem 41121,259200; },{},{}
@@ -298,6 +298,9 @@
 41276,Event Treasure Box,Event Treasure Box,18,10,,10,,,,0,0xFFFFFFFF,63,2,,,,,,{ callfunc "EventBoxFunc"; },{},{}
 41277,Muruku,Muruku,0,2,,20,,,,,0xFFFFFFFF,63,2,,,,,,{ itemheal rand(50,90),0; },{},{}
 41278,Halloween Box,Halloween Box,18,10,,10,,,,0,0xFFFFFFFF,63,2,,,,,,{ callfunc "HWeenFunc"; },{},{}
+41279,Bomb Poring Spawner,Bomb Poring Spawner,0,50,,70,,,,,0xFFFFFFFF,63,2,,,,,,{ if (getgmlevel() >= 1) { atcommand "@spawn 1904 10"; getitem 41279,1;} },{},{}
+41280,Poring Spawner,Poring Spawner,0,50,,70,,,,,0xFFFFFFFF,63,2,,,,,,{ if (getgmlevel() >= 1) { atcommand "@spawn 1002 10"; getitem 41280,1;} },{},{}
+41281,Donation Reload,Donation Points Reload,0,50,,70,,,,,0xFFFFFFFF,63,2,,,,,,{ set .relod_card,(countitem (41281))+1; set #DPOINTS,#DPOINTS+(.relod_card); delitem 41281,(.relod_card)-1; dispbottom "[ System ] : You reloaded with "+(.relod_card)+"x Donation Points Reload!"; dispbottom "[ System ] : Your balance now is "+#DPOINTS+" Donation Points."; },{},{}
 
 
 

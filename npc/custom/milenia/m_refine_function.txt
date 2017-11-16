@@ -12,6 +12,14 @@
 //	1024	-	Costume : Head Low
 //	2048	-	Costume : Head Mid
 //	4096	-	Costume : Head Top
+//	8192 = Costume Garment/Robe
+//	32768 = Ammo
+//	65536 = Shadow Armor
+//	131072 = Shadow Weapon
+//	262144 = Shadow Shield
+//	524288 = Shadow Shoes
+//	1048576 = Shadow Accessory Right (Earring)
+//	2097152 = Shadow Accessory Left (Pendant)
 
 
 // Notes : You can Customize it according to whatever way you want.

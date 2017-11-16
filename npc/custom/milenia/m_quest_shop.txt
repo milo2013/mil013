@@ -35,7 +35,7 @@ prt_cas,99,292,5	script	Minister of Defence 	684,{ callfunc "qshop",13; }// call
 prt_cas,101,292,5	script	Minister of Supplies	643,{ callfunc "qshop",14; }// call shop 14
 prt_cas,94,254,5	script	Princess Eleanor	10184,{ callfunc "qshop",15; }// call shop 15
 
-kampung,68,62,11	script	Novice Figures	10066,{ callfunc "qshop",18,19; }// call shop 18,19
+kampung,68,62,11	script	Novice Figures	10066,{ callfunc "qshop",18; }// call shop 18,19
 kampung,69,59,11	script	RWC Exchanger	10120,{ callfunc "qshop",21; }// call shop 21
 kampung,78,59,5	script	Rare Costume	10126,{ callfunc "qshop",22; }// call shop 22
 kampung,137,187,11	script	Froggie Headgear	10126,{ callfunc "qshop",24; }// call shop 24

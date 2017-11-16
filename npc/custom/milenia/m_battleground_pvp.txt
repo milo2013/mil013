@@ -85,6 +85,15 @@ L_Dead:
 OnRedQuit:  callsub L_Quit, 1;
 OnBlueQuit: callsub L_Quit, 2;
 L_Quit:
+	mapannounce "endless_war", "- The match has ended in a draw because someone quit! -", bc_map;
+	bg_warp .red, "prt_cas",101,277;
+	bg_warp .blue, "prt_cas",87,277;
+	bg_destroy .red;
+	bg_destroy .blue;
+	donpcevent .rednpcname$ +"::OnStart";
+	donpcevent .bluenpcname$ +"::OnStart";
+	end;
+	/*
 	.score[ getarg(0) ]--;
 	bg_updatescore "endless_war", .score[1], .score[2];
 	percentheal 100, 100;
@@ -94,6 +103,7 @@ L_Quit:
 	if ( !.score[ getarg(0) ] )
 		awake strnpcinfo(0);
 	end;
+	*/
 }
 
 prt_cas,107,277,11	script	Commander Emily#bg_pvp	10192,{
@@ -127,6 +137,7 @@ endless_war	mapflag	nobranch
 endless_war	mapflag	noicewall
 endless_war	mapflag	hidemobhpbar
 endless_war	mapflag	noitemconsumption
+endless_war	mapflag	restricted	8
 
 endless_war,166,86,0	warp	ew#1	1,1,endless_war,156,86
 endless_war,89,86,0	warp	ew#2	1,1,endless_war,98,86
