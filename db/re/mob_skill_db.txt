@@ -11067,6 +11067,10 @@
 3074,Time Holder@NPC_SUMMONSLAVE,attack,196,5,1000,700,10000,no,self,slavele,0,2917,,,,,,
 3074,Time Holder@NPC_SUMMONSLAVE,idle,196,5,1000,700,10000,no,self,slavele,0,2917,,,,,,
 
+3200,Wicked Chimera@WZ_HEAVENDRIVE,attack,91,5,500,1200,5000,yes,target,always,0,,,,,,6,
+3200,Wicked Chimera@WZ_HEAVENDRIVE,chase,91,5,500,1200,5000,yes,target,always,0,,,,,,6,
+3200,Wicked Chimera@CR_AUTOGUARD,attack,249,5,500,0,300000,yes,self,always,0,,,,,,,
+3200,Wicked Chimera@CR_AUTOGUARD,chase,249,5,2000,0,300000,yes,self,longrangeattacked,,,,,,,,
 2948,Cursed Soldier@NPC_BLINDATTACK,attack,177,5,500,0,5000,yes,target,always,0,,0x81,,,,,
 2948,Cursed Soldier@AC_DOUBLE,attack,46,5,500,0,5000,yes,target,always,0,,0x81,,,,,
 2948,Cursed Soldier@NPC_MAGICALATTACK,attack,192,5,500,800,5000,yes,target,always,0,,0x81,,,,,
