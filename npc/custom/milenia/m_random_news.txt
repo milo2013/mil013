@@ -3,14 +3,15 @@ OnInit:
 set .Time,60;		// Announce every x Minute.
 
 setarray .News$[0],	// Random Message to be Announced
-		"Milenia RO : RM1.00 = 1 Cashpoints~ Donate via Maybank2u now!!",
-		"Milenia RO : 100 Donation Credits for 300 Gashapon Coupon! Get it at our website!!",
-		"Milenia RO : 4 Cashpoints just $1.00~ Buy in our website..",
+		//"Milenia RO : RM1.00 = 1 Cashpoints~ Donate via Maybank2u now!!",
+		//"Milenia RO : 100 Donation Credits for 300 Gashapon Coupon! Get it at our website!!",
+		"Milenia RO : Check out our new ingame Donation Mall~",
+		"Milenia RO : 4 Donation Points just $1.00~ Buy in our website..",
 		"Milenia RO : Did you know? You can get free 3 Days VIP Refiner with min $10 Donation.",
 		"Milenia RO : Recommend our server to your friends to make us grow!!",
 		"Milenia RO : New in Milenia RO? Use our Valley Warper NPC to warp any NPC!",
 		"Milenia RO : Please like our FB Page. (facebook.com/MileniaRO)",
-		"Milenia RO : Please read our wiki. (mileniaro.com/wiki)",
+		"Milenia RO : Please read or write in our wiki. (mileniaro.com/wiki)",
 		"Milenia RO : Have you already redeem your Freebies at NPC Newbie Freebies in our town?",
 		"Milenia RO : Dont forget to join Himinn WoE:SE at Sunday!",
 		"Milenia RO : Dont forget to join Horn WoE:SE at Saturday!",
@@ -26,7 +27,7 @@ setarray .News$[0],	// Random Message to be Announced
 		"Milenia RO : Love TicTacToe? Try typing @tt to play!",
 		"Milenia RO : War Of Emperium : Training Edition on every Friday 10pm!!",
 		"Milenia RO : Typing @storage2 to use our new Premium and VIP Storage!",
-		"Milenia RO : Bored with normal PVP? Try out our new Frozen PVP! @frozen to start!",
+		//"Milenia RO : Bored with normal PVP? Try out our new Frozen PVP! @frozen to start!",
 		"Milenia RO : Join War of Emperium on Every Saturday and Sunday starting from 10pm till 11pm GMT+8!!",
 		"Milenia RO : Guild Masters! Prepare your guildie to join upcoming War of Emperium!!",
 		"Milenia RO : War Of Emperium winner will have access to Abyss Dungeon!! Also will get WoE Champion Box!!",
