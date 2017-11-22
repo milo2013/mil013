@@ -6,11 +6,6 @@ payon,147,181,11	script	VIP Refiner 2.0#py	10184,{
 	callfunc( "RefineFunc",8191,15,20,1,0,1,-1,50,49,41123);
 }
 
-kampung,159,106,5	script	VIP Shadow Refiner	10184,{
-	callfunc( "RefineFunc",8257536,15,20,1,0,1,-1,50,49,41123);
-}
-
-
 
 //			-	arg1	=	bitmask ( refer table above )
 //			-	arg2	=	Minimum refine rate

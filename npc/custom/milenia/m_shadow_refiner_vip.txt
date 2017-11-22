@@ -1,0 +1,460 @@
+/*
+EQI_SHADOW_ARMOR (15)     - Shadow Armor
+EQI_SHADOW_WEAPON (16)    - Shadow Weapon
+EQI_SHADOW_SHIELD (17)    - Shadow Shield
+EQI_SHADOW_SHOES (18)     - Shadow Shoes
+EQI_SHADOW_ACC_R (19)     - Shadow Accessory 2
+EQI_SHADOW_ACC_L (20)     - Shadow Accessory 1
+*/
+
+kampung,159,106,5	script	VIP Shadow Refiner	10125,{
+mes "[ VIP Shadow Refiner ]";
+mes "50% Success Refine Rate!";
+mes "100% Not Break Guarantee!!";
+mes "____________________";
+mes "My service require :";
+mes "10 piece of ^FF0000 "+ (getitemname (41123))+"^000000.";
+mes "and ^FF0000VIP Refiner Certificate^000000!";
+next;
+switch(select("Refine Shadow EQ:Cancel")) {
+	if (ZENY < 10000000){
+		mes "[ VIP Shadow Refiner ]";
+		mes "Come back when you richer!";
+		close;
+	}
+	
+	if ((countitem (41123)) < 1){
+		mes "[ VIP Shadow Refiner ]";
+		mes "Come back when you have at least 10 Rare Mithril.";
+		close;
+	}
+	
+	if ((countitem (41121)) < 1){
+		mes "[ VIP Shadow Refiner ]";
+		mes "Come back when you have at least 10 Rare Mithril.";
+		close;
+	}
+	
+	case 1:
+			mes "[ VIP Shadow Refiner ]";
+			mes "Please select which equipments you want to refine.";
+			next;
+			
+			.@Shadow_EQ = select(
+			"ARMOR [ +"+ getequiprefinerycnt(EQI_SHADOW_ARMOR )+" "+ getequipname(EQI_SHADOW_ARMOR) +" ]",
+			"WEAPON [ +"+ getequiprefinerycnt(EQI_SHADOW_WEAPON )+" "+ getequipname(EQI_SHADOW_WEAPON) +" ]",
+			"SHIELD [ +"+ getequiprefinerycnt(EQI_SHADOW_SHIELD )+" "+ getequipname(EQI_SHADOW_SHIELD) +" ]",
+			"SHOES [ +"+ getequiprefinerycnt(EQI_SHADOW_SHOES )+" "+ getequipname(EQI_SHADOW_SHOES) +" ]",
+			"EARRING [ +"+ getequiprefinerycnt(EQI_SHADOW_ACC_R )+" "+ getequipname(EQI_SHADOW_ACC_R) +" ]",
+			"PENDANT [ +"+ getequiprefinerycnt(EQI_SHADOW_ACC_L )+" "+ getequipname(EQI_SHADOW_ACC_L) +" ]");
+			
+			if ( .@Shadow_EQ == 1 ) {
+				L_Shadow_Armor:
+				
+				if ((countitem (41123)) < 10){
+					mes "[ VIP Shadow Refiner ]";
+					mes "Come back when you have at least 10 Rare Mithril.";
+					close;
+				}
+	
+				mes "[ VIP Shadow Refiner ]";
+				mes "Current Refine : ^002AD4[^000000 ^FF0000"+(getequiprefinerycnt(EQI_SHADOW_ARMOR ))+"^000000^00C21A/^000000^FF000010^000000 ^002AD4]^000000";
+				mes "Rare Mithril : ^002AD4[^000000 ^FF0000"+(countitem (41123))+"^000000 ^00C21Apcs^000000 ^002AD4]^000000";
+				mes "Continue?";
+				next;
+				switch(select("YES:NO")) {
+				
+				case 1:
+				set .@S_Equip_Armor,(getequipid(EQI_SHADOW_ARMOR));
+				
+				if (!getequipisequiped(EQI_SHADOW_ARMOR)){
+					mes "[ VIP Shadow Refiner ]";
+					mes "Please equip the equipment!!";
+					close;
+				}
+				
+				if ((getequiprefinerycnt(EQI_SHADOW_ARMOR )) == 10){
+					mes "[ VIP Shadow Refiner ]";
+					mes "You have MAX Refine for this equipment!";
+					close;
+				}
+				
+				set .@refine_rate, rand (1,100);
+					if (.@refine_rate <= 49){
+						specialeffect2 EF_REFINEFAIL;
+						if ((getequiprefinerycnt(EQI_SHADOW_ARMOR )) == 0){
+							getitem2 (getequipid(EQI_SHADOW_ARMOR)),1,1,0,0,.@equip_card[0],.@equip_card[1],.@equip_card[2],.@equip_card[3];
+							delequip EQI_SHADOW_ARMOR;
+							equip .@S_Equip_Armor;
+							set .@refine_rate,0;
+							delitem 41123,10;
+							goto L_Shadow_Armor;
+							end;
+						}
+						getitem2 (getequipid(EQI_SHADOW_ARMOR)),1,1,(getequiprefinerycnt(EQI_SHADOW_ARMOR )-1),0,.@equip_card[0],.@equip_card[1],.@equip_card[2],.@equip_card[3];
+						delequip EQI_SHADOW_ARMOR;
+						equip .@S_Equip_Armor;
+						set .@refine_rate,0;
+						delitem 41123,10;
+						goto L_Shadow_Armor;
+						end;
+						
+					}
+				specialeffect2 EF_REFINEOK;
+				getitem2 (getequipid(EQI_SHADOW_ARMOR)),1,1,(getequiprefinerycnt(EQI_SHADOW_ARMOR )+1),0,.@equip_card[0],.@equip_card[1],.@equip_card[2],.@equip_card[3];
+				delequip EQI_SHADOW_ARMOR;
+				equip .@S_Equip_Armor;
+				set .@refine_rate,0;
+				delitem 41123,10;
+				goto L_Shadow_Armor;
+				end;
+				
+				case 2: 
+					mes "[ VIP Shadow Refiner ]";
+					mes "...";
+					close;
+				}
+			}
+			if ( .@Shadow_EQ == 2 ) {	
+				L_Shadow_Weapon:
+				
+				if ((countitem (41123)) < 10){
+					mes "[ VIP Shadow Refiner ]";
+					mes "Come back when you have at least 10 Rare Mithril.";
+					close;
+				}
+	
+				mes "[ VIP Shadow Refiner ]";
+				mes "Current Refine : ^002AD4[^000000 ^FF0000"+(getequiprefinerycnt(EQI_SHADOW_WEAPON ))+"^000000^00C21A/^000000^FF000010^000000 ^002AD4]^000000";
+				mes "Rare Mithril : ^002AD4[^000000 ^FF0000"+(countitem (41123))+"^000000 ^00C21Apcs^000000 ^002AD4]^000000";
+				mes "Continue?";
+				next;
+				switch(select("YES:NO")) {
+				
+				case 1:
+				set .@S_Equip_Weapon,(getequipid(EQI_SHADOW_WEAPON));
+				
+				if (!getequipisequiped(EQI_SHADOW_WEAPON)){
+					mes "[ VIP Shadow Refiner ]";
+					mes "Please equip the equipment!!";
+					close;
+				}
+				
+				if ((getequiprefinerycnt(EQI_SHADOW_WEAPON )) == 10){
+					mes "[ VIP Shadow Refiner ]";
+					mes "You have MAX Refine for this equipment!";
+					close;
+				}
+				
+				set .@refine_rate, rand (1,100);
+					if (.@refine_rate <= 49){
+						specialeffect2 EF_REFINEFAIL;
+						if ((getequiprefinerycnt(EQI_SHADOW_WEAPON )) == 0){
+							getitem2 (getequipid(EQI_SHADOW_WEAPON)),1,1,0,0,.@equip_card[0],.@equip_card[1],.@equip_card[2],.@equip_card[3];
+							delequip EQI_SHADOW_WEAPON;
+							equip .@S_Equip_Weapon;
+							set .@refine_rate,0;
+							delitem 41123,10;
+							goto L_Shadow_Weapon;
+							end;
+						}
+						getitem2 (getequipid(EQI_SHADOW_WEAPON)),1,1,(getequiprefinerycnt(EQI_SHADOW_WEAPON )-1),0,.@equip_card[0],.@equip_card[1],.@equip_card[2],.@equip_card[3];
+						delequip EQI_SHADOW_WEAPON;
+						equip .@S_Equip_Weapon;
+						set .@refine_rate,0;
+						delitem 41123,10;
+						goto L_Shadow_Weapon;
+						end;
+						
+					}
+				specialeffect2 EF_REFINEOK;
+				getitem2 (getequipid(EQI_SHADOW_WEAPON)),1,1,(getequiprefinerycnt(EQI_SHADOW_WEAPON )+1),0,.@equip_card[0],.@equip_card[1],.@equip_card[2],.@equip_card[3];
+				delequip EQI_SHADOW_WEAPON;
+				equip .@S_Equip_Weapon;
+				set .@refine_rate,0;
+				delitem 41123,10;
+				goto L_Shadow_Weapon;
+				end;
+				
+				case 2: 
+					mes "[ VIP Shadow Refiner ]";
+					mes "...";
+					close;
+				}
+			}
+			if ( .@Shadow_EQ == 3 ) {	
+			L_Shadow_Shield:
+				
+				if ((countitem (41123)) < 10){
+					mes "[ VIP Shadow Refiner ]";
+					mes "Come back when you have at least 10 Rare Mithril.";
+					close;
+				}
+	
+				mes "[ VIP Shadow Refiner ]";
+				mes "Current Refine : ^002AD4[^000000 ^FF0000"+(getequiprefinerycnt(EQI_SHADOW_SHIELD ))+"^000000^00C21A/^000000^FF000010^000000 ^002AD4]^000000";
+				mes "Rare Mithril : ^002AD4[^000000 ^FF0000"+(countitem (41123))+"^000000 ^00C21Apcs^000000 ^002AD4]^000000";
+				mes "Continue?";
+				next;
+				switch(select("YES:NO")) {
+				
+				case 1:
+				set .@S_Equip_Shield,(getequipid(EQI_SHADOW_SHIELD));
+				
+				if (!getequipisequiped(EQI_SHADOW_SHIELD)){
+					mes "[ VIP Shadow Refiner ]";
+					mes "Please equip the equipment!!";
+					close;
+				}
+				
+				if ((getequiprefinerycnt(EQI_SHADOW_SHIELD )) == 10){
+					mes "[ VIP Shadow Refiner ]";
+					mes "You have MAX Refine for this equipment!";
+					close;
+				}
+				
+				set .@refine_rate, rand (1,100);
+					if (.@refine_rate <= 49){
+						specialeffect2 EF_REFINEFAIL;
+						if ((getequiprefinerycnt(EQI_SHADOW_SHIELD )) == 0){
+							getitem2 (getequipid(EQI_SHADOW_SHIELD)),1,1,0,0,.@equip_card[0],.@equip_card[1],.@equip_card[2],.@equip_card[3];
+							delequip EQI_SHADOW_SHIELD;
+							equip .@S_Equip_Shield;
+							set .@refine_rate,0;
+							delitem 41123,10;
+							goto L_Shadow_Shield;
+							end;
+						}
+						getitem2 (getequipid(EQI_SHADOW_SHIELD)),1,1,(getequiprefinerycnt(EQI_SHADOW_SHIELD )-1),0,.@equip_card[0],.@equip_card[1],.@equip_card[2],.@equip_card[3];
+						delequip EQI_SHADOW_SHIELD;
+						equip .@S_Equip_Shield;
+						set .@refine_rate,0;
+						delitem 41123,10;
+						goto L_Shadow_Shield;
+						end;
+						
+					}
+				specialeffect2 EF_REFINEOK;
+				getitem2 (getequipid(EQI_SHADOW_SHIELD)),1,1,(getequiprefinerycnt(EQI_SHADOW_SHIELD )+1),0,.@equip_card[0],.@equip_card[1],.@equip_card[2],.@equip_card[3];
+				delequip EQI_SHADOW_SHIELD;
+				equip .@S_Equip_Shield;
+				set .@refine_rate,0;
+				delitem 41123,10;
+				goto L_Shadow_Shield;
+				end;
+				
+				case 2: 
+					mes "[ VIP Shadow Refiner ]";
+					mes "...";
+					close;
+				}
+			}
+			if ( .@Shadow_EQ == 4 ) {
+			L_Shadow_Shoes:
+				
+				if ((countitem (41123)) < 10){
+					mes "[ VIP Shadow Refiner ]";
+					mes "Come back when you have at least 10 Rare Mithril.";
+					close;
+				}
+	
+				mes "[ VIP Shadow Refiner ]";
+				mes "Current Refine : ^002AD4[^000000 ^FF0000"+(getequiprefinerycnt(EQI_SHADOW_SHOES ))+"^000000^00C21A/^000000^FF000010^000000 ^002AD4]^000000";
+				mes "Rare Mithril : ^002AD4[^000000 ^FF0000"+(countitem (41123))+"^000000 ^00C21Apcs^000000 ^002AD4]^000000";
+				mes "Continue?";
+				next;
+				switch(select("YES:NO")) {
+				
+				case 1:
+				set .@S_Equip_Shoes,(getequipid(EQI_SHADOW_SHOES));
+				
+				if (!getequipisequiped(EQI_SHADOW_SHOES)){
+					mes "[ VIP Shadow Refiner ]";
+					mes "Please equip the equipment!!";
+					close;
+				}
+				
+				if ((getequiprefinerycnt(EQI_SHADOW_SHOES )) == 10){
+					mes "[ VIP Shadow Refiner ]";
+					mes "You have MAX Refine for this equipment!";
+					close;
+				}
+				
+				set .@refine_rate, rand (1,100);
+					if (.@refine_rate <= 49){
+						specialeffect2 EF_REFINEFAIL;
+						if ((getequiprefinerycnt(EQI_SHADOW_SHOES )) == 0){
+							getitem2 (getequipid(EQI_SHADOW_SHOES)),1,1,0,0,.@equip_card[0],.@equip_card[1],.@equip_card[2],.@equip_card[3];
+							delequip EQI_SHADOW_SHOES;
+							equip .@S_Equip_Shoes;
+							set .@refine_rate,0;
+							delitem 41123,10;
+							goto L_Shadow_Shoes;
+							end;
+						}
+						getitem2 (getequipid(EQI_SHADOW_SHOES)),1,1,(getequiprefinerycnt(EQI_SHADOW_SHOES )-1),0,.@equip_card[0],.@equip_card[1],.@equip_card[2],.@equip_card[3];
+						delequip EQI_SHADOW_SHOES;
+						equip .@S_Equip_Shoes;
+						set .@refine_rate,0;
+						delitem 41123,10;
+						goto L_Shadow_Shoes;
+						end;
+						
+					}
+				specialeffect2 EF_REFINEOK;
+				getitem2 (getequipid(EQI_SHADOW_SHOES)),1,1,(getequiprefinerycnt(EQI_SHADOW_SHOES )+1),0,.@equip_card[0],.@equip_card[1],.@equip_card[2],.@equip_card[3];
+				delequip EQI_SHADOW_SHOES;
+				equip .@S_Equip_Shoes;
+				set .@refine_rate,0;
+				delitem 41123,10;
+				goto L_Shadow_Shoes;
+				end;
+				
+				case 2: 
+					mes "[ VIP Shadow Refiner ]";
+					mes "...";
+					close;
+				}
+			}
+			if ( .@Shadow_EQ == 5 ) {	
+			L_Shadow_Acc_R:
+				
+				if ((countitem (41123)) < 10){
+					mes "[ VIP Shadow Refiner ]";
+					mes "Come back when you have at least 10 Rare Mithril.";
+					close;
+				}
+	
+				mes "[ VIP Shadow Refiner ]";
+				mes "Current Refine : ^002AD4[^000000 ^FF0000"+(getequiprefinerycnt(EQI_SHADOW_ACC_R ))+"^000000^00C21A/^000000^FF000010^000000 ^002AD4]^000000";
+				mes "Rare Mithril : ^002AD4[^000000 ^FF0000"+(countitem (41123))+"^000000 ^00C21Apcs^000000 ^002AD4]^000000";
+				mes "Continue?";
+				next;
+				switch(select("YES:NO")) {
+				
+				case 1:
+				set .@S_Equip_Acc_R,(getequipid(EQI_SHADOW_ACC_R));
+				
+				if (!getequipisequiped(EQI_SHADOW_ACC_R)){
+					mes "[ VIP Shadow Refiner ]";
+					mes "Please equip the equipment!!";
+					close;
+				}
+				
+				if ((getequiprefinerycnt(EQI_SHADOW_ACC_R )) == 10){
+					mes "[ VIP Shadow Refiner ]";
+					mes "You have MAX Refine for this equipment!";
+					close;
+				}
+				
+				set .@refine_rate, rand (1,100);
+					if (.@refine_rate <= 49){
+						specialeffect2 EF_REFINEFAIL;
+						if ((getequiprefinerycnt(EQI_SHADOW_ACC_R )) == 0){
+							getitem2 (getequipid(EQI_SHADOW_ACC_R)),1,1,0,0,.@equip_card[0],.@equip_card[1],.@equip_card[2],.@equip_card[3];
+							delequip EQI_SHADOW_ACC_R;
+							equip .@S_Equip_Acc_R;
+							set .@refine_rate,0;
+							delitem 41123,10;
+							goto L_Shadow_Acc_R;
+							end;
+						}
+						getitem2 (getequipid(EQI_SHADOW_ACC_R)),1,1,(getequiprefinerycnt(EQI_SHADOW_ACC_R )-1),0,.@equip_card[0],.@equip_card[1],.@equip_card[2],.@equip_card[3];
+						delequip EQI_SHADOW_ACC_R;
+						equip .@S_Equip_Acc_R;
+						set .@refine_rate,0;
+						delitem 41123,10;
+						goto L_Shadow_Acc_R;
+						end;
+						
+					}
+				specialeffect2 EF_REFINEOK;
+				getitem2 (getequipid(EQI_SHADOW_ACC_R)),1,1,(getequiprefinerycnt(EQI_SHADOW_ACC_R )+1),0,.@equip_card[0],.@equip_card[1],.@equip_card[2],.@equip_card[3];
+				delequip EQI_SHADOW_ACC_R;
+				equip .@S_Equip_Acc_R;
+				set .@refine_rate,0;
+				delitem 41123,10;
+				goto L_Shadow_Acc_R;
+				end;
+				
+				case 2: 
+					mes "[ VIP Shadow Refiner ]";
+					mes "...";
+					close;
+				}
+			}
+			if ( .@Shadow_EQ == 6 ) {	
+			L_Shadow_Acc_L:
+				
+				if ((countitem (41123)) < 10){
+					mes "[ VIP Shadow Refiner ]";
+					mes "Come back when you have at least 10 Rare Mithril.";
+					close;
+				}
+	
+				mes "[ VIP Shadow Refiner ]";
+				mes "Current Refine : ^002AD4[^000000 ^FF0000"+(getequiprefinerycnt(EQI_SHADOW_ACC_L ))+"^000000^00C21A/^000000^FF000010^000000 ^002AD4]^000000";
+				mes "Rare Mithril : ^002AD4[^000000 ^FF0000"+(countitem (41123))+"^000000 ^00C21Apcs^000000 ^002AD4]^000000";
+				mes "Continue?";
+				next;
+				switch(select("YES:NO")) {
+				
+				case 1:
+				set .@S_Equip_Acc_L,(getequipid(EQI_SHADOW_ACC_L));
+				
+				if (!getequipisequiped(EQI_SHADOW_ACC_L)){
+					mes "[ VIP Shadow Refiner ]";
+					mes "Please equip the equipment!!";
+					close;
+				}
+				
+				if ((getequiprefinerycnt(EQI_SHADOW_ACC_L )) == 10){
+					mes "[ VIP Shadow Refiner ]";
+					mes "You have MAX Refine for this equipment!";
+					close;
+				}
+				
+				set .@refine_rate, rand (1,100);
+					if (.@refine_rate <= 49){
+						specialeffect2 EF_REFINEFAIL;
+						if ((getequiprefinerycnt(EQI_SHADOW_ACC_L )) == 0){
+							getitem2 (getequipid(EQI_SHADOW_ACC_L)),1,1,0,0,.@equip_card[0],.@equip_card[1],.@equip_card[2],.@equip_card[3];
+							delequip EQI_SHADOW_ACC_L;
+							equip .@S_Equip_Acc_L;
+							set .@refine_rate,0;
+							delitem 41123,10;
+							goto L_Shadow_Acc_L;
+							end;
+						}
+						getitem2 (getequipid(EQI_SHADOW_ACC_L)),1,1,(getequiprefinerycnt(EQI_SHADOW_ACC_L )-1),0,.@equip_card[0],.@equip_card[1],.@equip_card[2],.@equip_card[3];
+						delequip EQI_SHADOW_ACC_L;
+						equip .@S_Equip_Acc_L;
+						set .@refine_rate,0;
+						delitem 41123,10;
+						goto L_Shadow_Acc_L;
+						end;
+						
+					}
+				specialeffect2 EF_REFINEOK;
+				getitem2 (getequipid(EQI_SHADOW_ACC_L)),1,1,(getequiprefinerycnt(EQI_SHADOW_ACC_L )+1),0,.@equip_card[0],.@equip_card[1],.@equip_card[2],.@equip_card[3];
+				delequip EQI_SHADOW_ACC_L;
+				equip .@S_Equip_Acc_L;
+				set .@refine_rate,0;
+				delitem 41123,10;
+				goto L_Shadow_Acc_L;
+				end;
+				
+				case 2: 
+					mes "[ VIP Shadow Refiner ]";
+					mes "...";
+					close;
+				}
+			}
+	
+	case 2: 
+		mes "[ VIP Shadow Refiner ]";
+		mes "...";
+		close;
+}
+			
+}
