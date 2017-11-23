@@ -309,5 +309,6 @@
 41285,Bomb Poring Spawner 50,Bomb Poring Spawner 50,0,50,,70,,,,,0xFFFFFFFF,63,2,,,,,,{ if (getgmlevel() >= 1) { atcommand "@spawn 1904 50"; getitem 41285,1;} },{},{}
 41286,Poring Spawner 50,Poring Spawner 50,0,50,,70,,,,,0xFFFFFFFF,63,2,,,,,,{ if (getgmlevel() >= 1) { atcommand "@spawn 1002 50"; getitem 41286,1;} },{},{}
 
+41287,Lucky Box,Lucky Box,2,10,,1,,,,,0xFFFFFFFF,63,2,,,,,,{ callfunc "LuckyBoxFunc"; },{},{}
 
 		
