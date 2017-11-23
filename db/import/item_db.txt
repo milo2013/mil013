@@ -303,7 +303,11 @@
 41281,Donation Reload,Donation Points Reload,0,50,,70,,,,,0xFFFFFFFF,63,2,,,,,,{ set .relod_card,(countitem (41281))+1; set #DPOINTS,#DPOINTS+(.relod_card); delitem 41281,(.relod_card)-1; dispbottom "[ System ] : You reloaded with "+(.relod_card)+"x Donation Points Reload!"; dispbottom "[ System ] : Your balance now is "+#DPOINTS+" Donation Points."; },{},{}
 
 41282,Supplement_Part_Str,Supplement Part Str,4,25000,,2000,,80,,,0x00000400,56,2,65536,,100,1,0,{ bonus2 bAddClass,Class_All,5+getrefine()/4; },{},{}
+41283,Battleground Badge Box Gold,Battleground Badge Box Gold,18,10,,10,,,,0,0xFFFFFFFF,63,2,,,,,,{ getitem 41159,5; getitem 41162,rand(5,30); },{},{}
+41284,Battleground Badge Box Silver,Battleground Badge Box Silver,18,10,,10,,,,0,0xFFFFFFFF,63,2,,,,,,{ getitem 41159,1; getitem 41162,rand(1,15); },{},{}
+
+41285,Bomb Poring Spawner 50,Bomb Poring Spawner 50,0,50,,70,,,,,0xFFFFFFFF,63,2,,,,,,{ if (getgmlevel() >= 1) { atcommand "@spawn 1904 50"; getitem 41285,1;} },{},{}
+41286,Poring Spawner 50,Poring Spawner 50,0,50,,70,,,,,0xFFFFFFFF,63,2,,,,,,{ if (getgmlevel() >= 1) { atcommand "@spawn 1002 50"; getitem 41286,1;} },{},{}
 
 
-
-
+		
