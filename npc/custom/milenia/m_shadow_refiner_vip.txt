@@ -25,13 +25,13 @@ switch(select("Refine Shadow EQ:Cancel")) {
 	
 	if ((countitem (41123)) < 1){
 		mes "[ VIP Shadow Refiner ]";
-		mes "Come back when you have at least 10 Rare Mithril.";
+		mes "Come back when you have at least ^FF000010 Rare Mithril^000000!!";
 		close;
 	}
 	
 	if ((countitem (41121)) < 1){
 		mes "[ VIP Shadow Refiner ]";
-		mes "Come back when you have at least 10 Rare Mithril.";
+		mes "Come back when you have ^FF0000VIP Refiner Certificate^000000!!";
 		close;
 	}
 	
