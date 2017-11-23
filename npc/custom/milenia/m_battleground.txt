@@ -21,9 +21,11 @@ OnInit:
 	.minplayer2start = 2;      // minimum players to start (ex. if 3vs3, set to 3) .minplayer2start = 2;      // minimum players to start (ex. if 3vs3, set to 3)
 	.eventlasting    = 20*60;  // event duration before auto-reset (20 minutes * seconds)
 	setarray .rewarditem[0],   // rewards for the winning team: <item>,<amount>,...
-		41159, 5;
+		41159, 5,
+		41162, rand (5,30);
 	setarray .rewardloser[0],	// rewards for the losing team: <item>,<amount>,...
-		41159, 1;
+		41159, 1,
+		41162, rand (1,15);
 	.team1name$ = "Gold";
 	.team2name$ = "Diamond";
 	end;

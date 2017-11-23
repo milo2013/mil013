@@ -543,6 +543,7 @@
 24018:24019:24020,{ if(getequiprefinerycnt(EQI_SHADOW_ACC_R) + getequiprefinerycnt(EQI_SHADOW_ACC_L) + getequiprefinerycnt(EQI_SHADOW_WEAPON) >= 23) { bonus2 bAddClass,Class_All,1; } }
 24021:24022:24023,{ if(getequiprefinerycnt(EQI_SHADOW_ACC_R) + getequiprefinerycnt(EQI_SHADOW_ACC_L) + getequiprefinerycnt(EQI_SHADOW_WEAPON) >= 23) { bonus bMatkRate,1; } }
 24025:24028,{ .@r = getequiprefinerycnt(EQI_SHADOW_ARMOR) + getequiprefinerycnt(EQI_SHADOW_SHOES); bonus bMaxHP,.@r; bonus bMaxSP,.@r; if(.@r >= 15) { bonus bMaxHPrate,1; } }
+24025:41282,{ .@r = getequiprefinerycnt(EQI_SHADOW_ARMOR) + getequiprefinerycnt(EQI_SHADOW_SHOES); bonus bMaxHP,.@r; bonus bMaxSP,.@r; if(.@r >= 15) { bonus bMaxHPrate,1; } }
 24026:24027,{ .@r = getequiprefinerycnt(EQI_SHADOW_ARMOR) + getequiprefinerycnt(EQI_SHADOW_SHIELD); bonus bDef,.@r; if(.@r >= 15) { bonus2 bSubEle,0,1; } }
 24029:24031,{ .@r = getequiprefinerycnt(EQI_SHADOW_ARMOR) + getequiprefinerycnt(EQI_SHADOW_WEAPON); bonus bBaseAtk,.@r; if(.@r >= 15) { bonus bLongAtkRate,1; } }
 24030:24032,{ .@r = getequiprefinerycnt(EQI_SHADOW_ARMOR) + getequiprefinerycnt(EQI_SHADOW_WEAPON); bonus bCritical,.@r; bonus bBaseAtk,.@r; if(.@r >= 15) { bonus bCritAtkRate,1; } }
