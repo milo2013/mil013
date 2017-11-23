@@ -3,7 +3,7 @@
 //===== By: ==================================================
 //= acky
 //===== Current Version: =====================================
-//= 1.3.1
+//= 2.0
 //===== Compatible With: =====================================
 //= rAthena Project
 //===== Description: =========================================
@@ -16,21 +16,23 @@
 //= Lupus: This script lets players make 40,000,000z a day
 //=        so use it on your own risk
 //============================================================
+//= Revamp Version by GM Rakuzas ( Milenia Admin)
+//============================================================
 
 -	script	sharenames	-1,{
 	end;
 OnInit:
 	// Sets the names of the shares //
-	set $S1N$,"JIN";
-	set $S2N$,"VNG";
-	set $S3N$,"SHA";
-	set $S4N$,"RGC";
-	set $S5N$,"PSC";
-	set $S6N$,"GNG";
-	set $S7N$,"XRO";
-	set $S8N$,"GRM";
-	set $S9N$,"DOP";
-	set $S10N$,"POR";
+	set $S1N$,"BTC";
+	set $S2N$,"ETH";
+	set $S3N$,"XMR";
+	set $S4N$,"DASH";
+	set $S5N$,"LTC";
+	set $S6N$,"XRP";
+	set $S7N$,"ETC";
+	set $S8N$,"LSK";
+	set $S9N$,"ZEC";
+	set $S10N$,"AEON";
 
 	// Transaction fee //
 	set $S_Trans,1500;
@@ -44,40 +46,69 @@ OnInit:
 	set $S_Avg,100;
 
 	// Set times of fluctuation //
-OnClock1100:
+OnClock2300:
+	announce "[Stock Market] Our stock will be reset within 1 hour. Please sell your stock ASAP!",bc_all,0xFF0000;
+	set $S_LastUpd$,"23:00";
+	goto S_Fluc;
+	end;
+
+OnClock0000: 
+	donpcevent strnpcinfo(3)+"::OnResetStock";
+	announce "[Stock Market] Our stock has been reset!",bc_all,0xFF0000;
 	set $S_LastUpd$,"12:00";
 	goto S_Fluc;
 	end;
-
-OnClock0000:
-	set $S_LastUpd$,"00:00";
-	goto S_Fluc;
+	
+OnResetStock:
+	query_sql "DELETE FROM `acc_reg_num` WHERE `key` LIKE '#S%'";
+	addrid(0);
+	for (.@i = 1; .@i <= 10; .@i++) {
+		setd("#S"+.@i, 0);
+	}
+	// dispbottom "Stock has reset.";
 	end;
 
-OnClock0600:
-	set $S_LastUpd$,"06:00";
-	goto S_Fluc;
+OnClock0100:	set $S_LastUpd$,"01:00";	goto S_Fluc;	end;
+OnClock0200:	set $S_LastUpd$,"02:00";	goto S_Fluc;	end;
+OnClock0300:	set $S_LastUpd$,"03:00";	goto S_Fluc;	end;
+OnClock0400:	set $S_LastUpd$,"04:00";	goto S_Fluc;	end;
+OnClock0500:	set $S_LastUpd$,"05:00";	goto S_Fluc;	end;
+OnClock0600:	
+	announce "[Stock Market] Our stock will be reset in 18 hours!",bc_all,0xFF0000;
+	set $S_LastUpd$,"06:00";	
+	goto S_Fluc;	
 	end;
-
+OnClock0700:	set $S_LastUpd$,"07:00";	goto S_Fluc;	end;
+OnClock0800:	set $S_LastUpd$,"08:00";	goto S_Fluc;	end;
+OnClock0900:	set $S_LastUpd$,"09:00";	goto S_Fluc;	end;
+OnClock1000:	set $S_LastUpd$,"11:00";	goto S_Fluc;	end;
+OnClock1100:	set $S_LastUpd$,"12:00";	goto S_Fluc;	end;
+OnClock1200:	
+	announce "[Stock Market] Our stock will be reset in 12 hours!",bc_all,0xFF0000;
+	set $S_LastUpd$,"13:00";	
+	goto S_Fluc;	
+	end;
+OnClock1300:	set $S_LastUpd$,"14:00";	goto S_Fluc;	end;
+OnClock1400:	set $S_LastUpd$,"15:00";	goto S_Fluc;	end;
+OnClock1500:	set $S_LastUpd$,"16:00";	goto S_Fluc;	end;
+OnClock1600:	set $S_LastUpd$,"17:00";	goto S_Fluc;	end;
+OnClock1700:	set $S_LastUpd$,"18:00";	goto S_Fluc;	end;
 OnClock1800:
-	set $S_LastUpd$,"18:00";
-	goto S_Fluc;
+	announce "[Stock Market] Our stock will be reset in 6 hours!",bc_all,0xFF0000;
+	set $S_LastUpd$,"19:00";	
+	goto S_Fluc;	
 	end;
-
+OnClock1900:	set $S_LastUpd$,"20:00";	goto S_Fluc;	end;
+OnClock2000:	set $S_LastUpd$,"21:00";	goto S_Fluc;	end;
 OnClock2100:
-	set $S_LastUpd$,"21:00";
-	goto S_Fluc;
+	announce "[Stock Market] Our stock will be reset in 3 hours!",bc_all,0xFF0000;	
+	set $S_LastUpd$,"22:00";	
+	goto S_Fluc;	
 	end;
+OnClock2200:	set $S_LastUpd$,"23:00";	goto S_Fluc;	end;
 
-OnClock0900:
-	set $S_LastUpd$,"09:00";
-	goto S_Fluc;
-	end;
 
-OnClock1500:
-	set $S_LastUpd$,"15:00";
-	goto S_Fluc;
-	end;
+
 
 S_Fluc:
 	set $fluc,rand (-6,6);
@@ -173,8 +204,25 @@ S_Fluc:
 }
 
 kampung,52,156,11	script	Stock Market::stockmarket	109,{
+	/*set #S1,S1+0; 
+	set #S2,S2+0; 
+	set #S3,S3+0; 
+	set #S4,S4+0; 
+	set #S5,S5+0; 
+	set #S6,S6+0; 
+	set #S7,S7+0; 
+	set #S8,S8+0; 
+	set #S9,S9+0; 
+	set #S10,S10+0; 
+	
+	if (@total == 0) {
+		atcommand "@kick "+strcharinfo(0)+"";
+	}
+	*/
+	
 	// Ensures no trading when default prices have not been set //
 	set @stotal,$S1+$S2+$S3+$S4+$S5+$S6+$S7+$S8+$S9+$S10;
+	
 	if (@stotal > 0) goto S_Start;
 	mes "[Stock Market]";
 	mes "Trading is currently closed.";
@@ -184,11 +232,8 @@ kampung,52,156,11	script	Stock Market::stockmarket	109,{
 	// Begining of interface //
 S_Start:
 	mes "[Stock Market]";
-	mes "^FF0000 We will revamp Stock System! Please sell your stock now!^000000";
-	mes "New Stock System will be implement on ^FF000023/11/2017 - Thursday^000000!";
-	next;
-	mes "[Stock Market]";
 	mes "Last fluctuation: " + $S_LastUpd$;
+	mes "^FF0000Next Share Wipe: 12:00AM GMT+8^000000";
 
 	// Loss/Gain in price //
 	set @S1Update,$S1-$S1B;
@@ -258,12 +303,10 @@ S_Start:
 
 	// GM Menu link //
 	if (getgmlevel() > 90) goto GM_subMenu;
-	//menu "Portfolio",S_Port,"Buy Shares",S_Buy,"Sell Shares",S_Sell,"Cancel",S_Quit;
-	menu "Portfolio",S_Port,"Sell Shares",S_Sell,"Cancel",S_Quit;
+	menu "Portfolio",S_Port,"Buy Shares",S_Buy,"Sell Shares",S_Sell,"Cancel",S_Quit;
 
 GM_subMenu:
-	//menu "Portfolio",S_Port,"Buy Shares",S_Buy,"Sell Shares",S_Sell,"GM Menu",GM_Menu,"Cancel",S_Quit;
-	menu "Portfolio",S_Port,"Sell Shares",S_Sell,"GM Menu",GM_Menu,"Cancel",S_Quit;
+	menu "Portfolio",S_Port,"Buy Shares",S_Buy,"Sell Shares",S_Sell,"GM Menu",GM_Menu,"Cancel",S_Quit;
 
 	// Selling Shares //
 S_Sell:

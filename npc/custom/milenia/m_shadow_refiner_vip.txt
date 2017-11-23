@@ -17,11 +17,6 @@ mes "10 piece of ^FF0000 "+ (getitemname (41123))+"^000000.";
 mes "and ^FF0000VIP Refiner Certificate^000000!";
 next;
 switch(select("Refine Shadow EQ:Cancel")) {
-	if (ZENY < 10000000){
-		mes "[ VIP Shadow Refiner ]";
-		mes "Come back when you richer!";
-		close;
-	}
 	
 	if ((countitem (41123)) < 1){
 		mes "[ VIP Shadow Refiner ]";
