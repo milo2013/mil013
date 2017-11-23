@@ -302,8 +302,5 @@
 41280,Poring Spawner,Poring Spawner,0,50,,70,,,,,0xFFFFFFFF,63,2,,,,,,{ if (getgmlevel() >= 1) { atcommand "@spawn 1002 10"; getitem 41280,1;} },{},{}
 41281,Donation Reload,Donation Points Reload,0,50,,70,,,,,0xFFFFFFFF,63,2,,,,,,{ set .relod_card,(countitem (41281))+1; set #DPOINTS,#DPOINTS+(.relod_card); delitem 41281,(.relod_card)-1; dispbottom "[ System ] : You reloaded with "+(.relod_card)+"x Donation Points Reload!"; dispbottom "[ System ] : Your balance now is "+#DPOINTS+" Donation Points."; },{},{}
 
-41282,Supplement_Part_Str,Supplement Part Str,4,25000,,2000,,80,,,0x00000400,56,2,65536,,100,1,0,{ bonus2 bAddClass,Class_All,5+getrefine()/4; },{},{}
-
-
-
+41282,Supplement_Part_Str,Supplement Part Str,12,0,,0,,0,,0,0xFFFFFFFF,63,2,65536,,1,1,0,{ bonus2 bAddClass,Class_All,5+getrefine()/4; bonus bMaxHP,50; if(getrefine()>=7) { bonus bMaxHPrate,1;},{},{}
 
