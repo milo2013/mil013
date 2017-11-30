@@ -9,13 +9,13 @@ else if(Class == 4218)	goto Lhaveitem2;
 		set .name$, "[Doram Admiral]";
 
 Lhaveitem1:
-	emotion	e_swt2;
+	emotion	ET_SWEAT;
 	mes "[Doram Admiral]";
     mes "I already give the item for you.";
     close2;
 end;
 Lhaveitem2:
-		emotion	e_ho;
+		emotion	ET_DELIGHT;
 		mes "[Doram Admiral]";
 		mes "Hello young adventurer.";
 		mes "I can give you free Doram items.";
@@ -23,7 +23,7 @@ Lhaveitem2:
 		next;
 		switch(select(	"You're so kind. Thank you!:Nah~ Im too pro for this!"	)){
 		Case 1:
-		emotion	e_kis;
+		emotion	ET_CHUP;
 		mes "[Doram Admiral]";
 		mes "Please take this item and have a nice day~";
 		next;
@@ -33,7 +33,7 @@ Lhaveitem2:
 		getitem	12323,300;	//Novice fly wing
 		getitem	569,500;	//Novice potion
 		set doram, 13;
-		emotion	e_kis;
+		emotion	ET_CHUP;
 		mes "[Doram Admiral]";
 		mes "See you soon~";
 		dispbottom "You got 1 " +getitemname(14208);
@@ -44,19 +44,19 @@ Lhaveitem2:
     close2;
 end;
 		Case 2:
-		emotion	e_ag;
+		emotion	ET_ANGER;
 		mes "[Doram Admiral]";
 		mes "Such a arrogant person.";
 		mes "^ff0000@kill "+ strcharinfo(0) +"^000000";
 		next;
 		mes "[Doram Admiral]";
-		emotion	e_omg;
+		emotion	ET_HUK;
 		mes "Why my command not work?!";
 		mes "Maybe you're lucky!";
 	close2;
 end;
 Lhaveitem3:
-		emotion e_dum;
+		emotion ET_HUM;
 		mes "[Doram Admiral]";
 		mes "Sorry~";
 		mes "We only give free item for ^ff0000Doram^000000 only!";

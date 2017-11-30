@@ -11,7 +11,7 @@ else if(Class < 1)	goto Lhaveitem2;
 
 Lhaveitem1:
 	cutin "malaya_nursea03",2;
-	emotion	e_swt2;
+	emotion	ET_PROFUSELY_SWEAT;
 	mes "[GM Lisa]";
     mes "I already give the item for you.";
     close2;
@@ -19,7 +19,7 @@ cutin "", 255;
 end;
 Lhaveitem2:
 		cutin "malaya_nursea02",2;
-		emotion	e_ho;
+		emotion	ET_DELIGHT;
 		mes "[GM Lisa]";
 		mes "Hello young adventurer.";
 		mes "I can give you free novice items.";
@@ -27,7 +27,7 @@ Lhaveitem2:
 		next;
 		switch(select(	"You're so kind. Thank you!:Nah~ Im too pro for this!"	)){
 		Case 1:
-		emotion	e_kis;
+		emotion	ET_CHUP;
 		mes "[GM Lisa]";
 		mes "Please take this item and have a nice day~";
 		next;
@@ -47,7 +47,7 @@ Lhaveitem2:
 		getitem 12211,100; 	//Kafra Card
 		getitem 13643,1;   //2 Hour Package
 		set novice, 12;
-		emotion	e_kis;
+		emotion	ET_CHUP;
 		mes "See you soon~";
 		dispbottom "You got 1 " +getitemname(14208);
 		dispbottom "You got 1 " +getitemname(13415);
@@ -69,20 +69,20 @@ cutin "", 255;
 end;
 		Case 2:
 		cutin "malaya_nursea04",2;
-		emotion	e_ag;
+		emotion	ET_ANGER;
 		mes "[GM Lisa]";
 		mes "Such a arrogant person.";
 		mes "^ff0000@kill "+ strcharinfo(0) +"^000000";
 		next;
 		mes "[GM Lisa]";
-		emotion	e_omg;
+		emotion	ET_HUK;
 		mes "Why my command not work?!";
 		mes "Maybe you're lucky!";
 	close2;
 cutin "", 255;
 end;
 Lhaveitem3:
-		emotion e_dum;
+		emotion ET_HUM;
 		mes "[GM Lisa]";
 		mes "Sorry~";
 		mes "We only give free item for ^ff0000novice^000000 only!";

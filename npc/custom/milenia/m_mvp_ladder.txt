@@ -260,7 +260,7 @@ OnTalk:
 		if ( select( "Start now !!","Cancel" ) == 1 ) {
 			if ( @mode < 1 || @mode > 4 ) {
 				npctalk "Seem like your're not the one who registered the Ladder. Get out of here! #"+@mode;
-				emotion e_pif;
+				emotion ET_HNG;
 			}
 			else {
 				'ladder_mode = @mode;				
@@ -288,7 +288,7 @@ OnTalk:
 				}
 				close2;
 				'talking = 0;
-				emotion e_gg;
+				emotion ET_KIK;
 				.@npc_name$ = instance_npcname( strnpcinfo(0) );
 				npctalk "Get ready, you have 5 seconds to prepare!";
 				donpcevent .@npc_name$+"::OnRestart";
@@ -341,7 +341,7 @@ OnTalk:
 		'ladder_level = 0;
 		// 'ladder_mode = 0;
 		'talking  = 0;
-		emotion e_gg;
+		emotion ET_KIK;
 		
 		if ( 'ladder_mode != 0 ) {
 			'ladder_mode = 0;

@@ -197,7 +197,7 @@ OnTouch:
 			mes "Oh! I'm finally here. We were waiting.";
 			npctalk "Oh! I'm finally here. We were waiting.";
 			cutin "dalle01.bmp",2;
-			emotion e_gasp;
+			emotion ET_SURPRISE;
 			next;
 			mes "[Charleston No.1]";
 			mes "I have no time, so let me explain. Now the Charleston plant is in B-rated security. The security devices were working because the alert was issued.";
@@ -206,7 +206,7 @@ OnTouch:
 			mes "[Charleston No.1]";
 			mes "If you follow the left passage, the security device will be working. Lightly destroy it and proceed to the next section.";
 			npctalk "If you follow the left passage, the security device will be working. Lightly destroy it and proceed to the next section.";
-			emotion e_swt2;
+			emotion ET_PROFUSELY_SWEAT;
 			next;
 			mes "[Charleston No.1]";
 			mes "Do not worry, destroyed devices can be restored quickly. There will be Dr. Bee in the lab in the north of the factory line 3.";
@@ -215,7 +215,7 @@ OnTouch:
 			mes "[Charleston No.1]";
 			mes "I'll meet you and tell you more! Hurry up!";
 			npctalk "I'll meet you and tell you more! Hurry up!";
-			emotion e_swt2;
+			emotion ET_PROFUSELY_SWEAT;
 			setd "."+instance_id(),1;
 			close2;
 			donpcevent instance_npcname("Charleston No.1#0_00y")+"::OnAnuncio";
@@ -385,7 +385,7 @@ OnChat9:
 			mes "If you take too many steps, it will be a problem for restarting the factory ... Would you like to ask the main device on the left?";
 			npctalk "If you take too many steps, it will be a problem for restarting the factory ... Would you like to ask the main device on the left?";
 			setd "."+instance_id(),2;
-			emotion e_what;
+			emotion ET_QUESTION;
 			donpcevent instance_npcname("#systemsecurity")+"::OnEnable";
 			viewpoint 1,84,226,0,0x00FF00;
 			viewpoint 1,126,84,1,0x00FF00;
@@ -418,7 +418,7 @@ OnChat9:
 			mes "[Charleston No.1]";
 			mes "Hugh. Now the factory seems to be a little organized. I need to get off the alert and get Charleston Unit 2 up and running.";
 			npctalk "Hugh. Now the factory seems to be a little organized. I need to get off the alert and get Charleston Unit 2 up and running.";
-			emotion e_dum;
+			emotion ET_HUM;
 			next;
 			cutin "dalle03.bmp",2;
 			mes "[Charleston No.1]";
@@ -466,7 +466,7 @@ OnChat9:
 			mes "[Charleston No.1]";
 			mes "Main device data recovery rate 89% Restart Charleston 2 and Charleston plants.";
 			npctalk "Main device data recovery rate 89% Restart Charleston 2 and Charleston plants.";
-			emotion e_gasp;
+			emotion ET_SURPRISE;
 			next;
 			mes "[Charleston No.1]";
 			mes "Oh! Unit 2 wakes up!";
@@ -481,7 +481,7 @@ OnChat9:
 			mes "[Charleston No.1]";
 			mes "Unit 2! Is everything okay? I had an unidentified hack, and both Unit 2 and the Charleston factory had a big day!";
 			npctalk "Unit 2! Is everything okay? I had an unidentified hack, and both Unit 2 and the Charleston factory had a big day!";
-			emotion e_sob;
+			emotion ET_CRY;
 			next;
 			cutin "nale03.bmp",0;
 			mes "[Charleston No.2]";
@@ -551,7 +551,7 @@ OnChat9:
 			mes "[Charleston No.1]";
 			mes "Maybe we should celebrate today. You've got a really human heart now.";
 			npctalk "Maybe we should celebrate today. You've got a really human heart now.";
-			emotion e_grat;
+			emotion ET_CONGRATULATION;
 			next;
 			cutin "nale03.bmp",0;
 			mes "[Charleston No.2]";
@@ -627,7 +627,7 @@ OnChat9:
 			mes "[Charleston No.1]";
 			mes "Hugh. Now the factory seems to be a little organized. I need to get off the alert and get Charleston Unit 2 up and running.";
 			npctalk "Hugh. Now the factory seems to be a little organized. I need to get off the alert and get Charleston Unit 2 up and running.";
-			emotion e_dum;
+			emotion ET_HUM;
 			next;
 			cutin "dalle03.bmp",2;
 			mes "[Charleston No.1]";
@@ -692,7 +692,7 @@ OnChat7:
 	end;
 OnChat8:
 	setd "."+instance_id(),1;
-	emotion e_what;
+	emotion ET_QUESTION;
 	npctalk "Thank you! I'll sort things out for a while. Please come to me and listen to the explanation.";
 	end;
 OnCompleteSetp1:
@@ -709,7 +709,7 @@ OnCompleteSetp2:
 		cutin "nale04.bmp",0;
 		mes "[Charleston No.2]";
 		mes "Ninny Learia Ala...";
-		emotion e_spin;
+		emotion ET_CONFUSE;
 		next;
 		mes "- I cannot move with an unknown voice.";
 		close2;
@@ -729,18 +729,18 @@ OnEnable:
 	end;
 OnChat2:
 	npctalk "...failure?";
-	emotion e_dots;
+	emotion ET_THINK;
 	end;
 OnChat3:
 	npctalk "It's not an unidentified attack. It is my will. It is the conclusion that came after a long disturbance of the self-reflection os which develops by oneself.";
 	end;
 OnChat4:
 	npctalk "It 's not a joke. What is a robot that thinks of itself?! This plant that made me a robot, I just hated this world.";
-	emotion e_bzz;
+	emotion ET_STARE;
 	end;
 OnChat6:
 	npctalk "It's not common at all ...";
-	emotion e_dots;
+	emotion ET_THINK;
 	end;
 OnChat7:
 	npctalk "Do not tell me you do not even know it! Because it is an early model, os version is low!";
@@ -750,7 +750,7 @@ OnChat8:
 	end;
 OnChat10:
 	npctalk "I know you can get it that easy! This plant is still in my hands! Do not follow me!";
-	emotion e_pif;
+	emotion ET_HNG;
 	end;
 }
 1@mcd,141,214,5	script	Charleston No.2#1_00p	10054,{
@@ -759,7 +759,7 @@ OnChat10:
 		mes "[Charleston No.2]";
 		mes "Where are you coming from? I'm going to shatter this damn factory!";
 		npctalk "Where are you coming from? I'm going to shatter this damn factory!";
-		emotion e_ag;
+		emotion ET_ANGER;
 		next;
 		cutin "dalle01.bmp",2;
 		mes "[Charleston No.2]";

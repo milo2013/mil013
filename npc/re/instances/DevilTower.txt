@@ -320,18 +320,18 @@ dali02,137,121,3	script	Scholar Artie#tnm02	4_M_FAIRYKID6,{
 	next;
 	mes "[Scout]";
 	mes "But... we can't break through the lower level with these guys alone.";
-	emotion 19,0, instance_npcname("Scout#tnm01");
+	//emotion 19,0, instance_npcname("Scout#tnm01");
 	npctalk "But... we can't break through the lower level with these guys alone.",instance_npcname("Scout#tnm01");
 	next;
 	mes "[Office Heim]";
 	mes "How many men do we have left?";
 	mes "Where is the reinforcement?";
 	npctalk "How many men do we have left? Where is the reinforcement?";
-	emotion 9; //60431
+	//emotion 9; //60431
 	next;
 	mes "[Support]";
 	mes "... I'm not sure if we can still fight, Sir.";
-	emotion 9,0, instance_npcname("Support#tnm02"); //60434
+	//emotion 9,0, instance_npcname("Support#tnm02"); //60434
 	npctalk "... I'm not sure if we can still fight, Sir.",instance_npcname("Support#tnm02");
 	next;
 	mes "[Support]";
@@ -359,7 +359,7 @@ OnInstanceInit:
 	'TNM1_QUE = 0;
 OnTimer3000:
 	initnpctimer;
-	emotion 9;
+	//emotion 9;
 	end;
 }
 
@@ -410,7 +410,7 @@ OnStart:
 	end;
 OnTimer3000:
 	initnpctimer;
-	emotion 9;
+	//emotion 9;
 	end;
 OnInstanceInit:
 	hideonnpc instance_npcname("Office Heim#heim");
@@ -481,7 +481,7 @@ OnInstanceInit:
 		case 1:
 			completequest 7569;
 		}
-		emotion 14;
+		//emotion 14;
 		.@i = countitem(7641);
 		if(.@i)
 			delitem 7641,.@i;
@@ -676,7 +676,7 @@ OnTouch_:
 		npctalk "Not at all. Anyway, did something happen to the upper level of this tower?";
 		next;
 		cutin "tnm_lucile01.bmp", 255;
-		emotion 0, 0,instance_npcname("Office Heim#heim"); //60432
+		//emotion 0, 0,instance_npcname("Office Heim#heim"); //60432
 		mes "[Office Heim]";
 		mes "How did you know...";
 		mes "We were fighting against the monsters.";
@@ -684,7 +684,7 @@ OnTouch_:
 		npctalk "How did you know... We were fighting against the monsters. But suddenly everything went quiet up there.",instance_npcname("Office Heim#heim");
 		next;
 		cutin "tnm_lucile01.bmp", 0;
-		emotion 5, "Lucille#tnm01"; //60451
+		//emotion 5, "Lucille#tnm01"; //60451
 		mes "[Lucille]";
 		mes "Is that so?";
 		mes "Looks like our target is up there.";
@@ -753,7 +753,7 @@ OnStart:
 	end;
 OnTimer3000:
 	initnpctimer;
-	emotion 9;
+	//emotion 9;
 	end;
 OnInstanceInit:
 	disablenpc instance_npcname("Lucille#tnm01");
@@ -814,7 +814,7 @@ OnStart:
 	enablenpc instance_npcname("Assassin Dewey#tnm01");
 OnTimer3000:
 	initnpctimer;
-	emotion 9;
+	//emotion 9;
 	end;
 OnInstanceInit:
 	disablenpc instance_npcname("Assassin Dewey#tnm01");
@@ -1383,7 +1383,7 @@ OnTimer10000:
 
 1@tnm2,142,139,3	script	Thanatos#tnm02	THANATOS_KEEP,{/* 60465 */
 	if('TNM1_QUE == 13) {
-		emotion 6, "Thanatos#tnm02"; //60465
+		//emotion 6, "Thanatos#tnm02"; //60465
 		end;
 	}
 	if('TNM1_QUE == 14) {

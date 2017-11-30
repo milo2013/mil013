@@ -87,7 +87,7 @@ close;
 mining,107,43,11	script	Mining Corp CEO	1681,{
 	
 	if (@miningCEO > 2){
-	emotion e_sigh;
+	emotion ET_OHNO;
 	mes "[^888800 Mining Corp CEO ^000000]";
 	mes "Ok.. Ok.. 1 minute only! What do you want with me?";
 	set @miningCEO, 0;
@@ -100,7 +100,7 @@ mining,107,43,11	script	Mining Corp CEO	1681,{
 				next;
 				mes "[^888800 Mining Corp CEO ^000000]";
 				mes "Here.. Take this..";
-				emotion e_no1;
+				emotion ET_BEST;
 				getitem 7796,1;
 				close;
 				goto LwalkCEO;
@@ -146,13 +146,13 @@ mining,107,43,11	script	Mining Corp CEO	1681,{
 											next;
 											mes "[^888800 Mining Corp CEO ^000000]";
 											mes "You deserve it!!";
-											emotion e_grat, 0;
+											emotion ET_CONGRATULATION, 0;
 											close;
 											goto LwalkCEO;
 											break;
 										case 2:
 											npcstop;
-											emotion e_no1,0;
+											emotion ET_BEST,0;
 											mes "[^888800 Mining Corp CEO ^000000]";
 											mes "Aplogy accepted. Please respect other person.";
 											next;
@@ -173,7 +173,7 @@ mining,107,43,11	script	Mining Corp CEO	1681,{
 								switch(select("Sorry:Go Ahead!! I'm not afraid!")) {	
 									case 1:
 									npcstop;
-									emotion e_no1, 0;
+									emotion ET_BEST, 0;
 									mes "[^888800 Mining Corp CEO ^000000]";
 									mes "Aplogy accepted. Please respect other person.";
 									next;
@@ -200,7 +200,7 @@ mining,107,43,11	script	Mining Corp CEO	1681,{
 									next;
 									mes "[^888800 Mining Corp CEO ^000000]";
 									mes "You deserve it!!";
-									emotion e_grat, 0;
+									emotion ET_CONGRATULATION, 0;
 									close;
 									goto LwalkCEO;
 									break;
@@ -296,7 +296,7 @@ mining,107,43,11	script	Mining Corp CEO	1681,{
 	}
 	
 	if (@miningCEO > 1){
-	emotion e_an;
+	emotion ET_FRET;
 	mes "[^888800 Mining Corp CEO ^000000]";
 	mes "Can't talk now.. Comeback later..";
 	set @miningCEO, @miningCEO + 1;
@@ -306,7 +306,7 @@ mining,107,43,11	script	Mining Corp CEO	1681,{
 	}
 	
 	mes "[^888800 Mining Corp CEO ^000000]";
-	emotion e_an;
+	emotion ET_FRET;
 	mes "Don't disturb me!";
 	set @miningCEO, @miningCEO + 1;
 	//dispbottom "Currently "+(@miningCEO)+" ";

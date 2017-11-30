@@ -245,7 +245,7 @@ close;
 //Off Limit
 -	script	GuardBG	-1,2,2,{
 OnTouch:
-emotion e_gasp;
+emotion ET_SURPRISE;
 mes "[Royal Knight]";
 mes "Halt!! This area is off limit!!";
 next;
@@ -258,7 +258,7 @@ end;
 // Welcome
 -	script	GuardBG#WC	-1,{
 OnTouch:
-emotion e_no1;
+emotion ET_BEST;
 mes "[Royal Knight]";
 mes "Welcome Heroes!!";
 close;
@@ -267,7 +267,7 @@ close;
 // King
 -	script	GuardBG#K	-1,{
 OnTouch:
-emotion e_e5;
+emotion ET_SURPRISE;
 mes "[Royal Knight]";
 mes "I'm guarding the King!!";
 next;
@@ -279,7 +279,7 @@ close;
 // Commander
 -	script	GuardBG#C	-1,{
 OnTouch:
-emotion e_e5;
+emotion ET_SURPRISE;
 mes "[Royal Knight]";
 mes "I'm guarding the Commander!";
 next;
@@ -291,7 +291,7 @@ close;
 // Minister
 -	script	GuardBG#M	-1,{
 OnTouch:
-emotion e_e5;
+emotion ET_SURPRISE;
 mes "[Royal Knight]";
 mes "Minister is under my protection!";
 next;

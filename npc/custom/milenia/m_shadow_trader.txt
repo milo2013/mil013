@@ -2,7 +2,7 @@ kampung,82,164,11	script	Shadow Trader	10038,{
 
 	mes "[Shadow Trader]";
 	mes "....";
-	emotion e_an;
+	emotion ET_FRET;
 	next;
 	
 	if (countitem (6412) < 1 ){
@@ -35,7 +35,7 @@ kampung,82,164,11	script	Shadow Trader	10038,{
 				end;
 			}
 				if (countitem (6412) < 50){
-				emotion e_an;
+				emotion ET_FRET;
 				mes "[Shadow Trader]";
 				mes "You liar!! You barely have Special Medal!!";
 				next;
@@ -57,7 +57,7 @@ kampung,82,164,11	script	Shadow Trader	10038,{
 				end;
 				
 			case 2:
-				emotion e_an;
+				emotion ET_FRET;
 				mes "[Shadow Trader]";
 				mes "Wasting my time!!";
 				close2;

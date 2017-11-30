@@ -444,12 +444,12 @@ function	script	JitDiag	{
 	switch(select("Talk:Hurry")) {
 		case 1:
 L_Normal:
-			emotion e_ho, 0, instance_npcname("Newoz#01");
+			//emotion ET_DELIGHT, 0, instance_npcname("Newoz#01");
 			JitDiag("Newoz", 		2, 0, "It seems everyone's here."); next;
-			emotion e_an, 0, instance_npcname("Rotert#01");
+			//emotion ET_FRET, 0, instance_npcname("Rotert#01");
 			JitDiag("Rotert", 		3, 0, "I told you, Newoz. We can't just let this go."); next;
 			JitDiag("Mingmin", 		2, 0, "Considering the time and money we wasted on you, you deserve to be fed a basket full of poisonous mushrooms."); next;
-			emotion e_ho, 0, instance_npcname("Newoz#01");
+			//emotion ET_DELIGHT, 0, instance_npcname("Newoz#01");
 			JitDiag("Newoz", 		4, 0, "I'll explain everything, and enough with the poisonous mushrooms. I can't eat mushrooms at all."); next;
 			JitDiag("Aigu", 		5, 2, "Newoz, you can't eat anything but meat. Sigh, I'm glad you're safe."); next;
 			JitDiag("Gelkah", 		3, 0, "You're famous Newoz! Nice to meet you. My master told me many great things..."); next;
@@ -461,18 +461,18 @@ L_Normal:
 			JitDiag("Roel", 		1, 2, "H-hello, my name is Roel. Runane and I've joined the guild together. Nice to meet you."); next;
 			JitDiag("Rotert", 		2, 0, "In accordance with the Guild Policy, Article 8, I'm now the master of the guild, and you're just a member."); next;
 			JitDiag("Newoz", 		2, 0, "Oh, congratulations, Master."); next;
-			emotion e_dots, 0, instance_npcname("Rotert#01");
+			//emotion ET_THINK, 0, instance_npcname("Rotert#01");
 			JitDiag("Rotert", 		1, 0, "...That wasn't what I expected. Aren't you upset at all?"); next;
-			emotion e_dots, 0, instance_npcname("Melody-Jack#01");
+			//emotion ET_THINK, 0, instance_npcname("Melody-Jack#01");
 			JitDiag("Melody-Jack", 	0, 0, "What did you expect? All he thinks about is adventure, monsters, and treasure."); next;
 			JitDiag("Newoz", 		1, 0, "Argh, is there a ghost? Or am I hearing things?"); next;
-			emotion e_dots, 0, instance_npcname("Melody-Jack#01");
+			//emotion ET_THINK, 0, instance_npcname("Melody-Jack#01");
 			JitDiag("Melody-Jack", 	0, 0, "..."); next;
 			JitDiag("Newoz", 		1, 0, "Whew, it's you Jack. Long time, no see, everyone."); next;
-			emotion e_dots, 0, instance_npcname("Melody-Jack#01");
+			//emotion ET_THINK, 0, instance_npcname("Melody-Jack#01");
 			JitDiag("Melody-Jack", 	0, 0, "This isn't a good time for chit-chat. I'm sensing something from the very floor where you're standing and where I'm hiding."); next;
 			JitDiag("Arang", 		3, 2, "Jack, is that why you're hiding like a coward?"); next;
-			emotion e_dots, 0, instance_npcname("Melody-Jack#01");
+			//emotion ET_THINK, 0, instance_npcname("Melody-Jack#01");
 			JitDiag("Melody-Jack", 	0, 0, "It comes natural for veteran thieves like me to hide themselves in potential enemy territories."); next;
 			JitDiag("Melody-Jack", 	0, 0, "I'm not hiding because my sprite is not yet ready!"); next;
 			JitDiag("Mingmin", 		2, 0, "I agree with Jack. Everything about this place--from the air to the soil--screams unatural."); next;
@@ -521,10 +521,10 @@ L_Normal:
 			mes "["+strcharinfo(0)+"]", "..."; next;
 			hideonnpc instance_npcname("Arang#01");
 			hideonnpc instance_npcname("Mingmin#01");
-			emotion e_dots, 0, instance_npcname("Melody-Jack#01");
+			//emotion ET_THINK, 0, instance_npcname("Melody-Jack#01");
 			JitDiag("Melody-Jack", 	0, 0, "..."); next;
 			mes "["+strcharinfo(0)+"]", "..."; next;
-			emotion e_dots, 0, instance_npcname("Melody-Jack#01");
+			//emotion ET_THINK, 0, instance_npcname("Melody-Jack#01");
 			JitDiag("Melody-Jack", 	0, 0, "..."); next;
 			JitDiag("Melody-Jack", 	0, 0, "Let's move before they forget about us."); close2;
 			hideonnpc instance_npcname("Melody-Jack#01");
@@ -560,18 +560,18 @@ L_Normal:
 			JitDiag("Runane", 		1, 2, "Um, I have a feeling something might spring out of nowhere to attack us."); next;
 			hideoffnpc instance_npcname("???#02");
 			JitDiag("???",	 		1, 0, "What is it?"); next;
-			emotion e_omg, 0, instance_npcname("Runane#02");
+			//emotion ET_HUK, 0, instance_npcname("Runane#02");
 			JitDiag("Runane", 		4, 2, "*Shriek*"); next;
-			emotion e_omg, 0, instance_npcname("Aigu#02");
+			//emotion ET_HUK, 0, instance_npcname("Aigu#02");
 			JitDiag("Aigu", 		3, 0, "MONSTER-!...Um, it's just a woman."); next;
 			JitDiag("Runane", 		4, 0, "There's something! SOMETHING!"); next;
 			JitDiag("Aigu", 		1, 0, "Calm down. It's just a woman."); next;
-			emotion e_what, 0, instance_npcname("???#02");
+			//emotion ET_QUESTION, 0, instance_npcname("???#02");
 			JitDiag("???",	 		1, 0, "Voice of a woman..."); next;
 			JitDiag("Aigu", 		1, 0, "How did we get in, you ask?"); next;
 			JitDiag("???",	 		1, 0, "No idea. How did you get in?"); next;
 			JitDiag("Runane", 		3, 2, "We got lost and now we're in a spacetime. How did this happen?"); next;
-			emotion e_swt2, 0, instance_npcname("Aigu#02");
+			//emotion ET_PROFUSELY_SWEAT, 0, instance_npcname("Aigu#02");
 			JitDiag("Aigu", 		4, 0, "We didn't have to be here if it weren't for someone."); next;
 			JitDiag("???",	 		1, 0, "The one who sings."); next;
 			JitDiag("Runane", 		1, 2, "Do you know Newoz? Let's take him out of here."); next;
@@ -612,14 +612,14 @@ L_Hurry:
 		case 1:
 L_Normal:
 			JitDiag("Gelkah", 		1, 2, "I'm detecting electromagnetic waves up ahead. At least Grade E monsters."); next;
-			emotion e_swt, 0, instance_npcname("Rotert#03");
+			//emotion ET_SWEAT, 0, instance_npcname("Rotert#03");
 			JitDiag("Rotert", 		1, 0, "Hey, what have you been reading these days?"); next;
 			JitDiag("Gelkah", 		3, 2, "Heh, Sci-Fi. There's a mechanical tool that works..."); next;
-			emotion e_sigh, 0, instance_npcname("Rotert#03");
+			//emotion ET_OHNO, 0, instance_npcname("Rotert#03");
 			JitDiag("Rotert", 		1, 0, "Stop talking and get ready to practice your special skills."); next;
 			JitDiag("Gelkah", 		3, 2, "Ooh, this will be like reenacting a scene from the book, where monsters are rampaging."); next;
 			JitDiag("Rotert", 		1, 0, "Gelkah, Ultra Special Skill No. 8: Wild Dance."); next;
-			emotion e_gasp, 0, instance_npcname("Gelkah#03");
+			//emotion ET_SURPRISE, 0, instance_npcname("Gelkah#03");
 			JitDiag("Gelkah", 		1, 2, "!!"); next;
 			JitDiag("Gelkah", 		1, 2, "Here we go!"); next;
 			specialeffect 85, AREA, instance_npcname("Rotert#03");
@@ -630,8 +630,8 @@ L_Normal:
 			specialeffect 377, AREA, instance_npcname("Gelkah#03");
 			specialeffect 203, AREA, instance_npcname("Gelkah#03");
 			JitDiag("Gelkah", 		1, 2, "Ruinous Twelve Heaven's Nets!"); next;
-			emotion e_flash, 0, instance_npcname("Gelkah#03");
-			emotion e_flash, 0, instance_npcname("Rotert#03");
+			//emotion ET_SPARK, 0, instance_npcname("Gelkah#03");
+			//emotion ET_SPARK, 0, instance_npcname("Rotert#03");
 			
 			mes "[Gelkah/Rotert]", "CROSS!!!";
 			specialeffect 226, AREA, instance_npcname("Rotert#03");
@@ -822,18 +822,18 @@ L_Hurry:
 L_Normal:
 			JitDiag("Mingmin",	 	2, 2, "Newoz!"); next;
 			JitDiag("Newoz",	 	1, 0, "Yeah, what's up?"); next;
-			emotion e_omg, 0, instance_npcname("Mingmin#08");
+			//emotion ET_HUK, 0, instance_npcname("Mingmin#08");
 			JitDiag("Mingmin",	 	2, 2, "Do you really have to ask? Who's that girl? Is she yours?"); next;
-			emotion e_omg, 0, instance_npcname("Newoz#08");
+			//emotion ET_HUK, 0, instance_npcname("Newoz#08");
 			JitDiag("Newoz",	 	4, 0, "W-whazza...?! Don't be ridiculous. I just found her now."); next;
 			JitDiag("Mingmin",	 	2, 2, "A little girl in this strange place, by herself? Hm, doesn't it sound strange to you?"); next;
 			JitDiag("Shalosh",	 	1, 0, "You're strange."); next;
-			emotion e_bzz, 0, instance_npcname("Mingmin#08");
+			//emotion ET_STARE, 0, instance_npcname("Mingmin#08");
 			JitDiag("Mingmin",	 	1, 2, "No, I'm not! You don't want me to get angry at you, girl.");
 			sleep2 300;
-			emotion e_an, 0, instance_npcname("Mingmin#08");
+			//emotion ET_FRET, 0, instance_npcname("Mingmin#08");
 			next;
-			emotion e_dots, 0, instance_npcname("Shalosh#08");
+			//emotion ET_THINK, 0, instance_npcname("Shalosh#08");
 			JitDiag("Shalosh",	 	1, 0, "Here they come..."); next;
 			JitDiag("Newoz",	 	4, 0, "These monsters don't stop coming. But where are all the big, rare, beautiful ones?"); next;
 			JitDiag("Mingmin",	 	2, 2, "I'll have to study you later, girl."); next;
@@ -879,9 +879,9 @@ L_Normal:
 			JitDiag("Lagi",	 		1, 0, "We've met again."); next;
 			JitDiag("Newoz",	 	3, 0, "You have good taste. This just came to my mind. Listen."); next;
 			JitDiag("Newoz",	 	2, 0, "The seasons are changing once again~ yet I haven't had a chance to dye my nails with garden balsam~"); next;
-			emotion e_ho, 0, instance_npcname("Lagi#09");
+			//emotion ET_DELIGHT, 0, instance_npcname("Lagi#09");
 			JitDiag("Lagi",	 		1, 0, "Waiting for snow~"); next;
-			emotion e_no1, 0, instance_npcname("Newoz#09");
+			//emotion ET_BEST, 0, instance_npcname("Newoz#09");
 			JitDiag("Newoz",	 	1, 0, "You're good. You'll make great Gypsy and Minstrel."); next;
 			JitDiag("Lagi",	 		1, 0, "I want to stay as a Bard for a while."); next;
 			JitDiag("Newoz",	 	1, 0, "I guess jobs don't matter so long as you can sing and play, huh?"); next;
@@ -951,7 +951,7 @@ L_Hurry:
 	switch(select("Talk:Hurry")) {
 		case 1:
 L_Normal:
-			emotion e_ho, 0, instance_npcname("Newoz#10");
+			//emotion ET_DELIGHT, 0, instance_npcname("Newoz#10");
 			JitDiag("Newoz",	 	1, 2, "Did you take care of them already? I wanted to take part in it."); next;
 			JitDiag("Roel",	 		1, 0, "They look cute, but they're ferocious."); next;
 			JitDiag("Shalosh",	 	1, 2, "Small friends follow us. Not cute."); next;
@@ -992,11 +992,11 @@ L_Hurry:
 	switch(select("Talk:Hurry")) {
 		case 1:
 L_Normal:
-			emotion e_ho, 0, instance_npcname("Runane#11");
+			//emotion ET_DELIGHT, 0, instance_npcname("Runane#11");
 			JitDiag("Runane",	 	1, 0, "Push, push~"); next;
-			emotion e_ho, 0, instance_npcname("Mingmin#11");
+			//emotion ET_DELIGHT, 0, instance_npcname("Mingmin#11");
 			JitDiag("Mingmin",	 	2, 0, "Push, push~"); next;
-			emotion e_ho, 0, instance_npcname("Aigu#11");
+			//emotion ET_DELIGHT, 0, instance_npcname("Aigu#11");
 			JitDiag("Aigu",	 		1, 0, "How long do I have to shimmy my shoulders~"); next;
 			JitDiag("Runane",	 	1, 0, "Pam, pam, pam~"); next;
 			JitDiag("Mingmin",	 	2, 0, "Chica, chica~"); next;
@@ -1004,7 +1004,7 @@ L_Normal:
 			JitDiag("Runane",	 	1, 0, "*Blow*"); next;
 			JitDiag("Arang",	 	1, 2, "Ugh, I don't want to drink this!"); next;
 			JitDiag("Mingmin",	 	3, 0, "Just trust me and drink it!"); next;
-			emotion e_gasp, 0, instance_npcname("Roel#11");
+			//emotion ET_SURPRISE, 0, instance_npcname("Roel#11");
 			JitDiag("Roel",	 		1, 2, "What are you trying to feed this child? What's in this green bottle?  ...No..."); next;
 			JitDiag("Mingmin",	 	2, 0, "Green Potion"); next;
 			JitDiag("Roel",	 		1, 2, "Green Potion is such a bitter... Um, Green Potion you said?"); next;
@@ -1098,27 +1098,27 @@ L_Hurry:
 		case 1:
 L_Normal:
 			JitDiag("Newoz",	 	4, 2, "Um, how did I manage to lose the others again?"); next;
-			emotion e_dots, 0, instance_npcname("Melody-Jack#13");
+			//emotion ET_THINK, 0, instance_npcname("Melody-Jack#13");
 			JitDiag("Melody-Jack",	0, 0, "Newoz."); next;
 			JitDiag("Newoz",	 	1, 2, "Wah! Jeez!"); next;
-			emotion e_dots, 0, instance_npcname("Melody-Jack#13");
+			//emotion ET_THINK, 0, instance_npcname("Melody-Jack#13");
 			JitDiag("Melody-Jack",	0, 0, "And I thought you'd have gotten used to having me around invisible."); next;
 			JitDiag("Newoz",	 	1, 2, "Are we still in danger?"); next;
-			emotion e_dots, 0, instance_npcname("Melody-Jack#13");
+			//emotion ET_THINK, 0, instance_npcname("Melody-Jack#13");
 			JitDiag("Melody-Jack",	0, 0, "Guess so. We've been circling around the same place, by the way."); next;
-			emotion e_dots, 0, instance_npcname("Melody-Jack#13");
+			//emotion ET_THINK, 0, instance_npcname("Melody-Jack#13");
 			JitDiag("Newoz",	 	4, 2, "So I was right about this place being maze-like. Ugh, I'm getting hungry again."); next;
-			emotion e_dots, 0, instance_npcname("Melody-Jack#13");
+			//emotion ET_THINK, 0, instance_npcname("Melody-Jack#13");
 			JitDiag("Melody-Jack",	0, 0, "I've waited for you because I wanted to talk."); next;
 			JitDiag("Melody-Jack",	0, 0, "Newoz, your contact has expired at the time you returned to the guild."); next;
 			JitDiag("Newoz",	 	1, 2, "Oh, that's right. Since I'm no longer the master, my contract has expired naturally."); next;
-			emotion e_dots, 0, instance_npcname("Melody-Jack#13");
+			//emotion ET_THINK, 0, instance_npcname("Melody-Jack#13");
 			JitDiag("Melody-Jack",	0, 0, "But given the situation, my promise to you still stands."); next;
 			JitDiag("Newoz",	 	1, 2, "Thanks. I'm glad my contingency plan is still in place."); next;
-			emotion e_dots, 0, instance_npcname("Melody-Jack#13");
+			//emotion ET_THINK, 0, instance_npcname("Melody-Jack#13");
 			JitDiag("Melody-Jack",	0, 0, "Hmpf, just know I'm keeping my promise to you only because you've got what I want."); next;
 			JitDiag("Newoz",	 	2, 2, "Oh, do you mean this ukulele?"); next;
-			emotion e_meh, 0, instance_npcname("Melody-Jack#13");
+			//emotion ET_MERONG, 0, instance_npcname("Melody-Jack#13");
 			JitDiag("Melody-Jack",	0, 0, "You moron, that's worth nothing. Your contract has expired, but a promise is a promise and I intend to keep it."); next;
 			JitDiag("Newoz",	 	1, 2, "Thanks.");  close2;
 			hideonnpc instance_npcname("Melody-Jack#13");
@@ -1156,12 +1156,12 @@ L_Hurry:
 L_Normal:
 			JitDiag("Shalosh",	 	1, 0, "I remembered a few things."); next;
 			JitDiag("Aigu",	 		4, 2, "Did you?"); next;
-			emotion e_ho, 0, instance_npcname("Lagi#14");
+			//emotion ET_DELIGHT, 0, instance_npcname("Lagi#14");
 			JitDiag("Lagi",	 		1, 0, "She said she did."); next;
-			emotion e_ho, 0, instance_npcname("Newoz#14");
+			//emotion ET_DELIGHT, 0, instance_npcname("Newoz#14");
 			JitDiag("Newoz",	 	3, 0, "Right, that's what she said."); next;
-			emotion e_gasp, 0, instance_npcname("Lagi#14");
-			emotion e_gasp, 0, instance_npcname("Newoz#14");
+			//emotion ET_SURPRISE, 0, instance_npcname("Lagi#14");
+			//emotion ET_SURPRISE, 0, instance_npcname("Newoz#14");
 			npctalk "!!!", instance_npcname("Newoz#14");
 			npctalk "!!!", instance_npcname("Lagi#14");
 			mes "[Lagi & Newoz]", "!!!"; next;
@@ -1170,10 +1170,10 @@ L_Normal:
 			mes "[Lagi & Newoz]", "Gimmie five!"; next;
 			cutin "", 255;
 			mes "- *Slap* -"; next;
-			emotion e_wah, 0, instance_npcname("Newoz#14");
-			emotion e_wah, 0, instance_npcname("Lagi#14");
-			emotion e_pif, 0, instance_npcname("Aigu#14");
-			emotion e_pif, 0, instance_npcname("Mingmin#14");
+			//emotion ET_KEK, 0, instance_npcname("Newoz#14");
+			//emotion ET_KEK, 0, instance_npcname("Lagi#14");
+			//emotion ET_HNG, 0, instance_npcname("Aigu#14");
+			//emotion ET_HNG, 0, instance_npcname("Mingmin#14");
 			specialeffect 4, AREA, instance_npcname("Newoz#14");
 			specialeffect 4, AREA, instance_npcname("Lagi#14");
 			mes "- Before the two give each other a high five, Aigu and Mingmin slap them on their backs. -"; next;
@@ -1185,7 +1185,7 @@ L_Normal:
 			JitDiag("Shalosh",	 	1, 0, "I didn't know what friends meant, but it sounded good. I wanted it."); next;
 			JitDiag("Shalosh",	 	1, 0, "Aigu and Runane showed up."); next;
 			JitDiag("Shalosh",	 	1, 0, "I thought someone made my wish come true."); next;
-			emotion e_what, 0, instance_npcname("Newoz#14");
+			//emotion ET_QUESTION, 0, instance_npcname("Newoz#14");
 			JitDiag("Newoz",	 	1, 0, "The pitch darkness... Don't you remember anything else?"); next;
 			JitDiag("Shalosh",	 	1, 0, "No."); next;
 			JitDiag("Roel",	 		1, 2, "She could have had her eyes closed. Perhaps she's sleeping."); next;
@@ -1247,7 +1247,7 @@ L_Normal:
 			JitDiag("Shalosh",	 	1, 0, "Comrades should not fight with each other. Got it."); next;
 			JitDiag("Runane",	 	3, 2, "Comrades, who? We're just a bunch of strangers hell-bent on saving a lost girl!"); next;
 			JitDiag("Roel",	 		3, 0, "(She's hawt when she's angry!)"); next;
-			emotion e_an, 0, instance_npcname("Mingmin#15");
+			//emotion ET_FRET, 0, instance_npcname("Mingmin#15");
 			JitDiag("Mingmin",	 	2, 0, "We'll talk again the moment we're out of here.");  close2;
 L_Hurry:
 			cutin "", 255;
@@ -1278,25 +1278,25 @@ L_Hurry:
 	switch(select("Talk:Hurry")) {
 		case 1:
 L_Normal:
-			emotion e_ho, 0, instance_npcname("Newoz#16");
+			//emotion ET_DELIGHT, 0, instance_npcname("Newoz#16");
 			JitDiag("Newoz",	 	2, 0, "Having you two with me brings back a lot of memories."); next;
 			JitDiag("Rotert",	 	1, 2, "I was as stubborn as a mule and busy pretending like I knew what I was doing."); next;
-			emotion e_what, 0, instance_npcname("Mingmin#16");
+			//emotion ET_QUESTION, 0, instance_npcname("Mingmin#16");
 			JitDiag("Mingmin",	 	1, 0, "Do you remember when you two fought over that florist girl at the southern gate of Prontera? Or when the doll merchant at the eastern gate whupped you for bickering and driving his customers away?"); next;
 			JitDiag("Rotert",	 	1, 2, "Do you not have any good memories of us?"); next;
-			emotion e_ho, 0, instance_npcname("Newoz#16");
+			//emotion ET_DELIGHT, 0, instance_npcname("Newoz#16");
 			JitDiag("Newoz",	 	1, 0, "Oh, I remember! Ah, good times!"); next;
-			emotion e_dots, 0, instance_npcname("Rotert#16");
+			//emotion ET_THINK, 0, instance_npcname("Rotert#16");
 			JitDiag("Rotert",	 	1, 0, "Am I the only one not happy about this conversation?"); next;
-			emotion e_meh, 0, instance_npcname("Mingmin#16");
+			//emotion ET_MERONG, 0, instance_npcname("Mingmin#16");
 			JitDiag("Mingmin",	 	1, 0, "How about when you played with Dead Branch to death? Or when you and your Sorcerer buddies killed yourselves playing Hocus Pocus?"); next;
-			emotion e_sigh, 0, instance_npcname("Rotert#16");
+			//emotion ET_OHNO, 0, instance_npcname("Rotert#16");
 			JitDiag("Rotert",	 	1, 0, "Can't you think of a nice memory?"); next;
-			emotion e_ok, 0, instance_npcname("Newoz#16");
+			//emotion ET_OK, 0, instance_npcname("Newoz#16");
 			JitDiag("Newoz",	 	1, 0, "I can! Mingmin drank the Poison Bottle I found on the street and died; I told you it was expensive, and I didn't say anything about it being good for your health."); next;
-			emotion e_heh, 0, instance_npcname("Mingmin#16");
+			//emotion ET_SMILE, 0, instance_npcname("Mingmin#16");
 			JitDiag("Mingmin",	 	1, 0, "Oh, I remember! That was funny!"); next;
-			emotion e_wah, 0, instance_npcname("Rotert#16");
+			//emotion ET_KEK, 0, instance_npcname("Rotert#16");
 			JitDiag("Rotert",	 	1, 2, "Arg!");  close2;
 L_Hurry:
 			cutin "", 255;
@@ -1388,16 +1388,16 @@ L_Hurry:
 	switch(select("Talk:Hurry")) {
 		case 1:
 L_Normal:
-			emotion e_dots, 0, instance_npcname("Shalosh#18");
+			//emotion ET_THINK, 0, instance_npcname("Shalosh#18");
 			JitDiag("Shalosh",	 	1, 0, "Roel and Runane are hurt."); next;
 			JitDiag("Runane",	 	4, 2, "I'm fine. I told you to be careful, kiddo!"); next;
-			emotion e_sry, 0, instance_npcname("Roel#18");
+			//emotion ET_SORRY, 0, instance_npcname("Roel#18");
 			JitDiag("Roel",	 		4, 0, "Sorry. I won't disappoint you again."); next;
 			JitDiag("Shalosh",	 	1, 0, "She's not happy with him, but she still treats him really well."); next;
-			emotion e_lv, 0, instance_npcname("Roel#18");
+			//emotion ET_THROB, 0, instance_npcname("Roel#18");
 			JitDiag("Roel",	 		3, 0, "(She's kind.)"); next;
 			JitDiag("Runane",	 	2, 2, "Don't mistake this for anything more than what it is--babysitting!"); next;
-			emotion e_dots, 0, instance_npcname("Shalosh#18");
+			//emotion ET_THINK, 0, instance_npcname("Shalosh#18");
 			JitDiag("Shalosh",	 	1, 0, "She's blushing."); next;
 			JitDiag("Runane",	 	1, 2, "There's nothing about you I like."); next;
 			JitDiag("Shalosh",	 	1, 0, "Before Aigu and Runane,"); next;
@@ -1407,12 +1407,12 @@ L_Normal:
 			JitDiag("Shalosh",	 	1, 0, "They did nothing but croacked."); next;
 			JitDiag("Shalosh",	 	1, 0, "They're my friends. They don't bite or hurt."); next;
 			JitDiag("Roel",	 		1, 0, "But now..."); next;
-			emotion e_pif, 0, instance_npcname("Runane#18");
+			//emotion ET_HNG, 0, instance_npcname("Runane#18");
 			JitDiag("Runane",	 	4, 2, "Listen, humans and monsters can't be friends. At least that's what I think."); next;
 			JitDiag("Shalosh",	 	1, 0, "Can't be friends."); next;
 			JitDiag("Runane",	 	3, 2, "That's right. I like you better when you listen to me."); next;
 			JitDiag("Roel",	 		3, 0, "How about I be your friend?"); next;
-			emotion e_hmm, 0, instance_npcname("Runane#18");
+			//emotion ET_SCRATCH, 0, instance_npcname("Runane#18");
 			JitDiag("Runane",	 	2, 2, "Stop making things awkward! We're about the same age, so we're friends already."); next;
 			JitDiag("Shalosh",	 	1, 0, "(Can't be friends.)");  close2;
 L_Hurry:
@@ -1449,21 +1449,21 @@ L_Hurry:
 	switch(select("Talk:Hurry")) {
 		case 1:
 L_Normal:
-			emotion e_dots, 0, instance_npcname("Newoz#19");
+			//emotion ET_THINK, 0, instance_npcname("Newoz#19");
 			JitDiag("Newoz",	 	1, 0, "Strange... The atmosphere has changed."); next;
 			JitDiag("Mingmin",	 	2, 0, "The air smells different, and things look less... perceptible."); next;
 			JitDiag("Rotert",	 	1, 2, "It seems as though we're underwater, yet I don't feel it."); next;
-			emotion e_dum, 0, instance_npcname("Melody-Jack#19");
+			//emotion ET_HUM, 0, instance_npcname("Melody-Jack#19");
 			JitDiag("Melody-Jack",	0, 0, "I'm telling you, we've been circling around the same place."); next;
 			JitDiag("Mingmin",	 	2, 0, "I agree. And this clearing is neither compact nor spacious."); next;
 			JitDiag("Newoz",	 	1, 0, "Do you think it's meaningless for us to go deeper?"); next;
 			JitDiag("Mingmin",	 	2, 0, "No. I'm just saying the environmental changes are too drastic, almost like the mood swings of a bipolar person."); next;
 			JitDiag("Mingmin",	 	2, 0, "I don't know why, but things are losing their shape as if they're fading away."); next;
-			emotion e_dots, 0, instance_npcname("Melody-Jack#19");
+			//emotion ET_THINK, 0, instance_npcname("Melody-Jack#19");
 			JitDiag("Melody-Jack",	0, 0, "All the while, the foreign energy I've been sensing is growing stronger. This is bad."); next;
 			JitDiag("Mingmin",	 	2, 0, "I feel like something's going to appear in front of our eyes with a loud pop."); next;
 			JitDiag("Arang",	 	2, 0, "I hope it's a formidable monster!"); next;
-			emotion e_X, 0, instance_npcname("Aigu#19");
+			//emotion ET_X, 0, instance_npcname("Aigu#19");
 			JitDiag("Aigu",	 		1, 0, "I hope you're wrong."); next;
 			JitDiag("Lagi",	 		2, 2, "I'm just going to leave you guys to..."); next;
 			JitDiag("Newoz",	 	2, 0, "The monster?"); next;
@@ -1472,7 +1472,7 @@ L_Normal:
 			JitDiag("Arang",	 	2, 0, "Have you seen Shalosh? Where is she?"); next;
 			JitDiag("Aigu",	 		4, 0, "Oh, you're right!"); next;
 			JitDiag("Mingmin",	 	2, 0, "..."); next;
-			emotion e_dots, 0, instance_npcname("Melody-Jack#19");
+			//emotion ET_THINK, 0, instance_npcname("Melody-Jack#19");
 			JitDiag("Melody-Jack",	0, 0, "..."); next;
 			JitDiag("Newoz",	 	3, 0, "We should find her.");  close2;
 L_Hurry:
@@ -1511,12 +1511,12 @@ L_Hurry:
 		case 1:
 L_Normal:
 			JitDiag("Gelkah",	 	1, 2, "Scene 8: Heroes are surrounded by a horde of enemies. Roel, let's choreograph what we've practiced today, shall we?"); next;
-			emotion e_gasp, 0, instance_npcname("Roel#20");
+			//emotion ET_SURPRISE, 0, instance_npcname("Roel#20");
 			JitDiag("Roel",	 		1, 0, "Gelkah, get ready!"); next;
-			emotion e_com, 0, instance_npcname("Gelkah#20");
+			//emotion ET_COMEON, 0, instance_npcname("Gelkah#20");
 			specialeffect 203, AREA, instance_npcname("Gelkah#20");
 			JitDiag("Gelkah",	 	1, 2, "Gelkah-style Mental Strength! Iron Physique!"); next;
-			emotion e_com, 0, instance_npcname("Roel#20");
+			//emotion ET_COMEON, 0, instance_npcname("Roel#20");
 			specialeffect 214, AREA, instance_npcname("Roel#20");
 			JitDiag("Roel",	 		2, 0, "Impenetrable defense! Roel-style Guard!"); next;
 			
@@ -1600,15 +1600,15 @@ L_Normal:
 			JitDiag("Shalosh",	 	1, 0, "They're just trying to protect me."); next;
 			JitDiag("Rotert",	 	1, 2, "Protect you from what?"); next;
 			JitDiag("Shalosh",	 	1, 0, "From what Rot is thinking."); next;
-			emotion e_dots, 0, instance_npcname("Melody-Jack#21");
+			//emotion ET_THINK, 0, instance_npcname("Melody-Jack#21");
 			JitDiag("Melody-Jack",	0, 0, "..."); next;
 			JitUnhide("Ferre#21", "Ferre#21s");
 			JitDiag("Shalosh",	 	1, 0, "Ferre?"); next;
-			emotion e_an, 0, instance_npcname("Ferre#21");
+			//emotion ET_FRET, 0, instance_npcname("Ferre#21");
 			JitDiag("Ferre",	 	0, 0, "Ferre, ferre!"); next;
 			specialeffect 316, AREA, instance_npcname("Shalosh#21");
 			specialeffect 317, AREA, instance_npcname("Shalosh#21");
-			emotion e_an, 0, instance_npcname("Ferre#21s");
+			//emotion ET_FRET, 0, instance_npcname("Ferre#21s");
 			JitDiag("Ferre",	 	0, 0, "Ferre, ferre, ferre!", "#21s"); next;
 			JitDiag("Newoz",	 	1, 0, "!!!"); next;
 			hideonnpc instance_npcname("Shalosh#21");
@@ -1616,7 +1616,7 @@ L_Normal:
 			hideonnpc instance_npcname("Ferre#21s");
 			JitDiag("Rotert",	 	1, 2, "We're going to be burried in there. Let's find an exit."); next;
 			JitDiag("Newoz",	 	1, 0, "We have to find Shalosh!"); next;
-			emotion e_dots, 0, instance_npcname("Melody-Jack#21");
+			//emotion ET_THINK, 0, instance_npcname("Melody-Jack#21");
 			JitDiag("Melody-Jack",	0, 0, "Newoz, I've known you're weird in the head, but she's..."); next;
 			JitDiag("Newoz",	 	4, 0, "I know. You don't have to remind me."); next;
 			JitDiag("Mingmin",	 	2, 2, "The let's get out of here. We're in serious danger right now."); next;
@@ -1632,7 +1632,7 @@ L_Normal:
 			JitDiag("Rotert",	 	1, 2, "..."); next;
 			JitDiag("Rotert",	 	1, 2, "We'll find Newoz and Shalosh. An when we do, I'm going to kill both of them."); next;
 			JitDiag("Roel",	 		4, 0, "Newoz, did you know this would happen? You're lucky to have such good friends."); next;
-			emotion e_dots, 0, instance_npcname("Melody-Jack#21");
+			//emotion ET_THINK, 0, instance_npcname("Melody-Jack#21");
 			JitDiag("Melody-Jack",	0, 0, "He didn't know because he doesn't think; ever."); next;
 			JitDiag("Arang",	 	1, 2, "Yippee! Let's go!"); next;
 			JitDiag("Rotert",	 	1, 2, "We'll split into two teams. Be careful not to lose your way in the maze-like offshoots."); next;
@@ -1679,7 +1679,7 @@ L_Hurry:
 	JitDiag("Newoz",	 	1, 0, "I like his spirit, though I can see he's getting exhausted.", "#23t"); next;
 	JitDiag("Ferre",	 	0, 0, "Ferre...", "#23"); next;
 	JitUnhide("Gelkah#23", "Rotert#23");
-	emotion e_an, 0, instance_npcname("Rotert#23");
+	//emotion ET_FRET, 0, instance_npcname("Rotert#23");
 	JitDiag("Rotert",	 	1, 2, "Newoz, you're alive! Good, because I'm going to kill...", "#23"); next;
 	JitDiag("Aigu",	 		0, 0, "Newoz, are you all right?", "#23"); next;
 	JitDiag("Newoz",	 	1, 0, "I'm all right. Rot, were you worried about me?", "#23t"); next;
@@ -1800,37 +1800,37 @@ L_Hurry:
 		JitDiagClose(1, 2, "It's been a while since I had so much fun.");
 	}
 	
-	emotion e_ho, 0, instance_npcname("Newoz#24");
+	//emotion ET_DELIGHT, 0, instance_npcname("Newoz#24");
 	JitDiag("Newoz", 		2, 2, "This was my first adventure with my old friends in a long time. I hope we can do this again soon."); next;
-	emotion e_bzz, 0, instance_npcname("Rotert#24");
+	//emotion ET_STARE, 0, instance_npcname("Rotert#24");
 	JitDiag("Rotert", 		1, 0, "Newoz. Need I remind you this guild is no longer called Newoz's White Wings?"); next;
 	JitDiag("Newoz", 		4, 2, "What? Did you change the guild name?"); next;
-	emotion e_pif, 0, instance_npcname("Rotert#24");
+	//emotion ET_HNG, 0, instance_npcname("Rotert#24");
 	JitDiag("Rotert", 		1, 0, "Of course! Now it's called... Um..."); next;
-	emotion e_sigh, 0, instance_npcname("Mingmin#24");
+	//emotion ET_OHNO, 0, instance_npcname("Mingmin#24");
 	JitDiag("Mingmin", 		0, 0, "Stop thinking and just keep the old name.");
-	emotion e_hmm, 0, instance_npcname("Mingmin#24");
+	//emotion ET_SCRATCH, 0, instance_npcname("Mingmin#24");
 	next;
-	emotion e_flash, 0, instance_npcname("Rotert#24");
+	//emotion ET_SPARK, 0, instance_npcname("Rotert#24");
 	JitDiag("Rotert", 		1, 0, "Nope, I'm going to caall it Rotert's Super Critical Guild!");
-	emotion e_shy, 0, instance_npcname("Rotert#24");
+	//emotion ET_SHY, 0, instance_npcname("Rotert#24");
 	next;
-	emotion e_otl, 0, instance_npcname("Aigu#24");
+	//emotion ET_OTL, 0, instance_npcname("Aigu#24");
 	JitDiag("Aigu", 		0, 0, "..."); next;
 	JitDiag("Aigu", 		0, 0, "That sounds lame."); next;
 	JitDiag("Roel", 		4, 2, "I'm not a fan of it."); next;
 	JitDiag("Runane", 		4, 0, "Dorky."); next;
-	emotion e_bzz, 0, instance_npcname("Rotert#24");
+	//emotion ET_STARE, 0, instance_npcname("Rotert#24");
 	JitDiag("Rotert", 		1, 0, "I'm the guild master! I name it whatever I want!"); next;
 	JitDiag("Arang", 		1, 2, "Not cool."); next;
-	emotion e_gg, 0, instance_npcname("Mingmin#24");
+	//emotion ET_KIK, 0, instance_npcname("Mingmin#24");
 	JitDiag("Mingmin", 		0, 0, "Keep the name. I'm out."); next;
-	emotion e_omg, 0, instance_npcname("Rotert#24");
+	//emotion ET_HUK, 0, instance_npcname("Rotert#24");
 	JitDiag("Rotert", 		1, 0, "You can't do that!"); next;
-	emotion e_dots, 0, instance_npcname("Melody-Jack#24");
+	//emotion ET_THINK, 0, instance_npcname("Melody-Jack#24");
 	JitDiag("Melody-Jack",	0, 0, "I'm not a member, but if you ask me, that name..."); next;
 	JitDiag("Lagi", 		0, 0, "I'll never be able to speak that name. Aigu, are you sure you want to stick with these guys?"); next;
-	emotion e_lv2, 0, instance_npcname("Aigu#24");
+	//emotion ET_THROB2, 0, instance_npcname("Aigu#24");
 	JitDiag("Aigu", 		0, 0, "I don't care. I'm staying with Newoz."); next;
 	JitDiag("Runane", 		4, 0, "I just don't like the name."); next;
 	JitDiag("Rotert", 		1, 0, "Shush! We've had enough for a day. You all are dismissed! This concludes the adventure of Rotert's Super Critical Guild!"); close2;
@@ -1969,7 +1969,7 @@ OnTimer30000:
 		end;
 	}
 	
-	emotion e_ho, 0, instance_npcname("Newoz#23s");
+	//emotion ET_DELIGHT, 0, instance_npcname("Newoz#23s");
 	npctalk F_Rand(
 		"What do you call a fish musician? A piano tuna.",
 		"What did the farmer say to the green pumpkin? Why orange you orange?",

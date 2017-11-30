@@ -431,7 +431,7 @@ return;
 //=======================================================================
 function	script	Monster_Encounter	{
 
-	emotion e_slur,1;  
+	emotion ET_SEXY,1;  
 	specialeffect2 109; 
 	specialeffect2 199; 
 	callfunc "Fishing_Dialogues"; 
@@ -454,19 +454,19 @@ function	script	Monster_Encounter	{
 		announce "Sea Monster: Looks yummy!!",bc_self;
 		
 		if(.@random == 0) { 
-			emotion e_omg; emotion e_omg,1;    
+			emotion ET_HUK; emotion ET_HUK,1;    
 			message strcharinfo(0), "Help!! I'm too young to be eaten!! Please eat GM Symphony instead!!";                		// Change fish monster encounter dialogues here. 
 			setnpcdisplay ""+strnpcinfo(0)+"",1264; 
 			}
 			
 		if(.@random == 1) { 
-			emotion e_omg; emotion e_omg,1; 
+			emotion ET_HUK; emotion ET_HUK,1; 
 			message strcharinfo(0), "Please!!! I'm still virgin!!"; 					
 			setnpcdisplay ""+strnpcinfo(0)+"",1993; 
 			}
 			
 		if(.@random == 2) { 
-			emotion e_omg; emotion e_omg,1; 
+			emotion ET_HUK; emotion ET_HUK,1; 
 			message strcharinfo(0), "Noooooooooo!!!!! I want to eat by sexy monster!! Not you!!"; 					 
 			setnpcdisplay ""+strnpcinfo(0)+"",2184; 
 			}		
@@ -480,14 +480,14 @@ function	script	Monster_Encounter	{
 		specialeffect2 678;  
 		specialeffect 54; 
 		sleep2 100; 
-		emotion e_oops;  
-		emotion e_panic,1;  
+		emotion ET_OOPS;  
+		emotion ET_PANIC,1;  
 		specialeffect2 772; 
 		specialeffect2 692; 
 		specialeffect 54; 
 		sleep2 100;   
-		emotion X,1; 
-		emotion e_spit; 
+		emotion ET_X,1; 
+		emotion ET_SPIT; 
 		specialeffect 915; 
 		specialeffect 54; 
 		specialeffect 236; 
@@ -500,7 +500,7 @@ function	script	Monster_Encounter	{
 		announce "The Sea Monster grab "+strcharinfo(0)+" feet and dragged him into the water!",bc_map;
 		sleep2 100; 
 		warp ""+$@FMap$+"",$@X,$@Y; 
-		emotion e_spin,1; // Fish monster encounter, dragged player feet and bring him into other map.
+		emotion ET_CONFUSE,1; // Fish monster encounter, dragged player feet and bring him into other map.
 		hideonnpc strnpcinfo(0);
 		sleep2 
 		$@FishHidingTime; 
@@ -588,7 +588,7 @@ function	script	Lucky_Prize	{
 	}
 	else 
 		mes "Too bad the treasure box disappear!"; 
-		emotion e_sob,1;  
+		emotion ET_CRY,1;  
 		close2; 
 		dispbottom "[ Minor Bonus Boost Applied! ] [ Fishing Rank: " + FishingLevel + ", Fishing Exp: " + FishingNowExp + " / " + $@FishingExpMax[ FishingLevel ] + " ] [Fishing Points: "+#FishingPoints+"]"; 
 		set FishingAbuse,0; 
@@ -621,7 +621,7 @@ function	script	Jackpot_Prize	{		// Modify to your liking, add effects, more dia
 	
 	specialeffect2 857; 
 	specialeffect 236;  specialeffect 54;
-	emotion e_omg,1; 
+	emotion ET_HUK,1; 
 	setnpcdisplay ""+strnpcinfo(0)+"",2196; 
 	sleep2 250;
 	announce "The blessings from God of the Sea rains upon "+strcharinfo(0)+"",bc_map; 
@@ -696,7 +696,7 @@ return;
 function	script	Marine_Sphere_Caught	{
 	callfunc "Fishing_Dialogues"; 
 	callfunc "FishingCasting";
-	emotion e_omg,1; 
+	emotion ET_HUK,1; 
 	
 	if ($@Cuttins == 1) { 
 	specialeffect 236;  
@@ -713,8 +713,8 @@ function	script	Marine_Sphere_Caught	{
 	message strcharinfo(0), "OMG??!!!!...."; 
      //cutin $@MarineSphere$,3;
 	setnpcdisplay ""+strnpcinfo(0)+"",1142,2;     			// Change NPC Display to Marine Sphere.
-	sleep2 1000; emotion e_com; sleep2 500;
-	emotion e_heh,1; 
+	sleep2 1000; emotion ET_COMEON; sleep2 500;
+	emotion ET_SMILE,1; 
 	sleep2 500;							// This scene is very funny! :)	
 	set FishingAbuse,0; 
 	atcommand "@nuke "+strcharinfo(0);  	// You can change @die if you have @nuke restrictions.
@@ -843,7 +843,7 @@ function	script	Fishing_Box_Menu	{
 		menu "[ ^005500Proceed^000000 ]",ReturnTo;
 		close;
 		ReturnNot:
-			emotion e_crwd,1;
+			emotion ET_BIGTHROB,1;
 			dispbottom "Fishing Box is now Closed!";
 			cutin "",255;
 			close;

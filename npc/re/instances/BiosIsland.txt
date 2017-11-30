@@ -27,7 +27,7 @@ moro_cav,46,59,4	script	Wandering Old Woman	846,{
 							next;
 								switch(select("No Thanks.. I want to keep it:Sure! Why not?")) {
 									case 1:
-										emotion e_sob;
+										emotion ET_CRY;
 										mes "[ Wandering Old Woman ]";
 										mes "*CRYING*";
 										mes "It's ok..... Goodbye...";
@@ -36,7 +36,7 @@ moro_cav,46,59,4	script	Wandering Old Woman	846,{
 									case 2:
 										mes "[ Wandering Old Woman ]";
 										mes "Here.. Take it..";
-										emotion e_thx;
+										emotion ET_THANKS;
 										mes "have a nice day~";
 											if (countitem (6684) >= 10){ 
 												delitem 6684,10; //Proof of The Heroic
@@ -45,7 +45,7 @@ moro_cav,46,59,4	script	Wandering Old Woman	846,{
 												break;
 											}
 											else {
-												emotion e_pif;
+												emotion ET_HNG;
 												mes "[ Wandering Old Woman ]";
 												mes "You don't have enough "+(getitemname (6684))+"! ";
 												close;
