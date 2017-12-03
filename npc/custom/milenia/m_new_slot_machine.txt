@@ -178,12 +178,12 @@ switch( getd(".mode"+strnpcinfo(3)+"") ){
 					if( .soundeffects ) { soundeffect "slot_jackpot.wav",0; }
 					break;
 				case 26:
-					getitem 41124,1;	// 3 Days Milenia Certificate 
+					getitem 41293,1;	// 1 Hour VIP Refiner 
 					specialeffect2 10;
 					if( .soundeffects ) { soundeffect "slot_jackpot.wav",0; }
 					break;
 				case 27:
-					getitem 41275,1;	// 1 hour VIP Membership
+					getitem 674,2; 		// 2 Mithril Coin 
 					specialeffect2 10;
 					if( .soundeffects ) { soundeffect "slot_jackpot.wav",0; }
 					break;
@@ -349,12 +349,12 @@ switch( getd(".mode"+strnpcinfo(3)+"") ){
 					if( .soundeffects ) { soundeffect "slot_jackpot.wav",0; }
 					break;
 				case 26:
-					getitem 41124,1;	// 3 Days Milenia Certificate 
+					getitem 41293,1;	// 1 Hour VIP Refiner 
 					specialeffect2 10;
 					if( .soundeffects ) { soundeffect "slot_jackpot.wav",0; }
 					break;
 				case 27:
-					getitem 41275,1;	// 1 hour VIP Membership
+					getitem 674,2; 		// 2 Mithril Coin 
 					specialeffect2 10;
 					if( .soundeffects ) { soundeffect "slot_jackpot.wav",0; }
 					break;

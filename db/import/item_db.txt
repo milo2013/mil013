@@ -317,3 +317,4 @@
 41290,Mysterious Coin,Mysterious Coin,3,100,,10,,,,,,,,,,,,,{},{},{}
 41291,Infinite_Fish,Infinite Fish Box,0,50,,70,,,,,0xFFFFFFFF,63,2,,,,,,{ percentheal 100,100; getitem 41291,1; },{},{}
 41292,Infinite_Kafra_Box,Infinite Kafra Box,18,10,,10,,,,0,0xFFFFFFFF,63,2,,,,,,{ rentitem 12211,604800; },{},{}
+41293,Milenia_Certificate_Box_1h,VIP Refiner 1H,18,10,,10,,,,0,0xFFFFFFFF,63,2,,,,,,{ rentitem 41121,3600; },{},{}
