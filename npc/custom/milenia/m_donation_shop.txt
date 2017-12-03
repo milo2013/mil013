@@ -1,12 +1,12 @@
 // Warps 
 mall,45,24,0	warp	mall#out	1,1,kampung,150,150
-kampung,73,40,0	warp	mall#in	1,1,mall,45,46
+//kampung,73,40,0	warp	mall#in	1,1,mall,45,46
 
 // Shops
 mall,40,34,5	pointshop	VIP Shop	603,#DPOINTS,41261:75,41121:70,41263:37
 mall,36,38,5	pointshop	COUPON Shop	603,#DPOINTS,41160:200,41241:5,41258:1
 mall,32,42,5	pointshop	PASS Shop	603,#DPOINTS,41246:35,41249:25,41245:20,41248:15
-mall,42,42,5	pointshop	PROMO Shop	603,#DPOINTS,12356:1
+mall,42,42,5	pointshop	PROMO Shop	603,#DPOINTS,41287:15,12356:1
 mall,51,34,11	pointshop	COMBO Shop	603,#DPOINTS,41264:100,41274:100
 mall,55,38,11	pointshop	EQUIPMENTS Shop	603,#DPOINTS,28902:150,20234:150,20135:80,20136:80,18740:75
 mall,59,42,11	pointshop	RENTAL Shop	603,#DPOINTS,41179:15,41181:15,41183:15,41185:15,41187:15,41189:15,41191:15,41193:15,41195:15,41197:15,41199:15,41201:15
@@ -15,3 +15,31 @@ mall,49,42,11	pointshop	MISC Shop	603,#DPOINTS,41164:25,41161:15,41232:10
 // Donation Mall
 mall,44,53,5	duplicate(Donation Redeem)	Donation Redeem#mall	10168
 mall,47,53,11	script	Milenia GM Rewards#mall	10173,{	doevent "gm_reward_main::OnTalk";}
+
+// Donation Mall Warper
+kampung,79,40,11	script	Donation Mall Warper	837,{
+
+	mes "[ Donation Mall ]";
+	mes "Please reload  ^ff0000Donation Points^000000 at ^ff0000Website^000000. ";
+	mes "Thank you!";
+	mes "^ff0000http://www.mileniaro.com^000000";
+	close2;
+	warp "mall",45,46;
+	cutin "", 255;
+end;
+	
+OnInit:
+setarray .message$,
+
+	"Donation Mall Warper",
+	"Enter our Donation Mall",
+	"The Portal of Mall",
+	"Donation Mall here!";
+set .message_size,getarraysize( .message$ );
+while( .message_size ){
+	delwaitingroom; 
+	waitingroom ""+.message$[ rand( .message_size ) ],0;
+	sleep 36000;
+}
+	end;
+	}

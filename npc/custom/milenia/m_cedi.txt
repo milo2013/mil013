@@ -48,7 +48,7 @@ OnTalk:
 		mes "Please wait..warping out";
 		mapannounce .@map$,"All Rewards distributed. Warping out in 5 seconds.",0;
 		sleep2 5000;
-		mapwarp .@map$,"milenia",209,113;
+		mapwarp .@map$,"kampung",150,150;
 	}
 	end;
 	
@@ -302,8 +302,8 @@ setarray .tier_2_mob,3974;
 .tier_2_mob_size = getarraysize( .tier_2_mob );
 .npc_name$ = strnpcinfo(0);
 setmapflag .map$,mf_partylock;
-setmapflag .map$,mf_nomobloot;
-setmapflag .map$,mf_nomvploot;
+//setmapflag .map$,mf_nomobloot;
+//setmapflag .map$,mf_nomvploot;
 // setmapflag .map$,mf_nocommand;
 mapwarp .map$,"milenia",209,113;
 end;

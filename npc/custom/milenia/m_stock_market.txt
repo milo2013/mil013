@@ -81,31 +81,31 @@ OnClock0600:
 OnClock0700:	set $S_LastUpd$,"07:00";	goto S_Fluc;	end;
 OnClock0800:	set $S_LastUpd$,"08:00";	goto S_Fluc;	end;
 OnClock0900:	set $S_LastUpd$,"09:00";	goto S_Fluc;	end;
-OnClock1000:	set $S_LastUpd$,"10:00";	goto S_Fluc;	end;
-OnClock1100:	set $S_LastUpd$,"11:00";	goto S_Fluc;	end;
+OnClock1000:	set $S_LastUpd$,"11:00";	goto S_Fluc;	end;
+OnClock1100:	set $S_LastUpd$,"12:00";	goto S_Fluc;	end;
 OnClock1200:	
 	announce "[Stock Market] Our stock will be reset in 12 hours!",bc_all,0xFF0000;
-	set $S_LastUpd$,"12:00";	
+	set $S_LastUpd$,"13:00";	
 	goto S_Fluc;	
 	end;
-OnClock1300:	set $S_LastUpd$,"13:00";	goto S_Fluc;	end;
-OnClock1400:	set $S_LastUpd$,"14:00";	goto S_Fluc;	end;
-OnClock1500:	set $S_LastUpd$,"15:00";	goto S_Fluc;	end;
-OnClock1600:	set $S_LastUpd$,"16:00";	goto S_Fluc;	end;
-OnClock1700:	set $S_LastUpd$,"17:00";	goto S_Fluc;	end;
+OnClock1300:	set $S_LastUpd$,"14:00";	goto S_Fluc;	end;
+OnClock1400:	set $S_LastUpd$,"15:00";	goto S_Fluc;	end;
+OnClock1500:	set $S_LastUpd$,"16:00";	goto S_Fluc;	end;
+OnClock1600:	set $S_LastUpd$,"17:00";	goto S_Fluc;	end;
+OnClock1700:	set $S_LastUpd$,"18:00";	goto S_Fluc;	end;
 OnClock1800:
 	announce "[Stock Market] Our stock will be reset in 6 hours!",bc_all,0xFF0000;
-	set $S_LastUpd$,"18:00";	
+	set $S_LastUpd$,"19:00";	
 	goto S_Fluc;	
 	end;
-OnClock1900:	set $S_LastUpd$,"19:00";	goto S_Fluc;	end;
-OnClock2000:	set $S_LastUpd$,"20:00";	goto S_Fluc;	end;
+OnClock1900:	set $S_LastUpd$,"20:00";	goto S_Fluc;	end;
+OnClock2000:	set $S_LastUpd$,"21:00";	goto S_Fluc;	end;
 OnClock2100:
 	announce "[Stock Market] Our stock will be reset in 3 hours!",bc_all,0xFF0000;	
-	set $S_LastUpd$,"21:00";	
+	set $S_LastUpd$,"22:00";	
 	goto S_Fluc;	
 	end;
-OnClock2200:	set $S_LastUpd$,"22:00";	goto S_Fluc;	end;
+OnClock2200:	set $S_LastUpd$,"23:00";	goto S_Fluc;	end;
 
 
 
@@ -483,6 +483,13 @@ S_Buy:
 	next;
 	menu "Continue",-,"Cancel",S_Start;
 	
+	mes "[Stock Market]";
+	mes "^FF0000WARNING!^000000";
+	mes "Please remember to sell all your shares ^FF0000before 12am everyday^000000!";
+	mes " We will not refund if you forget to sell it.";
+	next;
+	
+	menu "^FF0000[ I UNDERSTAND AND AGREE ]^000000",-,"Cancel",S_Start;
 	mes "Enter the name of the share company";
 	mes "Transaction fee of ^FF0000" + $S_Trans + "z^000000 will apply.";
 	set @buyname$,"0";

@@ -214,7 +214,7 @@ homun:
 }
 
 function	script	UniversalShopFunc	{
-warp "milenia",71,185;
+warp "kampung",27,160;
 }
 
 function	script	VipFunc	{

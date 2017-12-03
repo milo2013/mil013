@@ -302,7 +302,9 @@
 41280,Poring Spawner,Poring Spawner,0,50,,70,,,,,0xFFFFFFFF,63,2,,,,,,{ if (getgmlevel() >= 1) { atcommand "@spawn 1002 10"; getitem 41280,1;} },{},{}
 41281,Donation Reload,Donation Points Reload,0,50,,70,,,,,0xFFFFFFFF,63,2,,,,,,{ set .relod_card,(countitem (41281))+1; set #DPOINTS,#DPOINTS+(.relod_card); delitem 41281,(.relod_card)-1; dispbottom "[ System ] : You reloaded with "+(.relod_card)+"x Donation Points Reload!"; dispbottom "[ System ] : Your balance now is "+#DPOINTS+" Donation Points."; },{},{}
 
-41282,Supplement_Part_Str2,Supplement Part Str2,12,0,,0,,0,,0,0xFFFFFFFF,63,2,65536,,1,1,0,{ bonus2 bAddClass,Class_All,5+getrefine()/4; bonus bMaxHP,50; if(getrefine()>=7) { bonus bMaxHPrate,1;}},{},{}
+15046,Siege_Plate,Siege Plate,4,0,,3300,,85,,1,0x006444A2,63,2,16,,95,1,0,{  .@r = getrefine(); if(.@r>5) {  } if(.@r>8) { bonus bMaxHPrate,25; } },{},{}
+
+41282,Supplement_Part_Str2,Supplement Part Str2,12,0,,0,,0,,0,0xFFFFFFFF,63,2,16,,1,1,0,{ bonus bBaseAtk,30; bonus bHealpower2,12; bonus bAddItemHealRate,12; bonus bMdef,5; bonus2 bSkillAtk,"NC_AXEBOOMERANG",250; bonus2 bSkillAtk,"NC_AXETORNADO",25; bonus2 bSubRace,RC_DemiHuman,2; bonus2 bSubRace,RC_Player,2; bonus2 bAddClass,Class_All,5+getrefine()/4; bonus bMaxHP,50000; if(getrefine()>=7) { bonus bMaxHPrate,25; } },{},{}
 41283,Battleground Badge Box Gold,Battleground Badge Box Gold,18,10,,10,,,,0,0xFFFFFFFF,63,2,,,,,,{ getitem 41159,5; getitem 41162,rand(5,30); },{},{}
 41284,Battleground Badge Box Silver,Battleground Badge Box Silver,18,10,,10,,,,0,0xFFFFFFFF,63,2,,,,,,{ getitem 41159,1; getitem 41162,rand(1,15); },{},{}
 
@@ -310,5 +312,5 @@
 41286,Poring Spawner 50,Poring Spawner 50,0,50,,70,,,,,0xFFFFFFFF,63,2,,,,,,{ if (getgmlevel() >= 1) { atcommand "@spawn 1002 50"; getitem 41286,1;} },{},{}
 
 41287,Lucky Box,Lucky Box,2,10,,1,,,,,0xFFFFFFFF,63,2,,,,,,{ callfunc "LuckyBoxFunc"; },{},{}
-
-		
+41288,Loyalists_Hood_,Loyalists Hood_,4,10,,200,,30,,1,0xFFFFFFFF,63,2,8192,,80,,,{ bonus bAllStats,1; bonus2 bSubRace,RC_DemiHuman,5; bonus2 bSubRace,RC_Player,5; },{},{}
+41289,Admin Food,Admin Food,0,50,,70,,,,,0xFFFFFFFF,63,2,,,,,,{ sc_start SC_SAVAGE_STEAK,300000,20; sc_start SC_COCKTAIL_WARG_BLOOD,300000,20; sc_start SC_MINOR_BBQ,300000,20; sc_start SC_SIROMA_ICE_TEA,300000,20; sc_start SC_DROCERA_HERB_STEAMED,300000,20; sc_start SC_PUTTI_TAILS_NOODLES,300000,20; sc_start SC_AGIFOOD,1800000,15; sc_start SC_FLEEFOOD,600000,33; sc_start SC_DEXFOOD,1800000,15; sc_start SC_HITFOOD,600000,33; sc_start SC_INTFOOD,1800000,15; sc_start SC_INCMATKRATE,600000,111; sc_start SC_LUKFOOD,1800000,15; sc_start SC_CRIFOOD,600000,33; sc_start SC_STRFOOD,1800000,15; sc_start SC_INCATKRATE,600000,111; sc_start SC_VITFOOD,1800000,15; sc_start SC_INCDEFRATE,600000,33; sc_start SC_SPEEDUP1,300000,50; sc_start SC_MINOR_BBQ,300000,20; sc_start2 SC_PROMOTE_HEALTH_RESERCH,500000,1,3; percentheal 5,0; specialeffect2 EF_LIGHTSPHERE; bonus_script "{ bonus bMaxHPrate,100; bonus bDefRate,-50; bonus bMdefRate,-50; }",180,1024,0,SI_MVPCARD_TAOGUNKA; sc_start4 SC_ARMOR_RESIST,300000,20,20,20,20; getitem 14524,200; getitem 41289,1; sc_start SC_ASSUMPTIO,100000,5; skilleffect "HP_ASSUMPTIO",0; },{},{}

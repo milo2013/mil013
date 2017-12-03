@@ -59,4 +59,4 @@ Job_Baby_Alchemist,99
 Job_Baby_Bard,99
 Job_Baby_Dancer,99
 Job_Super_Baby,99
-//Job_Taekwon,99
+Job_Taekwon,125
