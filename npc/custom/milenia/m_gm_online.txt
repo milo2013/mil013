@@ -25,7 +25,7 @@ else if( .@gmlevel < 3 ) set .GM_Level$[ .@size ],"Script Manager";
 else if( .@gmlevel < 4 ) set .GM_Level$[ .@size ],"GM Event";
 else if( .@gmlevel < 6 ) set .GM_Level$[ .@size ],"Chief Event GM";
 else if( .@gmlevel < 7 ) set .GM_Level$[ .@size ],"Police GM";
-else if( .@gmlevel < 8 ) set .GM_Level$[ .@size ],"Chief Police GM";
+else if( .@gmlevel < 8 ) set .GM_Level$[ .@size ],"Support GM";
 else if( .@gmlevel < 10 ) set .GM_Level$[ .@size ],"Head GM";
 else set .GM_Level$[ .@size ],"Milenia Admin";
 end;
