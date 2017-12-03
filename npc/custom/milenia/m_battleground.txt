@@ -357,6 +357,7 @@ prt_cas	mapflag	nopenalty
 prt_cas	mapflag	nobranch
 prt_cas	mapflag	noicewall
 
+/*
 // WOE CHAMPION BOX REWARD
 
 
@@ -581,6 +582,8 @@ prt_cas,96,81,5	script	King William VI#2	965,{
 	close;
 	}
 	}
+	
+	*/
 
 // General Wade
 prt_cas,98,81,5	script	General Wade#2	468,{

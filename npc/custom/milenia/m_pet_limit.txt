@@ -302,6 +302,7 @@ function	script	WoeRewadsFunc	{
 	getitem 6230,5;
 	getitem 41206,10;
 	getitem 12280,20;
+	getitem 41120,50;
 	}
 	
 function	script	FrozenBoxFunc	{

@@ -1,0 +1,237 @@
+//===== rAthena Script ======================================= 
+//= WoE Reward giver
+//===== By: ================================================== 
+//= Secret
+//===== Current Version: =====================================
+//= 0.2
+//===== Changelog: ===========================================
+//= 0.1 Initial commit
+//= 0.2 Hercules Compatibility
+//===== Compatible With: ===================================== 
+//= rAthena Project
+//===== Description: ========================================= 
+//= WoE Reward giver with in-game customizations
+//= This script should be somewhat compatible with Hercules
+//= although 100% compatibility is not guaranteed.
+//============================================================
+
+prontera,149,178,6	script	WoE Reward#secret	4_M_KY_SOLD,{
+
+	.@gm = getgmlevel();
+	mes .n$;
+	mes "Greetings, " + (.@gm < .gmlevel ? "Brave warrior" : "My lord, Game Master") + "!";
+	mes "What would you like to do?";
+	next;
+	switch(select(.auto_give_reward ? "" : "Receive WoE Reward",(.@gm>=.gmlevel?"^FF0000Configure rewards^000000":""))) {
+		case 1: // Get Reward
+			if(.auto_give_reward) end;
+			if(getcharid(2) != 0 && getguildmaster(getcharid(2)) == strcharinfo(0)) {
+				mes .n$;
+				mes "Oh, so you are " + strcharinfo(0) + ", guild master of " + getguildname(getcharid(2)) + "."; 
+				mes "Which castle would you like to retrieve reward?";
+				next;
+				.@menu$ = "";
+				for(.@i = 0; .@i < .casvarsize .@i++) {
+					.@o = getcastledata(.cas$[.@i],1);
+					.@menu$ = .@menu$ + (($casActive[.@i] && $casCanReceive[.@i] && .@o == getcharid(2)) ? .casName$[.@i] : "") + ":";
+				}
+				.@sel = select(.@menu$)-1;
+				if(!($casActive[.@sel] && $casCanReceive[.@sel])) {
+					mes .n$;
+					mes "You either already received the reward or this castle gives no reward.";
+					close;
+				}
+				mes .n$;
+				mes "You have received rewards for castle " + .casName$[.@sel] + ".";
+				Zeny += $casZeny[.@sel];
+				#CASHPOINTS += $casCash[.@sel];
+				$casCanReceive[.@sel] = 0;
+				copyarray .@idr[0],$cas_itemreward[.@sel*.itemslot_amount],.itemslot_amount;
+				copyarray .@amountr[0],$cas_itemamount[.@sel*.itemslot_amount],.itemslot_amount;
+				for(.@i = 0; .@i < .itemslot_amount; .@i++) {
+					if(.@idr[.@i] != 0) {
+						getitem .@idr[.@i],.@amountr[.@i];
+					}
+				}
+				close;
+			}else{
+				mes .n$;
+				mes "You are not a guild master.";
+				close;
+			}
+			close;
+		case 2: // GM Menu
+			callsub S_GM;
+	}
+		
+S_GM:
+	freeloop(1);
+	while(1) {
+		mes .n$;
+		if(getgmlevel() < .gmlevel) {
+			mes "You aren't supposed to be using this.";
+			debugmes "Char " + strcharinfo(0) + " entered WoE Reward GM menu without proper permission. Hack?";
+			close;
+		}
+		mes "My lord, what do you like to change?";
+		next;
+		switch(select("Activate/Deactivate reward for a castle","Add/Remove reward for a castle")) {
+			case 1:
+				mes .n$;
+				mes "Please select the castle.";
+				.@menu$ = "";
+				for(.@i = 0; .@i < .casvarsize .@i++) {
+					.@menu$ = .@menu$ + ($casActive[.@i] ? "[^00FF00On^000000]" : "[^FF0000Off^000000]") + .casName$[.@i] +":";
+				}
+				next;
+				.@sel = select(.@menu$)-1;
+				mes .n$;
+				mes "You are going to turn reward " + ($casActive[.@sel] ? "Off" : "On") + " for castle " + .casName$[.@sel];
+				mes "Are you sure?";
+				next;
+				if(select("Confirm","Cancel") == 2){
+					close;
+				}
+				$casActive[.@sel] = !$casActive[.@sel];
+				mes .n$;
+				mes "Consider it done.";
+				next;
+				break;
+			case 2:
+				mes .n$;
+				mes "Please select the castle.";
+				.@menu$ = "";
+				for(.@i = 0; .@i < .casvarsize .@i++) {
+					.@menu$ = .@menu$ + .casName$[.@i] +":";
+				}
+				next;
+				.@sel = select(.@menu$)-1;
+				while(1) {
+					mes .n$;
+					mes "You are managing reward for castle " + .casName$[.@sel];
+					next;
+					switch(select("Zeny (" + $casZeny[.@sel] + " Zeny)","Cash (" + $casCash[.@sel] + " Cash)","Manage items","Cancel")){
+						case 1:
+							mes .n$;
+							mes "How many zeny would you like to set as reward?";
+							input .@z;
+							next;
+							mes .n$;
+							mes "Zeny reward of castle " + .casName$[.@sel] + " is now " + .@z + " zeny.";
+							$casZeny[.@sel] = .@z;
+							next;
+							break;
+						case 2:
+							mes .n$;
+							mes "How many cash would you like to set as reward?";
+							input .@c;
+							next;
+							mes .n$;
+							mes "cash reward of castle " + .casName$[.@sel] + " is now " + .@c + " cash points.";
+							$casCash[.@sel] = .@c;
+							next;
+							break;
+						case 3:
+							mes .n$;
+							mes "Please select an item slot";
+							next;
+							copyarray .@idr[0],$cas_itemreward[.@sel*.itemslot_amount],.itemslot_amount;
+							copyarray .@amountr[0],$cas_itemamount[.@sel*.itemslot_amount],.itemslot_amount;
+							.@mstr$ = "";
+							for(.@i = 0; .@i < .itemslot_amount; .@i++) {
+								.@mstr$ = .@mstr$ + (.@idr[.@i] == 0 ? "Empty Slot" : getitemname(.@idr[.@i]) + " (" + .@amountr[.@i] + "ea)") + ":";
+							}
+							.@selected = select(.@mstr$)-1;
+							mes .n$;
+							mes "What are you going to do about it?";
+							next;
+							switch(select("Change","Remove")) {
+								case 1:
+									mes .n$;
+									mes "Please enter item ID";
+									input .@id;
+									next;
+									mes .n$;
+									mes "Please enter amount of the item";
+									input .@am;
+									next;
+									$cas_itemreward[.@sel*.itemslot_amount+.@selected] = .@id;
+									$cas_itemamount[.@sel*.itemslot_amount+.@selected] = .@am;
+									mes .n$;
+									mes "This reward slot have been changed to " + getitemname(.@id) + " " + .@am + "ea.";
+									next;
+									break;
+								case 2:
+									$cas_itemreward[.@sel*.itemslot_amount+.@selected] = 0;
+									$cas_itemamount[.@sel*.itemslot_amount+.@selected] = 0;
+									mes .n$;
+									mes "Removed as you wish.";
+									next;
+									break;
+							}
+							break;
+						case 4:
+							next;
+							break;
+					}
+					break;
+				}
+		}
+	}
+	freeloop(0);
+	end;
+OnAgitEnd:
+	.@woefeflag = 1;
+OnAgitEnd2:
+	for(.@i = 0; .@i < .casvarsize .@i++) {
+		.@o = getcastledata(.cas$[.@i],1);
+		.@se = .@i > 19? 1:0;
+		if(!.@o) {
+			$casCanReceive[.@i] = 0;
+		}else if(.@woefeflag != .@se){
+			if(!.auto_give_reward){ 
+				$casCanReceive[.@i] = 1;
+			}else{
+				set .@size, query_sql("SELECT account_id,char_id FROM `guild_member` WHERE guild_id = "+.@o,.@aid,.@cid);
+				for(set .@j,0; .@j<.@size; set .@j,.@j+1) {
+					detachrid;
+					if (isloggedin(.@aid[.@j])) {
+						attachrid .@aid[.@j];
+						if(!checkvending())
+						{
+							Zeny += $casZeny[.@sel];
+							#CASHPOINTS += $casCash[.@sel];
+							copyarray .@idr[0],$cas_itemreward[.@sel*.itemslot_amount],.itemslot_amount;
+							copyarray .@amountr[0],$cas_itemamount[.@sel*.itemslot_amount],.itemslot_amount;
+							for(.@i = 0; .@i < .itemslot_amount; .@i++) {
+								if(.@idr[.@i] != 0) {
+									getitem .@idr[.@i],.@amountr[.@i];
+								}
+							}
+						}
+						message rid2name(.@aid[.@j]),"You have been rewarded for conquering "+getcastlename(.Castles$[.@i])+".";
+					}
+				}
+			}
+		}
+	}
+	end;
+OnInit:
+	.n$ = "[War Treasury]"; // NPC Name
+	.gmlevel = 99; // GM Level to use the NPC
+	.itemslot_amount = 10; // How many item slots should be available for each castle.
+	.auto_give_reward = 0; // Automatically gives reward to everyone online after WoE instead of only the guild leader. Set to 1 to enable
+	setarray .cas$[0],
+		"prtg_cas01","prtg_cas02","prtg_cas03","prtg_cas04","prtg_cas05",
+		"payg_cas01","payg_cas02","payg_cas03","payg_cas04","payg_cas05",
+		"gefg_cas01","gefg_cas02","gefg_cas03","gefg_cas04","gefg_cas05",
+		"aldeg_cas01","aldeg_cas02","aldeg_cas03","aldeg_cas04","aldeg_cas05",
+		"arug_cas01","arug_cas02","arug_cas03","arug_cas04","arug_cas05",
+		"schg_cas01","schg_cas02","schg_cas03","schg_cas04","schg_cas05";
+	.casvarsize = getarraysize(.cas$);
+	// Cache castle name
+	for(.@i = 0; .@i < .casvarsize .@i++) {
+		setarray .casName$[.@i],getcastlename(.cas$[.@i]);
+	}
+	end;
+}

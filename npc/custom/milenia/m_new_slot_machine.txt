@@ -1,5 +1,13 @@
-1@uns,167,221,5	script	SlotMachine	563,{
-
+kampung,119,38,1	script	Mysterious Slot Machine	563,{
+	
+	if (checkweight(1201,1) == 0) {
+		mes "[ Mysterious Voice ]";
+		mes "Why are you carrying";
+		mes "so much stuff? You better put everything you don't need into Kafra Storage.";
+		close2;
+		openstorage;
+	}
+	
 	if( getgmlevel() == 99 ) {
 		mes "Welcome Administrator.","What would you like to do?";
 		menu "Play Game",-,"Change Slot Machine Mode",iMode;
@@ -16,7 +24,7 @@ switch( getd(".mode"+strnpcinfo(3)+"") ){
 		if (.EventON == 0) {mes "Slot Machine already finished"; cutin "",255; end;}
 			if( !.payment || .payment == 2 ) { Zeny -= .ssm_payment[0]; }
 			if( .payment ) { delitem( .ssm_payment[1], .ssm_payment[2] ); }
-			if( .soundeffects ) { soundeffect "slot_jackpot.wav",0; }
+			if( .soundeffects ) { soundeffect "slot_pay_coin.wav",0; }
 			.@a = rand(1,100);
 			if( .@a < atoi(.ssm_animate$[0]) ){ .@a = 1; } else { .@a = 2; }
 			.@b = 1;
@@ -25,40 +33,159 @@ switch( getd(".mode"+strnpcinfo(3)+"") ){
 				}
 			if( .@a == 1 ){ 
 				cutin .ssm_animate$[3] + atoi(.ssm_animate$[.@a]),4;
-				dispbottom "Failed";
+				dispbottom "[ Mysterious Slot Machince ] : You've failed! Please try again next time!";
+				if( .soundeffects ) { soundeffect "scaraba_egg_die.wav",0; }
 				slt_fld01++;
 					if (slt_fld01  >= 3){
 						slt_fld01 = 0;
+						announce " "+strcharinfo(0)+" has run out of luck and died from Mysterious Slot Machine Cursed!",bc_all,0xFF0000;
+						if( .soundeffects ) { soundeffect "HolyShit.wav",0; }
 						atcommand "@nuke "+strcharinfo(0);
 						atcommand "@refresh "+strcharinfo(0);
 					}
 				}
 			else {
 				cutin .ssm_animate$[3] + atoi(.ssm_animate$[.@a]),4;
-				switch(rand(5)) {
+				switch(rand(28)) {
 				case 0:
-					getitem 603,5;
+					getitem 674,1; 		// 1 Mithril Coin  
 					specialeffect2 10;
+					if( .soundeffects ) { soundeffect "slot_jackpot.wav",0; }
 					break;
 				case 1:
-					getitem 617,5;
+					getitem 674,3; 		// 3 Mithril Coin 
 					specialeffect2 10;	
+					if( .soundeffects ) { soundeffect "slot_jackpot.wav",0; }
 					break;
 				case 2:
-					getitem 644,5;
+					getitem 41290,1; 	// 1 Gold Coin (Slot Machine) 
 					specialeffect2 10;
+					if( .soundeffects ) { soundeffect "slot_jackpot.wav",0; }
 					break;
 				case 3:
-					getitem 616,1;
+					getitem 41290,3 ; 	// 3 Gold Coin (Slot Machine) 
 					specialeffect2 10;
+					if( .soundeffects ) { soundeffect "slot_jackpot.wav",0; }
 					break;
 				case 4:
-					getitem 7776,2;
+					getitem 12246,1;	// 1 Mystical Card Album  
 					specialeffect2 10;
+					if( .soundeffects ) { soundeffect "slot_jackpot.wav",0; }
 					break;
 				case 5:
-					getitem 18571,1;
+					getitem 41260,1; 	// 1 Vicious Aura (Elemental Enchant) 
 					specialeffect2 10;
+					if( .soundeffects ) { soundeffect "slot_jackpot.wav",0; }
+					break;
+				case 6:
+					getitem 41250,1;	// 1 Crimson Book (Elemental Enchant) 
+					specialeffect2 10;
+					if( .soundeffects ) { soundeffect "slot_jackpot.wav",0; }
+					break;
+				case 7:
+					getitem 41115,1;	// 1 Mora Coin Bag 
+					specialeffect2 10;
+					if( .soundeffects ) { soundeffect "slot_jackpot.wav",0; }
+					break;
+				case 8:
+					getitem 6081,10;	// 10 Splendide Coin 
+					specialeffect2 10;
+					if( .soundeffects ) { soundeffect "slot_jackpot.wav",0; }
+					break;
+				case 9:
+					getitem 41244,1;	// 1 Dokebi Pass 1 Day 
+					specialeffect2 10;
+					if( .soundeffects ) { soundeffect "slot_jackpot.wav",0; }
+					break;
+				case 10:
+					getitem 41275,1; 	// 1 VIP Refiner 1 Hour (LOL?) 
+					specialeffect2 10;
+					if( .soundeffects ) { soundeffect "slot_jackpot.wav",0; }
+					break;
+				case 11:
+					getitem 6697,1;		// 1 Costume Exchange Ticket 
+					specialeffect2 10;
+					if( .soundeffects ) { soundeffect "slot_jackpot.wav",0; }
+					break;
+				case 12:
+					getitem 6697,5;		// 5 Costume Exchange Ticket
+					specialeffect2 10;
+					if( .soundeffects ) { soundeffect "slot_jackpot.wav",0; }
+					break;
+				case 13:
+					getitem 6697,10;	// 10 Costume Exchange Ticket
+					specialeffect2 10;
+					if( .soundeffects ) { soundeffect "slot_jackpot.wav",0; }
+					break;
+				case 14:
+					getitem 41292,1;	// 1 Infinite Kafra Card (1 Week) 
+					specialeffect2 10;
+					if( .soundeffects ) { soundeffect "slot_jackpot.wav",0; }
+					break;
+				case 15:
+					getitem 17229,1;	// 1 Infinite Fly Wing (1 Week) 
+					specialeffect2 10;
+					if( .soundeffects ) { soundeffect "slot_jackpot.wav",0; }
+					break;
+				case 16:
+					getitem 12280,10; 	// 10 Holy Elemental Scroll 
+					specialeffect2 10;
+					if( .soundeffects ) { soundeffect "slot_jackpot.wav",0; }
+					break;
+				case 17:
+					getitem 12103,10; 	// 10 Bloody Branch 
+					specialeffect2 10;
+					if( .soundeffects ) { soundeffect "slot_jackpot.wav",0; }
+					break;
+				case 18:
+					getitem 41120,50;	// 50 Super Potion
+					specialeffect2 10;
+					if( .soundeffects ) { soundeffect "slot_jackpot.wav",0; }
+					break;
+				case 19:
+					getitem 7539,10;	// 10 Poring Coin 
+					specialeffect2 10;
+					if( .soundeffects ) { soundeffect "slot_jackpot.wav",0; }
+					break;
+				case 20:
+					getitem 12379,20;	// 20 Pope Cookie
+					specialeffect2 10;
+					if( .soundeffects ) { soundeffect "slot_jackpot.wav",0; }
+					break;
+				case 21:
+					getitem 682,20;		// 20 Distilled Fighting Spirit 
+					specialeffect2 10;
+					if( .soundeffects ) { soundeffect "slot_jackpot.wav",0; }
+					break;
+				case 22:
+					getitem 683,20;		// 20 Herb of Incantation  
+					specialeffect2 10;
+					if( .soundeffects ) { soundeffect "slot_jackpot.wav",0; }
+					break;
+				case 23:
+					getitem 22537,3;  	// 3 Prize of Hero 
+					specialeffect2 10;
+					if( .soundeffects ) { soundeffect "slot_jackpot.wav",0; }
+					break;
+				case 24:
+					getitem 41162,20;	// 20 Hero Badge 
+					specialeffect2 10;
+					if( .soundeffects ) { soundeffect "slot_jackpot.wav",0; }
+					break;
+				case 25:
+					getitem 6412,25;	// 25 Special Medal (Shadow Eq) 
+					specialeffect2 10;
+					if( .soundeffects ) { soundeffect "slot_jackpot.wav",0; }
+					break;
+				case 26:
+					getitem 41124,1;	// 3 Days Milenia Certificate 
+					specialeffect2 10;
+					if( .soundeffects ) { soundeffect "slot_jackpot.wav",0; }
+					break;
+				case 27:
+					getitem 41275,1;	// 1 hour VIP Membership
+					specialeffect2 10;
+					if( .soundeffects ) { soundeffect "slot_jackpot.wav",0; }
 					break;
 				}
 				}
@@ -76,7 +203,7 @@ switch( getd(".mode"+strnpcinfo(3)+"") ){
 		if (.EventON == 0) {mes "Slot Machine already finished"; cutin "",255; end;}
 			if( !.payment || .payment == 2 ) { Zeny -= .tsm_payment[0]; }
 			if( .payment ) { delitem( .tsm_payment[1], .tsm_payment[2] ); }
-			if( .soundeffects ) { soundeffect "slot_jackpot.wav",0; }
+			if( .soundeffects ) { soundeffect "slot_pay_coin.wav",0; }
 			// Slot 1 = 100% Chance for success. (Because I didn't make a fail animation for it.
 			.@2 = rand(1,100); //Rolls dice for Slot 2
 			.@3 = rand(1,100); //Rolls dice for Slot 3
@@ -90,37 +217,156 @@ switch( getd(".mode"+strnpcinfo(3)+"") ){
 				}
 			cutin .tsm_animate$[.@a] + atoi(.tsm_animate$[.@a+1]),4;
 				if( .@a == 2 ){
-					switch(rand(5)) {
+					switch(rand(28)) {
 				case 0:
-					getitem 603,5;
+					getitem 674,1; 		// 1 Mithril Coin  
 					specialeffect2 10;
+					if( .soundeffects ) { soundeffect "slot_jackpot.wav",0; }
 					break;
 				case 1:
-					getitem 617,5;
+					getitem 674,3; 		// 3 Mithril Coin 
 					specialeffect2 10;	
+					if( .soundeffects ) { soundeffect "slot_jackpot.wav",0; }
 					break;
 				case 2:
-					getitem 644,5;
+					getitem 41290,1; 	// 1 Gold Coin (Slot Machine) 
 					specialeffect2 10;
+					if( .soundeffects ) { soundeffect "slot_jackpot.wav",0; }
 					break;
 				case 3:
-					getitem 616,1;
+					getitem 41290,3 ; 	// 3 Gold Coin (Slot Machine) 
 					specialeffect2 10;
+					if( .soundeffects ) { soundeffect "slot_jackpot.wav",0; }
 					break;
 				case 4:
-					getitem 7776,2;
+					getitem 12246,1;	// 1 Mystical Card Album  
 					specialeffect2 10;
+					if( .soundeffects ) { soundeffect "slot_jackpot.wav",0; }
 					break;
 				case 5:
-					getitem 18571,1;
+					getitem 41260,1; 	// 1 Vicious Aura (Elemental Enchant) 
 					specialeffect2 10;
+					if( .soundeffects ) { soundeffect "slot_jackpot.wav",0; }
+					break;
+				case 6:
+					getitem 41250,1;	// 1 Crimson Book (Elemental Enchant) 
+					specialeffect2 10;
+					if( .soundeffects ) { soundeffect "slot_jackpot.wav",0; }
+					break;
+				case 7:
+					getitem 41115,1;	// 1 Mora Coin Bag 
+					specialeffect2 10;
+					if( .soundeffects ) { soundeffect "slot_jackpot.wav",0; }
+					break;
+				case 8:
+					getitem 6081,10;	// 10 Splendide Coin 
+					specialeffect2 10;
+					if( .soundeffects ) { soundeffect "slot_jackpot.wav",0; }
+					break;
+				case 9:
+					getitem 41244,1;	// 1 Dokebi Pass 1 Day 
+					specialeffect2 10;
+					if( .soundeffects ) { soundeffect "slot_jackpot.wav",0; }
+					break;
+				case 10:
+					getitem 41275,1; 	// 1 VIP Refiner 1 Hour (LOL?) 
+					specialeffect2 10;
+					if( .soundeffects ) { soundeffect "slot_jackpot.wav",0; }
+					break;
+				case 11:
+					getitem 6697,1;		// 1 Costume Exchange Ticket 
+					specialeffect2 10;
+					if( .soundeffects ) { soundeffect "slot_jackpot.wav",0; }
+					break;
+				case 12:
+					getitem 6697,5;		// 5 Costume Exchange Ticket
+					specialeffect2 10;
+					if( .soundeffects ) { soundeffect "slot_jackpot.wav",0; }
+					break;
+				case 13:
+					getitem 6697,10;	// 10 Costume Exchange Ticket
+					specialeffect2 10;
+					if( .soundeffects ) { soundeffect "slot_jackpot.wav",0; }
+					break;
+				case 14:
+					getitem 41292,1;	// 1 Infinite Kafra Card (1 Week) 
+					specialeffect2 10;
+					if( .soundeffects ) { soundeffect "slot_jackpot.wav",0; }
+					break;
+				case 15:
+					getitem 17229,1;	// 1 Infinite Fly Wing (1 Week) 
+					specialeffect2 10;
+					if( .soundeffects ) { soundeffect "slot_jackpot.wav",0; }
+					break;
+				case 16:
+					getitem 12280,10; 	// 10 Holy Elemental Scroll 
+					specialeffect2 10;
+					if( .soundeffects ) { soundeffect "slot_jackpot.wav",0; }
+					break;
+				case 17:
+					getitem 12103,10; 	// 10 Bloody Branch 
+					specialeffect2 10;
+					if( .soundeffects ) { soundeffect "slot_jackpot.wav",0; }
+					break;
+				case 18:
+					getitem 41120,50;	// 50 Super Potion
+					specialeffect2 10;
+					if( .soundeffects ) { soundeffect "slot_jackpot.wav",0; }
+					break;
+				case 19:
+					getitem 7539,10;	// 10 Poring Coin 
+					specialeffect2 10;
+					if( .soundeffects ) { soundeffect "slot_jackpot.wav",0; }
+					break;
+				case 20:
+					getitem 12379,20;	// 20 Pope Cookie
+					specialeffect2 10;
+					if( .soundeffects ) { soundeffect "slot_jackpot.wav",0; }
+					break;
+				case 21:
+					getitem 682,20;		// 20 Distilled Fighting Spirit 
+					specialeffect2 10;
+					if( .soundeffects ) { soundeffect "slot_jackpot.wav",0; }
+					break;
+				case 22:
+					getitem 683,20;		// 20 Herb of Incantation  
+					specialeffect2 10;
+					if( .soundeffects ) { soundeffect "slot_jackpot.wav",0; }
+					break;
+				case 23:
+					getitem 22537,3;  	// 3 Prize of Hero 
+					specialeffect2 10;
+					if( .soundeffects ) { soundeffect "slot_jackpot.wav",0; }
+					break;
+				case 24:
+					getitem 41162,20;	// 20 Hero Badge 
+					specialeffect2 10;
+					if( .soundeffects ) { soundeffect "slot_jackpot.wav",0; }
+					break;
+				case 25:
+					getitem 6412,25;	// 25 Special Medal (Shadow Eq) 
+					specialeffect2 10;
+					if( .soundeffects ) { soundeffect "slot_jackpot.wav",0; }
+					break;
+				case 26:
+					getitem 41124,1;	// 3 Days Milenia Certificate 
+					specialeffect2 10;
+					if( .soundeffects ) { soundeffect "slot_jackpot.wav",0; }
+					break;
+				case 27:
+					getitem 41275,1;	// 1 hour VIP Membership
+					specialeffect2 10;
+					if( .soundeffects ) { soundeffect "slot_jackpot.wav",0; }
 					break;
 				}
 				} else {
-					dispbottom "Failed"; 
+					dispbottom "[ Mysterious Slot Machince ] : You've failed! Please try again next time!";
+					if( .soundeffects ) { soundeffect "scaraba_egg_die.wav",0; }
 					slt_fld03++;
 						if (slt_fld03  >= 3){
 							slt_fld03 = 0;
+							announce " "+strcharinfo(0)+" has run out of luck and died from Mysterious Slot Machine Cursed!",bc_all,0xFF0000;
+							if( .soundeffects ) { soundeffect "HolyShit.wav",0; }
 							atcommand "@nuke "+strcharinfo(0);
 							atcommand "@refresh "+strcharinfo(0);
 						}
@@ -162,24 +408,28 @@ if( @menu == 1 ) {
 				}
 		close;
 		}
-OnClock0000:
-OnClock1000:
-OnClock1658:
-	//announce "Mysterious Slot Machine will begin at prontera 163 161 in 1 minute.", bc_all;
-	//sleep 60000;
-	//announce "Slot machine event has begun at prontera 163 161", bc_all;
-	//set .EventON,1;
-	//hideoffnpc strnpcinfo(3);
-	//sleep 225000;
-	//announce "Mysterious Slot Machine event is over thank you for playing", bc_all;
-	//set .EventON,0;
-	//hideonnpc strnpcinfo(3);
-	//end;
+OnClock1100:
+OnClock2300:
+	announce "Mysterious Slot Machine Event will begin at Milenia Valley 119 38 in 1 minute.", bc_all;
+	sleep 60000;
+	announce "Mysterious Slot Machine Event has begun at Milenia Valley 119 38!", bc_all;
+	set .EventON,1;
+	hideoffnpc strnpcinfo(3);
+	sleep 3600000;
+	announce "Mysterious Slot Machine Event is over thank you for playing", bc_all;
+	set .EventON,0;
+	hideonnpc strnpcinfo(3);
+	end;
 
 OnInit:
-//hideonnpc strnpcinfo(3);
-set .EventON,1;
+// comment for testing
+hideonnpc strnpcinfo(3);
 
+// uncomment for testing
+//set .EventON,1; 
+
+// 0 = Disabled, 1 = Enabled.
+.soundeffects = 1; 
 //[ 0 = Single Slot Machine Mode ]_[ 1 = Triple Slot Machine Mode ]
 setd ".mode"+strnpcinfo(3)+"",1;
 
@@ -208,8 +458,8 @@ setarray .tsm_animate$[0],"30","30","SSS_","41","SSF_","37","SFS_","41","SFF_","
 // 0 = Zeny, 1 = Item, 2 = Zeny&Item
 .payment = 1;
 // [0] = Zeny, [1] = Item ID, [2] = Item Amount;
-setarray .ssm_payment[0],100000,7720,3; // Single Slot Machine Payment Price
-setarray .tsm_payment[0],100000,7720,3; // Triple Slot Machine Payment Price
+setarray .ssm_payment[0],100000,41290,1; // Single Slot Machine Payment Price
+setarray .tsm_payment[0],100000,41290,1; // Triple Slot Machine Payment Price
 
 // DO NOT CHANGE BELOW
 // Payment Text Syntax
