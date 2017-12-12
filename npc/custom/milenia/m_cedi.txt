@@ -138,8 +138,8 @@ setarray .bio_sample,
 .tier_2_mob_size = getarraysize( .tier_2_mob );
 .npc_name$ = strnpcinfo(0);
 setmapflag .map$,mf_partylock;
-setmapflag .map$,mf_nomobloot;
-setmapflag .map$,mf_nomvploot;
+//setmapflag .map$,mf_nomobloot;
+//setmapflag .map$,mf_nomvploot;
 // setmapflag .map$,mf_nocommand;
 mapwarp .map$,"milenia",209,113;
 end;
@@ -218,8 +218,8 @@ setarray .bio_sample,
 .tier_0_mob_size = getarraysize( .tier_0_mob );
 .npc_name$ = strnpcinfo(0);
 setmapflag .map$,mf_partylock;
-setmapflag .map$,mf_nomobloot;
-setmapflag .map$,mf_nomvploot;
+//setmapflag .map$,mf_nomobloot;
+//setmapflag .map$,mf_nomvploot;
 // setmapflag .map$,mf_nocommand;
 mapwarp .map$,"milenia",209,113;
 end;
