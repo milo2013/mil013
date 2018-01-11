@@ -1068,4 +1068,8 @@ void clif_achievement_update(struct map_session_data *sd, struct achievement *ac
 void clif_pAchievementCheckReward(int fd, struct map_session_data *sd);
 void clif_achievement_reward_ack(int fd, unsigned char result, int ach_id);
 
+// Gepard Shield
+bool clif_gepard_process_packet(struct map_session_data* sd);
+// Gepard Shield
+
 #endif /* _CLIF_HPP_ */

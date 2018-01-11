@@ -6177,19 +6177,16 @@ void clif_displaymessage(const int fd, const char* mes)
 void clif_broadcast(struct block_list* bl, const char* mes, int len, int type, enum send_target target)
 {
 	int lp = (type&BC_COLOR_MASK) ? 4 : 0;
-	unsigned char *buf = (unsigned char*)aMalloc((4 + lp + len)*sizeof(unsigned char));
+	std::unique_ptr<unsigned char> buf(new unsigned char[4+lp+len]);
 
-	WBUFW(buf,0) = 0x9a;
-	WBUFW(buf,2) = 4 + lp + len;
+	WBUFW(buf.get(),0) = 0x9a;
+	WBUFW(buf.get(),2) = 4 + lp + len;
 	if (type&BC_BLUE)
-		WBUFL(buf,4) = 0x65756c62; //If there's "blue" at the beginning of the message, game client will display it in blue instead of yellow.
+		WBUFL(buf.get(),4) = 0x65756c62; //If there's "blue" at the beginning of the message, game client will display it in blue instead of yellow.
 	else if (type&BC_WOE)
-		WBUFL(buf,4) = 0x73737373; //If there's "ssss", game client will recognize message as 'WoE broadcast'.
-	memcpy(WBUFP(buf, 4 + lp), mes, len);
-	clif_send(buf, WBUFW(buf,2), bl, target);
-
-	if (buf)
-		aFree(buf);
+		WBUFL(buf.get(),4) = 0x73737373; //If there's "ssss", game client will recognize message as 'WoE broadcast'.
+	memcpy(WBUFP(buf.get(), 4 + lp), mes, len);
+	clif_send(buf.get(), WBUFW(buf.get(),2), bl, target);
 }
 
 /*==========================================
@@ -6197,8 +6194,7 @@ void clif_broadcast(struct block_list* bl, const char* mes, int len, int type, e
  * 008d <PacketLength>.W <GID>.L <message>.?B (ZC_NOTIFY_CHAT)
  *------------------------------------------*/
 void clif_GlobalMessage(struct block_list* bl, const char* message, enum send_target target) {
-	char buf[8+CHAT_SIZE_MAX];
-	int len;
+	size_t len;
 	nullpo_retv(bl);
 
 	if(!message)
@@ -6206,16 +6202,19 @@ void clif_GlobalMessage(struct block_list* bl, const char* message, enum send_ta
 
 	len = strlen(message)+1;
 
-	if( len > sizeof(buf)-8 ) {
+	static_assert(CHAT_SIZE_MAX > 8, "CHAT_SIZE_MAX too small for packet");
+	if( len > CHAT_SIZE_MAX ) {
 		ShowWarning("clif_GlobalMessage: Truncating too long message '%s' (len=%d).\n", message, len);
-		len = sizeof(buf)-8;
+		len = CHAT_SIZE_MAX;
 	}
+	std::unique_ptr<char> buf(new char[8+len]);
 
-	WBUFW(buf,0)=0x8d;
-	WBUFW(buf,2)=len+8;
-	WBUFL(buf,4)=bl->id;
-	safestrncpy(WBUFCP(buf,8),message,len);
-	clif_send((unsigned char *) buf,WBUFW(buf,2),bl,target);
+	WBUFW(buf.get(),0)=0x8d;
+	WBUFW(buf.get(),2)=static_cast<uint16>(len+8);
+	WBUFL(buf.get(),4)=bl->id;
+	safestrncpy(WBUFCP(buf.get(),8),message,len);
+
+	clif_send((unsigned char *)buf.get(),WBUFW(buf.get(),2),bl,target);
 }
 
 
@@ -6223,20 +6222,17 @@ void clif_GlobalMessage(struct block_list* bl, const char* message, enum send_ta
 /// 01c3 <packet len>.W <fontColor>.L <fontType>.W <fontSize>.W <fontAlign>.W <fontY>.W <message>.?B
 void clif_broadcast2(struct block_list* bl, const char* mes, int len, unsigned long fontColor, short fontType, short fontSize, short fontAlign, short fontY, enum send_target target)
 {
-	unsigned char *buf = (unsigned char*)aMalloc((16 + len)*sizeof(unsigned char));
+	std::unique_ptr<unsigned char> buf(new unsigned char[16+len]);
 
-	WBUFW(buf,0)  = 0x1c3;
-	WBUFW(buf,2)  = len + 16;
-	WBUFL(buf,4)  = fontColor;
-	WBUFW(buf,8)  = fontType;
-	WBUFW(buf,10) = fontSize;
-	WBUFW(buf,12) = fontAlign;
-	WBUFW(buf,14) = fontY;
-	memcpy(WBUFP(buf,16), mes, len);
-	clif_send(buf, WBUFW(buf,2), bl, target);
-
-	if (buf)
-		aFree(buf);
+	WBUFW(buf.get(),0)  = 0x1c3;
+	WBUFW(buf.get(),2)  = len + 16;
+	WBUFL(buf.get(),4)  = fontColor;
+	WBUFW(buf.get(),8)  = fontType;
+	WBUFW(buf.get(),10) = fontSize;
+	WBUFW(buf.get(),12) = fontAlign;
+	WBUFW(buf.get(),14) = fontY;
+	memcpy(WBUFP(buf.get(),16), mes, len);
+	clif_send(buf.get(), WBUFW(buf.get(),2), bl, target);
 }
 
 /*
@@ -10180,6 +10176,14 @@ void clif_parse_WantToConnection(int fd, struct map_session_data* sd)
 #endif
 	session[fd]->session_data = sd;
 
+	// Gepard Shield
+	if (is_gepard_active)
+	{
+		gepard_init(fd, GEPARD_MAP);
+		session[fd]->gepard_info.sync_tick = gettick();
+	}
+	// Gepard Shield
+	
 	pc_setnewpc(sd, account_id, char_id, login_id1, client_tick, sex, fd);
 
 #if PACKETVER < 20070521
@@ -19032,7 +19036,7 @@ void clif_parse_change_title(int fd, struct map_session_data *sd)
 	}else if( title_id <= 0 ){
 		sd->status.title_id = 0;
 	}else{
-		if (std::find(sd->titles.begin(), sd->titles.end(), title_id) != sd->titles.end()) {
+		if (std::find(sd->titles.begin(), sd->titles.end(), title_id) == sd->titles.end()) {
 			clif_change_title_ack(sd, 1, title_id);
 			return;
 		}
@@ -20125,6 +20129,14 @@ static int clif_parse(int fd)
 		return 0;
 
 	cmd = RFIFOW(fd, 0);
+	
+	// Gepard Shield
+		if (is_gepard_active == true && sd != NULL && clif_gepard_process_packet(sd) == true)
+		{
+			return 0;
+		}
+		// Gepard Shield
+		
 
 #ifdef PACKET_OBFUSCATION
 	// Check if it is a player that tries to connect to the map server.
@@ -20302,3 +20314,66 @@ void do_final_clif(void) {
 	ers_destroy(delay_clearunit_ers);
 }
 
+
+int clif_gepard_timer_kick(int tid, unsigned int tick, int id, intptr_t data)
+{
+	struct map_session_data* sd = map_id2sd(id);
+
+	if (sd != NULL)
+	{
+		clif_GM_kick(NULL, sd);
+	}
+
+	return 0;
+}
+
+bool clif_gepard_process_packet(struct map_session_data* sd)
+{
+	int fd = sd->fd;
+	int packet_id = RFIFOW(fd, 0);
+	uint32 diff_time = gettick() - session[fd]->gepard_info.sync_tick;
+
+	if (diff_time > 40000)
+	{
+		clif_authfail_fd(sd->fd, 15);
+	}
+
+	if (packet_id <= MAX_PACKET_DB)
+	{
+		return gepard_process_packet(fd, session[fd]->rdata + session[fd]->rdata_pos, packet_db[packet_id].len, &session[fd]->recv_crypt);
+	}
+
+	switch (packet_id)
+	{
+		case CS_GEPARD_INIT_ACK:
+		{
+			gepard_process_packet(fd, session[fd]->rdata + session[fd]->rdata_pos, 0, &session[fd]->recv_crypt);
+
+			if (session[fd]->gepard_info.is_init_ack_received == false)
+			{
+				return true;
+			}
+
+			if (session_isActive(fd) && pc_get_group_id(sd) != 99)
+			{
+				const uint16 packet_info_size = 6;
+
+				if (session[fd]->gepard_info.gepard_shield_version < min_allowed_gepard_version)
+				{
+					WFIFOHEAD(fd, packet_info_size);
+					WFIFOW(fd, 0) = SC_GEPARD_INFO;
+					WFIFOW(fd, 2) = packet_info_size;
+					WFIFOW(fd, 4) = GEPARD_INFO_OLD_VERSION;
+					WFIFOSET(fd, packet_info_size);
+
+					add_timer(gettick() + 5000, clif_gepard_timer_kick, sd->bl.id, 0);
+				}
+			}
+
+			return true;
+		}
+		break;
+	}
+
+	return gepard_process_packet(fd, session[fd]->rdata + session[fd]->rdata_pos, 0, &session[fd]->recv_crypt);
+}
