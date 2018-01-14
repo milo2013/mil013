@@ -1,11 +1,11 @@
 //===== rAthena Script =======================================
-//= War of Emperium (Al De Baran)
+//= War of Emperium (Al De Baran) - Hohenschwangau
 //===== By: ==================================================
 //= L0ne_W0lf
 //===== Current Version: =====================================
 //= 1.2
 //===== Compatible With: =====================================
-//= rAthena SVN
+//= rAthena Project
 //===== Description: =========================================
 //= NPCs that relate to Al De Baran Guild Castle 2
 //===== Additional Comments: =================================
@@ -98,7 +98,6 @@ aldeg_cas02,121,29,2	duplicate(InsideFlagsA2)	Hohenschwangau#16	722
 //============================================================
 aldebaran,149,97,4	duplicate(InsideFlagsA2)	Hohenschwangau#17	722
 
-
 // Kafra Employee
 //============================================================
 aldeg_cas02,84,74,0	duplicate(guildkafra)	Kafra Staff#aldeg_cas02	117
@@ -110,7 +109,6 @@ aldeg_cas02,78,74,0	duplicate(cm)	Chenchenlie#aldeg_cas02	55
 // Treasure Room Lever
 //============================================================
 aldeg_cas02,139,234,0	script	#lever_A02	111,{
-
 	mes " ";
 	mes "There's a small lever. Will you pull it?";
 	next;

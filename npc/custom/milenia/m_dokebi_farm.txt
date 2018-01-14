@@ -76,6 +76,7 @@
 			
 		sleep 300000; // dah run 5 minit
 		mapannounce "1@farm","[ Dokebi Farm ] : You have 10 minutes remaining..", bc_map;
+		announce "[ Dokebi Farm ] : Farm will cleaned up in 10 minutes.", bc_blue;
 		mapannounce "2@farm","[ Dokebi Farm ] : You have 10 minutes remaining..", bc_map;
 		mapannounce "3@farm","[ Dokebi Farm ] : You have 10 minutes remaining..", bc_map;
 		mapannounce "4@farm","[ Dokebi Farm ] : You have 10 minutes remaining..", bc_map;
@@ -84,11 +85,13 @@
 		mapannounce "2@farm","[ Dokebi Farm ] : You have 5 minutes remaining..", bc_map;
 		mapannounce "3@farm","[ Dokebi Farm ] : You have 5 minutes remaining..", bc_map;
 		mapannounce "4@farm","[ Dokebi Farm ] : You have 5 minutes remaining..", bc_map;
+		announce "[ Dokebi Farm ] : Farm will cleaned up in 5 minutes.", bc_blue;
 		sleep 180000; // dah run 3 minit
 		mapannounce "1@farm","[ Dokebi Farm ] : You have 2 minutes remaining..", bc_map;
 		mapannounce "2@farm","[ Dokebi Farm ] : You have 2 minutes remaining..", bc_map;
 		mapannounce "3@farm","[ Dokebi Farm ] : You have 2 minutes remaining..", bc_map;
 		mapannounce "4@farm","[ Dokebi Farm ] : You have 2 minutes remaining..", bc_map;
+		announce "[ Dokebi Farm ] : Farm will cleaned up in 2 minutes.", bc_blue;
 		sleep 60000; // lagi 1 minit
 		mapannounce "1@farm","[ Dokebi Farm ] : You have 60 seconds remaining..", bc_map;
 		mapannounce "2@farm","[ Dokebi Farm ] : You have 60 seconds remaining..", bc_map;

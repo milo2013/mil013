@@ -458,6 +458,8 @@ ds,39,19,7	script	Devil Square Guardian#2	406,{
         mes "Here is your 50 CASHPOINTS for joining!";
         //set #CASHPOINTS, #CASHPOINTS + (rand (1,100));
 		set #CASHPOINTS, #CASHPOINTS + 50;
+		getitem 41294,10; // Mysterious Fragment
+		getitem 41276,1;  // Event Treasure Box
 		dispbottom "You got 50 Cashpoints!!";
         close2;
 		//mapannounce "ds", strcharinfo(0) + " has found the Devil Square Guardian and claim Hidden Cashpoints!",0;

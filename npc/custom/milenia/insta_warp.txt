@@ -1,0 +1,17 @@
+kampung,196,118,5	script	Main Warp#job	522,{ warp "kampung",160,160;}
+kampung,196,62,5	script	Main Warp#cedi	522,{ warp "kampung",160,160;}
+kampung,171,111,5	script	Main Warp#refine	522,{ warp "kampung",160,160;}
+kampung,84,158,11	script	Main Warp#shop	522,{ warp "kampung",160,160;}
+kampung,73,56,11	script	Main Warp#market	522,{ warp "kampung",160,160;}
+kampung,27,50,11	script	Main Warp#dokebi	522,{ warp "kampung",160,160;}
+kampung,27,92,11	script	Main Warp#mvp	522,{ warp "kampung",160,160;}
+kampung,140,183,11	script	Main Warp#quest	522,{ warp "kampung",160,160;}
+
+kampung,158,165,11	script	Job Warp	516,{ warp "kampung",208,121;}
+kampung,160,165,11	script	Refine Warp	518,{ warp "kampung",165,101;}
+kampung,162,165,11	script	Shop Warp	523,{ warp "kampung",61,150;}
+kampung,164,165,11	script	Market Warp	524,{ warp "kampung",73,53;}
+kampung,166,165,11	script	Dokebi Warp	525,{ warp "kampung",29,40;}
+kampung,168,165,11	script	Ladder Warp	517,{ warp "kampung",31,57;}
+kampung,170,165,11	script	MVP Warp	522,{ warp "kampung",30,90;}
+kampung,172,165,11	script	Quest Warp	516,{ warp "kampung",134,186;}

@@ -1,11 +1,11 @@
 //===== rAthena Script =======================================
-//= War of Emperium (Al De Baran)
+//= War of Emperium (Al De Baran) - Wuerzburg
 //===== By: ==================================================
 //= L0ne_W0lf
 //===== Current Version: =====================================
 //= 1.2
 //===== Compatible With: =====================================
-//= rAthena SVN
+//= rAthena Project
 //===== Description: =========================================
 //= NPCs that relate to Al De Baran Guild Castle 4
 //===== Additional Comments: =================================
@@ -101,7 +101,6 @@ aldeg_cas04,169,15,2	duplicate(InsideFlagsA4)	Wuerzburg#19	722
 //============================================================
 aldebaran,131,97,4	duplicate(InsideFlagsA4)	Wuerzburg#20	722
 
-
 // Kafra Employee
 //============================================================
 aldeg_cas04,45,88,0	duplicate(guildkafra)	Kafra Staff#aldeg_cas04	117
@@ -113,7 +112,6 @@ aldeg_cas04,67,116,0	duplicate(cm)	Brymhensen#aldeg_cas04	55
 // Treasure Room Exit
 //============================================================
 aldeg_cas04,83,17,0	script	#lever_A04	111,{
-
 	mes " ";
 	mes "There's a small lever. Will you pull it?";
 	next;

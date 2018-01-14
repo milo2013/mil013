@@ -178,6 +178,8 @@ if(playerattached()!=0) {
 	getitem 12424,rand (1,3);	// HP Increase Pot (L)
 	getitem 12411,rand (1,3);	// HE Battle Manual
 	getitem 671,rand (1,3); 		// Gold
+	getitem 41294,10; // Mysterious Fragment
+	getitem 41276,1;  // Event Treasure Box
 
 	if (.@bonus == 17){
 	getitem 12103,rand (1,3); // Bloody Branch

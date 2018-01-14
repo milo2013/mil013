@@ -53,6 +53,7 @@ OnMinute10:	// Start time (every hour)
 OnMobKilled:
 	set .Spawn, .Spawn - 1;
 	getitem .Prize, .Amount;
+	getitem 41294,2; // Mysterious Fragment
 	if (.Spawn) announce "[ "+strcharinfo(0)+" ] has killed a Mushroom. There are now "+.Spawn+" Mushroom(s) left.",bc_map;
 	else {
 		announce "The Find the Mushroom Event has ended. All the Mushrooms have been killed.",0;

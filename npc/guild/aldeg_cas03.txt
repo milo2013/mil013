@@ -1,11 +1,11 @@
 //===== rAthena Script =======================================
-//= War of Emperium (Al De Baran)
+//= War of Emperium (Al De Baran) - Nuernberg
 //===== By: ==================================================
 //= L0ne_W0lf
 //===== Current Version: =====================================
 //= 1.2
 //===== Compatible With: =====================================
-//= rAthena SVN
+//= rAthena Project
 //===== Description: =========================================
 //= NPCs that relate to Al De Baran Guild Castle 3
 //===== Additional Comments: =================================
@@ -112,7 +112,6 @@ aldeg_cas03,110,118,0	duplicate(cm)	Nahzarf#aldeg_cas03	55
 // Treasure Room Exit
 //============================================================
 aldeg_cas03,229,267,0	script	#lever_A03	111,{
-
 	mes " ";
 	mes "There's a small lever. Will you pull it?";
 	next;

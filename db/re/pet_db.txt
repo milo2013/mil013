@@ -130,3 +130,6 @@
 1299,GOBLIN_LEADER,Goblin Leader,12364,9917,0,6104,80,20,50,100,250,20,2000,200,1,1,350,400,800,{bonus2 bAddRace,RC_DemiHuman,3;},{};
 1519,CHUNG_E,Chung E,12395,9918,0,553,80,20,50,100,250,20,2000,200,1,1,350,400,800,{bonus bDef,1; bonus2 bSubRace,RC_DemiHuman,1;},{};
 1518,BACSOJIN,White Lady,12357,9919,0,6094,80,20,50,100,250,20,2000,200,1,1,350,400,800,{bonus bNoKnockback,0; bonus2 bSubEle,Ele_Water,10; bonus bDef,-2;},{};
+
+2398,LITTLE_PORING_S,Novice Poring S,12846,9920,0,531,80,60,1000,0,250,0,5000,150,0,0,300,300,800,{ petloot 10; },{ bonus bMaxHP,300; bonus bAgi,1; }
+1002,PORING S,Poring S,619,9921,10013,531,80,60,50,100,250,20,2000,150,1,0,350,400,800,{ petloot 10; },{ bonus bLuk,2; bonus bCritical,1; bonus bMaxHP,300; bonus bAgi,1; }

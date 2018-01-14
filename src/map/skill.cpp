@@ -6443,10 +6443,8 @@ int skill_castend_nodamage_id (struct block_list *src, struct block_list *bl, ui
 		break;
 	case SA_TAMINGMONSTER:
 		clif_skill_nodamage(src,bl,skill_id,skill_lv,1);
-		if (sd && dstmd) {
-			ARR_FIND( 0, MAX_PET_DB, i, dstmd->mob_id == pet_db[i].class_ );
-			if( i < MAX_PET_DB )
-				pet_catch_process1(sd, dstmd->mob_id);
+		if (sd && dstmd && pet_db(dstmd->mob_id)) {
+			pet_catch_process1(sd, dstmd->mob_id);
 		}
 		break;
 
@@ -15780,7 +15778,7 @@ bool skill_check_condition_castend(struct map_session_data* sd, uint16 skill_id,
 		case AM_CANNIBALIZE:
 		case AM_SPHEREMINE: {
 			int c=0;
-			int summons[5] = { MOBID_G_MANDRAGORA, MOBID_G_HYDRA, MOBID_G_FLORA, MOBID_G_PARASITE, MOBID_G_MANDRAGORA };
+			int summons[5] = { MOBID_G_MANDRAGORA, MOBID_G_HYDRA, MOBID_G_FLORA, MOBID_G_PARASITE, MOBID_G_GEOGRAPHER };
 			int maxcount = (skill_id==AM_CANNIBALIZE)? 6-skill_lv : skill_get_maxcount(skill_id,skill_lv);
 			int mob_class = (skill_id==AM_CANNIBALIZE)? summons[skill_lv-1] :MOBID_MARINE_SPHERE;
 			if(battle_config.land_skill_limit && maxcount>0 && (battle_config.land_skill_limit&BL_PC)) {

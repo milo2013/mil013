@@ -15,7 +15,7 @@
 //= although 100% compatibility is not guaranteed.
 //============================================================
 
-prontera,149,178,6	script	WoE Reward#secret	4_M_KY_SOLD,{
+kampung,151,165,5	script	WoE Reward#secret	4_M_KY_SOLD,{
 
 	.@gm = getgmlevel();
 	mes .n$;
@@ -31,7 +31,7 @@ prontera,149,178,6	script	WoE Reward#secret	4_M_KY_SOLD,{
 				mes "Which castle would you like to retrieve reward?";
 				next;
 				.@menu$ = "";
-				for(.@i = 0; .@i < .casvarsize .@i++) {
+				for(.@i = 0; .@i < .casvarsize; .@i++) {
 					.@o = getcastledata(.cas$[.@i],1);
 					.@menu$ = .@menu$ + (($casActive[.@i] && $casCanReceive[.@i] && .@o == getcharid(2)) ? .casName$[.@i] : "") + ":";
 				}
@@ -80,7 +80,7 @@ S_GM:
 				mes .n$;
 				mes "Please select the castle.";
 				.@menu$ = "";
-				for(.@i = 0; .@i < .casvarsize .@i++) {
+				for(.@i = 0; .@i < .casvarsize; .@i++) {
 					.@menu$ = .@menu$ + ($casActive[.@i] ? "[^00FF00On^000000]" : "[^FF0000Off^000000]") + .casName$[.@i] +":";
 				}
 				next;
@@ -101,7 +101,7 @@ S_GM:
 				mes .n$;
 				mes "Please select the castle.";
 				.@menu$ = "";
-				for(.@i = 0; .@i < .casvarsize .@i++) {
+				for(.@i = 0; .@i < .casvarsize; .@i++) {
 					.@menu$ = .@menu$ + .casName$[.@i] +":";
 				}
 				next;
@@ -183,7 +183,7 @@ S_GM:
 OnAgitEnd:
 	.@woefeflag = 1;
 OnAgitEnd2:
-	for(.@i = 0; .@i < .casvarsize .@i++) {
+	for(.@i = 0; .@i < .casvarsize; .@i++) {
 		.@o = getcastledata(.cas$[.@i],1);
 		.@se = .@i > 19? 1:0;
 		if(!.@o) {
@@ -217,9 +217,9 @@ OnAgitEnd2:
 	}
 	end;
 OnInit:
-	.n$ = "[War Treasury]"; // NPC Name
+	.n$ = "[ War Treasury ]"; // NPC Name
 	.gmlevel = 99; // GM Level to use the NPC
-	.itemslot_amount = 10; // How many item slots should be available for each castle.
+	.itemslot_amount = 30; // How many item slots should be available for each castle.
 	.auto_give_reward = 0; // Automatically gives reward to everyone online after WoE instead of only the guild leader. Set to 1 to enable
 	setarray .cas$[0],
 		"prtg_cas01","prtg_cas02","prtg_cas03","prtg_cas04","prtg_cas05",
@@ -230,7 +230,7 @@ OnInit:
 		"schg_cas01","schg_cas02","schg_cas03","schg_cas04","schg_cas05";
 	.casvarsize = getarraysize(.cas$);
 	// Cache castle name
-	for(.@i = 0; .@i < .casvarsize .@i++) {
+	for(.@i = 0; .@i < .casvarsize; .@i++) {
 		setarray .casName$[.@i],getcastlename(.cas$[.@i]);
 	}
 	end;

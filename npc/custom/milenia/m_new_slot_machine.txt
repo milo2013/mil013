@@ -1,3 +1,34 @@
+kampung,122,38,11	script	Fragment Collector	833,{
+	
+	if (.Click == rand (2,5)) {
+		mes "[ Fragment Collector ]";
+		mes "Don't you see I'm busy here?!";
+		next;
+		mes "[ Fragment Collector ]";
+		mes "Bring me ^FF0000 100 "+ getitemname (41294) +" to exchange with 1 "+ getitemname (41290) +"^000000 !!";
+		set .Click, 0;
+		close;
+	}
+	if (countitem (41294)) < 100{	 set .Click, .Click +1;  end;}
+		
+	delitem 41294,100;		// Mysterious Fragment	
+	getitem 41290,1;	 	// Mysterious Coin
+	
+	OnClock1100:
+	OnClock2300:
+	sleep 60000;
+	hideoffnpc strnpcinfo(3);
+	sleep 3600000;
+	announce "Mysterious Slot Machine Event is over thank you for playing", bc_all;
+	hideonnpc strnpcinfo(3);
+	end;
+
+OnInit:
+	// comment for testing
+	hideonnpc strnpcinfo(3);
+}
+	
+	
 kampung,119,38,1	script	Mysterious Slot Machine	563,{
 	
 	if (checkweight(1201,1) == 0) {

@@ -1,11 +1,11 @@
 //===== rAthena Script =======================================
-//= War of Emperium (Prontera)
+//= War of Emperium (Prontera) - Skoegul
 //===== By: ==================================================
 //= L0ne_W0lf
 //===== Current Version: =====================================
 //= 1.4
 //===== Compatible With: =====================================
-//= rAthena SVN
+//= rAthena Project
 //===== Description: =========================================
 //= NPCs that relate to Prontera Guild Castle 4
 //===== Additional Comments: =================================
@@ -98,7 +98,6 @@ prtg_cas04,263,27,4	duplicate(InsideFlagsPR4)	Skoegul#14	722
 //============================================================
 prontera,167,203,6	duplicate(InsideFlagsPR4)	Skoegul#15	722
 
-
 // Kafra Employee
 //============================================================
 prtg_cas04,258,247,4	duplicate(guildkafra)	Kafra Staff#prtg_cas04	117
@@ -110,7 +109,6 @@ prtg_cas04,259,265,4	duplicate(cm)	Van Dreth#prtg_cas04	55
 // Treasure Room Exit
 //============================================================
 prtg_cas04,275,160,0	script	#Lever_PR04	111,{
-
 	mes " ";
 	mes "There's a small lever. Will you pull it?";
 	next;

@@ -9,8 +9,11 @@ Player_Menu:
 	mes "I can teleport you to any kampung NPC.";
 	mes "Where do you want to go?";
 	next;
-	switch(select("Basic:Trading:Market Place:Mini Games:Quest:Special:Refiner:Zeny Farming:Cedi MVP System:Elite MVP Ladder:Vicious Prison")) {
+	switch(select("^ff0000[ RESPAWN VALLEY SAVED LOCATION ]^000000:Basic:Trading:Market Place:Mini Games:Quest:Special:Refiner:Zeny Farming:Cedi MVP System:Elite MVP Ladder:Vicious Prison")) {
 		case 1:
+			warp "kampung",150,150;
+			break;
+		case 2:
 			mes "[ Valley Warper ]";
 			mes "Please select which NPC you would like to be teleported to.";
 			next;
@@ -54,7 +57,7 @@ Player_Menu:
 		
 			}
 			break;
-		case 2:
+		case 3:
 			mes "[ Valley Warper ]";
 			mes "Please select which NPC you would like to be teleported to.";
 			next;
@@ -94,7 +97,7 @@ Player_Menu:
 					
 			}
 			break;
-		case 3:
+		case 4:
 			mes "[ Valley Warper ]";
 			mes "Please select which NPC you would like to be teleported to.";
 			next;
@@ -113,7 +116,7 @@ Player_Menu:
 					break;
 			}
 			break;
-		case 4:
+		case 5:
 			mes "[ Valley Warper ]";
 			mes "Please select which NPC you would like to be teleported to.";
 			next;
@@ -125,7 +128,7 @@ Player_Menu:
 			
 			}
 			break;
-		case 5:
+		case 6:
 			mes "[ Valley Warper ]";
 			mes "Please select which NPC you would like to be teleported to.";
 			next;
@@ -144,7 +147,7 @@ Player_Menu:
 					break;
 			}
 			break;
-		case 6:
+		case 7:
 			mes "[ Valley Warper ]";
 			mes "Please select which NPC you would like to be teleported to.";
 			next;
@@ -200,12 +203,12 @@ Player_Menu:
 				
 			}
 			break;
-		case 7:
+		case 8:
 			/* Refine Zone */
 			warp "kampung",165,98;
 			break;
 		
-		case 8:
+		case 9:
 			mes "[ Valley Warper ]";
 			mes "Please select which NPC you would like to be teleported to.";
 			next;
@@ -228,18 +231,18 @@ Player_Menu:
 					break;
 			}
 			break;
-			case 9:
-				/* Cedi MVP */
-				warp "kampung",209,53;
-				break;
-			case 10:
-				/* MVP Ladder*/
-				warp "kampung",32,59;
-				break;
-			case 11:
-				/* Vicious Prison */
-				warp "kampung",25,58;
-				break;
+		case 10:
+			/* Cedi MVP */
+			warp "kampung",209,53;
+			break;
+		case 11:
+			/* MVP Ladder*/
+			warp "kampung",32,59;
+			break;
+		case 12:
+			/* Vicious Prison */
+			warp "kampung",25,58;
+			break;
 	}
 	end;
 }

@@ -235,6 +235,8 @@ OnMobKilled:
    //getitem 7227,1;
    getitem 671,1;
    getitem 7539,rand(1,5);
+   getitem 41294,10; // Mysterious Fragment
+   getitem 41276,1;  // Event Treasure Box
    announce "Poring Banker: We have a winner! well done " + strcharinfo(0) + ".",0;
    warp "SavePoint",0,0;
    end;

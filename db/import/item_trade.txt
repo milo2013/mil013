@@ -20,3 +20,5 @@
 //	Balmung cannot be dropped, traded, or placed in Guild Storage (1+2+64).
 //	Only groups of group-level 50 and up can override this setting.
 
+9920,511,100	// Novice Poring S Egg
+9921,511,100	// Poring S Egg

@@ -1,0 +1,272 @@
+//===== rAthena Script =======================================
+//= War of Emperium - WoE Castle Manager
+//===== By: ==================================================
+//= Daegaladh
+//===== Current Version: =====================================
+//= 4.0
+//===== Compatible With: =====================================
+//= rAthena Project
+//===== Description: =========================================
+//= Castle rotation system
+//===== Additional Comments: =================================
+//= 1.0 Initial script.
+//= 2.0 Updated to match the new WoE script.
+//= 3.0 Added on the fly castle configuration support and new randomization formula.
+//= 4.0 Updated to match the lastest WoE script and lots of optimization.
+//============================================================
+
+//--------------------------------------------
+//WoE Manager
+//--------------------------------------------
+kampung,149,165,5	script	WoE Manager#woe_manager	500,{
+	if (.weekday$[0] == "") setarray .weekday$,"Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday";
+	mes "["+strnpcinfo(1)+"]";
+	mes "The next castle rotation will be on "+.weekday$[$woe_rot_day]+" "+($woe_rot_turn?"this":"next")+" week.";
+	mes "There's "+$woe_castles_num+" active castles:";
+	for(.@i = 0; .@i < $woe_castles_num; .@i++)
+		mes "Castle "+(.@i+1)+": "+$woe_cas_new$[.@i];
+	next;
+	mes "^FF0000[ WOE SCHEDULE ]^000000";
+	mes "===============================";
+	mes "Saturday (10PM until 11PM GMT+8)";
+		for(.@i = 0; .@i < $woe_castles_num; .@i++)
+		mes "Castle : " + getcastlename($woe_cas_new$[.@i]) + "";
+	mes "===============================";
+	mes "Sunday (10PM until 11PM GMT+8)";
+	mes "Castle : "+ getcastlename("schg_cas05") +" ";
+	if(getgroupid() < 99) close;
+	next;
+	switch(select("Change rotation day:Change number of castles:Manual rotation:Castle reload:Castle reset:Cancel")){
+	case 1:
+		mes "["+strnpcinfo(1)+"]";
+		mes "The next castle rotation will be on "+.weekday$[$woe_rot_day]+" "+($woe_rot_turn?"this":"next")+" week.";
+		mes "Which day do you want to change it for?";
+		next;
+		$woe_rot_day = select(implode(.weekday$,":"))-1;
+		$woe_rot_turn = select("Next week:This week")-1;
+		mes "["+strnpcinfo(1)+"]";
+		mes "New rotation will be on "+.weekday$[$woe_rot_day]+" "+($woe_rot_turn?"this":"next")+" week.";
+		close;
+	case 2:
+		mes "["+strnpcinfo(1)+"]";
+		mes "Enter the number of castles:";
+		next;
+		input .@n;
+		mes "["+strnpcinfo(1)+"]";
+		if(.@n > 0 && .@n < 21)
+			$woe_castles_num = .@n;
+		else{
+			mes "You have entered an invalid number.";
+			close;
+		}
+		donpcevent "castle_rotation_main::OnManual";
+		for(.@i = 0; .@i < $woe_castles_num; .@i++)
+			mes "Castle "+(.@i+1)+": "+$woe_cas_new$[.@i];
+		close;
+	case 3:
+		donpcevent "castle_rotation_main::OnManual";
+		mes "["+strnpcinfo(1)+"]";
+		for(.@i = 0; .@i < $woe_castles_num; .@i++)
+			mes "Castle "+(.@i+1)+": "+$woe_cas_new$[.@i];
+		close;
+	case 4:
+		donpcevent "castle_rotation_update::OnReload";
+		mes "["+strnpcinfo(1)+"]";
+		mes "Castles reloaded.";
+		close;
+	case 5:
+		deletearray $woe_cas_old$[0],getarraysize($woe_cas_old$);
+		deletearray $woe_cas_new$[0],getarraysize($woe_cas_new$);
+		donpcevent "castle_rotation_main::OnManual";
+		mes "["+strnpcinfo(1)+"]";
+		mes "Castles reset:";
+		for(.@i = 0; .@i < $woe_castles_num; .@i++)
+			mes "Castle "+(.@i+1)+": "+$woe_cas_new$[.@i];
+		close;
+	case 6:
+		close;
+	}
+}
+
+
+//--------------------------------------------
+//Castle Rotation Main Script
+//--------------------------------------------
+-	script	castle_rotation_main	-1,{
+end;
+
+//Runs at 00:01 to not coincide with WoE end
+OnHour0001:
+	if(!$woe_castles_num || gettime(DT_DAYOFWEEK) != $woe_rot_day) end;
+
+//Changes the turn var every 2 weeks
+	$woe_rot_turn = !$woe_rot_turn;
+	if($woe_rot_turn == 0) end;
+
+	if(agitcheck() || agitcheck2()){
+		debugmes "[WoE Manager]: There's a WoE running at this moment, please, change the rotation day configuration to not coincide with WoE.";
+		end;
+	}
+
+OnManual:
+//Kicks all characters out from the castles
+	for (.@i = 1; .@i < 6; .@i++){
+		maprespawnguildid "aldeg_cas0"+.@i,1,7;
+		maprespawnguildid "gefg_cas0"+.@i,1,7;
+		maprespawnguildid "payg_cas0"+.@i,1,7;
+		maprespawnguildid "prtg_cas0"+.@i,1,7;
+	}
+
+//Creates the array if doesn't exist
+	if ($woe_cas_new$[0] == "") setarray $woe_cas_new$,"aldeg_cas01","aldeg_cas02","aldeg_cas03","aldeg_cas04","aldeg_cas05","gefg_cas01","gefg_cas02","gefg_cas03","gefg_cas04","gefg_cas05","payg_cas01","payg_cas02","payg_cas03","payg_cas04","payg_cas05","prtg_cas01","prtg_cas02","prtg_cas03","prtg_cas04","prtg_cas05";
+
+//Saves the previous castles
+	copyarray $woe_cas_old$[0],$woe_cas_new$[0],20;
+
+	if($woe_castles_num > 10 || $woe_cas_new$[0] == ""){
+	//Randomizes the full array if it's the first time or more than the half is active
+		for(.@i = 19; .@i > 0; .@i--){
+			.@r = rand(0,.@i);
+			.@tmp$ = $woe_cas_new$[.@i];
+			$woe_cas_new$[.@i] = $woe_cas_new$[.@r];
+			$woe_cas_new$[.@r] = .@tmp$;
+		}
+	}
+	else{
+	//Moves the active ones to the end of the array
+		for(.@i = 0; .@i < $woe_castles_num; .@i++){
+			.@tmp$ = $woe_cas_new$[19-.@i];
+			$woe_cas_new$[19-.@i] = $woe_cas_new$[.@i];
+			$woe_cas_new$[.@i] = .@tmp$;		
+		}
+	//Randomize the rest
+		for(.@i = (19 - $woe_castles_num); .@i > 0; .@i--){
+			.@r = rand(0,.@i);
+			.@tmp$ = $woe_cas_new$[.@i];
+			$woe_cas_new$[.@i] = $woe_cas_new$[.@r];
+			$woe_cas_new$[.@r] = .@tmp$;
+		}
+	}
+
+//Moves the data from the old castle to the new
+	for (.@i = 0; .@i < $woe_castles_num; .@i++){
+		for (.@j = 1; .@j < 18; .@j++){
+			setcastledata $woe_cas_new$[.@i],.@j, getcastledata($woe_cas_old$[.@i], .@j);
+			setcastledata $woe_cas_old$[.@i],.@j,0;
+		}
+		debugmes "[WoE Manager]: "+$woe_cas_old$[.@i]+" castle data moved to "+$woe_cas_new$[.@i];
+	}
+
+//Reloads the castles
+	donpcevent "castle_rotation_update::OnReload";
+
+//Announces the rotation
+	for (.@i = 0; .@i < $woe_castles_num; .@i++){
+		if (getcastledata($woe_cas_new$[.@i],1))
+			announce "The [" + getcastlename($woe_cas_new$[.@i]) + "] castle will replace [" + getcastlename($woe_cas_old$[.@i]) + "] and currently belongs to the [" + getguildname(getcastledata($woe_cas_new$[.@i],1)) + "] guild.",bc_all;
+		else
+			announce "The [" + getcastlename($woe_cas_new$[.@i]) + "] castle will replace [" + getcastlename($woe_cas_old$[.@i]) + "] and is currently unoccupied.",bc_all;	
+	}
+
+end;
+}
+
+
+//--------------------------------------------
+//Castle Updater
+//--------------------------------------------
+-	script	castle_rotation_update	-1,{
+	end;
+
+OnInterIfInitOnce:
+OnReload:
+//Kicks all characters out from the castles
+	for (.@i = 1; .@i < 6; .@i++){
+		maprespawnguildid "aldeg_cas0"+.@i,1,7;
+		maprespawnguildid "gefg_cas0"+.@i,1,7;
+		maprespawnguildid "payg_cas0"+.@i,1,7;
+		maprespawnguildid "prtg_cas0"+.@i,1,7;
+	}
+
+//Unloads the NPCs of all the castles
+	for (.@i = 1; .@i < 6; .@i++){
+		atcommand "@unloadnpcfile npc/guild/aldeg_cas0"+.@i+".txt";
+		atcommand "@unloadnpcfile npc/guild/gefg_cas0"+.@i+".txt";
+		atcommand "@unloadnpcfile npc/guild/payg_cas0"+.@i+".txt";
+		atcommand "@unloadnpcfile npc/guild/prtg_cas0"+.@i+".txt";
+	}
+	//debugmes "[WoE Manager]: Castles disabled";
+
+//Disables the entrance warps of all the castles
+	//Aldebaran
+	disablenpc "aldeg-1_aldeg-1-1";
+	disablenpc "aldeg-2_aldeg-2-1";
+	disablenpc "aldeg-3_aldeg-3-1";
+	disablenpc "aldeg-4_aldeg-4-1";
+	disablenpc "aldeg-5_aldeg-5-1";
+	//Geffen
+	disablenpc "gef-g1-0_gefg-1-07";
+	disablenpc "gef-g1-1_gefg-1-04";
+	disablenpc "gef-g2_gefg-2-07";
+	disablenpc "gef-g3-0_g-cas3-12";
+	disablenpc "gef-g3-1_g-cas3-13";
+	disablenpc "gef-g3-2_g-cas3-14";
+	disablenpc "gef-g3-3_g-cas3-15";
+	disablenpc "gef-g4_gefg-4-05";
+	disablenpc "gef-5-0_gefg-5-04";
+	disablenpc "gef-5-1_gefg-5-01";
+	//Payon
+	disablenpc "payg-1_payg-1-06";
+	disablenpc "payg-2_payg-2-02";
+	disablenpc "payg-3_payg-3-07";
+	disablenpc "payg-4_payg-4-01";
+	disablenpc "payg-5_payg-5-03";
+	//Prontera
+	disablenpc "prtg-1_prtg-1-01";
+	disablenpc "prtg-2_prtg-2";
+	disablenpc "prtg-3_prtg-3";
+	disablenpc "prtg-4_prtg-4";
+	disablenpc "prtg-5_prtg-5";
+
+	//debugmes "[WoE Manager]: Warps disabled";
+
+sleep 1000;
+
+//Loads the active castles only
+	for (.@i = 0; .@i < $woe_castles_num; .@i++){
+	//Entrance warps
+		//Aldebaran
+		if($woe_cas_new$[.@i] == "aldeg_cas01")			enablenpc "aldeg-1_aldeg-1-1";
+		else if($woe_cas_new$[.@i] == "aldeg_cas02")	enablenpc "aldeg-2_aldeg-2-1";
+		else if($woe_cas_new$[.@i] == "aldeg_cas03")	enablenpc "aldeg-3_aldeg-3-1";
+		else if($woe_cas_new$[.@i] == "aldeg_cas04")	enablenpc "aldeg-4_aldeg-4-1";
+		else if($woe_cas_new$[.@i] == "aldeg_cas05")	enablenpc "aldeg-5_aldeg-5-1";
+		//Geffen
+		else if($woe_cas_new$[.@i] == "gefg_cas01") {	enablenpc "gef-g1-0_gefg-1-07";	enablenpc "gef-g1-1_gefg-1-04";	}
+		else if($woe_cas_new$[.@i] == "gefg_cas02")		enablenpc "gef-g2_gefg-2-07";
+		else if($woe_cas_new$[.@i] == "gefg_cas03") {	enablenpc "gef-g3-0_g-cas3-12";	enablenpc "gef-g3-1_g-cas3-13";	enablenpc "gef-g3-2_g-cas3-14";	enablenpc "gef-g3-3_g-cas3-15";	}
+		else if($woe_cas_new$[.@i] == "gefg_cas04")		enablenpc "gef-g4_gefg-4-05";
+		else if($woe_cas_new$[.@i] == "gefg_cas05") {	enablenpc "gef-5-0_gefg-5-04";	enablenpc "gef-5-1_gefg-5-01";}
+		//Payon
+		else if($woe_cas_new$[.@i] == "payg_cas01")		enablenpc "payg-1_payg-1-06";
+		else if($woe_cas_new$[.@i] == "payg_cas02")		enablenpc "payg-2_payg-2-02";
+		else if($woe_cas_new$[.@i] == "payg_cas03")		enablenpc "payg-3_payg-3-07";
+		else if($woe_cas_new$[.@i] == "payg_cas04")		enablenpc "payg-4_payg-4-01";
+		else if($woe_cas_new$[.@i] == "payg_cas05")		enablenpc "payg-5_payg-5-03";
+		//Prontera
+		else if($woe_cas_new$[.@i] == "prtg_cas01")		enablenpc "prtg-1_prtg-1-01";
+		else if($woe_cas_new$[.@i] == "prtg_cas02")		enablenpc "prtg-2_prtg-2";
+		else if($woe_cas_new$[.@i] == "prtg_cas03")		enablenpc "prtg-3_prtg-3";
+		else if($woe_cas_new$[.@i] == "prtg_cas04")		enablenpc "prtg-4_prtg-4";
+		else											enablenpc "prtg-5_prtg-5"; //prtg_cas05
+	//Loads the castles NPCs and runs the corresponding events
+		atcommand "@loadnpc npc/guild/"+$woe_cas_new$[.@i]+".txt";
+		donpcevent "Agit#"+$woe_cas_new$[.@i]+"::OnRecvCastle";
+		donpcevent "Agit#"+$woe_cas_new$[.@i]+"::OnAgitEnd";
+	//Reloads the flag emblems
+		flagemblem GetCastleData($woe_cas_new$[.@i],1);
+	}
+	debugmes "[WoE Manager]: Loaded active castles and warps.";
+
+end;
+}

@@ -376,15 +376,8 @@ D41: Restrict("RE");
 // --------------------------------------------------
 	Castles:
 // --------------------------------------------------
-menu	"Wigner TE Castles",C1, "Gaeblog TE Castles",C2;
-
-C1: Restrict("RE");
-	Go("te_prt_gld",142,64);
-C2: Restrict("RE");
-	Go("te_prt_gld",153,134);
-	
-/*menu	"Aldebaran Castles",C1, "Geffen Castles",C2, "Payon Castles",C3,
-    	"Prontera Castles",C4, "Arunafeltz Castles",C5, "Schwaltzvalt Castles",C6;
+menu	"Aldebaran Castles",C1, "Geffen Castles",C2, "Payon Castles",C3,
+    	"Prontera Castles",C4, "Arunafeltz Castles",C5, "Schwaltzvalt Castles",C6, "Wigner TE Castles",C7, "Gaeblog TE Castles",C8;
 
 C1: setarray @c[2],48,83,95,249,142,85,239,242,264,90;
 	Disp("Neuschwanstein:Hohenschwangau:Nuenberg:Wuerzburg:Rothenburg");
@@ -404,7 +397,10 @@ C5: setarray @c[2],158,272,83,47,68,155,299,345,292,107;
 C6: setarray @c[2],293,100,288,252,97,196,137,90,71,315;
 	Disp("Himinn:Andlangr:Viblainn:Hljod:Skidbladnir");
 	Pick("","sch_gld","sch_gld","sch_gld","sch_gld","sch_gld");
-	*/
+C7: Restrict("RE");
+	Go("te_prt_gld",142,64);
+C8: Restrict("RE");
+	Go("te_prt_gld",153,134);
 
 // --------------------------------------------------
 	Guild_Dungeons:
@@ -439,7 +435,8 @@ menu	"Bakonawa Lake",I1, "Bangungot Hospital 2F",I2, "Buwaya Cave",I3,
     	"Octopus Cave",I8, "Old Glast Heim",I9, "Orc's Memory",I10, "Sealed Shrine",I11,
     	"Wolfchev's Laboratory",I12,"Sara's Memory",I13,"Nightmare Jitterbug",I14,
 		"Endless Cellar (Shadow EQ)",I15,"Geffen Magic Tournament",I16,"Horror Toy Factory",
-		I17,"Faceworm's Nest",I18,"Ghost Palace",I19,"Bios Island",I20,"Charleston Crisis (MILENIA RO VERSION)",I21,"Airship Assault",I22,"Vicious Prison (Vicious EQ)",I23,"Infinite Space",I24,"Devil Tower",I25;
+		I17,"Faceworm's Nest",I18,"Ghost Palace",I19,"Bios Island",I20,"Charleston Crisis (MILENIA RO VERSION)",I21,"Airship Assault",I22,
+		"Vicious Prison (Vicious EQ)",I23,"Infinite Space",I24,"Devil Tower",I25,"Sarah and Fenrir",I26,"Central Laboratory",I27,"Last Room",I28;
 
 I1: Restrict("RE");
 	Go("ma_scene01",172,175);
@@ -487,6 +484,12 @@ I24: Restrict("RE");
 	Go("cmd_fild07",54,276);
 I25: Restrict("RE");
 	Go("dali02",137,118);
+I26: Restrict("RE");	
+	Go("dali02",92,141);
+I27: Restrict("RE");	
+	Go("verus01",148,154);
+I28: Restrict("RE");	
+	Go("verus01",123,181);
 // --------------------------------------------------
 	Special:
 // --------------------------------------------------

@@ -25,13 +25,16 @@
 18,Ghost Palace,3600,300,1@spa,198,188
 19,Bios Island,7200,300,1@dth1,19,94,1@dth2,1@dth3
 21,Fenrir and Sarah,3600,300,1@glast,367,304
+26,Central Laboratory,3600,300,1@lab,120,30
+27,Last room,3600,300,1@uns,142,30
+
 // Custom
-26,Nightmarish Jitterbug,14400,300,1@jtb,16,18
-27,Charleston Crisis,14400,300,1@mcd,127,282
-30,Devils Tower,14400,300,1@tnm1,50,104,1@tnm2,1@tnm3
-50,MVP Ladder,3600,300,guild_vs2-2,49,49
-52,Endless Cellar,14400,300,1@new,50,355,2@new,3@new,4@new,5@new,6@new
-53,Airship Assault,3600,300,1@air1,244,73,1@air2
+90,Nightmarish Jitterbug,14400,300,1@jtb,16,18
+91,Charleston Crisis,14400,300,1@mcd,127,282
+92,Devils Tower,14400,300,1@tnm1,50,104,1@tnm2,1@tnm3
+93,MVP Ladder,3600,300,guild_vs2-2,49,49
+94,Endless Cellar,14400,300,1@new,50,355,2@new,3@new,4@new,5@new,6@new
+95,Airship Assault,3600,300,1@air1,244,73,1@air2
 101,LV1 Elite MVP Ladder,3600,300,1@ldr,9,39
 102,LV2 Elite MVP Ladder,3600,300,2@ldr,39,72
 103,LV3 Elite MVP Ladder,3600,300,3@ldr,72,40

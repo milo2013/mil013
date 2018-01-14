@@ -84,6 +84,8 @@
 9917,Goblin Leader Egg,Goblin Leader Egg,7,20,,0,,,,,,,,,,,,,{},{},{}
 9918,Chung E Egg,Chung E Egg,7,20,,0,,,,,,,,,,,,,{},{},{}
 9919,Bacsojin Egg,Bacsojin Egg,7,20,,0,,,,,,,,,,,,,{},{},{}
+9920,Novice Poring S Egg,Novice Poring S Egg,7,20,,0,,,,,,,,,,,,,{},{},{}
+9921,Poring S Egg,Poring S Egg,7,20,,0,,,,,,,,,,,,,{},{},{}
 
 //31100,Red_Potion_Test,Red Potion Test,0,50,,70,,,,,0xFFFFFFFF,63,2,,,,,,{ itemheal rand(45,65),0; },{},{}
 
@@ -318,3 +320,4 @@
 41291,Infinite_Fish,Infinite Fish Box,0,50,,70,,,,,0xFFFFFFFF,63,2,,,,,,{ percentheal 100,100; getitem 41291,1; },{},{}
 41292,Infinite_Kafra_Box,Infinite Kafra Box,18,10,,10,,,,0,0xFFFFFFFF,63,2,,,,,,{ rentitem 12211,604800; },{},{}
 41293,Milenia_Certificate_Box_1h,VIP Refiner 1H,18,10,,10,,,,0,0xFFFFFFFF,63,2,,,,,,{ rentitem 41121,3600; },{},{}
+41294,Mysterious Fragment,Mysterious Fragment,3,0,,0,,,,,,,,,,,,,{},{},{} 

@@ -832,6 +832,8 @@
 6752,467,100	// Charleston_Parts
 6753,507,100	// Token_Of_Destruction
 6754,507,100	// Collected_Medicinal_Herbs
+6756,507,100	// Cohesive_Energy
+6757,507,100	// The_Memory_Recorder
 6766,499,100	// Ice_World_Ticket
 6767,499,100	// Summer_Fes_Coin
 6768,499,100	// Red_Beans_Of_Ice
@@ -1719,7 +1721,6 @@
 13514,475,100	// Spanner_Box
 13515,475,100	// Grape_Box
 13516,475,100	// Royal_Jelly_Box
-13517,475,100	// Yggdrasilberry_Box
 13518,475,100	// Weapon_Card_Scroll_Box
 13519,475,100	// Armor_Card_Scroll_Box
 13520,475,100	// Helmet_Card_Scroll_Box
@@ -2433,7 +2434,6 @@
 14229,475,100	// Sakura_Scroll
 14230,475,100	// Note_Headphones_Box
 14231,475,100	// Novice_Breastplate_Boxes
-14232,475,100	// Yggdrasilberry_Box_
 14233,475,100	// Dead_Tree_Branch_Box1
 14234,475,100	// Dead_Tree_Branch_Box2
 14235,475,100	// Field_Manual_Box_2

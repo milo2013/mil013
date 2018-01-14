@@ -1,18 +1,27 @@
 kampung,101,160,11	script	Welcome Back Rewards	10185,{
 
-if (WBP == 1) {
+	// MAC Address
+	query_sql("SELECT `last_unique_id` FROM `login` WHERE `account_id` = "+getcharid(3)+" ",.macID$);
+	query_sql("SELECT `last_ip` FROM `login` WHERE `account_id` = "+getcharid(3)+" ",.IP$);
+
+	if (.macID$ == $Mac_Claimed_WBR$){
 	mes "[Sarah]";
 	mes "You already claimed!!";
 	close;
 	}
-		
-//if ( getcharid(3) > 2000187 ) {
-if ( getcharid(3) > 2000003 ) {
+	
+	if (.IP$ == $Mac_Claimed_WBR$){
+	mes "[Sarah]";
+	mes "You already claimed!!";
+	close;
+	}
+	
+	if ( getcharid(3) > 2002304 ) { //Milenia 8.14 Last Players
 	mes "[Sarah]";
     mes "You're too new to get the rewards.";
     next;
 	mes "[Sarah]";
-    mes "I only give to player who register during ^ff0000Milenia 2.x^000000 until ^ff0000Milenia 5.x^000000 only!!";
+    mes "I only give to player who register during ^ff0000Milenia 2.x^000000 until ^ff0000Milenia 8.14^000000 only!!";
 	close;
 }
 
@@ -29,7 +38,12 @@ if ( getcharid(3) > 2000003 ) {
 	next;
 	mes "[Sarah]";
 	mes "Have a nice day~";
+	close2;
+	query_sql("SELECT `last_unique_id` FROM `login` WHERE `account_id` = "+getcharid(3)+" ",$Mac_Claimed_WBR$);
 	getitem 41129,1;
-	close;
+	getitem 12326,50; // Large Firecracker
+	getitem 41290,5; // Mysterious Fragment
+	set #DPOINTS,#DPOINTS +10; dispbottom "Congratulations! You've earned 10 Donation Points!";
+	
 	
 }

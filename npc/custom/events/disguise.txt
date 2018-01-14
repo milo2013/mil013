@@ -233,6 +233,7 @@ iCorrect:
 	deletepset 1;
 	activatepset 1;
 	getitem .Prize,.PrizeAmt;
+	getitem 41294,2; // Mysterious Fragment
 	announce strcharinfo(0)+" is correct! I was disguised as: "+$MonsterName$+"",bc_map | bc_blue;
 	if (.RoundCount>=.Rounds) {
 		setnpcdisplay "Disguise Event",795;

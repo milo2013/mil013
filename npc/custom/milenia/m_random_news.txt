@@ -14,8 +14,8 @@ setarray .News$[0],	// Random Message to be Announced
 		"Milenia RO : Please like our FB Page. (facebook.com/MileniaRO)",
 		"Milenia RO : Please read or write in our wiki. (mileniaro.com/wiki)",
 		"Milenia RO : Have you already redeem your Freebies at NPC Newbie Freebies in our town?",
-		"Milenia RO : Dont forget to join Himinn WoE:SE at Sunday!",
-		"Milenia RO : Dont forget to join Horn WoE:SE at Saturday!",
+		//"Milenia RO : Dont forget to join Himinn WoE:SE at Sunday!",
+		//"Milenia RO : Dont forget to join Horn WoE:SE at Saturday!",
 		"Milenia RO : Did you know you may exchange Zeny into Cashpoints?",
 		"Milenia RO : Do you know we have Pet Support System?",
 		"Milenia RO : Buy 30 Days VIP Membership with 75 Donation Credits only!",
@@ -31,7 +31,7 @@ setarray .News$[0],	// Random Message to be Announced
 		//"Milenia RO : Bored with normal PVP? Try out our new Frozen PVP! @frozen to start!",
 		"Milenia RO : Join War of Emperium on Every Saturday and Sunday starting from 10pm till 11pm GMT+8!!",
 		"Milenia RO : Guild Masters! Prepare your guildie to join upcoming War of Emperium!!",
-		"Milenia RO : War Of Emperium winner will have access to Abyss Dungeon!! Also will get WoE Champion Box!!",
+		//"Milenia RO : War Of Emperium winner will have access to Abyss Dungeon!! Also will get WoE Champion Box!!",
 		"Milenia RO : Please balance your game with your work and study~";
 		//"Milenia RO : DOUBLE DONATION SALES from 24 April till 8 May 2017! Check our page for details!";
 		

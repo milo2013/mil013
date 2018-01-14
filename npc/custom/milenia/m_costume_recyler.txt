@@ -13,6 +13,7 @@
 
 kampung,67,56,11	script	Costume Recycler	4_F_01,{
 	dispbottom "[ Costume Recycler ] : You have "+#rPoints+" Recycling Points";
+	message strcharinfo(0), "Please don't skip same costume with other costume! Recycle in order!";
 	callshop "costume_recycler",0;
 	npcshopattach "costume_recycler";
 	end;
