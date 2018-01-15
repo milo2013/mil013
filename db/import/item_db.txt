@@ -322,3 +322,4 @@
 41292,Infinite_Kafra_Box,Infinite Kafra Box,18,10,,10,,,,0,0xFFFFFFFF,63,2,,,,,,{ rentitem 12211,604800; },{},{}
 41293,Milenia_Certificate_Box_1h,VIP Refiner 1H,18,10,,10,,,,0,0xFFFFFFFF,63,2,,,,,,{ rentitem 41121,3600; },{},{}
 41294,Mysterious Fragment,Mysterious Fragment,3,0,,0,,,,,,,,,,,,,{},{},{} 
+41295,Evo Pet Pass,Evo Pet Pass,3,0,,0,,,,,,,,,,,,,{},{},{}

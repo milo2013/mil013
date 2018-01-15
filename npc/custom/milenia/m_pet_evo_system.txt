@@ -24,10 +24,10 @@ kampung,136,156,5	script	Pet Evolution System	10210,{
 	//debugmes " "+.Pet_EggID+" "+.Pet_Tier$+" ";
 	
 	// Pet Evo Check
-	if (.Pet_Intimate == 250)	{	set .Pet_Evo$, "^09AD29READY^000000"; set .Pet_Evo_Proceed,1;}
-	if (.Pet_Intimate < 250)	{	set .Pet_Evo$, "^FF0000NOT READY^000000"; set .Pet_Evo_Proceed,0;}
-	//if (.Pet_EggID < 9920) 	{	set @Pet_Nothing, 1; debugmes "pet nothing "+ @Pet_Nothing +" ";} 
-	//if (.Pet_EggID > 9920) 	{	set @Pet_Nothing, 0; debugmes "pet nothing "+ @Pet_Nothing +" ";} 
+	if (.Pet_Intimate == 1000)	{	set .Pet_Evo$, "^09AD29READY^000000"; set .Pet_Evo_Proceed,1;}
+	if (.Pet_Intimate < 1000)	{	set .Pet_Evo$, "^FF0000NOT READY^000000"; set .Pet_Evo_Proceed,0;}
+	if (.Pet_EggID < 9920) 	{	set @Pet_Nothing, 1; debugmes "pet nothing "+ @Pet_Nothing +" ";} 
+	if (.Pet_EggID >= 9920) 	{	set @Pet_Nothing, 0; debugmes "pet nothing "+ @Pet_Nothing +" ";} 
 	
 	debugmes " pet nothing = "+ @Pet_Nothing +" ";
 	
@@ -42,10 +42,16 @@ kampung,136,156,5	script	Pet Evolution System	10210,{
 	next;
 	switch(select("I want to register:Later")) {
 		case 1: 
-		mes "Please bring me dot dot item";
+		if (countitem (41295) > 1){  // Temporary Evo Pet Pass
 		close2;
+		delitem 41295,1;
 		getitem 9920,1;
 		set @Pet_Nothing,0;
+		}
+		mes " ^FF0000[ PET EVOLUTION SYSTEM 1.6 ]^000000";
+		mes "Register database still not ready for new register.";
+		mes "Please wait until Admin release new update.";
+		close2;
 		case 2:
 		close;
 		}
@@ -60,6 +66,7 @@ kampung,136,156,5	script	Pet Evolution System	10210,{
 	mes " Pet Tier : "+ .Pet_Tier$ +" ";
 	mes " Pet Evolve Status : "+ .Pet_Evo$ +" ";
 	if (.Pet_Evo_Proceed < 1){	debugmes "if read"; close;}
+	if (countitem (9920) > 1){ close;}
 	next;
 	switch(select("[ EVOLVE ]: Later")) {
 				case 1:

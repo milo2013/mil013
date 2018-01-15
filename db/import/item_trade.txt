@@ -22,3 +22,4 @@
 
 9920,511,100	// Novice Poring S Egg
 9921,511,100	// Poring S Egg
+41295,511,100	// Evo Pet Pass
