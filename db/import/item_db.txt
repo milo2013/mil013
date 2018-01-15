@@ -86,6 +86,7 @@
 9919,Bacsojin Egg,Bacsojin Egg,7,20,,0,,,,,,,,,,,,,{},{},{}
 9920,Novice Poring S Egg,Novice Poring S Egg,7,20,,0,,,,,,,,,,,,,{},{},{}
 9921,Poring S Egg,Poring S Egg,7,20,,0,,,,,,,,,,,,,{},{},{}
+9922,Drops Ringleader S Egg,Drops Ringleader SEgg,7,20,,0,,,,,,,,,,,,,{},{},{}
 
 //31100,Red_Potion_Test,Red Potion Test,0,50,,70,,,,,0xFFFFFFFF,63,2,,,,,,{ itemheal rand(45,65),0; },{},{}
 

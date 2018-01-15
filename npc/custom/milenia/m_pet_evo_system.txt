@@ -24,10 +24,12 @@ kampung,136,156,5	script	Pet Evolution System	10210,{
 	//debugmes " "+.Pet_EggID+" "+.Pet_Tier$+" ";
 	
 	// Pet Evo Check
-	if (.Pet_Intimate == 250) && (.Pet_Level >= 100)	{	set .Pet_Evo$, "^09AD29READY^000000"; set .Pet_Evo_Proceed,1;}
-	if (.Pet_Intimate < 250) && (.Pet_Level < 100)		{	set .Pet_Evo$, "^FF0000NOT READY^000000"; set .Pet_Evo_Proceed,0;}
-	if (.Pet_EggID < 9920) 	{	set @Pet_Nothing, 1; debugmes "pet nothing "+ @Pet_Nothing +" ";} 
-	if (.Pet_EggID > 9920) 	{	set @Pet_Nothing, 0; debugmes "pet nothing "+ @Pet_Nothing +" ";} 
+	if (.Pet_Intimate == 250)	{	set .Pet_Evo$, "^09AD29READY^000000"; set .Pet_Evo_Proceed,1;}
+	if (.Pet_Intimate < 250)	{	set .Pet_Evo$, "^FF0000NOT READY^000000"; set .Pet_Evo_Proceed,0;}
+	//if (.Pet_EggID < 9920) 	{	set @Pet_Nothing, 1; debugmes "pet nothing "+ @Pet_Nothing +" ";} 
+	//if (.Pet_EggID > 9920) 	{	set @Pet_Nothing, 0; debugmes "pet nothing "+ @Pet_Nothing +" ";} 
+	
+	debugmes " pet nothing = "+ @Pet_Nothing +" ";
 	
 	// Loading Message
 	message strcharinfo(0), "Loading Pet Evolution System....";
@@ -41,7 +43,9 @@ kampung,136,156,5	script	Pet Evolution System	10210,{
 	switch(select("I want to register:Later")) {
 		case 1: 
 		mes "Please bring me dot dot item";
-		close;
+		close2;
+		getitem 9920,1;
+		set @Pet_Nothing,0;
 		case 2:
 		close;
 		}

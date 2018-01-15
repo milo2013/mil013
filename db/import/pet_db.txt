@@ -58,3 +58,28 @@
 //petskillattack2) and petskillsupport (or petheal) at the same time,
 //but only one of each.
 
+// CUSTOM
+1150,MOONLIGHT,Moonlight Flower,0,9901,0,537,80,20,50,100,250,20,2000,200,1,1,350,400,800,{ petskillattack2 "MC_MAMMONITE",5000,1,4,1; },{ petskillsupport "AL_HEAL",10,15,1000,1000; }
+1832,IFRIT,Ifrit,0,9902,0,537,80,20,50,100,250,20,2000,200,1,1,350,400,800,{ petskillattack2 "NPC_GRANDDARKNESS",5000,5,4,1; },{ petskillsupport "AL_HEAL",10,15,100,100; }
+2109,E_RANDGRIS,Valkyrie Randgris,0,9903,0,537,80,20,50,100,250,20,2000,200,1,1,350,400,800,{ petskillattack2 "NPC_EARTHQUAKE",6666,4,4,1; },{ petskillsupport "AL_HEAL",10,15,100,100; }
+1112,DRAKE,Drake,0,9904,0,537,80,20,50,100,250,20,2000,200,1,1,350,400,800,{ petskillattack2 "WZ_WATERBALL",5000,7,5,1; },{ petskillsupport "AL_HEAL",5,15,25,100; }
+1719,DETALE,Detale,0,9905,0,537,80,20,50,100,250,20,2000,200,1,1,350,400,800,{ petskillattack2 "WZ_METEOR",5000,5,5,1; },{ petskillsupport "AL_HEAL",5,15,25,100; }
+1583,TAO_GUNKA,Tao Gunka,0,9906,0,537,80,20,50,100,250,20,2000,200,1,1,350,400,800,{ petskillattack2 "WZ_HEAVENDRIVE",5000,5,5,1; },{ petskillsupport "AL_HEAL",5,15,25,100; }
+2022,S_NYDHOG,Nidhoggr's Shadow,0,9907,0,537,80,20,50,100,250,20,2000,200,1,1,350,400,800,{ petskillattack2 "MG_FIREBALL",5000,1,4,1; },{ petskillsupport "AL_HEAL",5,15,25,100; }
+1785,ATROCE,Atroce,0,9908,0,537,80,20,50,100,250,20,2000,200,1,1,350,400,800,{ petskillattack2 "RK_IGNITIONBREAK",5000,3,5,1; },{ petskillsupport "AL_HEAL",5,15,25,100; }
+1492,INCANTATION_SAMURAI,Incantation Samurai,0,9909,0,537,80,20,50,100,250,20,2000,200,1,1,350,400,800,{ petskillattack2 "CR_HOLYCROSS",5000,4,5,1; },{ petskillsupport "AL_HEAL",5,15,25,100; }
+1708,THANATOS,Thanatos,0,9910,0,537,80,20,50,100,250,20,2000,200,1,1,350,400,800,{ petskillattack2 "MG_SOULSTRIKE",5000,7,5,1; },{ petskillsupport "AL_HEAL",5,15,25,100; }
+2113,EREMES,Eremes Guile,0,9911,0,537,80,20,50,100,250,20,2000,200,1,1,350,400,800,{ petskillattack2 "GC_CROSSIMPACT",5000,7,4,1; },{ petskillsupport "AL_HEAL",10,15,100,100; }
+
+1416,WICKED_NYMPH,Wicked Nymph,12365,9912,0,7141,80,20,50,100,250,20,2000,200,1,1,350,400,800,{bonus bMaxSP,30; bonus bSPrecovRate,5;},{};
+1401,SHINOBI,Shinobi,12362,9913,0,6099,80,20,50,100,250,20,2000,200,1,1,350,400,800,{bonus bAgi,2;},{};
+1379,NIGHTMARE_TERROR,Nightmare Terror,12372,9914,0,6112,80,20,50,100,250,20,2000,200,1,1,350,400,800,{bonus2 bResEff,Eff_Sleep,10000;},{};
+1404,MIYABI_NINGYO,Miyabi Doll,12366,9915,0,6106,80,20,50,100,250,20,2000,200,1,1,350,400,800,{bonus bInt,1; bonus bCastrate,-3;},{};
+1148,MEDUSA,Medusa,12368,9916,0,6108,80,20,50,100,250,20,2000,200,1,1,350,400,800,{bonus bVit,1; bonus2 bResEff,Eff_Stone,500;},{};
+1299,GOBLIN_LEADER,Goblin Leader,12364,9917,0,6104,80,20,50,100,250,20,2000,200,1,1,350,400,800,{bonus2 bAddRace,RC_DemiHuman,3;},{};
+1519,CHUNG_E,Chung E,12395,9918,0,553,80,20,50,100,250,20,2000,200,1,1,350,400,800,{bonus bDef,1; bonus2 bSubRace,RC_DemiHuman,1;},{};
+1518,BACSOJIN,White Lady,12357,9919,0,6094,80,20,50,100,250,20,2000,200,1,1,350,400,800,{bonus bNoKnockback,0; bonus2 bSubEle,Ele_Water,10; bonus bDef,-2;},{};
+
+2398,LITTLE_PORING_S,Novice Poring S,12846,9920,0,531,80,60,1000,0,250,0,5000,150,0,0,300,300,800,{ petloot 10; },{ bonus bLuk,2; bonus bCritical,1; bonus bMaxHP,300; bonus bAgi,1; }
+1002,PORING S,Poring S,0,9921,10013,531,80,60,50,100,250,20,2000,150,1,0,350,400,800,{ petloot 10; },{ bonus bLuk,2; bonus bCritical,1; bonus bMaxHP,300; bonus bAgi,1; }
+2845,Drops Ringleader S,Drops Ringleader S,0,9922,10013,531,80,60,50,100,250,20,2000,150,1,0,350,400,800,{ petloot 10; },{ bonus bLuk,2; bonus bCritical,1; bonus bMaxHP,300; bonus bAgi,1; bonus bHPrecovRate,100; bonus bSPrecovRate,100; }
