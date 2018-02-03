@@ -50,7 +50,7 @@ set $AIItemAmount,rand (1,50);		//Set item amount here.
 set $AntonioAmount,rand(50,100);		//Set amount of antonios to start here.
 if($AntonioEventStart==1) {
 	if($Antonio_Alive>0) { monster $AntonioMapAdd$,0,0,"Milenia Bunny",2576,$Antonio_Alive,"AntonioInvasion::OnAntonioKill"; }
-	if($AntonioLeaderSpawn==1) { monster $AntonioMapAdd$,0,0,"Milenia Bunny Boss",2576,1,"AntonioInvasion::OnAntonioLeaderKill"; }
+	if($AntonioLeaderSpawn==1) { monster $AntonioMapAdd$,0,0,"Milenia Bunny Boss",2588,1,"AntonioInvasion::OnAntonioLeaderKill"; }
 }
 end;
 
@@ -112,7 +112,7 @@ sleep 1000;
 announce "The Milenia Bunny have teleported away!",bc_all;
 sleep 5000;
 announce ""+$Antonio_Alive+" Milenia Bunny"+($Antonio_Alive!=1?"s":"")+" "+($Antonio_Alive!=1?"have":"has")+" appeared in "+$AntonioMapName$+"!",bc_all;
-if($AntonioLeaderSpawn==1) { monster $AntonioMapAdd$,0,0,"Milenia Bunny Boss",2576,1,"AntonioInvasion::OnAntonioLeaderKill"; } else { monster $AntonioMapAdd$,0,0,"Milenia Bunny",2576,$Antonio_Alive,"AntonioInvasion::OnAntonioKill"; }
+if($AntonioLeaderSpawn==1) { monster $AntonioMapAdd$,0,0,"Milenia Bunny Boss",2588,1,"AntonioInvasion::OnAntonioLeaderKill"; } else { monster $AntonioMapAdd$,0,0,"Milenia Bunny",2576,$Antonio_Alive,"AntonioInvasion::OnAntonioKill"; }
 end;
 
 //==================================================================================

@@ -27,5 +27,5 @@
 	set #DPOINTS,#DPOINTS +10; dispbottom "Congratulations! You've earned 10 Donation Points!";
 	}
 
-kampung,137,144,5	script	King's Guard#1	966 ,{}
-kampung,139,146,5	script	King's Guard#2	966 ,{}
+//kampung,137,144,5	script	King's Guard#1	966 ,{}
+//kampung,139,146,5	script	King's Guard#2	966 ,{}
