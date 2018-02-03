@@ -1,15 +1,16 @@
-kampung,138,145,5	script	New Year Giveaway	965,{
+//kampung,138,145,5	script	New Year Giveaway	965,{
+	prontera,187,149,5	script	New Year Giveaway	965,{
 	// MAC Address
 	query_sql("SELECT `last_unique_id` FROM `login` WHERE `account_id` = "+getcharid(3)+" ",.macID$);
 	
 	// IP Address 
 	query_sql("SELECT `last_ip` FROM `login` WHERE `account_id` = "+getcharid(3)+" ",.IP$);
 	
-	if (.IP$ == $Mac_Claimed_WBR$){
-	mes "[Sarah]";
-	mes "You already claimed!!";
-	close;
-	}
+	//if (.IP$ == $Mac_Claimed_WBR$){
+	//mes "[Sarah]";
+	//mes "You already claimed!!";
+	//close;
+	//}
 	
 	if (.macID$ == $Mac_Claimed$){
 		mes "[ King William ]";
@@ -26,5 +27,5 @@ kampung,138,145,5	script	New Year Giveaway	965,{
 	set #DPOINTS,#DPOINTS +10; dispbottom "Congratulations! You've earned 10 Donation Points!";
 	}
 
-kampung,137,144,5	script	King's Guard#1	966 ,{}
-kampung,139,146,5	script	King's Guard#2	966 ,{}
+//kampung,137,144,5	script	King's Guard#1	966 ,{}
+//kampung,139,146,5	script	King's Guard#2	966 ,{}

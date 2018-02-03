@@ -10,33 +10,33 @@ kampung,136,156,5	script	Pet Evolution System	10210,{
 	}
 
 	// Getting Pet Data
-	query_sql("SELECT `name` FROM `pet` WHERE `account_id` = "+getcharid(3)+" ORDER BY `pet`.`egg_id` DESC ",.Pet_Name$);
-	query_sql("SELECT `level` FROM `pet` WHERE `account_id` = "+getcharid(3)+" ORDER BY `pet`.`egg_id` DESC  ",.Pet_Level);
-	query_sql("SELECT `intimate` FROM `pet` WHERE `account_id` = "+getcharid(3)+" ORDER BY `pet`.`egg_id` DESC  ",.Pet_Intimate);
-	query_sql("SELECT `egg_id` FROM `pet` WHERE `account_id` = "+getcharid(3)+" ORDER BY `pet`.`egg_id` DESC   ",.Pet_EggID);
+	query_sql("SELECT `name` FROM `pet` WHERE `account_id` = "+getcharid(3)+" ORDER BY `pet`.`egg_id` DESC ",#Pet_Name$);
+	query_sql("SELECT `level` FROM `pet` WHERE `account_id` = "+getcharid(3)+" ORDER BY `pet`.`egg_id` DESC  ",#Pet_Level);
+	query_sql("SELECT `intimate` FROM `pet` WHERE `account_id` = "+getcharid(3)+" ORDER BY `pet`.`egg_id` DESC  ",#Pet_Intimate);
+	query_sql("SELECT `egg_id` FROM `pet` WHERE `account_id` = "+getcharid(3)+" ORDER BY `pet`.`egg_id` DESC   ",#Pet_EggID);
 	
 	// Pet Tier 1
-	if (.Pet_EggID == 9920) 	{	set .Pet_Tier$, "Tier 1";} // Novice Poring
-	//debugmes " "+.Pet_EggID+" "+.Pet_Tier$+" ";
+	if (#Pet_EggID == 9920) 	{	set #Pet_Tier$, "Tier 1";} // Novice Poring
+	////debugmes " "+#Pet_EggID+" "+#Pet_Tier$+" ";
 	
 	// Pet Tier 2
-	if (.Pet_EggID == 9921) 	{	set .Pet_Tier$, "Tier 2";} // Poring
-	//debugmes " "+.Pet_EggID+" "+.Pet_Tier$+" ";
+	if (#Pet_EggID == 9921) 	{	set #Pet_Tier$, "Tier 2";} // Poring
+	////debugmes " "+#Pet_EggID+" "+#Pet_Tier$+" ";
 	
 	// Pet Evo Check
-	if (.Pet_Intimate == 1000)	{	set .Pet_Evo$, "^09AD29READY^000000"; set .Pet_Evo_Proceed,1;}
-	if (.Pet_Intimate < 1000)	{	set .Pet_Evo$, "^FF0000NOT READY^000000"; set .Pet_Evo_Proceed,0;}
-	if (.Pet_EggID < 9920) 	{	set @Pet_Nothing, 1; debugmes "pet nothing "+ @Pet_Nothing +" ";} 
-	if (.Pet_EggID >= 9920) 	{	set @Pet_Nothing, 0; debugmes "pet nothing "+ @Pet_Nothing +" ";} 
+	if (#Pet_Intimate == 1000)	{	set #Pet_Evo$, "^09AD29READY^000000"; set Pet_Evo_Proceed,1;}
+	if (#Pet_Intimate < 1000)	{	set #Pet_Evo$, "^FF0000NOT READY^000000"; set Pet_Evo_Proceed,0;}
+	if (#Pet_EggID < 9920) 	{	set #Pet_Nothing, 1; //debugmes "pet nothing "+ #Pet_Nothing +" ";} 
+	if (#Pet_EggID >= 9920) 	{	set #Pet_Nothing, 0; //debugmes "pet nothing "+ #Pet_Nothing +" ";} 
 	
-	debugmes " pet nothing = "+ @Pet_Nothing +" ";
+	//debugmes " pet nothing = "+ #Pet_Nothing +" ";
 	
 	// Loading Message
 	message strcharinfo(0), "Loading Pet Evolution System....";
 	progressbar "ffff00",1;
 	
 	// New Player Pet Evo Register
-	if (@Pet_Nothing == 1){
+	if (#Pet_Nothing == 1){
 	mes " ^FF0000[ PET EVOLUTION SYSTEM 1.6 ]^000000";
 	mes "Sorry! You don't have any Evo Pet in our system!";
 	next;
@@ -46,7 +46,7 @@ kampung,136,156,5	script	Pet Evolution System	10210,{
 		close2;
 		delitem 41295,1;
 		getitem 9920,1;
-		set @Pet_Nothing,0;
+		set #Pet_Nothing,0;
 		}
 		mes " ^FF0000[ PET EVOLUTION SYSTEM 1.6 ]^000000";
 		mes "Register database still not ready for new register.";
@@ -56,16 +56,17 @@ kampung,136,156,5	script	Pet Evolution System	10210,{
 		close;
 		}
 	}
+
 	
 	// Pet Evo Database
 	mes " ^FF0000[ PET EVOLUTION SYSTEM 1.6 ]^000000";
 	mes " ==========================";
-	mes " Pet Name : "+ .Pet_Name$ +" ";
-	mes " Pet Level : "+ .Pet_Level +" ";
-	mes " Pet Intimacy  : "+ .Pet_Intimate +"/1000";
-	mes " Pet Tier : "+ .Pet_Tier$ +" ";
-	mes " Pet Evolve Status : "+ .Pet_Evo$ +" ";
-	if (.Pet_Evo_Proceed < 1){	debugmes "if read"; close;}
+	mes " Pet Name : "+ #Pet_Name$ +" ";
+	mes " Pet Level : "+ #Pet_Level +" ";
+	mes " Pet Intimacy  : "+ #Pet_Intimate +"/1000";
+	mes " Pet Tier : "+ #Pet_Tier$ +" ";
+	mes " Pet Evolve Status : "+ #Pet_Evo$ +" ";
+	if (Pet_Evo_Proceed < 1){	//debugmes "if read"; close;}
 	if (countitem (9920) > 1){ close;}
 	next;
 	switch(select("[ EVOLVE ]: Later")) {
