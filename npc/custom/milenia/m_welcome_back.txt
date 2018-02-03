@@ -1,8 +1,8 @@
-kampung,101,160,11	script	Welcome Back Rewards	10185,{
-
+//kampung,101,160,11	script	Welcome Back Rewards	10185,{
+prontera,187,149,5	script	New Year Giveaway	965,{
 	// MAC Address
 	query_sql("SELECT `last_unique_id` FROM `login` WHERE `account_id` = "+getcharid(3)+" ",.macID$);
-	query_sql("SELECT `last_ip` FROM `login` WHERE `account_id` = "+getcharid(3)+" ",.IP$);
+	//query_sql("SELECT `last_ip` FROM `login` WHERE `account_id` = "+getcharid(3)+" ",.IP$);
 
 	if (.macID$ == $Mac_Claimed_WBR$){
 	mes "[Sarah]";
@@ -10,11 +10,12 @@ kampung,101,160,11	script	Welcome Back Rewards	10185,{
 	close;
 	}
 	
-	if (.IP$ == $Mac_Claimed_WBR$){
-	mes "[Sarah]";
-	mes "You already claimed!!";
-	close;
-	}
+	
+	//if (.IP$ == $Mac_Claimed_WBR$){
+	//mes "[Sarah]";
+	//mes "You already claimed!!";
+	//close;
+	//}
 	
 	if ( getcharid(3) > 2002304 ) { //Milenia 8.14 Last Players
 	mes "[Sarah]";
