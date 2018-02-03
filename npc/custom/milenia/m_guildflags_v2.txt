@@ -1,21 +1,21 @@
-kampung,127,163,11	script	Horn#M1	722,{
-	callfunc "ReturnFlag","arug_cas03",1;
+kampung,127,163,11	script	Mardoll#M1	722,{
+	callfunc "ReturnFlag","arug_cas01",1;
 	end;
 
 OnAgitInit2:
 OnRecvCastlear03:
-	FlagEmblem GetCastleData("arug_cas03",1);
+	FlagEmblem GetCastleData("arug_cas01",1);
 	end;
 }
 
 
-kampung,112,163,5	script	Himinn#H1	722,{
-	callfunc "ReturnFlag","schg_cas01",1;
+kampung,112,163,5	script	Skidbladnir#H1	722,{
+	callfunc "ReturnFlag","schg_cas05",1;
 	end;
 
 OnAgitInit2:
 OnRecvCastlear03:
-	FlagEmblem GetCastleData("schg_cas01",1);
+	FlagEmblem GetCastleData("schg_cas05",1);
 	end;
 }
 
