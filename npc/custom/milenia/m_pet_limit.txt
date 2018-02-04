@@ -241,7 +241,6 @@ dispbottom "Type @storage2 to Open Premium and VIP Storage";
 dispbottom "=========================================";
 dispbottom "Generating Mystery Gift...";
 callfunc "Gasha03Func";
-rentitem 41121,2592000;
 
 end;
 }

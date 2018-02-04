@@ -22,4 +22,8 @@
 
 9920,511,100	// Novice Poring S Egg
 9921,511,100	// Poring S Egg
+41121,411,100	// Milenia_Certificate
+41264,411,100	// VIP_Certificate_Combo
+41274,411,100	// Milenia_Certificate_Box_Combo
+41293,411,100	// Milenia_Certificate_Box_1h
 41295,511,100	// Evo Pet Pass
