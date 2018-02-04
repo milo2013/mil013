@@ -284,7 +284,7 @@
 41262,Premium_Storage_Pass,Premium Storage Pass,3,6,,10,,,,,,,,,,,,,{},{},{}
 41263,Premium_Storage_Pass_Box,Premium Storage Pass Box,2,10,,1,,,,,0xFFFFFFFF,63,2,,,,,,{ rentitem 41262,2592000; },{},{}
 
-41264,VIP_Certificate_Combo,VIP Certificate Combo,2,10,,1,,,,,0xFFFFFFFF,63,2,,,,,,{ callfunc "VipCOMBOFunc"; },{},{}
+41264,VIP_Certificate_Combo,VIP Certificate Combo,2,10,,1,,,,,0xFFFFFFFF,63,2,,,,,,{ rentitem 41121,2592000; callfunc "VipCOMBOFunc"; },{},{}
 41274,Milenia_Certificate_Box_Combo,VIP Refiner Combo Box,18,10,,10,,,,0,0xFFFFFFFF,63,2,,,,,,{ rentitem 41121,2592000; getitem 41123,500; },{},{}
 
 41265, Scythe(Use), Scythe(Use),5,50,,400,17,,1,3,0x03EFDFFF,63,2,2,1,1,1,1,{},{},{}
@@ -320,6 +320,6 @@
 41290,Mysterious Coin,Mysterious Coin,3,100,,10,,,,,,,,,,,,,{},{},{}
 41291,Infinite_Fish,Infinite Fish Box,0,50,,70,,,,,0xFFFFFFFF,63,2,,,,,,{ percentheal 100,100; getitem 41291,1; },{},{}
 41292,Infinite_Kafra_Box,Infinite Kafra Box,18,10,,10,,,,0,0xFFFFFFFF,63,2,,,,,,{ rentitem 12211,604800; },{},{}
-41293,Milenia_Certificate_Box_1h,VIP Refiner 1H,18,10,,10,,,,0,0xFFFFFFFF,63,2,,,,,,{ rentitem 41121,3600; },{},{}
+41293,Milenia_Certificate_Box_1h,VIP Refiner 1H,18,10,,10,,,,0,0xFFFFFFFF,63,2,,,,1,,{ rentitem 41121,3600; },{},{}
 41294,Mysterious Fragment,Mysterious Fragment,3,0,,0,,,,,,,,,,,,,{},{},{} 
 41295,Evo Pet Pass,Evo Pet Pass,3,0,,0,,,,,,,,,,,,,{},{},{}

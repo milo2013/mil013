@@ -26,8 +26,8 @@ kampung,136,156,5	script	Pet Evolution System	10210,{
 	// Pet Evo Check
 	if (#Pet_Intimate == 1000)	{	set #Pet_Evo$, "^09AD29READY^000000"; set Pet_Evo_Proceed,1;}
 	if (#Pet_Intimate < 1000)	{	set #Pet_Evo$, "^FF0000NOT READY^000000"; set Pet_Evo_Proceed,0;}
-	if (#Pet_EggID < 9920) 	{	set #Pet_Nothing, 1; //debugmes "pet nothing "+ #Pet_Nothing +" ";} 
-	if (#Pet_EggID >= 9920) 	{	set #Pet_Nothing, 0; //debugmes "pet nothing "+ #Pet_Nothing +" ";} 
+	if (#Pet_EggID < 9920) 	{	set #Pet_Nothing, 1; debugmes "pet nothing "+ #Pet_Nothing +" ";} 
+	if (#Pet_EggID >= 9920) 	{	set #Pet_Nothing, 0; debugmes "pet nothing "+ #Pet_Nothing +" ";} 
 	
 	//debugmes " pet nothing = "+ #Pet_Nothing +" ";
 	
@@ -66,7 +66,7 @@ kampung,136,156,5	script	Pet Evolution System	10210,{
 	mes " Pet Intimacy  : "+ #Pet_Intimate +"/1000";
 	mes " Pet Tier : "+ #Pet_Tier$ +" ";
 	mes " Pet Evolve Status : "+ #Pet_Evo$ +" ";
-	if (Pet_Evo_Proceed < 1){	//debugmes "if read"; close;}
+	if (Pet_Evo_Proceed < 1){	debugmes "if read"; close;}
 	if (countitem (9920) > 1){ close;}
 	next;
 	switch(select("[ EVOLVE ]: Later")) {

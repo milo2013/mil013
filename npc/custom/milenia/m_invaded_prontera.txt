@@ -55,7 +55,7 @@ kampung,32,49,5	script	Unknown Scout	998,{
 			mes "For more bonus, please craft for rent our ^FF0000Figurine!!^000000";
 			close;
 		case 2: 
-			warp "milenia",65,62;
+			warp "kampung",150,150;
 					break;	
 		case 3:
 			if (getpetinfo(1)){
