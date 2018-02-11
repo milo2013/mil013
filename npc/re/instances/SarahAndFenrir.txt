@@ -191,298 +191,459 @@ dali02,99,148,3	script	Dimensional Device#XX1	PORTAL,{
 	}
 }
 
-dali02,93,146,6	script	Assistant Professor#a1	4_M_REPAIR,{
-	if (sarah_fenrir == 0)
-		end;
-	disable_items;
-	mes "[Chief Assistant]";
-	mes "I've heard about you from the professor.";
-	mes "The professor has told me to sufficiently compensate you for risking your life and bringing the shards of Gigantes.";
-	next;
-	switch( select( "Enchant earring.", "Purchase earring", "Exit conversation" ) ) {
-	case 1:
-		mes "[Chief Assistant]";
-		mes "Sarah's earrings we have discovered at the archaeological site must certainly have great potential.";
-		next;
-		switch( select( "Enchant Sarah's earrings", "Initialize enchantment on Sarah's earrings", "Exit conversation" ) ) {
-		case 1:
-			mes "[Chief Assistant]";
-			mes "2 enchantments are possible on one earring.";
-			mes "Which earring do you wish to enchant?";
-			next;
-			switch( select( "The left earring of Sarah", "The right earring of Sarah", "Quit" ) ) {
-			case 1:
-				.@sarah_item_id = 28310;
-				.@sarah_earring$ = "left";
-				break;
-			case 2:
-				.@sarah_item_id = 28311;
-				.@sarah_earring$ = "right";
-				break;
-			case 3:
-				mes "[Chief Assistant]";
-				mes "If you want an enchantment ";
-				mes "on Sarah's earrings, ";
-				mes "come and find me again.";
-				close;
-			}
-			mes "[Chief Assistant]";
-			mes "You must equip the item to make enchantment possible.";
-			mes "Which column do you wish to enchant?";
-			next;
-			if (select( "Left column", "Right column" ) == 1) {
-				.@part = EQI_ACC_L;
-				.@column$ = "left";
-				.@bonus_size = 4;		// 4 possibilities
-				.@bonus_chance = 20;	// 20% per possibility
-			}
-			else {
-				.@part = EQI_ACC_R;
-				.@column$ = "right";
-				.@bonus_size = 6;		// 6 possibilities
-				.@bonus_chance = 10;	// 10% per possibility
-			}
-			.@equip_id = getequipid(.@part);
-			if (.@equip_id != .@sarah_item_id) {
-				mes "[Chief Assistant]";
-				mes "If you wish to enchant, you must equip Sarah's " + .@sarah_earring$ + " earring.";
-				close;
-			}
-			setarray .@card[0], getequipcardid(.@part,3), getequipcardid(.@part,2);
-			if (.@card[1] > 0) {// 2 enchants
-				mes "[Chief Assistant]";
-				mes "A fully enchanted earring of Sarah cannot be enchanted any further.";
-				close;
-			}
-			if (.@card[0] < 1) {// none enchant
-				mes "[Chief Assistant]";
-				mes "Sarah's Earring is currently in a state without enchantment.";
-				.@slot = 0;
-			}
-			else {// 1 enchant
-				mes "[Chief Assistant]";
-				mes "Sarah's Earring is currently in a state of enchantment in slot 4.";
-				.@slot = 1;
-			}
-			next;
-			mes "[Chief Assistant]";
-			mes "Which ability do you want as an enchantment on slot " + (4-.@slot) + "?";
-			next;
-			switch( select( "CRI or Critical", "Expert archer or Bleed", "Conservation or MATK", "Delay Attack or Delay Skill" ) ) {
-			case 1:
-				setarray .@bonus[0],
-					4863,	// Fatal1
-					4864,	// Fatal2
-					4939,	// Critical2
-					4940,	// Critical3
-					4941,	// Critical4
-					4865;	// Fatal3
-				mes "[Chief Assistant]";
-				mes "Selected for CRI or Critical Enchantment slot " + (4-.@slot) + ".";
-				break;
-			case 2:
-				setarray .@bonus[0],
-					4832,	// Expert_Archer1
-					4833,	// Expert_Archer2
-					4942,	// Dodge1
-					4943,	// Dodge2
-					4944,	// Dodge3
-					4834;	// Expert_Archer3
-				mes "[Chief Assistant]";
-				mes "Selected for Expert Archer or Bleed Enchantment slot " + (4-.@slot) + ".";
-				break;
-			case 3:
-				setarray .@bonus[0],
-					4945,	// Thrift1
-					4946,	// Thrift2
-					4897,	// Matk3p
-					4898,	// Matk4p
-					4947,	// Thrift3
-					4899;	// Matk5p
-				mes "[Chief Assistant]";
-				mes "Selected for Conservation or MATK Enchantment slot " + (4-.@slot) + ".";
-				break;
-			case 4:
-				setarray .@bonus[0],
-					4869,	// Attack_Delay_1
-					4872,	// Attack_Delay_2
-					4948,	// Skill_Delay1
-					4949,	// Skill_Delay2
-					4950,	// Skill_Delay3
-					4873;	// Attack_Delay_3
-				mes "[Chief Assistant]";
-				mes "Selected for Delay Attack or Delay Skill Enchantment slot " + (4-.@slot) + ".";
-				break;
-			}
-			next;
-			mes "[Chief Assistant]";
-			mes "4 shards of Gigantes is required for one enchantment.";
-			next;
-			mes "[Chief Assistant]";
-			mes "Because enchantment is a high risk process, there is risk of Sarah's earring being destroyed.";
-			mes "Do you still want to do it?";
-			next;
-			if (select( "No", "Yes" ) == 1) {
-				mes "[Chief Assistant]";
-				mes "Please speak to me again after making a clear decision!";
-				close;
-			}
-			if (countitem(6803) < 4) {
-				mes "[Chief Assistant]";
-				mes "There are not enough shards of Gigantes.";
-				mes "4 shards of Gigantes is required to do one enchantment.";
-				close;
-			}
-			mes "[Chief Assistant]";
-			mes "Good. I will start the enchantment!";
-			mes "I wish you luck~!";
-			next;
-			mes "[Chief Assistant]";
-			mes "Aahhhh!!";
-			next;
-			progressbar "000000",5;
-			specialeffect2 EF_MAGICALATTHIT;
-			specialeffect2 EF_POTION2;
-			delitem 6803,4;// Shard of Gigantes
-			delequip .@part;
-			.@r = rand(100);
-			for ( .@i = 0; .@i < .@bonus_size && (.@bonus_chance * (.@i+1)) < .@r; .@i++ );
-			if (.@i == .@bonus_size) {
-				specialeffect2 EF_CRASHEARTH;
-				specialeffect2 EF_MAXPOWER;
-				mes "[Chief Assistant]";
-				mes "Sadly... it is..";
-				mes "destroyed...";
-				mes "Whew.. ";
-				mes "enchantment is not an easy task..";
-				close;
-			}
-			.@card[.@slot] = .@bonus[.@i];
-			specialeffect2 EF_ANGEL2;
-			getitem2 .@sarah_item_id,1,1,0,0,0,0,.@card[1],.@card[0];
-			mes "[Chief Assistant]";
-			mes "Enchantment completed!";
-			close;
-		case 2:
-			mes "[Chief Assistant]";
-			mes "Which earring do you wish to initialize?";
-			next;
-			switch( select( "The left earring of Sarah", "The right earring of Sarah", "Quit" ) ) {
-			case 1:
-				.@sarah_item_id = 28310;
-				.@sarah_earring$ = "left";
-				break;
-			case 2:
-				.@sarah_item_id = 28311;
-				.@sarah_earring$ = "right";
-				break;
-			case 3:
-				mes "[Chief Assistant]";
-				mes "If you want to initialize an enchantment on Sarah's earrings, come and find me again.";
-				close;
-			}
-			mes "[Chief Assistant]";
-			mes "On Sarah's earring. 1 shard of Gigantes is required to initialize the enchantment..";
-			next;
-			if (countitem(6803) < 1) {
-				mes "[Chief Assistant]";
-				mes "There are not enough shards of Gigantes.";
-				mes "You will need them in order for initialization to take place.";
-				close;
-			}
-			mes "[Chief Assistant]";
-			mes "You must equip the item to make initialization possible.";
-			mes "Which column's earring do you wish to initialize?";
-			next;
-			if (select( "Left column", "Right column" ) == 1) {
-				.@part = EQI_ACC_L;
-				.@column$ = "left";
-			}
-			else {
-				.@part = EQI_ACC_R;
-				.@column$ = "right";
-			}
-			.@equip_id = getequipid(.@part);
-			if (.@equip_id == -1) {
-				mes "[Chief Assistant]";
-				mes "To initialize an enchantment, the relevant column must be equipped with gear.";
-				close;
-			}
-			if (.@equip_id != .@sarah_item_id) {
-				mes "[Chief Assistant]";
-				mes "To initialize an enchantment, the relevant column must be equipped with Sarah's earring.";
-				close;
-			}
-			if (getequipcardid(.@part,3) < 1) {
-				mes "[Chief Assistant]";
-				mes "Sarah's earring without an enchantment cannot be initialized.";
-				close;
-			}
-			mes "[Chief Assistant]";
-			mes "You have selected Sarah's " + .@sarah_earring$ + " earring on the " + .@column$ + " column.";
-			mes "It is impossible to restore abilities that are gone after initialization.";
-			mes "Do you still want to proceed?";
-			next;
-			if (select( "No", "Yes" ) == 2) {
-				mes "[Chief Assistant]";
-				mes "Yes sir. Initialization will start.";
-				next;
-				progressbar "000000",5;
-				specialeffect2 EF_MAGICALATTHIT;
-				specialeffect2 EF_POTION2;
-				specialeffect2 EF_ANGEL2;
-				delitem 6803,1;// Shard of Gigantes
-				delequip .@part;
-				getitem .@sarah_item_id,1;
-				mes "[Chief Assistant]";
-				mes "Initialization completed.";
-				mes "Please find me if you need me.";
-			}
-			close;
-		case 3:
-			mes "[Chief Assistant]";
-			mes "If you want an enchantment on Sarah's earrings, come and find me again.";
-			close;
-		}
-	case 2:
-		mes "[Chief Assistant]";
-		mes "Related to Glast Heim, this is an unique and rare earring found during an excavation with the professor.";
-		next;
-		mes "[Chief Assistant]";
-		mes "I think this has been worn by Sarah in the past and seems to have a great ability to draw out potential strength.";
-		next;
-		mes "[Chief Assistant]";
-		mes "I will specially trade it for 1 shard since you are the warrior who brought shards of Gigantes for the professor's work.";
-		next;
-		mes "[Chief Assistant]";
-		mes "- The left earring of Sarah -";
-		mes "Usable for Heal 1Lv";
-		mes "- The right earring of Sarah -";
-		mes "Usable for Teleport 1Lv";
-		mes "-----------------------";
-		mes "Which one do you wish?";
-		next;
-		.@s = select( "The left earring of Sarah", "The right earring of Sarah", "Exit conversation" ) - 1;
-		if (.@s < 2) {
-			if (countitem(6803) < 1) {
-				mes "[Chief Assistant]";
-				mes "There are not enough shards of Gigantes.";
-				mes "You will need them for me to trade with you.";
-				close;
-			}
-			delitem 6803,1;// Shard of Gigantes
-			getitem (28310+.@s),1;
-		}
-		mes "[Chief Assistant]";
-		mes "Professor Bernhard is the professor I respect the most.";
-		mes "Do you have someone you respect?";
-		close;
-	case 3:
-		mes "[Chief Assistant]";
-		mes "I've heard about you from the professor.";
-		mes "The professor has told me to sufficiently compensate you for risking your life and bringing the shards of Gigantes.";
+dali02,99,141,3	script	Assistant Professor::alaaspr	4_M_NOVELIST,{
+	if(.enchantingId != -1)
+	{
+		mes "[Assistant Professor]";
+		mes "Wait a bit please, I'm stucked with someone else.";
 		close;
 	}
+	disable_items;
+	mes "[Assistant Professor]";
+	if (countitem(.reqId) >= .reqCountEnchant) {
+		mes "I've been studying ways to enhance Sarah's stuff to maximize its capability.";
+		next;
+		mes "[Assistant Professor]";
+		mes "Enchanting is an awesome skill that infuses a mysterious status powers into the armor's hidden socket.";
+		next;
+		mes "[Assistant Professor]";
+		mes "I'm able to put some kind of bonus stuff on an piece of stuff belonging to Sarah that you may wear.";
+		next;
+		set .@typeChoice, select("Buy an Earring","Enchant Sara Earring.");
+		switch(.@typeChoice) {
+		case 1:
+			goto S_BuyEarring;
+			break;
+		case 2:
+			.@menu$ = "";
+			for(.@i = 0; .@i<getarraysize(.itemList); ++.@i)
+			{
+				if(getequipid(EQI_ACC_L) == .itemList[.@i] || getequipid(EQI_ACC_R) == .itemList[.@i])
+				{
+					set .@realItems[getarraysize(.@realItems)], .itemList[.@i];
+					.@menu$ += getitemname(.itemList[.@i])+":";
+				}
+			}
+			break;
+		}
+		if(getarraysize(.@realItems) == 0)
+		{
+			next;
+			mes "[Assistant Professor]";
+			mes "You have to wear it to allow me to enchant it.";
+			close;
+		}
+	
+		callsub S_EnchantArmor, .@realItems[select(.@menu$)-1], .@typeChoice;
+		end;
+	}
+	mes "Do you know you can enchant Sarah's piece of stuff?";
+	next;
+	mes "[Assistant Professor]";
+	mes "If by any chance, you would want to enchant one, bring me " + .reqCountEnchant + " " + getitemname(.reqId) + ", and we'll see what we can do.";
+	close;
+	
+S_BuyEarring:
+	next;
+	mes "[Assistant Professor]";
+	mes "So you want to buy an item?";
+	mes "It'll cost you " + .reqCountBuy + " " + getitemname(.reqId) + " for an item.";
+	for(.@i = 0; .@i<getarraysize(.itemList); ++.@i)
+	{
+		.@menu$ += getitemname(.itemList[.@i])+":";
+	}
+	set .@selectItem, select(.@menu$) - 1;
+	next;
+	mes "[Assistant Professor]";
+	mes "So you've choosed a " + getitemname(.itemList[.@selectItem]) + ", hu?";
+	if(select("Yes","No") == 1)
+	{
+		if(countitem(.reqId) >= .reqCountBuy)
+		{
+			next;
+			mes "[Assistant Professor]";
+			mes "Allright. Here you are then.";
+			delitem .reqId, .reqCountBuy;
+			getitem .itemList[.@selectItem], 1;
+			next;
+			mes "[Assistant Professor]";
+			mes "See you soon.";
+		}
+		else
+		{
+			next;
+			mes "[Assistant Professor]";
+			mes "As I told you, I need " + .reqCountBuy + " " + getitemname(.reqId) + ". I'll wait here.";
+		}
+	}
+	else
+	{
+		next;
+		mes "[Assistant Professor]";
+		mes "Really?";
+		mes "Let's do it again then.";
+		goto S_BuyEarring;
+	}
+	close;
+	
+S_EnchantArmor:
+	.@itemid = getarg(0);
+	.@typeChoice = getarg(1);
+	next;
+	mes "[Assistant Professor]";
+	mes "First and most importantly.";
+	mes "^ff5555Existing Refine Level of the Armor";
+	mes "and Cards will be GONE.^000000";
+	mes "Do you still want to try an Enchant?";
+	next;
+	if(select("Hmm... Let me think it over.", "Go ahead.") == 1) {
+		mes "[Assistant Professor]";
+		mes "Well, I can't blame you. Safety first, eh?";
+		mes "Now you have a nice day.";
+		close;
+	}
+
+	if(countitem(.@itemId) > 1)
+	{
+		next;
+		mes "[Assistant Professor]";
+		mes "Sorry but you have to have only one item on your equipement window.";
+		mes "Otherwise, the enchant may mix things up...";
+		close;
+	}
+
+	mes "[Assistant Professor]";
+	mes "Quite of an adventurer huh? Well, shall we?";
+	mes "You should now choose the kind of enchant you want.";
+	set .@enchantChoice, select("Cri and Critical Damage","Expert Archer or Perfect Dodge","Conservation and MATK","Delay After Attack or Delay After Skill");
+
+	if (countitem(.reqId) < .reqCountEnchant) {
+		mes "[Assistant Professor]";
+		mes "Sorry, but you don't have enough zeny.";
+		close;
+	}
+	
+	//find good slot
+	set .@slot, -1;
+	if(getequipid(EQI_ACC_R) == .@itemid)
+	{
+		set .@cSlot, getequipcardid(EQI_ACC_R, 2);
+		if(.@cSlot != 0)
+		{
+			set .@slot3Id, .@cSlot;
+			set .@cSlot, getequipcardid(EQI_ACC_R, 3);
+			if(.@cSlot == 0)
+			{
+				set .@slot, 3;
+			}
+		}
+		else
+		{
+			set .@slot, 2;
+		}
+	}
+	else if(getequipid(EQI_ACC_L) == .@itemid)
+	{
+		set .@cSlot, getequipcardid(EQI_ACC_L, 2);
+		if(.@cSlot != 0)
+		{
+			set .@slot3Id, .@cSlot;
+			set .@cSlot, getequipcardid(EQI_ACC_L, 3);
+			if(.@cSlot == 0)
+			{
+				set .@slot, 3;
+			}
+		}
+		else
+		{
+			set .@slot, 2;
+		}
+	}
+
+	if(.@slot == -1)
+	{
+		next;
+		mes "[Assistant Professor]";
+		mes "Your item is allready enchanted twice...I can't work with that.";
+		close;
+	}
+	
+	//enchant
+	set .enchantingId, getcharid(3);
+	progressbar "ffff00",7;
+	delitem .reqId, .reqCountEnchant;
+	delitem .@itemid,1;
+	
+	switch(.@enchantChoice)
+	{
+		case 1:
+			if(.@slot == 2)
+			{
+				switch(rand(1, 5))
+				{
+					case 1:
+						set .@addpart, 4926;
+						break;
+					case 2:
+						set .@addpart, 4939;
+						break;
+					case 3:
+						set .@addpart, 4863;
+						break;
+					case 4:
+						set .@addpart, 4864;
+						break;
+					case 5:
+						specialeffect 155;
+						next;
+						mes "[Assistant Professor]";
+						mes "Well that's too bad.";
+						mes "The requested equipment has failed to enchant, I'm sorry...";
+						set .enchantingId, -1;
+						close;
+				}
+			}
+			else
+			{
+				switch(rand(1, 10))
+				{
+					case 1:
+						set .@addpart, 4926;
+						break;
+					case 2:
+						set .@addpart, 4939;
+						break;
+					case 3:
+						set .@addpart, 4940;
+						break;
+					case 4:
+						set .@addpart, 4863;
+						break;
+					case 5:
+						set .@addpart, 4864;
+						break;
+					case 6:
+						set .@addpart, 4865;
+						break;
+					default:
+						specialeffect 155;
+						next;
+						mes "[Assistant Professor]";
+						mes "Well that's too bad.";
+						mes "The requested equipment has failed to enchant, I'm sorry...";
+						//break item
+						set .enchantingId, -1;
+						close;
+				}
+			}
+			break;
+		case 2:
+			if(.@slot == 2)
+			{
+				switch(rand(1, 5))
+				{
+					case 1:
+						set .@addpart, 4832;
+						break;
+					case 2:
+						set .@addpart, 4833;
+						break;
+					case 3:
+						set .@addpart, 4942;
+						break;
+					case 4:
+						set .@addpart, 4943;
+						break;
+					case 5:
+						specialeffect 155;
+						next;
+						mes "[Assistant Professor]";
+						mes "Well that's too bad.";
+						mes "The requested equipment has failed to enchant, I'm sorry...";
+						//break item
+						set .enchantingId, -1;
+						close;
+				}
+			}
+			else
+			{
+				switch(rand(1, 10))
+				{
+					case 1:
+						set .@addpart, 4832;
+						break;
+					case 2:
+						set .@addpart, 4833;
+						break;
+					case 3:
+						set .@addpart, 4834;
+						break;
+					case 4:
+						set .@addpart, 4942;
+						break;
+					case 5:
+						set .@addpart, 4943;
+						break;
+					case 6:
+						set .@addpart, 4944;
+						break;
+					default:
+						specialeffect 155;
+						next;
+						mes "[Assistant Professor]";
+						mes "Well that's too bad.";
+						mes "The requested equipment has failed to enchant, I'm sorry...";
+						//break item
+						set .enchantingId, -1;
+						close;
+				}
+			}
+			break;
+		case 3:
+			if(.@slot == 2)
+			{
+				switch(rand(1, 5))
+				{
+					case 1:
+						set .@addpart, 4859;
+						break;
+					case 2:
+						set .@addpart, 4860;
+						break;
+					case 3:
+						set .@addpart, 4897;
+						break;
+					case 4:
+						set .@addpart, 4898;
+						break;
+					case 5:
+						specialeffect 155;
+						next;
+						mes "[Assistant Professor]";
+						mes "Well that's too bad.";
+						mes "The requested equipment has failed to enchant, I'm sorry...";
+						//break item
+						set .enchantingId, -1;
+						close;
+				}
+			}
+			else
+			{
+				switch(rand(1, 10))
+				{
+					case 1:
+						set .@addpart, 4859;
+						break;
+					case 2:
+						set .@addpart, 4860;
+						break;
+					case 3:
+						set .@addpart, 4762;
+						break;
+					case 4:
+						set .@addpart, 4897;
+						break;
+					case 5:
+						set .@addpart, 4898;
+						break;
+					case 6:
+						set .@addpart, 4899;
+						break;
+					default:
+						specialeffect 155;
+						next;
+						mes "[Assistant Professor]";
+						mes "Well that's too bad.";
+						mes "The requested equipment has failed to enchant, I'm sorry...";
+						//break item
+						set .enchantingId, -1;
+						close;
+				}
+			}
+			break;
+		case 4:
+			if(.@slot == 2)
+			{
+				switch(rand(1, 5))
+				{
+					case 1:
+						set .@addpart, 4869;
+						break;
+					case 2:
+						set .@addpart, 4872;
+						break;
+					case 3:
+						set .@addpart, 4948;
+						break;
+					case 4:
+						set .@addpart, 4949;
+						break;
+					case 5:
+						specialeffect 155;
+						next;
+						mes "[Assistant Professor]";
+						mes "Well that's too bad.";
+						mes "The requested equipment has failed to enchant, I'm sorry...";
+						//break item
+						set .enchantingId, -1;
+						close;
+				}
+			}
+			else
+			{
+				switch(rand(1, 10))
+				{
+					case 1:
+						set .@addpart, 4869;
+						break;
+					case 2:
+						set .@addpart, 4872;
+						break;
+					case 3:
+						set .@addpart, 4873;
+						break;
+					case 4:
+						set .@addpart, 4948;
+						break;
+					case 5:
+						set .@addpart, 4949;
+						break;
+					case 6:
+						set .@addpart, 4950;
+						break;
+					default:
+						specialeffect 155;
+						next;
+						mes "[Assistant Professor]";
+						mes "Well that's too bad.";
+						mes "The requested equipment has failed to enchant, I'm sorry...";
+						//break item
+						set .enchantingId, -1;
+						close;
+				}
+			}
+			break;
+	}
+	
+	if(.@slot == 2)
+	{
+		getitem2 .@itemid, 1, 1, 0, 0, 0, 0, .@addpart, 0;
+	}
+	else if(.@slot == 3)
+	{
+		getitem2 .@itemid, 1, 1, 0, 0, 0, 0, .@slot3Id, .@addpart;
+	}
+	specialeffect 154;
+	set .enchantingId, -1;
+	close;
+	
+OnInit:
+	set .enchantingId, -1;
+	set .reqId, 6803;
+	set .reqCountEnchant, 4;
+	set .reqCountBuy, 1;
+	setarray .itemList[0],28310,28311;
+	end;
 }
 
 1@glast,360,295,0	script	#glast_event_1	HIDDEN_WARP_NPC,8,8,{

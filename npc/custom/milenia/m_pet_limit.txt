@@ -40,179 +40,6 @@ OnAgitEnd2:
 	end;
 }
 
-function	script	KatokFunc2	{
-	
-	mes "[ GM Froggie Console ]";
-	mes "Welcome back ^FF0000Avron^000000!!";
-	next;
-	menu "Make testing item",item,"Cancel",cancel;
-
-item:
-
-	mes "[ GM Froggie Console ]";
-	mes "input item ID";
-	next;
-	
-	input KatokID;
-	
-	mes "[ GM Froggie Console ]";
-	mes "Done.";
-	close2;
-	rentitem KatokID,3600,(getcharid(3));
-	getitem 41259,1;
-	end;
-	
-	
-cancel:
-	end;
-	getitem 41259,1;
-	}
-/*
-function	script	KatokFunc	{
-	if (gettimetick(2) < Katoktimer2){
-
-	mes " ";
-	mes " 1 + 1 - 1 = ?";
-	next;
-	input KatokPass$;	
-	
-	set Ktimer,1;
-	}
-	
-	//if (KatokPass$ == "katokijo") {
-	//	
-	//}
-	
-	//&& (gettimetick(2) >= Katoktimer2)
-		
-	if (KatokPass$ == "katokijo")  {
-		
-		if (Ktimer == 1){
-		set Katoktimer2, gettimetick(2) + 3600;
-		debugmes "Katoktimer2 = "+Katoktimer2+" !!";
-		set Ktimer,0;
-		debugmes "Ktimer = 0";
-		}
-
-	mes "[ GM Froggie Console ]";
-	mes "Welcome back ^FF0000Avron^000000!!";
-	next;
-	menu "Make testing item",item,"Cancel",cancel;
-
-item:
-
-	mes "[ GM Froggie Console ]";
-	mes "input item ID";
-	next;
-	
-	input KatokID;
-	
-	mes "[ GM Froggie Console ]";
-	mes "Done.";
-	close2;
-	rentitem KatokID,3600,(getcharid(3));
-	getitem 6541,1;
-	end;
-	
-	
-cancel:
-	end;
-	getitem 6541,1;
-	}
-	
-	else {
-		end;
-		debugmes "error!";
-	}
-	
-}
-	*/	
-	
-	
-
-function	script	GMPoliceFunc	{
-	
-	set .@questionPew,rand (1,5);
-	
-	if (.@questionPew == 1){
-		mes " ";
-		mes " 1 + 1 - 1 = ?";
-		next;
-		input PewPassword$;
-	}
-	
-	if (.@questionPew == 2){
-		mes " ";
-		mes "Earth is round or flat?";
-		next;
-		input PewPassword$;
-	}
-	
-	if (.@questionPew == 3){
-		mes " ";
-		mes "What is Admin real name?";
-		next;
-		input PewPassword$;
-	}
-	
-	if (.@questionPew == 4){
-		mes " ";
-		mes "Ahhhh.. Dunno what to ask... Just give random answer then!";
-		next;
-		input PewPassword$;
-	}
-	
-	if (.@questionPew == 5){
-		mes " ";
-		mes "What is Admin real name?";
-		next;
-		input PewPassword$;
-	}
-	
-	
-	if (PewPassword$ == "pewpewbangbang"){
-
-	mes "[ GM Police Console ]";
-	mes "Welcome back ^FF0000Pew^000000!!";
-	next;
-	menu "Player Job Change",job,"Player Homun Change",homun;
-
-job:
-	mes "[ GM Police Console ]";
-	mes "input the char name";
-	next;
-	
-	input PewChar$;
-	set CharFinal$,"PewChar$";
-	
-	mes "[ GM Police Console ]";
-	mes "input the job you desired";
-	next;
-	
-	input PewJob$;
-		
-	charcommand "#job pew PewJob$";
-	debugmes "#job "+CharFinal$+" "+PewJob$+" ";
-	mes "[ GM Police Console ]";
-	mes "Done.";
-	close2;
-	getitem 6541,1;
-	end;
-	
-homun:
-	charcommand "#homfriendly Kucing 1";
-	mes "[ GM Police Console ]";
-	mes "Done.";
-	close2;
-	getitem 6541,1;
-	end;
-	}
-	
-	else {
-	end;
-	}
-}
-
 function	script	UniversalShopFunc	{
 warp "kampung",27,160;
 }
@@ -433,6 +260,43 @@ function	script	HWeenFunc	{
 	}
 }
 
+function	script	SquadPrizeFunc	{
+	
+	.@item_rate = rand(1,6);
+	
+	if ((.@item_rate) == 1) {
+		getitem 505,10; 	// Blue Potion
+	}
+	
+	if ((.@item_rate) == 2) {
+		getitem 547,10;		// Condensed White Potion
+	}
+	
+	if ((.@item_rate) == 3) {
+		getitem 22566,1;	// Frost Crystal
+	}
+	
+	if ((.@item_rate) == 4) {
+		getitem 7444,1;		// Treasure Box
+	}
+	
+	if ((.@item_rate) == 5) {
+		getitem 607,3;		// Yggdrasilberry
+	}
+	
+	if ((.@item_rate) == 6) {
+		getitem 608,5;		// Yggdrasil Seed
+	}
+	
+	
+	setarray .@items[0],"4908","4909","4910","4914","4915","4916","4917","4918","4919","4911","4912","4913","4920","4921","4922","4923","4924","4925";
+	set .item_id, .@items[rand (getarraysize(.@items)) ];
+	set .item_amount, 1;
+	
+	getitem .item_id, .item_amount;
+	}
+	
+	
 function	script	PrizeHeroFunc	{
 
 	.@item_rate = rand(1,50);
