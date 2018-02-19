@@ -1,25 +1,189 @@
 kampung,61,123,0	script	Mysterious Portal	10007,2,2,{
+
 OnTouch:
-mes "[ Mysterious Portal]";
-mes "Which Guild Castle you expect?";
+
+set .@GID_Saturday, GetCastleData("arug_cas01",1); 				// Guild that occupies SATURDAY Castle
+set .@GuildMaster_Saturday, GetGuildMaster(.@GID_Saturday); 	// Guild Master SATURDAY Castle
+
+set .@GID_Sunday, GetCastleData("schg_cas05",1); 				// Guild that occupies SUNDAY Castle
+set .@GuildMaster_Sunday, GetGuildMaster(.@GID_Sunday); 		// Guild Master SUNDAY Castle
+
+// < ------------ SATURDAY SCRIPT ----------------> //
+if (GetGuildMaster(.@GID_Saturday) == strcharinfo(0)) {
+mes " [ Dungeon Manager ] ";
+mes "Welcome. My honorable master, ^ff0000"+strcharinfo(0)+"^000000...";
 next;
-	menu "Horn's Castle",Horn,"Himinn's Castle",Himinn;
-	
-	Horn:
-	goto Lhorn;
-	
-	Himinn:
-	goto Lhiminn;
+	switch(select("Enter Dungeon:^FF0000[ Claim Dungeon Funds ]^000000")) {
 
-Lhorn:
-
-	set .@GID, GetCastleData("arug_cas03",1); //Guild that occupies Horn Castle
+	case 1:
+		mes " [ Dungeon Manager ] ";
+		mes "Which Dungeon do you want me to warp Master?";
+		next;
+			switch(select("Dungeon I:Dungeon II")) {
+				case 1:
+					goto Lsaturday;
+				case 2:
+					goto Lsunday;
+			}
 	
-	if (.@GID == 0) {
-		mes "[Ringing Voice]";
-		mes "'Those who overcome an ordeal shows a great deal of bravery... and will find their way to another ordeal.'";
+	case 2: 
+	if ($SaturdayGDungeonFunds < 1){
+		mes "[ Dungeon Manager ]";
+		mes "Unfortunately there are no visitors at all.";
 		close;
+		}
+		mes "[ Dungeon Manager ]";
+		mes "Total dungeon funds as of now is:";
+		mes ""+callfunc("F_InsertComma",$SaturdayGDungeonFunds);
+		mes "^FF0000 [ Mithril Coin(s) ] ^000000";
+		next;
+		mes "[ Dungeon Manager ]";
+		mes "Do you want to withdraw the funds?";
+		next;
+		switch(select("Yes:No")) {
+			case 1:
+				if (MaxWeight - Weight < 1000) {
+				mes "Your bag is too heavy. Reduce some weight and come back.";
+				close;
+				}
+				
+				mes "[ Dungeon Manager ]";
+				mes "How much you want to claim?";
+				mes ""+callfunc("F_InsertComma",$SaturdayGDungeonFunds);
+				mes "Total fund available.";
+				next;
+				
+				input FundClaim;
+				if (FundClaim == 0) {
+				mes "[ Dungeon Manager ]";
+				mes "Umm, please enter your amount!";
+				close;
+				}
+				
+				if (FundClaim > $SaturdayGDungeonFunds) {
+				mes "[ Dungeon Manager ]";
+				mes "Did you count it right?";
+				close;
+				}
+				
+				else {
+				getitem 674, (FundClaim);
+				set $SaturdayGDungeonFunds,$SaturdayGDungeonFunds - (FundClaim) ;
+				dispbottom "[ Guild Dungeon Fund ]";
+				dispbottom "You've claimed "+(FundClaim)+" Mithril Coin(s)";
+				dispbottom "from your Guild Dungeon funds.";
+				mes "[ Dungeon Manager ]";
+				mes "Nice doing business with you.";
+				close;
+				}
+				
+		
+			case 2:
+				mes "[ Dungeon Manager ]";
+				mes "Have a good day.";
+				close;
+				break;		
+		}
+		close;
+	
 	}
+}
+
+// < ------------ SUNDAY SCRIPT ----------------> //
+if (GetGuildMaster(.@GID_Sunday) == strcharinfo(0)) {
+mes " [ Dungeon Manager ] ";
+mes "Welcome. My honorable master, ^ff0000"+strcharinfo(0)+"^000000...";
+next;
+	switch(select("Enter Dungeon:^FF0000[ Claim Dungeon Funds ]^000000")) {
+
+	case 1: 
+		mes " [ Dungeon Manager ] ";
+		mes "Which Dungeon do you want me to warp Master?";
+		next;
+			switch(select("Dungeon I:Dungeon II")) {
+				case 1:
+					goto Lsaturday;
+				case 2:
+					goto Lsunday;
+			}
+	
+	case 2: 
+	if ($SundayGDungeonFunds < 1){
+		mes "[ Dungeon Manager ]";
+		mes "Unfortunately there are no visitors at all.";
+		close;
+		}
+		mes "[ Dungeon Manager ]";
+		mes "Total dungeon funds as of now is:";
+		mes ""+callfunc("F_InsertComma",$SundayGDungeonFunds);
+		mes "^FF0000 [ Mithril Coin(s) ] ^000000";
+		next;
+		mes "[ Dungeon Manager ]";
+		mes "Do you want to withdraw the funds?";
+		next;
+		switch(select("Yes:No")) {
+			case 1:
+				if (MaxWeight - Weight < 1000) {
+				mes "Your bag is too heavy. Reduce some weight and come back.";
+				close;
+				}
+				
+				mes "[ Dungeon Manager ]";
+				mes "How much you want to claim?";
+				mes ""+callfunc("F_InsertComma",$SundayGDungeonFunds);
+				mes "Total fund available.";
+				next;
+				
+				input FundClaim;
+				if (FundClaim == 0) {
+				mes "[ Dungeon Manager ]";
+				mes "Umm, please enter your amount!";
+				close;
+				}
+				
+				if (FundClaim > $SundayGDungeonFunds) {
+				mes "[ Dungeon Manager ]";
+				mes "Did you count it right?";
+				close;
+				}
+				
+				else {
+				getitem 674, (FundClaim);
+				set $SundayGDungeonFunds,$SundayGDungeonFunds - (FundClaim) ;
+				dispbottom "[ Guild Dungeon Fund ]";
+				dispbottom "You've claimed "+(FundClaim)+" Mithril Coin(s)";
+				dispbottom "from your Guild Dungeon funds.";
+				mes "[ Dungeon Manager ]";
+				mes "Nice doing business with you.";
+				close;
+				}
+				
+		
+			case 2:
+				mes "[ Dungeon Manager ]";
+				mes "Have a good day.";
+				close;
+				break;		
+		}
+		close;
+	
+	}
+}
+
+// Normal Player Menu
+
+mes "[ Mysterious Portal]";
+mes "Cow mooo.. Cat meoww.. ^FF0000" + strcharinfo(0) + "^000000 ?";
+next;
+	menu "RAWRRR!!",Sat,"GAHH!!",Sun;
+
+	Sat:
+	goto Lsaturday;
+	
+	Sun:
+	goto Lsunday;
+
+Lsaturday:
 	
 	mes "[Ringing Voice]";
 	mes "'Only the truly brave can take the test.'";
@@ -29,9 +193,9 @@ Lhorn:
 	next;
 	if(select("Yes!:Step back..") == 1) {
 		//Check if player is part of the guild
-		if (getcharid(2) != .@GID) {
+		if (getcharid(2) != .@GID_Saturday) {
 			mes "[Ringing Voice]";
-			mes "It seems that you are not a member of ^0000FF["+getguildname(.@GID)+"]^000000 Guild!";
+			mes "It seems that you are not a member of ^0000FF["+getguildname(.@GID_Saturday)+"]^000000 Guild!";
 			next;
 			mes "[Ringing Voice]";
 			mes "You have to pay a fee of ^0000FF100,000,000 Zenies^000000 to enter!";
@@ -57,28 +221,29 @@ Lhorn:
 			switch(select("Level 1:Level 2:Hall Of Abyss")) {
 				case 1:
 					warp "gld_dun01",0,0;
-					if (getcharid(2) != .@GID) {
+					if (getcharid(2) != .@GID_Saturday) {
 					Set ZENY, ZENY - 100000000;
-					dispbottom "You've paid 100,000,000z to the ["+getguildname(.@GID)+"] Guild's Dungeon Fee.";
-					set $HornGDungeonFunds, $HornGDungeonFunds + 100000000;
+					dispbottom "You've paid 100,000,000z to the ["+getguildname(.@GID_Saturday)+"] Guild's Dungeon Fee.";
+					set $SaturdayGDungeonFunds, $SaturdayGDungeonFunds + 1;
 					}
 					close2;
 					break;
+					
 				case 2:
 					warp "gld_dun01_2",0,0;
-					if (getcharid(2) != .@GID) {
+					if (getcharid(2) != .@GID_Saturday) {
 					Set ZENY, ZENY - 100000000;
-					dispbottom "You've paid 100,000,000z to the ["+getguildname(.@GID)+"] Guild's Dungeon Fee.";
-					set $HornGDungeonFunds, $HornGDungeonFunds + 100000000;
+					dispbottom "You've paid 100,000,000z to the ["+getguildname(.@GID_Saturday)+"] Guild's Dungeon Fee.";
+					set $SaturdayGDungeonFunds, $SaturdayGDungeonFunds + 1;
 					}
 					close2;
 					break;
 				case 3:
 					warp "gld2_pay",0,0;
-					if (getcharid(2) != .@GID) {
+					if (getcharid(2) != .@GID_Saturday) {
 					Set ZENY, ZENY - 100000000;
-					dispbottom "You've paid 100,000,000z to the ["+getguildname(.@GID)+"] Guild's Dungeon Fee.";
-					set $HornGDungeonFunds, $HornGDungeonFunds + 100000000;
+					dispbottom "You've paid 100,000,000z to the ["+getguildname(.@GID_Saturday)+"] Guild's Dungeon Fee.";
+					set $SaturdayGDungeonFunds, $SaturdayGDungeonFunds + 1;
 					}
 					close2;
 					break;
@@ -88,38 +253,38 @@ Lhorn:
 			switch(select("Level 1:Level 2:Hall Of Abyss")) {
 				case 1:
 					warp "gld_dun04",0,0;
-					if (getcharid(2) != .@GID) {
+					if (getcharid(2) != .@GID_Saturday) {
 					Set ZENY, ZENY - 100000000;
-					dispbottom "You've paid 100,000,000z to the ["+getguildname(.@GID)+"] Guild's Dungeon Fee.";
-					set $HornGDungeonFunds, $HornGDungeonFunds + 100000000;
+					dispbottom "You've paid 100,000,000z to the ["+getguildname(.@GID_Saturday)+"] Guild's Dungeon Fee.";
+					set $SaturdayGDungeonFunds, $SaturdayGDungeonFunds + 1;
 					}
 					close2;
 					break;
 				case 2:
 					warp "gld_dun04_2",0,0;
-					if (getcharid(2) != .@GID) {
+					if (getcharid(2) != .@GID_Saturday) {
 					Set ZENY, ZENY - 100000000;
-					dispbottom "You've paid 100,000,000z to the ["+getguildname(.@GID)+"] Guild's Dungeon Fee.";
-					set $HornGDungeonFunds, $HornGDungeonFunds + 100000000;
+					dispbottom "You've paid 100,000,000z to the ["+getguildname(.@GID_Saturday)+"] Guild's Dungeon Fee.";
+					set $SaturdayGDungeonFunds, $SaturdayGDungeonFunds + 1;
 					}
 					close2;
 					break;
 				case 3:
 					warp "gld2_gef",0,0;
-					if (getcharid(2) != .@GID) {
+					if (getcharid(2) != .@GID_Saturday) {
 					Set ZENY, ZENY - 100000000;
-					dispbottom "You've paid 100,000,000z to the ["+getguildname(.@GID)+"] Guild's Dungeon Fee.";
-					set $HornGDungeonFunds, $HornGDungeonFunds + 100000000;
+					dispbottom "You've paid 100,000,000z to the ["+getguildname(.@GID_Saturday)+"] Guild's Dungeon Fee.";
+					set $SaturdayGDungeonFunds, $SaturdayGDungeonFunds + 1;
 					}
 					close2;
 					break;
 			}
 		case 3:
 			warp "arug_dun01",0,0;
-			if (getcharid(2) != .@GID) {
+			if (getcharid(2) != .@GID_Saturday) {
 			Set ZENY, ZENY - 100000000;
-			dispbottom "You've paid 100,000,000z to the ["+getguildname(.@GID)+"] Guild's Dungeon Fee.";
-			set $HornGDungeonFunds, $HornGDungeonFunds + 100000000;
+			dispbottom "You've paid 100,000,000z to the ["+getguildname(.@GID_Saturday)+"] Guild's Dungeon Fee.";
+			set $SaturdayGDungeonFunds, $SaturdayGDungeonFunds + 1;
 			}
 			close2;
 			break;
@@ -132,15 +297,7 @@ Lhorn:
 	close;
 end;
 
-Lhiminn:
-
-	set .@GID, GetCastleData("schg_cas01",1); //Guild that occupies Himinn Castle
-	
-	if (.@GID == 0) {
-		mes "[Ringing Voice]";
-		mes "'Those who overcome an ordeal shows a great deal of bravery... and will find their way to another ordeal.'";
-		close;
-	}
+Lsunday:
 
 	mes "[Ringing Voice]";
 	mes "'Only the truly brave can take the test.'";
@@ -151,9 +308,9 @@ Lhiminn:
 	next;
 	if(select("Yes!:Step back..") == 1) {
 		//Check if player is part of the guild
-		if (getcharid(2) != .@GID) {
+		if (getcharid(2) != .@GID_Sunday) {
 			mes "[Ringing Voice]";
-			mes "It seems that you are not a member of ^0000FF["+getguildname(.@GID)+"]^000000 Guild!";
+			mes "It seems that you are not a member of ^0000FF["+getguildname(.@GID_Sunday)+"]^000000 Guild!";
 			next;
 			mes "[Ringing Voice]";
 			mes "You have to pay a fee of ^0000FF100,000,000 Zenies^000000 to enter!";
@@ -179,28 +336,28 @@ Lhiminn:
 			switch(select("Level 1:Level 2:Hall Of Abyss")) {
 				case 1:
 					warp "gld_dun03",0,0;
-					if (getcharid(2) != .@GID) {
+					if (getcharid(2) != .@GID_Sunday) {
 					Set ZENY, ZENY - 100000000;
-					dispbottom "You've paid 100,000,000z to the ["+getguildname(.@GID)+"] Guild's Dungeon Fee.";
-					set $HimGDungeonFunds, $HimGDungeonFunds + 100000000;
+					dispbottom "You've paid 100,000,000z to the ["+getguildname(.@GID_Sunday)+"] Guild's Dungeon Fee.";
+					set $SundayGDungeonFunds, $SundayGDungeonFunds + 1;
 					}					
 					close2;
 					break;
 				case 2: 
 					warp "gld_dun03_2",0,0;
-					if (getcharid(2) != .@GID) {
+					if (getcharid(2) != .@GID_Sunday) {
 					Set ZENY, ZENY - 100000000;
-					dispbottom "You've paid 100,000,000z to the ["+getguildname(.@GID)+"] Guild's Dungeon Fee.";
-					set $HimGDungeonFunds, $HimGDungeonFunds + 100000000;	
+					dispbottom "You've paid 100,000,000z to the ["+getguildname(.@GID_Sunday)+"] Guild's Dungeon Fee.";
+					set $SundayGDungeonFunds, $SundayGDungeonFunds + 1;	
 					}					
 					close2;
 					break;
 				case 3:
 					warp "gld2_prt",0,0;
-					if (getcharid(2) != .@GID) {
+					if (getcharid(2) != .@GID_Sunday) {
 					Set ZENY, ZENY - 100000000;
-					dispbottom "You've paid 100,000,000z to the ["+getguildname(.@GID)+"] Guild's Dungeon Fee.";
-					set $HimGDungeonFunds, $HimGDungeonFunds + 100000000;
+					dispbottom "You've paid 100,000,000z to the ["+getguildname(.@GID_Sunday)+"] Guild's Dungeon Fee.";
+					set $SundayGDungeonFunds, $SundayGDungeonFunds + 1;
 					}					
 					close2;
 					break;
@@ -210,38 +367,38 @@ Lhiminn:
 			switch(select("Level 1:Level 2:Hall Of Abyss")) {
 				case 1:
 					warp "gld_dun02",0,0;
-					if (getcharid(2) != .@GID) {
+					if (getcharid(2) != .@GID_Sunday) {
 					Set ZENY, ZENY - 100000000;
-					dispbottom "You've paid 100,000,000z to the ["+getguildname(.@GID)+"] Guild's Dungeon Fee.";
-					set $HimGDungeonFunds, $HimGDungeonFunds + 100000000;
+					dispbottom "You've paid 100,000,000z to the ["+getguildname(.@GID_Sunday)+"] Guild's Dungeon Fee.";
+					set $SundayGDungeonFunds, $SundayGDungeonFunds + 1;
 					}					
 					close2;
 					break;
 				case 2:
 					warp "gld_dun02_2",0,0;
-					if (getcharid(2) != .@GID) {
+					if (getcharid(2) != .@GID_Sunday) {
 					Set ZENY, ZENY - 100000000;
-					dispbottom "You've paid 100,000,000z to the ["+getguildname(.@GID)+"] Guild's Dungeon Fee.";
-					set $HimGDungeonFunds, $HimGDungeonFunds + 100000000;
+					dispbottom "You've paid 100,000,000z to the ["+getguildname(.@GID_Sunday)+"] Guild's Dungeon Fee.";
+					set $SundayGDungeonFunds, $SundayGDungeonFunds + 1;
 					}					
 					close2;
 					break;
 				case 3: 
 					warp "gld2_ald",0,0;
-					if (getcharid(2) != .@GID) {
+					if (getcharid(2) != .@GID_Sunday) {
 					Set ZENY, ZENY - 100000000;
-					dispbottom "You've paid 100,000,000z to the ["+getguildname(.@GID)+"] Guild's Dungeon Fee.";
-					set $HimGDungeonFunds, $HimGDungeonFunds + 100000000;	
+					dispbottom "You've paid 100,000,000z to the ["+getguildname(.@GID_Sunday)+"] Guild's Dungeon Fee.";
+					set $SundayGDungeonFunds, $SundayGDungeonFunds + 1;	
 					}					
 					close2;
 					break;
 			}
 		case 3:
 			warp "schg_dun01",0,0;
-			if (getcharid(2) != .@GID) {
+			if (getcharid(2) != .@GID_Sunday) {
 			Set ZENY, ZENY - 100000000;
-			dispbottom "You've paid 100,000,000z to the ["+getguildname(.@GID)+"] Guild's Dungeon Fee.";
-			set $HimGDungeonFunds, $HimGDungeonFunds + 100000000;
+			dispbottom "You've paid 100,000,000z to the ["+getguildname(.@GID_Sunday)+"] Guild's Dungeon Fee.";
+			set $SundayGDungeonFunds, $SundayGDungeonFunds + 1;
 			}
 			close2;
 			break;

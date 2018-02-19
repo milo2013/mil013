@@ -105,7 +105,7 @@ kampung,138,158,5	script	Cluckers	800,{
 	close;
 
 OnTimer10000:
-	announce "Please hurry beside right stair if you want to play with the crazy chicken!",bc_blue;
+	announce "Please hurry beside right side of waterfall if you want to play with the crazy chicken!",bc_blue;
 	end;
 OnTimer20000:
 	announce "Cluckers has eaten one of my items! I'm too scared to retrieve it!",bc_blue;

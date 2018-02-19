@@ -436,7 +436,7 @@ menu	"Bakonawa Lake",I1, "Bangungot Hospital 2F",I2, "Buwaya Cave",I3,
     	"Wolfchev's Laboratory",I12,"Sara's Memory",I13,"Nightmare Jitterbug",I14,
 		"Endless Cellar (Shadow EQ)",I15,"Geffen Magic Tournament",I16,"Horror Toy Factory",
 		I17,"Faceworm's Nest",I18,"Ghost Palace",I19,"Bios Island",I20,"Charleston Crisis (MILENIA RO VERSION)",I21,"Airship Assault",I22,
-		"Vicious Prison (Vicious EQ)",I23,"Infinite Space",I24,"Devil Tower",I25,"Sarah and Fenrir",I26,"Central Laboratory",I27,"Last Room",I28;
+		"Vicious Prison (Vicious EQ)",I23,"Infinite Space",I24,"Devil Tower",I25,"Sarah and Fenrir",I26,"Central Laboratory",I27,"Last Room",I28,"Morse Cave",I29,"Temple of Demon Gods",I30;
 
 I1: Restrict("RE");
 	Go("ma_scene01",172,175);
@@ -490,6 +490,10 @@ I27: Restrict("RE");
 	Go("verus01",148,154);
 I28: Restrict("RE");	
 	Go("verus01",123,181);
+I29: Restrict("RE");	
+	Go("moro_cav",61,65);
+I30: Restrict("RE");	
+	Go("moro_cav",44,68);
 // --------------------------------------------------
 	Special:
 // --------------------------------------------------

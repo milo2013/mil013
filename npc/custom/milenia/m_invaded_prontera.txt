@@ -1,3 +1,19 @@
+function	script	timeleft__	{
+	if ( ( .@left = getarg(0) ) <= 0 ) return getarg(0);
+	.@day = .@left / 86400;
+	.@hour = .@left % 86400 / 3600;
+	.@min = .@left % 3600 / 60;
+	.@sec = .@left % 60;
+	if ( .@day )
+		return .@day +" day "+ .@hour +" hour";
+	else if ( .@hour )
+		return .@hour +" hour "+ .@min +" min";
+	else if ( .@min )
+		return .@min +" min "+ .@sec +" sec";
+	else
+		return .@sec +" sec";
+}
+
 kampung,79,61,5	script	Novice Kafra	114,{
 	if	(Class > 0){
 		mes "[Kafra Employee]";
@@ -55,7 +71,7 @@ kampung,32,49,5	script	Unknown Scout	998,{
 			mes "For more bonus, please craft for rent our ^FF0000Figurine!!^000000";
 			close;
 		case 2: 
-			warp "kampung",150,150;
+			warp "kampung",66,62;
 					break;	
 		case 3:
 			if (getpetinfo(1)){
@@ -81,7 +97,7 @@ kampung,32,49,5	script	Unknown Scout	998,{
 				set .Hunter[getarraysize( .Hunter )], getcharid(3);
 				warp .Map$,0,0;
 				mapannounce "prt_q", strcharinfo(0) + " has join to protect Invaded Prontera!!",0;
-				mapannounce "milenia", strcharinfo(0) + " has join to protect Invaded Prontera!!",0;
+				mapannounce "kampung", strcharinfo(0) + " has join to protect Invaded Prontera!!",0;
 				end;
 				
 			} else if (countitem (41163) > 0) {
@@ -89,7 +105,7 @@ kampung,32,49,5	script	Unknown Scout	998,{
 				set .Hunter[getarraysize( .Hunter )], getcharid(3);
 				warp .Map$,0,0;
 				mapannounce "prt_q", strcharinfo(0) + " has join to protect Invaded Prontera using Bravery Medal!!",0;
-				mapannounce "milenia", strcharinfo(0) + " has join to protect Invaded Prontera using Bravery Medal!!",0;
+				mapannounce "kampung", strcharinfo(0) + " has join to protect Invaded Prontera using Bravery Medal!!",0;
 				end;
 			}
 			else {
@@ -107,7 +123,7 @@ OnPCDieEvent:
 		#Invaded_timer = gettimetick(2) + 300;
 		}
 		mapannounce "prt_q", strcharinfo(0) + " has killed in action!! R.I.P",0;
-		//mapannounce "milenia", strcharinfo(0) + " has killed in action during defend Prontera from invaded!! R.I.P!!",0;
+		//mapannounce "kampung", strcharinfo(0) + " has killed in action during defend Prontera from invaded!! R.I.P!!",0;
 		dispbottom  "[ Invaded Prontera ] : You've died! GAME OVER!!";
 		dispbottom  "[ Invaded Prontera ] : Your rewards count will resume when you're alive as penalty!!";
 	}
@@ -128,7 +144,7 @@ OnBossKill:
 	monster .Map$,0,0,"--ja--",.boss_mob[rand(.boss_mob_size)],1,strnpcinfo(0)+"::OnBossKill";
 	getitem .farm_boss[rand(.farm_boss_size)], 15;
 	mapannounce "prt_q", strcharinfo(0) + " has killed the Invader General and Claimed 15 Gold pieces!!",0;
-	//mapannounce "milenia", strcharinfo(0) + " has killed the Invader General and Claimed 10 Gold pieces!!",0;
+	//mapannounce "kampung", strcharinfo(0) + " has killed the Invader General and Claimed 10 Gold pieces!!",0;
 	goto L_kill;
 	
 L_kill:
@@ -141,7 +157,7 @@ L_kill:
 		#Invaded_timer = gettimetick(2) + 300;
 		}
 	.Hunter--;
-		warp "milenia",127,164;
+		warp "kampung",127,164;
 	}
 	end;
 OnInit:

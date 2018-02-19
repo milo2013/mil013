@@ -12,14 +12,14 @@ OnInit:
 	end;
 	
 OnAtcommand:
-	cutin "jp_dux_thia02",2;
+	cutin "pops_lau",2;
 	mes "[ Milenia Storage System ]";
 	mes "Which storage do you want to open?";
     next;
     switch(select("Premium Storage","VIP Storage")) {
 		case 1: 
 			if (vip_status(VIP_STATUS_ACTIVE)) {
-				cutin "jp_dux_thia02",2;
+				cutin "pops_lau",2;
 				mes "[ Milenia Storage System ]";
 				mes "I will open your VIP storage.";
 				mes "Thank you for using our service.";
@@ -30,7 +30,7 @@ OnAtcommand:
 			}
 			
 			if (countitem (41262) >= 1){
-				cutin "jp_dux_thia02",2;
+				cutin "pops_lau",2;
 				mes "[ Milenia Storage System ]";
 				mes "Premium storage will be opened";
 				close2;
@@ -39,7 +39,7 @@ OnAtcommand:
 				end;
 			}
 			else {
-				cutin "jp_dux_thia02",2;
+				cutin "pops_lau",2;
 				mes "[ Milenia Storage System ]";
 				mes "You're not VIP or your Premium ";
 				mes "status was already expired.";
@@ -58,7 +58,7 @@ OnAtcommand:
 			}
 		case 2:
 			if (vip_status(VIP_STATUS_ACTIVE)) {
-				cutin "jp_dux_thia02",2;
+				cutin "pops_lau",2;
 				mes "[ Milenia Storage System ]";
 				mes "I will open your VIP storage.";
 				mes "Thank you for using our service.";
@@ -68,7 +68,7 @@ OnAtcommand:
 				end;
 			}
 			else {
-				cutin "jp_dux_thia02",2;
+				cutin "pops_lau",2;
 				mes "[ Milenia Storage System ]";
 				mes "You're not VIP or your Premium ";
 				mes "status was already expired.";
@@ -161,6 +161,13 @@ OnAtcommand:
 	dispbottom "=============================================";
 	dispbottom "Your account status is : Normal Account";
 	dispbottom "Purchase 30 Days VIP Certificate at our website with 75 Donation Credit only!";
+	dispbottom "=============================================";
+	dispbottom "VIP Privileges : ";
+	dispbottom "Special Privileges : Get Double Gold in Dokebi Farm";
+	dispbottom "Special Privileges : Exp Rate Increase 100%";
+	dispbottom "Special Privileges : Get Double Drop Rate";
+	dispbottom "Special Privileges : Extra 6 Character Slot (15/15 Slot)";
+	dispbottom "Special Privileges : Access to Premium and VIP Storage";
 	dispbottom "=============================================";
 	}
 	
