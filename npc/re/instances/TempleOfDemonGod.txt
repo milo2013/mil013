@@ -231,7 +231,7 @@ OnStart:
 		else{
 			//RATHENA
 			getmapxy(.@map$, .@x, .@y, UNITTYPE_PC);
-			save .@map$, .@x, .@y;
+			//save .@map$, .@x, .@y;
 			switch(instance_enter(.instance_name$)) {
 				default:
 					mes "An unknown error has occurred.";
