@@ -133,7 +133,7 @@ kampung,170,79,0,0	monster	Training [ Undead  ]	2585,1,1,0,0
 //niflheim,0,0	monster	Lude	1509,40,5000
 
 // CNY 2018
-kampung,0,0	monster	Dancing Dragon	1609,50,60000
+//kampung,0,0	monster	Dancing Dragon	1609,50,60000
 
 
 
