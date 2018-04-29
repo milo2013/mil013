@@ -63,7 +63,7 @@ moro_vol,108,88,5	script	Commander Hiva Agip::alatdgcha	4_M_REDSWORD,{
 	close;
 	
 OnInit:
-	set .questId, 52500;
+	set .questId,62501;
 	end;
 }	
 
@@ -117,7 +117,7 @@ moro_vol,110,90,3	script	Abidal::alatdga	4_M_KNIGHT_GOLD,{
 	close;
 	
 OnInit:
-	set .questId, 52501;
+	set .questId, 62501;
 	end;
 }	
 
@@ -135,12 +135,6 @@ OnStart:
 	mes .@npcname$;
 	mes "You touched the tree and felt a strange flow of mana.";
 	mes "Perhaps the flow of mana will guide to the depth of the temple.";
-	if( .@instance_delay > 0 )
-	{
-		mes "You have to wait : ";
-		mes "^FF0000"+((.@instance_delay)/3600)+" Hour,^000000 ^FF0000"+((.@instance_delay)/60)+" Minutes.^000000";
-		close;
-	}
 	next;
 	switch( select( 
 		(( .@party_id && .@tdg_leader && !.@has_instance )?"Create " + .instance_name$:""),
@@ -149,6 +143,12 @@ OnStart:
 	"Nevermind."
 		)){
 	case 1:
+		if( .@instance_delay > 0 )
+	{
+		mes "You have to wait : ";
+		mes "^FF0000"+((.@instance_delay)/3600)+" Hour,^000000 ^FF0000"+((.@instance_delay)/60)+" Minutes.^000000";
+		close;
+	}
 		getpartymember .@party_id,2;
 		if( .min_party_member >= 1 ){
 			set .@origin, getcharid(3);
@@ -216,14 +216,8 @@ OnStart:
 			attachrid( .@origin );
 			npctalk .instance_name$ + " has been generated for Party - " + getpartyname( .@party_id );
 			
-			
-			//disable unused npcs for now
-			disablenpc instance_npcname( "tdgWarp#1", instance_id() );
-			disablenpc instance_npcname( "tdgWarp#2", instance_id() );
-			disablenpc instance_npcname( "tdgWarp#3", instance_id() );
-			disablenpc instance_npcname( "tdgWarp#4", instance_id() );
-			disablenpc instance_npcname( "tdgWarp#5", instance_id() );
  		}
+		break;
 	case 2:
 		if( TDG_INSTANCE_ID <= 0 ){
 			mes .instance_name$ + " doesn't exist for Party - "+getpartyname( .@party_id );
@@ -269,7 +263,7 @@ OnPCLogoutEvent:
 	end;
 
 OnInit:
-	setarray .base_level[0],145, 175;
+	setarray .base_level[0],160, 175;
 	setarray .map$[0],"1@eom";
 	set .map_size, getarraysize( .map$ );
 	set .min_party_member, 1;
@@ -288,6 +282,13 @@ end;
 
 OnInstanceInit:
 	set .@map$, strnpcinfo(4);
+	
+	//disable unused npcs for now
+	disablenpc instance_npcname( "tdgWarp#1", instance_id() );
+	disablenpc instance_npcname( "tdgWarp#2", instance_id() );
+	disablenpc instance_npcname( "tdgWarp#3", instance_id() );
+	disablenpc instance_npcname( "tdgWarp#4", instance_id() );
+	disablenpc instance_npcname( "tdgWarp#5", instance_id() );
 	
 	set 'instance_tdg_level, 0;
 	set .max_tdg_level, 6;
