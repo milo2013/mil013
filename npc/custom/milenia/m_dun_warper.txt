@@ -2,11 +2,15 @@ kampung,61,123,0	script	Mysterious Portal	10007,2,2,{
 
 OnTouch:
 
-set .@GID_Saturday, GetCastleData("arug_cas01",1); 				// Guild that occupies SATURDAY Castle
+set .@GID_Saturday, GetCastleData("arug_cas05",1); 				// Guild that occupies SATURDAY Castle
 set .@GuildMaster_Saturday, GetGuildMaster(.@GID_Saturday); 	// Guild Master SATURDAY Castle
+// Previous Castle : 
+// arug_cas01,arug_cas03
 
-set .@GID_Sunday, GetCastleData("schg_cas05",1); 				// Guild that occupies SUNDAY Castle
+set .@GID_Sunday, GetCastleData("schg_cas02",1); 				// Guild that occupies SUNDAY Castle
 set .@GuildMaster_Sunday, GetGuildMaster(.@GID_Sunday); 		// Guild Master SUNDAY Castle
+// Previous Castle : 
+// schg_cas01,schg_cas05
 
 // < ------------ SATURDAY SCRIPT ----------------> //
 if (GetGuildMaster(.@GID_Saturday) == strcharinfo(0)) {
