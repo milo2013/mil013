@@ -63,7 +63,7 @@ moro_vol,108,88,5	script	Commander Hiva Agip::alatdgcha	4_M_REDSWORD,{
 	close;
 	
 OnInit:
-	set .questId,62501;
+	set .questId,52500;
 	end;
 }	
 
@@ -117,7 +117,7 @@ moro_vol,110,90,3	script	Abidal::alatdga	4_M_KNIGHT_GOLD,{
 	close;
 	
 OnInit:
-	set .questId, 62501;
+	set .questId, 52501;
 	end;
 }	
 
@@ -952,4 +952,4 @@ OnInit:
 1@eom,105,120	warp	tdgWarp#3	2,2,1@eom,133,93
 1@eom,147,156	warp	tdgWarp#4	2,2,1@eom,98, 115
 1@eom,98,127	warp	tdgWarp#5	2,2,1@eom,101,176
-1@eom,105,177	warp	tdgWarp#6	2,2,1@eom,98, 115
+//1@eom,105,177	warp	tdgWarp#6	2,2,1@eom,98, 115 // Warp final boss

@@ -1,3 +1,21 @@
+-	script	atcmd_hide	-1,{
+OnInit:
+	bindatcmd "hide",strnpcinfo(3)+"::OnAtcommand",99,99;
+	end;
+OnAtcommand:
+
+	if(checkoption(OPTION_INVISIBLE) == 1){
+		specialeffect2 587;
+		specialeffect2 589;
+		setoption OPTION_INVISIBLE,0;
+	} else {	
+		specialeffect2 587;
+		specialeffect2 589;
+		setoption OPTION_INVISIBLE,1;
+	}
+	end;
+}
+
 function	script	KatokFunc2	{
 	
 	mes "[ GM Froggie Console ]";
@@ -193,10 +211,8 @@ function	script	EventBoxFunc	{
 	
 	set .item_id, .@items[rand (getarraysize(.@items)) ];
 	set .item_amount, 1;
-	//debugmes " "+(.@eventRandom)+" ";
-	
-	
 	getitem .item_id, .item_amount;	
+	
 	}
 	
 	else {
@@ -205,20 +221,17 @@ function	script	EventBoxFunc	{
 	"674", 		// Mithril Coin
 	"41123",	// Rare Mithril
 	"6697",		// Costume Exchange Coupon
-	"12365","12362","12372","12366","12368","12364","12395","12357", // Event Pet Taming
 	"6238",		// +11 Refine Ticket Weapon
 	"6239",		// +11 Refine Ticket Armor
-	"6697",		// VIP Certificate 1 Hour << Later
+	"6697",		// Costume Exchange Coupon
 	"41244",	// Premium Dokebi Membership Pass 1 Day
 	"12246",	// Mystical Card Album
 	"41250";	// Crimson Elemental Guide
 	
 	set .item_id, .@items[rand (getarraysize(.@items)) ];
 	set .item_amount, 1;
-	//debugmes " "+(.@eventRandom)+" ";
-	
-	
 	getitem .item_id, .item_amount;
+	
 	}
 }
 	

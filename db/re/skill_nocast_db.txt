@@ -95,9 +95,10 @@
 2284,8	//SC_FATALMENACE
 2300,8	//SC_DIMENSIONDOOR
 5063,8	//WE_CALLALLFAMILY
-4263,8	//Samurai Spector Card
-2748,8	//Cursed Star
-4601,8	//4601
+// Error in console
+//4263,8	//Samurai Spector Card
+//2748,8	//Cursed Star
+//4601,8	//4601
 
 
 //----------------------------------------------------------------------------
