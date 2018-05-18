@@ -427,6 +427,7 @@ OnTalk:
 		
 		for ( .@i = 1; .@i <= ( max( 1,'ladder_mode ) * 4 ); .@i++ )
 			hideoffnpc instance_npcname( "Treasure#ladder_"+'ladder_mode+"_"+.@i );
+			hideoffnpc instance_npcname( "Ramadhan Coupon#ladder_"+'ladder_mode+"_"+.@i );
 			
 		'ladder_level = -1;
 		stopnpctimer;
@@ -697,7 +698,25 @@ OnTalk:
 3@ldr,30,70,4	duplicate(elite_mvp_ladder_main)	Heroes of MVP Ladder#3	4_F_SURA
 4@ldr,30,70,4	duplicate(elite_mvp_ladder_main)	Heroes of MVP Ladder#4	4_F_SURA
 
-
+-	script	Ramadhan Coupon	483,{
+	mes "[ Mr. X ]";
+	mes "Please talk to me when you already claim the treasure box.";
+	next;
+		switch(select(	"Okay!!:Already claimed!!"	)){
+			case 1: 
+				end;
+			case 2:
+				close2;
+				getitem 41296,1;
+				warp "SavePoint",0,0;
+		}
+		
+	OnInit:
+	OnInstanceInit:
+		hideonnpc strnpcinfo(3);
+		
+}	
+	
 -	script	Treasure#ladder_1	4_TREASURE_BOX,{
 	if ( 'ladder_level >= 0 ) end;
 	
@@ -729,6 +748,7 @@ OnTalk:
 		969,50,		// Gold
 		969,50,		// Gold
 		969,50;		// Gold
+		41294,1;	// Mysterious Fragment
 	.@item_size = getarraysize( .@item ) - 1;
 	
 	specialeffect EF_COIN;
@@ -753,7 +773,11 @@ OnTalk:
 		
 }
 
-
+1@ldr,39,59,4	duplicate(Ramadhan Coupon)	Ramadhan Coupon#ladder_1_5	483
+2@ldr,39,59,4	duplicate(Ramadhan Coupon)	Ramadhan Coupon#ladder_2_9	483	
+3@ldr,39,59,4	duplicate(Ramadhan Coupon)	Ramadhan Coupon#ladder_3_13	483
+4@ldr,39,59,4	duplicate(Ramadhan Coupon)	Ramadhan Coupon#ladder_4_17	483	
+	
 1@ldr,33,46,4	duplicate(Treasure#ladder_1)	Treasure#ladder_1_1	4_TREASURE_BOX
 1@ldr,37,46,4	duplicate(Treasure#ladder_1)	Treasure#ladder_1_2	4_TREASURE_BOX
 1@ldr,41,46,4	duplicate(Treasure#ladder_1)	Treasure#ladder_1_3	4_TREASURE_BOX

@@ -323,3 +323,7 @@
 41293,Milenia_Certificate_Box_1h,VIP Refiner 1H,18,10,,10,,,,0,0xFFFFFFFF,63,2,,,,1,,{ rentitem 41121,3600; },{},{}
 41294,Mysterious Fragment,Mysterious Fragment,3,0,,0,,,,,,,,,,,,,{},{},{} 
 41295,Evo Pet Pass,Evo Pet Pass,3,0,,0,,,,,,,,,,,,,{},{},{}
+41296,Ramadhan Coupon,Ramadhan Coupon,3,0,,0,,,,,,,,,,,,,{},{},{}
+41297,Ash_of_Darkness_Bag,Ash_of_Darkness_Bag,2,20,,10,,,,,0xFFFFFFFF,63,2,,,,,,{getitem 6000,25;},{},{}
+41298,Treasure_Box,Treasure_Box,2,20,,10,,,,,0xFFFFFFFF,63,2,,,,,,{Set Zeny,Zeny + 500000000; dispbottom "You've opened the Treasure Box and got 500m Zeny!!";},{},{}
+41299,Gashapon_Coupon_Bag,Gashapon_Coupon_Bag,2,20,,10,,,,,0xFFFFFFFF,63,2,,,,,,{getitem 41258,rand (100,120);},{},{}
