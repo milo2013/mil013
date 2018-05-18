@@ -30,3 +30,7 @@
 41274,411,100	// Milenia_Certificate_Box_Combo
 41293,411,100	// Milenia_Certificate_Box_1h
 41295,511,100	// Evo Pet Pass
+41296,507,100	// Ramadhan Coupon
+41297,251,100	// Ash_of_Darkness_Bag
+41298,475,100	// Treasure_Box
+41299,475,100	// Gashapon_Coupon_Bag
